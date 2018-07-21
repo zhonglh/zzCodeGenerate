@@ -16,15 +16,13 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-  
-  <!--
+
   <modules>
     <module>module-bsmcc-db</module>
     <module>module-bsmcc-controller</module>
     <module>module-bsmcc-core</module>
     <module>module-bsmcc-web</module>
   </modules>
-  -->
 
   <dependencies>
     <dependency>
