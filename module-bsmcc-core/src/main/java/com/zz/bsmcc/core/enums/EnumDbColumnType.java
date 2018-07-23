@@ -1,13 +1,14 @@
 package com.zz.bsmcc.core.enums;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 数据库列类型
  * @author Administrator
  */
-
-public enum EnumDbColumnType {
+public enum EnumDbColumnType implements EnumBase{
 	
 	TINYINT,
 	SMALLINT,
@@ -49,6 +50,19 @@ public enum EnumDbColumnType {
 
 		
 		
+	}
+
+
+	@Override
+	public Serializable getTheValue(){
+		return this.name();
+	}
+
+
+
+	@Override
+	public String getTheName(){
+		return this.name();
 	}
 
 

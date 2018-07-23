@@ -1,10 +1,13 @@
 package com.zz.bsmcc.core.enums;
 
+import java.io.Serializable;
+
 /**
+ * 数据库类型
  * @author Administrator
  */
 
-public enum EnumDbType {
+public enum EnumDbType implements EnumBase{
 	
 	mysql("com.mysql.jdbc.Driver"),
 	oracle("oracle.jdbc.driver.OracleDriver"),
@@ -32,6 +35,20 @@ public enum EnumDbType {
 			}
 		}
 		return null;
+	}
+
+
+
+	@Override
+	public Serializable getTheValue(){
+		return this.name();
+	}
+
+
+
+	@Override
+	public String getTheName(){
+		return this.driver;
 	}
 	
 

@@ -1,9 +1,15 @@
 package com.zz.bsmcc.core.enums;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum EnumJavaType {
+/**
+ * Java 类型
+ * @author Administrator
+ */
+
+public enum EnumJavaType implements EnumBase{
 
 	_Short("java.lang.Short")	,
 	_Integer("java.lang.Integer"),
@@ -38,8 +44,7 @@ public enum EnumJavaType {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-	
-	
+
 	public static EnumJavaType getEnumJavaType(String javaClass){
 		for(EnumJavaType enumJavaType : EnumJavaType.values() ){
 			if(enumJavaType.getFullname() .equals(javaClass)){
@@ -48,14 +53,18 @@ public enum EnumJavaType {
 		}		
 		return null;		
 	}
-	
-	
-	public static List<String> getAll(){
-		List<String> list = new ArrayList<String>();
-		for(EnumJavaType enumJavaType : EnumJavaType.values() ){
-			list.add(enumJavaType.getFullname());
-		}		
-		return list;		
+
+
+	@Override
+	public Serializable getTheValue(){
+		return this.name().substring(1);
+	}
+
+
+
+	@Override
+	public String getTheName(){
+		return this.fullname;
 	}
 	
 	
