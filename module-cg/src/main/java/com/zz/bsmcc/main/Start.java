@@ -15,9 +15,9 @@ public class Start {
 		List<String> tableNames = new ArrayList<String>();
 
 		String author = "Administrator";
-		String schemeName = "zzframe";
+		String schemeName = "zzcg";
 
-		String[] tables = "vs_user".split(",");
+		String[] tables = "cgform_db, cgform_field, cgform_head, cgform_index, tcg_column_config, tcg_column_event, tcg_column_ex, tcg_column_page, tcg_column_validate, tcg_db_config, tcg_group_config, tcg_index_config, tcg_module_config, tcg_operation, tcg_project, tcg_query_config, tcg_table_config, tcg_table_operation, tcg_templet, tcg_templet_grop_operation, tcg_templet_group, ts_function".split(",");
 		for(String tabl : tables){
 			tableNames.add(tabl.trim().toLowerCase());
 		}

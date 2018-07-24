@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zz.bsmcc</groupId>
-    <artifactId>module-bsmcc-db</artifactId>
+    <artifactId>module-bsmcc-base</artifactId>
     <packaging>jar</packaging>
     <name>module-bsmcc-db</name>
     <url>http://www.example.com</url>
