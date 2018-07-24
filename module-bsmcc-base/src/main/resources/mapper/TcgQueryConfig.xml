@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgQueryConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgQueryConfigResultMap" type="com.zz.bsmcc.base.domain.TcgQueryConfigEntity" >
+	<resultMap id="TcgQueryConfigResultMap" type="com.zz.bsmcc.base.bo.TcgQueryConfigBO" >
          	<result column="id" property="id"/>
          	<result column="table_id" property="tableId"/>
          	<result column="column_id" property="columnId"/>
@@ -90,7 +90,7 @@
 
 
     <!-- 根据条件查询第一条查询条件设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgQueryConfig" resultMap="TcgQueryConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgQueryConfigBO" resultMap="TcgQueryConfigResultMap">
         SELECT T.* FROM tcg_query_config T
         <include refid="TcgQueryConfig4CheckQueryFilter"/>  limit 1
     </select>

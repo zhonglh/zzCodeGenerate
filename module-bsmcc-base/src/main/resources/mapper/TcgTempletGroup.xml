@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgTempletGroupDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgTempletGroupResultMap" type="com.zz.bsmcc.base.domain.TcgTempletGroupEntity" >
+	<resultMap id="TcgTempletGroupResultMap" type="com.zz.bsmcc.base.bo.TcgTempletGroupBO" >
          	<result column="id" property="id"/>
          	<result column="group_name" property="groupName"/>
          	<result column="group_remark" property="groupRemark"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条模板组 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTempletGroup" resultMap="TcgTempletGroupResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgTempletGroupBO" resultMap="TcgTempletGroupResultMap">
         SELECT T.* FROM tcg_templet_group T
         <include refid="TcgTempletGroup4CheckQueryFilter"/>  limit 1
     </select>

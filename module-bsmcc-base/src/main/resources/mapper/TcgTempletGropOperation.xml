@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgTempletGropOperationDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgTempletGropOperationResultMap" type="com.zz.bsmcc.base.domain.TcgTempletGropOperationEntity" >
+	<resultMap id="TcgTempletGropOperationResultMap" type="com.zz.bsmcc.base.bo.TcgTempletGropOperationBO" >
          	<result column="id" property="id"/>
          	<result column="group_id" property="groupId"/>
          	<result column="operation_id" property="operationId"/>
@@ -67,7 +67,7 @@
 
 
     <!-- 根据条件查询第一条模板组操作定义 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTempletGropOperation" resultMap="TcgTempletGropOperationResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgTempletGropOperationBO" resultMap="TcgTempletGropOperationResultMap">
         SELECT T.* FROM tcg_templet_grop_operation T
         <include refid="TcgTempletGropOperation4CheckQueryFilter"/>  limit 1
     </select>

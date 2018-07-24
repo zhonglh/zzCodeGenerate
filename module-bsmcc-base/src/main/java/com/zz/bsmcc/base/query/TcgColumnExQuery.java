@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 列扩展查询接口
  *
  * @author Administrator
- * @date 2018-7-24 12:32:14
+ * @date 2018-7-24 14:46:23
  */
 public interface TcgColumnExQuery<PK extends Serializable> extends Query<TcgColumnExEntity,PK> {
 	static final long serialVersionUID = 1L;

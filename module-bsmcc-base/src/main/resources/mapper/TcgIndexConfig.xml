@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgIndexConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgIndexConfigResultMap" type="com.zz.bsmcc.base.domain.TcgIndexConfigEntity" >
+	<resultMap id="TcgIndexConfigResultMap" type="com.zz.bsmcc.base.bo.TcgIndexConfigBO" >
          	<result column="id" property="id"/>
          	<result column="table_id" property="tableId"/>
          	<result column="index_name" property="indexName"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条索引设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgIndexConfig" resultMap="TcgIndexConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgIndexConfigBO" resultMap="TcgIndexConfigResultMap">
         SELECT T.* FROM tcg_index_config T
         <include refid="TcgIndexConfig4CheckQueryFilter"/>  limit 1
     </select>

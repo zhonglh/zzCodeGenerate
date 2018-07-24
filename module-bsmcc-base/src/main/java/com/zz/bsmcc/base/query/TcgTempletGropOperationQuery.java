@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 模板组操作定义查询接口
  *
  * @author Administrator
- * @date 2018-7-24 12:32:16
+ * @date 2018-7-24 14:46:26
  */
 public interface TcgTempletGropOperationQuery<PK extends Serializable> extends Query<TcgTempletGropOperationEntity,PK> {
 	static final long serialVersionUID = 1L;

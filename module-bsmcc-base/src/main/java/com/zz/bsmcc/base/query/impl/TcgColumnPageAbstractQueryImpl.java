@@ -5,13 +5,14 @@ import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bsmcc.base.domain.TcgColumnPageEntity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
  * 列界面设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 12:32:14
+ * @date 2018-7-24 14:46:23
  */
 public abstract class TcgColumnPageAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnPageEntity,PK> {
 	private static final long serialVersionUID = 1L;

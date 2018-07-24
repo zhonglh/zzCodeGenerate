@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgTempletDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgTempletResultMap" type="com.zz.bsmcc.base.domain.TcgTempletEntity" >
+	<resultMap id="TcgTempletResultMap" type="com.zz.bsmcc.base.bo.TcgTempletBO" >
          	<result column="id" property="id"/>
          	<result column="group_id" property="groupId"/>
          	<result column="file_type" property="fileType"/>
@@ -93,7 +93,7 @@
 
 
     <!-- 根据条件查询第一条模板 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTemplet" resultMap="TcgTempletResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgTempletBO" resultMap="TcgTempletResultMap">
         SELECT T.* FROM tcg_templet T
         <include refid="TcgTemplet4CheckQueryFilter"/>  limit 1
     </select>

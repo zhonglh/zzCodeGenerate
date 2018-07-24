@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
  * 列事件实体类
  *
  * @author Administrator
- * @date 2018-7-24 10:20:07
+ * @date 2018-7-24 14:42:49
  */
-@EntityAnnotation(value="列事件" , resource = "")
-@TableName(value="tcg_column_event" , resultMap = "TcgColumnEventResultMap")
 public class TcgColumnEventEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 

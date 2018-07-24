@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgColumnPageDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgColumnPageResultMap" type="com.zz.bsmcc.base.domain.TcgColumnPageEntity" >
+	<resultMap id="TcgColumnPageResultMap" type="com.zz.bsmcc.base.bo.TcgColumnPageBO" >
          	<result column="id" property="id"/>
          	<result column="editable" property="editable"/>
          	<result column="element" property="element"/>
@@ -88,7 +88,7 @@
 
 
     <!-- 根据条件查询第一条列界面设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnPage" resultMap="TcgColumnPageResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgColumnPageBO" resultMap="TcgColumnPageResultMap">
         SELECT T.* FROM tcg_column_page T
         <include refid="TcgColumnPage4CheckQueryFilter"/>  limit 1
     </select>

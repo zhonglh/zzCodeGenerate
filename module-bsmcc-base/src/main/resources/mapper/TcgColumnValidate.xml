@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgColumnValidateDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgColumnValidateResultMap" type="com.zz.bsmcc.base.domain.TcgColumnValidateEntity" >
+	<resultMap id="TcgColumnValidateResultMap" type="com.zz.bsmcc.base.bo.TcgColumnValidateBO" >
          	<result column="id" property="id"/>
          	<result column="column_id" property="columnId"/>
          	<result column="rex" property="rex"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条列校验 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnValidate" resultMap="TcgColumnValidateResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgColumnValidateBO" resultMap="TcgColumnValidateResultMap">
         SELECT T.* FROM tcg_column_validate T
         <include refid="TcgColumnValidate4CheckQueryFilter"/>  limit 1
     </select>

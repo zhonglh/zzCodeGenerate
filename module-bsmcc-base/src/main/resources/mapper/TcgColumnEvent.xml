@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgColumnEventDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgColumnEventResultMap" type="com.zz.bsmcc.base.domain.TcgColumnEventEntity" >
+	<resultMap id="TcgColumnEventResultMap" type="com.zz.bsmcc.base.bo.TcgColumnEventBO" >
          	<result column="id" property="id"/>
          	<result column="column_id" property="columnId"/>
          	<result column="event_name" property="eventName"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条列事件 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnEvent" resultMap="TcgColumnEventResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgColumnEventBO" resultMap="TcgColumnEventResultMap">
         SELECT T.* FROM tcg_column_event T
         <include refid="TcgColumnEvent4CheckQueryFilter"/>  limit 1
     </select>

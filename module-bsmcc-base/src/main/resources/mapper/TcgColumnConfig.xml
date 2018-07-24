@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgColumnConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgColumnConfigResultMap" type="com.zz.bsmcc.base.domain.TcgColumnConfigEntity" >
+	<resultMap id="TcgColumnConfigResultMap" type="com.zz.bsmcc.base.bo.TcgColumnConfigBO" >
          	<result column="id" property="id"/>
          	<result column="table_id" property="tableId"/>
          	<result column="column_name" property="columnName"/>
@@ -147,7 +147,7 @@
 
 
     <!-- 根据条件查询第一条列设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnConfig" resultMap="TcgColumnConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgColumnConfigBO" resultMap="TcgColumnConfigResultMap">
         SELECT T.* FROM tcg_column_config T
         <include refid="TcgColumnConfig4CheckQueryFilter"/>  limit 1
     </select>

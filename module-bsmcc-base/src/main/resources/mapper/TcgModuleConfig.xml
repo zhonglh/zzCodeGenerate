@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgModuleConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgModuleConfigResultMap" type="com.zz.bsmcc.base.domain.TcgModuleConfigEntity" >
+	<resultMap id="TcgModuleConfigResultMap" type="com.zz.bsmcc.base.bo.TcgModuleConfigBO" >
          	<result column="id" property="id"/>
          	<result column="project_id" property="projectId"/>
          	<result column="module_name" property="moduleName"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条模块设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgModuleConfig" resultMap="TcgModuleConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgModuleConfigBO" resultMap="TcgModuleConfigResultMap">
         SELECT T.* FROM tcg_module_config T
         <include refid="TcgModuleConfig4CheckQueryFilter"/>  limit 1
     </select>

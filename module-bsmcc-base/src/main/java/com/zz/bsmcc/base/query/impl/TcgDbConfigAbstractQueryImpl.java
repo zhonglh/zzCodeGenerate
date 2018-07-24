@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 连接池设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 12:32:15
+ * @date 2018-7-24 14:46:23
  */
 public abstract class TcgDbConfigAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgDbConfigEntity,PK> {
 	private static final long serialVersionUID = 1L;

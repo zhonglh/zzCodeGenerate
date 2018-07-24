@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 模板组 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 12:32:16
+ * @date 2018-7-24 14:46:26
  */
 public abstract class TcgTempletGroupAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgTempletGroupEntity,PK> {
 	private static final long serialVersionUID = 1L;

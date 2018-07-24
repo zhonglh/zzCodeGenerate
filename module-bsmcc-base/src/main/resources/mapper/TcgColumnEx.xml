@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgColumnExDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgColumnExResultMap" type="com.zz.bsmcc.base.domain.TcgColumnExEntity" >
+	<resultMap id="TcgColumnExResultMap" type="com.zz.bsmcc.base.bo.TcgColumnExBO" >
          	<result column="id" property="id"/>
          	<result column="column_id" property="columnId"/>
          	<result column="ex_key" property="exKey"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条列扩展 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnEx" resultMap="TcgColumnExResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgColumnExBO" resultMap="TcgColumnExResultMap">
         SELECT T.* FROM tcg_column_ex T
         <include refid="TcgColumnEx4CheckQueryFilter"/>  limit 1
     </select>

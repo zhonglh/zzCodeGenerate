@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgProjectDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgProjectResultMap" type="com.zz.bsmcc.base.domain.TcgProjectEntity" >
+	<resultMap id="TcgProjectResultMap" type="com.zz.bsmcc.base.bo.TcgProjectBO" >
          	<result column="id" property="id"/>
          	<result column="project_name" property="projectName"/>
          	<result column="project_remark" property="projectRemark"/>
@@ -114,7 +114,7 @@
 
 
     <!-- 根据条件查询第一条项目管理 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgProject" resultMap="TcgProjectResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgProjectBO" resultMap="TcgProjectResultMap">
         SELECT T.* FROM tcg_project T
         <include refid="TcgProject4CheckQueryFilter"/>  limit 1
     </select>

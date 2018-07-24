@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgDbConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgDbConfigResultMap" type="com.zz.bsmcc.base.domain.TcgDbConfigEntity" >
+	<resultMap id="TcgDbConfigResultMap" type="com.zz.bsmcc.base.bo.TcgDbConfigBO" >
          	<result column="id" property="id"/>
          	<result column="db_type" property="dbType"/>
          	<result column="db_url" property="dbUrl"/>
@@ -86,7 +86,7 @@
 
 
     <!-- 根据条件查询第一条连接池设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgDbConfig" resultMap="TcgDbConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgDbConfigBO" resultMap="TcgDbConfigResultMap">
         SELECT T.* FROM tcg_db_config T
         <include refid="TcgDbConfig4CheckQueryFilter"/>  limit 1
     </select>

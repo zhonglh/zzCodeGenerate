@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgOperationDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgOperationResultMap" type="com.zz.bsmcc.base.domain.TcgOperationEntity" >
+	<resultMap id="TcgOperationResultMap" type="com.zz.bsmcc.base.bo.TcgOperationBO" >
          	<result column="id" property="id"/>
          	<result column="operation_name" property="operationName"/>
          	<result column="operation_resource" property="operationResource"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条操作表 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgOperation" resultMap="TcgOperationResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgOperationBO" resultMap="TcgOperationResultMap">
         SELECT T.* FROM tcg_operation T
         <include refid="TcgOperation4CheckQueryFilter"/>  limit 1
     </select>

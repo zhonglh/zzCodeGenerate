@@ -1,8 +1,6 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.Constant;
@@ -12,10 +10,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * 模板组操作定义实体类
 *
 * @author Administrator
-* @date 2018-7-24 10:20:10
+* @date 2018-7-24 14:42:54
 */
-@EntityAnnotation(value="模板组操作定义" , resource = "")
-@TableName(value="tcg_templet_grop_operation" , resultMap = "TcgTempletGropOperationResultMap")
 public class TcgTempletGropOperationEntity extends BaseEntity<String> implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
 

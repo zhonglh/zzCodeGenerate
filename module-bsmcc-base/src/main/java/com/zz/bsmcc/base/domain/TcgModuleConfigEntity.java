@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
  * 模块设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 10:20:09
+ * @date 2018-7-24 14:42:51
  */
-@EntityAnnotation(value="模块设置" , resource = "")
-@TableName(value="tcg_module_config" , resultMap = "TcgModuleConfigResultMap")
 public class TcgModuleConfigEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 

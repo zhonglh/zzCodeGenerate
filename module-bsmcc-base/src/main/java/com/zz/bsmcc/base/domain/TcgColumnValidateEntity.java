@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
  * 列校验实体类
  *
  * @author Administrator
- * @date 2018-7-24 10:20:08
+ * @date 2018-7-24 14:42:50
  */
-@EntityAnnotation(value="列校验" , resource = "")
-@TableName(value="tcg_column_validate" , resultMap = "TcgColumnValidateResultMap")
 public class TcgColumnValidateEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 

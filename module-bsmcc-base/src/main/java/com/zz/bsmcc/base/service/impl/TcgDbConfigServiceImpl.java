@@ -6,7 +6,7 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 import com.zz.bsmcc.base.service.TcgDbConfigService;
 import com.zz.bsmcc.base.dao.TcgDbConfigDAO;
-import com.zz.bsmcc.base.domain.TcgDbConfigEntity;
+import com.zz.bsmcc.base.bo.TcgDbConfigBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 * @author Administrator
 */
 @Service
-public class TcgDbConfigServiceImpl extends BaseServiceImpl<TcgDbConfigEntity,String> implements TcgDbConfigService {
+public class TcgDbConfigServiceImpl extends BaseServiceImpl<TcgDbConfigBO,String> implements TcgDbConfigService {
 
 
 	@Autowired

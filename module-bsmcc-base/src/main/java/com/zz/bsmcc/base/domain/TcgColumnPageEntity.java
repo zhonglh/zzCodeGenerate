@@ -8,14 +8,14 @@ import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
+import java.math.BigDecimal;
+
 /**
  * 列界面设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 10:20:08
+ * @date 2018-7-24 14:42:50
  */
-@EntityAnnotation(value="列界面设置" , resource = "")
-@TableName(value="tcg_column_page" , resultMap = "TcgColumnPageResultMap")
 public class TcgColumnPageEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 

@@ -6,7 +6,7 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 import com.zz.bsmcc.base.service.TcgColumnExService;
 import com.zz.bsmcc.base.dao.TcgColumnExDAO;
-import com.zz.bsmcc.base.domain.TcgColumnExEntity;
+import com.zz.bsmcc.base.bo.TcgColumnExBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 * @author Administrator
 */
 @Service
-public class TcgColumnExServiceImpl extends BaseServiceImpl<TcgColumnExEntity,String> implements TcgColumnExService {
+public class TcgColumnExServiceImpl extends BaseServiceImpl<TcgColumnExBO,String> implements TcgColumnExService {
 
 
 	@Autowired

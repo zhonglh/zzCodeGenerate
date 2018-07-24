@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgGroupConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgGroupConfigResultMap" type="com.zz.bsmcc.base.domain.TcgGroupConfigEntity" >
+	<resultMap id="TcgGroupConfigResultMap" type="com.zz.bsmcc.base.bo.TcgGroupConfigBO" >
          	<result column="id" property="id"/>
          	<result column="project_id" property="projectId"/>
          	<result column="module_name" property="moduleName"/>
@@ -72,7 +72,7 @@
 
 
     <!-- 根据条件查询第一条组设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgGroupConfig" resultMap="TcgGroupConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgGroupConfigBO" resultMap="TcgGroupConfigResultMap">
         SELECT T.* FROM tcg_group_config T
         <include refid="TcgGroupConfig4CheckQueryFilter"/>  limit 1
     </select>

@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.TcgTableConfigDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TcgTableConfigResultMap" type="com.zz.bsmcc.base.domain.TcgTableConfigEntity" >
+	<resultMap id="TcgTableConfigResultMap" type="com.zz.bsmcc.base.bo.TcgTableConfigBO" >
          	<result column="id" property="id"/>
          	<result column="db_id" property="dbId"/>
          	<result column="project_id" property="projectId"/>
@@ -177,7 +177,7 @@
 
 
     <!-- 根据条件查询第一条表设置 -->
-    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTableConfig" resultMap="TcgTableConfigResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgTableConfigBO" resultMap="TcgTableConfigResultMap">
         SELECT T.* FROM tcg_table_config T
         <include refid="TcgTableConfig4CheckQueryFilter"/>  limit 1
     </select>

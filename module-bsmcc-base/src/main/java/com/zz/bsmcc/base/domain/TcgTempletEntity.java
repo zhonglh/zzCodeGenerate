@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * 模板实体类
 *
 * @author Administrator
-* @date 2018-7-24 10:20:10
+* @date 2018-7-24 14:42:54
 */
-@EntityAnnotation(value="模板" , resource = "")
-@TableName(value="tcg_templet" , resultMap = "TcgTempletResultMap")
 public class TcgTempletEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
 private static final long serialVersionUID = 1L;
 

@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * 项目管理实体类
 *
 * @author Administrator
-* @date 2018-7-24 10:20:10
+* @date 2018-7-24 14:42:52
 */
-@EntityAnnotation(value="项目管理" , resource = "")
-@TableName(value="tcg_project" , resultMap = "TcgProjectResultMap")
 public class TcgProjectEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
 private static final long serialVersionUID = 1L;
 

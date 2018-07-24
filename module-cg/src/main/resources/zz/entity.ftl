@@ -1,8 +1,6 @@
 package ${table.basePackage}.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.Constant;
@@ -14,8 +12,6 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * @author ${table.author}
 * @date ${.now}
 */
-@EntityAnnotation(value="${table.tableComments}" , resource = "")
-@TableName(value="${table.tableName}" , resultMap = "${table.shortTableName?cap_first}ResultMap")
 public class ${table.shortTableName?cap_first}Entity extends BaseEntity<String> implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
 <#assign seq = ["id", "createTime", "createUserId", "updateTime", "updateUserId","versionNo"]>

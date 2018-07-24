@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
  * 查询条件设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 10:20:10
+ * @date 2018-7-24 14:42:52
  */
-@EntityAnnotation(value="查询条件设置" , resource = "")
-@TableName(value="tcg_query_config" , resultMap = "TcgQueryConfigResultMap")
 public class TcgQueryConfigEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 

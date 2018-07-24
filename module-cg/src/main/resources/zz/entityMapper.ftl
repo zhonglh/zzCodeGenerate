@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.${table.shortTableName?cap_first}DAO">
  	<!-- 映射配置 -->
-	<resultMap id="${table.shortTableName?cap_first}ResultMap" type="com.zz.bsmcc.base.domain.${table.shortTableName?cap_first}Entity" >
+	<resultMap id="${table.shortTableName?cap_first}ResultMap" type="com.zz.bsmcc.base.bo.${table.shortTableName?cap_first}BO" >
 		<#list table.columnList as being>
          	<#if being.isEnum>
          	<result column="${being.columnName}" property="${being.shortColumnName}" typeHandler=${"\"" + being.packageStr + ".handler."}<#if being.shortColumnName=="state">YesOrNoHandler"<#else>${being.enumClassName}Handler"</#if>/>
@@ -47,7 +47,7 @@
 
 
     <!-- 根据条件查询第一条${table.tableComments} -->
-    <select id="selectCheck" parameterType="${table.basePackage}.domain.${table.shortTableName?cap_first}" resultMap="${table.shortTableName?cap_first}ResultMap">
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.${table.shortTableName?cap_first}BO" resultMap="${table.shortTableName?cap_first}ResultMap">
         SELECT T.* FROM ${table.tableName} T
         <include refid="${table.shortTableName?cap_first}4CheckQueryFilter"/>  limit 1
     </select>

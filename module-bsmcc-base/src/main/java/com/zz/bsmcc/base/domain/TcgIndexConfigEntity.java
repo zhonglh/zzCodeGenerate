@@ -12,10 +12,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
  * 索引设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 10:20:09
+ * @date 2018-7-24 14:42:51
  */
-@EntityAnnotation(value="索引设置" , resource = "")
-@TableName(value="tcg_index_config" , resultMap = "TcgIndexConfigResultMap")
 public class TcgIndexConfigEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 
