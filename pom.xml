@@ -34,6 +34,7 @@
     <module>module-bsmcc-controller</module>
     <module>module-bsmcc-core</module>
     <module>module-bsmcc-web</module>
+      <module>module-cg</module>
   </modules>
 
   <dependencies>
