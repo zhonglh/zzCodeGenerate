@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgGroupConfigDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgGroupConfigResultMap" type="com.zz.bsmcc.base.domain.TcgGroupConfigEntity" >
+         	<result column="id" property="id"/>
+         	<result column="project_id" property="projectId"/>
+         	<result column="module_name" property="moduleName"/>
+         	<result column="group_code" property="groupCode"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgGroupConfig4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="projectId != null and projectId != ''"> AND T.project_id = #{projectId} </if>
+
+
+
+
+
+                        <if test="moduleName != null and moduleName != ''"> AND T.module_name = #{moduleName} </if>
+
+
+
+
+
+                        <if test="groupCode != null and groupCode != ''"> AND T.group_code = #{groupCode} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条组设置 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgGroupConfig" resultMap="TcgGroupConfigResultMap">
+        SELECT T.* FROM tcg_group_config T
+        <include refid="TcgGroupConfig4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

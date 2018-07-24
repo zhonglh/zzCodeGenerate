@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgColumnPageDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgColumnPageResultMap" type="com.zz.bsmcc.base.domain.TcgColumnPageEntity" >
+         	<result column="id" property="id"/>
+         	<result column="editable" property="editable"/>
+         	<result column="element" property="element"/>
+         	<result column="maxlength" property="maxlength"/>
+         	<result column="minlength" property="minlength"/>
+         	<result column="max" property="max"/>
+         	<result column="min" property="min"/>
+         	<result column="required" property="required"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgColumnPage4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="editable != null and editable != ''"> AND T.editable = #{editable} </if>
+
+
+
+
+
+                        <if test="element != null and element != ''"> AND T.element = #{element} </if>
+
+
+
+
+					<if test="maxlength != null"> AND T.maxlength = #{maxlength} </if>
+
+
+					<if test="minlength != null"> AND T.minlength = #{minlength} </if>
+
+
+					<if test="max != null"> AND T.max = #{max} </if>
+
+
+					<if test="min != null"> AND T.min = #{min} </if>
+
+
+
+                        <if test="required != null and required != ''"> AND T.required = #{required} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条列界面设置 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnPage" resultMap="TcgColumnPageResultMap">
+        SELECT T.* FROM tcg_column_page T
+        <include refid="TcgColumnPage4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

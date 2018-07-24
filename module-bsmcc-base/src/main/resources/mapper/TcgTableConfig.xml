@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgTableConfigDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgTableConfigResultMap" type="com.zz.bsmcc.base.domain.TcgTableConfigEntity" >
+         	<result column="id" property="id"/>
+         	<result column="db_id" property="dbId"/>
+         	<result column="project_id" property="projectId"/>
+         	<result column="module_id" property="moduleId"/>
+         	<result column="schema_name" property="schemaName"/>
+         	<result column="table_name" property="tableName"/>
+         	<result column="table_type" property="tableType"/>
+         	<result column="table_relation" property="tableRelation"/>
+         	<result column="is_show_checkbox" property="isShowCheckbox"/>
+         	<result column="is_table" property="isTable"/>
+         	<result column="corr_main_table" property="corrMainTable"/>
+         	<result column="resource_name" property="resourceName"/>
+         	<result column="is_tree" property="isTree"/>
+         	<result column="parent_field_name" property="parentFieldName"/>
+         	<result column="content" property="content"/>
+         	<result column="query_mode" property="queryMode"/>
+         	<result column="is_build_controller" property="isBuildController"/>
+         	<result column="is_build_menu" property="isBuildMenu"/>
+         	<result column="java_name" property="javaName"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgTableConfig4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="dbId != null and dbId != ''"> AND T.db_id = #{dbId} </if>
+
+
+
+
+
+                        <if test="projectId != null and projectId != ''"> AND T.project_id = #{projectId} </if>
+
+
+
+
+
+                        <if test="moduleId != null and moduleId != ''"> AND T.module_id = #{moduleId} </if>
+
+
+
+
+
+                        <if test="schemaName != null and schemaName != ''"> AND T.schema_name = #{schemaName} </if>
+
+
+
+
+
+                        <if test="tableName != null and tableName != ''"> AND T.table_name = #{tableName} </if>
+
+
+
+
+
+                        <if test="tableType != null and tableType != ''"> AND T.table_type = #{tableType} </if>
+
+
+
+
+
+                        <if test="tableRelation != null and tableRelation != ''"> AND T.table_relation = #{tableRelation} </if>
+
+
+
+
+
+                        <if test="isShowCheckbox != null and isShowCheckbox != ''"> AND T.is_show_checkbox = #{isShowCheckbox} </if>
+
+
+
+
+
+                        <if test="isTable != null and isTable != ''"> AND T.is_table = #{isTable} </if>
+
+
+
+
+
+                        <if test="corrMainTable != null and corrMainTable != ''"> AND T.corr_main_table = #{corrMainTable} </if>
+
+
+
+
+
+                        <if test="resourceName != null and resourceName != ''"> AND T.resource_name = #{resourceName} </if>
+
+
+
+
+
+                        <if test="isTree != null and isTree != ''"> AND T.is_tree = #{isTree} </if>
+
+
+
+
+
+                        <if test="parentFieldName != null and parentFieldName != ''"> AND T.parent_field_name = #{parentFieldName} </if>
+
+
+
+
+
+                        <if test="content != null and content != ''"> AND T.content = #{content} </if>
+
+
+
+
+
+                        <if test="queryMode != null and queryMode != ''"> AND T.query_mode = #{queryMode} </if>
+
+
+
+
+
+                        <if test="isBuildController != null and isBuildController != ''"> AND T.is_build_controller = #{isBuildController} </if>
+
+
+
+
+
+                        <if test="isBuildMenu != null and isBuildMenu != ''"> AND T.is_build_menu = #{isBuildMenu} </if>
+
+
+
+
+
+                        <if test="javaName != null and javaName != ''"> AND T.java_name = #{javaName} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条表设置 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTableConfig" resultMap="TcgTableConfigResultMap">
+        SELECT T.* FROM tcg_table_config T
+        <include refid="TcgTableConfig4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

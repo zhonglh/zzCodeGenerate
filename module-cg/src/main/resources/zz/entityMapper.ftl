@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="${table.basePackage}.dao.${table.shortTableName?cap_first}Dao">
+<mapper namespace="com.zz.bsmcc.base.dao.${table.shortTableName?cap_first}DAO">
  	<!-- 映射配置 -->
-	<resultMap id="${table.shortTableName?cap_first}ResultMap" type="${table.basePackage}.domain.${table.shortTableName?cap_first}" >
+	<resultMap id="${table.shortTableName?cap_first}ResultMap" type="com.zz.bsmcc.base.domain.${table.shortTableName?cap_first}Entity" >
 		<#list table.columnList as being>
          	<#if being.isEnum>
          	<result column="${being.columnName}" property="${being.shortColumnName}" typeHandler=${"\"" + being.packageStr + ".handler."}<#if being.shortColumnName=="state">YesOrNoHandler"<#else>${being.enumClassName}Handler"</#if>/>

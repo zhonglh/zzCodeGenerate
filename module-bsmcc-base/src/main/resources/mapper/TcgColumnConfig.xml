@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgColumnConfigDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgColumnConfigResultMap" type="com.zz.bsmcc.base.domain.TcgColumnConfigEntity" >
+         	<result column="id" property="id"/>
+         	<result column="table_id" property="tableId"/>
+         	<result column="column_name" property="columnName"/>
+         	<result column="column_type" property="columnType"/>
+         	<result column="column_length" property="columnLength"/>
+         	<result column="column_precision" property="columnPrecision"/>
+         	<result column="column_default" property="columnDefault"/>
+         	<result column="column_isnull" property="columnIsnull"/>
+         	<result column="column_sort" property="columnSort"/>
+         	<result column="column_isfk" property="columnIsfk"/>
+         	<result column="column_iskey" property="columnIskey"/>
+         	<result column="column_content" property="columnContent"/>
+         	<result column="java_simple_class" property="javaSimpleClass"/>
+         	<result column="java_full_class" property="javaFullClass"/>
+         	<result column="java_name" property="javaName"/>
+         	<result column="group_code" property="groupCode"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgColumnConfig4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
+
+
+
+
+
+                        <if test="columnName != null and columnName != ''"> AND T.column_name = #{columnName} </if>
+
+
+
+
+
+                        <if test="columnType != null and columnType != ''"> AND T.column_type = #{columnType} </if>
+
+
+
+
+					<if test="columnLength != null"> AND T.column_length = #{columnLength} </if>
+
+
+					<if test="columnPrecision != null"> AND T.column_precision = #{columnPrecision} </if>
+
+
+
+                        <if test="columnDefault != null and columnDefault != ''"> AND T.column_default = #{columnDefault} </if>
+
+
+
+
+
+                        <if test="columnIsnull != null and columnIsnull != ''"> AND T.column_isnull = #{columnIsnull} </if>
+
+
+
+
+					<if test="columnSort != null"> AND T.column_sort = #{columnSort} </if>
+
+
+
+                        <if test="columnIsfk != null and columnIsfk != ''"> AND T.column_isfk = #{columnIsfk} </if>
+
+
+
+
+
+                        <if test="columnIskey != null and columnIskey != ''"> AND T.column_iskey = #{columnIskey} </if>
+
+
+
+
+
+                        <if test="columnContent != null and columnContent != ''"> AND T.column_content = #{columnContent} </if>
+
+
+
+
+
+                        <if test="javaSimpleClass != null and javaSimpleClass != ''"> AND T.java_simple_class = #{javaSimpleClass} </if>
+
+
+
+
+
+                        <if test="javaFullClass != null and javaFullClass != ''"> AND T.java_full_class = #{javaFullClass} </if>
+
+
+
+
+
+                        <if test="javaName != null and javaName != ''"> AND T.java_name = #{javaName} </if>
+
+
+
+
+
+                        <if test="groupCode != null and groupCode != ''"> AND T.group_code = #{groupCode} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条列设置 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgColumnConfig" resultMap="TcgColumnConfigResultMap">
+        SELECT T.* FROM tcg_column_config T
+        <include refid="TcgColumnConfig4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

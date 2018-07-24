@@ -168,5 +168,13 @@
             <version>1.0.1</version>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
     </dependencies>
 </project>

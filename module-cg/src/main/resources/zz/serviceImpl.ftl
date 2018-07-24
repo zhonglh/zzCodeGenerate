@@ -2,9 +2,11 @@ package ${table.basePackage}.services;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
-import com.zz.bms.system.base.dao.${table.shortTableName?cap_first}DAO;
-import com.zz.bms.system.base.entity.${table.shortTableName?cap_first}Entity;
-import com.zz.bms.system.base.service.${table.shortTableName?cap_first}Service;
+
+
+import com.zz.bsmcc.base.service.${table.shortTableName?cap_first}Service;
+import com.zz.bsmcc.base.dao.${table.shortTableName?cap_first}DAO;
+import com.zz.bsmcc.base.domain.${table.shortTableName?cap_first}Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Service;
 * @author Administrator
 */
 @Service
-public class TsUserServiceImpl extends BaseServiceImpl<TsUserEntity,String> implements TsUserService {
+public class ${table.shortTableName?cap_first}ServiceImpl extends BaseServiceImpl<${table.shortTableName?cap_first}Entity,String> implements ${table.shortTableName?cap_first}Service {
 
 
 	@Autowired

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgTempletDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgTempletResultMap" type="com.zz.bsmcc.base.domain.TcgTempletEntity" >
+         	<result column="id" property="id"/>
+         	<result column="group_id" property="groupId"/>
+         	<result column="file_type" property="fileType"/>
+         	<result column="templet_title" property="templetTitle"/>
+         	<result column="templet_dir" property="templetDir"/>
+         	<result column="templet_content" property="templetContent"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+         	<result column="delete_flag" property="deleteFlag"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgTemplet4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="groupId != null and groupId != ''"> AND T.group_id = #{groupId} </if>
+
+
+
+
+
+                        <if test="fileType != null and fileType != ''"> AND T.file_type = #{fileType} </if>
+
+
+
+
+
+                        <if test="templetTitle != null and templetTitle != ''"> AND T.templet_title = #{templetTitle} </if>
+
+
+
+
+
+                        <if test="templetDir != null and templetDir != ''"> AND T.templet_dir = #{templetDir} </if>
+
+
+
+
+
+                        <if test="templetContent != null and templetContent != ''"> AND T.templet_content = #{templetContent} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+
+                        <if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+
+
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条模板 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTemplet" resultMap="TcgTempletResultMap">
+        SELECT T.* FROM tcg_templet T
+        <include refid="TcgTemplet4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgProjectDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgProjectResultMap" type="com.zz.bsmcc.base.domain.TcgProjectEntity" >
+         	<result column="id" property="id"/>
+         	<result column="project_name" property="projectName"/>
+         	<result column="project_remark" property="projectRemark"/>
+         	<result column="project_package" property="projectPackage"/>
+         	<result column="project_lead" property="projectLead"/>
+         	<result column="project_author" property="projectAuthor"/>
+         	<result column="project_note" property="projectNote"/>
+         	<result column="project_i18n" property="projectI18n"/>
+         	<result column="project_tenant" property="projectTenant"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+         	<result column="delete_flag" property="deleteFlag"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgProject4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="projectName != null and projectName != ''"> AND T.project_name = #{projectName} </if>
+
+
+
+
+
+                        <if test="projectRemark != null and projectRemark != ''"> AND T.project_remark = #{projectRemark} </if>
+
+
+
+
+
+                        <if test="projectPackage != null and projectPackage != ''"> AND T.project_package = #{projectPackage} </if>
+
+
+
+
+
+                        <if test="projectLead != null and projectLead != ''"> AND T.project_lead = #{projectLead} </if>
+
+
+
+
+
+                        <if test="projectAuthor != null and projectAuthor != ''"> AND T.project_author = #{projectAuthor} </if>
+
+
+
+
+
+                        <if test="projectNote != null and projectNote != ''"> AND T.project_note = #{projectNote} </if>
+
+
+
+
+
+                        <if test="projectI18n != null and projectI18n != ''"> AND T.project_i18n = #{projectI18n} </if>
+
+
+
+
+
+                        <if test="projectTenant != null and projectTenant != ''"> AND T.project_tenant = #{projectTenant} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+
+                        <if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+
+
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条项目管理 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgProject" resultMap="TcgProjectResultMap">
+        SELECT T.* FROM tcg_project T
+        <include refid="TcgProject4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

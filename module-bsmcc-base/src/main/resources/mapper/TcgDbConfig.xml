@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgDbConfigDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgDbConfigResultMap" type="com.zz.bsmcc.base.domain.TcgDbConfigEntity" >
+         	<result column="id" property="id"/>
+         	<result column="db_type" property="dbType"/>
+         	<result column="db_url" property="dbUrl"/>
+         	<result column="db_username" property="dbUsername"/>
+         	<result column="db_password" property="dbPassword"/>
+         	<result column="title" property="title"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgDbConfig4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="dbType != null and dbType != ''"> AND T.db_type = #{dbType} </if>
+
+
+
+
+
+                        <if test="dbUrl != null and dbUrl != ''"> AND T.db_url = #{dbUrl} </if>
+
+
+
+
+
+                        <if test="dbUsername != null and dbUsername != ''"> AND T.db_username = #{dbUsername} </if>
+
+
+
+
+
+                        <if test="dbPassword != null and dbPassword != ''"> AND T.db_password = #{dbPassword} </if>
+
+
+
+
+
+                        <if test="title != null and title != ''"> AND T.title = #{title} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条连接池设置 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgDbConfig" resultMap="TcgDbConfigResultMap">
+        SELECT T.* FROM tcg_db_config T
+        <include refid="TcgDbConfig4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

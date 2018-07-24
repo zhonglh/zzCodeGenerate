@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgTableOperationDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgTableOperationResultMap" type="com.zz.bsmcc.base.domain.TcgTableOperationEntity" >
+         	<result column="id" property="id"/>
+         	<result column="operation_id" property="operationId"/>
+         	<result column="table_id" property="tableId"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgTableOperation4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="operationId != null and operationId != ''"> AND T.operation_id = #{operationId} </if>
+
+
+
+
+
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
+
+
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条表操作定义 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgTableOperation" resultMap="TcgTableOperationResultMap">
+        SELECT T.* FROM tcg_table_operation T
+        <include refid="TcgTableOperation4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

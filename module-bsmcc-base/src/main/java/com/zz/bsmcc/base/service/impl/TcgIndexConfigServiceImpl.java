@@ -1,0 +1,33 @@
+package com.zz.bsmcc.base.service.impl;
+
+import com.zz.bms.core.db.base.dao.BaseDAO;
+import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
+
+
+import com.zz.bsmcc.base.service.TcgIndexConfigService;
+import com.zz.bsmcc.base.dao.TcgIndexConfigDAO;
+import com.zz.bsmcc.base.domain.TcgIndexConfigEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+* @author Administrator
+*/
+@Service
+public class TcgIndexConfigServiceImpl extends BaseServiceImpl<TcgIndexConfigEntity,String> implements TcgIndexConfigService {
+
+
+	@Autowired
+	private TcgIndexConfigDAO tcgIndexConfigDAO ;
+
+
+	@Override
+	public BaseDAO getQueryDAO() {
+	return tcgIndexConfigDAO;
+	}
+
+	@Override
+	public BaseDAO getRwDAO() {
+	return tcgIndexConfigDAO;
+	}
+}

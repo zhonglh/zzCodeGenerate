@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgIndexConfigDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgIndexConfigResultMap" type="com.zz.bsmcc.base.domain.TcgIndexConfigEntity" >
+         	<result column="id" property="id"/>
+         	<result column="table_id" property="tableId"/>
+         	<result column="index_name" property="indexName"/>
+         	<result column="index_cloumns" property="indexCloumns"/>
+         	<result column="create_time" property="createTime"/>
+         	<result column="create_user_id" property="createUserId"/>
+         	<result column="update_time" property="updateTime"/>
+         	<result column="update_user_id" property="updateUserId"/>
+         	<result column="version_no" property="versionNo"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgIndexConfig4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
+
+
+
+
+
+                        <if test="indexName != null and indexName != ''"> AND T.index_name = #{indexName} </if>
+
+
+
+
+
+                        <if test="indexCloumns != null and indexCloumns != ''"> AND T.index_cloumns = #{indexCloumns} </if>
+
+
+
+
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+
+
+
+                        <if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+
+
+
+
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+
+
+
+                        <if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+
+
+
+
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条索引设置 -->
+    <select id="selectCheck" parameterType="com.zz.bmscc.domain.TcgIndexConfig" resultMap="TcgIndexConfigResultMap">
+        SELECT T.* FROM tcg_index_config T
+        <include refid="TcgIndexConfig4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

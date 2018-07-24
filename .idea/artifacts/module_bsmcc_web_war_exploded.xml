@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="module-bsmcc-web:war exploded">
+    <output-path>$PROJECT_DIR$/module-bsmcc-web/target/module-bsmcc-web-1.1.10</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="module-bsmcc-web" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/module-bsmcc-web/target/module-bsmcc-web-1.1.10/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="module-bsmcc-web/web/Web" />
+    </root>
+  </artifact>
+</component>

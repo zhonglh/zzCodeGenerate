@@ -3,7 +3,7 @@ package ${table.basePackage}.interfaces;
 
 
 import com.zz.bms.core.db.base.service.BaseService;
-import com.zz.bms.system.base.entity.${table.shortTableName?cap_first}Entity;
+import com.zz.bsmcc.base.domain.${table.shortTableName?cap_first}Entity;
 
 /**
  * ${table.tableComments}Service

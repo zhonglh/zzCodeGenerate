@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/module-bsmcc-base/module-bsmcc-base.iml" filepath="$PROJECT_DIR$/module-bsmcc-base/module-bsmcc-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module-bsmcc-controller/module-bsmcc-controller.iml" filepath="$PROJECT_DIR$/module-bsmcc-controller/module-bsmcc-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module-bsmcc-core/module-bsmcc-core.iml" filepath="$PROJECT_DIR$/module-bsmcc-core/module-bsmcc-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module-bsmcc-web/module-bsmcc-web.iml" filepath="$PROJECT_DIR$/module-bsmcc-web/module-bsmcc-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module-cg/module-cg.iml" filepath="$PROJECT_DIR$/module-cg/module-cg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzCodeGenerate.iml" filepath="$PROJECT_DIR$/zzCodeGenerate.iml" />
+    </modules>
+  </component>
+</project>
