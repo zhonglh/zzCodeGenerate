@@ -1,6 +1,7 @@
 package com.zz.bsmcc.base.domain;
 
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.Constant;
@@ -13,8 +14,6 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * @date 2018-7-24 14:42:54
 */
 public class TcgTempletGropOperationEntity extends BaseEntity<String> implements java.io.Serializable{
-    private static final long serialVersionUID = 1L;
-
 
 
 

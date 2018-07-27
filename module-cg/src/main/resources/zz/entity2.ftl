@@ -7,6 +7,7 @@ import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 
 /**
 * ${table.tableComments}实体类
@@ -15,7 +16,8 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * @date ${.now}
 */
 public class ${table.shortTableName?cap_first}Entity extends BaseBusinessExEntity<String> implements java.io.Serializable{
-private static final long serialVersionUID = 1L;
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 <#assign seq = ["id", "createTime", "createUserId","createUserName", "updateTime", "updateUserId","updateUserName","versionNo"]>
 <#list table.columnList as being>
 	<#if !seq?seq_contains(being.shortColumnName)>

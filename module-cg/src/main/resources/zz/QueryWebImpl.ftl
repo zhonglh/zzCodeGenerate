@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * @date ${.now}
  */
 public class ${table.shortTableName?cap_first}QueryWebImpl<PK extends Serializable> extends ${table.shortTableName?cap_first}AbstractQueryImpl<PK> implements Serializable {
-
+    private static final long serialVersionUID = 1L;
 <#list table.columnList as being>
 
 

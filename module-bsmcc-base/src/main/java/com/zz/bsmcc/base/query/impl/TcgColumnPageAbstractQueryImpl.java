@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * @date 2018-7-24 14:46:23
  */
 public abstract class TcgColumnPageAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnPageEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 

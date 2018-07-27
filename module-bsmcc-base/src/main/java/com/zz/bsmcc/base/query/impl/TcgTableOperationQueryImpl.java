@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @date 2018-7-24 14:46:25
  */
 public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTableOperationAbstractQueryImpl<PK> implements TcgTableOperationQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 

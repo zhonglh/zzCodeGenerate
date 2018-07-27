@@ -1,10 +1,11 @@
 package com.zz.bsmcc.base.domain;
 
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
@@ -16,8 +17,8 @@ import java.math.BigDecimal;
  * @author Administrator
  * @date 2018-7-24 14:42:50
  */
-public class TcgColumnPageEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
+public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
+
 
 
 

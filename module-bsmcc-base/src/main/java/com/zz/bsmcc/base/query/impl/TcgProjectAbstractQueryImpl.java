@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * @date 2018-7-24 14:46:25
  */
 public abstract class TcgProjectAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgProjectEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 

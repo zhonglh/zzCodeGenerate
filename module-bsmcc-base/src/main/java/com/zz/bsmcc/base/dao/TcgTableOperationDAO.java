@@ -1,7 +1,7 @@
 package com.zz.bsmcc.base.dao;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bsmcc.base.domain.TcgTableOperationEntity;
+import com.zz.bsmcc.base.bo.TcgTableOperationBO;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 * @author Administrator
 */
 @Repository
-public interface TcgTableOperationDAO extends BaseDAO<TcgTableOperationEntity , String> {
+public interface TcgTableOperationDAO extends BaseDAO<TcgTableOperationBO , String> {
 
 }

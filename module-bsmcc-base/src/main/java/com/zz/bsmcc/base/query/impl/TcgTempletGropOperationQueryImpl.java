@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @date 2018-7-24 14:46:26
  */
 public class TcgTempletGropOperationQueryImpl<PK extends Serializable> extends TcgTempletGropOperationAbstractQueryImpl<PK> implements TcgTempletGropOperationQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 

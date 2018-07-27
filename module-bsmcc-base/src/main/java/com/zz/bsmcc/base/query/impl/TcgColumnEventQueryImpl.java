@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @date 2018-7-24 14:46:22
  */
 public class TcgColumnEventQueryImpl<PK extends Serializable> extends TcgColumnEventAbstractQueryImpl<PK> implements TcgColumnEventQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 

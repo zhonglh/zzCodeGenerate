@@ -1,7 +1,7 @@
 package com.zz.bsmcc.base.dao;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bsmcc.base.domain.TcgIndexConfigEntity;
+import com.zz.bsmcc.base.bo.TcgIndexConfigBO;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 * @author Administrator
 */
 @Repository
-public interface TcgIndexConfigDAO extends BaseDAO<TcgIndexConfigEntity , String> {
+public interface TcgIndexConfigDAO extends BaseDAO<TcgIndexConfigBO , String> {
 
 }

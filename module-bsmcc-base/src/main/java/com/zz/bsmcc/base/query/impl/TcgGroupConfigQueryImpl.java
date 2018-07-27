@@ -17,7 +17,7 @@ import java.sql.Timestamp;
  * @date 2018-7-24 14:46:24
  */
 public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupConfigAbstractQueryImpl<PK> implements TcgGroupConfigQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
