@@ -5,6 +5,7 @@
  	<!-- 映射配置 -->
 	<resultMap id="TcgModuleConfigResultMap" type="com.zz.bsmcc.base.bo.TcgModuleConfigBO" >
          	<result column="id" property="id"/>
+			<result column="pid" property="pid"/>
          	<result column="project_id" property="projectId"/>
          	<result column="module_name" property="moduleName"/>
          	<result column="module_resource" property="moduleResource"/>

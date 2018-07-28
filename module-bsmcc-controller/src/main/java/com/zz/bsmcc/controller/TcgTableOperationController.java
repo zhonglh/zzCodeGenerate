@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/table/operation")
 @Controller
-public class TcgTableOperationController extends DefaultController<TcgTableOperationBO, String , TcgTableOperationQueryWebImpl> {
+public class TcgTableOperationController extends ZzccBaseController<TcgTableOperationBO, String , TcgTableOperationQueryWebImpl> {
 
 
 

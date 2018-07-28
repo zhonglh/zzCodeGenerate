@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/templet")
 @Controller
-public class TcgTempletController extends DefaultController<TcgTempletBO, String , TcgTempletQueryWebImpl> {
+public class TcgTempletController extends ZzccBaseController<TcgTempletBO, String , TcgTempletQueryWebImpl> {
 
 
 

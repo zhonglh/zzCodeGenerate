@@ -50,7 +50,7 @@
 						<!-- Example Events -->
 						
 						
-						    <table id="dbConfigForm">
+						    <table id="moduleForm">
 						    
 					    	</table>
 
@@ -58,15 +58,15 @@
 
 						<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">						
 							
-							<button id="b1"  msg="增加数据库配置信息" type="button" class="btn btn-outline btn-default" url='${ctx}/db/config/create' onClick="createWin('dbConfigForm',this,800,500);">
+							<button id="b1"  msg="增加项目模块" type="button" class="btn btn-outline btn-default" url='${ctx}/module/config/create' onClick="createWin('moduleForm',this,800,500);">
 								<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 							</button>							
 						
-							<button id="b2"  msg="编辑表格信息" type="button" class="btn btn-outline btn-default" url='${ctx}/db/config/{id}/update' onClick="updateWin('dbConfigForm',this);">
+							<button id="b2"  msg="编辑表格信息" type="button" class="btn btn-outline btn-default" url='${ctx}/module/config/{id}/update' onClick="updateWin('moduleForm',this);">
 								<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
 							</button>								
 							
-							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='${ctx}/db/config/{id}/delete' onClick="ajaxConfirm('dbConfigForm',this);">
+							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='${ctx}/module/config/{id}/delete' onClick="ajaxConfirm('moduleForm',this);">
 								<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 							</button>
 
@@ -107,33 +107,29 @@
             field: 'aa',
             title: '选择',
             checkbox:true,
-            width:80
+            width:40
         },{
             field: 'id',
             visible:false
         }, {
-            field: 'title',
-            title: '标题',
+            field: 'projectName',
+            title: '项目名称',
             width:120
         },{
-            field: 'dbType',
-            title: '数据库类型',
-            width:80
+            field: 'moduleName',
+            title: '模块名称',
+            width:120
         }, {
-            field: 'dbUsername',
-            title: '数据库用户名',
-            width:80
-        }, {
-            field: 'dbUrl',
-            title: '数据库地址'
-        } ];
+            field: 'moduleFullResource',
+            title: '资源名称'
+        }];
 		
-		init('dbConfigForm','${ctx}/db/config/list');
+		init('moduleForm','${ctx}/module/config/list');
 		
 		
 
 
-		
+
 		$(".btn-outline").mouseover(function(){
 				var message = $(this).attr("msg");
 				if(message == null || message == "" || message == undefined ) return ;
@@ -145,7 +141,7 @@
 		});
 
 		function refreshTable() {
-			$('#dbConfigForm').bootstrapTable('refresh');
+			$('#moduleForm').bootstrapTable('refresh');
 		}
 
 	</script>

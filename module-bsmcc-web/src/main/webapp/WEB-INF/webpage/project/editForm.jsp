@@ -53,59 +53,80 @@
 
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">标题：</label>
+                                <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-8">
-                                    <input id="title" name="title" value="${entity.title }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <input id="projectName" name="projectName" value="${entity.projectName }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">项目包名：</label>
+                                <div class="col-sm-8">
+                                    <input id="projectPackage" name="projectPackage" value="${entity.projectPackage }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">项目经理姓名：</label>
+                                <div class="col-sm-8">
+                                    <input id="projectLead" name="projectLead" value="${entity.projectLead }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">作者：</label>
+                                <div class="col-sm-8">
+                                    <input id="projectAuthor" name="projectAuthor" value="${entity.projectAuthor }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">代码总的注释：</label>
+                                <div class="col-sm-8">
+                                    <input id="projectNote" name="projectNote" value="${entity.projectNote }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                </div>
+                            </div>
+
+
                         
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库类型：</label>
+                                <label class="col-sm-3 control-label">国际化：</label>
                                 <div class="col-sm-8">
                                    
-                                <select id="dbType" name="dbType"  class="form-control">
-                                    <option value="oracle"  <c:if test="${entity.dbType ==  'oracle' }">selected="selected"</c:if> hassubinfo="true">oracle</option>
-                                    <option value="db2" 	<c:if test="${entity.dbType ==  'db2' }">selected="selected"</c:if> hassubinfo="true">db2</option>
-                                    <option value="mysql" 	<c:if test="${entity.dbType ==  'mysql' }">selected="selected"</c:if> hassubinfo="true">mysql</option>
+                                <select id="projectI18n" name="projectI18n"  class="form-control">
+                                    <option value="1" <c:if test="${entity.projectI18n ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                    <option value="0" <c:if test="${entity.projectI18n ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
                                 </select>
                            
                                    
                                    
                                 </div>
                             </div>
-                        
-                        
-                        
+
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库用户名：</label>
+                                <label class="col-sm-3 control-label">租户模式：</label>
                                 <div class="col-sm-8">
-                                    <input id="dbUsername" name="dbUsername" value="${entity.dbUsername }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+
+                                    <select id="projectTenant" name="projectTenant"  class="form-control">
+                                        <option value="1" <c:if test="${entity.projectTenant ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                        <option value="0" <c:if test="${entity.projectTenant ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    </select>
+
+
+
                                 </div>
                             </div>
-                            
-                            
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库密码：</label>
-                                <div class="col-sm-8">
-                                    <input id="dbPassword" name="dbPassword" value="${entity.dbPassword }" class="form-control" required="true" type="password">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">确认密码：</label>
-                                <div class="col-sm-8">
-                                    <input id="confirm_password" name="confirm_password" value="${entity.dbPassword }" class="form-control" required="true" type="password">
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span> -->
-                                </div>
-                            </div>
-                            
-                           <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库地址：</label>
-                                <div class="col-sm-8">
-                                    <input id="dbUrl" name="dbUrl" value="${entity.dbUrl }" class="form-control" type="text" aria-required="true"  required="true" aria-invalid="true" class="error">
-                                </div>
-                            </div>
-                            
+
 
                             
                             <div class="form-group">
@@ -142,10 +163,7 @@
 	
 	$( "#signupForm" ).validate({
 		  rules: {
-		    password: "required",
-		    confirm_password: {
-		      equalTo: "#dbPassword"
-		    }
+
 		  }
 	});
 	
@@ -164,7 +182,7 @@
 		if(ajax.success){	
 			
 			topShwoMessage("info",ajax.msg);
-			top.iframe10.window.refreshTable();
+			top.iframe20.window.refreshTable();
 			window.setTimeout(function(){top.layer.closeAll();},2000);
 			
 		}else {

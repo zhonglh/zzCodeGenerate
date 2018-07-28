@@ -42,7 +42,7 @@
 		if(height) h  = height;
 		var url = u;
 		if(id != null && id != undefined ){
-			url = url.replace("--id--",id);
+			url = url.replace("{id}",id);
 		}
 
 		top.layer.open({
@@ -61,6 +61,9 @@
 	function createWin(tableid,this1,width,height){
 
 		var title = $(this1).attr('title');
+		if(title || title == undefined){
+			title = $(this1).attr('msg');
+		}
 		var url = $(this1).attr('url');
 		openWin(tableid,title,url,null,width,height);
 		
@@ -97,7 +100,7 @@
 			window.setTimeout(function(){
 				
 				var url = $(this1).attr('url');				
-				var ajax =  ajaxSyncData(url.replace("--id--",row.id));
+				var ajax =  ajaxSyncData(url.replace("{id}",row.id));
 				if(ajax.success){
 					layer.closeAll('dialog');
 					topShwoMessage("info",ajax.msg);

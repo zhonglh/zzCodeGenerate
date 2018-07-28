@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/group/config")
 @Controller
-public class TcgGroupConfigController extends DefaultController<TcgGroupConfigBO, String , TcgGroupConfigQueryWebImpl> {
+public class TcgGroupConfigController extends ZzccBaseController<TcgGroupConfigBO, String , TcgGroupConfigQueryWebImpl> {
 
 
 

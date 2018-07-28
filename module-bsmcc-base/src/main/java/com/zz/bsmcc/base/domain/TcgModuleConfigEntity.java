@@ -21,6 +21,10 @@ public class TcgModuleConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
 
+	//@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
+	private String pid;
+
+
 
     //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
 	private String projectId;
@@ -40,12 +44,15 @@ public class TcgModuleConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	private String moduleResource;
 
 
+	public String getPid() {
+		return pid;
+	}
 
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 
-
-
-
-	/** 
+	/**
 	 * 
 	 * @return the projectId
 	 */

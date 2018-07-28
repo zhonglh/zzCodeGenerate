@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/templet/grop/operation")
 @Controller
-public class TcgTempletGropOperationController extends DefaultController<TcgTempletGropOperationBO, String , TcgTempletGropOperationQueryWebImpl> {
+public class TcgTempletGropOperationController extends ZzccBaseController<TcgTempletGropOperationBO, String , TcgTempletGropOperationQueryWebImpl> {
 
 
 

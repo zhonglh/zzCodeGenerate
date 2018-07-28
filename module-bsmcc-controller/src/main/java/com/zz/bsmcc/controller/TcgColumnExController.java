@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/column/ex")
 @Controller
-public class TcgColumnExController extends DefaultController<TcgColumnExBO, String , TcgColumnExQueryWebImpl> {
+public class TcgColumnExController extends ZzccBaseController<TcgColumnExBO, String , TcgColumnExQueryWebImpl> {
 
 
 

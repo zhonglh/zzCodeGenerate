@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
@@ -15,7 +16,7 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 * @author Administrator
 * @date 2018-7-24 14:42:52
 */
-public class TcgProjectEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
+public class TcgProjectEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
 
 
 
@@ -79,13 +80,6 @@ public class TcgProjectEntity extends BaseBusinessExEntity<String> implements ja
 
 
 
-
-
-
-
-
-        //@EntityAttrAnnotation(attrName="删除标志",sort=14  , attrLength=1    )
-        private String deleteFlag;
 
 
         /**
@@ -200,19 +194,6 @@ public class TcgProjectEntity extends BaseBusinessExEntity<String> implements ja
         public void setProjectTenant(String projectTenant) {
         this.projectTenant = projectTenant;
         }
-        /**
-        * 删除标志
-        * @return the deleteFlag
-        */
-        public String getDeleteFlag() {
-        return deleteFlag;
-        }
 
-        /**
-        * 删除标志
-        */
-        public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag;
-        }
 
 }

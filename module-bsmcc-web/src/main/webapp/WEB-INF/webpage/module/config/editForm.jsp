@@ -53,59 +53,60 @@
 
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">标题：</label>
+                                <label class="col-sm-3 control-label">项目：</label>
                                 <div class="col-sm-8">
-                                    <input id="title" name="title" value="${entity.title }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+
+                                    <select id="projectId" name="projectId"  class="form-control">
+                                        <c:forEach items="${projects}" var="project">
+                                        <option value="${project.id}" <c:if test="${entity.projectId ==  project.id }">selected="selected"</c:if> >${project.projectName}</option>
+                                        </c:forEach>
+                                    </select>
+
+
+
                                 </div>
                             </div>
-                        
+
+
+
+
+
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库类型：</label>
+                                <label class="col-sm-3 control-label">上级模块：</label>
                                 <div class="col-sm-8">
-                                   
-                                <select id="dbType" name="dbType"  class="form-control">
-                                    <option value="oracle"  <c:if test="${entity.dbType ==  'oracle' }">selected="selected"</c:if> hassubinfo="true">oracle</option>
-                                    <option value="db2" 	<c:if test="${entity.dbType ==  'db2' }">selected="selected"</c:if> hassubinfo="true">db2</option>
-                                    <option value="mysql" 	<c:if test="${entity.dbType ==  'mysql' }">selected="selected"</c:if> hassubinfo="true">mysql</option>
-                                </select>
-                           
-                                   
-                                   
+
+                                    <select id="pid" name="pid"  class="form-control">
+                                        <option value="">--选择上级模块--</option>
+                                        <c:forEach items="${modules}" var="module">
+                                            <option value="${module.id}" <c:if test="${entity.pid ==  module.id }">selected="selected"</c:if> >${module.moduleName}</option>
+                                        </c:forEach>
+                                    </select>
+
+
+
                                 </div>
                             </div>
-                        
-                        
-                        
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库用户名：</label>
+                                <label class="col-sm-3 control-label">模块名称：</label>
                                 <div class="col-sm-8">
-                                    <input id="dbUsername" name="dbUsername" value="${entity.dbUsername }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <input id="moduleName" name="moduleName" value="${entity.moduleName }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
-                            
-                            
+
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库密码：</label>
+                                <label class="col-sm-3 control-label">模块资源名称：</label>
                                 <div class="col-sm-8">
-                                    <input id="dbPassword" name="dbPassword" value="${entity.dbPassword }" class="form-control" required="true" type="password">
+                                    <input id="moduleResource" name="moduleResource" value="${entity.moduleResource }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">确认密码：</label>
-                                <div class="col-sm-8">
-                                    <input id="confirm_password" name="confirm_password" value="${entity.dbPassword }" class="form-control" required="true" type="password">
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span> -->
-                                </div>
-                            </div>
-                            
-                           <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库地址：</label>
-                                <div class="col-sm-8">
-                                    <input id="dbUrl" name="dbUrl" value="${entity.dbUrl }" class="form-control" type="text" aria-required="true"  required="true" aria-invalid="true" class="error">
-                                </div>
-                            </div>
-                            
+
+
+
 
                             
                             <div class="form-group">
@@ -142,10 +143,7 @@
 	
 	$( "#signupForm" ).validate({
 		  rules: {
-		    password: "required",
-		    confirm_password: {
-		      equalTo: "#dbPassword"
-		    }
+
 		  }
 	});
 	
@@ -164,7 +162,7 @@
 		if(ajax.success){	
 			
 			topShwoMessage("info",ajax.msg);
-			top.iframe10.window.refreshTable();
+			top.iframe30.window.refreshTable();
 			window.setTimeout(function(){top.layer.closeAll();},2000);
 			
 		}else {

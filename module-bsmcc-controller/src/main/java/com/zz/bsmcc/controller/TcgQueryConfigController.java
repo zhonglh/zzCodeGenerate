@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/query/config")
 @Controller
-public class TcgQueryConfigController extends DefaultController<TcgQueryConfigBO, String , TcgQueryConfigQueryWebImpl> {
+public class TcgQueryConfigController extends ZzccBaseController<TcgQueryConfigBO, String , TcgQueryConfigQueryWebImpl> {
 
 
 

@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/column/event")
 @Controller
-public class TcgColumnEventController extends DefaultController<TcgColumnEventBO, String , TcgColumnEventQueryWebImpl> {
+public class TcgColumnEventController extends ZzccBaseController<TcgColumnEventBO, String , TcgColumnEventQueryWebImpl> {
 
 
 

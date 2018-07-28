@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/sys/user")
 @Controller
-public class ${table.shortTableName?cap_first}Controller extends DefaultController<${table.shortTableName?cap_first}BO, String , ${table.shortTableName?cap_first}QueryWebImpl> {
+public class ${table.shortTableName?cap_first}Controller extends ZzccBaseController<${table.shortTableName?cap_first}BO, String , ${table.shortTableName?cap_first}QueryWebImpl> {
 
 
 

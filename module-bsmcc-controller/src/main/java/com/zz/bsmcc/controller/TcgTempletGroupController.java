@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/templet/group")
 @Controller
-public class TcgTempletGroupController extends DefaultController<TcgTempletGroupBO, String , TcgTempletGroupQueryWebImpl> {
+public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGroupBO, String , TcgTempletGroupQueryWebImpl> {
 
 
 

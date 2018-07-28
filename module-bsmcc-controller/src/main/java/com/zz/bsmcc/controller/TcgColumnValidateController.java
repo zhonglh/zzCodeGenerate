@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/column/validate")
 @Controller
-public class TcgColumnValidateController extends DefaultController<TcgColumnValidateBO, String , TcgColumnValidateQueryWebImpl> {
+public class TcgColumnValidateController extends ZzccBaseController<TcgColumnValidateBO, String , TcgColumnValidateQueryWebImpl> {
 
 
 

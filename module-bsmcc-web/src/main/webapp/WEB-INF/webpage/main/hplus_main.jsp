@@ -77,9 +77,23 @@
                 <li>
 					<a class="J_menuItem" href="${ctx}/db/config/toList" data-index="10"><i class="fa fa-edit"></i> <span class="nav-label">数据库配置</span></a>
                 </li>
-                
+
                 <li>
-					<a class="J_menuItem" href="cgFormHeadController.do?cgFormHeadList" data-index="20"><i class="fa fa-table"></i> <span class="nav-label">表格配置</span></a>
+                    <a class="J_menuItem" href="${ctx}/project/toList" data-index="20"><i class="fa fa-edit"></i> <span class="nav-label">项目管理</span></a>
+                </li>
+
+                <li>
+                    <a class="J_menuItem" href="${ctx}/module/config/toList" data-index="30"><i class="fa fa-edit"></i> <span class="nav-label">模块设置</span></a>
+                </li>
+
+
+                <li>
+                    <a class="J_menuItem" href="${ctx}/table/config/toList" data-index="40"><i class="fa fa-edit"></i> <span class="nav-label">表格设置</span></a>
+                </li>
+
+
+                <li>
+					<a class="J_menuItem" href="cgFormHeadController.do?cgFormHeadList" data-index="100"><i class="fa fa-table"></i> <span class="nav-label">表格配置</span></a>
                 </li>
                 
 
@@ -333,7 +347,7 @@ function logout(){
         btn: ['确定','取消'], //按钮
         shade: false //不显示遮罩
     }, function(){
-        location.href="loginController.do?logout";
+        location.href="${ctx}/login/logout";
     }, function(){
         return;
     });

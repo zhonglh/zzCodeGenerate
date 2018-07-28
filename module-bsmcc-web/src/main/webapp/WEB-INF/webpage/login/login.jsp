@@ -71,7 +71,6 @@
 
 <script type="text/javascript">
 function beforeSubmit(){
-	debugger;
 	var d = checkUser();
 	if(!d.success){
 		toastr.error("用户名密码错误，请重新输入");

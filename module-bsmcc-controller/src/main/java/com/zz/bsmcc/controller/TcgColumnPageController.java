@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/column/page")
 @Controller
-public class TcgColumnPageController extends DefaultController<TcgColumnPageBO, String , TcgColumnPageQueryWebImpl> {
+public class TcgColumnPageController extends ZzccBaseController<TcgColumnPageBO, String , TcgColumnPageQueryWebImpl> {
 
 
 

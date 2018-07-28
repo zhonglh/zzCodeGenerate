@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/project")
 @Controller
-public class TcgProjectController extends DefaultController<TcgProjectBO, String , TcgProjectQueryWebImpl> {
+public class TcgProjectController extends ZzccBaseController<TcgProjectBO, String , TcgProjectQueryWebImpl> {
 
 
 

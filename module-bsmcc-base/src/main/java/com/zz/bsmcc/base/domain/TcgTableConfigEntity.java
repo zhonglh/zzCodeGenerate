@@ -89,7 +89,7 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
     //@EntityAttrAnnotation(attrName="主要的表",sort=10  , attrLength=50    )
 	//该字段设置用于视图情况  
-	private String corrMainTable;
+	private String mainTableId;
 
 
 
@@ -282,21 +282,17 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setIsTable(String isTable) {
 		this.isTable = isTable;
 	}
-	/** 
-	 * 主要的表
-	 * @return the corrMainTable
-	 */
-	public String getCorrMainTable() {
-		return corrMainTable;
+
+
+	public String getMainTableId() {
+		return mainTableId;
 	}
-	
-	/** 
-	 * 主要的表
-	 */
-	public void setCorrMainTable(String corrMainTable) {
-		this.corrMainTable = corrMainTable;
+
+	public void setMainTableId(String mainTableId) {
+		this.mainTableId = mainTableId;
 	}
-	/** 
+
+	/**
 	 * 资源名称
 	 * @return the resourceName
 	 */

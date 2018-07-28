@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/index/config")
 @Controller
-public class TcgIndexConfigController extends DefaultController<TcgIndexConfigBO, String , TcgIndexConfigQueryWebImpl> {
+public class TcgIndexConfigController extends ZzccBaseController<TcgIndexConfigBO, String , TcgIndexConfigQueryWebImpl> {
 
 
 
