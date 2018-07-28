@@ -37,7 +37,7 @@
 
 		
 		var w = '850px';
-		var h = '380px';
+		var h = '500px';
 		if(width) w = width;
 		if(height) h  = height;
 		var url = u;
@@ -86,9 +86,9 @@
 			topShwoMessage("error","请先选择数据！");
 			return ;
 		}
-		
+
 		var title = $(this1).attr('confirm_message') || '您确定要做此操作吗?';
-		
+
 		layer.confirm(title, {
 		    btn: ['确定','取消'], //按钮
 		    shade: false //不显示遮罩
@@ -97,7 +97,7 @@
 			window.setTimeout(function(){
 				
 				var url = $(this1).attr('url');				
-				var ajax =  ajaxSyncData(url + "&id="+row.id);
+				var ajax =  ajaxSyncData(url.replace("--id--",row.id));
 				if(ajax.success){
 					layer.closeAll('dialog');
 					topShwoMessage("info",ajax.msg);
