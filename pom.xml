@@ -23,6 +23,11 @@
     <cglib.version>3.2.2</cglib.version>
 
 
+    <servlet.version>3.1.0</servlet.version>
+    <jsp.version>2.0</jsp.version>
+    <servlet-api.version>2.4</servlet-api.version>
+
+
     <aspectjrt.version>1.5.4</aspectjrt.version>
     <aspectjweaver.version>1.8.9</aspectjweaver.version>
     <spring.version>4.3.7.RELEASE</spring.version>

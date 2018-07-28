@@ -56,7 +56,7 @@ function ajax_Url(op){
 						j = data;
 					}
 				}catch(e){					
-					top.location.href=ctx+"/login/login";
+					j = data;
 				}
 			},
 			error: ajaxError
@@ -77,7 +77,7 @@ function ajax_Url(op){
 				try{
 					d = $.parseJSON(data);	
 				}catch(e){
-                    top.location.href=ctx+"/login/login";
+                    d = data;
 				}
 				
 				try{

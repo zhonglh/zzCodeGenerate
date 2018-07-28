@@ -48,6 +48,16 @@
                         <form class="form-horizontal m-t" onSubmit="javaScript:return false;" id="signupForm" action="${ctx}/db/config/create">
                         
                         	<input type="hidden" id="id" name="id" value="${entity.id }"/>
+
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">标题：</label>
+                                <div class="col-sm-8">
+                                    <input id="title" name="title" value="${entity.title }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                </div>
+                            </div>
                         
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">数据库类型：</label>
@@ -145,7 +155,8 @@
 		
 		if( !$('form').valid() ) return false;
 
-		var actionurl=$('form').attr('action');
+		var actionurl= window.location.href;
+            //$('form').attr('action');
 		   
 		var formData = $('form').serializeArray();
 		

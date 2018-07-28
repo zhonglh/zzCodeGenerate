@@ -134,6 +134,9 @@
           <element id="archive" name="module-bsmcc-core-1.1.10.jar">
             <element id="module-output" name="module-bsmcc-core" />
           </element>
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:jsp-api:2.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.4" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.19" />
         </element>
       </element>
