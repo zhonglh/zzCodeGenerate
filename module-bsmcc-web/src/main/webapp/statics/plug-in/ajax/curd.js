@@ -33,6 +33,8 @@
 	}
 
 	function openWin(tableid,title,u,id,width,height){
+
+
 		
 		var w = '850px';
 		var h = '380px';
@@ -40,8 +42,9 @@
 		if(height) h  = height;
 		var url = u;
 		if(id != null && id != undefined ){
-			url = url.replace("--id--".id);
+			url = url.replace("--id--",id);
 		}
+
 		top.layer.open({
 			type: 2,
 		    title: title, 
