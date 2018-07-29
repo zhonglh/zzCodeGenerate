@@ -142,12 +142,14 @@
 			ids.push(row[i].id)
 		}
 
-		var obj =  {ids:ids};
+		var obj =  {"name":"ids", "value":ids};
 
 		if(formId != null && formId != undefined) {
             $form = $("#" + formId);
             if($form != null && $form != undefined) {
-                obj = $.extend(obj, $form.serializeArray());
+                var fff = $form.serializeArray();
+                fff.push(obj);
+                obj = fff;
             }
         }
 

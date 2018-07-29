@@ -105,13 +105,15 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     @Override
     @RequestMapping( value = "/create",  method = {RequestMethod.POST} )
     @ResponseBody
-    public Object create(TcgTableConfigBO m, ModelMap model, BindingResult result, RedirectAttributes redirectAttributes) {
+    public Object create(TcgTableConfigBO m, ModelMap model, HttpServletRequest request , HttpServletResponse response) {
         this.permissionList.assertHasCreatePermission();
         if (this.isExist(m)) {
             throw DbException.DB_SAVE_SAME;
         } else {
             ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
             boolean success = false;
+
+            request.getParameterValues("ids");
 
             if(StringUtils.isEmpty(m.getDbId()) || StringUtils.isEmpty(m.getTableName()) || StringUtils.isEmpty(m.getProjectId())){
                 throw DbException.DB_INSERT_RESULT_0;
