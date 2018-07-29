@@ -1,22 +1,23 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 
 /**
 * 模板实体类
 *
 * @author Administrator
-* @date 2018-7-24 14:42:54
+* @date 2018-7-29 1:16:15
 */
 public class TcgTempletEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
-
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 
 
 

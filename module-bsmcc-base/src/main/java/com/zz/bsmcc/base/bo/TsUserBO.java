@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bsmcc.base.domain.TsUserEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -15,6 +16,6 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="用户" , resource = "")
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
-public class TsUserBO extends TsUserEntity implements Serializable {
+public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,Serializable {
 
 }

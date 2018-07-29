@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 用户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-27 17:40:59
+ * @date 2018-7-29 1:16:17
  */
 public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> implements TsUserQuery<PK>, Serializable  {
-
+	private static final long serialVersionUID = 1L;
 
 
 

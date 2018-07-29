@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 表设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-24 14:46:25
+ * @date 2018-7-29 1:16:14
  */
 public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements Serializable {
-
+    private static final long serialVersionUID = 1L;
 
 
 
@@ -148,8 +148,9 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
 
 
-            private String corrMainTable_IN;
-            private String corrMainTable_NOTIN;
+
+            private PK mainTableId_IN;
+            private PK mainTableId_NOTIN;
 
 
 
@@ -928,61 +929,50 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
 
 
-                public String getCorrMainTable() {
-                    return corrMainTable;
+                public PK getMainTableId() {
+                    return mainTableId;
                 }
 
 
-                public void setCorrMainTable(String corrMainTable) {
-                    this.corrMainTable = corrMainTable;
+                public void setMainTableId(PK mainTableId) {
+                    this.mainTableId = mainTableId;
                 }
 
 
-                public String getCorrMainTable_NE() {
-                    return corrMainTable_NE;
+                public PK getMainTableId_NE() {
+                return mainTableId_NE;
                 }
 
 
-                public void setCorrMainTable_NE(String corrMainTable_NE) {
-                    this.corrMainTable_NE = corrMainTable_NE;
-                }
-
-
-
-                public String getCorrMainTable_IN() {
-                    return corrMainTable_IN;
-                }
-
-                public void setCorrMainTable_IN(String corrMainTable_IN) {
-                    this.corrMainTable_IN = corrMainTable_IN;
-                }
-
-                public String getCorrMainTable_NOTIN() {
-                    return corrMainTable_NOTIN;
-                }
-
-                public void setCorrMainTable_NOTIN(String corrMainTable_NOTIN) {
-                    this.corrMainTable_NOTIN = corrMainTable_NOTIN;
+                public void setMainTableId_NE(PK mainTableId_NE) {
+                this.mainTableId_NE = mainTableId_NE;
                 }
 
 
 
 
-                public String getCorrMainTable_LIKE() {
-                    return corrMainTable_LIKE;
+
+
+
+
+                public PK getMainTableId_IN() {
+                    return mainTableId_IN;
                 }
 
-                public void setCorrMainTable_LIKE(String corrMainTable_LIKE) {
-                    this.corrMainTable_LIKE = corrMainTable_LIKE;
+                public void setMainTableId_IN(PK mainTableId_IN) {
+                    this.mainTableId_IN = mainTableId_IN;
                 }
 
-                public String getCorrMainTable_NOTLIKE() {
-                    return corrMainTable_NOTLIKE;
+                public PK getMainTableId_NOTIN() {
+                    return mainTableId_NOTIN;
                 }
 
-                public void setCorrMainTable_NOTLIKE(String corrMainTable_NOTLIKE) {
-                    this.corrMainTable_NOTLIKE = corrMainTable_NOTLIKE;
+                public void setMainTableId_NOTIN(PK mainTableId_NOTIN) {
+                    this.mainTableId_NOTIN = mainTableId_NOTIN;
                 }
+
+
+
 
 
 

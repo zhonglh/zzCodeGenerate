@@ -1,32 +1,29 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 
 /**
- * 模块设置实体类
+ * 功能模块设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 14:42:51
+ * @date 2018-7-29 1:16:12
  */
 public class TcgModuleConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 
 
 
 
 
-	//@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
-	private String pid;
-
-
-
-    //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
+    //@EntityAttrAnnotation(attrName="项目",sort=1  , attrLength=32    )
 	private String projectId;
 
 
@@ -44,16 +41,20 @@ public class TcgModuleConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	private String moduleResource;
 
 
-	public String getPid() {
-		return pid;
-	}
 
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
 
-	/**
-	 * 
+
+    //@EntityAttrAnnotation(attrName="上级模块",sort=4  , attrLength=32    )
+	private String pid;
+
+
+
+
+
+
+
+	/** 
+	 * 项目
 	 * @return the projectId
 	 */
 	public String getProjectId() {
@@ -61,7 +62,7 @@ public class TcgModuleConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	}
 	
 	/** 
-	 * 
+	 * 项目
 	 */
 	public void setProjectId(String projectId) {
 		this.projectId = projectId;
@@ -93,6 +94,20 @@ public class TcgModuleConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	 */
 	public void setModuleResource(String moduleResource) {
 		this.moduleResource = moduleResource;
+	}
+	/** 
+	 * 上级模块
+	 * @return the pid
+	 */
+	public String getPid() {
+		return pid;
+	}
+	
+	/** 
+	 * 上级模块
+	 */
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 	
 }

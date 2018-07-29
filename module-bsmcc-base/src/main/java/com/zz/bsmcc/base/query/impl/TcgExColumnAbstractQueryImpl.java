@@ -2,18 +2,18 @@ package com.zz.bsmcc.base.query.impl;
 
 
 import com.zz.bms.core.db.mybatis.query.QueryImpl;
-import com.zz.bsmcc.base.domain.TcgIndexConfigEntity;
+import com.zz.bsmcc.base.domain.TcgExColumnEntity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * 索引设置 查询抽象类
+ * 扩展列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:12
+ * @date 2018-7-29 1:16:11
  */
-public abstract class TcgIndexConfigAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgIndexConfigEntity,PK> {
+public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgExColumnEntity,PK> {
 	private static final long serialVersionUID = 1L;
 
 
@@ -48,10 +48,10 @@ public abstract class TcgIndexConfigAbstractQueryImpl<PK extends Serializable> e
 
 
 
-            protected String indexName;
-            protected String indexName_NE;
-            protected String indexName_LIKE;
-            protected String indexName_NOTLIKE;
+            protected String javaSimpleClass;
+            protected String javaSimpleClass_NE;
+            protected String javaSimpleClass_LIKE;
+            protected String javaSimpleClass_NOTLIKE;
 
 
 
@@ -64,10 +64,74 @@ public abstract class TcgIndexConfigAbstractQueryImpl<PK extends Serializable> e
 
 
 
-            protected String indexCloumns;
-            protected String indexCloumns_NE;
-            protected String indexCloumns_LIKE;
-            protected String indexCloumns_NOTLIKE;
+            protected String javaFullClass;
+            protected String javaFullClass_NE;
+            protected String javaFullClass_LIKE;
+            protected String javaFullClass_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String javaName;
+            protected String javaName_NE;
+            protected String javaName_LIKE;
+            protected String javaName_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String columnTitle;
+            protected String columnTitle_NE;
+            protected String columnTitle_LIKE;
+            protected String columnTitle_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String groupCode;
+            protected String groupCode_NE;
+            protected String groupCode_LIKE;
+            protected String groupCode_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String dictType;
+            protected String dictType_NE;
+            protected String dictType_LIKE;
+            protected String dictType_NOTLIKE;
 
 
 

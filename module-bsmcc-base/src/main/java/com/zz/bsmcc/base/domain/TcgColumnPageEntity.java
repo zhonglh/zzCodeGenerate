@@ -1,13 +1,13 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 
 import java.math.BigDecimal;
 
@@ -15,10 +15,11 @@ import java.math.BigDecimal;
  * 列界面设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 14:42:50
+ * @date 2018-7-29 1:16:10
  */
 public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
-
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 
 
 

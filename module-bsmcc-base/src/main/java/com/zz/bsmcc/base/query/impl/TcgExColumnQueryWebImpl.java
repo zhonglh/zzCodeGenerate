@@ -5,12 +5,12 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * 查询条件设置 用于装载用户在查询时提交的数据
+ * 扩展列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-29 1:16:11
  */
-public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQueryConfigAbstractQueryImpl<PK> implements Serializable {
+public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColumnAbstractQueryImpl<PK> implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
@@ -44,21 +44,8 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-
-            private PK columnId_IN;
-            private PK columnId_NOTIN;
-
-
-
-
-
-
-
-
-
-
-            private String queryTitle_IN;
-            private String queryTitle_NOTIN;
+            private String javaSimpleClass_IN;
+            private String javaSimpleClass_NOTIN;
 
 
 
@@ -69,8 +56,8 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-            private String queryPlaceholder_IN;
-            private String queryPlaceholder_NOTIN;
+            private String javaFullClass_IN;
+            private String javaFullClass_NOTIN;
 
 
 
@@ -81,8 +68,8 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-            private String queryRelation_IN;
-            private String queryRelation_NOTIN;
+            private String javaName_IN;
+            private String javaName_NOTIN;
 
 
 
@@ -91,7 +78,35 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-        ;
+
+
+            private String columnTitle_IN;
+            private String columnTitle_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String groupCode_IN;
+            private String groupCode_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String dictType_IN;
+            private String dictType_NOTIN;
+
 
 
 
@@ -283,119 +298,60 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-                public PK getColumnId() {
-                    return columnId;
+                public String getJavaSimpleClass() {
+                    return javaSimpleClass;
                 }
 
 
-                public void setColumnId(PK columnId) {
-                    this.columnId = columnId;
+                public void setJavaSimpleClass(String javaSimpleClass) {
+                    this.javaSimpleClass = javaSimpleClass;
                 }
 
 
-                public PK getColumnId_NE() {
-                return columnId_NE;
+                public String getJavaSimpleClass_NE() {
+                    return javaSimpleClass_NE;
                 }
 
 
-                public void setColumnId_NE(PK columnId_NE) {
-                this.columnId_NE = columnId_NE;
+                public void setJavaSimpleClass_NE(String javaSimpleClass_NE) {
+                    this.javaSimpleClass_NE = javaSimpleClass_NE;
                 }
 
 
 
-
-
-
-
-
-                public PK getColumnId_IN() {
-                    return columnId_IN;
+                public String getJavaSimpleClass_IN() {
+                    return javaSimpleClass_IN;
                 }
 
-                public void setColumnId_IN(PK columnId_IN) {
-                    this.columnId_IN = columnId_IN;
+                public void setJavaSimpleClass_IN(String javaSimpleClass_IN) {
+                    this.javaSimpleClass_IN = javaSimpleClass_IN;
                 }
 
-                public PK getColumnId_NOTIN() {
-                    return columnId_NOTIN;
+                public String getJavaSimpleClass_NOTIN() {
+                    return javaSimpleClass_NOTIN;
                 }
 
-                public void setColumnId_NOTIN(PK columnId_NOTIN) {
-                    this.columnId_NOTIN = columnId_NOTIN;
+                public void setJavaSimpleClass_NOTIN(String javaSimpleClass_NOTIN) {
+                    this.javaSimpleClass_NOTIN = javaSimpleClass_NOTIN;
                 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getQueryTitle() {
-                    return queryTitle;
+                public String getJavaSimpleClass_LIKE() {
+                    return javaSimpleClass_LIKE;
                 }
 
-
-                public void setQueryTitle(String queryTitle) {
-                    this.queryTitle = queryTitle;
+                public void setJavaSimpleClass_LIKE(String javaSimpleClass_LIKE) {
+                    this.javaSimpleClass_LIKE = javaSimpleClass_LIKE;
                 }
 
-
-                public String getQueryTitle_NE() {
-                    return queryTitle_NE;
+                public String getJavaSimpleClass_NOTLIKE() {
+                    return javaSimpleClass_NOTLIKE;
                 }
 
-
-                public void setQueryTitle_NE(String queryTitle_NE) {
-                    this.queryTitle_NE = queryTitle_NE;
-                }
-
-
-
-                public String getQueryTitle_IN() {
-                    return queryTitle_IN;
-                }
-
-                public void setQueryTitle_IN(String queryTitle_IN) {
-                    this.queryTitle_IN = queryTitle_IN;
-                }
-
-                public String getQueryTitle_NOTIN() {
-                    return queryTitle_NOTIN;
-                }
-
-                public void setQueryTitle_NOTIN(String queryTitle_NOTIN) {
-                    this.queryTitle_NOTIN = queryTitle_NOTIN;
-                }
-
-
-
-
-                public String getQueryTitle_LIKE() {
-                    return queryTitle_LIKE;
-                }
-
-                public void setQueryTitle_LIKE(String queryTitle_LIKE) {
-                    this.queryTitle_LIKE = queryTitle_LIKE;
-                }
-
-                public String getQueryTitle_NOTLIKE() {
-                    return queryTitle_NOTLIKE;
-                }
-
-                public void setQueryTitle_NOTLIKE(String queryTitle_NOTLIKE) {
-                    this.queryTitle_NOTLIKE = queryTitle_NOTLIKE;
+                public void setJavaSimpleClass_NOTLIKE(String javaSimpleClass_NOTLIKE) {
+                    this.javaSimpleClass_NOTLIKE = javaSimpleClass_NOTLIKE;
                 }
 
 
@@ -412,130 +368,60 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-                public String getQueryPlaceholder() {
-                    return queryPlaceholder;
+                public String getJavaFullClass() {
+                    return javaFullClass;
                 }
 
 
-                public void setQueryPlaceholder(String queryPlaceholder) {
-                    this.queryPlaceholder = queryPlaceholder;
+                public void setJavaFullClass(String javaFullClass) {
+                    this.javaFullClass = javaFullClass;
                 }
 
 
-                public String getQueryPlaceholder_NE() {
-                    return queryPlaceholder_NE;
+                public String getJavaFullClass_NE() {
+                    return javaFullClass_NE;
                 }
 
 
-                public void setQueryPlaceholder_NE(String queryPlaceholder_NE) {
-                    this.queryPlaceholder_NE = queryPlaceholder_NE;
-                }
-
-
-
-                public String getQueryPlaceholder_IN() {
-                    return queryPlaceholder_IN;
-                }
-
-                public void setQueryPlaceholder_IN(String queryPlaceholder_IN) {
-                    this.queryPlaceholder_IN = queryPlaceholder_IN;
-                }
-
-                public String getQueryPlaceholder_NOTIN() {
-                    return queryPlaceholder_NOTIN;
-                }
-
-                public void setQueryPlaceholder_NOTIN(String queryPlaceholder_NOTIN) {
-                    this.queryPlaceholder_NOTIN = queryPlaceholder_NOTIN;
+                public void setJavaFullClass_NE(String javaFullClass_NE) {
+                    this.javaFullClass_NE = javaFullClass_NE;
                 }
 
 
 
-
-                public String getQueryPlaceholder_LIKE() {
-                    return queryPlaceholder_LIKE;
+                public String getJavaFullClass_IN() {
+                    return javaFullClass_IN;
                 }
 
-                public void setQueryPlaceholder_LIKE(String queryPlaceholder_LIKE) {
-                    this.queryPlaceholder_LIKE = queryPlaceholder_LIKE;
+                public void setJavaFullClass_IN(String javaFullClass_IN) {
+                    this.javaFullClass_IN = javaFullClass_IN;
                 }
 
-                public String getQueryPlaceholder_NOTLIKE() {
-                    return queryPlaceholder_NOTLIKE;
+                public String getJavaFullClass_NOTIN() {
+                    return javaFullClass_NOTIN;
                 }
 
-                public void setQueryPlaceholder_NOTLIKE(String queryPlaceholder_NOTLIKE) {
-                    this.queryPlaceholder_NOTLIKE = queryPlaceholder_NOTLIKE;
+                public void setJavaFullClass_NOTIN(String javaFullClass_NOTIN) {
+                    this.javaFullClass_NOTIN = javaFullClass_NOTIN;
                 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-                public String getQueryRelation() {
-                    return queryRelation;
+                public String getJavaFullClass_LIKE() {
+                    return javaFullClass_LIKE;
                 }
 
-
-                public void setQueryRelation(String queryRelation) {
-                    this.queryRelation = queryRelation;
+                public void setJavaFullClass_LIKE(String javaFullClass_LIKE) {
+                    this.javaFullClass_LIKE = javaFullClass_LIKE;
                 }
 
-
-                public String getQueryRelation_NE() {
-                    return queryRelation_NE;
+                public String getJavaFullClass_NOTLIKE() {
+                    return javaFullClass_NOTLIKE;
                 }
 
-
-                public void setQueryRelation_NE(String queryRelation_NE) {
-                    this.queryRelation_NE = queryRelation_NE;
-                }
-
-
-
-                public String getQueryRelation_IN() {
-                    return queryRelation_IN;
-                }
-
-                public void setQueryRelation_IN(String queryRelation_IN) {
-                    this.queryRelation_IN = queryRelation_IN;
-                }
-
-                public String getQueryRelation_NOTIN() {
-                    return queryRelation_NOTIN;
-                }
-
-                public void setQueryRelation_NOTIN(String queryRelation_NOTIN) {
-                    this.queryRelation_NOTIN = queryRelation_NOTIN;
-                }
-
-
-
-
-                public String getQueryRelation_LIKE() {
-                    return queryRelation_LIKE;
-                }
-
-                public void setQueryRelation_LIKE(String queryRelation_LIKE) {
-                    this.queryRelation_LIKE = queryRelation_LIKE;
-                }
-
-                public String getQueryRelation_NOTLIKE() {
-                    return queryRelation_NOTLIKE;
-                }
-
-                public void setQueryRelation_NOTLIKE(String queryRelation_NOTLIKE) {
-                    this.queryRelation_NOTLIKE = queryRelation_NOTLIKE;
+                public void setJavaFullClass_NOTLIKE(String javaFullClass_NOTLIKE) {
+                    this.javaFullClass_NOTLIKE = javaFullClass_NOTLIKE;
                 }
 
 
@@ -549,67 +435,274 @@ public class TcgQueryConfigQueryWebImpl<PK extends Serializable> extends TcgQuer
 
 
 
-            public Integer getQuerySort() {
-                return querySort;
-            }
-
-
-            public void setQuerySort(Integer querySort) {
-                this.querySort = querySort;
-            }
-
-
-            public Integer getQuerySort_NE() {
-                return querySort_NE;
-            }
-
-
-            public void setQuerySort_NE(Integer querySort_NE) {
-                this.querySort_NE = querySort_NE;
-            }
 
 
 
-            public Integer getQuerySort_GT() {
-                return querySort_GT;
-            }
+                public String getJavaName() {
+                    return javaName;
+                }
 
 
-            public void setQuerySort_GT(Integer querySort_GT) {
-                this.querySort_GT = querySort_GT;
-            }
+                public void setJavaName(String javaName) {
+                    this.javaName = javaName;
+                }
 
 
-            public Integer getQuerySort_GE() {
-                return querySort_GE;
-            }
+                public String getJavaName_NE() {
+                    return javaName_NE;
+                }
 
 
-            public void setQuerySort_GE(Integer querySort_GE) {
-                this.querySort_GE = querySort_GE;
-            }
+                public void setJavaName_NE(String javaName_NE) {
+                    this.javaName_NE = javaName_NE;
+                }
+
+
+
+                public String getJavaName_IN() {
+                    return javaName_IN;
+                }
+
+                public void setJavaName_IN(String javaName_IN) {
+                    this.javaName_IN = javaName_IN;
+                }
+
+                public String getJavaName_NOTIN() {
+                    return javaName_NOTIN;
+                }
+
+                public void setJavaName_NOTIN(String javaName_NOTIN) {
+                    this.javaName_NOTIN = javaName_NOTIN;
+                }
 
 
 
 
-            public Integer getQuerySort_LT() {
-                return querySort_LT;
-            }
+                public String getJavaName_LIKE() {
+                    return javaName_LIKE;
+                }
+
+                public void setJavaName_LIKE(String javaName_LIKE) {
+                    this.javaName_LIKE = javaName_LIKE;
+                }
+
+                public String getJavaName_NOTLIKE() {
+                    return javaName_NOTLIKE;
+                }
+
+                public void setJavaName_NOTLIKE(String javaName_NOTLIKE) {
+                    this.javaName_NOTLIKE = javaName_NOTLIKE;
+                }
 
 
-            public void setQuerySort_LT(Integer querySort_LT) {
-                this.querySort_LT = querySort_LT;
-            }
 
 
-            public Integer getQuerySort_LE() {
-                return querySort_LE;
-            }
 
 
-            public void setQuerySort_LE(Integer querySort_LE) {
-                this.querySort_LE = querySort_LE;
-            }
+
+
+
+
+
+
+
+
+
+                public String getColumnTitle() {
+                    return columnTitle;
+                }
+
+
+                public void setColumnTitle(String columnTitle) {
+                    this.columnTitle = columnTitle;
+                }
+
+
+                public String getColumnTitle_NE() {
+                    return columnTitle_NE;
+                }
+
+
+                public void setColumnTitle_NE(String columnTitle_NE) {
+                    this.columnTitle_NE = columnTitle_NE;
+                }
+
+
+
+                public String getColumnTitle_IN() {
+                    return columnTitle_IN;
+                }
+
+                public void setColumnTitle_IN(String columnTitle_IN) {
+                    this.columnTitle_IN = columnTitle_IN;
+                }
+
+                public String getColumnTitle_NOTIN() {
+                    return columnTitle_NOTIN;
+                }
+
+                public void setColumnTitle_NOTIN(String columnTitle_NOTIN) {
+                    this.columnTitle_NOTIN = columnTitle_NOTIN;
+                }
+
+
+
+
+                public String getColumnTitle_LIKE() {
+                    return columnTitle_LIKE;
+                }
+
+                public void setColumnTitle_LIKE(String columnTitle_LIKE) {
+                    this.columnTitle_LIKE = columnTitle_LIKE;
+                }
+
+                public String getColumnTitle_NOTLIKE() {
+                    return columnTitle_NOTLIKE;
+                }
+
+                public void setColumnTitle_NOTLIKE(String columnTitle_NOTLIKE) {
+                    this.columnTitle_NOTLIKE = columnTitle_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getGroupCode() {
+                    return groupCode;
+                }
+
+
+                public void setGroupCode(String groupCode) {
+                    this.groupCode = groupCode;
+                }
+
+
+                public String getGroupCode_NE() {
+                    return groupCode_NE;
+                }
+
+
+                public void setGroupCode_NE(String groupCode_NE) {
+                    this.groupCode_NE = groupCode_NE;
+                }
+
+
+
+                public String getGroupCode_IN() {
+                    return groupCode_IN;
+                }
+
+                public void setGroupCode_IN(String groupCode_IN) {
+                    this.groupCode_IN = groupCode_IN;
+                }
+
+                public String getGroupCode_NOTIN() {
+                    return groupCode_NOTIN;
+                }
+
+                public void setGroupCode_NOTIN(String groupCode_NOTIN) {
+                    this.groupCode_NOTIN = groupCode_NOTIN;
+                }
+
+
+
+
+                public String getGroupCode_LIKE() {
+                    return groupCode_LIKE;
+                }
+
+                public void setGroupCode_LIKE(String groupCode_LIKE) {
+                    this.groupCode_LIKE = groupCode_LIKE;
+                }
+
+                public String getGroupCode_NOTLIKE() {
+                    return groupCode_NOTLIKE;
+                }
+
+                public void setGroupCode_NOTLIKE(String groupCode_NOTLIKE) {
+                    this.groupCode_NOTLIKE = groupCode_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getDictType() {
+                    return dictType;
+                }
+
+
+                public void setDictType(String dictType) {
+                    this.dictType = dictType;
+                }
+
+
+                public String getDictType_NE() {
+                    return dictType_NE;
+                }
+
+
+                public void setDictType_NE(String dictType_NE) {
+                    this.dictType_NE = dictType_NE;
+                }
+
+
+
+                public String getDictType_IN() {
+                    return dictType_IN;
+                }
+
+                public void setDictType_IN(String dictType_IN) {
+                    this.dictType_IN = dictType_IN;
+                }
+
+                public String getDictType_NOTIN() {
+                    return dictType_NOTIN;
+                }
+
+                public void setDictType_NOTIN(String dictType_NOTIN) {
+                    this.dictType_NOTIN = dictType_NOTIN;
+                }
+
+
+
+
+                public String getDictType_LIKE() {
+                    return dictType_LIKE;
+                }
+
+                public void setDictType_LIKE(String dictType_LIKE) {
+                    this.dictType_LIKE = dictType_LIKE;
+                }
+
+                public String getDictType_NOTLIKE() {
+                    return dictType_NOTLIKE;
+                }
+
+                public void setDictType_NOTLIKE(String dictType_NOTLIKE) {
+                    this.dictType_NOTLIKE = dictType_NOTLIKE;
+                }
 
 
 

@@ -1,24 +1,23 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
-import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 
 /**
 * 用户实体类
 *
 * @author Administrator
-* @date 2018-7-27 17:40:58
+* @date 2018-7-29 1:16:16
 */
-public class TsUserEntity extends BaseBusinessExEntity<String> implements ILoginUserEntity<String> , java.io.Serializable{
-
+public class TsUserEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 
 
 
@@ -152,7 +151,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements ILogin
         * 用户姓名
         * @return the userName
         */
-        @Override
         public String getUserName() {
         return userName;
         }
@@ -237,7 +235,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements ILogin
         * 电话
         * @return the phone
         */
-        @Override
         public String getPhone() {
         return phone;
         }
@@ -252,7 +249,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements ILogin
         * 邮箱
         * @return the email
         */
-        @Override
         public String getEmail() {
         return email;
         }
@@ -360,6 +356,34 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements ILogin
         */
         public void setRemark(String remark) {
         this.remark = remark;
+        }
+        /**
+        * 删除标志
+        * @return the deleteFlag
+        */
+        public String getDeleteFlag() {
+        return deleteFlag;
+        }
+
+        /**
+        * 删除标志
+        */
+        public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+        }
+        /**
+        * 租户ID
+        * @return the tenantId
+        */
+        public String getTenantId() {
+        return tenantId;
+        }
+
+        /**
+        * 租户ID
+        */
+        public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
         }
 
 }

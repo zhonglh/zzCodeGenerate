@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 项目管理查询接口
  *
  * @author Administrator
- * @date 2018-7-24 14:46:24
+ * @date 2018-7-29 1:16:14
  */
 public interface TcgProjectQuery<PK extends Serializable> extends Query<TcgProjectEntity,PK> {
 	static final long serialVersionUID = 1L;

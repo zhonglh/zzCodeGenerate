@@ -126,22 +126,32 @@
 	
 	
 
-	function ajaxConfirm4Page(tableid,this1){
-		
+	function ajaxConfirm4Page(tableid,this1 , formId){
+
 		var row = getMultiSelect(tableid);
-		
+
 		if(row == null || row.length <= 0 ||  row[0].id == undefined ){
 			topShwoMessage("error","请先选择数据！");
 			return ;
 		}
-		
+
 		var title = $(this1).attr('confirm_message') || '您确定要做此操作吗?';
-		
-		var ids = "";
+
+		var ids = []
 		for(var i=0;i<row.length;i++){
-			ids += ";"+ row[i].id;
+			ids.push(row[i].id)
 		}
-		ids  =ids.substring(1);
+
+		var obj =  {ids:ids};
+
+		if(formId != null && formId != undefined) {
+            $form = $("#" + formId);
+            if($form != null && $form != undefined) {
+                obj = $.extend(obj, $form.serializeArray());
+            }
+        }
+
+
 		
 		layer.confirm(title, {
 		    btn: ['确定','取消'], //按钮
@@ -151,7 +161,7 @@
 			window.setTimeout(function(){
 				
 				var url = $(this1).attr('url');				
-				var ajax =  ajaxSyncData(url + "&id="+ids);
+				var ajax =  ajaxSyncData(url  , obj);
 				if(ajax.success){
 					topShwoMessage("info",ajax.msg);
 					//refreshParentTable();

@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 用户 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-27 17:40:58
+ * @date 2018-7-29 1:16:17
  */
 public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> implements Serializable {
-
+    private static final long serialVersionUID = 1L;
 
 
 

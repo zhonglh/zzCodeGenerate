@@ -12,14 +12,18 @@ import com.zz.bms.shiro.utils.ShiroUtils;
 
 
 import com.zz.bsmcc.base.bo.TcgDbConfigBO;
+import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.bo.TcgTableConfigBO;
 import com.zz.bsmcc.base.query.TcgDbConfigQuery;
+import com.zz.bsmcc.base.query.TcgProjectQuery;
 import com.zz.bsmcc.base.query.impl.TcgDbConfigQueryImpl;
+import com.zz.bsmcc.base.query.impl.TcgProjectQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryWebImpl;
 
 import com.zz.bms.util.base.java.IdUtils;
 
 import com.zz.bsmcc.base.service.TcgDbConfigService;
+import com.zz.bsmcc.base.service.TcgProjectService;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
 import com.zz.bsmcc.core.util.table.pojo.DbConfig;
 import com.zz.bsmcc.core.util.table.pojo.Table;
@@ -53,6 +57,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 	@Autowired
 	private TcgDbConfigService tcgDbConfigService;
+    @Autowired
+    private TcgProjectService tcgProjectService;
 
 
     /**
@@ -63,10 +69,12 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
      * @param response
      * @return
      */
-    @RequestMapping(value = "/tableListByDbConfig" , method = RequestMethod.GET)
+    @RequestMapping(value = "/tableListByDbConfig/{dbId}" , method = RequestMethod.GET)
     @ResponseBody
-    public Object tableListByDbConfig(TcgTableConfigBO tcgTableConfigBO , Model model , TcgTableConfigQueryWebImpl query ,HttpServletRequest request, HttpServletResponse response) {
+    public Object tableListByDbConfig(@PathVariable("dbId") String dbId, TcgTableConfigBO tcgTableConfigBO , Model model , TcgTableConfigQueryWebImpl query ,HttpServletRequest request, HttpServletResponse response) {
 
+
+        tcgTableConfigBO.setDbId(dbId);
         if(StringUtils.isEmpty(tcgTableConfigBO.getDbId())){
             return null;
         }
@@ -111,7 +119,6 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
 
-
             if (!success) {
                 throw DbException.DB_INSERT_RESULT_0;
             } else {
@@ -138,6 +145,12 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 		if(!dbConfigs.isEmpty()){
             model.put("dbId" , dbConfigs.get(0).getId());
         }
+
+        TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
+
+        List<TcgProjectBO> projects = tcgProjectService.selectList(projectQuery.buildWrapper());
+        model.put("projects" , projects);
+
 	}
 
 	@Override

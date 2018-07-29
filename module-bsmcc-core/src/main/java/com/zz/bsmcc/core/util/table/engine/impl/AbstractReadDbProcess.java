@@ -48,7 +48,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				table.setTableName(tableName);
 				table.setTableSchema(tableSchema);
 				table.setTableType(tableType);
-				table.setTableSchema(tableComment);
+				table.setTableComment(tableComment);
 				table.setId(tableSchema+":"+tableName);
 				list.add(table);
 			}

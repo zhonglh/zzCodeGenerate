@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  * 列校验 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 14:46:23
+ * @date 2018-7-29 1:16:10
  */
 public abstract class TcgColumnValidateAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnValidateEntity,PK> {
-
+	private static final long serialVersionUID = 1L;
 
 
 

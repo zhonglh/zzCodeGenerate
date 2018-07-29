@@ -96,7 +96,7 @@
 
 
 
-                        <if test="corrMainTable != null and corrMainTable != ''"> AND T.corr_main_table = #{corrMainTable} </if>
+                        <if test="mainTableId != null and mainTableId != ''"> AND T.main_table_id = #{mainTableId} </if>
 
 
 

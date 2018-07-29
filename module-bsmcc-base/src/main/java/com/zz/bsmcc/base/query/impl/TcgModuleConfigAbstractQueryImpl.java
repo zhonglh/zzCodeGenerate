@@ -8,13 +8,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * 模块设置 查询抽象类
+ * 功能模块设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 14:46:24
+ * @date 2018-7-29 1:16:13
  */
 public abstract class TcgModuleConfigAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgModuleConfigEntity,PK> {
-
+	private static final long serialVersionUID = 1L;
 
 
 
@@ -68,6 +68,20 @@ public abstract class TcgModuleConfigAbstractQueryImpl<PK extends Serializable> 
             protected String moduleResource_NE;
             protected String moduleResource_LIKE;
             protected String moduleResource_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected PK pid;
+            protected PK pid_NE;
 
 
 

@@ -42,10 +42,10 @@
             <h3>欢迎使用福布罗代码生成平台</h3>
             <form class="m-t" role="form" class="form-horizontal"  check="${ctx}/login/checkUser"  action="${ctx}/login/login" >
                 <div class="form-group">
-                    <input type="text" id="loginName" name="loginName" class="form-control" placeholder="用户名" required="">
+                    <input type="text" id="loginName" name="loginName" value="zzzz" class="form-control" placeholder="用户名" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="密码" required="">
+                    <input type="password" id="loginPassword" name="loginPassword" value="123456" class="form-control" placeholder="密码" required="">
                 </div>
                 <button type="button" id="but_login"  onclick="beforeSubmit()"  class="btn btn-primary block full-width m-b">登 录</button>
                 <p class="text-muted text-center">  <a href="register.html">注册一个新账号</a>

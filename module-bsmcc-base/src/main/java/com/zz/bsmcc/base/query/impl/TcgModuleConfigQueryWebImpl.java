@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * 模块设置 用于装载用户在查询时提交的数据
+ * 功能模块设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-24 14:46:24
+ * @date 2018-7-29 1:16:13
  */
 public class TcgModuleConfigQueryWebImpl<PK extends Serializable> extends TcgModuleConfigAbstractQueryImpl<PK> implements Serializable {
-
+    private static final long serialVersionUID = 1L;
 
 
 
@@ -58,6 +58,19 @@ public class TcgModuleConfigQueryWebImpl<PK extends Serializable> extends TcgMod
 
             private String moduleResource_IN;
             private String moduleResource_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private PK pid_IN;
+            private PK pid_NOTIN;
 
 
 
@@ -375,6 +388,65 @@ public class TcgModuleConfigQueryWebImpl<PK extends Serializable> extends TcgMod
                 public void setModuleResource_NOTLIKE(String moduleResource_NOTLIKE) {
                     this.moduleResource_NOTLIKE = moduleResource_NOTLIKE;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public PK getPid() {
+                    return pid;
+                }
+
+
+                public void setPid(PK pid) {
+                    this.pid = pid;
+                }
+
+
+                public PK getPid_NE() {
+                return pid_NE;
+                }
+
+
+                public void setPid_NE(PK pid_NE) {
+                this.pid_NE = pid_NE;
+                }
+
+
+
+
+
+
+
+
+                public PK getPid_IN() {
+                    return pid_IN;
+                }
+
+                public void setPid_IN(PK pid_IN) {
+                    this.pid_IN = pid_IN;
+                }
+
+                public PK getPid_NOTIN() {
+                    return pid_NOTIN;
+                }
+
+                public void setPid_NOTIN(PK pid_NOTIN) {
+                    this.pid_NOTIN = pid_NOTIN;
+                }
+
+
+
 
 
 

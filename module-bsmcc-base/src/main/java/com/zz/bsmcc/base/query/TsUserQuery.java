@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 用户查询接口
  *
  * @author Administrator
- * @date 2018-7-27 17:40:58
+ * @date 2018-7-29 1:16:16
  */
 public interface TsUserQuery<PK extends Serializable> extends Query<TsUserEntity,PK> {
 	static final long serialVersionUID = 1L;

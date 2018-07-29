@@ -1,22 +1,23 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 
 /**
  * 表设置实体类
  *
  * @author Administrator
- * @date 2018-7-24 14:42:53
+ * @date 2018-7-29 1:16:14
  */
 public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
-
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 
 
 
@@ -87,7 +88,7 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
 
-    //@EntityAttrAnnotation(attrName="主要的表",sort=10  , attrLength=50    )
+    //@EntityAttrAnnotation(attrName="主要的表",sort=10  , attrLength=32    )
 	//该字段设置用于视图情况  
 	private String mainTableId;
 
@@ -282,17 +283,21 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setIsTable(String isTable) {
 		this.isTable = isTable;
 	}
-
-
+	/** 
+	 * 主要的表
+	 * @return the mainTableId
+	 */
 	public String getMainTableId() {
 		return mainTableId;
 	}
-
+	
+	/** 
+	 * 主要的表
+	 */
 	public void setMainTableId(String mainTableId) {
 		this.mainTableId = mainTableId;
 	}
-
-	/**
+	/** 
 	 * 资源名称
 	 * @return the resourceName
 	 */

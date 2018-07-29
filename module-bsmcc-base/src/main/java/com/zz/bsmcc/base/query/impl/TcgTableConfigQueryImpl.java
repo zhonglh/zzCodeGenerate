@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 表设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 14:46:25
+ * @date 2018-7-29 1:16:14
  */
 public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements TcgTableConfigQuery<PK>, Serializable  {
-
+	private static final long serialVersionUID = 1L;
 
 
 
@@ -177,8 +177,8 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
 
-            private List<String> corrMainTable_IN;
-            private List<String> corrMainTable_NOTIN;
+            private List<PK> mainTableId_IN;
+            private List<PK> mainTableId_NOTIN;
 
 
 
@@ -1081,56 +1081,35 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery corrMainTable(String corrMainTable) {
-                    if(!IdUtils.isEmpty(corrMainTable)){
-                        this.corrMainTable = corrMainTable;
+                public TcgTableConfigQuery mainTableId(PK mainTableId) {
+                    if(!IdUtils.isEmpty(mainTableId)){
+                        this.mainTableId = mainTableId;
                     }
                     return this;
                 }
 
 
                 @Override
-                public TcgTableConfigQuery corrMainTableNot(String corrMainTableNot) {
-                    if(!IdUtils.isEmpty(corrMainTableNot)){
-                        this.corrMainTable_NE = corrMainTableNot;
-                    }
-                    return this;
-                }
-
-
-
-
-                @Override
-                public TcgTableConfigQuery corrMainTableLike(String corrMainTableLike) {
-                    if(!IdUtils.isEmpty(corrMainTableLike)){
-                        this.corrMainTable_LIKE = corrMainTableLike;
-                    }
-                    return this;
-                }
-
-
-
-                @Override
-                public TcgTableConfigQuery corrMainTableNotLike(String corrMainTableNotLike) {
-                    if(!IdUtils.isEmpty(corrMainTableNotLike)){
-                        this.corrMainTable_NOTLIKE = corrMainTableNotLike;
+                public TcgTableConfigQuery mainTableIdNot(PK mainTableIdNot) {
+                    if(!IdUtils.isEmpty(mainTableIdNot)){
+                        this.mainTableId_NE = mainTableIdNot;
                     }
                     return this;
                 }
 
                 @Override
-                public TcgTableConfigQuery corrMainTableIn(String corrMainTableIn) {
-                    if(!IdUtils.isEmpty(corrMainTableIn)){
-                        this.corrMainTable_IN.add( corrMainTableIn );
+                public TcgTableConfigQuery mainTableIdIn(PK mainTableIdIn) {
+                    if(!IdUtils.isEmpty(mainTableIdIn)){
+                        this.mainTableId_IN.add( mainTableIdIn );
                     }
                     return this;
                 }
 
 
                 @Override
-                public TcgTableConfigQuery corrMainTableNotIn(String corrMainTableNotIn) {
-                    if(!IdUtils.isEmpty(corrMainTableNotIn)){
-                        this.corrMainTable_NOTIN.add( corrMainTableNotIn );
+                public TcgTableConfigQuery mainTableIdNotIn(PK mainTableIdNotIn) {
+                    if(!IdUtils.isEmpty(mainTableIdNotIn)){
+                        this.mainTableId_NOTIN.add( mainTableIdNotIn );
                     }
                     return this;
                 }
@@ -1138,18 +1117,20 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery corrMainTableIsNull() {
-                    this.isNulls.add("corrMainTable");
+                public TcgTableConfigQuery mainTableIdIsNull() {
+                    this.isNulls.add("mainTableId");
                     return this;
                 }
 
 
 
                 @Override
-                public TcgTableConfigQuery corrMainTableIsNotNull() {
-                    this.isNotNulls.add("corrMainTable");
+                public TcgTableConfigQuery mainTableIdIsNotNull() {
+                    this.isNotNulls.add("mainTableId");
                     return this;
                 }
+
+
 
 
 

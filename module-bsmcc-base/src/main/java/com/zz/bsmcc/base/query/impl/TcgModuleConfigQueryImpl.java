@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- * 模块设置 查询抽象类
+ * 功能模块设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-24 14:46:24
+ * @date 2018-7-29 1:16:13
  */
 public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModuleConfigAbstractQueryImpl<PK> implements TcgModuleConfigQuery<PK>, Serializable  {
-
+	private static final long serialVersionUID = 1L;
 
 
 
@@ -71,6 +71,21 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
 
             private List<String> moduleResource_IN;
             private List<String> moduleResource_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<PK> pid_IN;
+            private List<PK> pid_NOTIN;
 
 
 
@@ -436,6 +451,70 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                     this.isNotNulls.add("moduleResource");
                     return this;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgModuleConfigQuery pid(PK pid) {
+                    if(!IdUtils.isEmpty(pid)){
+                        this.pid = pid;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgModuleConfigQuery pidNot(PK pidNot) {
+                    if(!IdUtils.isEmpty(pidNot)){
+                        this.pid_NE = pidNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgModuleConfigQuery pidIn(PK pidIn) {
+                    if(!IdUtils.isEmpty(pidIn)){
+                        this.pid_IN.add( pidIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgModuleConfigQuery pidNotIn(PK pidNotIn) {
+                    if(!IdUtils.isEmpty(pidNotIn)){
+                        this.pid_NOTIN.add( pidNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgModuleConfigQuery pidIsNull() {
+                    this.isNulls.add("pid");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgModuleConfigQuery pidIsNotNull() {
+                    this.isNotNulls.add("pid");
+                    return this;
+                }
+
+
 
 
 

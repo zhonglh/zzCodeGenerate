@@ -44,42 +44,53 @@
 
 		<div class="ibox float-e-margins">
 
-			<div class="ibox-content">
-				<div class="row row-lg">
+				<div class="ibox-content">
+					<div class="row row-lg">
 
-					<div class="col-sm-12">
-						<!-- Example Events -->
-						
-						
-						    <table id="tables">
-						    
-					    	</table>
+						<table id="tables">
+
+						</table>
 
 
-
-						<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">
-						
-							
-							<button type="button" id="docg" class="btn btn-outline btn-default" title='你确定要从这个表中读取吗?' url="" suburl='${ctx}/table/config/' onClick="ajaxConfirm4Page('tables',this);">
-								<i class="glyphicon glyphicon-wrench	" aria-hidden="true"></i>确认添加
-							</button>
-							
-							
-							                           
-								<select id="dbId" name="dbId" class="form-control">								
-									<c:forEach var="dbConfig"   items="${dbConfigs }"   varStatus="status1">
-									<option value="${dbConfig.id }" >${dbConfig.title}</option>
-									</c:forEach>
-								</select>
-						
-					
-						
-						</div>
+							<div class="col-md-12 " style="position:absolute;left:0;top:0;">
 
 
+								<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">
+
+									<form id="addForm" >
+									<div class="row ">
+										<div class="col-sm-4" style="margin: 5px">
+											<button type="button" id="docg" class="btn btn-outline btn-default" title='你确定要从这个表中读取吗?'  url='${ctx}/table/config/create' onClick="ajaxConfirm4Page('tables',this , 'addForm');">
+												<i class="glyphicon glyphicon-wrench	" aria-hidden="true"></i>确认添加
+											</button>
+										</div>
+
+										<div class="col-sm-4" style="margin: 5px">
+											<select id="projectId" name="projectId" class="form-control">
+												<c:forEach var="project"   items="${projects }"   varStatus="status1">
+												<option value="${project.id }" >${project.projectName}</option>
+												</c:forEach>
+											</select>
+										</div>
+
+										<div class="col-sm-4" style="margin: 5px">
+											<select id="dbId" name="dbId" class="form-control">
+												<c:forEach var="dbConfig"   items="${dbConfigs }"   varStatus="status1">
+													<option value="${dbConfig.id }" >${dbConfig.title}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+
+									</form>
+
+
+								</div>
+
+
+							</div>
 					</div>
 				</div>
-			</div>
 
 
 
@@ -108,15 +119,27 @@
 	        field: 'aa',
 	        title: '选择',
 	        checkbox:true,
-	        width:80
+	        width:40
 	    },{
 	        field: 'id',
 	        visible:false
 	    },{
-	        field: 'name',
+	        field: 'tableName',
 	        title: '表名称',
-	        width:300
-	    } ];
+	        width:200
+	    } ,{
+            field: 'tableSchema',
+            title: 'Schema',
+            width:200
+        } ,{
+            field: 'tableType',
+            title: '表类型',
+            width:200
+        },{
+            field: 'tableComment',
+            title: '表说明',
+            width:200
+        }  ];
 		
 		var $bt ;
 		var $url ;
@@ -148,10 +171,7 @@
 			});
 			
 		}
-		
-		function changeUrl(dbId){
-			$("#docg").attr('url', $("#docg").attr('suburl')+'&dbId='+dbId)
-		}
+
 
 		
 		$(window).resize(function () {
@@ -167,15 +187,12 @@
 		});
 		
 		function clkDb(dbConfig){			
-			var dbId = $(dbConfig).val();				
-			changeUrl(dbId);
+			var dbId = $(dbConfig).val();
 			$bt.bootstrapTable('refresh', {url: '${ctx}/table/config/tableListByDbConfig/'+dbId});
 			
 		}
 
 
-
-        changeUrl('${dbId}');
         init('tables','${ctx}/table/config/tableListByDbConfig/${dbId}');
 
 	
