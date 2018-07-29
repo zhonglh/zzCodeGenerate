@@ -14,7 +14,7 @@
          	<result column="table_relation" property="tableRelation"/>
          	<result column="is_show_checkbox" property="isShowCheckbox"/>
          	<result column="is_table" property="isTable"/>
-         	<result column="corr_main_table" property="corrMainTable"/>
+         	<result column="main_table_id" property="mainTableId"/>
          	<result column="resource_name" property="resourceName"/>
          	<result column="is_tree" property="isTree"/>
          	<result column="parent_field_name" property="parentFieldName"/>

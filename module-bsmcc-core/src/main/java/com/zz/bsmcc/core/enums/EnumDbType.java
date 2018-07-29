@@ -1,5 +1,8 @@
 package com.zz.bsmcc.core.enums;
 
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.exceptions.InternalException;
+
 import java.io.Serializable;
 
 /**
@@ -34,9 +37,20 @@ public enum EnumDbType implements EnumBase{
 				return enumDiver.driver;
 			}
 		}
-		return null;
+		throw new InternalException("数据库类型错误");
 	}
 
+
+
+	public static EnumDbType getEnumDbType(String type){
+		type = type.toLowerCase();
+		for(EnumDbType enumDiver : EnumDbType.values()){
+			if(enumDiver.name() .equals(type)){
+				return enumDiver;
+			}
+		}
+		throw new InternalException("数据库类型错误");
+	}
 
 
 	@Override

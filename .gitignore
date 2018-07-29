@@ -6,7 +6,6 @@
 # IntelliJ project files
 
 out
-gen
 **/target/
 **/out
 **/overlays

@@ -62,7 +62,7 @@
 								<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 							</button>							
 						
-							<button id="b2"  msg="编辑表格信息" type="button" class="btn btn-outline btn-default" url='${ctx}/project/{id}/update' onClick="updateWin('projectForm',this);">
+							<button id="b2"  msg="编辑项目配置信息" type="button" class="btn btn-outline btn-default" url='${ctx}/project/{id}/update' onClick="updateWin('projectForm',this);">
 								<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
 							</button>								
 							

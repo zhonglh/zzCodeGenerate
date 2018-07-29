@@ -58,7 +58,7 @@
 
 						<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">						
 							
-							<button id="b1"  msg="增加项目模块" type="button" class="btn btn-outline btn-default" url='${ctx}/table/config/create' onClick="createWin('tableForm',this,800,500);">
+							<button id="b1"  msg="从现有数据库中选取表信息" type="button" class="btn btn-outline btn-default" url='${ctx}/table/config/create' onClick="createWin('tableForm',this,800,500);">
 								<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 							</button>							
 						
@@ -121,16 +121,19 @@
             width:120
         }, {
             field: 'moduleName',
-            title: '模块'
+            title: '模块',
+            width:120
         }, {
             field: 'tableName',
-            title: '表名'
+            title: '表名',
+            width:120
+        }, {
+            field: 'javaName',
+            title: 'Java',
+            width:120
         }, {
             field: 'content',
             title: '表说明'
-        }, {
-            field: 'javaName',
-            title: 'Java'
         }];
 		
 		init('tableForm','${ctx}/table/config/list');
