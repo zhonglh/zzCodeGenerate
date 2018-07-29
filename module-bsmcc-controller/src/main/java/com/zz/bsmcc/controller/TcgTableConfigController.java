@@ -25,9 +25,11 @@ import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bsmcc.base.service.TcgDbConfigService;
 import com.zz.bsmcc.base.service.TcgProjectService;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
+import com.zz.bsmcc.core.util.table.pojo.Columnt;
 import com.zz.bsmcc.core.util.table.pojo.DbConfig;
 import com.zz.bsmcc.core.util.table.pojo.Table;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,26 +109,52 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     @ResponseBody
     public Object create(TcgTableConfigBO m, ModelMap model, HttpServletRequest request , HttpServletResponse response) {
         this.permissionList.assertHasCreatePermission();
-        if (this.isExist(m)) {
-            throw DbException.DB_SAVE_SAME;
-        } else {
-            ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
-            boolean success = false;
 
-            request.getParameterValues("ids");
+        ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
+        boolean success = false;
 
-            if(StringUtils.isEmpty(m.getDbId()) || StringUtils.isEmpty(m.getTableName()) || StringUtils.isEmpty(m.getProjectId())){
-                throw DbException.DB_INSERT_RESULT_0;
+        String[] tablesn = request.getParameterValues("ids");
+
+
+        TcgDbConfigBO dbConfigBO = tcgDbConfigService.selectById(m.getDbId());
+
+        for(String sns : tablesn) {
+            TcgTableConfigBO tcgTableConfigBO = new TcgTableConfigBO();
+            BeanUtils.copyProperties(m , tcgTableConfigBO);
+            String[] sn = sns.split(":");
+            tcgTableConfigBO.setSchemaName(sn[0]);
+            tcgTableConfigBO.setTableName(sn[1]);
+            if (StringUtils.isEmpty(m.getDbId()) || StringUtils.isEmpty(m.getTableName()) || StringUtils.isEmpty(m.getProjectId())) {
+                continue;
+            }
+
+            if (this.isExist(tcgTableConfigBO)) {
+                continue;
+            }
+
+            try {
+                List<Columnt> columns = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readColumnsByTable(
+                        new DbConfig(dbConfigBO.getDbType() , dbConfigBO.getDbUrl() , dbConfigBO.getDbUsername() , dbConfigBO.getDbPassword()),
+                        tcgTableConfigBO.getSchemaName() , tcgTableConfigBO.getTableName()
+                );
+
+                //todo 处理表中的所有列
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
 
-
-            if (!success) {
-                throw DbException.DB_INSERT_RESULT_0;
-            } else {
-                return AjaxJson.successAjax;
-            }
         }
+
+
+
+        if (!success) {
+            throw DbException.DB_INSERT_RESULT_0;
+        } else {
+            return AjaxJson.successAjax;
+        }
+
     }
 
 
