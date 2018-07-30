@@ -38,6 +38,10 @@ import java.util.*;
 @Service
 public class TableBusiness {
 
+    public TableBusiness(){
+        System.out.println("----TableBusiness----");
+    }
+
 
     @Autowired
     private TcgProjectService tcgProjectService;
