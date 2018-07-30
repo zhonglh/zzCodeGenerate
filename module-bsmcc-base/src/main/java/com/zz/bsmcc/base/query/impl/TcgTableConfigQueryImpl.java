@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 表设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements TcgTableConfigQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -238,8 +238,8 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
 
-            private List<String> content_IN;
-            private List<String> content_NOTIN;
+            private List<String> tableComment_IN;
+            private List<String> tableComment_NOTIN;
 
 
 
@@ -1374,18 +1374,18 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery content(String content) {
-                    if(!IdUtils.isEmpty(content)){
-                        this.content = content;
+                public TcgTableConfigQuery tableComment(String tableComment) {
+                    if(!IdUtils.isEmpty(tableComment)){
+                        this.tableComment = tableComment;
                     }
                     return this;
                 }
 
 
                 @Override
-                public TcgTableConfigQuery contentNot(String contentNot) {
-                    if(!IdUtils.isEmpty(contentNot)){
-                        this.content_NE = contentNot;
+                public TcgTableConfigQuery tableCommentNot(String tableCommentNot) {
+                    if(!IdUtils.isEmpty(tableCommentNot)){
+                        this.tableComment_NE = tableCommentNot;
                     }
                     return this;
                 }
@@ -1394,36 +1394,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery contentLike(String contentLike) {
-                    if(!IdUtils.isEmpty(contentLike)){
-                        this.content_LIKE = contentLike;
-                    }
-                    return this;
-                }
-
-
-
-                @Override
-                public TcgTableConfigQuery contentNotLike(String contentNotLike) {
-                    if(!IdUtils.isEmpty(contentNotLike)){
-                        this.content_NOTLIKE = contentNotLike;
-                    }
-                    return this;
-                }
-
-                @Override
-                public TcgTableConfigQuery contentIn(String contentIn) {
-                    if(!IdUtils.isEmpty(contentIn)){
-                        this.content_IN.add( contentIn );
-                    }
-                    return this;
-                }
-
-
-                @Override
-                public TcgTableConfigQuery contentNotIn(String contentNotIn) {
-                    if(!IdUtils.isEmpty(contentNotIn)){
-                        this.content_NOTIN.add( contentNotIn );
+                public TcgTableConfigQuery tableCommentLike(String tableCommentLike) {
+                    if(!IdUtils.isEmpty(tableCommentLike)){
+                        this.tableComment_LIKE = tableCommentLike;
                     }
                     return this;
                 }
@@ -1431,16 +1404,43 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery contentIsNull() {
-                    this.isNulls.add("content");
+                public TcgTableConfigQuery tableCommentNotLike(String tableCommentNotLike) {
+                    if(!IdUtils.isEmpty(tableCommentNotLike)){
+                        this.tableComment_NOTLIKE = tableCommentNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTableConfigQuery tableCommentIn(String tableCommentIn) {
+                    if(!IdUtils.isEmpty(tableCommentIn)){
+                        this.tableComment_IN.add( tableCommentIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTableConfigQuery tableCommentNotIn(String tableCommentNotIn) {
+                    if(!IdUtils.isEmpty(tableCommentNotIn)){
+                        this.tableComment_NOTIN.add( tableCommentNotIn );
+                    }
                     return this;
                 }
 
 
 
                 @Override
-                public TcgTableConfigQuery contentIsNotNull() {
-                    this.isNotNulls.add("content");
+                public TcgTableConfigQuery tableCommentIsNull() {
+                    this.isNulls.add("tableComment");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTableConfigQuery tableCommentIsNotNull() {
+                    this.isNotNulls.add("tableComment");
                     return this;
                 }
 

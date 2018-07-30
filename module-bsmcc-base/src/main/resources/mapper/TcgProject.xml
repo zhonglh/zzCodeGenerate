@@ -13,6 +13,8 @@
          	<result column="project_note" property="projectNote"/>
          	<result column="project_i18n" property="projectI18n"/>
          	<result column="project_tenant" property="projectTenant"/>
+         	<result column="query_mode" property="queryMode"/>
+			<result column="page_use_view" property="pageUseView"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>
@@ -76,6 +78,12 @@
 
 
                         <if test="projectTenant != null and projectTenant != ''"> AND T.project_tenant = #{projectTenant} </if>
+
+
+
+
+
+                        <if test="queryMode != null and queryMode != ''"> AND T.query_mode = #{queryMode} </if>
 
 
 

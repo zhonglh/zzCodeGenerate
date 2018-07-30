@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  * @date ${.now}
  */
 public interface ${table.shortTableName?cap_first}Query<PK extends Serializable> extends Query<${table.shortTableName?cap_first}Entity,PK> {
-	private static final long serialVersionUID = 1L;
+
 <#list table.columnList as being>
 
 

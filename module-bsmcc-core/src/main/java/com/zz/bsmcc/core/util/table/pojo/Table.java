@@ -7,12 +7,21 @@ import java.io.Serializable;
  */
 public class Table implements Serializable {
 
-    String id;
 
     String tableName;
     String tableSchema;
     String tableType;
     String tableComment;
+
+
+    String id;
+    /**
+     * 是否为表
+     * true:表
+     * false 视图
+     */
+    boolean isTable;
+
 
 
     public String getTableName() {
@@ -54,4 +63,14 @@ public class Table implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    public boolean isTable() {
+        return isTable;
+    }
+
+    public void setTable(boolean table) {
+        isTable = table;
+    }
+
+
 }

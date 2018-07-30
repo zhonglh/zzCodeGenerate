@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:07
+ * @date 2018-7-30 17:18:04
  */
 public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements TcgColumnConfigQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -177,8 +177,39 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
 
-            private List<String> columnContent_IN;
-            private List<String> columnContent_NOTIN;
+            private List<String> columnIsdict_IN;
+            private List<String> columnIsdict_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> dictType_IN;
+            private List<String> dictType_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> columnComment_IN;
+            private List<String> columnComment_NOTIN;
 
 
 
@@ -681,9 +712,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
             @Override
-            public TcgColumnConfigQuery columnPrecision(Integer columnPrecision) {
-                if(!IdUtils.isEmpty(columnPrecision)){
-                    this.columnPrecision = columnPrecision;
+            public TcgColumnConfigQuery columnScale(Integer columnScale) {
+                if(!IdUtils.isEmpty(columnScale)){
+                    this.columnScale = columnScale;
                 }
                 return this;
             }
@@ -691,43 +722,43 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
             @Override
-            public TcgColumnConfigQuery columnPrecisionNot(Integer columnPrecisionNot) {
-                if(!IdUtils.isEmpty(columnPrecisionNot)){
-                    this.columnPrecision_NE = columnPrecisionNot;
+            public TcgColumnConfigQuery columnScaleNot(Integer columnScaleNot) {
+                if(!IdUtils.isEmpty(columnScaleNot)){
+                    this.columnScale_NE = columnScaleNot;
                 }
                 return this;
             }
 
             @Override
-            public TcgColumnConfigQuery columnPrecisionGreaterThan(Integer columnPrecisionGreaterThan){
-                if(columnPrecisionGreaterThan != null){
-                    this.columnPrecision_GT = columnPrecisionGreaterThan;
-                }
-                return this;
-            }
-
-
-            @Override
-            public TcgColumnConfigQuery columnPrecisionGreaterEqual(Integer columnPrecisionGreaterEqual){
-                if(columnPrecisionGreaterEqual != null){
-                    this.columnPrecision_GE = columnPrecisionGreaterEqual;
+            public TcgColumnConfigQuery columnScaleGreaterThan(Integer columnScaleGreaterThan){
+                if(columnScaleGreaterThan != null){
+                    this.columnScale_GT = columnScaleGreaterThan;
                 }
                 return this;
             }
 
 
             @Override
-            public TcgColumnConfigQuery columnPrecisionLessThan(Integer columnPrecisionLessThan){
-                if(columnPrecisionLessThan != null){
-                    this.columnPrecision_LT = columnPrecisionLessThan;
+            public TcgColumnConfigQuery columnScaleGreaterEqual(Integer columnScaleGreaterEqual){
+                if(columnScaleGreaterEqual != null){
+                    this.columnScale_GE = columnScaleGreaterEqual;
+                }
+                return this;
+            }
+
+
+            @Override
+            public TcgColumnConfigQuery columnScaleLessThan(Integer columnScaleLessThan){
+                if(columnScaleLessThan != null){
+                    this.columnScale_LT = columnScaleLessThan;
                 }
                 return this;
             }
 
             @Override
-            public TcgColumnConfigQuery columnPrecisionLessEqual(Integer columnPrecisionLessEqual){
-                if(columnPrecisionLessEqual != null){
-                    this.columnPrecision_LE = columnPrecisionLessEqual;
+            public TcgColumnConfigQuery columnScaleLessEqual(Integer columnScaleLessEqual){
+                if(columnScaleLessEqual != null){
+                    this.columnScale_LE = columnScaleLessEqual;
                 }
                 return this;
             }
@@ -1079,18 +1110,81 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
                 @Override
-                public TcgColumnConfigQuery columnContent(String columnContent) {
-                    if(!IdUtils.isEmpty(columnContent)){
-                        this.columnContent = columnContent;
+                public TcgColumnConfigQuery columnIsdict(String columnIsdict) {
+                    if(!IdUtils.isEmpty(columnIsdict)){
+                        this.columnIsdict = columnIsdict;
                     }
                     return this;
                 }
 
 
                 @Override
-                public TcgColumnConfigQuery columnContentNot(String columnContentNot) {
-                    if(!IdUtils.isEmpty(columnContentNot)){
-                        this.columnContent_NE = columnContentNot;
+                public TcgColumnConfigQuery columnIsdictNot(String columnIsdictNot) {
+                    if(!IdUtils.isEmpty(columnIsdictNot)){
+                        this.columnIsdict_NE = columnIsdictNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnConfigQuery columnIsdictIn(String columnIsdictIn) {
+                    if(!IdUtils.isEmpty(columnIsdictIn)){
+                        this.columnIsdict_IN.add( columnIsdictIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgColumnConfigQuery columnIsdictNotIn(String columnIsdictNotIn) {
+                    if(!IdUtils.isEmpty(columnIsdictNotIn)){
+                        this.columnIsdict_NOTIN.add( columnIsdictNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnIsdictIsNull() {
+                    this.isNulls.add("columnIsdict");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnIsdictIsNotNull() {
+                    this.isNotNulls.add("columnIsdict");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery dictType(String dictType) {
+                    if(!IdUtils.isEmpty(dictType)){
+                        this.dictType = dictType;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery dictTypeNot(String dictTypeNot) {
+                    if(!IdUtils.isEmpty(dictTypeNot)){
+                        this.dictType_NE = dictTypeNot;
                     }
                     return this;
                 }
@@ -1099,9 +1193,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
                 @Override
-                public TcgColumnConfigQuery columnContentLike(String columnContentLike) {
-                    if(!IdUtils.isEmpty(columnContentLike)){
-                        this.columnContent_LIKE = columnContentLike;
+                public TcgColumnConfigQuery dictTypeLike(String dictTypeLike) {
+                    if(!IdUtils.isEmpty(dictTypeLike)){
+                        this.dictType_LIKE = dictTypeLike;
                     }
                     return this;
                 }
@@ -1109,26 +1203,26 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
                 @Override
-                public TcgColumnConfigQuery columnContentNotLike(String columnContentNotLike) {
-                    if(!IdUtils.isEmpty(columnContentNotLike)){
-                        this.columnContent_NOTLIKE = columnContentNotLike;
+                public TcgColumnConfigQuery dictTypeNotLike(String dictTypeNotLike) {
+                    if(!IdUtils.isEmpty(dictTypeNotLike)){
+                        this.dictType_NOTLIKE = dictTypeNotLike;
                     }
                     return this;
                 }
 
                 @Override
-                public TcgColumnConfigQuery columnContentIn(String columnContentIn) {
-                    if(!IdUtils.isEmpty(columnContentIn)){
-                        this.columnContent_IN.add( columnContentIn );
+                public TcgColumnConfigQuery dictTypeIn(String dictTypeIn) {
+                    if(!IdUtils.isEmpty(dictTypeIn)){
+                        this.dictType_IN.add( dictTypeIn );
                     }
                     return this;
                 }
 
 
                 @Override
-                public TcgColumnConfigQuery columnContentNotIn(String columnContentNotIn) {
-                    if(!IdUtils.isEmpty(columnContentNotIn)){
-                        this.columnContent_NOTIN.add( columnContentNotIn );
+                public TcgColumnConfigQuery dictTypeNotIn(String dictTypeNotIn) {
+                    if(!IdUtils.isEmpty(dictTypeNotIn)){
+                        this.dictType_NOTIN.add( dictTypeNotIn );
                     }
                     return this;
                 }
@@ -1136,16 +1230,99 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
                 @Override
-                public TcgColumnConfigQuery columnContentIsNull() {
-                    this.isNulls.add("columnContent");
+                public TcgColumnConfigQuery dictTypeIsNull() {
+                    this.isNulls.add("dictType");
                     return this;
                 }
 
 
 
                 @Override
-                public TcgColumnConfigQuery columnContentIsNotNull() {
-                    this.isNotNulls.add("columnContent");
+                public TcgColumnConfigQuery dictTypeIsNotNull() {
+                    this.isNotNulls.add("dictType");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnComment(String columnComment) {
+                    if(!IdUtils.isEmpty(columnComment)){
+                        this.columnComment = columnComment;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery columnCommentNot(String columnCommentNot) {
+                    if(!IdUtils.isEmpty(columnCommentNot)){
+                        this.columnComment_NE = columnCommentNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnCommentLike(String columnCommentLike) {
+                    if(!IdUtils.isEmpty(columnCommentLike)){
+                        this.columnComment_LIKE = columnCommentLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnCommentNotLike(String columnCommentNotLike) {
+                    if(!IdUtils.isEmpty(columnCommentNotLike)){
+                        this.columnComment_NOTLIKE = columnCommentNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnConfigQuery columnCommentIn(String columnCommentIn) {
+                    if(!IdUtils.isEmpty(columnCommentIn)){
+                        this.columnComment_IN.add( columnCommentIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery columnCommentNotIn(String columnCommentNotIn) {
+                    if(!IdUtils.isEmpty(columnCommentNotIn)){
+                        this.columnComment_NOTIN.add( columnCommentNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnCommentIsNull() {
+                    this.isNulls.add("columnComment");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnCommentIsNotNull() {
+                    this.isNotNulls.add("columnComment");
                     return this;
                 }
 

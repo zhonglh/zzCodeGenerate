@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 模板组查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:16
+ * @date 2018-7-30 17:18:09
  */
 public interface TcgTempletGroupQuery<PK extends Serializable> extends Query<TcgTempletGroupEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 

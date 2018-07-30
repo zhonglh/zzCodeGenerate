@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  * 组设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:12
+ * @date 2018-7-30 17:18:06
  */
 public abstract class TcgGroupConfigAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgGroupConfigEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 

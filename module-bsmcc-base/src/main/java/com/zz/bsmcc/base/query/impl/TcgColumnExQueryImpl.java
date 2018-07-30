@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 列扩展 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public class TcgColumnExQueryImpl<PK extends Serializable> extends TcgColumnExAbstractQueryImpl<PK> implements TcgColumnExQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -26,6 +26,21 @@ public class TcgColumnExQueryImpl<PK extends Serializable> extends TcgColumnExAb
 
             private List<PK> id_IN;
             private List<PK> id_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<PK> tableId_IN;
+            private List<PK> tableId_NOTIN;
 
 
 
@@ -202,6 +217,70 @@ public class TcgColumnExQueryImpl<PK extends Serializable> extends TcgColumnExAb
                 @Override
                 public TcgColumnExQuery idIsNotNull() {
                     this.isNotNulls.add("id");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnExQuery tableId(PK tableId) {
+                    if(!IdUtils.isEmpty(tableId)){
+                        this.tableId = tableId;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnExQuery tableIdNot(PK tableIdNot) {
+                    if(!IdUtils.isEmpty(tableIdNot)){
+                        this.tableId_NE = tableIdNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnExQuery tableIdIn(PK tableIdIn) {
+                    if(!IdUtils.isEmpty(tableIdIn)){
+                        this.tableId_IN.add( tableIdIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnExQuery tableIdNotIn(PK tableIdNotIn) {
+                    if(!IdUtils.isEmpty(tableIdNotIn)){
+                        this.tableId_NOTIN.add( tableIdNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnExQuery tableIdIsNull() {
+                    this.isNulls.add("tableId");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnExQuery tableIdIsNotNull() {
+                    this.isNotNulls.add("tableId");
                     return this;
                 }
 

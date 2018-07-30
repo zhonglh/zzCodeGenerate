@@ -5,13 +5,18 @@
  	<!-- 映射配置 -->
 	<resultMap id="TcgColumnPageResultMap" type="com.zz.bsmcc.base.bo.TcgColumnPageBO" >
          	<result column="id" property="id"/>
+         	<result column="table_id" property="tableId"/>
+         	<result column="real_column" property="realColumn"/>
          	<result column="editable" property="editable"/>
+         	<result column="hiddenable" property="hiddenable"/>
+         	<result column="exist_page" property="existPage"/>
          	<result column="element" property="element"/>
          	<result column="maxlength" property="maxlength"/>
          	<result column="minlength" property="minlength"/>
          	<result column="max" property="max"/>
          	<result column="min" property="min"/>
          	<result column="required" property="required"/>
+         	<result column="list_showable" property="listShowable"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>
@@ -31,7 +36,31 @@
 
 
 
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
+
+
+
+
+
+                        <if test="realColumn != null and realColumn != ''"> AND T.real_column = #{realColumn} </if>
+
+
+
+
+
                         <if test="editable != null and editable != ''"> AND T.editable = #{editable} </if>
+
+
+
+
+
+                        <if test="hiddenable != null and hiddenable != ''"> AND T.hiddenable = #{hiddenable} </if>
+
+
+
+
+
+                        <if test="existPage != null and existPage != ''"> AND T.exist_page = #{existPage} </if>
 
 
 
@@ -56,6 +85,12 @@
 
 
                         <if test="required != null and required != ''"> AND T.required = #{required} </if>
+
+
+
+
+
+                        <if test="listShowable != null and listShowable != ''"> AND T.list_showable = #{listShowable} </if>
 
 
 

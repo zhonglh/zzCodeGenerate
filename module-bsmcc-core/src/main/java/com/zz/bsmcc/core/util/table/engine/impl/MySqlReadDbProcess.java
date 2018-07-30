@@ -1,17 +1,27 @@
 package com.zz.bsmcc.core.util.table.engine.impl;
 
 import com.zz.bsmcc.core.util.table.engine.ReadDbProcess;
+import com.zz.bsmcc.core.util.table.pojo.Column;
+import com.zz.bsmcc.core.util.table.pojo.Table;
 
 /**
  * MySQL 数据库读取器
  * @author Administrator
  */
 public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbProcess {
+
     @Override
     protected String getReadAllTableSQL() {
         return "select table_name , table_schema , table_type , table_comment " +
                 "from information_schema.tables " +
                 "where table_schema not in ('information_schema','test' )";
+    }
+
+    @Override
+    protected String getReadOneTableSQL(String tableSchema, String tableName) {
+        return "select table_name , table_schema , table_type , table_comment " +
+                "from information_schema.tables T" +
+                "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " ;
     }
 
     @Override
@@ -49,5 +59,16 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_NAME '"+constraintName+"' " ;
 
+    }
+
+    @Override
+    protected boolean isTable(Table table) {
+        return table.getTableType().indexOf("VIEW")!= -1 ? false : true;
+    }
+
+
+    @Override
+    protected boolean isFixedChar(Column column) {
+        return column.getDataType().equalsIgnoreCase("CHAR");
     }
 }

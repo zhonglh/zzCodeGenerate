@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 * 模板组操作定义实体类
 *
 * @author Administrator
-* @date 2018-7-29 1:16:15
+* @date 2018-7-30 17:18:09
 */
 public class TcgTempletGropOperationEntity extends BaseEntity<String> implements java.io.Serializable{
     @TableField(exist=false)

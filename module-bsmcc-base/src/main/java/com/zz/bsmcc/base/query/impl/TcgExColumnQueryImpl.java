@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 扩展列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:11
+ * @date 2018-7-30 17:18:06
  */
 public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAbstractQueryImpl<PK> implements TcgExColumnQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -41,6 +41,68 @@ public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAb
 
             private List<PK> tableId_IN;
             private List<PK> tableId_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<PK> originalColumnId_IN;
+            private List<PK> originalColumnId_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> originalColumnName_IN;
+            private List<String> originalColumnName_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> originalColumnFk_IN;
+            private List<String> originalColumnFk_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> originalColumnDict_IN;
+            private List<String> originalColumnDict_NOTIN;
+
 
 
 
@@ -99,6 +161,16 @@ public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAb
 
 
 
+
+
+
+
+
+
+
+
+
+
             private List<String> columnTitle_IN;
             private List<String> columnTitle_NOTIN;
 
@@ -131,6 +203,36 @@ public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAb
 
             private List<String> dictType_IN;
             private List<String> dictType_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> tableSchema_IN;
+            private List<String> tableSchema_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> tableName_IN;
+            private List<String> tableName_NOTIN;
 
 
 
@@ -329,6 +431,279 @@ public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAb
                     return this;
                 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnId(PK originalColumnId) {
+                    if(!IdUtils.isEmpty(originalColumnId)){
+                        this.originalColumnId = originalColumnId;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery originalColumnIdNot(PK originalColumnIdNot) {
+                    if(!IdUtils.isEmpty(originalColumnIdNot)){
+                        this.originalColumnId_NE = originalColumnIdNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgExColumnQuery originalColumnIdIn(PK originalColumnIdIn) {
+                    if(!IdUtils.isEmpty(originalColumnIdIn)){
+                        this.originalColumnId_IN.add( originalColumnIdIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery originalColumnIdNotIn(PK originalColumnIdNotIn) {
+                    if(!IdUtils.isEmpty(originalColumnIdNotIn)){
+                        this.originalColumnId_NOTIN.add( originalColumnIdNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnIdIsNull() {
+                    this.isNulls.add("originalColumnId");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnIdIsNotNull() {
+                    this.isNotNulls.add("originalColumnId");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnName(String originalColumnName) {
+                    if(!IdUtils.isEmpty(originalColumnName)){
+                        this.originalColumnName = originalColumnName;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery originalColumnNameNot(String originalColumnNameNot) {
+                    if(!IdUtils.isEmpty(originalColumnNameNot)){
+                        this.originalColumnName_NE = originalColumnNameNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnNameLike(String originalColumnNameLike) {
+                    if(!IdUtils.isEmpty(originalColumnNameLike)){
+                        this.originalColumnName_LIKE = originalColumnNameLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnNameNotLike(String originalColumnNameNotLike) {
+                    if(!IdUtils.isEmpty(originalColumnNameNotLike)){
+                        this.originalColumnName_NOTLIKE = originalColumnNameNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgExColumnQuery originalColumnNameIn(String originalColumnNameIn) {
+                    if(!IdUtils.isEmpty(originalColumnNameIn)){
+                        this.originalColumnName_IN.add( originalColumnNameIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery originalColumnNameNotIn(String originalColumnNameNotIn) {
+                    if(!IdUtils.isEmpty(originalColumnNameNotIn)){
+                        this.originalColumnName_NOTIN.add( originalColumnNameNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnNameIsNull() {
+                    this.isNulls.add("originalColumnName");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnNameIsNotNull() {
+                    this.isNotNulls.add("originalColumnName");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnFk(String originalColumnFk) {
+                    if(!IdUtils.isEmpty(originalColumnFk)){
+                        this.originalColumnFk = originalColumnFk;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery originalColumnFkNot(String originalColumnFkNot) {
+                    if(!IdUtils.isEmpty(originalColumnFkNot)){
+                        this.originalColumnFk_NE = originalColumnFkNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgExColumnQuery originalColumnFkIn(String originalColumnFkIn) {
+                    if(!IdUtils.isEmpty(originalColumnFkIn)){
+                        this.originalColumnFk_IN.add( originalColumnFkIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgExColumnQuery originalColumnFkNotIn(String originalColumnFkNotIn) {
+                    if(!IdUtils.isEmpty(originalColumnFkNotIn)){
+                        this.originalColumnFk_NOTIN.add( originalColumnFkNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnFkIsNull() {
+                    this.isNulls.add("originalColumnFk");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnFkIsNotNull() {
+                    this.isNotNulls.add("originalColumnFk");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnDict(String originalColumnDict) {
+                    if(!IdUtils.isEmpty(originalColumnDict)){
+                        this.originalColumnDict = originalColumnDict;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery originalColumnDictNot(String originalColumnDictNot) {
+                    if(!IdUtils.isEmpty(originalColumnDictNot)){
+                        this.originalColumnDict_NE = originalColumnDictNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgExColumnQuery originalColumnDictIn(String originalColumnDictIn) {
+                    if(!IdUtils.isEmpty(originalColumnDictIn)){
+                        this.originalColumnDict_IN.add( originalColumnDictIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgExColumnQuery originalColumnDictNotIn(String originalColumnDictNotIn) {
+                    if(!IdUtils.isEmpty(originalColumnDictNotIn)){
+                        this.originalColumnDict_NOTIN.add( originalColumnDictNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnDictIsNull() {
+                    this.isNulls.add("originalColumnDict");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery originalColumnDictIsNotNull() {
+                    this.isNotNulls.add("originalColumnDict");
+                    return this;
+                }
 
 
 
@@ -592,6 +967,69 @@ public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAb
 
 
 
+            @Override
+            public TcgExColumnQuery columnSort(Integer columnSort) {
+                if(!IdUtils.isEmpty(columnSort)){
+                    this.columnSort = columnSort;
+                }
+                return this;
+            }
+
+
+
+            @Override
+            public TcgExColumnQuery columnSortNot(Integer columnSortNot) {
+                if(!IdUtils.isEmpty(columnSortNot)){
+                    this.columnSort_NE = columnSortNot;
+                }
+                return this;
+            }
+
+            @Override
+            public TcgExColumnQuery columnSortGreaterThan(Integer columnSortGreaterThan){
+                if(columnSortGreaterThan != null){
+                    this.columnSort_GT = columnSortGreaterThan;
+                }
+                return this;
+            }
+
+
+            @Override
+            public TcgExColumnQuery columnSortGreaterEqual(Integer columnSortGreaterEqual){
+                if(columnSortGreaterEqual != null){
+                    this.columnSort_GE = columnSortGreaterEqual;
+                }
+                return this;
+            }
+
+
+            @Override
+            public TcgExColumnQuery columnSortLessThan(Integer columnSortLessThan){
+                if(columnSortLessThan != null){
+                    this.columnSort_LT = columnSortLessThan;
+                }
+                return this;
+            }
+
+            @Override
+            public TcgExColumnQuery columnSortLessEqual(Integer columnSortLessEqual){
+                if(columnSortLessEqual != null){
+                    this.columnSort_LE = columnSortLessEqual;
+                }
+                return this;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
                 @Override
                 public TcgExColumnQuery columnTitle(String columnTitle) {
                     if(!IdUtils.isEmpty(columnTitle)){
@@ -826,6 +1264,172 @@ public class TcgExColumnQueryImpl<PK extends Serializable> extends TcgExColumnAb
                 @Override
                 public TcgExColumnQuery dictTypeIsNotNull() {
                     this.isNotNulls.add("dictType");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgExColumnQuery tableSchema(String tableSchema) {
+                    if(!IdUtils.isEmpty(tableSchema)){
+                        this.tableSchema = tableSchema;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery tableSchemaNot(String tableSchemaNot) {
+                    if(!IdUtils.isEmpty(tableSchemaNot)){
+                        this.tableSchema_NE = tableSchemaNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgExColumnQuery tableSchemaLike(String tableSchemaLike) {
+                    if(!IdUtils.isEmpty(tableSchemaLike)){
+                        this.tableSchema_LIKE = tableSchemaLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery tableSchemaNotLike(String tableSchemaNotLike) {
+                    if(!IdUtils.isEmpty(tableSchemaNotLike)){
+                        this.tableSchema_NOTLIKE = tableSchemaNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgExColumnQuery tableSchemaIn(String tableSchemaIn) {
+                    if(!IdUtils.isEmpty(tableSchemaIn)){
+                        this.tableSchema_IN.add( tableSchemaIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery tableSchemaNotIn(String tableSchemaNotIn) {
+                    if(!IdUtils.isEmpty(tableSchemaNotIn)){
+                        this.tableSchema_NOTIN.add( tableSchemaNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery tableSchemaIsNull() {
+                    this.isNulls.add("tableSchema");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery tableSchemaIsNotNull() {
+                    this.isNotNulls.add("tableSchema");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgExColumnQuery tableName(String tableName) {
+                    if(!IdUtils.isEmpty(tableName)){
+                        this.tableName = tableName;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery tableNameNot(String tableNameNot) {
+                    if(!IdUtils.isEmpty(tableNameNot)){
+                        this.tableName_NE = tableNameNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgExColumnQuery tableNameLike(String tableNameLike) {
+                    if(!IdUtils.isEmpty(tableNameLike)){
+                        this.tableName_LIKE = tableNameLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery tableNameNotLike(String tableNameNotLike) {
+                    if(!IdUtils.isEmpty(tableNameNotLike)){
+                        this.tableName_NOTLIKE = tableNameNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgExColumnQuery tableNameIn(String tableNameIn) {
+                    if(!IdUtils.isEmpty(tableNameIn)){
+                        this.tableName_IN.add( tableNameIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgExColumnQuery tableNameNotIn(String tableNameNotIn) {
+                    if(!IdUtils.isEmpty(tableNameNotIn)){
+                        this.tableName_NOTIN.add( tableNameNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery tableNameIsNull() {
+                    this.isNulls.add("tableName");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgExColumnQuery tableNameIsNotNull() {
+                    this.isNotNulls.add("tableName");
                     return this;
                 }
 

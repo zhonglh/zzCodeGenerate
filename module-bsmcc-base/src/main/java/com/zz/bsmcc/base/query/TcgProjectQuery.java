@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 项目管理查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public interface TcgProjectQuery<PK extends Serializable> extends Query<TcgProjectEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -184,6 +184,45 @@ public interface TcgProjectQuery<PK extends Serializable> extends Query<TcgProje
             public TcgProjectQuery projectTenantNotIn(String projectTenantNotIn);
             public TcgProjectQuery projectTenantIsNull();
             public TcgProjectQuery projectTenantIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgProjectQuery queryMode(String queryMode);
+            public TcgProjectQuery queryModeNot(String queryModeNot);
+            public TcgProjectQuery queryModeIn(String queryModeIn);
+            public TcgProjectQuery queryModeNotIn(String queryModeNotIn);
+            public TcgProjectQuery queryModeLike(String queryModeLike);
+            public TcgProjectQuery queryModeNotLike(String queryModeNotLike);
+            public TcgProjectQuery queryModeIsNull();
+            public TcgProjectQuery queryModeIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgProjectQuery pageUseView(String pageUseView);
+            public TcgProjectQuery pageUseViewNot(String pageUseViewNot);
+            public TcgProjectQuery pageUseViewIn(String pageUseViewIn);
+            public TcgProjectQuery pageUseViewNotIn(String pageUseViewNotIn);
+            public TcgProjectQuery pageUseViewIsNull();
+            public TcgProjectQuery pageUseViewIsNotNull();
 
 
 

@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 列界面设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPageAbstractQueryImpl<PK> implements TcgColumnPageQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -39,8 +39,71 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
 
 
 
+            private List<PK> tableId_IN;
+            private List<PK> tableId_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> realColumn_IN;
+            private List<String> realColumn_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             private List<String> editable_IN;
             private List<String> editable_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> hiddenable_IN;
+            private List<String> hiddenable_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> existPage_IN;
+            private List<String> existPage_NOTIN;
 
 
 
@@ -112,6 +175,22 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
 
             private List<String> required_IN;
             private List<String> required_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> listShowable_IN;
+            private List<String> listShowable_NOTIN;
 
 
 
@@ -262,6 +341,133 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
 
 
                 @Override
+                public TcgColumnPageQuery tableId(PK tableId) {
+                    if(!IdUtils.isEmpty(tableId)){
+                        this.tableId = tableId;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnPageQuery tableIdNot(PK tableIdNot) {
+                    if(!IdUtils.isEmpty(tableIdNot)){
+                        this.tableId_NE = tableIdNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnPageQuery tableIdIn(PK tableIdIn) {
+                    if(!IdUtils.isEmpty(tableIdIn)){
+                        this.tableId_IN.add( tableIdIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnPageQuery tableIdNotIn(PK tableIdNotIn) {
+                    if(!IdUtils.isEmpty(tableIdNotIn)){
+                        this.tableId_NOTIN.add( tableIdNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnPageQuery tableIdIsNull() {
+                    this.isNulls.add("tableId");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnPageQuery tableIdIsNotNull() {
+                    this.isNotNulls.add("tableId");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnPageQuery realColumn(String realColumn) {
+                    if(!IdUtils.isEmpty(realColumn)){
+                        this.realColumn = realColumn;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnPageQuery realColumnNot(String realColumnNot) {
+                    if(!IdUtils.isEmpty(realColumnNot)){
+                        this.realColumn_NE = realColumnNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnPageQuery realColumnIn(String realColumnIn) {
+                    if(!IdUtils.isEmpty(realColumnIn)){
+                        this.realColumn_IN.add( realColumnIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgColumnPageQuery realColumnNotIn(String realColumnNotIn) {
+                    if(!IdUtils.isEmpty(realColumnNotIn)){
+                        this.realColumn_NOTIN.add( realColumnNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgColumnPageQuery realColumnIsNull() {
+                    this.isNulls.add("realColumn");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnPageQuery realColumnIsNotNull() {
+                    this.isNotNulls.add("realColumn");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
                 public TcgColumnPageQuery editable(String editable) {
                     if(!IdUtils.isEmpty(editable)){
                         this.editable = editable;
@@ -308,6 +514,132 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery editableIsNotNull() {
                     this.isNotNulls.add("editable");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnPageQuery hiddenable(String hiddenable) {
+                    if(!IdUtils.isEmpty(hiddenable)){
+                        this.hiddenable = hiddenable;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnPageQuery hiddenableNot(String hiddenableNot) {
+                    if(!IdUtils.isEmpty(hiddenableNot)){
+                        this.hiddenable_NE = hiddenableNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnPageQuery hiddenableIn(String hiddenableIn) {
+                    if(!IdUtils.isEmpty(hiddenableIn)){
+                        this.hiddenable_IN.add( hiddenableIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgColumnPageQuery hiddenableNotIn(String hiddenableNotIn) {
+                    if(!IdUtils.isEmpty(hiddenableNotIn)){
+                        this.hiddenable_NOTIN.add( hiddenableNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgColumnPageQuery hiddenableIsNull() {
+                    this.isNulls.add("hiddenable");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnPageQuery hiddenableIsNotNull() {
+                    this.isNotNulls.add("hiddenable");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnPageQuery existPage(String existPage) {
+                    if(!IdUtils.isEmpty(existPage)){
+                        this.existPage = existPage;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnPageQuery existPageNot(String existPageNot) {
+                    if(!IdUtils.isEmpty(existPageNot)){
+                        this.existPage_NE = existPageNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnPageQuery existPageIn(String existPageIn) {
+                    if(!IdUtils.isEmpty(existPageIn)){
+                        this.existPage_IN.add( existPageIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgColumnPageQuery existPageNotIn(String existPageNotIn) {
+                    if(!IdUtils.isEmpty(existPageNotIn)){
+                        this.existPage_NOTIN.add( existPageNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgColumnPageQuery existPageIsNull() {
+                    this.isNulls.add("existPage");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnPageQuery existPageIsNotNull() {
+                    this.isNotNulls.add("existPage");
                     return this;
                 }
 
@@ -706,6 +1038,69 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery requiredIsNotNull() {
                     this.isNotNulls.add("required");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnPageQuery listShowable(String listShowable) {
+                    if(!IdUtils.isEmpty(listShowable)){
+                        this.listShowable = listShowable;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnPageQuery listShowableNot(String listShowableNot) {
+                    if(!IdUtils.isEmpty(listShowableNot)){
+                        this.listShowable_NE = listShowableNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnPageQuery listShowableIn(String listShowableIn) {
+                    if(!IdUtils.isEmpty(listShowableIn)){
+                        this.listShowable_IN.add( listShowableIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgColumnPageQuery listShowableNotIn(String listShowableNotIn) {
+                    if(!IdUtils.isEmpty(listShowableNotIn)){
+                        this.listShowable_NOTIN.add( listShowableNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgColumnPageQuery listShowableIsNull() {
+                    this.isNulls.add("listShowable");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnPageQuery listShowableIsNotNull() {
+                    this.isNotNulls.add("listShowable");
                     return this;
                 }
 

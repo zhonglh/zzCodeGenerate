@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 列事件 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:08
+ * @date 2018-7-30 17:18:04
  */
 public class TcgColumnEventQueryImpl<PK extends Serializable> extends TcgColumnEventAbstractQueryImpl<PK> implements TcgColumnEventQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -26,6 +26,21 @@ public class TcgColumnEventQueryImpl<PK extends Serializable> extends TcgColumnE
 
             private List<PK> id_IN;
             private List<PK> id_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<PK> tableId_IN;
+            private List<PK> tableId_NOTIN;
 
 
 
@@ -56,6 +71,36 @@ public class TcgColumnEventQueryImpl<PK extends Serializable> extends TcgColumnE
 
             private List<String> eventName_IN;
             private List<String> eventName_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> funcName_IN;
+            private List<String> funcName_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> funcParam_IN;
+            private List<String> funcParam_NOTIN;
 
 
 
@@ -220,6 +265,70 @@ public class TcgColumnEventQueryImpl<PK extends Serializable> extends TcgColumnE
 
 
                 @Override
+                public TcgColumnEventQuery tableId(PK tableId) {
+                    if(!IdUtils.isEmpty(tableId)){
+                        this.tableId = tableId;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnEventQuery tableIdNot(PK tableIdNot) {
+                    if(!IdUtils.isEmpty(tableIdNot)){
+                        this.tableId_NE = tableIdNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnEventQuery tableIdIn(PK tableIdIn) {
+                    if(!IdUtils.isEmpty(tableIdIn)){
+                        this.tableId_IN.add( tableIdIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnEventQuery tableIdNotIn(PK tableIdNotIn) {
+                    if(!IdUtils.isEmpty(tableIdNotIn)){
+                        this.tableId_NOTIN.add( tableIdNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery tableIdIsNull() {
+                    this.isNulls.add("tableId");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery tableIdIsNotNull() {
+                    this.isNotNulls.add("tableId");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
                 public TcgColumnEventQuery columnId(PK columnId) {
                     if(!IdUtils.isEmpty(columnId)){
                         this.columnId = columnId;
@@ -351,6 +460,172 @@ public class TcgColumnEventQueryImpl<PK extends Serializable> extends TcgColumnE
                 @Override
                 public TcgColumnEventQuery eventNameIsNotNull() {
                     this.isNotNulls.add("eventName");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnEventQuery funcName(String funcName) {
+                    if(!IdUtils.isEmpty(funcName)){
+                        this.funcName = funcName;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnEventQuery funcNameNot(String funcNameNot) {
+                    if(!IdUtils.isEmpty(funcNameNot)){
+                        this.funcName_NE = funcNameNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgColumnEventQuery funcNameLike(String funcNameLike) {
+                    if(!IdUtils.isEmpty(funcNameLike)){
+                        this.funcName_LIKE = funcNameLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery funcNameNotLike(String funcNameNotLike) {
+                    if(!IdUtils.isEmpty(funcNameNotLike)){
+                        this.funcName_NOTLIKE = funcNameNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnEventQuery funcNameIn(String funcNameIn) {
+                    if(!IdUtils.isEmpty(funcNameIn)){
+                        this.funcName_IN.add( funcNameIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnEventQuery funcNameNotIn(String funcNameNotIn) {
+                    if(!IdUtils.isEmpty(funcNameNotIn)){
+                        this.funcName_NOTIN.add( funcNameNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery funcNameIsNull() {
+                    this.isNulls.add("funcName");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery funcNameIsNotNull() {
+                    this.isNotNulls.add("funcName");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnEventQuery funcParam(String funcParam) {
+                    if(!IdUtils.isEmpty(funcParam)){
+                        this.funcParam = funcParam;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnEventQuery funcParamNot(String funcParamNot) {
+                    if(!IdUtils.isEmpty(funcParamNot)){
+                        this.funcParam_NE = funcParamNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgColumnEventQuery funcParamLike(String funcParamLike) {
+                    if(!IdUtils.isEmpty(funcParamLike)){
+                        this.funcParam_LIKE = funcParamLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery funcParamNotLike(String funcParamNotLike) {
+                    if(!IdUtils.isEmpty(funcParamNotLike)){
+                        this.funcParam_NOTLIKE = funcParamNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnEventQuery funcParamIn(String funcParamIn) {
+                    if(!IdUtils.isEmpty(funcParamIn)){
+                        this.funcParam_IN.add( funcParamIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnEventQuery funcParamNotIn(String funcParamNotIn) {
+                    if(!IdUtils.isEmpty(funcParamNotIn)){
+                        this.funcParam_NOTIN.add( funcParamNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery funcParamIsNull() {
+                    this.isNulls.add("funcParam");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnEventQuery funcParamIsNotNull() {
+                    this.isNotNulls.add("funcParam");
                     return this;
                 }
 

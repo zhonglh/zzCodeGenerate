@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
  * 列校验实体类
  *
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 16:56:03
  */
 public class TcgColumnValidateEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -23,21 +23,28 @@ public class TcgColumnValidateEntity extends BaseBusinessSimpleEntity<String> im
 
 
 
-    //@EntityAttrAnnotation(attrName="列",sort=1  , attrLength=32    )
+    //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
+	private String tableId;
+
+
+
+
+
+    //@EntityAttrAnnotation(attrName="列",sort=2  , attrLength=32    )
 	private String columnId;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="表达式",sort=2  , attrLength=200    )
+    //@EntityAttrAnnotation(attrName="表达式",sort=3  , attrLength=200    )
 	private String rex;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="错误消息",sort=3  , attrLength=200    )
+    //@EntityAttrAnnotation(attrName="错误消息",sort=4  , attrLength=200    )
 	private String msg;
 
 
@@ -46,6 +53,20 @@ public class TcgColumnValidateEntity extends BaseBusinessSimpleEntity<String> im
 
 
 
+	/** 
+	 * 
+	 * @return the tableId
+	 */
+	public String getTableId() {
+		return tableId;
+	}
+	
+	/** 
+	 * 
+	 */
+	public void setTableId(String tableId) {
+		this.tableId = tableId;
+	}
 	/** 
 	 * 列
 	 * @return the columnId

@@ -4,7 +4,7 @@ package com.zz.bsmcc.base.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -14,7 +14,7 @@ import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
  * 列设置实体类
  *
  * @author Administrator
- * @date 2018-7-29 1:16:07
+ * @date 2018-7-30 13:51:09
  */
 public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -39,6 +39,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
     //@EntityAttrAnnotation(attrName="类型",sort=3  , attrLength=50    )
+	//如char varch  int date  
 	private String columnType;
 
 
@@ -53,7 +54,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
     //@EntityAttrAnnotation(attrName="小数点位数",sort=5  , attrLength=0    )
-	private Integer columnPrecision;
+	private Integer columnScale;
 
 
 
@@ -94,35 +95,49 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
 
-    //@EntityAttrAnnotation(attrName="说明",sort=11  , attrLength=100    )
-	private String columnContent;
+    //@EntityAttrAnnotation(attrName="是否为字典",sort=11  , attrLength=1    )
+	private String columnIsdict;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="Java类名",sort=12  , attrLength=100    )
+    //@EntityAttrAnnotation(attrName="字典类型",sort=12  , attrLength=100    )
+	private String dictType;
+
+
+
+
+
+    //@EntityAttrAnnotation(attrName="说明",sort=13  , attrLength=100    )
+	private String columnComment;
+
+
+
+
+
+    //@EntityAttrAnnotation(attrName="Java类名",sort=14  , attrLength=100    )
 	private String javaSimpleClass;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="Java类全名",sort=13  , attrLength=200    )
+    //@EntityAttrAnnotation(attrName="Java类全名",sort=15  , attrLength=200    )
 	private String javaFullClass;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="Java 属性名",sort=14  , attrLength=100    )
+    //@EntityAttrAnnotation(attrName="Java 属性名",sort=16  , attrLength=100    )
 	private String javaName;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="组名称",sort=15  , attrLength=50    )
+    //@EntityAttrAnnotation(attrName="组名称",sort=17  , attrLength=50    )
 	//一般相同的数据项用相同的组名 ， 比如在项目表中， 客户名称，客户编号， 客户电话 ，客户ID等  
 	private String groupCode;
 
@@ -190,17 +205,17 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	}
 	/** 
 	 * 小数点位数
-	 * @return the columnPrecision
+	 * @return the columnScale
 	 */
-	public Integer getColumnPrecision() {
-		return columnPrecision;
+	public Integer getColumnScale() {
+		return columnScale;
 	}
 	
 	/** 
 	 * 小数点位数
 	 */
-	public void setColumnPrecision(Integer columnPrecision) {
-		this.columnPrecision = columnPrecision;
+	public void setColumnScale(Integer columnScale) {
+		this.columnScale = columnScale;
 	}
 	/** 
 	 * 默认值
@@ -273,18 +288,46 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 		this.columnIskey = columnIskey;
 	}
 	/** 
-	 * 说明
-	 * @return the columnContent
+	 * 是否为字典
+	 * @return the columnIsdict
 	 */
-	public String getColumnContent() {
-		return columnContent;
+	public String getColumnIsdict() {
+		return columnIsdict;
+	}
+	
+	/** 
+	 * 是否为字典
+	 */
+	public void setColumnIsdict(String columnIsdict) {
+		this.columnIsdict = columnIsdict;
+	}
+	/** 
+	 * 字典类型
+	 * @return the dictType
+	 */
+	public String getDictType() {
+		return dictType;
+	}
+	
+	/** 
+	 * 字典类型
+	 */
+	public void setDictType(String dictType) {
+		this.dictType = dictType;
+	}
+	/** 
+	 * 说明
+	 * @return the columnComment
+	 */
+	public String getColumnComment() {
+		return columnComment;
 	}
 	
 	/** 
 	 * 说明
 	 */
-	public void setColumnContent(String columnContent) {
-		this.columnContent = columnContent;
+	public void setColumnComment(String columnComment) {
+		this.columnComment = columnComment;
 	}
 	/** 
 	 * Java类名

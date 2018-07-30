@@ -18,7 +18,7 @@
          	<result column="resource_name" property="resourceName"/>
          	<result column="is_tree" property="isTree"/>
          	<result column="parent_field_name" property="parentFieldName"/>
-         	<result column="content" property="content"/>
+         	<result column="table_comment" property="tableComment"/>
          	<result column="query_mode" property="queryMode"/>
          	<result column="is_build_controller" property="isBuildController"/>
          	<result column="is_build_menu" property="isBuildMenu"/>
@@ -120,7 +120,7 @@
 
 
 
-                        <if test="content != null and content != ''"> AND T.content = #{content} </if>
+                        <if test="tableComment != null and tableComment != ''"> AND T.table_comment = #{tableComment} </if>
 
 
 

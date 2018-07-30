@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  * 列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:07
+ * @date 2018-7-30 17:18:03
  */
 public abstract class TcgColumnConfigAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnConfigEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -98,12 +98,12 @@ public abstract class TcgColumnConfigAbstractQueryImpl<PK extends Serializable> 
 
 
 
-        protected Integer columnPrecision;
-        protected Integer columnPrecision_NE;
-        protected Integer columnPrecision_GT;
-        protected Integer columnPrecision_GE;
-        protected Integer columnPrecision_LT;
-        protected Integer columnPrecision_LE;
+        protected Integer columnScale;
+        protected Integer columnScale_NE;
+        protected Integer columnScale_GT;
+        protected Integer columnScale_GE;
+        protected Integer columnScale_LT;
+        protected Integer columnScale_LE;
 
 
 
@@ -192,10 +192,41 @@ public abstract class TcgColumnConfigAbstractQueryImpl<PK extends Serializable> 
 
 
 
-            protected String columnContent;
-            protected String columnContent_NE;
-            protected String columnContent_LIKE;
-            protected String columnContent_NOTLIKE;
+            protected String columnIsdict;
+            protected String columnIsdict_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String dictType;
+            protected String dictType_NE;
+            protected String dictType_LIKE;
+            protected String dictType_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String columnComment;
+            protected String columnComment_NE;
+            protected String columnComment_LIKE;
+            protected String columnComment_NOTLIKE;
 
 
 

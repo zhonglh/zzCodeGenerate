@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 列扩展 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public class TcgColumnExQueryWebImpl<PK extends Serializable> extends TcgColumnExAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -21,6 +21,19 @@ public class TcgColumnExQueryWebImpl<PK extends Serializable> extends TcgColumnE
 
             private PK id_IN;
             private PK id_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private PK tableId_IN;
+            private PK tableId_NOTIN;
 
 
 
@@ -172,6 +185,65 @@ public class TcgColumnExQueryWebImpl<PK extends Serializable> extends TcgColumnE
 
                 public void setId_NOTIN(PK id_NOTIN) {
                     this.id_NOTIN = id_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public PK getTableId() {
+                    return tableId;
+                }
+
+
+                public void setTableId(PK tableId) {
+                    this.tableId = tableId;
+                }
+
+
+                public PK getTableId_NE() {
+                return tableId_NE;
+                }
+
+
+                public void setTableId_NE(PK tableId_NE) {
+                this.tableId_NE = tableId_NE;
+                }
+
+
+
+
+
+
+
+
+                public PK getTableId_IN() {
+                    return tableId_IN;
+                }
+
+                public void setTableId_IN(PK tableId_IN) {
+                    this.tableId_IN = tableId_IN;
+                }
+
+                public PK getTableId_NOTIN() {
+                    return tableId_NOTIN;
+                }
+
+                public void setTableId_NOTIN(PK tableId_NOTIN) {
+                    this.tableId_NOTIN = tableId_NOTIN;
                 }
 
 

@@ -9,13 +9,15 @@
          	<result column="column_name" property="columnName"/>
          	<result column="column_type" property="columnType"/>
          	<result column="column_length" property="columnLength"/>
-         	<result column="column_precision" property="columnPrecision"/>
+         	<result column="column_scale" property="columnScale"/>
          	<result column="column_default" property="columnDefault"/>
          	<result column="column_isnull" property="columnIsnull"/>
          	<result column="column_sort" property="columnSort"/>
          	<result column="column_isfk" property="columnIsfk"/>
          	<result column="column_iskey" property="columnIskey"/>
-         	<result column="column_content" property="columnContent"/>
+         	<result column="column_isdict" property="columnIsdict"/>
+         	<result column="dict_type" property="dictType"/>
+         	<result column="column_comment" property="columnComment"/>
          	<result column="java_simple_class" property="javaSimpleClass"/>
          	<result column="java_full_class" property="javaFullClass"/>
          	<result column="java_name" property="javaName"/>
@@ -59,7 +61,7 @@
 					<if test="columnLength != null"> AND T.column_length = #{columnLength} </if>
 
 
-					<if test="columnPrecision != null"> AND T.column_precision = #{columnPrecision} </if>
+					<if test="columnScale != null"> AND T.column_scale = #{columnScale} </if>
 
 
 
@@ -90,7 +92,19 @@
 
 
 
-                        <if test="columnContent != null and columnContent != ''"> AND T.column_content = #{columnContent} </if>
+                        <if test="columnIsdict != null and columnIsdict != ''"> AND T.column_isdict = #{columnIsdict} </if>
+
+
+
+
+
+                        <if test="dictType != null and dictType != ''"> AND T.dict_type = #{dictType} </if>
+
+
+
+
+
+                        <if test="columnComment != null and columnComment != ''"> AND T.column_comment = #{columnComment} </if>
 
 
 

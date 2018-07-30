@@ -6,12 +6,18 @@
 	<resultMap id="TcgExColumnResultMap" type="com.zz.bsmcc.base.bo.TcgExColumnBO" >
          	<result column="id" property="id"/>
          	<result column="table_id" property="tableId"/>
+         	<result column="original_column_id" property="originalColumnId"/>
+         	<result column="original_column_name" property="originalColumnName"/>
+         	<result column="original_column_fk" property="originalColumnFk"/>
+         	<result column="original_column_dict" property="originalColumnDict"/>
          	<result column="java_simple_class" property="javaSimpleClass"/>
          	<result column="java_full_class" property="javaFullClass"/>
          	<result column="java_name" property="javaName"/>
          	<result column="column_title" property="columnTitle"/>
          	<result column="group_code" property="groupCode"/>
          	<result column="dict_type" property="dictType"/>
+         	<result column="table_schema" property="tableSchema"/>
+         	<result column="table_name" property="tableName"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>
@@ -32,6 +38,30 @@
 
 
                         <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
+
+
+
+
+
+                        <if test="originalColumnId != null and originalColumnId != ''"> AND T.original_column_id = #{originalColumnId} </if>
+
+
+
+
+
+                        <if test="originalColumnName != null and originalColumnName != ''"> AND T.original_column_name = #{originalColumnName} </if>
+
+
+
+
+
+                        <if test="originalColumnFk != null and originalColumnFk != ''"> AND T.original_column_fk = #{originalColumnFk} </if>
+
+
+
+
+
+                        <if test="originalColumnDict != null and originalColumnDict != ''"> AND T.original_column_dict = #{originalColumnDict} </if>
 
 
 
@@ -68,6 +98,18 @@
 
 
                         <if test="dictType != null and dictType != ''"> AND T.dict_type = #{dictType} </if>
+
+
+
+
+
+                        <if test="tableSchema != null and tableSchema != ''"> AND T.table_schema = #{tableSchema} </if>
+
+
+
+
+
+                        <if test="tableName != null and tableName != ''"> AND T.table_name = #{tableName} </if>
 
 
 

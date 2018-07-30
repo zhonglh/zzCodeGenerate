@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  * 扩展列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:11
+ * @date 2018-7-30 17:18:06
  */
 public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgExColumnEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -36,6 +36,66 @@ public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> exte
 
             protected PK tableId;
             protected PK tableId_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected PK originalColumnId;
+            protected PK originalColumnId_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String originalColumnName;
+            protected String originalColumnName_NE;
+            protected String originalColumnName_LIKE;
+            protected String originalColumnName_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String originalColumnFk;
+            protected String originalColumnFk_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String originalColumnDict;
+            protected String originalColumnDict_NE;
+
 
 
 
@@ -96,6 +156,23 @@ public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> exte
 
 
 
+
+        protected Integer columnSort;
+        protected Integer columnSort_NE;
+        protected Integer columnSort_GT;
+        protected Integer columnSort_GE;
+        protected Integer columnSort_LT;
+        protected Integer columnSort_LE;
+
+
+
+
+
+
+
+
+
+
             protected String columnTitle;
             protected String columnTitle_NE;
             protected String columnTitle_LIKE;
@@ -132,6 +209,38 @@ public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> exte
             protected String dictType_NE;
             protected String dictType_LIKE;
             protected String dictType_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String tableSchema;
+            protected String tableSchema_NE;
+            protected String tableSchema_LIKE;
+            protected String tableSchema_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String tableName;
+            protected String tableName_NE;
+            protected String tableName_LIKE;
+            protected String tableName_NOTLIKE;
 
 
 

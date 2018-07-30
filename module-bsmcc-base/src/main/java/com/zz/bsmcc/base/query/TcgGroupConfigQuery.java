@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 组设置查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:12
+ * @date 2018-7-30 17:18:06
  */
 public interface TcgGroupConfigQuery<PK extends Serializable> extends Query<TcgGroupConfigEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 

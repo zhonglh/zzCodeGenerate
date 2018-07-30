@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 扩展列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:11
+ * @date 2018-7-30 17:18:06
  */
 public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColumnAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -34,6 +34,59 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
             private PK tableId_IN;
             private PK tableId_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private PK originalColumnId_IN;
+            private PK originalColumnId_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String originalColumnName_IN;
+            private String originalColumnName_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String originalColumnFk_IN;
+            private String originalColumnFk_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+            private String originalColumnDict_IN;
+            private String originalColumnDict_NOTIN;
+
 
 
 
@@ -78,6 +131,14 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
 
 
+        ;
+
+
+
+
+
+
+
 
 
             private String columnTitle_IN;
@@ -106,6 +167,30 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
             private String dictType_IN;
             private String dictType_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String tableSchema_IN;
+            private String tableSchema_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String tableName_IN;
+            private String tableName_NOTIN;
 
 
 
@@ -282,6 +367,239 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
                 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public PK getOriginalColumnId() {
+                    return originalColumnId;
+                }
+
+
+                public void setOriginalColumnId(PK originalColumnId) {
+                    this.originalColumnId = originalColumnId;
+                }
+
+
+                public PK getOriginalColumnId_NE() {
+                return originalColumnId_NE;
+                }
+
+
+                public void setOriginalColumnId_NE(PK originalColumnId_NE) {
+                this.originalColumnId_NE = originalColumnId_NE;
+                }
+
+
+
+
+
+
+
+
+                public PK getOriginalColumnId_IN() {
+                    return originalColumnId_IN;
+                }
+
+                public void setOriginalColumnId_IN(PK originalColumnId_IN) {
+                    this.originalColumnId_IN = originalColumnId_IN;
+                }
+
+                public PK getOriginalColumnId_NOTIN() {
+                    return originalColumnId_NOTIN;
+                }
+
+                public void setOriginalColumnId_NOTIN(PK originalColumnId_NOTIN) {
+                    this.originalColumnId_NOTIN = originalColumnId_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getOriginalColumnName() {
+                    return originalColumnName;
+                }
+
+
+                public void setOriginalColumnName(String originalColumnName) {
+                    this.originalColumnName = originalColumnName;
+                }
+
+
+                public String getOriginalColumnName_NE() {
+                    return originalColumnName_NE;
+                }
+
+
+                public void setOriginalColumnName_NE(String originalColumnName_NE) {
+                    this.originalColumnName_NE = originalColumnName_NE;
+                }
+
+
+
+                public String getOriginalColumnName_IN() {
+                    return originalColumnName_IN;
+                }
+
+                public void setOriginalColumnName_IN(String originalColumnName_IN) {
+                    this.originalColumnName_IN = originalColumnName_IN;
+                }
+
+                public String getOriginalColumnName_NOTIN() {
+                    return originalColumnName_NOTIN;
+                }
+
+                public void setOriginalColumnName_NOTIN(String originalColumnName_NOTIN) {
+                    this.originalColumnName_NOTIN = originalColumnName_NOTIN;
+                }
+
+
+
+
+                public String getOriginalColumnName_LIKE() {
+                    return originalColumnName_LIKE;
+                }
+
+                public void setOriginalColumnName_LIKE(String originalColumnName_LIKE) {
+                    this.originalColumnName_LIKE = originalColumnName_LIKE;
+                }
+
+                public String getOriginalColumnName_NOTLIKE() {
+                    return originalColumnName_NOTLIKE;
+                }
+
+                public void setOriginalColumnName_NOTLIKE(String originalColumnName_NOTLIKE) {
+                    this.originalColumnName_NOTLIKE = originalColumnName_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getOriginalColumnFk() {
+                    return originalColumnFk;
+                }
+
+
+                public void setOriginalColumnFk(String originalColumnFk) {
+                    this.originalColumnFk = originalColumnFk;
+                }
+
+
+                public String getOriginalColumnFk_NE() {
+                    return originalColumnFk_NE;
+                }
+
+
+                public void setOriginalColumnFk_NE(String originalColumnFk_NE) {
+                    this.originalColumnFk_NE = originalColumnFk_NE;
+                }
+
+
+
+                public String getOriginalColumnFk_IN() {
+                    return originalColumnFk_IN;
+                }
+
+                public void setOriginalColumnFk_IN(String originalColumnFk_IN) {
+                    this.originalColumnFk_IN = originalColumnFk_IN;
+                }
+
+                public String getOriginalColumnFk_NOTIN() {
+                    return originalColumnFk_NOTIN;
+                }
+
+                public void setOriginalColumnFk_NOTIN(String originalColumnFk_NOTIN) {
+                    this.originalColumnFk_NOTIN = originalColumnFk_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getOriginalColumnDict() {
+                    return originalColumnDict;
+                }
+
+
+                public void setOriginalColumnDict(String originalColumnDict) {
+                    this.originalColumnDict = originalColumnDict;
+                }
+
+
+                public String getOriginalColumnDict_NE() {
+                    return originalColumnDict_NE;
+                }
+
+
+                public void setOriginalColumnDict_NE(String originalColumnDict_NE) {
+                    this.originalColumnDict_NE = originalColumnDict_NE;
+                }
+
+
+
+                public String getOriginalColumnDict_IN() {
+                    return originalColumnDict_IN;
+                }
+
+                public void setOriginalColumnDict_IN(String originalColumnDict_IN) {
+                    this.originalColumnDict_IN = originalColumnDict_IN;
+                }
+
+                public String getOriginalColumnDict_NOTIN() {
+                    return originalColumnDict_NOTIN;
+                }
+
+                public void setOriginalColumnDict_NOTIN(String originalColumnDict_NOTIN) {
+                    this.originalColumnDict_NOTIN = originalColumnDict_NOTIN;
+                }
 
 
 
@@ -505,6 +823,79 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
 
 
+            public Integer getColumnSort() {
+                return columnSort;
+            }
+
+
+            public void setColumnSort(Integer columnSort) {
+                this.columnSort = columnSort;
+            }
+
+
+            public Integer getColumnSort_NE() {
+                return columnSort_NE;
+            }
+
+
+            public void setColumnSort_NE(Integer columnSort_NE) {
+                this.columnSort_NE = columnSort_NE;
+            }
+
+
+
+            public Integer getColumnSort_GT() {
+                return columnSort_GT;
+            }
+
+
+            public void setColumnSort_GT(Integer columnSort_GT) {
+                this.columnSort_GT = columnSort_GT;
+            }
+
+
+            public Integer getColumnSort_GE() {
+                return columnSort_GE;
+            }
+
+
+            public void setColumnSort_GE(Integer columnSort_GE) {
+                this.columnSort_GE = columnSort_GE;
+            }
+
+
+
+
+            public Integer getColumnSort_LT() {
+                return columnSort_LT;
+            }
+
+
+            public void setColumnSort_LT(Integer columnSort_LT) {
+                this.columnSort_LT = columnSort_LT;
+            }
+
+
+            public Integer getColumnSort_LE() {
+                return columnSort_LE;
+            }
+
+
+            public void setColumnSort_LE(Integer columnSort_LE) {
+                this.columnSort_LE = columnSort_LE;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -702,6 +1093,146 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
                 public void setDictType_NOTLIKE(String dictType_NOTLIKE) {
                     this.dictType_NOTLIKE = dictType_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getTableSchema() {
+                    return tableSchema;
+                }
+
+
+                public void setTableSchema(String tableSchema) {
+                    this.tableSchema = tableSchema;
+                }
+
+
+                public String getTableSchema_NE() {
+                    return tableSchema_NE;
+                }
+
+
+                public void setTableSchema_NE(String tableSchema_NE) {
+                    this.tableSchema_NE = tableSchema_NE;
+                }
+
+
+
+                public String getTableSchema_IN() {
+                    return tableSchema_IN;
+                }
+
+                public void setTableSchema_IN(String tableSchema_IN) {
+                    this.tableSchema_IN = tableSchema_IN;
+                }
+
+                public String getTableSchema_NOTIN() {
+                    return tableSchema_NOTIN;
+                }
+
+                public void setTableSchema_NOTIN(String tableSchema_NOTIN) {
+                    this.tableSchema_NOTIN = tableSchema_NOTIN;
+                }
+
+
+
+
+                public String getTableSchema_LIKE() {
+                    return tableSchema_LIKE;
+                }
+
+                public void setTableSchema_LIKE(String tableSchema_LIKE) {
+                    this.tableSchema_LIKE = tableSchema_LIKE;
+                }
+
+                public String getTableSchema_NOTLIKE() {
+                    return tableSchema_NOTLIKE;
+                }
+
+                public void setTableSchema_NOTLIKE(String tableSchema_NOTLIKE) {
+                    this.tableSchema_NOTLIKE = tableSchema_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getTableName() {
+                    return tableName;
+                }
+
+
+                public void setTableName(String tableName) {
+                    this.tableName = tableName;
+                }
+
+
+                public String getTableName_NE() {
+                    return tableName_NE;
+                }
+
+
+                public void setTableName_NE(String tableName_NE) {
+                    this.tableName_NE = tableName_NE;
+                }
+
+
+
+                public String getTableName_IN() {
+                    return tableName_IN;
+                }
+
+                public void setTableName_IN(String tableName_IN) {
+                    this.tableName_IN = tableName_IN;
+                }
+
+                public String getTableName_NOTIN() {
+                    return tableName_NOTIN;
+                }
+
+                public void setTableName_NOTIN(String tableName_NOTIN) {
+                    this.tableName_NOTIN = tableName_NOTIN;
+                }
+
+
+
+
+                public String getTableName_LIKE() {
+                    return tableName_LIKE;
+                }
+
+                public void setTableName_LIKE(String tableName_LIKE) {
+                    this.tableName_LIKE = tableName_LIKE;
+                }
+
+                public String getTableName_NOTLIKE() {
+                    return tableName_NOTLIKE;
+                }
+
+                public void setTableName_NOTLIKE(String tableName_NOTLIKE) {
+                    this.tableName_NOTLIKE = tableName_NOTLIKE;
                 }
 
 

@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  * 列事件 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:08
+ * @date 2018-7-30 17:18:04
  */
 public abstract class TcgColumnEventAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnEventEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -22,6 +22,20 @@ public abstract class TcgColumnEventAbstractQueryImpl<PK extends Serializable> e
 
             protected PK id;
             protected PK id_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected PK tableId;
+            protected PK tableId_NE;
 
 
 
@@ -52,6 +66,38 @@ public abstract class TcgColumnEventAbstractQueryImpl<PK extends Serializable> e
             protected String eventName_NE;
             protected String eventName_LIKE;
             protected String eventName_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String funcName;
+            protected String funcName_NE;
+            protected String funcName_LIKE;
+            protected String funcName_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String funcParam;
+            protected String funcParam_NE;
+            protected String funcParam_LIKE;
+            protected String funcParam_NOTLIKE;
 
 
 

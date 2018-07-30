@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 表操作定义查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:15
+ * @date 2018-7-30 17:18:08
  */
 public interface TcgTableOperationQuery<PK extends Serializable> extends Query<TcgTableOperationEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 

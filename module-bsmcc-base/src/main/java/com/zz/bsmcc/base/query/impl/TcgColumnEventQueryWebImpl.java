@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 列事件 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:08
+ * @date 2018-7-30 17:18:04
  */
 public class TcgColumnEventQueryWebImpl<PK extends Serializable> extends TcgColumnEventAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -21,6 +21,19 @@ public class TcgColumnEventQueryWebImpl<PK extends Serializable> extends TcgColu
 
             private PK id_IN;
             private PK id_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private PK tableId_IN;
+            private PK tableId_NOTIN;
 
 
 
@@ -46,6 +59,30 @@ public class TcgColumnEventQueryWebImpl<PK extends Serializable> extends TcgColu
 
             private String eventName_IN;
             private String eventName_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String funcName_IN;
+            private String funcName_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String funcParam_IN;
+            private String funcParam_NOTIN;
 
 
 
@@ -191,6 +228,65 @@ public class TcgColumnEventQueryWebImpl<PK extends Serializable> extends TcgColu
 
 
 
+                public PK getTableId() {
+                    return tableId;
+                }
+
+
+                public void setTableId(PK tableId) {
+                    this.tableId = tableId;
+                }
+
+
+                public PK getTableId_NE() {
+                return tableId_NE;
+                }
+
+
+                public void setTableId_NE(PK tableId_NE) {
+                this.tableId_NE = tableId_NE;
+                }
+
+
+
+
+
+
+
+
+                public PK getTableId_IN() {
+                    return tableId_IN;
+                }
+
+                public void setTableId_IN(PK tableId_IN) {
+                    this.tableId_IN = tableId_IN;
+                }
+
+                public PK getTableId_NOTIN() {
+                    return tableId_NOTIN;
+                }
+
+                public void setTableId_NOTIN(PK tableId_NOTIN) {
+                    this.tableId_NOTIN = tableId_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 public PK getColumnId() {
                     return columnId;
                 }
@@ -304,6 +400,146 @@ public class TcgColumnEventQueryWebImpl<PK extends Serializable> extends TcgColu
 
                 public void setEventName_NOTLIKE(String eventName_NOTLIKE) {
                     this.eventName_NOTLIKE = eventName_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getFuncName() {
+                    return funcName;
+                }
+
+
+                public void setFuncName(String funcName) {
+                    this.funcName = funcName;
+                }
+
+
+                public String getFuncName_NE() {
+                    return funcName_NE;
+                }
+
+
+                public void setFuncName_NE(String funcName_NE) {
+                    this.funcName_NE = funcName_NE;
+                }
+
+
+
+                public String getFuncName_IN() {
+                    return funcName_IN;
+                }
+
+                public void setFuncName_IN(String funcName_IN) {
+                    this.funcName_IN = funcName_IN;
+                }
+
+                public String getFuncName_NOTIN() {
+                    return funcName_NOTIN;
+                }
+
+                public void setFuncName_NOTIN(String funcName_NOTIN) {
+                    this.funcName_NOTIN = funcName_NOTIN;
+                }
+
+
+
+
+                public String getFuncName_LIKE() {
+                    return funcName_LIKE;
+                }
+
+                public void setFuncName_LIKE(String funcName_LIKE) {
+                    this.funcName_LIKE = funcName_LIKE;
+                }
+
+                public String getFuncName_NOTLIKE() {
+                    return funcName_NOTLIKE;
+                }
+
+                public void setFuncName_NOTLIKE(String funcName_NOTLIKE) {
+                    this.funcName_NOTLIKE = funcName_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getFuncParam() {
+                    return funcParam;
+                }
+
+
+                public void setFuncParam(String funcParam) {
+                    this.funcParam = funcParam;
+                }
+
+
+                public String getFuncParam_NE() {
+                    return funcParam_NE;
+                }
+
+
+                public void setFuncParam_NE(String funcParam_NE) {
+                    this.funcParam_NE = funcParam_NE;
+                }
+
+
+
+                public String getFuncParam_IN() {
+                    return funcParam_IN;
+                }
+
+                public void setFuncParam_IN(String funcParam_IN) {
+                    this.funcParam_IN = funcParam_IN;
+                }
+
+                public String getFuncParam_NOTIN() {
+                    return funcParam_NOTIN;
+                }
+
+                public void setFuncParam_NOTIN(String funcParam_NOTIN) {
+                    this.funcParam_NOTIN = funcParam_NOTIN;
+                }
+
+
+
+
+                public String getFuncParam_LIKE() {
+                    return funcParam_LIKE;
+                }
+
+                public void setFuncParam_LIKE(String funcParam_LIKE) {
+                    this.funcParam_LIKE = funcParam_LIKE;
+                }
+
+                public String getFuncParam_NOTLIKE() {
+                    return funcParam_NOTLIKE;
+                }
+
+                public void setFuncParam_NOTLIKE(String funcParam_NOTLIKE) {
+                    this.funcParam_NOTLIKE = funcParam_NOTLIKE;
                 }
 
 

@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 项目管理 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public class TcgProjectQueryWebImpl<PK extends Serializable> extends TcgProjectAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -120,6 +120,32 @@ public class TcgProjectQueryWebImpl<PK extends Serializable> extends TcgProjectA
 
             private String projectTenant_IN;
             private String projectTenant_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String queryMode_IN;
+            private String queryMode_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String pageUseView_IN;
+            private String pageUseView_NOTIN;
 
 
 
@@ -775,6 +801,128 @@ public class TcgProjectQueryWebImpl<PK extends Serializable> extends TcgProjectA
 
                 public void setProjectTenant_NOTIN(String projectTenant_NOTIN) {
                     this.projectTenant_NOTIN = projectTenant_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getQueryMode() {
+                    return queryMode;
+                }
+
+
+                public void setQueryMode(String queryMode) {
+                    this.queryMode = queryMode;
+                }
+
+
+                public String getQueryMode_NE() {
+                    return queryMode_NE;
+                }
+
+
+                public void setQueryMode_NE(String queryMode_NE) {
+                    this.queryMode_NE = queryMode_NE;
+                }
+
+
+
+                public String getQueryMode_IN() {
+                    return queryMode_IN;
+                }
+
+                public void setQueryMode_IN(String queryMode_IN) {
+                    this.queryMode_IN = queryMode_IN;
+                }
+
+                public String getQueryMode_NOTIN() {
+                    return queryMode_NOTIN;
+                }
+
+                public void setQueryMode_NOTIN(String queryMode_NOTIN) {
+                    this.queryMode_NOTIN = queryMode_NOTIN;
+                }
+
+
+
+
+                public String getQueryMode_LIKE() {
+                    return queryMode_LIKE;
+                }
+
+                public void setQueryMode_LIKE(String queryMode_LIKE) {
+                    this.queryMode_LIKE = queryMode_LIKE;
+                }
+
+                public String getQueryMode_NOTLIKE() {
+                    return queryMode_NOTLIKE;
+                }
+
+                public void setQueryMode_NOTLIKE(String queryMode_NOTLIKE) {
+                    this.queryMode_NOTLIKE = queryMode_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getPageUseView() {
+                    return pageUseView;
+                }
+
+
+                public void setPageUseView(String pageUseView) {
+                    this.pageUseView = pageUseView;
+                }
+
+
+                public String getPageUseView_NE() {
+                    return pageUseView_NE;
+                }
+
+
+                public void setPageUseView_NE(String pageUseView_NE) {
+                    this.pageUseView_NE = pageUseView_NE;
+                }
+
+
+
+                public String getPageUseView_IN() {
+                    return pageUseView_IN;
+                }
+
+                public void setPageUseView_IN(String pageUseView_IN) {
+                    this.pageUseView_IN = pageUseView_IN;
+                }
+
+                public String getPageUseView_NOTIN() {
+                    return pageUseView_NOTIN;
+                }
+
+                public void setPageUseView_NOTIN(String pageUseView_NOTIN) {
+                    this.pageUseView_NOTIN = pageUseView_NOTIN;
                 }
 
 

@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 列事件查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:08
+ * @date 2018-7-30 17:18:04
  */
 public interface TcgColumnEventQuery<PK extends Serializable> extends Query<TcgColumnEventEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -27,6 +27,24 @@ public interface TcgColumnEventQuery<PK extends Serializable> extends Query<TcgC
             public TcgColumnEventQuery idNotIn(PK idNotIn);
             public TcgColumnEventQuery idIsNull();
             public TcgColumnEventQuery idIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnEventQuery tableId(PK tableId);
+            public TcgColumnEventQuery tableIdNot(PK tableIdNot);
+            public TcgColumnEventQuery tableIdIn(PK tableIdIn);
+            public TcgColumnEventQuery tableIdNotIn(PK tableIdNotIn);
+            public TcgColumnEventQuery tableIdIsNull();
+            public TcgColumnEventQuery tableIdIsNotNull();
 
 
 
@@ -65,6 +83,46 @@ public interface TcgColumnEventQuery<PK extends Serializable> extends Query<TcgC
             public TcgColumnEventQuery eventNameNotLike(String eventNameNotLike);
             public TcgColumnEventQuery eventNameIsNull();
             public TcgColumnEventQuery eventNameIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnEventQuery funcName(String funcName);
+            public TcgColumnEventQuery funcNameNot(String funcNameNot);
+            public TcgColumnEventQuery funcNameIn(String funcNameIn);
+            public TcgColumnEventQuery funcNameNotIn(String funcNameNotIn);
+            public TcgColumnEventQuery funcNameLike(String funcNameLike);
+            public TcgColumnEventQuery funcNameNotLike(String funcNameNotLike);
+            public TcgColumnEventQuery funcNameIsNull();
+            public TcgColumnEventQuery funcNameIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnEventQuery funcParam(String funcParam);
+            public TcgColumnEventQuery funcParamNot(String funcParamNot);
+            public TcgColumnEventQuery funcParamIn(String funcParamIn);
+            public TcgColumnEventQuery funcParamNotIn(String funcParamNotIn);
+            public TcgColumnEventQuery funcParamLike(String funcParamLike);
+            public TcgColumnEventQuery funcParamNotLike(String funcParamNotLike);
+            public TcgColumnEventQuery funcParamIsNull();
+            public TcgColumnEventQuery funcParamIsNotNull();
 
 
 

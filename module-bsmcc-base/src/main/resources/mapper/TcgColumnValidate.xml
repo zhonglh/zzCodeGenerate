@@ -5,6 +5,7 @@
  	<!-- 映射配置 -->
 	<resultMap id="TcgColumnValidateResultMap" type="com.zz.bsmcc.base.bo.TcgColumnValidateBO" >
          	<result column="id" property="id"/>
+         	<result column="table_id" property="tableId"/>
          	<result column="column_id" property="columnId"/>
          	<result column="rex" property="rex"/>
          	<result column="msg" property="msg"/>
@@ -22,6 +23,12 @@
 
 
 						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
 
 
 

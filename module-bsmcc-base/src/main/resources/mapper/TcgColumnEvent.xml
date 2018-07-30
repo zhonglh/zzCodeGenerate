@@ -5,8 +5,11 @@
  	<!-- 映射配置 -->
 	<resultMap id="TcgColumnEventResultMap" type="com.zz.bsmcc.base.bo.TcgColumnEventBO" >
          	<result column="id" property="id"/>
+         	<result column="table_id" property="tableId"/>
          	<result column="column_id" property="columnId"/>
          	<result column="event_name" property="eventName"/>
+         	<result column="func_name" property="funcName"/>
+         	<result column="func_param" property="funcParam"/>
          	<result column="func_body" property="funcBody"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
@@ -27,6 +30,12 @@
 
 
 
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
+
+
+
+
+
                         <if test="columnId != null and columnId != ''"> AND T.column_id = #{columnId} </if>
 
 
@@ -34,6 +43,18 @@
 
 
                         <if test="eventName != null and eventName != ''"> AND T.event_name = #{eventName} </if>
+
+
+
+
+
+                        <if test="funcName != null and funcName != ''"> AND T.func_name = #{funcName} </if>
+
+
+
+
+
+                        <if test="funcParam != null and funcParam != ''"> AND T.func_param = #{funcParam} </if>
 
 
 

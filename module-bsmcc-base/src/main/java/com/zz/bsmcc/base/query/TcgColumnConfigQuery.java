@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 列设置查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:07
+ * @date 2018-7-30 17:18:03
  */
 public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<TcgColumnConfigEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -113,12 +113,12 @@ public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<Tcg
 
 
 
-        public TcgColumnConfigQuery columnPrecision(Integer columnPrecision);
-        public TcgColumnConfigQuery columnPrecisionNot(Integer columnPrecisionNot);
-        public TcgColumnConfigQuery columnPrecisionGreaterThan(Integer columnPrecisionGreaterThan);
-        public TcgColumnConfigQuery columnPrecisionGreaterEqual(Integer columnPrecisionGreaterEqual);
-        public TcgColumnConfigQuery columnPrecisionLessThan(Integer columnPrecisionLessThan);
-        public TcgColumnConfigQuery columnPrecisionLessEqual(Integer columnPrecisionLessEqual);
+        public TcgColumnConfigQuery columnScale(Integer columnScale);
+        public TcgColumnConfigQuery columnScaleNot(Integer columnScaleNot);
+        public TcgColumnConfigQuery columnScaleGreaterThan(Integer columnScaleGreaterThan);
+        public TcgColumnConfigQuery columnScaleGreaterEqual(Integer columnScaleGreaterEqual);
+        public TcgColumnConfigQuery columnScaleLessThan(Integer columnScaleLessThan);
+        public TcgColumnConfigQuery columnScaleLessEqual(Integer columnScaleLessEqual);
 
 
 
@@ -222,14 +222,53 @@ public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<Tcg
 
 
 
-            public TcgColumnConfigQuery columnContent(String columnContent);
-            public TcgColumnConfigQuery columnContentNot(String columnContentNot);
-            public TcgColumnConfigQuery columnContentIn(String columnContentIn);
-            public TcgColumnConfigQuery columnContentNotIn(String columnContentNotIn);
-            public TcgColumnConfigQuery columnContentLike(String columnContentLike);
-            public TcgColumnConfigQuery columnContentNotLike(String columnContentNotLike);
-            public TcgColumnConfigQuery columnContentIsNull();
-            public TcgColumnConfigQuery columnContentIsNotNull();
+            public TcgColumnConfigQuery columnIsdict(String columnIsdict);
+            public TcgColumnConfigQuery columnIsdictNot(String columnIsdictNot);
+            public TcgColumnConfigQuery columnIsdictIn(String columnIsdictIn);
+            public TcgColumnConfigQuery columnIsdictNotIn(String columnIsdictNotIn);
+            public TcgColumnConfigQuery columnIsdictIsNull();
+            public TcgColumnConfigQuery columnIsdictIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnConfigQuery dictType(String dictType);
+            public TcgColumnConfigQuery dictTypeNot(String dictTypeNot);
+            public TcgColumnConfigQuery dictTypeIn(String dictTypeIn);
+            public TcgColumnConfigQuery dictTypeNotIn(String dictTypeNotIn);
+            public TcgColumnConfigQuery dictTypeLike(String dictTypeLike);
+            public TcgColumnConfigQuery dictTypeNotLike(String dictTypeNotLike);
+            public TcgColumnConfigQuery dictTypeIsNull();
+            public TcgColumnConfigQuery dictTypeIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnConfigQuery columnComment(String columnComment);
+            public TcgColumnConfigQuery columnCommentNot(String columnCommentNot);
+            public TcgColumnConfigQuery columnCommentIn(String columnCommentIn);
+            public TcgColumnConfigQuery columnCommentNotIn(String columnCommentNotIn);
+            public TcgColumnConfigQuery columnCommentLike(String columnCommentLike);
+            public TcgColumnConfigQuery columnCommentNotLike(String columnCommentNotLike);
+            public TcgColumnConfigQuery columnCommentIsNull();
+            public TcgColumnConfigQuery columnCommentIsNotNull();
 
 
 

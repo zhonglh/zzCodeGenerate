@@ -5,6 +5,7 @@
  	<!-- 映射配置 -->
 	<resultMap id="TcgColumnExResultMap" type="com.zz.bsmcc.base.bo.TcgColumnExBO" >
          	<result column="id" property="id"/>
+         	<result column="table_id" property="tableId"/>
          	<result column="column_id" property="columnId"/>
          	<result column="ex_key" property="exKey"/>
          	<result column="ex_val" property="exVal"/>
@@ -22,6 +23,12 @@
 
 
 						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="tableId != null and tableId != ''"> AND T.table_id = #{tableId} </if>
 
 
 

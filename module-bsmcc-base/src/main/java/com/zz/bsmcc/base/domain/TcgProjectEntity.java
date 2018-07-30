@@ -4,7 +4,7 @@ package com.zz.bsmcc.base.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -13,9 +13,9 @@ import com.baomidou.mybatisplus.annotations.TableField;
 * 项目管理实体类
 *
 * @author Administrator
-* @date 2018-7-29 1:16:14
+* @date 2018-7-30 10:54:37
 */
-public class TcgProjectEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
+public class TcgProjectEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
@@ -70,24 +70,17 @@ public class TcgProjectEntity extends BaseBusinessExEntity<String> implements ja
         private String projectI18n;
 
 
-
-
-
         //@EntityAttrAnnotation(attrName="是否有租户模式",sort=8  , attrLength=1    )
         private String projectTenant;
 
 
+        //@EntityAttrAnnotation(attrName="查询条件模式",sort=9  , attrLength=20    )
+            //toolbar      工具栏样式，尽量在一行  ordinary    普通模式， 一个条件一行 ， 最后是关键字查询  
+        private String queryMode;
 
-
-
-
-
-
-
-
-        //@EntityAttrAnnotation(attrName="删除标志",sort=14  , attrLength=1    )
-        private String deleteFlag;
-
+        //@EntityAttrAnnotation(attrName="界面使用视图",sort=10  , attrLength=1    )
+        //每个界面都用视图一一对应
+        private String pageUseView;
 
         /**
         * 项目名称
@@ -202,18 +195,25 @@ public class TcgProjectEntity extends BaseBusinessExEntity<String> implements ja
         this.projectTenant = projectTenant;
         }
         /**
-        * 删除标志
-        * @return the deleteFlag
+        * 查询条件模式
+        * @return the queryMode
         */
-        public String getDeleteFlag() {
-        return deleteFlag;
+        public String getQueryMode() {
+        return queryMode;
         }
 
         /**
-        * 删除标志
+        * 查询条件模式
         */
-        public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag;
+        public void setQueryMode(String queryMode) {
+        this.queryMode = queryMode;
         }
 
+    public String getPageUseView() {
+        return pageUseView;
+    }
+
+    public void setPageUseView(String pageUseView) {
+        this.pageUseView = pageUseView;
+    }
 }

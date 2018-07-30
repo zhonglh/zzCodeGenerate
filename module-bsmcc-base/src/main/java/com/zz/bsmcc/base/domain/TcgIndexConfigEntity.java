@@ -37,7 +37,7 @@ public class TcgIndexConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
 
-    //@EntityAttrAnnotation(attrName="索引字段",sort=3  , attrLength=20    )
+    //@EntityAttrAnnotation(attrName="索引字段",sort=3  , attrLength=500    )
 	//多个用 逗号  分割  
 	private String indexCloumns;
 

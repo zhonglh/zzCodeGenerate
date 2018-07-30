@@ -4,7 +4,7 @@ package ${table.basePackage}.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -15,7 +15,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
  * @author ${table.author}
  * @date ${.now}
  */
-public class ${table.shortTableName?cap_first}Entity extends BaseBusinessEntity<String> implements java.io.Serializable{
+public class ${table.shortTableName?cap_first}Entity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 <#assign seq = ["id", "createTime", "createUserId", "updateTime", "updateUserId","versionNo"]>

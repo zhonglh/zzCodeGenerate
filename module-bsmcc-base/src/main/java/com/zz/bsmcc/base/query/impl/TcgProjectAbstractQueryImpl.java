@@ -11,10 +11,10 @@ import java.sql.Timestamp;
  * 项目管理 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public abstract class TcgProjectAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgProjectEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -147,6 +147,37 @@ public abstract class TcgProjectAbstractQueryImpl<PK extends Serializable> exten
 
             protected String projectTenant;
             protected String projectTenant_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String queryMode;
+            protected String queryMode_NE;
+            protected String queryMode_LIKE;
+            protected String queryMode_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String pageUseView;
+            protected String pageUseView_NE;
 
 
 

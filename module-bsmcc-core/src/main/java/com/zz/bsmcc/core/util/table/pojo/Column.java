@@ -11,7 +11,7 @@ import java.io.Serializable;
  * 数据库对应的列
  * @author Administrator
  */
-public class Columnt implements Serializable{
+public class Column implements Serializable{
 
 
     /**
@@ -55,6 +55,13 @@ public class Columnt implements Serializable{
      * 是否可以为空
      */
     private boolean nullable;
+
+
+
+    /**
+     * 是否为固定长度字符
+     */
+    boolean isFixedChar;
 
     public String getColumnName() {
         return columnName;
@@ -118,5 +125,13 @@ public class Columnt implements Serializable{
 
     public void setNullable(boolean nullable) {
         this.nullable = nullable;
+    }
+
+    public boolean isFixedChar() {
+        return isFixedChar;
+    }
+
+    public void setFixedChar(boolean fixedChar) {
+        isFixedChar = fixedChar;
     }
 }

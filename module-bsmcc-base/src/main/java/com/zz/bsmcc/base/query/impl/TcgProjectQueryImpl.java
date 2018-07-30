@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 项目管理 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbstractQueryImpl<PK> implements TcgProjectQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -147,6 +147,37 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
 
             private List<String> projectTenant_IN;
             private List<String> projectTenant_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> queryMode_IN;
+            private List<String> queryMode_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> pageUseView_IN;
+            private List<String> pageUseView_NOTIN;
 
 
 
@@ -920,6 +951,152 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectTenantIsNotNull() {
                     this.isNotNulls.add("projectTenant");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgProjectQuery queryMode(String queryMode) {
+                    if(!IdUtils.isEmpty(queryMode)){
+                        this.queryMode = queryMode;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgProjectQuery queryModeNot(String queryModeNot) {
+                    if(!IdUtils.isEmpty(queryModeNot)){
+                        this.queryMode_NE = queryModeNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgProjectQuery queryModeLike(String queryModeLike) {
+                    if(!IdUtils.isEmpty(queryModeLike)){
+                        this.queryMode_LIKE = queryModeLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgProjectQuery queryModeNotLike(String queryModeNotLike) {
+                    if(!IdUtils.isEmpty(queryModeNotLike)){
+                        this.queryMode_NOTLIKE = queryModeNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgProjectQuery queryModeIn(String queryModeIn) {
+                    if(!IdUtils.isEmpty(queryModeIn)){
+                        this.queryMode_IN.add( queryModeIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgProjectQuery queryModeNotIn(String queryModeNotIn) {
+                    if(!IdUtils.isEmpty(queryModeNotIn)){
+                        this.queryMode_NOTIN.add( queryModeNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgProjectQuery queryModeIsNull() {
+                    this.isNulls.add("queryMode");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgProjectQuery queryModeIsNotNull() {
+                    this.isNotNulls.add("queryMode");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgProjectQuery pageUseView(String pageUseView) {
+                    if(!IdUtils.isEmpty(pageUseView)){
+                        this.pageUseView = pageUseView;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgProjectQuery pageUseViewNot(String pageUseViewNot) {
+                    if(!IdUtils.isEmpty(pageUseViewNot)){
+                        this.pageUseView_NE = pageUseViewNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgProjectQuery pageUseViewIn(String pageUseViewIn) {
+                    if(!IdUtils.isEmpty(pageUseViewIn)){
+                        this.pageUseView_IN.add( pageUseViewIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgProjectQuery pageUseViewNotIn(String pageUseViewNotIn) {
+                    if(!IdUtils.isEmpty(pageUseViewNotIn)){
+                        this.pageUseView_NOTIN.add( pageUseViewNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgProjectQuery pageUseViewIsNull() {
+                    this.isNulls.add("pageUseView");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgProjectQuery pageUseViewIsNotNull() {
+                    this.isNotNulls.add("pageUseView");
                     return this;
                 }
 

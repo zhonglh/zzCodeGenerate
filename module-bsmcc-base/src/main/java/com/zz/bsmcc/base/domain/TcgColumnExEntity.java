@@ -8,13 +8,12 @@ import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 
 /**
  * 列扩展实体类
  *
  * @author Administrator
- * @date 2018-7-29 1:16:09
+ * @date 2018-7-30 16:56:04
  */
 public class TcgColumnExEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -24,21 +23,28 @@ public class TcgColumnExEntity extends BaseBusinessSimpleEntity<String> implemen
 
 
 
-    //@EntityAttrAnnotation(attrName="列",sort=1  , attrLength=32    )
+    //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
+	private String tableId;
+
+
+
+
+
+    //@EntityAttrAnnotation(attrName="列",sort=2  , attrLength=32    )
 	private String columnId;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="扩展Key",sort=2  , attrLength=50    )
+    //@EntityAttrAnnotation(attrName="扩展Key",sort=3  , attrLength=50    )
 	private String exKey;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="扩展Val",sort=3  , attrLength=500    )
+    //@EntityAttrAnnotation(attrName="扩展Val",sort=4  , attrLength=500    )
 	private String exVal;
 
 
@@ -47,6 +53,20 @@ public class TcgColumnExEntity extends BaseBusinessSimpleEntity<String> implemen
 
 
 
+	/** 
+	 * 
+	 * @return the tableId
+	 */
+	public String getTableId() {
+		return tableId;
+	}
+	
+	/** 
+	 * 
+	 */
+	public void setTableId(String tableId) {
+		this.tableId = tableId;
+	}
 	/** 
 	 * 列
 	 * @return the columnId

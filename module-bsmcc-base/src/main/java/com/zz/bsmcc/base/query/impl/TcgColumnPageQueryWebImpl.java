@@ -9,10 +9,10 @@ import java.sql.Timestamp;
  * 列界面设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public class TcgColumnPageQueryWebImpl<PK extends Serializable> extends TcgColumnPageAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -33,8 +33,63 @@ public class TcgColumnPageQueryWebImpl<PK extends Serializable> extends TcgColum
 
 
 
+            private PK tableId_IN;
+            private PK tableId_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String realColumn_IN;
+            private String realColumn_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
             private String editable_IN;
             private String editable_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+            private String hiddenable_IN;
+            private String hiddenable_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+            private String existPage_IN;
+            private String existPage_NOTIN;
 
 
 
@@ -93,6 +148,20 @@ public class TcgColumnPageQueryWebImpl<PK extends Serializable> extends TcgColum
 
             private String required_IN;
             private String required_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+            private String listShowable_IN;
+            private String listShowable_NOTIN;
 
 
 
@@ -227,6 +296,117 @@ public class TcgColumnPageQueryWebImpl<PK extends Serializable> extends TcgColum
 
 
 
+                public PK getTableId() {
+                    return tableId;
+                }
+
+
+                public void setTableId(PK tableId) {
+                    this.tableId = tableId;
+                }
+
+
+                public PK getTableId_NE() {
+                return tableId_NE;
+                }
+
+
+                public void setTableId_NE(PK tableId_NE) {
+                this.tableId_NE = tableId_NE;
+                }
+
+
+
+
+
+
+
+
+                public PK getTableId_IN() {
+                    return tableId_IN;
+                }
+
+                public void setTableId_IN(PK tableId_IN) {
+                    this.tableId_IN = tableId_IN;
+                }
+
+                public PK getTableId_NOTIN() {
+                    return tableId_NOTIN;
+                }
+
+                public void setTableId_NOTIN(PK tableId_NOTIN) {
+                    this.tableId_NOTIN = tableId_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getRealColumn() {
+                    return realColumn;
+                }
+
+
+                public void setRealColumn(String realColumn) {
+                    this.realColumn = realColumn;
+                }
+
+
+                public String getRealColumn_NE() {
+                    return realColumn_NE;
+                }
+
+
+                public void setRealColumn_NE(String realColumn_NE) {
+                    this.realColumn_NE = realColumn_NE;
+                }
+
+
+
+                public String getRealColumn_IN() {
+                    return realColumn_IN;
+                }
+
+                public void setRealColumn_IN(String realColumn_IN) {
+                    this.realColumn_IN = realColumn_IN;
+                }
+
+                public String getRealColumn_NOTIN() {
+                    return realColumn_NOTIN;
+                }
+
+                public void setRealColumn_NOTIN(String realColumn_NOTIN) {
+                    this.realColumn_NOTIN = realColumn_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 public String getEditable() {
                     return editable;
                 }
@@ -262,6 +442,110 @@ public class TcgColumnPageQueryWebImpl<PK extends Serializable> extends TcgColum
 
                 public void setEditable_NOTIN(String editable_NOTIN) {
                     this.editable_NOTIN = editable_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getHiddenable() {
+                    return hiddenable;
+                }
+
+
+                public void setHiddenable(String hiddenable) {
+                    this.hiddenable = hiddenable;
+                }
+
+
+                public String getHiddenable_NE() {
+                    return hiddenable_NE;
+                }
+
+
+                public void setHiddenable_NE(String hiddenable_NE) {
+                    this.hiddenable_NE = hiddenable_NE;
+                }
+
+
+
+                public String getHiddenable_IN() {
+                    return hiddenable_IN;
+                }
+
+                public void setHiddenable_IN(String hiddenable_IN) {
+                    this.hiddenable_IN = hiddenable_IN;
+                }
+
+                public String getHiddenable_NOTIN() {
+                    return hiddenable_NOTIN;
+                }
+
+                public void setHiddenable_NOTIN(String hiddenable_NOTIN) {
+                    this.hiddenable_NOTIN = hiddenable_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getExistPage() {
+                    return existPage;
+                }
+
+
+                public void setExistPage(String existPage) {
+                    this.existPage = existPage;
+                }
+
+
+                public String getExistPage_NE() {
+                    return existPage_NE;
+                }
+
+
+                public void setExistPage_NE(String existPage_NE) {
+                    this.existPage_NE = existPage_NE;
+                }
+
+
+
+                public String getExistPage_IN() {
+                    return existPage_IN;
+                }
+
+                public void setExistPage_IN(String existPage_IN) {
+                    this.existPage_IN = existPage_IN;
+                }
+
+                public String getExistPage_NOTIN() {
+                    return existPage_NOTIN;
+                }
+
+                public void setExistPage_NOTIN(String existPage_NOTIN) {
+                    this.existPage_NOTIN = existPage_NOTIN;
                 }
 
 
@@ -676,6 +960,58 @@ public class TcgColumnPageQueryWebImpl<PK extends Serializable> extends TcgColum
 
                 public void setRequired_NOTIN(String required_NOTIN) {
                     this.required_NOTIN = required_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getListShowable() {
+                    return listShowable;
+                }
+
+
+                public void setListShowable(String listShowable) {
+                    this.listShowable = listShowable;
+                }
+
+
+                public String getListShowable_NE() {
+                    return listShowable_NE;
+                }
+
+
+                public void setListShowable_NE(String listShowable_NE) {
+                    this.listShowable_NE = listShowable_NE;
+                }
+
+
+
+                public String getListShowable_IN() {
+                    return listShowable_IN;
+                }
+
+                public void setListShowable_IN(String listShowable_IN) {
+                    this.listShowable_IN = listShowable_IN;
+                }
+
+                public String getListShowable_NOTIN() {
+                    return listShowable_NOTIN;
+                }
+
+                public void setListShowable_NOTIN(String listShowable_NOTIN) {
+                    this.listShowable_NOTIN = listShowable_NOTIN;
                 }
 
 

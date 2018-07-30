@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 表设置查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public interface TcgTableConfigQuery<PK extends Serializable> extends Query<TcgTableConfigEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -287,14 +287,14 @@ public interface TcgTableConfigQuery<PK extends Serializable> extends Query<TcgT
 
 
 
-            public TcgTableConfigQuery content(String content);
-            public TcgTableConfigQuery contentNot(String contentNot);
-            public TcgTableConfigQuery contentIn(String contentIn);
-            public TcgTableConfigQuery contentNotIn(String contentNotIn);
-            public TcgTableConfigQuery contentLike(String contentLike);
-            public TcgTableConfigQuery contentNotLike(String contentNotLike);
-            public TcgTableConfigQuery contentIsNull();
-            public TcgTableConfigQuery contentIsNotNull();
+            public TcgTableConfigQuery tableComment(String tableComment);
+            public TcgTableConfigQuery tableCommentNot(String tableCommentNot);
+            public TcgTableConfigQuery tableCommentIn(String tableCommentIn);
+            public TcgTableConfigQuery tableCommentNotIn(String tableCommentNotIn);
+            public TcgTableConfigQuery tableCommentLike(String tableCommentLike);
+            public TcgTableConfigQuery tableCommentNotLike(String tableCommentNotLike);
+            public TcgTableConfigQuery tableCommentIsNull();
+            public TcgTableConfigQuery tableCommentIsNotNull();
 
 
 

@@ -4,16 +4,17 @@ package com.zz.bsmcc.base.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 
 /**
  * 表设置实体类
  *
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 10:25:22
  */
 public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -119,8 +120,8 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
 
-    //@EntityAttrAnnotation(attrName="说明",sort=14  , attrLength=100    )
-	private String content;
+    //@EntityAttrAnnotation(attrName="说明",sort=14  , attrLength=50    )
+	private String tableComment;
 
 
 
@@ -341,17 +342,17 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	}
 	/** 
 	 * 说明
-	 * @return the content
+	 * @return the tableComment
 	 */
-	public String getContent() {
-		return content;
+	public String getTableComment() {
+		return tableComment;
 	}
 	
 	/** 
 	 * 说明
 	 */
-	public void setContent(String content) {
-		this.content = content;
+	public void setTableComment(String tableComment) {
+		this.tableComment = tableComment;
 	}
 	/** 
 	 * 查询条件模式

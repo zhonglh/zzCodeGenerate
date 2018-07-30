@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 功能模块设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:13
+ * @date 2018-7-30 17:18:07
  */
 public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModuleConfigAbstractQueryImpl<PK> implements TcgModuleConfigQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 

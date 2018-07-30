@@ -14,6 +14,7 @@ import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bsmcc.base.bo.TcgDbConfigBO;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.bo.TcgTableConfigBO;
+import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.TcgDbConfigQuery;
 import com.zz.bsmcc.base.query.TcgProjectQuery;
 import com.zz.bsmcc.base.query.impl.TcgDbConfigQueryImpl;
@@ -22,12 +23,12 @@ import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryWebImpl;
 
 import com.zz.bms.util.base.java.IdUtils;
 
+import com.zz.bsmcc.base.service.TableBusinessService;
 import com.zz.bsmcc.base.service.TcgDbConfigService;
 import com.zz.bsmcc.base.service.TcgProjectService;
+import com.zz.bsmcc.business.TableBusiness;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
-import com.zz.bsmcc.core.util.table.pojo.Columnt;
-import com.zz.bsmcc.core.util.table.pojo.DbConfig;
-import com.zz.bsmcc.core.util.table.pojo.Table;
+import com.zz.bsmcc.core.util.table.pojo.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,8 +61,15 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 	@Autowired
 	private TcgDbConfigService tcgDbConfigService;
+
     @Autowired
     private TcgProjectService tcgProjectService;
+
+    @Autowired
+    private TableBusiness tableBusiness;
+
+    @Autowired
+    private TableBusinessService tableBusinessService;
 
 
     /**
@@ -118,6 +127,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         TcgDbConfigBO dbConfigBO = tcgDbConfigService.selectById(m.getDbId());
 
+        List<TablePO> tablePOs = new ArrayList<TablePO>();
+
         for(String sns : tablesn) {
             TcgTableConfigBO tcgTableConfigBO = new TcgTableConfigBO();
             BeanUtils.copyProperties(m , tcgTableConfigBO);
@@ -127,27 +138,19 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if (StringUtils.isEmpty(m.getDbId()) || StringUtils.isEmpty(m.getTableName()) || StringUtils.isEmpty(m.getProjectId())) {
                 continue;
             }
-
             if (this.isExist(tcgTableConfigBO)) {
                 continue;
             }
-
-            try {
-                List<Columnt> columns = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readColumnsByTable(
-                        new DbConfig(dbConfigBO.getDbType() , dbConfigBO.getDbUrl() , dbConfigBO.getDbUsername() , dbConfigBO.getDbPassword()),
-                        tcgTableConfigBO.getSchemaName() , tcgTableConfigBO.getTableName()
-                );
-
-                //todo 处理表中的所有列
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-
+            TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, sessionUserVO);
+            tablePOs.add(tablePO);
         }
 
-
+        try {
+            success = tableBusinessService.insertTable(tablePOs);
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            throw DbException.DB_INSERT_RESULT_0;
+        }
 
         if (!success) {
             throw DbException.DB_INSERT_RESULT_0;

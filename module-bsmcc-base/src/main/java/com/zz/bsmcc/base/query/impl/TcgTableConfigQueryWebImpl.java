@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 表设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:14
+ * @date 2018-7-30 17:18:08
  */
 public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -199,8 +199,8 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
 
 
-            private String content_IN;
-            private String content_NOTIN;
+            private String tableComment_IN;
+            private String tableComment_NOTIN;
 
 
 
@@ -1180,60 +1180,60 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
 
 
-                public String getContent() {
-                    return content;
+                public String getTableComment() {
+                    return tableComment;
                 }
 
 
-                public void setContent(String content) {
-                    this.content = content;
+                public void setTableComment(String tableComment) {
+                    this.tableComment = tableComment;
                 }
 
 
-                public String getContent_NE() {
-                    return content_NE;
+                public String getTableComment_NE() {
+                    return tableComment_NE;
                 }
 
 
-                public void setContent_NE(String content_NE) {
-                    this.content_NE = content_NE;
-                }
-
-
-
-                public String getContent_IN() {
-                    return content_IN;
-                }
-
-                public void setContent_IN(String content_IN) {
-                    this.content_IN = content_IN;
-                }
-
-                public String getContent_NOTIN() {
-                    return content_NOTIN;
-                }
-
-                public void setContent_NOTIN(String content_NOTIN) {
-                    this.content_NOTIN = content_NOTIN;
+                public void setTableComment_NE(String tableComment_NE) {
+                    this.tableComment_NE = tableComment_NE;
                 }
 
 
 
-
-                public String getContent_LIKE() {
-                    return content_LIKE;
+                public String getTableComment_IN() {
+                    return tableComment_IN;
                 }
 
-                public void setContent_LIKE(String content_LIKE) {
-                    this.content_LIKE = content_LIKE;
+                public void setTableComment_IN(String tableComment_IN) {
+                    this.tableComment_IN = tableComment_IN;
                 }
 
-                public String getContent_NOTLIKE() {
-                    return content_NOTLIKE;
+                public String getTableComment_NOTIN() {
+                    return tableComment_NOTIN;
                 }
 
-                public void setContent_NOTLIKE(String content_NOTLIKE) {
-                    this.content_NOTLIKE = content_NOTLIKE;
+                public void setTableComment_NOTIN(String tableComment_NOTIN) {
+                    this.tableComment_NOTIN = tableComment_NOTIN;
+                }
+
+
+
+
+                public String getTableComment_LIKE() {
+                    return tableComment_LIKE;
+                }
+
+                public void setTableComment_LIKE(String tableComment_LIKE) {
+                    this.tableComment_LIKE = tableComment_LIKE;
+                }
+
+                public String getTableComment_NOTLIKE() {
+                    return tableComment_NOTLIKE;
+                }
+
+                public void setTableComment_NOTLIKE(String tableComment_NOTLIKE) {
+                    this.tableComment_NOTLIKE = tableComment_NOTLIKE;
                 }
 
 

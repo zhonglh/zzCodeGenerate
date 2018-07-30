@@ -14,10 +14,10 @@ import java.sql.Timestamp;
  * 列校验 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public class TcgColumnValidateQueryImpl<PK extends Serializable> extends TcgColumnValidateAbstractQueryImpl<PK> implements TcgColumnValidateQuery<PK>, Serializable  {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -26,6 +26,21 @@ public class TcgColumnValidateQueryImpl<PK extends Serializable> extends TcgColu
 
             private List<PK> id_IN;
             private List<PK> id_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<PK> tableId_IN;
+            private List<PK> tableId_NOTIN;
 
 
 
@@ -202,6 +217,70 @@ public class TcgColumnValidateQueryImpl<PK extends Serializable> extends TcgColu
                 @Override
                 public TcgColumnValidateQuery idIsNotNull() {
                     this.isNotNulls.add("id");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnValidateQuery tableId(PK tableId) {
+                    if(!IdUtils.isEmpty(tableId)){
+                        this.tableId = tableId;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnValidateQuery tableIdNot(PK tableIdNot) {
+                    if(!IdUtils.isEmpty(tableIdNot)){
+                        this.tableId_NE = tableIdNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnValidateQuery tableIdIn(PK tableIdIn) {
+                    if(!IdUtils.isEmpty(tableIdIn)){
+                        this.tableId_IN.add( tableIdIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnValidateQuery tableIdNotIn(PK tableIdNotIn) {
+                    if(!IdUtils.isEmpty(tableIdNotIn)){
+                        this.tableId_NOTIN.add( tableIdNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnValidateQuery tableIdIsNull() {
+                    this.isNulls.add("tableId");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnValidateQuery tableIdIsNotNull() {
+                    this.isNotNulls.add("tableId");
                     return this;
                 }
 

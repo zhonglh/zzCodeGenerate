@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 列界面设置查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public interface TcgColumnPageQuery<PK extends Serializable> extends Query<TcgColumnPageEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -39,12 +39,87 @@ public interface TcgColumnPageQuery<PK extends Serializable> extends Query<TcgCo
 
 
 
+            public TcgColumnPageQuery tableId(PK tableId);
+            public TcgColumnPageQuery tableIdNot(PK tableIdNot);
+            public TcgColumnPageQuery tableIdIn(PK tableIdIn);
+            public TcgColumnPageQuery tableIdNotIn(PK tableIdNotIn);
+            public TcgColumnPageQuery tableIdIsNull();
+            public TcgColumnPageQuery tableIdIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnPageQuery realColumn(String realColumn);
+            public TcgColumnPageQuery realColumnNot(String realColumnNot);
+            public TcgColumnPageQuery realColumnIn(String realColumnIn);
+            public TcgColumnPageQuery realColumnNotIn(String realColumnNotIn);
+            public TcgColumnPageQuery realColumnIsNull();
+            public TcgColumnPageQuery realColumnIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
             public TcgColumnPageQuery editable(String editable);
             public TcgColumnPageQuery editableNot(String editableNot);
             public TcgColumnPageQuery editableIn(String editableIn);
             public TcgColumnPageQuery editableNotIn(String editableNotIn);
             public TcgColumnPageQuery editableIsNull();
             public TcgColumnPageQuery editableIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnPageQuery hiddenable(String hiddenable);
+            public TcgColumnPageQuery hiddenableNot(String hiddenableNot);
+            public TcgColumnPageQuery hiddenableIn(String hiddenableIn);
+            public TcgColumnPageQuery hiddenableNotIn(String hiddenableNotIn);
+            public TcgColumnPageQuery hiddenableIsNull();
+            public TcgColumnPageQuery hiddenableIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnPageQuery existPage(String existPage);
+            public TcgColumnPageQuery existPageNot(String existPageNot);
+            public TcgColumnPageQuery existPageIn(String existPageIn);
+            public TcgColumnPageQuery existPageNotIn(String existPageNotIn);
+            public TcgColumnPageQuery existPageIsNull();
+            public TcgColumnPageQuery existPageIsNotNull();
 
 
 
@@ -148,6 +223,25 @@ public interface TcgColumnPageQuery<PK extends Serializable> extends Query<TcgCo
             public TcgColumnPageQuery requiredNotIn(String requiredNotIn);
             public TcgColumnPageQuery requiredIsNull();
             public TcgColumnPageQuery requiredIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnPageQuery listShowable(String listShowable);
+            public TcgColumnPageQuery listShowableNot(String listShowableNot);
+            public TcgColumnPageQuery listShowableIn(String listShowableIn);
+            public TcgColumnPageQuery listShowableNotIn(String listShowableNotIn);
+            public TcgColumnPageQuery listShowableIsNull();
+            public TcgColumnPageQuery listShowableIsNotNull();
 
 
 

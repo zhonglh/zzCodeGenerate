@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * @date ${.now}
  */
 public abstract class ${table.shortTableName?cap_first}AbstractQueryImpl<PK extends Serializable> extends QueryImpl<${table.shortTableName?cap_first}Entity,PK> {
-	private static final long serialVersionUID = 1L;
+
 <#list table.columnList as being>
 
 

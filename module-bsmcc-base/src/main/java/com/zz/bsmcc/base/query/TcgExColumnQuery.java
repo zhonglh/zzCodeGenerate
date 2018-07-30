@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 扩展列设置查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:11
+ * @date 2018-7-30 17:18:06
  */
 public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExColumnEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -45,6 +45,82 @@ public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExCo
             public TcgExColumnQuery tableIdNotIn(PK tableIdNotIn);
             public TcgExColumnQuery tableIdIsNull();
             public TcgExColumnQuery tableIdIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgExColumnQuery originalColumnId(PK originalColumnId);
+            public TcgExColumnQuery originalColumnIdNot(PK originalColumnIdNot);
+            public TcgExColumnQuery originalColumnIdIn(PK originalColumnIdIn);
+            public TcgExColumnQuery originalColumnIdNotIn(PK originalColumnIdNotIn);
+            public TcgExColumnQuery originalColumnIdIsNull();
+            public TcgExColumnQuery originalColumnIdIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgExColumnQuery originalColumnName(String originalColumnName);
+            public TcgExColumnQuery originalColumnNameNot(String originalColumnNameNot);
+            public TcgExColumnQuery originalColumnNameIn(String originalColumnNameIn);
+            public TcgExColumnQuery originalColumnNameNotIn(String originalColumnNameNotIn);
+            public TcgExColumnQuery originalColumnNameLike(String originalColumnNameLike);
+            public TcgExColumnQuery originalColumnNameNotLike(String originalColumnNameNotLike);
+            public TcgExColumnQuery originalColumnNameIsNull();
+            public TcgExColumnQuery originalColumnNameIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgExColumnQuery originalColumnFk(String originalColumnFk);
+            public TcgExColumnQuery originalColumnFkNot(String originalColumnFkNot);
+            public TcgExColumnQuery originalColumnFkIn(String originalColumnFkIn);
+            public TcgExColumnQuery originalColumnFkNotIn(String originalColumnFkNotIn);
+            public TcgExColumnQuery originalColumnFkIsNull();
+            public TcgExColumnQuery originalColumnFkIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgExColumnQuery originalColumnDict(String originalColumnDict);
+            public TcgExColumnQuery originalColumnDictNot(String originalColumnDictNot);
+            public TcgExColumnQuery originalColumnDictIn(String originalColumnDictIn);
+            public TcgExColumnQuery originalColumnDictNotIn(String originalColumnDictNotIn);
+            public TcgExColumnQuery originalColumnDictIsNull();
+            public TcgExColumnQuery originalColumnDictIsNotNull();
+
 
 
 
@@ -117,6 +193,22 @@ public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExCo
 
 
 
+        public TcgExColumnQuery columnSort(Integer columnSort);
+        public TcgExColumnQuery columnSortNot(Integer columnSortNot);
+        public TcgExColumnQuery columnSortGreaterThan(Integer columnSortGreaterThan);
+        public TcgExColumnQuery columnSortGreaterEqual(Integer columnSortGreaterEqual);
+        public TcgExColumnQuery columnSortLessThan(Integer columnSortLessThan);
+        public TcgExColumnQuery columnSortLessEqual(Integer columnSortLessEqual);
+
+
+
+
+
+
+
+
+
+
             public TcgExColumnQuery columnTitle(String columnTitle);
             public TcgExColumnQuery columnTitleNot(String columnTitleNot);
             public TcgExColumnQuery columnTitleIn(String columnTitleIn);
@@ -165,6 +257,46 @@ public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExCo
             public TcgExColumnQuery dictTypeNotLike(String dictTypeNotLike);
             public TcgExColumnQuery dictTypeIsNull();
             public TcgExColumnQuery dictTypeIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgExColumnQuery tableSchema(String tableSchema);
+            public TcgExColumnQuery tableSchemaNot(String tableSchemaNot);
+            public TcgExColumnQuery tableSchemaIn(String tableSchemaIn);
+            public TcgExColumnQuery tableSchemaNotIn(String tableSchemaNotIn);
+            public TcgExColumnQuery tableSchemaLike(String tableSchemaLike);
+            public TcgExColumnQuery tableSchemaNotLike(String tableSchemaNotLike);
+            public TcgExColumnQuery tableSchemaIsNull();
+            public TcgExColumnQuery tableSchemaIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgExColumnQuery tableName(String tableName);
+            public TcgExColumnQuery tableNameNot(String tableNameNot);
+            public TcgExColumnQuery tableNameIn(String tableNameIn);
+            public TcgExColumnQuery tableNameNotIn(String tableNameNotIn);
+            public TcgExColumnQuery tableNameLike(String tableNameLike);
+            public TcgExColumnQuery tableNameNotLike(String tableNameNotLike);
+            public TcgExColumnQuery tableNameIsNull();
+            public TcgExColumnQuery tableNameIsNotNull();
 
 
 

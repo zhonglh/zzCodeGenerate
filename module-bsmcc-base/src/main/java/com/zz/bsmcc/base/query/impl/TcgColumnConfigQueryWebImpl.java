@@ -8,10 +8,10 @@ import java.sql.Timestamp;
  * 列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:07
+ * @date 2018-7-30 17:18:04
  */
 public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements Serializable {
-    private static final long serialVersionUID = 1L;
+
 
 
 
@@ -146,8 +146,34 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
 
 
-            private String columnContent_IN;
-            private String columnContent_NOTIN;
+
+            private String columnIsdict_IN;
+            private String columnIsdict_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String dictType_IN;
+            private String dictType_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String columnComment_IN;
+            private String columnComment_NOTIN;
 
 
 
@@ -598,66 +624,66 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
 
 
-            public Integer getColumnPrecision() {
-                return columnPrecision;
+            public Integer getColumnScale() {
+                return columnScale;
             }
 
 
-            public void setColumnPrecision(Integer columnPrecision) {
-                this.columnPrecision = columnPrecision;
+            public void setColumnScale(Integer columnScale) {
+                this.columnScale = columnScale;
             }
 
 
-            public Integer getColumnPrecision_NE() {
-                return columnPrecision_NE;
+            public Integer getColumnScale_NE() {
+                return columnScale_NE;
             }
 
 
-            public void setColumnPrecision_NE(Integer columnPrecision_NE) {
-                this.columnPrecision_NE = columnPrecision_NE;
-            }
-
-
-
-            public Integer getColumnPrecision_GT() {
-                return columnPrecision_GT;
-            }
-
-
-            public void setColumnPrecision_GT(Integer columnPrecision_GT) {
-                this.columnPrecision_GT = columnPrecision_GT;
-            }
-
-
-            public Integer getColumnPrecision_GE() {
-                return columnPrecision_GE;
-            }
-
-
-            public void setColumnPrecision_GE(Integer columnPrecision_GE) {
-                this.columnPrecision_GE = columnPrecision_GE;
+            public void setColumnScale_NE(Integer columnScale_NE) {
+                this.columnScale_NE = columnScale_NE;
             }
 
 
 
-
-            public Integer getColumnPrecision_LT() {
-                return columnPrecision_LT;
+            public Integer getColumnScale_GT() {
+                return columnScale_GT;
             }
 
 
-            public void setColumnPrecision_LT(Integer columnPrecision_LT) {
-                this.columnPrecision_LT = columnPrecision_LT;
+            public void setColumnScale_GT(Integer columnScale_GT) {
+                this.columnScale_GT = columnScale_GT;
             }
 
 
-            public Integer getColumnPrecision_LE() {
-                return columnPrecision_LE;
+            public Integer getColumnScale_GE() {
+                return columnScale_GE;
             }
 
 
-            public void setColumnPrecision_LE(Integer columnPrecision_LE) {
-                this.columnPrecision_LE = columnPrecision_LE;
+            public void setColumnScale_GE(Integer columnScale_GE) {
+                this.columnScale_GE = columnScale_GE;
+            }
+
+
+
+
+            public Integer getColumnScale_LT() {
+                return columnScale_LT;
+            }
+
+
+            public void setColumnScale_LT(Integer columnScale_LT) {
+                this.columnScale_LT = columnScale_LT;
+            }
+
+
+            public Integer getColumnScale_LE() {
+                return columnScale_LE;
+            }
+
+
+            public void setColumnScale_LE(Integer columnScale_LE) {
+                this.columnScale_LE = columnScale_LE;
             }
 
 
@@ -973,60 +999,182 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
 
 
-                public String getColumnContent() {
-                    return columnContent;
+                public String getColumnIsdict() {
+                    return columnIsdict;
                 }
 
 
-                public void setColumnContent(String columnContent) {
-                    this.columnContent = columnContent;
+                public void setColumnIsdict(String columnIsdict) {
+                    this.columnIsdict = columnIsdict;
                 }
 
 
-                public String getColumnContent_NE() {
-                    return columnContent_NE;
+                public String getColumnIsdict_NE() {
+                    return columnIsdict_NE;
                 }
 
 
-                public void setColumnContent_NE(String columnContent_NE) {
-                    this.columnContent_NE = columnContent_NE;
-                }
-
-
-
-                public String getColumnContent_IN() {
-                    return columnContent_IN;
-                }
-
-                public void setColumnContent_IN(String columnContent_IN) {
-                    this.columnContent_IN = columnContent_IN;
-                }
-
-                public String getColumnContent_NOTIN() {
-                    return columnContent_NOTIN;
-                }
-
-                public void setColumnContent_NOTIN(String columnContent_NOTIN) {
-                    this.columnContent_NOTIN = columnContent_NOTIN;
+                public void setColumnIsdict_NE(String columnIsdict_NE) {
+                    this.columnIsdict_NE = columnIsdict_NE;
                 }
 
 
 
-
-                public String getColumnContent_LIKE() {
-                    return columnContent_LIKE;
+                public String getColumnIsdict_IN() {
+                    return columnIsdict_IN;
                 }
 
-                public void setColumnContent_LIKE(String columnContent_LIKE) {
-                    this.columnContent_LIKE = columnContent_LIKE;
+                public void setColumnIsdict_IN(String columnIsdict_IN) {
+                    this.columnIsdict_IN = columnIsdict_IN;
                 }
 
-                public String getColumnContent_NOTLIKE() {
-                    return columnContent_NOTLIKE;
+                public String getColumnIsdict_NOTIN() {
+                    return columnIsdict_NOTIN;
                 }
 
-                public void setColumnContent_NOTLIKE(String columnContent_NOTLIKE) {
-                    this.columnContent_NOTLIKE = columnContent_NOTLIKE;
+                public void setColumnIsdict_NOTIN(String columnIsdict_NOTIN) {
+                    this.columnIsdict_NOTIN = columnIsdict_NOTIN;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getDictType() {
+                    return dictType;
+                }
+
+
+                public void setDictType(String dictType) {
+                    this.dictType = dictType;
+                }
+
+
+                public String getDictType_NE() {
+                    return dictType_NE;
+                }
+
+
+                public void setDictType_NE(String dictType_NE) {
+                    this.dictType_NE = dictType_NE;
+                }
+
+
+
+                public String getDictType_IN() {
+                    return dictType_IN;
+                }
+
+                public void setDictType_IN(String dictType_IN) {
+                    this.dictType_IN = dictType_IN;
+                }
+
+                public String getDictType_NOTIN() {
+                    return dictType_NOTIN;
+                }
+
+                public void setDictType_NOTIN(String dictType_NOTIN) {
+                    this.dictType_NOTIN = dictType_NOTIN;
+                }
+
+
+
+
+                public String getDictType_LIKE() {
+                    return dictType_LIKE;
+                }
+
+                public void setDictType_LIKE(String dictType_LIKE) {
+                    this.dictType_LIKE = dictType_LIKE;
+                }
+
+                public String getDictType_NOTLIKE() {
+                    return dictType_NOTLIKE;
+                }
+
+                public void setDictType_NOTLIKE(String dictType_NOTLIKE) {
+                    this.dictType_NOTLIKE = dictType_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getColumnComment() {
+                    return columnComment;
+                }
+
+
+                public void setColumnComment(String columnComment) {
+                    this.columnComment = columnComment;
+                }
+
+
+                public String getColumnComment_NE() {
+                    return columnComment_NE;
+                }
+
+
+                public void setColumnComment_NE(String columnComment_NE) {
+                    this.columnComment_NE = columnComment_NE;
+                }
+
+
+
+                public String getColumnComment_IN() {
+                    return columnComment_IN;
+                }
+
+                public void setColumnComment_IN(String columnComment_IN) {
+                    this.columnComment_IN = columnComment_IN;
+                }
+
+                public String getColumnComment_NOTIN() {
+                    return columnComment_NOTIN;
+                }
+
+                public void setColumnComment_NOTIN(String columnComment_NOTIN) {
+                    this.columnComment_NOTIN = columnComment_NOTIN;
+                }
+
+
+
+
+                public String getColumnComment_LIKE() {
+                    return columnComment_LIKE;
+                }
+
+                public void setColumnComment_LIKE(String columnComment_LIKE) {
+                    this.columnComment_LIKE = columnComment_LIKE;
+                }
+
+                public String getColumnComment_NOTLIKE() {
+                    return columnComment_NOTLIKE;
+                }
+
+                public void setColumnComment_NOTLIKE(String columnComment_NOTLIKE) {
+                    this.columnComment_NOTLIKE = columnComment_NOTLIKE;
                 }
 
 

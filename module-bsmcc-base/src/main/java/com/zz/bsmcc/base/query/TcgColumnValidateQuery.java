@@ -12,10 +12,10 @@ import java.math.BigDecimal;
  * 列校验查询接口
  *
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public interface TcgColumnValidateQuery<PK extends Serializable> extends Query<TcgColumnValidateEntity,PK> {
-	static final long serialVersionUID = 1L;
+
 
 
 
@@ -27,6 +27,24 @@ public interface TcgColumnValidateQuery<PK extends Serializable> extends Query<T
             public TcgColumnValidateQuery idNotIn(PK idNotIn);
             public TcgColumnValidateQuery idIsNull();
             public TcgColumnValidateQuery idIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnValidateQuery tableId(PK tableId);
+            public TcgColumnValidateQuery tableIdNot(PK tableIdNot);
+            public TcgColumnValidateQuery tableIdIn(PK tableIdIn);
+            public TcgColumnValidateQuery tableIdNotIn(PK tableIdNotIn);
+            public TcgColumnValidateQuery tableIdIsNull();
+            public TcgColumnValidateQuery tableIdIsNotNull();
 
 
 

@@ -12,10 +12,10 @@ import java.sql.Timestamp;
  * 列界面设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-29 1:16:10
+ * @date 2018-7-30 17:18:05
  */
 public abstract class TcgColumnPageAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnPageEntity,PK> {
-	private static final long serialVersionUID = 1L;
+
 
 
 
@@ -35,8 +35,67 @@ public abstract class TcgColumnPageAbstractQueryImpl<PK extends Serializable> ex
 
 
 
+            protected PK tableId;
+            protected PK tableId_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String realColumn;
+            protected String realColumn_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
             protected String editable;
             protected String editable_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String hiddenable;
+            protected String hiddenable_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String existPage;
+            protected String existPage_NE;
 
 
 
@@ -136,6 +195,21 @@ public abstract class TcgColumnPageAbstractQueryImpl<PK extends Serializable> ex
 
             protected String required;
             protected String required_NE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String listShowable;
+            protected String listShowable_NE;
 
 
 

@@ -50,6 +50,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				table.setTableType(tableType);
 				table.setTableComment(tableComment);
 				table.setId(tableSchema+":"+tableName);
+				table.setTable(this.isTable(table));
 				list.add(table);
 			}
 			stmt.close(); stmt = null;
@@ -76,14 +77,70 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 		return list;
 	}
 
+
+
 	@Override
-	public List<Columnt> readColumnsByTable(DbConfig dbContig, String tableSchema, String tableName) throws SQLException {
+	public Table readOneTable(DbConfig dbContig, String tableSchema , String tableName) throws SQLException{
 
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 
-		List<Columnt> list = new ArrayList<Columnt>();
+
+		Table table = new Table();
+		try {
+			Class.forName(EnumDbType.getDriver(dbContig.getDbType()));
+			conn = DriverManager.getConnection(dbContig.getDbUrl(), dbContig.getDbUsername(), dbContig.getDbPassword());
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+
+
+			rs = stmt.executeQuery(getReadOneTableSQL(tableSchema , tableName));
+
+			while (rs.next()) {
+				String tableType = rs.getString(3);
+				String tableComment = rs.getString(4);
+				table.setTableName(tableName);
+				table.setTableSchema(tableSchema);
+				table.setTableType(tableType);
+				table.setTableComment(tableComment);
+				table.setId(tableSchema+":"+tableName);
+				table.setTable(this.isTable(table));
+				break;
+			}
+			stmt.close(); stmt = null;
+			conn.close(); conn = null;
+			return table;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+					stmt = null;
+				}
+
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				throw e;
+			}
+
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public List<Column> readColumnsByTable(DbConfig dbContig, String tableSchema, String tableName) throws SQLException {
+
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		List<Column> list = new ArrayList<Column>();
 		try {
 			Class.forName(EnumDbType.getDriver(dbContig.getDbType()));
 			conn = DriverManager.getConnection(dbContig.getDbUrl(), dbContig.getDbUsername(), dbContig.getDbPassword());
@@ -93,7 +150,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 			rs = stmt.executeQuery(getReadColumnsByTable(tableSchema ,tableName));
 
 			while (rs.next()) {
-				Columnt column = new Columnt();
+				Column column = new Column();
 
 				String filedName = rs.getString(1);
 				String filedComment = rs.getString(2);
@@ -122,6 +179,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				column.setPrecision(precision);
 				column.setScale(scale);
 				column.setNullable("YES".equals(nullable)?true : false);
+				column.setFixedChar(this.isFixedChar(column));
 				list.add(column);
 			}
 			stmt.close(); stmt = null;
@@ -274,12 +332,25 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 		otherCommentsSb = new StringBuilder(otherComments);
 	}
 
+	/**
+	 * 判断是表格还是视图
+	 * @return
+	 */
+	protected abstract boolean isTable(Table table);
+
 
 	/**
 	 * 获取所有表(视图)的SQL
 	 * @return
 	 */
 	protected abstract String getReadAllTableSQL() ;
+
+
+	/**
+	 * 获取单个表(视图)的SQL
+	 * @return
+	 */
+	protected abstract String getReadOneTableSQL(String tableSchema, String tableName) ;
 
 	/**
 	 * 获取指定表(视图)所有列的SQL
@@ -325,4 +396,14 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 	 * @return
 	 */
 	protected abstract String getReadConstraintColumnsByTable(String tableSchema, String tableName , String constraintName) ;
+
+
+	/**
+	 * 是否为固定长度的字符
+	 * @param column
+	 * @return
+	 */
+	protected abstract boolean isFixedChar(Column column) ;
+
+
 }

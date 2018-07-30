@@ -11,10 +11,7 @@ import java.util.List;
  * @author Administrator
  */
 public enum EnumDbColumnType implements EnumBase{
-	
-	TINYINT,
-	SMALLINT,
-	SHORT,
+
 	INT,
 	INTEGER,
 	LONG,
@@ -25,23 +22,26 @@ public enum EnumDbColumnType implements EnumBase{
 	DECIMAL,
 	CHAR,
 	VARCHAR,
-	VARCHAR2,
 	DATE,
 	DATETIME,
 	TIMESTAMP,
+	TINYINT,
+	SMALLINT,
+	SHORT,
+	VARCHAR2,
 	CLOB,
 	BLOB,
 	
 	;
 	
 	
-	public static EnumDbColumnType getDbType(String dbtype){
+	public static EnumDbColumnType getDataType(String dataType){
 		
-		dbtype = dbtype.toUpperCase();
+		dataType = dataType.toUpperCase();
 
 
 		for(EnumDbColumnType enumDbColumnType : EnumDbColumnType.values()){
-			if(dbtype.toUpperCase().equals(enumDbColumnType.name())){
+			if(dataType.toUpperCase().equals(enumDbColumnType.name())){
 				return enumDbColumnType;
 			}
 		}
@@ -69,8 +69,8 @@ public enum EnumDbColumnType implements EnumBase{
 
 
 
-	public static EnumJavaType getJavaType(String dbtype, String precision, String scale ){
-		EnumDbColumnType enumDbColumnType = getDbType(dbtype);
+	public static EnumJavaType getJavaType(String dataType, Integer precision, Integer scale ){
+		EnumDbColumnType enumDbColumnType = getDataType(dataType);
 		if(enumDbColumnType == null) {
 			return null;
 		}
@@ -78,7 +78,7 @@ public enum EnumDbColumnType implements EnumBase{
 		
 	}
 	
-	public static EnumJavaType getJavaType(EnumDbColumnType enumDbColumnType, String precision, String scale ){
+	public static EnumJavaType getJavaType(EnumDbColumnType enumDbColumnType, Integer precision, Integer scale ){
 
 		if(precision != null && precision.equals("null")) {
 			precision = null;
@@ -124,9 +124,9 @@ public enum EnumDbColumnType implements EnumBase{
 		}
 		else if(enumDbColumnType == NUMBER) {
 			
-			if(StringUtils.isNotEmpty(scale) && Integer.parseInt(scale) > 0){
+			if(scale != null && scale > 0){
 				return EnumJavaType._BigDecimal;
-			}else if(StringUtils.isNotEmpty(precision) && Integer.parseInt(precision) > 10){
+			}else if(precision != null && precision > 10){
 				return EnumJavaType._Long;
 			}else{
 				return EnumJavaType._Integer;
