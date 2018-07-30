@@ -110,7 +110,7 @@ public enum EnumDbColumnType implements EnumBase{
 		}
 		
 		
-		else if(enumDbColumnType == INTEGER) {
+		else if(enumDbColumnType == INTEGER || enumDbColumnType == INT) {
 			return EnumJavaType._Integer;
 		}
 		else if(enumDbColumnType == LONG) {

@@ -17,8 +17,10 @@ import com.zz.bsmcc.base.bo.TcgTableConfigBO;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.TcgDbConfigQuery;
 import com.zz.bsmcc.base.query.TcgProjectQuery;
+import com.zz.bsmcc.base.query.TcgQueryConfigQuery;
 import com.zz.bsmcc.base.query.impl.TcgDbConfigQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgProjectQueryImpl;
+import com.zz.bsmcc.base.query.impl.TcgQueryConfigQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryWebImpl;
 
 import com.zz.bms.util.base.java.IdUtils;
@@ -96,6 +98,12 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             List<Table> tables = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readAllTable(
                     new DbConfig(dbConfigBO.getDbType() , dbConfigBO.getDbUrl() , dbConfigBO.getDbUsername() , dbConfigBO.getDbPassword())
             );
+
+            TcgQueryConfigQuery existQuery = new TcgQueryConfigQueryImpl();
+            List<TcgTableConfigBO> exists = this.baseService.selectList(existQuery.buildWrapper());
+
+
+
             return new EasyUiDataGrid(tables.size(), tables);
         } catch (SQLException e) {
             logger.error(e.getMessage(),e);
@@ -135,7 +143,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             String[] sn = sns.split(":");
             tcgTableConfigBO.setSchemaName(sn[0]);
             tcgTableConfigBO.setTableName(sn[1]);
-            if (StringUtils.isEmpty(m.getDbId()) || StringUtils.isEmpty(m.getTableName()) || StringUtils.isEmpty(m.getProjectId())) {
+            if (StringUtils.isEmpty(tcgTableConfigBO.getDbId()) || StringUtils.isEmpty(tcgTableConfigBO.getTableName()) || StringUtils.isEmpty(tcgTableConfigBO.getProjectId())) {
                 continue;
             }
             if (this.isExist(tcgTableConfigBO)) {

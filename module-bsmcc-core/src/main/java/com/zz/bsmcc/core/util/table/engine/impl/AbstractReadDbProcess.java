@@ -165,7 +165,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 					}
 				}
 
-				String dataType = rs.getString("3");
+				String dataType = rs.getString(3);
 				Integer charmaxLength = rs.getInt(4);
 				Integer precision = rs.getInt(5);
 				Integer scale = rs.getInt(6);

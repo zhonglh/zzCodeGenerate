@@ -52,11 +52,11 @@
                 <bean id="optimisticLockerInterceptor"  class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor">
                 </bean>
                 <!-- 性能拦截器，兼打印sql，不建议生产环境配置-->
-                <bean id="performanceInterceptor"  class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor" >
-                    <property name="maxTime" value="100" />
-                    <!--SQL是否格式化 默认false-->
+                <!--SQL是否格式化 默认false-->
+                <!--<bean id="performanceInterceptor"  class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor" >
+                    <property name="maxTime" value="10000" />
                     <property name="format" value="true" />
-                </bean>
+                </bean>-->
             </array>
         </property>
     </bean>

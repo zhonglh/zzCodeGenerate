@@ -129,7 +129,7 @@
             width:120
         }, {
             field: 'javaName',
-            title: 'Java',
+            title: 'Java名称',
             width:120
         }, {
             field: 'content',

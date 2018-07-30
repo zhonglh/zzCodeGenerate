@@ -12,52 +12,66 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
 
     @Override
     protected String getReadAllTableSQL() {
-        return "select table_name , table_schema , table_type , table_comment " +
+        String sql =  "select table_name , table_schema , table_type , table_comment " +
                 "from information_schema.tables " +
                 "where table_schema not in ('information_schema','test' )";
+        System.out.println("getReadAllTableSQL : "+sql);
+        return sql;
     }
 
     @Override
     protected String getReadOneTableSQL(String tableSchema, String tableName) {
-        return "select table_name , table_schema , table_type , table_comment " +
-                "from information_schema.tables T" +
+        String sql =  "select table_name , table_schema , table_type , table_comment " +
+                "from information_schema.tables T " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " ;
+        System.out.println("getReadOneTableSQL : "+sql);
+        return sql;
     }
 
     @Override
     protected String getReadColumnsByTable(String tableSchema, String tableName) {
-        return "SELECT column_name , column_comment , data_type , character_maximun_length , " +
+        String sql =  "SELECT column_name , column_comment , data_type , character_maximum_length , " +
                 "numeric_precision , numeric_scale , is_nullable " +
                 "from information_schema.COLUMNS T where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' ";
+        System.out.println("getReadColumnsByTable : "+sql);
+        return sql;
     }
 
 
     @Override
     protected String getReadIndexsByTable(String tableSchema, String tableName) {
-        return " select * from information_schema.TABLE_CONSTRAINTS t " +
+        String sql =  " select constraint_name from information_schema.TABLE_CONSTRAINTS t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_TYPE = 'UNIQUE'";
+        System.out.println("getReadIndexsByTable : "+sql);
+        return sql;
     }
 
     @Override
     protected String getReadIndexColumnsByTable(String tableSchema, String tableName, String indexName) {
-        return " select * from information_schema.KEY_COLUMN_USAGE t " +
+        String sql =  " select column_name from information_schema.KEY_COLUMN_USAGE t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
-                "and CONSTRAINT_NAME '"+indexName+"' " ;
+                "and CONSTRAINT_NAME = '"+indexName+"' " ;
+        System.out.println("getReadIndexColumnsByTable : "+sql);
+        return sql;
     }
 
     @Override
     protected String getReadConstraintsByTable(String tableSchema, String tableName) {
-        return  " select * from information_schema.TABLE_CONSTRAINTS t " +
+        String sql =   " select constraint_name from information_schema.TABLE_CONSTRAINTS t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_TYPE = 'PRIMARY KEY'  and CONSTRAINT_NAME <> 'PRIMARY'";
+        System.out.println("getReadConstraintsByTable : "+sql);
+        return sql;
     }
 
     @Override
     protected String getReadConstraintColumnsByTable(String tableSchema, String tableName, String constraintName) {
-        return " select * from information_schema.KEY_COLUMN_USAGE t " +
+        String sql =  " select column_name from information_schema.KEY_COLUMN_USAGE t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
-                "and CONSTRAINT_NAME '"+constraintName+"' " ;
+                "and CONSTRAINT_NAME = '"+constraintName+"' " ;
+        System.out.println("getReadConstraintColumnsByTable : "+sql);
+        return sql;
 
     }
 

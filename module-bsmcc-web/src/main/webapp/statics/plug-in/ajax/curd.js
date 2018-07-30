@@ -126,7 +126,7 @@
 	
 	
 
-	function ajaxConfirm4Page(tableid,this1 , formId){
+	function ajaxConfirm4Page(tableid,this1 , iframeId, formId){
 
 		var row = getMultiSelect(tableid);
 
@@ -139,16 +139,19 @@
 
 		var ids = []
 		for(var i=0;i<row.length;i++){
-			ids.push(row[i].id)
+            ids.push({"name":"ids", "value":row[i].id});
 		}
 
-		var obj =  {"name":"ids", "value":ids};
+		var obj =  ids;
 
 		if(formId != null && formId != undefined) {
             $form = $("#" + formId);
             if($form != null && $form != undefined) {
                 var fff = $form.serializeArray();
-                fff.push(obj);
+                obj.forEach(function (item,index,input) {
+                    fff.push(item);
+                })
+
                 obj = fff;
             }
         }
@@ -167,7 +170,7 @@
 				if(ajax.success){
 					topShwoMessage("info",ajax.msg);
 					//refreshParentTable();
-					top.iframe20.window.refreshTable();
+					eval('top.iframe'+iframeId+'.window.refreshTable();');
 					window.setTimeout(function(){top.layer.closeAll();},2000);
 				}else {
 					topShwoMessage("error",ajax.msg);

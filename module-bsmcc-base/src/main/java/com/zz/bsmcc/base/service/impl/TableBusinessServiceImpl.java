@@ -11,12 +11,17 @@ import com.zz.bsmcc.base.service.TcgColumnEventService;
 import com.zz.bsmcc.base.service.TcgTableConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Administrator
+ */
 @Service
+@Transactional(rollbackFor=RuntimeException.class)
 public class TableBusinessServiceImpl implements TableBusinessService {
 
     @Autowired

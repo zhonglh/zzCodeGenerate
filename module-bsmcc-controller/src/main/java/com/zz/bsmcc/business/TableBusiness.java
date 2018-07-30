@@ -25,6 +25,7 @@ import com.zz.bsmcc.core.util.table.engine.ReadDbProcess;
 import com.zz.bsmcc.core.util.table.pojo.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -35,7 +36,7 @@ import java.util.*;
  * 表数据处理
  * @author Administrator
  */
-@Service
+@Component
 public class TableBusiness {
 
     public TableBusiness(){
@@ -109,6 +110,9 @@ public class TableBusiness {
             //初始化列的扩展信息，  也就是BO里的属性
             List<TcgExColumnBO> exColumnBOs = new ArrayList<TcgExColumnBO>();
             for(TcgColumnConfigBO columnBO : columnBOs){
+                if(insideFieldNames.contains(columnBO.getJavaName()) || "id".equals(columnBO.getJavaName())){
+                    continue;
+                }
                 if(columnBO.getColumnIsdict().equals(EnumYesNo.YES.getCode())) {
                     //处理字典信息
                     TcgExColumnBO exColumnBO = new TcgExColumnBO();
@@ -221,7 +225,7 @@ public class TableBusiness {
         columnBO.setColumnIskey("id".equals(column.getColumnName()) ? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
 
         columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
-        if(columnBO.getColumnIskey().equals(EnumYesNo.YES.getCode())) {
+        if(columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode())) {
             if (columnBO.getColumnLength() != null &&
                     (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
                     ) {
@@ -232,7 +236,7 @@ public class TableBusiness {
 
         columnBO.setColumnIsdict(EnumYesNo.NO.getCode());
 
-        if(columnBO.getColumnIskey().equals(EnumYesNo.YES.getCode()) || columnBO.getColumnIsfk().equals(EnumYesNo.YES.getCode())) {
+        if(columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode()) || columnBO.getColumnIsfk().equals(EnumYesNo.NO.getCode())) {
             if (column.isFixedChar() && column.getCharmaxLength() <= 2) {
                 columnBO.setColumnIsdict(EnumYesNo.YES.getCode());
             }
@@ -277,7 +281,7 @@ public class TableBusiness {
         for(String columnName : ci.getColumnNames()){
             columnNames.append(columnName).append(",");
         }
-        columnNames.deleteCharAt(columnNames.length());
+        columnNames.deleteCharAt(columnNames.length() -1);
         indexBO.setIndexCloumns(columnNames.toString());
 
         EntityUtil.autoSetEntity(indexBO , sessionUserVO);
@@ -336,6 +340,7 @@ public class TableBusiness {
         EntityUtil.autoSetEntity(pageBO , sessionUserVO);
 
         pageBO.setId(columnBO.getId());
+        pageBO.setTableId(columnBO.getTableId());
 
 
     }
@@ -347,12 +352,11 @@ public class TableBusiness {
             pageBO.setExistPage(EnumYesNo.NO.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
-            if("id".equalsIgnoreCase(columnBO.getJavaName())){
-                //主键
-                pageBO.setExistPage(EnumYesNo.YES.getCode());
-                pageBO.setEditable(EnumYesNo.NO.getCode());
-                pageBO.setHiddenable(EnumYesNo.YES.getCode());
-            }
+        }else if("id".equalsIgnoreCase(columnBO.getJavaName())){
+            //主键
+            pageBO.setExistPage(EnumYesNo.YES.getCode());
+            pageBO.setEditable(EnumYesNo.NO.getCode());
+            pageBO.setHiddenable(EnumYesNo.YES.getCode());
         }else {
             pageBO.setExistPage(EnumYesNo.YES.getCode());
             pageBO.setEditable(EnumYesNo.YES.getCode());
@@ -373,6 +377,7 @@ public class TableBusiness {
         EntityUtil.autoSetEntity(pageBO , sessionUserVO);
 
         pageBO.setId(columnBO.getId());
+        pageBO.setTableId(columnBO.getTableId());
 
     }
 
@@ -408,6 +413,8 @@ public class TableBusiness {
                 pageBO.setElement((String) EnumPageElement.text.getTheValue());
                 if(columnBO.getColumnLength() > 100){
                     pageBO.setElement((String) EnumPageElement.textarea.getTheValue());
+                }else {
+                    pageBO.setElement((String) EnumPageElement.text.getTheValue());
                 }
             }else {
                 pageBO.setElement((String) EnumPageElement.text.getTheValue());

@@ -47,12 +47,12 @@ public enum EnumPageElement implements EnumBase{
 
     @Override
     public Serializable getTheValue() {
-        return null;
+        return name();
     }
 
     @Override
     public String getTheName() {
-        return null;
+        return name;
     }
 
 
