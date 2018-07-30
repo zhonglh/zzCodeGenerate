@@ -20,8 +20,9 @@
 
 
     <!-- 扫描service组件 -->
-    <context:component-scan base-package="com.**.service;com.**.service.impl"  use-default-filters="false">
+    <context:component-scan base-package="com.**.service;com.**.service.impl;com.**.business;com.**.auto"  use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
     </context:component-scan>
 
     <!-- 扫描DAO组件 -->
