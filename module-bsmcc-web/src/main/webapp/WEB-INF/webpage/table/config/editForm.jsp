@@ -393,39 +393,49 @@
                                 <td>${columnPage.columnComment }</td>
                                 <td>${columnPage.realColumnName }</td>
 
-                                <select name="columnpages[${status1.index }].existPage" >
-                                    <option value="1" <c:if test="${columnPage.existPage ==  '1' }">selected="selected"</c:if>>是</option>
-                                    <option value="0" <c:if test="${columnPage.existPage ==  '0' }">selected="selected"</c:if>>否</option>
-                                </select>
-                                <select name="columnpages[${status1.index }].editable" >
-                                    <option value="1" <c:if test="${columnPage.editable ==  '1' }">selected="selected"</c:if>>是</option>
-                                    <option value="0" <c:if test="${columnPage.editable ==  '0' }">selected="selected"</c:if>>否</option>
-                                </select>
-                                <select name="columnpages[${status1.index }].hiddenable" >
-                                    <option value="1" <c:if test="${columnPage.hiddenable ==  '1' }">selected="selected"</c:if>>是</option>
-                                    <option value="0" <c:if test="${columnPage.hiddenable ==  '0' }">selected="selected"</c:if>>否</option>
-                                </select>
+                                <td>
+                                    <select name="columnpages[${status1.index }].existPage" >
+                                        <option value="1" <c:if test="${columnPage.existPage ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${columnPage.existPage ==  '0' }">selected="selected"</c:if>>否</option>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <select name="columnpages[${status1.index }].editable" >
+                                        <option value="1" <c:if test="${columnPage.editable ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${columnPage.editable ==  '0' }">selected="selected"</c:if>>否</option>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <select name="columnpages[${status1.index }].hiddenable" >
+                                        <option value="1" <c:if test="${columnPage.hiddenable ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${columnPage.hiddenable ==  '0' }">selected="selected"</c:if>>否</option>
+                                    </select>
+                                </td>
 
 
-                                <select name="columnpages[${status1.index }].element" >
-                                    <option value="text" <c:if test="${columnPage.element ==  'text' }">selected="selected"</c:if>>文本</option>
-                                    <option value="digits" <c:if test="${columnPage.element ==  'digits' }">selected="selected"</c:if>>整数</option>
-                                    <option value="number" <c:if test="${columnPage.element ==  'number' }">selected="selected"</c:if>>数字</option>
-                                    <option value="date" <c:if test="${columnPage.element ==  'date' }">selected="selected"</c:if>>日期</option>
-                                    <option value="timestamp" <c:if test="${columnPage.element ==  'timestamp' }">selected="selected"</c:if>>时间</option>
-                                    <option value="email" <c:if test="${columnPage.element ==  'email' }">selected="selected"</c:if>>邮件</option>
-                                    <option value="url" <c:if test="${columnPage.element ==  'url' }">selected="selected"</c:if>>网址</option>
-                                    <option value="creditcard" <c:if test="${columnPage.element ==  'creditcard' }">selected="selected"</c:if>>信用卡</option>
-                                    <option value="radio" <c:if test="${columnPage.element ==  'radio' }">selected="selected"</c:if>>单选</option>
-                                    <option value="checkbox" <c:if test="${columnPage.element ==  'checkbox' }">selected="selected"</c:if>>多选</option>
-                                    <option value="textarea" <c:if test="${columnPage.element ==  'textarea' }">selected="selected"</c:if>>文本域</option>
-                                    <option value="select" <c:if test="${columnPage.element ==  'select' }">selected="selected"</c:if>>下拉选择</option>
-                                    <option value="openwin" <c:if test="${columnPage.element ==  'openwin' }">selected="selected"</c:if>>弹框选择</option>
-                                    <option value="singlefile" <c:if test="${columnPage.element ==  'singlefile' }">selected="selected"</c:if>>单文件</option>
-                                    <option value="multifile" <c:if test="${columnPage.element ==  'multifile' }">selected="selected"</c:if>>多文件</option>
-                                    <option value="singleimage" <c:if test="${columnPage.element ==  'singleimage' }">selected="selected"</c:if>>单图片</option>
-                                    <option value="multiimage" <c:if test="${columnPage.element ==  'multiimage' }">selected="selected"</c:if>>多图片</option>
-                                </select>
+                                <td>
+                                    <select name="columnpages[${status1.index }].element" >
+                                        <option value="text" <c:if test="${columnPage.element ==  'text' }">selected="selected"</c:if>>文本</option>
+                                        <option value="digits" <c:if test="${columnPage.element ==  'digits' }">selected="selected"</c:if>>整数</option>
+                                        <option value="number" <c:if test="${columnPage.element ==  'number' }">selected="selected"</c:if>>数字</option>
+                                        <option value="date" <c:if test="${columnPage.element ==  'date' }">selected="selected"</c:if>>日期</option>
+                                        <option value="timestamp" <c:if test="${columnPage.element ==  'timestamp' }">selected="selected"</c:if>>时间</option>
+                                        <option value="email" <c:if test="${columnPage.element ==  'email' }">selected="selected"</c:if>>邮件</option>
+                                        <option value="url" <c:if test="${columnPage.element ==  'url' }">selected="selected"</c:if>>网址</option>
+                                        <option value="creditcard" <c:if test="${columnPage.element ==  'creditcard' }">selected="selected"</c:if>>信用卡</option>
+                                        <option value="radio" <c:if test="${columnPage.element ==  'radio' }">selected="selected"</c:if>>单选</option>
+                                        <option value="checkbox" <c:if test="${columnPage.element ==  'checkbox' }">selected="selected"</c:if>>多选</option>
+                                        <option value="textarea" <c:if test="${columnPage.element ==  'textarea' }">selected="selected"</c:if>>文本域</option>
+                                        <option value="select" <c:if test="${columnPage.element ==  'select' }">selected="selected"</c:if>>下拉选择</option>
+                                        <option value="openwin" <c:if test="${columnPage.element ==  'openwin' }">selected="selected"</c:if>>弹框选择</option>
+                                        <option value="singlefile" <c:if test="${columnPage.element ==  'singlefile' }">selected="selected"</c:if>>单文件</option>
+                                        <option value="multifile" <c:if test="${columnPage.element ==  'multifile' }">selected="selected"</c:if>>多文件</option>
+                                        <option value="singleimage" <c:if test="${columnPage.element ==  'singleimage' }">selected="selected"</c:if>>单图片</option>
+                                        <option value="multiimage" <c:if test="${columnPage.element ==  'multiimage' }">selected="selected"</c:if>>多图片</option>
+                                    </select>
+                                </td>
 
 
                                 <td><input type="number"  id="columnpages[${status1.index }].maxlength" name="columnpages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
@@ -614,7 +624,7 @@
 
 
 
-        <h1>查询条件</h1>
+        <h1>功能操作</h1>
         <fieldset>
             <div class="row">
                 <div class="col-xs-12">
