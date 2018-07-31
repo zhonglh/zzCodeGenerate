@@ -146,7 +146,7 @@ public enum EnumDbColumnType implements EnumBase{
 			return EnumJavaType._Date;
 		}
 		else if(enumDbColumnType == TIMESTAMP) {
-			return EnumJavaType._Date;
+			return EnumJavaType._Timestamp;
 		}
 
 		else if(enumDbColumnType == CLOB) {

@@ -252,7 +252,7 @@
 
                                 <td>
                                     <input type="hidden" id="columns[${status1.index }].id" name="columns[${status1.index }].id" value="${column.id }" />
-                                    <input type="number" readonly id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" />
+                                    <input type="number" required id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" size="10" />
                                 </td>
 
                                 <td>
@@ -277,12 +277,12 @@
                                 </td>
 
 
-                                <td><input type="text" id="columns[${status1.index }].dict_type" name="columns[${status1.index }].dict_type" value="${column.dict_type }" /></td>
+                                <td><input type="text" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }" /></td>
                                 <td><input type="text" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
 
                                 <td><input type="text" required id="columns[${status1.index }].javaFullClass" name="columns[${status1.index }].javaFullClass" value="${column.javaFullClass }" /></td>
                                 <td><input type="text" required id="columns[${status1.index }].javaName" name="columns[${status1.index }].javaName" value="${column.javaName }" /></td>
-                                <td><input type="text" required id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
+                                <td><input type="text"  id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
 
 
 
@@ -302,10 +302,334 @@
 
 
 
+
+
+
+        <h1>扩展列信息</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <table width="100%">
+
+                        <thead>
+
+                        <th width="80">序号</th>
+                        <th width="150">源列名</th>
+                        <th width="150">外键扩展</th>
+                        <th width="150">字典扩展</th>
+                        <th width="150">Java类全称</th>
+                        <th width="150">Java名称</th>
+                        <th width="150">顺序</th>
+                        <th width="150">扩展列标题</th>
+                        <th width="150">关联表SCHEMA</th>
+                        <th width="150">关联表表名</th>
+
+                        </thead>
+
+                        <tbody>
+                        <c:forEach var="exColumn"   items="${exColumns}"   varStatus="status1">
+                            <tr>
+
+                                <td>${status1.index+1 }</td>
+                                <td>${exColumn.originalColumnName }</td>
+                                <td>${exColumn.originalColumnFkName }</td>
+                                <td>${exColumn.originalColumnDictName }</td>
+
+
+                                <td><input type="text"  id="excolumns[${status1.index }].javaFullClass" name="excolumns[${status1.index }].javaFullClass" value="${exColumn.javaFullClass }" /></td>
+                                <td><input type="text"  id="excolumns[${status1.index }].javaName" name="excolumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
+                                <td><input type="number"  id="excolumns[${status1.index }].columnSort" name="excolumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
+                                <td><input type="text"  id="excolumns[${status1.index }].columnTitle" name="excolumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
+                                <td><input type="text"  id="excolumns[${status1.index }].tableSchema" name="excolumns[${status1.index }].tableSchema" value="${exColumn.tableSchema }" /></td>
+                                <td><input type="text"  id="excolumns[${status1.index }].tableName" name="excolumns[${status1.index }].tableName" value="${exColumn.tableName }" /></td>
+
+
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+
+
+
+
+
+        <h1>界面信息</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <table width="100%">
+
+                        <thead>
+
+                        <th width="80">序号</th>
+                        <th width="150">列说明</th>
+                        <th width="150">是否真实列</th>
+                        <th width="150">是否在界面里</th>
+                        <th width="150">是否可编辑</th>
+                        <th width="150">是否隐藏</th>
+                        <th width="150">界面元素</th>
+                        <th width="150">最大长度</th>
+                        <th width="150">最小长度</th>
+                        <th width="150">最大值</th>
+                        <th width="150">最小值</th>
+                        <th width="150">是否必填</th>
+                        <th width="150">是否在列表中显示</th>
+
+                        </thead>
+
+                        <tbody>
+                        <c:forEach var="columnPage"   items="${columnPages}"   varStatus="status1">
+                            <tr>
+
+                                <td>${status1.index+1 }</td>
+                                <td>${columnPage.columnComment }</td>
+                                <td>${columnPage.realColumnName }</td>
+
+                                <select name="columnpages[${status1.index }].existPage" >
+                                    <option value="1" <c:if test="${columnPage.existPage ==  '1' }">selected="selected"</c:if>>是</option>
+                                    <option value="0" <c:if test="${columnPage.existPage ==  '0' }">selected="selected"</c:if>>否</option>
+                                </select>
+                                <select name="columnpages[${status1.index }].editable" >
+                                    <option value="1" <c:if test="${columnPage.editable ==  '1' }">selected="selected"</c:if>>是</option>
+                                    <option value="0" <c:if test="${columnPage.editable ==  '0' }">selected="selected"</c:if>>否</option>
+                                </select>
+                                <select name="columnpages[${status1.index }].hiddenable" >
+                                    <option value="1" <c:if test="${columnPage.hiddenable ==  '1' }">selected="selected"</c:if>>是</option>
+                                    <option value="0" <c:if test="${columnPage.hiddenable ==  '0' }">selected="selected"</c:if>>否</option>
+                                </select>
+
+
+                                <select name="columnpages[${status1.index }].element" >
+                                    <option value="text" <c:if test="${columnPage.element ==  'text' }">selected="selected"</c:if>>文本</option>
+                                    <option value="digits" <c:if test="${columnPage.element ==  'digits' }">selected="selected"</c:if>>整数</option>
+                                    <option value="number" <c:if test="${columnPage.element ==  'number' }">selected="selected"</c:if>>数字</option>
+                                    <option value="date" <c:if test="${columnPage.element ==  'date' }">selected="selected"</c:if>>日期</option>
+                                    <option value="timestamp" <c:if test="${columnPage.element ==  'timestamp' }">selected="selected"</c:if>>时间</option>
+                                    <option value="email" <c:if test="${columnPage.element ==  'email' }">selected="selected"</c:if>>邮件</option>
+                                    <option value="url" <c:if test="${columnPage.element ==  'url' }">selected="selected"</c:if>>网址</option>
+                                    <option value="creditcard" <c:if test="${columnPage.element ==  'creditcard' }">selected="selected"</c:if>>信用卡</option>
+                                    <option value="radio" <c:if test="${columnPage.element ==  'radio' }">selected="selected"</c:if>>单选</option>
+                                    <option value="checkbox" <c:if test="${columnPage.element ==  'checkbox' }">selected="selected"</c:if>>多选</option>
+                                    <option value="textarea" <c:if test="${columnPage.element ==  'textarea' }">selected="selected"</c:if>>文本域</option>
+                                    <option value="select" <c:if test="${columnPage.element ==  'select' }">selected="selected"</c:if>>下拉选择</option>
+                                    <option value="openwin" <c:if test="${columnPage.element ==  'openwin' }">selected="selected"</c:if>>弹框选择</option>
+                                    <option value="singlefile" <c:if test="${columnPage.element ==  'singlefile' }">selected="selected"</c:if>>单文件</option>
+                                    <option value="multifile" <c:if test="${columnPage.element ==  'multifile' }">selected="selected"</c:if>>多文件</option>
+                                    <option value="singleimage" <c:if test="${columnPage.element ==  'singleimage' }">selected="selected"</c:if>>单图片</option>
+                                    <option value="multiimage" <c:if test="${columnPage.element ==  'multiimage' }">selected="selected"</c:if>>多图片</option>
+                                </select>
+
+
+                                <td><input type="number"  id="columnpages[${status1.index }].maxlength" name="columnpages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
+                                <td><input type="number"  id="columnpages[${status1.index }].minlength" name="columnpages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
+                                <td><input type="number"  id="columnpages[${status1.index }].max" name="columnpages[${status1.index }].max" value="${columnPage.max }" /></td>
+                                <td><input type="number"  id="columnpages[${status1.index }].min" name="columnpages[${status1.index }].min" value="${columnPage.min }" /></td>
+                                <td>
+                                    <select name="excolumns[${status1.index }].required" >
+                                        <option value="1" <c:if test="${columnPage.required ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${columnPage.required ==  '0' }">selected="selected"</c:if>>否</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="excolumns[${status1.index }].listShowable" >
+                                        <option value="1" <c:if test="${columnPage.listShowable ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${columnPage.listShowable ==  '0' }">selected="selected"</c:if>>否</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+        <h1>校验信息</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <table width="100%">
+
+                        <thead>
+
+                        <th width="80">序号</th>
+                        <th width="150">列说明</th>
+                        <th width="150">校验表达式</th>
+                        <th width="150">错误提示信息</th>
+
+                        </thead>
+
+                        <tbody>
+                        <c:forEach var="columnValidate"   items="${columnValidates}"   varStatus="status1">
+                            <tr>
+                                <td>${status1.index+1 }</td>
+                                <td>
+                                        ${columnValidate.columnComment }
+                                    <input type="hidden"  id="columnvalidates[${status1.index }].columnId" name="columnvalidates[${status1.index }].columnId" value="${columnValidate.columnId}" />
+                                </td>
+                                <td><input type="text"  id="columnvalidates[${status1.index }].rex" name="columnvalidates[${status1.index }].rex" value="${columnValidate.rex }" /></td>
+                                <td><input type="text"  id="columnvalidates[${status1.index }].msg" name="columnvalidates[${status1.index }].msg" value="${columnValidate.msg }" /></td>
+                                </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <h1>事件信息</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <table width="100%">
+
+                        <thead>
+
+                        <th width="80">序号</th>
+                        <th width="150">列说明</th>
+                        <th width="150">事件名</th>
+                        <th width="150">函数名</th>
+                        <th width="150">参数</th>
+                        <th width="150">函数体内容</th>
+
+                        </thead>
+
+                        <tbody>
+                        <c:forEach var="columnEvent"   items="${columnEvents}"   varStatus="status1">
+                            <tr>
+                                <td>${status1.index+1 }</td>
+                                <td>
+                                    ${columnEvent.columnComment }
+                                    <input type="hidden"  id="columnevents[${status1.index }].columnId" name="columnevents[${status1.index }].columnId" value="${columnEvent.columnId}" />
+                                </td>
+                                <td><input type="text"  id="columnevents[${status1.index }].eventName" name="columnevents[${status1.index }].eventName" value="${columnEvent.eventName }" /></td>
+                                <td><input type="text"  id="columnevents[${status1.index }].funcName" name="columnevents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
+                                <td><input type="text"  id="columnevents[${status1.index }].funcParam" name="columnevents[${status1.index }].funcParam" value="${columnEvent.funcParam }" /></td>
+                                <td><textarea id="columnevents[${status1.index }].funcBody" name="columnevents[${status1.index }].funcBody">${columnEvent.funcBody}</textarea></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <h1>约束信息</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <table width="100%">
+
+                        <thead>
+
+                        <th width="80">序号</th>
+                        <th width="150">约束名</th>
+                        <th width="150">列名称</th>
+
+                        </thead>
+
+                        <tbody>
+                        <c:forEach var="indexConfig"   items="${indexConfigs}"   varStatus="status1">
+                            <tr>
+                                <td>${status1.index+1 }</td>
+                                <td>${indexConfig.indexName }</td>
+                                <td>${indexConfig.indexCloumns }</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+        <h1>查询条件</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <table width="100%">
+
+                        <thead>
+
+                        <th width="80">序号</th>
+                        <th width="150">列说明</th>
+                        <th width="150">标题</th>
+                        <th width="150">占位符</th>
+                        <th width="150">查询关系</th>
+                        <th width="150">查询顺序</th>
+
+                        </thead>
+
+                        <tbody>
+                        <c:forEach var="queryConfig"   items="${queryConfigs}"   varStatus="status1">
+                            <tr>
+                                <td>${status1.index+1 }</td>
+                                <td>
+                                        ${queryConfig.columnComment }
+                                    <input type="hidden"  id="queryconfigs[${status1.index }].columnId" name="queryconfigs[${status1.index }].columnId" value="${queryConfig.columnId}" />
+                                </td>
+                                <td><input type="text"  id="queryconfigs[${status1.index }].queryTitle" name="queryconfigs[${status1.index }].queryTitle" value="${queryConfig.queryTitle }" /></td>
+                                <td><input type="text"  id="queryconfigs[${status1.index }].queryPlaceholder" name="queryconfigs[${status1.index }].queryPlaceholder" value="${queryConfig.queryPlaceholder }" /></td>
+
+
+                                <select name="queryconfigs[${status1.index }].queryRelation" >
+                                    <option value="eq" <c:if test="${queryConfig.queryRelation ==  'eq' }">selected="selected"</c:if>>等于</option>
+                                    <option value="ne" <c:if test="${queryConfig.queryRelation ==  'ne' }">selected="selected"</c:if>>不等于</option>
+                                    <option value="gt" <c:if test="${queryConfig.queryRelation ==  'gt' }">selected="selected"</c:if>>大于</option>
+                                    <option value="ge" <c:if test="${queryConfig.queryRelation ==  'ge' }">selected="selected"</c:if>>大于等于</option>
+                                    <option value="lt" <c:if test="${queryConfig.queryRelation ==  'lt' }">selected="selected"</c:if>>小于</option>
+                                    <option value="le" <c:if test="${queryConfig.queryRelation ==  'le' }">selected="selected"</c:if>>小于等于</option>
+                                    <option value="like" <c:if test="${queryConfig.queryRelation ==  'like' }">selected="selected"</c:if>>模糊匹配</option>
+                                    <option value="notlike" <c:if test="${queryConfig.queryRelation ==  'notlike' }">selected="selected"</c:if>>模糊不匹配</option>
+                                </select>
+
+                                <td><input type="number"  id="queryconfigs[${status1.index }].querySort" name="queryconfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+
+
+        <h1>查询条件</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <c:forEach var="operation"   items="${operations}"   varStatus="status1">
+                        <input id="op${operation.id}" name="operations" type="checkbox" value="${operation.id}" <c:if test="${operation.checked}">checked</c:if>  />
+                        <span for="op${operation.id}">${operation.operationName}</span>
+                    </c:forEach>
+
+                </div>
+            </div>
+        </fieldset>
+
+
     </form>
-
-
-
 
 </div>
 
@@ -414,7 +738,7 @@
 
     //增加此处  解决有些元素隐藏的问题
     $('.wizard > .content > .body').css({'position':'relative'})
-    //$('table').bootstrapTable({height:300});
+    $('table').bootstrapTable({height:300});
 
 </script>
 

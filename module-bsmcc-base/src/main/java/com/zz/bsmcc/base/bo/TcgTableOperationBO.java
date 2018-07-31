@@ -16,5 +16,13 @@ import java.io.Serializable;
 @EntityAnnotation(value="表操作定义" , resource = "")
 @TableName(value="tcg_table_operation" , resultMap = "TcgTableOperationResultMap")
 public class TcgTableOperationBO extends TcgTableOperationEntity implements Serializable {
+    private boolean checked ;
 
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 }

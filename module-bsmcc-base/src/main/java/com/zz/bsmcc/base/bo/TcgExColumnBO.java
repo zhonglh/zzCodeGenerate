@@ -17,4 +17,24 @@ import java.io.Serializable;
 @TableName(value="tcg_ex_column" , resultMap = "TcgExColumnResultMap")
 public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
+    private String originalColumnFkName ;
+
+    private String originalColumnDictName;
+
+
+    public String getOriginalColumnFkName() {
+        return originalColumnFkName;
+    }
+
+    public void setOriginalColumnFkName(String originalColumnFkName) {
+        this.originalColumnFkName = originalColumnFkName;
+    }
+
+    public String getOriginalColumnDictName() {
+        return originalColumnDictName;
+    }
+
+    public void setOriginalColumnDictName(String originalColumnDictName) {
+        this.originalColumnDictName = originalColumnDictName;
+    }
 }

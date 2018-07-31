@@ -156,9 +156,9 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				String filedComment = rs.getString(2);
 				String otherFiledComment = null;
 				if(StringUtils.isNotEmpty(filedComment)) {
-					StringBuilder commentSb = new StringBuilder(filedComment);
+					StringBuilder commentSb = new StringBuilder();
 					StringBuilder otherCommentSb = new StringBuilder();
-					processColumnCommon(commentSb, otherCommentSb);
+					processColumnCommon(filedComment ,commentSb, otherCommentSb);
 					filedComment = commentSb.toString();
 					if(otherCommentSb != null && otherCommentSb.length() >0) {
 						otherFiledComment = otherCommentSb.toString();
@@ -313,9 +313,8 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 
 
 
-	private void processColumnCommon(StringBuilder commentsSb ,StringBuilder otherCommentsSb  ){
+	private void processColumnCommon(String comments,StringBuilder commentsSb ,StringBuilder otherCommentsSb  ){
 
-		String comments = commentsSb.toString();
 		String otherComments = "";
 		if(comments != null && !comments.isEmpty()){
 			String c[] = comments.split("\r\n");
@@ -328,8 +327,8 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 		}else {
 			comments = "";
 		}
-		commentsSb = new StringBuilder(comments);
-		otherCommentsSb = new StringBuilder(otherComments);
+		commentsSb = commentsSb.append(comments);
+		otherCommentsSb = otherCommentsSb.append(otherComments);
 	}
 
 	/**

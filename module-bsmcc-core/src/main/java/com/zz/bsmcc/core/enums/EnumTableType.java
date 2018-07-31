@@ -11,7 +11,7 @@ public enum EnumTableType implements EnumBase {
 
     singleTable("1" , "单表") ,
     mainTable("2" , "主表") ,
-    attachTable("3" , "附表") ,
+    attachTable("3" , "副表") ,
     childTable("4" , "字表") ,
 
     ;

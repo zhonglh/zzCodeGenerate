@@ -17,4 +17,13 @@ import java.io.Serializable;
 @TableName(value="tcg_column_validate" , resultMap = "TcgColumnValidateResultMap")
 public class TcgColumnValidateBO extends TcgColumnValidateEntity implements Serializable {
 
+    private String columnComment ;
+
+    public String getColumnComment() {
+        return columnComment;
+    }
+
+    public void setColumnComment(String columnComment) {
+        this.columnComment = columnComment;
+    }
 }

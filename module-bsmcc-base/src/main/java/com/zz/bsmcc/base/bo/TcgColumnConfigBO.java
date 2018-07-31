@@ -17,4 +17,14 @@ import java.io.Serializable;
 @TableName(value="tcg_column_config" , resultMap = "TcgColumnConfigResultMap")
 public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializable {
 
+
+    private String columnIsnullName ;
+
+    public String getColumnIsnullName() {
+        return columnIsnullName;
+    }
+
+    public void setColumnIsnullName(String columnIsnullName) {
+        this.columnIsnullName = columnIsnullName;
+    }
 }

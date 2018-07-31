@@ -8,6 +8,7 @@ import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
+import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bsmcc.base.bo.*;
@@ -39,9 +40,6 @@ import java.util.*;
 @Component
 public class TableBusiness {
 
-    public TableBusiness(){
-        System.out.println("----TableBusiness----");
-    }
 
 
     @Autowired
@@ -193,7 +191,7 @@ public class TableBusiness {
             tcgTableConfigBO.setIsBuildController(EnumYesNo.NO.getCode());
         }
         tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildController());
-        tcgTableConfigBO.setJavaName(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName()));
+        tcgTableConfigBO.setJavaName(StringUtil.firstUpperCase(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName())));
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
 
 
@@ -210,6 +208,7 @@ public class TableBusiness {
         columnBO.setTableId(tableBO.getId());
         columnBO.setColumnName(column.getColumnName());
         columnBO.setColumnComment(column.getColumnComment());
+        columnBO.setColumnOtherComment(column.getColumnOtherComments());
         columnBO.setColumnType(column.getDataType());
         if(column.getCharmaxLength() != null && column.getCharmaxLength() != 0) {
             columnBO.setColumnLength(column.getCharmaxLength());

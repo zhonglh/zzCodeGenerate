@@ -62,7 +62,7 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 
 
     //@EntityAttrAnnotation(attrName="界面元素",sort=6  , attrLength=50    )
-	//参考EnumPageElement  
+	//参考 EnumPageElement
 	private String element;
 
 

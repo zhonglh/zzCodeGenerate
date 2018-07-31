@@ -22,13 +22,15 @@ public enum EnumQueryRelation implements EnumBase{
     in("in","IN"),
     notin("notin","NOT IN"),
 
-    isnull("isnull","为空"),
-    isnotnull("isnotnull","不为空"),
 
 
     between("between" , "范围-左闭右闭"),
     betweenl("betweenl" , "范围-左开右闭"),
     betweenr("betweenr" , "范围-右开左闭"),
+
+
+    isnull("isnull","为空"),
+    isnotnull("isnotnull","不为空"),
 
     ;
 
@@ -42,12 +44,12 @@ public enum EnumQueryRelation implements EnumBase{
 
     @Override
     public Serializable getTheValue() {
-        return null;
+        return name();
     }
 
     @Override
     public String getTheName() {
-        return null;
+        return name;
     }
 
 

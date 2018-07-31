@@ -17,4 +17,13 @@ import java.io.Serializable;
 @TableName(value="tcg_column_event" , resultMap = "TcgColumnEventResultMap")
 public class TcgColumnEventBO extends TcgColumnEventEntity implements Serializable {
 
+    private String columnComment ;
+
+    public String getColumnComment() {
+        return columnComment;
+    }
+
+    public void setColumnComment(String columnComment) {
+        this.columnComment = columnComment;
+    }
 }

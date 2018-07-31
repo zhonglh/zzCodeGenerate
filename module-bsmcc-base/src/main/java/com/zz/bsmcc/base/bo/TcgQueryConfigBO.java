@@ -17,4 +17,13 @@ import java.io.Serializable;
 @TableName(value="tcg_query_config" , resultMap = "TcgQueryConfigResultMap")
 public class TcgQueryConfigBO extends TcgQueryConfigEntity implements Serializable {
 
+    private String columnComment ;
+
+    public String getColumnComment() {
+        return columnComment;
+    }
+
+    public void setColumnComment(String columnComment) {
+        this.columnComment = columnComment;
+    }
 }

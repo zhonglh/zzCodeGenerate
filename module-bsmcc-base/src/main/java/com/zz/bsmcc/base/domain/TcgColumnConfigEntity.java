@@ -112,7 +112,8 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
     //@EntityAttrAnnotation(attrName="说明",sort=13  , attrLength=100    )
 	private String columnComment;
 
-
+	//@EntityAttrAnnotation(attrName="其它说明",sort=13  , attrLength=100    )
+	private String columnOtherComment;
 
 
 
@@ -329,7 +330,16 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	public void setColumnComment(String columnComment) {
 		this.columnComment = columnComment;
 	}
-	/** 
+
+	public String getColumnOtherComment() {
+		return columnOtherComment;
+	}
+
+	public void setColumnOtherComment(String columnOtherComment) {
+		this.columnOtherComment = columnOtherComment;
+	}
+
+	/**
 	 * Java类名
 	 * @return the javaSimpleClass
 	 */
