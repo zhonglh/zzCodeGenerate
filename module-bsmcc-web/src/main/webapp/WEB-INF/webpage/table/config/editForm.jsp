@@ -52,7 +52,6 @@
 
         <h1>表信息</h1>
         <fieldset>
-            <h2>表信息</h2>
             <div class="row">
                 <div class="col-sm-6">
 
@@ -60,23 +59,20 @@
                     <div class="form-group">
                         <label>数据库：</label>
                         <input type="hidden" name="dbId" id="dbId" value="${entity.dbId}" />
-                        <span>${entity.dbConfigTitle}</span>
+                        <input id="dbConfigTitle" name="dbConfigTitle" value="${entity.dbConfigTitle }" readonly type="text" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label>项目：</label>
-                        <select id="projectId" name="projectId" class="form-control">
-                            <c:forEach var="project"   items="${projects }"   varStatus="status1">
-                                <option value="${project.id }" >${project.projectName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                        <input type="hidden" name="projectId" id="projectId" value="${entity.projectId}" />
+                        <input id="projectName" name="projectName" value="${entity.projectName }" readonly type="text" class="form-control">
 
+                    </div>
 
 
                     <div class="form-group">
                         <label>模块：</label>
-                        <select id="moduleId" name="moduleId" class="form-control">
+                        <select id="moduleId" name="moduleId" class="form-control required">
                             <c:forEach var="module"   items="${modules }"   varStatus="status1">
                                 <option value="${module.id }" >${module.moduleName}</option>
                             </c:forEach>
@@ -84,14 +80,35 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Schema *</label> <input id="schema" name="schema" value="${entity.schema }" type="text" class="form-control required">
+                        <label>Schema </label> <input id="schemaName" name="schemaName" value="${entity.schemaName }" readonly type="text" class="form-control required">
                     </div>
                     <div class="form-group">
-                        <label>表名 *</label> <input id="tableName" name="tableName" value="${entity.tableName }"  type="text" class="form-control required">
+                        <label>表名 </label> <input id="tableName" name="tableName" value="${entity.tableName }" readonly type="text" class="form-control required">
                     </div>
                     <div class="form-group">
-                        <label>表描述 *</label> <input id="content" name="content" value="${entity.content }"  type="text" class="form-control required">
+                        <label>表描述 *</label> <input id="tableComment" name="tableComment" value="${entity.tableComment }"  type="text" class="form-control required">
                     </div>
+
+                    <div class="form-group">
+                        <label>是否生成UI：</label>
+                        <select id="isBuildController" name="isBuildController"  class="form-control required">
+                            <option value="1"  <c:if test="${entity.isBuildController ==  '1' }">selected="selected"</c:if> > 是 </option>
+                            <option value="0"   <c:if test="${entity.isBuildController ==  '0' }">selected="selected"</c:if>  > 否 </option>
+                        </select>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label>是否生成菜单数据：</label>
+                        <select id="isBuildMenu" name="isBuildMenu"  class="form-control required">
+                            <option value="1"  <c:if test="${entity.isBuildMenu ==  '1' }">selected="selected"</c:if> > 是 </option>
+                            <option value="0"   <c:if test="${entity.isBuildMenu ==  '0' }">selected="selected"</c:if>  > 否 </option>
+                        </select>
+                    </div>
+
+
 
                 </div>
 
@@ -102,32 +119,84 @@
 
                     <div class="form-group">
                         <label>显示复选框：</label>
-                        <select id="isCheckbox" name="isCheckbox"  class="form-control">
-                            <option value="Y"  <c:if test="${entity.isCheckbox ==  'Y' }">selected="selected"</c:if> hassubinfo="true">是</option>
-                            <option value="N"  <c:if test="${entity.isCheckbox ==  'N' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                        <select id="isShowCheckbox" name="isShowCheckbox"  class="form-control">
+                            <option value="1"  <c:if test="${entity.isShowCheckbox ==  '1' }">selected="selected"</c:if> >是</option>
+                            <option value="0"  <c:if test="${entity.isShowCheckbox ==  '0' }">selected="selected"</c:if> >否</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>是否分页：</label>
-                        <select id="isPagination" name="isPagination"  class="form-control">
-                            <option value="Y"  <c:if test="${entity.isPagination ==  'Y' }">selected="selected"</c:if> hassubinfo="true">是</option>
-                            <option value="N"  <c:if test="${entity.isPagination ==  'N' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                        <label>表类型：</label>
+                        <select id="tableType" name="tableType"  class="form-control">
+                            <option value="1"  <c:if test="${entity.tableType ==  '1' }">selected="selected"</c:if> >单表</option>
+                            <option value="2"  <c:if test="${entity.tableType ==  '2' }">selected="selected"</c:if> >主表</option>
+                            <option value="3"  <c:if test="${entity.tableType ==  '3' }">selected="selected"</c:if> >副表</option>
+                            <option value="4"  <c:if test="${entity.tableType ==  '4' }">selected="selected"</c:if> >子表</option>
                         </select>
                     </div>
 
 
+
+
                     <div class="form-group">
-                        <label>查询模式：</label>
-                        <select id="querymode" name="querymode"  class="form-control">
-                            <option value="single"  <c:if test="${entity.querymode ==  'single' }">selected="selected"</c:if> hassubinfo="true">单表查询</option>
-                            <option value="group"   <c:if test="${entity.querymode ==  'group' }">selected="selected"</c:if>  hassubinfo="true">组合查询</option>
+                        <label>和主表的关系：</label>
+                        <select id="tableRelation" name="tableRelation"  class="form-control">
+                            <option value="one-one"  <c:if test="${entity.tableRelation ==  'one-one' }">selected="selected"</c:if> >一对一</option>
+                            <option value="one-multi"   <c:if test="${entity.tableRelation ==  'one-multi' }">selected="selected"</c:if>  >一对多</option>
                         </select>
                     </div>
 
+
+
+
+
                     <div class="form-group">
-                        <label>包名(全路径) *</label> <input id="packageName" name="packageName" value="${entity.packageName }"  type="text" class="form-control required">
+                        <label>查询条件模式：</label>
+                        <select id="queryMode" name="queryMode"  class="form-control required">
+                            <option value="toolbar"  <c:if test="${entity.queryMode ==  'toolbar' }">selected="selected"</c:if> > 工具栏样式 </option>
+                            <option value="ordinary"   <c:if test="${entity.queryMode ==  'ordinary' }">selected="selected"</c:if>  > 常用样式 </option>
+                        </select>
                     </div>
+
+
+
+
+                    <c:if test="${entity.isTable == '0'}">
+                    <div class="form-group">
+                        <label>主要的表(视图中的主表)：</label>
+                        <select id="mainTableId" name="mainTableId"  class="form-control required">
+                            <c:forEach items="${tables}" var="table">
+                                <option value="${table.id}"  <c:if test="${entity.mainTableId ==  table.id }">selected="selected"</c:if> >${table.tableName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    </c:if>
+
+
+
+                    <div class="form-group">
+                        <label>资源名称 *</label> <input id="resourceName" name="resourceName" value="${entity.resourceName }"  type="text" class="form-control required">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Java 简称</label> <input id="javaName" name="javaName" value="${entity.javaName }"  type="text" class="form-control required">
+                    </div>
+
+                    <div class="form-group">
+                        <label>是否为树状</label>
+                        <select id="isTree" name="isTree"  class="form-control required">
+                            <option value="1"  <c:if test="${entity.isTree ==  '1' }">selected="selected"</c:if> >是</option>
+                            <option value="0"  <c:if test="${entity.isTree ==  '0' }">selected="selected"</c:if> >否</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>上级字段名称</label> <input id="parentFieldName" name="parentFieldName" value="${entity.parentFieldName }"  type="text" class="form-control">
+                    </div>
+
 
                 </div>
                 <div class="col-sm-4">
@@ -143,11 +212,8 @@
         </fieldset>
 
 
-
-
-        <h1>数据库属性</h1>
+        <h1>列信息</h1>
         <fieldset>
-            <h2>数据库属性</h2>
             <div class="row">
                 <div class="col-xs-12">
 
@@ -156,48 +222,68 @@
                         <thead>
 
                         <th width="80">序号</th>
-                        <th width="350">字段名称</th>
-                        <th width="350">字段备注</th>
-                        <th width="350">字段长度</th>
-                        <th width="350">小数点</th>
-                        <th width="350">字段类型</th>
-                        <th width="150">是否主键</th>
-                        <th width="150">可以为空</th>
+                        <th width="350">列名称</th>
+                        <th width="350">列类型</th>
+                        <th width="350">列长度</th>
+                        <th width="350">小数点位数</th>
+                        <th width="350">允许空值</th>
+                        <th width="150">顺序</th>
+                        <th width="150">是否为主键</th>
+                        <th width="150">是否为外键</th>
+                        <th width="150">是否为字典</th>
+                        <th width="150">字典类型</th>
+                        <th width="350">列说明</th>
+                        <th width="350">Java类全称</th>
+                        <th width="350">Java名称</th>
+                        <th width="350">组编码</th>
 
                         </thead>
 
                         <tbody>
-                        <c:forEach var="column"   items="${columns }"   varStatus="status1">
+                        <c:forEach var="column"   items="${columnConfigs}"   varStatus="status1">
                             <tr>
                                 <td>${status1.index+1 }</td>
-                                <td><input type="text" id="columns[${status1.index }].dbName" name="columns[${status1.index }].dbName" value="${column.dbName }"  /></td>
-                                <td><input type="text" id="columns[${status1.index }].content" name="columns[${status1.index }].content" value="${column.content }" /></td>
+                                <td>${column.columnName }</td>
+                                <td>${column.columnType }</td>
 
-                                <td><input type="text" id="columns[${status1.index }].length" name="columns[${status1.index }].length" value="${column.length }" /></td>
-                                <td><input type="text" id="columns[${status1.index }].pointLength" name="columns[${status1.index }].pointLength" value="${column.pointLength }" /></td>
+                                <td>${column.columnLength }</td>
+                                <td>${column.columnScale }</td>
+                                <td>${column.columnIsnullName }</td>
+
                                 <td>
-                                    <select name="columns[${status1.index}].type" >
+                                    <input type="hidden" id="columns[${status1.index }].id" name="columns[${status1.index }].id" value="${column.id }" />
+                                    <input type="number" readonly id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" />
+                                </td>
 
-                                        <c:forEach var="dbType"   items="${dbTypes }"  >
-                                            <option value="${dbType }" <c:if test="${column.type ==  dbType }">selected="selected"</c:if>>${dbType }</option>
-                                        </c:forEach>
+                                <td>
+                                    <select name="columns[${status1.index }].columnIskey" >
+                                        <option value="1" <c:if test="${column.columnIskey ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${column.columnIskey ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
 
                                 <td>
-                                    <select name="columns[${status1.index }].isKey" >
-                                        <option value="Y" <c:if test="${column.isKey ==  'Y' }">selected="selected"</c:if>>是</option>
-                                        <option value="N" <c:if test="${column.isKey ==  'N' }">selected="selected"</c:if>>否</option>
+                                    <select name="columns[${status1.index }].columnIsfk" >
+                                        <option value="1" <c:if test="${column.columnIsfk ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${column.columnIsfk ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
-
 
                                 <td>
-                                    <select name="columns[${status1.index }].isNull" >
-                                        <option value="Y" <c:if test="${column.isNull ==  'Y' }">selected="selected"</c:if>>是</option>
-                                        <option value="N" <c:if test="${column.isNull ==  'N' }">selected="selected"</c:if>>否</option>
+                                    <select name="columns[${status1.index }].columnIsdict" >
+                                        <option value="1" <c:if test="${column.columnIsdict ==  '1' }">selected="selected"</c:if>>是</option>
+                                        <option value="0" <c:if test="${column.columnIsdict ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
+
+
+                                <td><input type="text" id="columns[${status1.index }].dict_type" name="columns[${status1.index }].dict_type" value="${column.dict_type }" /></td>
+                                <td><input type="text" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
+
+                                <td><input type="text" required id="columns[${status1.index }].javaFullClass" name="columns[${status1.index }].javaFullClass" value="${column.javaFullClass }" /></td>
+                                <td><input type="text" required id="columns[${status1.index }].javaName" name="columns[${status1.index }].javaName" value="${column.javaName }" /></td>
+                                <td><input type="text" required id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
+
 
 
                             </tr>
@@ -213,176 +299,6 @@
 
         </fieldset>
 
-
-        <h1>页面属性</h1>
-        <fieldset>
-            <h2>页面属性</h2>
-            <div class="row">
-                <div class="col-xs-12">
-
-                    <table width="100%">
-
-                        <thead>
-                        <th width="80">序号</th>
-                        <th width="350">字段名称</th>
-                        <th width="350">字段备注</th>
-                        <th width="350">是否显示</th>
-                        <th width="350">是否可编辑</th>
-                        <th width="350">控件类型</th>
-                        <th width="350">控件长度</th>
-                        <th width="350">是否查询</th>
-                        <th width="350">查询类型</th>
-                        </thead>
-
-                        <tbody>
-                        <c:forEach var="column"   items="${columns }"   varStatus="status1">
-                            <tr>
-                                <td>${status1.index+1 }</td>
-                                <td><input type="text" id="dbName1" name="dbName1" value="${column.dbName }" readonly="readonly" /></td>
-                                <td><input type="text" id="content1" name="content1" value="${column.content }" readonly="readonly" /></td>
-
-
-
-                                <td>
-                                    <select name="columns[${status1.index }].isShowList" >
-                                        <option value="Y" <c:if test="${column.isShowList ==  'Y' }">selected="selected"</c:if>>是</option>
-                                        <option value="N" <c:if test="${column.isShowList ==  'N' }">selected="selected"</c:if>>否</option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <select name="columns[${status1.index }].isShow" >
-                                        <option value="Y" <c:if test="${column.isShow ==  'Y' }">selected="selected"</c:if>>是</option>
-                                        <option value="N" <c:if test="${column.isShow ==  'N' }">selected="selected"</c:if>>否</option>
-                                    </select>
-                                </td>
-
-
-                                <td>
-                                    <select name="columns[${status1.index }].showType" >
-                                        <c:forEach var="easyui"   items="${easyuis }"  >
-                                            <option value="${easyui }" <c:if test="${column.showType ==  easyui }">selected="selected"</c:if>>${easyui }</option>
-                                        </c:forEach>
-                                    </select>
-                                </td>
-
-                                <td><input type="text" id="columns[${status1.index }].fieldLength" name="columns[${status1.index }].fieldLength" value="${column.fieldLength }" /></td>
-
-
-
-                                <td>
-                                    <select name="columns[${status1.index }].isQuery" >
-                                        <option value="Y" <c:if test="${column.isQuery ==  'Y' }">selected="selected"</c:if>>是</option>
-                                        <option value="N" <c:if test="${column.isQuery ==  'N' }">selected="selected"</c:if>>否</option>
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <select name="columns[${status1.index }].queryMode" >
-                                        <option value="single" <c:if test="${column.queryMode ==  'single' }">selected="selected"</c:if>>普通查询</option>
-                                        <option value="group"  <c:if test="${column.queryMode ==  'group'  }">selected="selected"</c:if>>范围查询</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-
-            </div>
-
-        </fieldset>
-
-
-        <h1>数据校验</h1>
-        <fieldset>
-            <h2>数据校验</h2>
-            <div class="row">
-                <div class="col-xs-12">
-
-                    <table width="100%">
-
-                        <thead>
-                        <th width="80">序号</th>
-                        <th width="350">字段名称</th>
-                        <th width="350">字段备注</th>
-                        <th width="350">校验规则</th>
-                        <th width="350">字典Code</th>
-                        <th width="350">Java类型</th>
-                        </thead>
-
-                        <tbody>
-                        <c:forEach var="column"   items="${columns }"   varStatus="status1">
-                            <tr>
-                                <td>${status1.index+1 }</td>
-                                <td><input type="text" id="dbName1" name="dbName1" value="${column.dbName }" readonly="readonly" /></td>
-                                <td><input type="text" id="content1" name="content1" value="${column.content }" readonly="readonly" /></td>
-
-                                <td><input type="text" id="columns[${status1.index }].fieldValidType" name="columns[${status1.index }].fieldValidType" value="${column.fieldValidType }" /></td>
-                                <td><input type="text" id="columns[${status1.index }].dictionarys" name="columns[${status1.index }].dictionarys" value="${column.dictionarys }" /></td>
-
-
-                                <td>
-                                    <select id="javaFullType" name="columns[${status1.index }].javaFullType" onkeydown="Select.del(this,event)" onkeypress="Select.write(this,event)">
-                                        <option value="" ></option>
-                                        <option value="${column.javaFullType }" selected="selected">${column.javaFullType }</option>
-                                        <c:forEach var="javaType"   items="${javaTypes }"  >
-                                            <option value="${javaType }" <c:if test="${column.javaFullType ==  javaType }">selected="selected"</c:if>>${javaType }</option>
-                                        </c:forEach>
-                                    </select>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-
-        </fieldset>
-
-
-
-
-
-        <h1>约束限制</h1>
-        <fieldset>
-            <h2>数据校验</h2>
-            <div class="row">
-                <div class="col-xs-12">
-
-                    <table width="100%">
-
-                        <thead>
-                        <th width="80">序号</th>
-                        <th width="350">约束名称</th>
-                        <th width="350">约束字段</th>
-                        </thead>
-
-                        <tbody>
-                        <c:forEach var="index1"   items="${indexs }"   varStatus="status1">
-                            <tr>
-                                <td>${status1.index+1 }</td>
-                                <td>
-                                    <input type="hidden" id="indexes[${status1.index }].id" name="indexes[${status1.index }].id" value="${index1.id }" />
-                                    <input type="text" id="indexes[${status1.index }].indexName" name="indexes[${status1.index }].indexName" value="${index1.indexName }" /></td>
-                                <td><input type="text" id="indexes[${status1.index }].indexField" name="indexes[${status1.index }].indexField" value="${index1.indexField }" /></td>
-                            </tr>
-
-                        </c:forEach>
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-
-            </div>
-
-        </fieldset>
 
 
 
@@ -477,7 +393,7 @@
                     topShwoMessage("info",ajax.msg);
 
                     window.setTimeout(function(){top.layer.closeAll();},2000);
-                    top.iframe20.window.refreshTable();
+                    top.iframe40.window.refreshTable();
 
                 }else {
                     topShwoMessage("error",ajax.msg);
@@ -496,7 +412,9 @@
     });
 
 
-    $('table').bootstrapTable({height:300});
+    //增加此处  解决有些元素隐藏的问题
+    $('.wizard > .content > .body').css({'position':'relative'})
+    //$('table').bootstrapTable({height:300});
 
 </script>
 
