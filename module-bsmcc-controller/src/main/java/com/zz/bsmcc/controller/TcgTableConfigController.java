@@ -11,23 +11,18 @@ import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 
-import com.zz.bsmcc.base.bo.TcgDbConfigBO;
-import com.zz.bsmcc.base.bo.TcgProjectBO;
-import com.zz.bsmcc.base.bo.TcgTableConfigBO;
+import com.zz.bsmcc.base.bo.*;
+import com.zz.bsmcc.base.dao.*;
 import com.zz.bsmcc.base.po.TablePO;
+import com.zz.bsmcc.base.query.TcgColumnConfigQuery;
 import com.zz.bsmcc.base.query.TcgDbConfigQuery;
 import com.zz.bsmcc.base.query.TcgProjectQuery;
 import com.zz.bsmcc.base.query.TcgQueryConfigQuery;
-import com.zz.bsmcc.base.query.impl.TcgDbConfigQueryImpl;
-import com.zz.bsmcc.base.query.impl.TcgProjectQueryImpl;
-import com.zz.bsmcc.base.query.impl.TcgQueryConfigQueryImpl;
-import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryWebImpl;
+import com.zz.bsmcc.base.query.impl.*;
 
 import com.zz.bms.util.base.java.IdUtils;
 
-import com.zz.bsmcc.base.service.TableBusinessService;
-import com.zz.bsmcc.base.service.TcgDbConfigService;
-import com.zz.bsmcc.base.service.TcgProjectService;
+import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.business.TableBusiness;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
 import com.zz.bsmcc.core.util.table.pojo.*;
@@ -48,7 +43,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 表设置 控制层
@@ -60,6 +57,13 @@ import java.util.List;
 @Controller
 public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigBO, String , TcgTableConfigQueryWebImpl> {
 
+    @Autowired
+    private TableBusiness tableBusiness;
+
+    @Autowired
+    private TableBusinessService tableBusinessService;
+
+
 
 	@Autowired
 	private TcgDbConfigService tcgDbConfigService;
@@ -68,10 +72,35 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     private TcgProjectService tcgProjectService;
 
     @Autowired
-    private TableBusiness tableBusiness;
+    private TcgModuleConfigService tcgModuleConfigService;
+
 
     @Autowired
-    private TableBusinessService tableBusinessService;
+    private TcgColumnConfigService tcgColumnConfigService;
+
+    @Autowired
+    private TcgExColumnService tcgExColumnService;
+
+    @Autowired
+    private TcgColumnPageService tcgColumnPageService;
+    @Autowired
+    private TcgIndexConfigService tcgIndexConfigService;
+
+
+
+    @Autowired
+    private TcgColumnEventService tcgColumnEventService;
+    @Autowired
+    private TcgColumnValidateService tcgColumnValidateService;
+    @Autowired
+    private TcgColumnExService tcgColumnExService;
+    @Autowired
+    private TcgQueryConfigService tcgQueryConfigService;
+    @Autowired
+    private TcgTableOperationService tcgTableOperationService;
+
+
+
 
 
     /**
@@ -193,6 +222,50 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         model.put("projects" , projects);
 
 	}
+
+    /**
+     * 修改界面一些定制的操作
+     * @param m
+     * @param model
+     */
+    @Override
+    protected void customInfoByUpdateForm(TcgTableConfigBO m, ModelMap model) {
+
+        TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
+        List<TcgProjectBO> projects =  tcgProjectService.selectList(projectQuery.buildWrapper());
+        model.put("projects" , projects);
+
+        Map<String , Object> map = new HashMap<String , Object>();
+        map.put("table_id" , m.getId());
+
+        List<TcgColumnConfigBO> columnConfigBOs = tcgColumnConfigService.selectByMap(map) ;
+        model.put("columnConfigs" , columnConfigBOs);
+
+        List<TcgExColumnBO> exColumnBOs = tcgExColumnService.selectByMap(map) ;
+        model.put("exColumns" , exColumnBOs);
+
+        List<TcgColumnPageBO> columnPageBOs = tcgColumnPageService.selectByMap(map) ;
+        model.put("columnPages" , columnPageBOs);
+
+        List<TcgIndexConfigBO> indexConfigBOs = tcgIndexConfigService.selectByMap(map) ;
+        model.put("indexConfigs" , indexConfigBOs);
+
+        List<TcgColumnEventBO> columnEventBOs = tcgColumnEventService.selectByMap(map) ;
+        model.put("columnEvents" , columnEventBOs);
+
+        List<TcgColumnValidateBO> columnValidateBOs = tcgColumnValidateService.selectByMap(map) ;
+        model.put("columnValidates" , columnValidateBOs);
+
+        List<TcgColumnExBO> columnExBOs = tcgColumnExService.selectByMap(map) ;
+        model.put("columnExs" , columnExBOs);
+
+        List<TcgQueryConfigBO> queryConfigBOs = tcgQueryConfigService.selectByMap(map) ;
+        model.put("queryConfigs" , queryConfigBOs);
+
+        List<TcgTableOperationBO> tableOperationBOs = tcgTableOperationService.selectByMap(map) ;
+        model.put("tableOperations" , tableOperationBOs);
+
+    }
 
 	@Override
 	protected boolean isExist(TcgTableConfigBO tcgTableConfigBO) {

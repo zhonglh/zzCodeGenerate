@@ -9,7 +9,7 @@ import com.zz.bsmcc.base.bo.TcgColumnExBO;
  * 列扩展Service
  * 
  * @author Administrator
- * @date 2018-7-24 14:42:50
+ * @date 2018-7-30 17:18:05
  */
 public interface TcgColumnExService extends BaseService<TcgColumnExBO , String> {
 

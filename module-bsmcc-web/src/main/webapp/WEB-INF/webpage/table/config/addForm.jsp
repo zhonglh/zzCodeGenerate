@@ -24,8 +24,7 @@
 
 <link href="${ctx}/statics/css/animate.min.css" rel="stylesheet">
 <link href="${ctx}/statics/css/style.min.css?v=4.1.0" rel="stylesheet">
-<link href="${ctx}/statics/css/plugins/bootstrap-table/bootstrap-table.min.css"
-	rel="stylesheet">
+<link href="${ctx}/statics/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
 	
 	
 <link rel="stylesheet" href="${ctx}/statics/css/layer.css" id="layui_layer_skinlayercss">

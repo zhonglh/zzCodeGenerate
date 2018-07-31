@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bsmcc.base.dao.TcgTempletGroupOperationDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TcgTempletGroupOperationResultMap" type="com.zz.bsmcc.base.bo.TcgTempletGroupOperationBO" >
+         	<result column="id" property="id"/>
+         	<result column="group_id" property="groupId"/>
+         	<result column="operation_id" property="operationId"/>
+         	<result column="icons" property="icons"/>
+         	<result column="styles" property="styles"/>
+         	<result column="classs" property="classs"/>
+         	<result column="position" property="position"/>
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TcgTempletGroupOperation4CheckQueryFilter">
+        <where>
+
+
+						<if test="id != null and id != ''"> AND T.id != #{id} </if>
+
+
+
+
+
+                        <if test="groupId != null and groupId != ''"> AND T.group_id = #{groupId} </if>
+
+
+
+
+
+                        <if test="operationId != null and operationId != ''"> AND T.operation_id = #{operationId} </if>
+
+
+
+
+
+                        <if test="icons != null and icons != ''"> AND T.icons = #{icons} </if>
+
+
+
+
+
+                        <if test="styles != null and styles != ''"> AND T.styles = #{styles} </if>
+
+
+
+
+
+                        <if test="classs != null and classs != ''"> AND T.classs = #{classs} </if>
+
+
+
+
+
+                        <if test="position != null and position != ''"> AND T.position = #{position} </if>
+
+
+
+
+        </where>
+    </sql>
+
+
+
+
+    <!-- 根据条件查询第一条模板组操作定义 -->
+    <select id="selectCheck" parameterType="com.zz.bsmcc.base.bo.TcgTempletGroupOperationBO" resultMap="TcgTempletGroupOperationResultMap">
+        SELECT T.* FROM tcg_templet_group_operation T
+        <include refid="TcgTempletGroupOperation4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>
