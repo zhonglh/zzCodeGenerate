@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgTempletGroupQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 模板组 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:09
+ * @date 2018-8-1 12:58:17
  */
 public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTempletGroupAbstractQueryImpl<PK> implements TcgTempletGroupQuery<PK>, Serializable  {
 
@@ -176,6 +177,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -185,6 +189,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -261,6 +268,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery groupNameIn(String groupNameIn) {
                     if(!IdUtils.isEmpty(groupNameIn)){
+                        if(this.groupName_IN == null){
+                            this.groupName_IN = new ArrayList<String>();
+                        }
                         this.groupName_IN.add( groupNameIn );
                     }
                     return this;
@@ -270,6 +280,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery groupNameNotIn(String groupNameNotIn) {
                     if(!IdUtils.isEmpty(groupNameNotIn)){
+                        if(this.groupName_NOTIN == null){
+                            this.groupName_NOTIN = new ArrayList<String>();
+                        }
                         this.groupName_NOTIN.add( groupNameNotIn );
                     }
                     return this;
@@ -344,6 +357,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery groupRemarkIn(String groupRemarkIn) {
                     if(!IdUtils.isEmpty(groupRemarkIn)){
+                        if(this.groupRemark_IN == null){
+                            this.groupRemark_IN = new ArrayList<String>();
+                        }
                         this.groupRemark_IN.add( groupRemarkIn );
                     }
                     return this;
@@ -353,6 +369,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery groupRemarkNotIn(String groupRemarkNotIn) {
                     if(!IdUtils.isEmpty(groupRemarkNotIn)){
+                        if(this.groupRemark_NOTIN == null){
+                            this.groupRemark_NOTIN = new ArrayList<String>();
+                        }
                         this.groupRemark_NOTIN.add( groupRemarkNotIn );
                     }
                     return this;
@@ -468,6 +487,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -477,6 +499,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -594,6 +619,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -603,6 +631,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;
@@ -721,6 +752,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                 public TcgTempletGroupQuery deleteFlagIn(String deleteFlagIn) {
                     if(!IdUtils.isEmpty(deleteFlagIn)){
+                        if(this.deleteFlag_IN == null){
+                            this.deleteFlag_IN = new ArrayList<String>();
+                        }
                         this.deleteFlag_IN.add( deleteFlagIn );
                     }
                     return this;
@@ -730,6 +764,9 @@ public class TcgTempletGroupQueryImpl<PK extends Serializable> extends TcgTemple
                 @Override
                     public TcgTempletGroupQuery deleteFlagNotIn(String deleteFlagNotIn) {
                     if(!IdUtils.isEmpty(deleteFlagNotIn)){
+                        if(this.deleteFlag_NOTIN == null){
+                            this.deleteFlag_NOTIN = new ArrayList<String>();
+                        }
                         this.deleteFlag_NOTIN.add( deleteFlagNotIn );
                     }
                     return this;

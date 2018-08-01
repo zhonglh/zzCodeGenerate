@@ -29,4 +29,13 @@ public enum EnumTableRelation implements EnumBase {
     public String getTheName() {
         return this.name;
     }
+
+    public static EnumTableRelation getTableRelationByValue(String v){
+        for(EnumTableRelation relation : EnumTableRelation.values()){
+            if(relation.getTheValue().equals(v)){
+                return relation;
+            }
+        }
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package com.zz.bsmcc.controller;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.DbException;
@@ -165,10 +166,9 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 	}
 
 
-    @Override
-    @RequestMapping( value = "/create",  method = {RequestMethod.POST} )
+    @RequestMapping( value = "/createAll",  method = {RequestMethod.POST} )
     @ResponseBody
-    public Object create(TcgTableConfigBO m, ModelMap model, HttpServletRequest request , HttpServletResponse response) {
+    public Object createAll(TcgTableConfigBO m, ModelMap model, HttpServletRequest request , HttpServletResponse response) {
         this.permissionList.assertHasCreatePermission();
 
         ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
@@ -206,6 +206,89 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         if (!success) {
             throw DbException.DB_INSERT_RESULT_0;
+        } else {
+            return AjaxJson.successAjax;
+        }
+
+    }
+
+
+
+    @RequestMapping(
+            value = {"/{id}/updateAll"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public Object updateAll(@PathVariable("id") String id, ModelMap model, TablePO tablePO, TcgTableConfigBO tcgTableConfigBO,
+                            HttpServletRequest request, HttpServletResponse response) {
+        this.permissionList.assertHasUpdatePermission();
+
+        ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
+        boolean success = false;
+
+        tablePO.setTableBO(tcgTableConfigBO);
+
+        try {
+            if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
+                for (TcgExColumnBO item : tablePO.getExColumns()){
+                    if(StringUtils.isEmpty(item.getId())){
+                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        item.setTableId(tcgTableConfigBO.getId());
+                    }
+                }
+            }
+
+            if(tablePO.getColumnEvents() != null && !tablePO.getColumnEvents().isEmpty()) {
+                for (TcgColumnEventBO item : tablePO.getColumnEvents()){
+                    if(StringUtils.isEmpty(item.getId())){
+                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        item.setTableId(tcgTableConfigBO.getId());
+                    }
+                }
+            }
+
+            if(tablePO.getColumnValidates() != null && !tablePO.getColumnValidates().isEmpty()) {
+                for (TcgColumnValidateBO item : tablePO.getColumnValidates()){
+                    if(StringUtils.isEmpty(item.getId())){
+                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        item.setTableId(tcgTableConfigBO.getId());
+                    }
+                }
+            }
+
+
+
+            if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()) {
+                for (TcgQueryConfigBO item : tablePO.getQueryConfigs()){
+                    if(StringUtils.isEmpty(item.getId())){
+                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        item.setTableId(tcgTableConfigBO.getId());
+                    }
+                }
+            }
+
+            String[] operations = request.getParameterValues("operations");
+            List<TcgTableOperationBO> operationList = new ArrayList<TcgTableOperationBO>();
+            if(operations != null && operations.length > 0){
+                for(String operation : operations){
+                    TcgTableOperationBO operationBO = new TcgTableOperationBO();
+                    operationBO.setTableId(tcgTableConfigBO.getId());
+                    operationBO.setOperationId(operation);
+                    operationBO.setId(IdUtils.getId());
+                    EntityUtil.autoSetEntity(operationBO , sessionUserVO);
+                    operationList.add(operationBO);
+                }
+            }
+            tablePO.setTableOperations(operationList);
+
+            success = tableBusinessService.updateTable(tablePO);
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            throw DbException.DB_INSERT_RESULT_0;
+        }
+
+        if (!success) {
+            throw DbException.DB_UPDATE_RESULT_0;
         } else {
             return AjaxJson.successAjax;
         }

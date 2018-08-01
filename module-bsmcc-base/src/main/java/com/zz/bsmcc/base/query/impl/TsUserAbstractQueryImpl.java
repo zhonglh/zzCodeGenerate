@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 用户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:09
+ * @date 2018-8-1 12:58:18
  */
 public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsUserEntity,PK> {
 

@@ -30,4 +30,8 @@ public class TcgDbConfigServiceImpl extends BaseServiceImpl<TcgDbConfigBO,String
 	public BaseDAO getRwDAO() {
 	return tcgDbConfigDAO;
 	}
+
+
+
+
 }

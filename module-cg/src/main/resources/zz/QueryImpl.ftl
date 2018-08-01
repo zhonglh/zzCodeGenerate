@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.${table.shortTableName?cap_first}Query;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -96,6 +97,9 @@ public class ${table.shortTableName?cap_first}QueryImpl<PK extends Serializable>
                 @Override
                 public ${table.shortTableName?cap_first}Query ${being.shortColumnName}In(PK ${being.shortColumnName}In) {
                     if(!IdUtils.isEmpty(${being.shortColumnName}In)){
+                        if(this.${being.shortColumnName}_IN == null){
+                            this.${being.shortColumnName}_IN = new ArrayList<PK>();
+                        }
                         this.${being.shortColumnName}_IN.add( ${being.shortColumnName}In );
                     }
                     return this;
@@ -105,6 +109,9 @@ public class ${table.shortTableName?cap_first}QueryImpl<PK extends Serializable>
                 @Override
                 public ${table.shortTableName?cap_first}Query ${being.shortColumnName}NotIn(PK ${being.shortColumnName}NotIn) {
                     if(!IdUtils.isEmpty(${being.shortColumnName}NotIn)){
+                        if(this.${being.shortColumnName}_NOTIN == null){
+                            this.${being.shortColumnName}_NOTIN = new ArrayList<PK>();
+                        }
                         this.${being.shortColumnName}_NOTIN.add( ${being.shortColumnName}NotIn );
                     }
                     return this;
@@ -149,6 +156,9 @@ public class ${table.shortTableName?cap_first}QueryImpl<PK extends Serializable>
                 @Override
                 public ${table.shortTableName?cap_first}Query ${being.shortColumnName}In(String ${being.shortColumnName}In) {
                     if(!IdUtils.isEmpty(${being.shortColumnName}In)){
+                        if(this.${being.shortColumnName}_IN == null){
+                            this.${being.shortColumnName}_IN = new ArrayList<String>();
+                        }
                         this.${being.shortColumnName}_IN.add( ${being.shortColumnName}In );
                     }
                     return this;
@@ -158,6 +168,9 @@ public class ${table.shortTableName?cap_first}QueryImpl<PK extends Serializable>
                 @Override
                     public ${table.shortTableName?cap_first}Query ${being.shortColumnName}NotIn(String ${being.shortColumnName}NotIn) {
                     if(!IdUtils.isEmpty(${being.shortColumnName}NotIn)){
+                        if(this.${being.shortColumnName}_NOTIN == null){
+                            this.${being.shortColumnName}_NOTIN = new ArrayList<String>();
+                        }
                         this.${being.shortColumnName}_NOTIN.add( ${being.shortColumnName}NotIn );
                     }
                     return this;
@@ -222,6 +235,9 @@ public class ${table.shortTableName?cap_first}QueryImpl<PK extends Serializable>
                 @Override
                 public ${table.shortTableName?cap_first}Query ${being.shortColumnName}In(String ${being.shortColumnName}In) {
                     if(!IdUtils.isEmpty(${being.shortColumnName}In)){
+                        if(this.${being.shortColumnName}_IN == null){
+                            this.${being.shortColumnName}_IN = new ArrayList<String>();
+                        }
                         this.${being.shortColumnName}_IN.add( ${being.shortColumnName}In );
                     }
                     return this;
@@ -231,6 +247,9 @@ public class ${table.shortTableName?cap_first}QueryImpl<PK extends Serializable>
                 @Override
                 public ${table.shortTableName?cap_first}Query ${being.shortColumnName}NotIn(String ${being.shortColumnName}NotIn) {
                     if(!IdUtils.isEmpty(${being.shortColumnName}NotIn)){
+                        if(this.${being.shortColumnName}_NOTIN == null){
+                            this.${being.shortColumnName}_NOTIN = new ArrayList<String>();
+                        }
                         this.${being.shortColumnName}_NOTIN.add( ${being.shortColumnName}NotIn );
                     }
                     return this;

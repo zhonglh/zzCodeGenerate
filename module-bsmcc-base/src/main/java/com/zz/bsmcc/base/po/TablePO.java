@@ -14,8 +14,14 @@ public class TablePO implements Serializable{
     private TcgTableConfigBO tableBO;
     private List<TcgColumnConfigBO> columns;
     private List<TcgExColumnBO> exColumns;
-    private List<TcgColumnPageBO> pageBOS;
-    private List<TcgIndexConfigBO> indexBOs;
+    private List<TcgColumnPageBO> columnPages;
+    private List<TcgIndexConfigBO> indexs;
+
+    private List<TcgColumnValidateBO> columnValidates;
+    private List<TcgColumnEventBO> columnEvents;
+    private List<TcgQueryConfigBO> queryConfigs;
+    private List<TcgTableOperationBO> tableOperations;
+
 
 
     public TcgTableConfigBO getTableBO() {
@@ -42,19 +48,52 @@ public class TablePO implements Serializable{
         this.exColumns = exColumns;
     }
 
-    public List<TcgColumnPageBO> getPageBOS() {
-        return pageBOS;
+
+    public List<TcgColumnPageBO> getColumnPages() {
+        return columnPages;
     }
 
-    public void setPageBOS(List<TcgColumnPageBO> pageBOS) {
-        this.pageBOS = pageBOS;
+    public void setColumnPages(List<TcgColumnPageBO> columnPages) {
+        this.columnPages = columnPages;
     }
 
-    public List<TcgIndexConfigBO> getIndexBOs() {
-        return indexBOs;
+    public List<TcgIndexConfigBO> getIndexs() {
+        return indexs;
     }
 
-    public void setIndexBOs(List<TcgIndexConfigBO> indexBOs) {
-        this.indexBOs = indexBOs;
+    public void setIndexs(List<TcgIndexConfigBO> indexs) {
+        this.indexs = indexs;
+    }
+
+    public List<TcgColumnValidateBO> getColumnValidates() {
+        return columnValidates;
+    }
+
+    public void setColumnValidates(List<TcgColumnValidateBO> columnValidates) {
+        this.columnValidates = columnValidates;
+    }
+
+    public List<TcgColumnEventBO> getColumnEvents() {
+        return columnEvents;
+    }
+
+    public void setColumnEvents(List<TcgColumnEventBO> columnEvents) {
+        this.columnEvents = columnEvents;
+    }
+
+    public List<TcgQueryConfigBO> getQueryConfigs() {
+        return queryConfigs;
+    }
+
+    public void setQueryConfigs(List<TcgQueryConfigBO> queryConfigs) {
+        this.queryConfigs = queryConfigs;
+    }
+
+    public List<TcgTableOperationBO> getTableOperations() {
+        return tableOperations;
+    }
+
+    public void setTableOperations(List<TcgTableOperationBO> tableOperations) {
+        this.tableOperations = tableOperations;
     }
 }

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 数据类型关联 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:58:15
  */
 public class TcgJavaDatatypeRealQueryWebImpl<PK extends Serializable> extends TcgJavaDatatypeRealAbstractQueryImpl<PK> implements Serializable {
 

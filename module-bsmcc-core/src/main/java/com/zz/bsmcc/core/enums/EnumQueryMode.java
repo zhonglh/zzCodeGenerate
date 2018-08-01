@@ -27,13 +27,24 @@ public enum EnumQueryMode  implements EnumBase{
 
     @Override
     public Serializable getTheValue() {
-        return null;
+        return value;
     }
 
     @Override
     public String getTheName() {
+        return name;
+    }
+
+    public static EnumQueryMode getQueryModeByValue(String v){
+
+        for(EnumQueryMode qm : EnumQueryMode.values()){
+            if(qm.getTheValue().equals(v)){
+                return qm;
+            }
+        }
         return null;
     }
+
 
 
 

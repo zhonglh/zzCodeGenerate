@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TsUserQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 用户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:09
+ * @date 2018-8-1 12:58:18
  */
 public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> implements TsUserQuery<PK>, Serializable  {
 
@@ -418,6 +419,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -427,6 +431,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -503,6 +510,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery userNameIn(String userNameIn) {
                     if(!IdUtils.isEmpty(userNameIn)){
+                        if(this.userName_IN == null){
+                            this.userName_IN = new ArrayList<String>();
+                        }
                         this.userName_IN.add( userNameIn );
                     }
                     return this;
@@ -512,6 +522,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery userNameNotIn(String userNameNotIn) {
                     if(!IdUtils.isEmpty(userNameNotIn)){
+                        if(this.userName_NOTIN == null){
+                            this.userName_NOTIN = new ArrayList<String>();
+                        }
                         this.userName_NOTIN.add( userNameNotIn );
                     }
                     return this;
@@ -586,6 +599,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery loginNameIn(String loginNameIn) {
                     if(!IdUtils.isEmpty(loginNameIn)){
+                        if(this.loginName_IN == null){
+                            this.loginName_IN = new ArrayList<String>();
+                        }
                         this.loginName_IN.add( loginNameIn );
                     }
                     return this;
@@ -595,6 +611,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery loginNameNotIn(String loginNameNotIn) {
                     if(!IdUtils.isEmpty(loginNameNotIn)){
+                        if(this.loginName_NOTIN == null){
+                            this.loginName_NOTIN = new ArrayList<String>();
+                        }
                         this.loginName_NOTIN.add( loginNameNotIn );
                     }
                     return this;
@@ -669,6 +688,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery loginPasswordIn(String loginPasswordIn) {
                     if(!IdUtils.isEmpty(loginPasswordIn)){
+                        if(this.loginPassword_IN == null){
+                            this.loginPassword_IN = new ArrayList<String>();
+                        }
                         this.loginPassword_IN.add( loginPasswordIn );
                     }
                     return this;
@@ -678,6 +700,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery loginPasswordNotIn(String loginPasswordNotIn) {
                     if(!IdUtils.isEmpty(loginPasswordNotIn)){
+                        if(this.loginPassword_NOTIN == null){
+                            this.loginPassword_NOTIN = new ArrayList<String>();
+                        }
                         this.loginPassword_NOTIN.add( loginPasswordNotIn );
                     }
                     return this;
@@ -731,6 +756,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery saltIn(PK saltIn) {
                     if(!IdUtils.isEmpty(saltIn)){
+                        if(this.salt_IN == null){
+                            this.salt_IN = new ArrayList<PK>();
+                        }
                         this.salt_IN.add( saltIn );
                     }
                     return this;
@@ -740,6 +768,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery saltNotIn(PK saltNotIn) {
                     if(!IdUtils.isEmpty(saltNotIn)){
+                        if(this.salt_NOTIN == null){
+                            this.salt_NOTIN = new ArrayList<PK>();
+                        }
                         this.salt_NOTIN.add( saltNotIn );
                     }
                     return this;
@@ -795,6 +826,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery statusIn(String statusIn) {
                     if(!IdUtils.isEmpty(statusIn)){
+                        if(this.status_IN == null){
+                            this.status_IN = new ArrayList<String>();
+                        }
                         this.status_IN.add( statusIn );
                     }
                     return this;
@@ -804,6 +838,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                     public TsUserQuery statusNotIn(String statusNotIn) {
                     if(!IdUtils.isEmpty(statusNotIn)){
+                        if(this.status_NOTIN == null){
+                            this.status_NOTIN = new ArrayList<String>();
+                        }
                         this.status_NOTIN.add( statusNotIn );
                     }
                     return this;
@@ -858,6 +895,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery leadIdIn(PK leadIdIn) {
                     if(!IdUtils.isEmpty(leadIdIn)){
+                        if(this.leadId_IN == null){
+                            this.leadId_IN = new ArrayList<PK>();
+                        }
                         this.leadId_IN.add( leadIdIn );
                     }
                     return this;
@@ -867,6 +907,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery leadIdNotIn(PK leadIdNotIn) {
                     if(!IdUtils.isEmpty(leadIdNotIn)){
+                        if(this.leadId_NOTIN == null){
+                            this.leadId_NOTIN = new ArrayList<PK>();
+                        }
                         this.leadId_NOTIN.add( leadIdNotIn );
                     }
                     return this;
@@ -943,6 +986,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery phoneIn(String phoneIn) {
                     if(!IdUtils.isEmpty(phoneIn)){
+                        if(this.phone_IN == null){
+                            this.phone_IN = new ArrayList<String>();
+                        }
                         this.phone_IN.add( phoneIn );
                     }
                     return this;
@@ -952,6 +998,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery phoneNotIn(String phoneNotIn) {
                     if(!IdUtils.isEmpty(phoneNotIn)){
+                        if(this.phone_NOTIN == null){
+                            this.phone_NOTIN = new ArrayList<String>();
+                        }
                         this.phone_NOTIN.add( phoneNotIn );
                     }
                     return this;
@@ -1026,6 +1075,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery emailIn(String emailIn) {
                     if(!IdUtils.isEmpty(emailIn)){
+                        if(this.email_IN == null){
+                            this.email_IN = new ArrayList<String>();
+                        }
                         this.email_IN.add( emailIn );
                     }
                     return this;
@@ -1035,6 +1087,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery emailNotIn(String emailNotIn) {
                     if(!IdUtils.isEmpty(emailNotIn)){
+                        if(this.email_NOTIN == null){
+                            this.email_NOTIN = new ArrayList<String>();
+                        }
                         this.email_NOTIN.add( emailNotIn );
                     }
                     return this;
@@ -1109,6 +1164,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery avatarUrlIn(String avatarUrlIn) {
                     if(!IdUtils.isEmpty(avatarUrlIn)){
+                        if(this.avatarUrl_IN == null){
+                            this.avatarUrl_IN = new ArrayList<String>();
+                        }
                         this.avatarUrl_IN.add( avatarUrlIn );
                     }
                     return this;
@@ -1118,6 +1176,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery avatarUrlNotIn(String avatarUrlNotIn) {
                     if(!IdUtils.isEmpty(avatarUrlNotIn)){
+                        if(this.avatarUrl_NOTIN == null){
+                            this.avatarUrl_NOTIN = new ArrayList<String>();
+                        }
                         this.avatarUrl_NOTIN.add( avatarUrlNotIn );
                     }
                     return this;
@@ -1171,6 +1232,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery openIdIn(PK openIdIn) {
                     if(!IdUtils.isEmpty(openIdIn)){
+                        if(this.openId_IN == null){
+                            this.openId_IN = new ArrayList<PK>();
+                        }
                         this.openId_IN.add( openIdIn );
                     }
                     return this;
@@ -1180,6 +1244,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery openIdNotIn(PK openIdNotIn) {
                     if(!IdUtils.isEmpty(openIdNotIn)){
+                        if(this.openId_NOTIN == null){
+                            this.openId_NOTIN = new ArrayList<PK>();
+                        }
                         this.openId_NOTIN.add( openIdNotIn );
                     }
                     return this;
@@ -1235,6 +1302,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery unionIdIn(PK unionIdIn) {
                     if(!IdUtils.isEmpty(unionIdIn)){
+                        if(this.unionId_IN == null){
+                            this.unionId_IN = new ArrayList<PK>();
+                        }
                         this.unionId_IN.add( unionIdIn );
                     }
                     return this;
@@ -1244,6 +1314,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery unionIdNotIn(PK unionIdNotIn) {
                     if(!IdUtils.isEmpty(unionIdNotIn)){
+                        if(this.unionId_NOTIN == null){
+                            this.unionId_NOTIN = new ArrayList<PK>();
+                        }
                         this.unionId_NOTIN.add( unionIdNotIn );
                     }
                     return this;
@@ -1299,6 +1372,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery systemAdminIn(String systemAdminIn) {
                     if(!IdUtils.isEmpty(systemAdminIn)){
+                        if(this.systemAdmin_IN == null){
+                            this.systemAdmin_IN = new ArrayList<String>();
+                        }
                         this.systemAdmin_IN.add( systemAdminIn );
                     }
                     return this;
@@ -1308,6 +1384,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                     public TsUserQuery systemAdminNotIn(String systemAdminNotIn) {
                     if(!IdUtils.isEmpty(systemAdminNotIn)){
+                        if(this.systemAdmin_NOTIN == null){
+                            this.systemAdmin_NOTIN = new ArrayList<String>();
+                        }
                         this.systemAdmin_NOTIN.add( systemAdminNotIn );
                     }
                     return this;
@@ -1362,6 +1441,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery depIdIn(PK depIdIn) {
                     if(!IdUtils.isEmpty(depIdIn)){
+                        if(this.depId_IN == null){
+                            this.depId_IN = new ArrayList<PK>();
+                        }
                         this.depId_IN.add( depIdIn );
                     }
                     return this;
@@ -1371,6 +1453,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery depIdNotIn(PK depIdNotIn) {
                     if(!IdUtils.isEmpty(depIdNotIn)){
+                        if(this.depId_NOTIN == null){
+                            this.depId_NOTIN = new ArrayList<PK>();
+                        }
                         this.depId_NOTIN.add( depIdNotIn );
                     }
                     return this;
@@ -1426,6 +1511,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery organIdIn(PK organIdIn) {
                     if(!IdUtils.isEmpty(organIdIn)){
+                        if(this.organId_IN == null){
+                            this.organId_IN = new ArrayList<PK>();
+                        }
                         this.organId_IN.add( organIdIn );
                     }
                     return this;
@@ -1435,6 +1523,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery organIdNotIn(PK organIdNotIn) {
                     if(!IdUtils.isEmpty(organIdNotIn)){
+                        if(this.organId_NOTIN == null){
+                            this.organId_NOTIN = new ArrayList<PK>();
+                        }
                         this.organId_NOTIN.add( organIdNotIn );
                     }
                     return this;
@@ -1511,6 +1602,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery remarkIn(String remarkIn) {
                     if(!IdUtils.isEmpty(remarkIn)){
+                        if(this.remark_IN == null){
+                            this.remark_IN = new ArrayList<String>();
+                        }
                         this.remark_IN.add( remarkIn );
                     }
                     return this;
@@ -1520,6 +1614,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery remarkNotIn(String remarkNotIn) {
                     if(!IdUtils.isEmpty(remarkNotIn)){
+                        if(this.remark_NOTIN == null){
+                            this.remark_NOTIN = new ArrayList<String>();
+                        }
                         this.remark_NOTIN.add( remarkNotIn );
                     }
                     return this;
@@ -1573,6 +1670,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery deleteFlagIn(String deleteFlagIn) {
                     if(!IdUtils.isEmpty(deleteFlagIn)){
+                        if(this.deleteFlag_IN == null){
+                            this.deleteFlag_IN = new ArrayList<String>();
+                        }
                         this.deleteFlag_IN.add( deleteFlagIn );
                     }
                     return this;
@@ -1582,6 +1682,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                     public TsUserQuery deleteFlagNotIn(String deleteFlagNotIn) {
                     if(!IdUtils.isEmpty(deleteFlagNotIn)){
+                        if(this.deleteFlag_NOTIN == null){
+                            this.deleteFlag_NOTIN = new ArrayList<String>();
+                        }
                         this.deleteFlag_NOTIN.add( deleteFlagNotIn );
                     }
                     return this;
@@ -1636,6 +1739,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -1645,6 +1751,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -1721,6 +1830,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery createUserNameIn(String createUserNameIn) {
                     if(!IdUtils.isEmpty(createUserNameIn)){
+                        if(this.createUserName_IN == null){
+                            this.createUserName_IN = new ArrayList<String>();
+                        }
                         this.createUserName_IN.add( createUserNameIn );
                     }
                     return this;
@@ -1730,6 +1842,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery createUserNameNotIn(String createUserNameNotIn) {
                     if(!IdUtils.isEmpty(createUserNameNotIn)){
+                        if(this.createUserName_NOTIN == null){
+                            this.createUserName_NOTIN = new ArrayList<String>();
+                        }
                         this.createUserName_NOTIN.add( createUserNameNotIn );
                     }
                     return this;
@@ -1845,6 +1960,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -1854,6 +1972,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;
@@ -1930,6 +2051,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery updateUserNameIn(String updateUserNameIn) {
                     if(!IdUtils.isEmpty(updateUserNameIn)){
+                        if(this.updateUserName_IN == null){
+                            this.updateUserName_IN = new ArrayList<String>();
+                        }
                         this.updateUserName_IN.add( updateUserNameIn );
                     }
                     return this;
@@ -1939,6 +2063,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery updateUserNameNotIn(String updateUserNameNotIn) {
                     if(!IdUtils.isEmpty(updateUserNameNotIn)){
+                        if(this.updateUserName_NOTIN == null){
+                            this.updateUserName_NOTIN = new ArrayList<String>();
+                        }
                         this.updateUserName_NOTIN.add( updateUserNameNotIn );
                     }
                     return this;
@@ -2117,6 +2244,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery tenantIdIn(PK tenantIdIn) {
                     if(!IdUtils.isEmpty(tenantIdIn)){
+                        if(this.tenantId_IN == null){
+                            this.tenantId_IN = new ArrayList<PK>();
+                        }
                         this.tenantId_IN.add( tenantIdIn );
                     }
                     return this;
@@ -2126,6 +2256,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
                 @Override
                 public TsUserQuery tenantIdNotIn(PK tenantIdNotIn) {
                     if(!IdUtils.isEmpty(tenantIdNotIn)){
+                        if(this.tenantId_NOTIN == null){
+                            this.tenantId_NOTIN = new ArrayList<PK>();
+                        }
                         this.tenantId_NOTIN.add( tenantIdNotIn );
                     }
                     return this;

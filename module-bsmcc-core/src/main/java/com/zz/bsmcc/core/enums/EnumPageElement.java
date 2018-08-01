@@ -56,5 +56,15 @@ public enum EnumPageElement implements EnumBase{
     }
 
 
+    public static EnumPageElement getPageElement(String val){
+        try {
+            return EnumPageElement.valueOf(val);
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+
+
 
 }

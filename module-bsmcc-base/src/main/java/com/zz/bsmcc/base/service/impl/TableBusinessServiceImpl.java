@@ -1,18 +1,30 @@
 package com.zz.bsmcc.base.service.impl;
 
-import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
-import com.zz.bsmcc.base.bo.TcgColumnPageBO;
-import com.zz.bsmcc.base.bo.TcgExColumnBO;
-import com.zz.bsmcc.base.bo.TcgIndexConfigBO;
+import com.zz.bms.core.Constant;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.exceptions.InternalException;
+import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.dao.*;
+import com.zz.bsmcc.base.logic.TableLogic;
 import com.zz.bsmcc.base.po.TablePO;
+import com.zz.bsmcc.base.query.*;
+import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.TableBusinessService;
 import com.zz.bsmcc.base.service.TcgColumnEventService;
 import com.zz.bsmcc.base.service.TcgTableConfigService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,32 +65,6 @@ public class TableBusinessServiceImpl implements TableBusinessService {
 
 
     @Override
-    public boolean insertTable(List<TablePO> tablePOList) {
-        for(TablePO tablePO : tablePOList){
-            tcgTableConfigDAO.insert(tablePO.getTableBO());
-            for(TcgColumnConfigBO columnConfigBO : tablePO.getColumns()) {
-                tcgColumnConfigDAO.insert(columnConfigBO);
-            }
-            for(TcgExColumnBO exColumnBO : tablePO.getExColumns()) {
-                tcgExColumnDAO.insert(exColumnBO);
-            }
-            for(TcgColumnPageBO columnPageBO : tablePO.getPageBOS()) {
-                tcgColumnPageDAO.insert(columnPageBO);
-            }
-            for(TcgIndexConfigBO indexConfigBO : tablePO.getIndexBOs()) {
-                tcgIndexConfigDAO.insert(indexConfigBO);
-            }
-
-        }
-        return true;
-    }
-
-    @Override
-    public boolean updateTable(TablePO tablePO) {
-        return false;
-    }
-
-    @Override
     public boolean deleteTable(String tableId) {
         Map<String ,Object> delPkMap = new HashMap<String,Object>();
         delPkMap.put("id" , tableId);
@@ -99,4 +85,284 @@ public class TableBusinessServiceImpl implements TableBusinessService {
 
         return true;
     }
+
+    @Override
+    public boolean insertTable(List<TablePO> tablePOList) {
+        for(TablePO tablePO : tablePOList){
+            tcgTableConfigDAO.insert(tablePO.getTableBO());
+            for(TcgColumnConfigBO columnConfigBO : tablePO.getColumns()) {
+                tcgColumnConfigDAO.insert(columnConfigBO);
+            }
+            for(TcgExColumnBO exColumnBO : tablePO.getExColumns()) {
+                tcgExColumnDAO.insert(exColumnBO);
+            }
+            for(TcgColumnPageBO columnPageBO : tablePO.getColumnPages()) {
+                tcgColumnPageDAO.insert(columnPageBO);
+            }
+            for(TcgIndexConfigBO indexConfigBO : tablePO.getIndexs()) {
+                tcgIndexConfigDAO.insert(indexConfigBO);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateTable(TablePO tablePO) {
+        Integer result = tcgTableConfigDAO.updateById(tablePO.getTableBO());
+        if(result != 1){
+            throw DbException.DB_UPDATE_RESULT_0;
+        }
+
+
+        //处理操作配置信息
+        this.updateOperation(tablePO);
+
+        //处理查询条件配置信息
+        this.updateQuery(tablePO);
+
+        //处理列校验配置信息
+        this.updateValidate(tablePO);
+
+        //处理列事件配置信息
+        this.updateEvent(tablePO);
+
+        //处理列界面配置信息
+        this.updatePage(tablePO);
+
+        //处理列配置信息
+        this.updateColumns(tablePO);
+
+        //处理扩展列配置信息
+        this.updateExColumn(tablePO);
+
+
+        return true;
+    }
+
+
+    /**
+     * 处理操作配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updateOperation(TablePO tablePO) {
+        TcgTableOperationQuery query = new TcgTableOperationQueryImpl();
+        query.tableId(tablePO.getTableBO().getId());
+        tcgTableOperationDAO.delete(query.buildWrapper());
+
+        if(tablePO.getTableOperations() != null && !tablePO.getTableOperations().isEmpty()){
+            for(TcgTableOperationBO operation : tablePO.getTableOperations()) {
+                tcgTableOperationDAO.insert(operation);
+            }
+        }
+    }
+
+
+    /**
+     * 处理条件配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updateQuery(TablePO tablePO) {
+        List<String> ids = new ArrayList<String>();
+        if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()) {
+            for (TcgQueryConfigBO item : tablePO.getQueryConfigs()) {
+                if(StringUtils.isEmpty(item.getId())){
+                    item.setId(IdUtils.getId());
+                    tcgQueryConfigDAO.insert(item);
+                }else {
+                    tcgQueryConfigDAO.updateById(item);
+                }
+                ids.add(item.getId());
+            }
+        }
+        TcgQueryConfigQuery query = new TcgQueryConfigQueryImpl();
+        query.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                query.idNotIn(id);
+            }
+        }
+        tcgQueryConfigDAO.delete(query.buildWrapper());
+    }
+
+
+
+    /**
+     * 处理事件配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updateEvent(TablePO tablePO) {
+        List<String> ids = new ArrayList<String>();
+        if(tablePO.getColumnEvents() != null && !tablePO.getColumnEvents().isEmpty()) {
+            for (TcgColumnEventBO item : tablePO.getColumnEvents()) {
+                if(StringUtils.isEmpty(item.getId())){
+                    item.setId(IdUtils.getId());
+                    tcgColumnEventDAO.insert(item);
+                }else {
+                    tcgColumnEventDAO.updateById(item);
+                }
+                ids.add(item.getId());
+            }
+        }
+        TcgColumnEventQuery query = new TcgColumnEventQueryImpl();
+        query.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                query.idNotIn(id);
+            }
+        }
+        tcgColumnEventDAO.delete(query.buildWrapper());
+    }
+
+
+    /**
+     * 处理校验配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updateValidate(TablePO tablePO) {
+        List<String> ids = new ArrayList<String>();
+        if(tablePO.getColumnValidates() != null && !tablePO.getColumnValidates().isEmpty()) {
+            for (TcgColumnValidateBO item : tablePO.getColumnValidates()) {
+                if(StringUtils.isEmpty(item.getId())){
+                    item.setId(IdUtils.getId());
+                    tcgColumnValidateDAO.insert(item);
+                }else {
+                    tcgColumnValidateDAO.updateById(item);
+                }
+                ids.add(item.getId());
+            }
+        }
+        TcgColumnValidateQuery query = new TcgColumnValidateQueryImpl();
+        query.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                query.idNotIn(id);
+            }
+        }
+        tcgColumnValidateDAO.delete(query.buildWrapper());
+    }
+
+
+
+    /**
+     * 处理界面配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updatePage(TablePO tablePO) {
+        if(tablePO.getColumnPages() != null && !tablePO.getColumnPages().isEmpty()) {
+            for (TcgColumnPageBO item : tablePO.getColumnPages()) {
+                tcgColumnPageDAO.updateById(item);
+            }
+        }
+    }
+
+
+    /**
+     * 处理列配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updateColumns(TablePO tablePO) {
+        if(tablePO.getColumns() != null && !tablePO.getColumns().isEmpty()) {
+            for (TcgColumnConfigBO item : tablePO.getColumns()){
+                tcgColumnConfigDAO.updateById(item);
+            }
+        }
+    }
+
+
+
+    /**
+     * 处理扩展列配置信息
+     * 更新或者插入， 删除页面上没有传过来的信息
+     * @param tablePO
+     */
+    private void updateExColumn(TablePO tablePO) {
+        List<String> ids = new ArrayList<String>();
+        if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
+            ILoginUserEntity session = null;
+            RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+            if (requestAttributes != null) {
+                HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
+                session = (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
+            }
+
+            for (TcgExColumnBO item : tablePO.getExColumns()) {
+                if(StringUtils.isEmpty(item.getId())){
+                    item.setId(IdUtils.getId());
+                    tcgExColumnDAO.insert(item);
+                    //增加columnPage 信息
+                    TcgColumnPageBO pageBO = new TcgColumnPageBO();
+                    TableLogic.initColumnPage(pageBO , item , session );
+                    tcgColumnPageDAO.insert(pageBO);
+
+                }else {
+                    tcgExColumnDAO.updateById(item);
+                }
+                ids.add(item.getId());
+            }
+        }
+        TcgExColumnQuery query = new TcgExColumnQueryImpl();
+        query.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                query.idNotIn(id);
+            }
+        }
+        tcgExColumnDAO.delete(query.buildWrapper());
+
+
+        List<TcgColumnConfigBO> columns = tablePO.getColumns();
+        for(TcgColumnConfigBO column : columns) {
+            ids.add(column.getId());
+        }
+
+        //删除 columnPage
+        TcgColumnPageQuery pageQuery = new TcgColumnPageQueryImpl();
+        pageQuery.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                pageQuery.idNotIn(id);
+            }
+        }
+        tcgColumnPageDAO.delete(pageQuery.buildWrapper());
+
+        //删除columnEvent
+        TcgColumnEventQuery eventQuery = new TcgColumnEventQueryImpl();
+        eventQuery.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                eventQuery.columnIdNotIn(id);
+            }
+        }
+        tcgColumnEventDAO.delete(eventQuery.buildWrapper());
+
+        //删除 columnValidate
+        TcgColumnValidateQuery validateQuery = new TcgColumnValidateQueryImpl();
+        validateQuery.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                validateQuery.columnIdNotIn(id);
+            }
+        }
+        tcgColumnValidateDAO.delete(validateQuery.buildWrapper());
+
+
+        //删除 queryConfig
+        TcgQueryConfigQuery queryConfigQuery = new TcgQueryConfigQueryImpl();
+        queryConfigQuery.tableId(tablePO.getTableBO().getId());
+        if(!ids.isEmpty()) {
+            for(String id : ids) {
+                queryConfigQuery.columnIdNotIn(id);
+            }
+        }
+        tcgQueryConfigDAO.delete(queryConfigQuery.buildWrapper());
+
+
+    }
+
 }

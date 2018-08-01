@@ -4,9 +4,14 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
+import com.zz.bsmcc.base.bo.TcgColumnPageBO;
+import com.zz.bsmcc.base.bo.TcgExColumnBO;
+import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
 import com.zz.bsmcc.base.service.TcgQueryConfigService;
 import com.zz.bsmcc.base.dao.TcgQueryConfigDAO;
 import com.zz.bsmcc.base.bo.TcgQueryConfigBO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +20,11 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class TcgQueryConfigServiceImpl extends BaseServiceImpl<TcgQueryConfigBO,String> implements TcgQueryConfigService {
+
+
+
+	@Autowired
+	private TcgColumnConfigDAO tcgColumnConfigDAO ;
 
 
 	@Autowired
@@ -29,5 +39,18 @@ public class TcgQueryConfigServiceImpl extends BaseServiceImpl<TcgQueryConfigBO,
 	@Override
 	public BaseDAO getRwDAO() {
 	return tcgQueryConfigDAO;
+	}
+
+
+
+	@Override
+	public TcgQueryConfigBO processResult(TcgQueryConfigBO tcgQueryConfigBO) {
+		if(StringUtils.isNotEmpty(tcgQueryConfigBO.getColumnId())) {
+			TcgColumnConfigBO TcgColumnConfigBO = tcgColumnConfigDAO.selectById(tcgQueryConfigBO.getColumnId());
+			if (TcgColumnConfigBO != null) {
+				tcgQueryConfigBO.setColumnComment(TcgColumnConfigBO.getColumnComment());
+			}
+		}
+		return tcgQueryConfigBO;
 	}
 }

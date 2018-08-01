@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgIndexConfigQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 索引设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:58:15
  */
 public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexConfigAbstractQueryImpl<PK> implements TcgIndexConfigQuery<PK>, Serializable  {
 
@@ -175,6 +176,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -184,6 +188,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -239,6 +246,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery tableIdIn(PK tableIdIn) {
                     if(!IdUtils.isEmpty(tableIdIn)){
+                        if(this.tableId_IN == null){
+                            this.tableId_IN = new ArrayList<PK>();
+                        }
                         this.tableId_IN.add( tableIdIn );
                     }
                     return this;
@@ -248,6 +258,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery tableIdNotIn(PK tableIdNotIn) {
                     if(!IdUtils.isEmpty(tableIdNotIn)){
+                        if(this.tableId_NOTIN == null){
+                            this.tableId_NOTIN = new ArrayList<PK>();
+                        }
                         this.tableId_NOTIN.add( tableIdNotIn );
                     }
                     return this;
@@ -324,6 +337,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery indexNameIn(String indexNameIn) {
                     if(!IdUtils.isEmpty(indexNameIn)){
+                        if(this.indexName_IN == null){
+                            this.indexName_IN = new ArrayList<String>();
+                        }
                         this.indexName_IN.add( indexNameIn );
                     }
                     return this;
@@ -333,6 +349,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery indexNameNotIn(String indexNameNotIn) {
                     if(!IdUtils.isEmpty(indexNameNotIn)){
+                        if(this.indexName_NOTIN == null){
+                            this.indexName_NOTIN = new ArrayList<String>();
+                        }
                         this.indexName_NOTIN.add( indexNameNotIn );
                     }
                     return this;
@@ -407,6 +426,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery indexCloumnsIn(String indexCloumnsIn) {
                     if(!IdUtils.isEmpty(indexCloumnsIn)){
+                        if(this.indexCloumns_IN == null){
+                            this.indexCloumns_IN = new ArrayList<String>();
+                        }
                         this.indexCloumns_IN.add( indexCloumnsIn );
                     }
                     return this;
@@ -416,6 +438,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery indexCloumnsNotIn(String indexCloumnsNotIn) {
                     if(!IdUtils.isEmpty(indexCloumnsNotIn)){
+                        if(this.indexCloumns_NOTIN == null){
+                            this.indexCloumns_NOTIN = new ArrayList<String>();
+                        }
                         this.indexCloumns_NOTIN.add( indexCloumnsNotIn );
                     }
                     return this;
@@ -531,6 +556,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -540,6 +568,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -657,6 +688,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -666,6 +700,9 @@ public class TcgIndexConfigQueryImpl<PK extends Serializable> extends TcgIndexCo
                 @Override
                 public TcgIndexConfigQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

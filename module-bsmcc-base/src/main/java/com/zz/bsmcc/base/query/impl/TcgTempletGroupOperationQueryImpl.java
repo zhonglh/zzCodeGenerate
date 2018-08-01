@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgTempletGroupOperationQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 模板组操作定义 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:09
+ * @date 2018-8-1 12:58:18
  */
 public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends TcgTempletGroupOperationAbstractQueryImpl<PK> implements TcgTempletGroupOperationQuery<PK>, Serializable  {
 
@@ -160,6 +161,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -169,6 +173,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -224,6 +231,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery groupIdIn(PK groupIdIn) {
                     if(!IdUtils.isEmpty(groupIdIn)){
+                        if(this.groupId_IN == null){
+                            this.groupId_IN = new ArrayList<PK>();
+                        }
                         this.groupId_IN.add( groupIdIn );
                     }
                     return this;
@@ -233,6 +243,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery groupIdNotIn(PK groupIdNotIn) {
                     if(!IdUtils.isEmpty(groupIdNotIn)){
+                        if(this.groupId_NOTIN == null){
+                            this.groupId_NOTIN = new ArrayList<PK>();
+                        }
                         this.groupId_NOTIN.add( groupIdNotIn );
                     }
                     return this;
@@ -288,6 +301,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery operationIdIn(PK operationIdIn) {
                     if(!IdUtils.isEmpty(operationIdIn)){
+                        if(this.operationId_IN == null){
+                            this.operationId_IN = new ArrayList<PK>();
+                        }
                         this.operationId_IN.add( operationIdIn );
                     }
                     return this;
@@ -297,6 +313,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery operationIdNotIn(PK operationIdNotIn) {
                     if(!IdUtils.isEmpty(operationIdNotIn)){
+                        if(this.operationId_NOTIN == null){
+                            this.operationId_NOTIN = new ArrayList<PK>();
+                        }
                         this.operationId_NOTIN.add( operationIdNotIn );
                     }
                     return this;
@@ -373,6 +392,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery iconsIn(String iconsIn) {
                     if(!IdUtils.isEmpty(iconsIn)){
+                        if(this.icons_IN == null){
+                            this.icons_IN = new ArrayList<String>();
+                        }
                         this.icons_IN.add( iconsIn );
                     }
                     return this;
@@ -382,6 +404,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery iconsNotIn(String iconsNotIn) {
                     if(!IdUtils.isEmpty(iconsNotIn)){
+                        if(this.icons_NOTIN == null){
+                            this.icons_NOTIN = new ArrayList<String>();
+                        }
                         this.icons_NOTIN.add( iconsNotIn );
                     }
                     return this;
@@ -456,6 +481,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery stylesIn(String stylesIn) {
                     if(!IdUtils.isEmpty(stylesIn)){
+                        if(this.styles_IN == null){
+                            this.styles_IN = new ArrayList<String>();
+                        }
                         this.styles_IN.add( stylesIn );
                     }
                     return this;
@@ -465,6 +493,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery stylesNotIn(String stylesNotIn) {
                     if(!IdUtils.isEmpty(stylesNotIn)){
+                        if(this.styles_NOTIN == null){
+                            this.styles_NOTIN = new ArrayList<String>();
+                        }
                         this.styles_NOTIN.add( stylesNotIn );
                     }
                     return this;
@@ -539,6 +570,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery classsIn(String classsIn) {
                     if(!IdUtils.isEmpty(classsIn)){
+                        if(this.classs_IN == null){
+                            this.classs_IN = new ArrayList<String>();
+                        }
                         this.classs_IN.add( classsIn );
                     }
                     return this;
@@ -548,6 +582,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery classsNotIn(String classsNotIn) {
                     if(!IdUtils.isEmpty(classsNotIn)){
+                        if(this.classs_NOTIN == null){
+                            this.classs_NOTIN = new ArrayList<String>();
+                        }
                         this.classs_NOTIN.add( classsNotIn );
                     }
                     return this;
@@ -622,6 +659,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery positionIn(String positionIn) {
                     if(!IdUtils.isEmpty(positionIn)){
+                        if(this.position_IN == null){
+                            this.position_IN = new ArrayList<String>();
+                        }
                         this.position_IN.add( positionIn );
                     }
                     return this;
@@ -631,6 +671,9 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery positionNotIn(String positionNotIn) {
                     if(!IdUtils.isEmpty(positionNotIn)){
+                        if(this.position_NOTIN == null){
+                            this.position_NOTIN = new ArrayList<String>();
+                        }
                         this.position_NOTIN.add( positionNotIn );
                     }
                     return this;

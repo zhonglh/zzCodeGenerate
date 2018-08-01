@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgModuleConfigQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 功能模块设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:58:15
  */
 public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModuleConfigAbstractQueryImpl<PK> implements TcgModuleConfigQuery<PK>, Serializable  {
 
@@ -190,6 +191,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -199,6 +203,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -254,6 +261,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery projectIdIn(PK projectIdIn) {
                     if(!IdUtils.isEmpty(projectIdIn)){
+                        if(this.projectId_IN == null){
+                            this.projectId_IN = new ArrayList<PK>();
+                        }
                         this.projectId_IN.add( projectIdIn );
                     }
                     return this;
@@ -263,6 +273,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery projectIdNotIn(PK projectIdNotIn) {
                     if(!IdUtils.isEmpty(projectIdNotIn)){
+                        if(this.projectId_NOTIN == null){
+                            this.projectId_NOTIN = new ArrayList<PK>();
+                        }
                         this.projectId_NOTIN.add( projectIdNotIn );
                     }
                     return this;
@@ -339,6 +352,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery moduleNameIn(String moduleNameIn) {
                     if(!IdUtils.isEmpty(moduleNameIn)){
+                        if(this.moduleName_IN == null){
+                            this.moduleName_IN = new ArrayList<String>();
+                        }
                         this.moduleName_IN.add( moduleNameIn );
                     }
                     return this;
@@ -348,6 +364,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery moduleNameNotIn(String moduleNameNotIn) {
                     if(!IdUtils.isEmpty(moduleNameNotIn)){
+                        if(this.moduleName_NOTIN == null){
+                            this.moduleName_NOTIN = new ArrayList<String>();
+                        }
                         this.moduleName_NOTIN.add( moduleNameNotIn );
                     }
                     return this;
@@ -422,6 +441,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery moduleResourceIn(String moduleResourceIn) {
                     if(!IdUtils.isEmpty(moduleResourceIn)){
+                        if(this.moduleResource_IN == null){
+                            this.moduleResource_IN = new ArrayList<String>();
+                        }
                         this.moduleResource_IN.add( moduleResourceIn );
                     }
                     return this;
@@ -431,6 +453,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery moduleResourceNotIn(String moduleResourceNotIn) {
                     if(!IdUtils.isEmpty(moduleResourceNotIn)){
+                        if(this.moduleResource_NOTIN == null){
+                            this.moduleResource_NOTIN = new ArrayList<String>();
+                        }
                         this.moduleResource_NOTIN.add( moduleResourceNotIn );
                     }
                     return this;
@@ -484,6 +509,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery pidIn(PK pidIn) {
                     if(!IdUtils.isEmpty(pidIn)){
+                        if(this.pid_IN == null){
+                            this.pid_IN = new ArrayList<PK>();
+                        }
                         this.pid_IN.add( pidIn );
                     }
                     return this;
@@ -493,6 +521,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery pidNotIn(PK pidNotIn) {
                     if(!IdUtils.isEmpty(pidNotIn)){
+                        if(this.pid_NOTIN == null){
+                            this.pid_NOTIN = new ArrayList<PK>();
+                        }
                         this.pid_NOTIN.add( pidNotIn );
                     }
                     return this;
@@ -610,6 +641,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -619,6 +653,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -736,6 +773,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -745,6 +785,9 @@ public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModule
                 @Override
                 public TcgModuleConfigQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

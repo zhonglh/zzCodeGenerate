@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * 列界面设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:05
+ * @date 2018-8-1 12:58:14
  */
 public abstract class TcgColumnPageAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnPageEntity,PK> {
 

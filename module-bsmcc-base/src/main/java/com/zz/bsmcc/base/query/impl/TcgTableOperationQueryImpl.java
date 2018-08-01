@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgTableOperationQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 表操作定义 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:08
+ * @date 2018-8-1 12:58:17
  */
 public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTableOperationAbstractQueryImpl<PK> implements TcgTableOperationQuery<PK>, Serializable  {
 
@@ -100,6 +101,9 @@ public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTabl
                 @Override
                 public TcgTableOperationQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -109,6 +113,9 @@ public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTabl
                 @Override
                 public TcgTableOperationQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -164,6 +171,9 @@ public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTabl
                 @Override
                 public TcgTableOperationQuery operationIdIn(PK operationIdIn) {
                     if(!IdUtils.isEmpty(operationIdIn)){
+                        if(this.operationId_IN == null){
+                            this.operationId_IN = new ArrayList<PK>();
+                        }
                         this.operationId_IN.add( operationIdIn );
                     }
                     return this;
@@ -173,6 +183,9 @@ public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTabl
                 @Override
                 public TcgTableOperationQuery operationIdNotIn(PK operationIdNotIn) {
                     if(!IdUtils.isEmpty(operationIdNotIn)){
+                        if(this.operationId_NOTIN == null){
+                            this.operationId_NOTIN = new ArrayList<PK>();
+                        }
                         this.operationId_NOTIN.add( operationIdNotIn );
                     }
                     return this;
@@ -228,6 +241,9 @@ public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTabl
                 @Override
                 public TcgTableOperationQuery tableIdIn(PK tableIdIn) {
                     if(!IdUtils.isEmpty(tableIdIn)){
+                        if(this.tableId_IN == null){
+                            this.tableId_IN = new ArrayList<PK>();
+                        }
                         this.tableId_IN.add( tableIdIn );
                     }
                     return this;
@@ -237,6 +253,9 @@ public class TcgTableOperationQueryImpl<PK extends Serializable> extends TcgTabl
                 @Override
                 public TcgTableOperationQuery tableIdNotIn(PK tableIdNotIn) {
                     if(!IdUtils.isEmpty(tableIdNotIn)){
+                        if(this.tableId_NOTIN == null){
+                            this.tableId_NOTIN = new ArrayList<PK>();
+                        }
                         this.tableId_NOTIN.add( tableIdNotIn );
                     }
                     return this;

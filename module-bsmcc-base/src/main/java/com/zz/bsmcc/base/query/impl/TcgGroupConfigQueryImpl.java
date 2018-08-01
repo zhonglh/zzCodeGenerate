@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgGroupConfigQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 组设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:06
+ * @date 2018-8-1 12:58:15
  */
 public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupConfigAbstractQueryImpl<PK> implements TcgGroupConfigQuery<PK>, Serializable  {
 
@@ -175,6 +176,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -184,6 +188,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -239,6 +246,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery projectIdIn(PK projectIdIn) {
                     if(!IdUtils.isEmpty(projectIdIn)){
+                        if(this.projectId_IN == null){
+                            this.projectId_IN = new ArrayList<PK>();
+                        }
                         this.projectId_IN.add( projectIdIn );
                     }
                     return this;
@@ -248,6 +258,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery projectIdNotIn(PK projectIdNotIn) {
                     if(!IdUtils.isEmpty(projectIdNotIn)){
+                        if(this.projectId_NOTIN == null){
+                            this.projectId_NOTIN = new ArrayList<PK>();
+                        }
                         this.projectId_NOTIN.add( projectIdNotIn );
                     }
                     return this;
@@ -324,6 +337,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery moduleNameIn(String moduleNameIn) {
                     if(!IdUtils.isEmpty(moduleNameIn)){
+                        if(this.moduleName_IN == null){
+                            this.moduleName_IN = new ArrayList<String>();
+                        }
                         this.moduleName_IN.add( moduleNameIn );
                     }
                     return this;
@@ -333,6 +349,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery moduleNameNotIn(String moduleNameNotIn) {
                     if(!IdUtils.isEmpty(moduleNameNotIn)){
+                        if(this.moduleName_NOTIN == null){
+                            this.moduleName_NOTIN = new ArrayList<String>();
+                        }
                         this.moduleName_NOTIN.add( moduleNameNotIn );
                     }
                     return this;
@@ -407,6 +426,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery groupCodeIn(String groupCodeIn) {
                     if(!IdUtils.isEmpty(groupCodeIn)){
+                        if(this.groupCode_IN == null){
+                            this.groupCode_IN = new ArrayList<String>();
+                        }
                         this.groupCode_IN.add( groupCodeIn );
                     }
                     return this;
@@ -416,6 +438,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery groupCodeNotIn(String groupCodeNotIn) {
                     if(!IdUtils.isEmpty(groupCodeNotIn)){
+                        if(this.groupCode_NOTIN == null){
+                            this.groupCode_NOTIN = new ArrayList<String>();
+                        }
                         this.groupCode_NOTIN.add( groupCodeNotIn );
                     }
                     return this;
@@ -531,6 +556,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -540,6 +568,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -657,6 +688,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -666,6 +700,9 @@ public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupCo
                 @Override
                 public TcgGroupConfigQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

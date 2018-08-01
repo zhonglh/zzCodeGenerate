@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:04
+ * @date 2018-8-1 12:58:13
  */
 public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements Serializable {
 
@@ -174,6 +174,18 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
             private String columnComment_IN;
             private String columnComment_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String columnOtherComment_IN;
+            private String columnOtherComment_NOTIN;
 
 
 
@@ -1175,6 +1187,76 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
                 public void setColumnComment_NOTLIKE(String columnComment_NOTLIKE) {
                     this.columnComment_NOTLIKE = columnComment_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getColumnOtherComment() {
+                    return columnOtherComment;
+                }
+
+
+                public void setColumnOtherComment(String columnOtherComment) {
+                    this.columnOtherComment = columnOtherComment;
+                }
+
+
+                public String getColumnOtherComment_NE() {
+                    return columnOtherComment_NE;
+                }
+
+
+                public void setColumnOtherComment_NE(String columnOtherComment_NE) {
+                    this.columnOtherComment_NE = columnOtherComment_NE;
+                }
+
+
+
+                public String getColumnOtherComment_IN() {
+                    return columnOtherComment_IN;
+                }
+
+                public void setColumnOtherComment_IN(String columnOtherComment_IN) {
+                    this.columnOtherComment_IN = columnOtherComment_IN;
+                }
+
+                public String getColumnOtherComment_NOTIN() {
+                    return columnOtherComment_NOTIN;
+                }
+
+                public void setColumnOtherComment_NOTIN(String columnOtherComment_NOTIN) {
+                    this.columnOtherComment_NOTIN = columnOtherComment_NOTIN;
+                }
+
+
+
+
+                public String getColumnOtherComment_LIKE() {
+                    return columnOtherComment_LIKE;
+                }
+
+                public void setColumnOtherComment_LIKE(String columnOtherComment_LIKE) {
+                    this.columnOtherComment_LIKE = columnOtherComment_LIKE;
+                }
+
+                public String getColumnOtherComment_NOTLIKE() {
+                    return columnOtherComment_NOTLIKE;
+                }
+
+                public void setColumnOtherComment_NOTLIKE(String columnOtherComment_NOTLIKE) {
+                    this.columnOtherComment_NOTLIKE = columnOtherComment_NOTLIKE;
                 }
 
 

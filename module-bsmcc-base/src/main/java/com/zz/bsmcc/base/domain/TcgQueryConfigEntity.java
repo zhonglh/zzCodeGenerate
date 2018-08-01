@@ -52,7 +52,7 @@ public class TcgQueryConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
     //@EntityAttrAnnotation(attrName="查询关系",sort=5  , attrLength=100    )
-	//参考 EnumQueryRelation  
+	//参考 EnumSearchType
 	private String queryRelation;
 
 

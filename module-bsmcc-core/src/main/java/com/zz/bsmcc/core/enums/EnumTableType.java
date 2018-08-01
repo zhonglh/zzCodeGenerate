@@ -26,11 +26,21 @@ public enum EnumTableType implements EnumBase {
 
     @Override
     public Serializable getTheValue() {
-        return null;
+        return value;
     }
 
     @Override
     public String getTheName() {
+        return name;
+    }
+
+
+    public static EnumTableType getTableTypeByValue(String val){
+        for(EnumTableType type : EnumTableType.values()){
+            if(val.equals(type.value)){
+                return  type;
+            }
+        }
         return null;
     }
 }

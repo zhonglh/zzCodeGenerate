@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 数据类型关联查询接口
  *
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:52:59
  */
 public interface TcgJavaDatatypeRealQuery<PK extends Serializable> extends Query<TcgJavaDatatypeRealEntity,PK> {
 

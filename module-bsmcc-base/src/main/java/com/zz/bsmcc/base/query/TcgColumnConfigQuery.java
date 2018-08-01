@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 列设置查询接口
  *
  * @author Administrator
- * @date 2018-7-30 17:18:03
+ * @date 2018-8-1 12:52:57
  */
 public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<TcgColumnConfigEntity,PK> {
 
@@ -269,6 +269,26 @@ public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<Tcg
             public TcgColumnConfigQuery columnCommentNotLike(String columnCommentNotLike);
             public TcgColumnConfigQuery columnCommentIsNull();
             public TcgColumnConfigQuery columnCommentIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnConfigQuery columnOtherComment(String columnOtherComment);
+            public TcgColumnConfigQuery columnOtherCommentNot(String columnOtherCommentNot);
+            public TcgColumnConfigQuery columnOtherCommentIn(String columnOtherCommentIn);
+            public TcgColumnConfigQuery columnOtherCommentNotIn(String columnOtherCommentNotIn);
+            public TcgColumnConfigQuery columnOtherCommentLike(String columnOtherCommentLike);
+            public TcgColumnConfigQuery columnOtherCommentNotLike(String columnOtherCommentNotLike);
+            public TcgColumnConfigQuery columnOtherCommentIsNull();
+            public TcgColumnConfigQuery columnOtherCommentIsNotNull();
 
 
 

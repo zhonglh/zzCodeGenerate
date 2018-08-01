@@ -252,6 +252,7 @@
 
                                 <td>
                                     <input type="hidden" id="columns[${status1.index }].id" name="columns[${status1.index }].id" value="${column.id }" />
+                                    <input type="hidden" id="columns[${status1.index }].tableId" name="columns[${status1.index }].tableId" value="${column.tableId }" />
                                     <input type="number" required id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" size="10" />
                                 </td>
 
@@ -332,17 +333,21 @@
                             <tr>
 
                                 <td>${status1.index+1 }</td>
-                                <td>${exColumn.originalColumnName }</td>
+                                <td>
+                                        ${exColumn.originalColumnName }
+                                        <input type="hidden" id="exColumns[${status1.index }].id" name="exColumns[${status1.index }].id" value="${exColumn.id }" />
+                                        <input type="hidden" id="exColumns[${status1.index }].tableId" name="exColumns[${status1.index }].tableId" value="${exColumn.tableId }" />
+                                </td>
                                 <td>${exColumn.originalColumnFkName }</td>
                                 <td>${exColumn.originalColumnDictName }</td>
 
 
-                                <td><input type="text"  id="excolumns[${status1.index }].javaFullClass" name="excolumns[${status1.index }].javaFullClass" value="${exColumn.javaFullClass }" /></td>
-                                <td><input type="text"  id="excolumns[${status1.index }].javaName" name="excolumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
-                                <td><input type="number"  id="excolumns[${status1.index }].columnSort" name="excolumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
-                                <td><input type="text"  id="excolumns[${status1.index }].columnTitle" name="excolumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
-                                <td><input type="text"  id="excolumns[${status1.index }].tableSchema" name="excolumns[${status1.index }].tableSchema" value="${exColumn.tableSchema }" /></td>
-                                <td><input type="text"  id="excolumns[${status1.index }].tableName" name="excolumns[${status1.index }].tableName" value="${exColumn.tableName }" /></td>
+                                <td><input type="text"  id="exColumns[${status1.index }].javaFullClass" name="exColumns[${status1.index }].javaFullClass" value="${exColumn.javaFullClass }" /></td>
+                                <td><input type="text"  id="exColumns[${status1.index }].javaName" name="exColumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
+                                <td><input type="number"  id="exColumns[${status1.index }].columnSort" name="exColumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
+                                <td><input type="text"  id="exColumns[${status1.index }].columnTitle" name="exColumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
+                                <td><input type="text"  id="exColumns[${status1.index }].tableSchema" name="exColumns[${status1.index }].tableSchema" value="${exColumn.tableSchema }" /></td>
+                                <td><input type="text"  id="exColumns[${status1.index }].tableName" name="exColumns[${status1.index }].tableName" value="${exColumn.tableName }" /></td>
 
 
                             </tr>
@@ -390,25 +395,30 @@
                             <tr>
 
                                 <td>${status1.index+1 }</td>
-                                <td>${columnPage.columnComment }</td>
+                                <td>
+                                        ${columnPage.columnComment }
+                                        <input type="hidden" id="columnPages[${status1.index }].id" name="columnPages[${status1.index }].id" value="${columnPage.id }" />
+                                        <input type="hidden" id="columnPages[${status1.index }].tableId" name="columnPages[${status1.index }].tableId" value="${columnPage.tableId }" />
+
+                                </td>
                                 <td>${columnPage.realColumnName }</td>
 
                                 <td>
-                                    <select name="columnpages[${status1.index }].existPage" >
+                                    <select name="columnPages[${status1.index }].existPage" >
                                         <option value="1" <c:if test="${columnPage.existPage ==  '1' }">selected="selected"</c:if>>是</option>
                                         <option value="0" <c:if test="${columnPage.existPage ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
 
                                 <td>
-                                    <select name="columnpages[${status1.index }].editable" >
+                                    <select name="columnPages[${status1.index }].editable" >
                                         <option value="1" <c:if test="${columnPage.editable ==  '1' }">selected="selected"</c:if>>是</option>
                                         <option value="0" <c:if test="${columnPage.editable ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
 
                                 <td>
-                                    <select name="columnpages[${status1.index }].hiddenable" >
+                                    <select name="columnPages[${status1.index }].hiddenable" >
                                         <option value="1" <c:if test="${columnPage.hiddenable ==  '1' }">selected="selected"</c:if>>是</option>
                                         <option value="0" <c:if test="${columnPage.hiddenable ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
@@ -416,7 +426,7 @@
 
 
                                 <td>
-                                    <select name="columnpages[${status1.index }].element" >
+                                    <select name="columnPages[${status1.index }].element" >
                                         <option value="text" <c:if test="${columnPage.element ==  'text' }">selected="selected"</c:if>>文本</option>
                                         <option value="digits" <c:if test="${columnPage.element ==  'digits' }">selected="selected"</c:if>>整数</option>
                                         <option value="number" <c:if test="${columnPage.element ==  'number' }">selected="selected"</c:if>>数字</option>
@@ -438,18 +448,18 @@
                                 </td>
 
 
-                                <td><input type="number"  id="columnpages[${status1.index }].maxlength" name="columnpages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
-                                <td><input type="number"  id="columnpages[${status1.index }].minlength" name="columnpages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
-                                <td><input type="number"  id="columnpages[${status1.index }].max" name="columnpages[${status1.index }].max" value="${columnPage.max }" /></td>
-                                <td><input type="number"  id="columnpages[${status1.index }].min" name="columnpages[${status1.index }].min" value="${columnPage.min }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].maxlength" name="columnPages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].minlength" name="columnPages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
                                 <td>
-                                    <select name="excolumns[${status1.index }].required" >
+                                    <select name="columnPages[${status1.index }].required" >
                                         <option value="1" <c:if test="${columnPage.required ==  '1' }">selected="selected"</c:if>>是</option>
                                         <option value="0" <c:if test="${columnPage.required ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="excolumns[${status1.index }].listShowable" >
+                                    <select name="columnPages[${status1.index }].listShowable" >
                                         <option value="1" <c:if test="${columnPage.listShowable ==  '1' }">selected="selected"</c:if>>是</option>
                                         <option value="0" <c:if test="${columnPage.listShowable ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
@@ -487,10 +497,12 @@
                                 <td>${status1.index+1 }</td>
                                 <td>
                                         ${columnValidate.columnComment }
-                                    <input type="hidden"  id="columnvalidates[${status1.index }].columnId" name="columnvalidates[${status1.index }].columnId" value="${columnValidate.columnId}" />
+                                        <input type="hidden"  id="columnValidates[${status1.index }].id" name="columnValidates[${status1.index }].id" value="${columnValidate.id}" />
+                                        <input type="hidden"  id="columnValidates[${status1.index }].columnId" name="columnValidates[${status1.index }].columnId" value="${columnValidate.columnId}" />
+                                        <input type="hidden"  id="columnValidates[${status1.index }].tableId" name="columnValidates[${status1.index }].tableId" value="${columnValidate.tableId}" />
                                 </td>
-                                <td><input type="text"  id="columnvalidates[${status1.index }].rex" name="columnvalidates[${status1.index }].rex" value="${columnValidate.rex }" /></td>
-                                <td><input type="text"  id="columnvalidates[${status1.index }].msg" name="columnvalidates[${status1.index }].msg" value="${columnValidate.msg }" /></td>
+                                <td><input type="text"  id="columnValidates[${status1.index }].rex" name="columnValidates[${status1.index }].rex" value="${columnValidate.rex }" /></td>
+                                <td><input type="text"  id="columnValidates[${status1.index }].msg" name="columnValidates[${status1.index }].msg" value="${columnValidate.msg }" /></td>
                                 </tr>
                         </c:forEach>
                         </tbody>
@@ -524,12 +536,14 @@
                                 <td>${status1.index+1 }</td>
                                 <td>
                                     ${columnEvent.columnComment }
-                                    <input type="hidden"  id="columnevents[${status1.index }].columnId" name="columnevents[${status1.index }].columnId" value="${columnEvent.columnId}" />
+                                    <input type="hidden"  id="columnEvents[${status1.index }].id" name="columnEvents[${status1.index }].id" value="${columnEvent.id}" />
+                                        <input type="hidden"  id="columnEvents[${status1.index }].columnId" name="columnEvents[${status1.index }].columnId" value="${columnEvent.columnId}" />
+                                        <input type="hidden"  id="columnEvents[${status1.index }].tableId" name="columnEvents[${status1.index }].tableId" value="${columnEvent.tableId}" />
                                 </td>
-                                <td><input type="text"  id="columnevents[${status1.index }].eventName" name="columnevents[${status1.index }].eventName" value="${columnEvent.eventName }" /></td>
-                                <td><input type="text"  id="columnevents[${status1.index }].funcName" name="columnevents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
-                                <td><input type="text"  id="columnevents[${status1.index }].funcParam" name="columnevents[${status1.index }].funcParam" value="${columnEvent.funcParam }" /></td>
-                                <td><textarea id="columnevents[${status1.index }].funcBody" name="columnevents[${status1.index }].funcBody">${columnEvent.funcBody}</textarea></td>
+                                <td><input type="text"  id="columnEvents[${status1.index }].eventName" name="columnEvents[${status1.index }].eventName" value="${columnEvent.eventName }" /></td>
+                                <td><input type="text"  id="columnEvents[${status1.index }].funcName" name="columnEvents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
+                                <td><input type="text"  id="columnEvents[${status1.index }].funcParam" name="columnEvents[${status1.index }].funcParam" value="${columnEvent.funcParam }" /></td>
+                                <td><textarea id="columnEvents[${status1.index }].funcBody" name="columnEvents[${status1.index }].funcBody">${columnEvent.funcBody}</textarea></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -594,13 +608,15 @@
                                 <td>${status1.index+1 }</td>
                                 <td>
                                         ${queryConfig.columnComment }
-                                    <input type="hidden"  id="queryconfigs[${status1.index }].columnId" name="queryconfigs[${status1.index }].columnId" value="${queryConfig.columnId}" />
+                                        <input type="hidden"  id="queryConfigs[${status1.index }].id" name="queryConfigs[${status1.index }].id" value="${queryConfig.id}" />
+                                        <input type="hidden"  id="queryConfigs[${status1.index }].columnId" name="queryConfigs[${status1.index }].columnId" value="${queryConfig.columnId}" />
+                                        <input type="hidden"  id="queryConfigs[${status1.index }].tableId" name="queryConfigs[${status1.index }].tableId" value="${queryConfig.tableId}" />
                                 </td>
-                                <td><input type="text"  id="queryconfigs[${status1.index }].queryTitle" name="queryconfigs[${status1.index }].queryTitle" value="${queryConfig.queryTitle }" /></td>
-                                <td><input type="text"  id="queryconfigs[${status1.index }].queryPlaceholder" name="queryconfigs[${status1.index }].queryPlaceholder" value="${queryConfig.queryPlaceholder }" /></td>
+                                <td><input type="text"  id="queryConfigs[${status1.index }].queryTitle" name="queryConfigs[${status1.index }].queryTitle" value="${queryConfig.queryTitle }" /></td>
+                                <td><input type="text"  id="queryConfigs[${status1.index }].queryPlaceholder" name="queryConfigs[${status1.index }].queryPlaceholder" value="${queryConfig.queryPlaceholder }" /></td>
 
 
-                                <select name="queryconfigs[${status1.index }].queryRelation" >
+                                <select name="queryConfigs[${status1.index }].queryRelation" >
                                     <option value="eq" <c:if test="${queryConfig.queryRelation ==  'eq' }">selected="selected"</c:if>>等于</option>
                                     <option value="ne" <c:if test="${queryConfig.queryRelation ==  'ne' }">selected="selected"</c:if>>不等于</option>
                                     <option value="gt" <c:if test="${queryConfig.queryRelation ==  'gt' }">selected="selected"</c:if>>大于</option>
@@ -611,7 +627,7 @@
                                     <option value="notlike" <c:if test="${queryConfig.queryRelation ==  'notlike' }">selected="selected"</c:if>>模糊不匹配</option>
                                 </select>
 
-                                <td><input type="number"  id="queryconfigs[${status1.index }].querySort" name="queryconfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
+                                <td><input type="number"  id="queryConfigs[${status1.index }].querySort" name="queryConfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -628,7 +644,6 @@
         <fieldset>
             <div class="row">
                 <div class="col-xs-12">
-
                     <c:forEach var="operation"   items="${operations}"   varStatus="status1">
                         <input id="op${operation.id}" name="operations" type="checkbox" value="${operation.id}" <c:if test="${operation.checked}">checked</c:if>  />
                         <span for="op${operation.id}">${operation.operationName}</span>

@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgTempletQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 模板 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:08
+ * @date 2018-8-1 12:58:17
  */
 public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbstractQueryImpl<PK> implements TcgTempletQuery<PK>, Serializable  {
 
@@ -221,6 +222,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -230,6 +234,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -285,6 +292,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery groupIdIn(PK groupIdIn) {
                     if(!IdUtils.isEmpty(groupIdIn)){
+                        if(this.groupId_IN == null){
+                            this.groupId_IN = new ArrayList<PK>();
+                        }
                         this.groupId_IN.add( groupIdIn );
                     }
                     return this;
@@ -294,6 +304,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery groupIdNotIn(PK groupIdNotIn) {
                     if(!IdUtils.isEmpty(groupIdNotIn)){
+                        if(this.groupId_NOTIN == null){
+                            this.groupId_NOTIN = new ArrayList<PK>();
+                        }
                         this.groupId_NOTIN.add( groupIdNotIn );
                     }
                     return this;
@@ -370,6 +383,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery fileTypeIn(String fileTypeIn) {
                     if(!IdUtils.isEmpty(fileTypeIn)){
+                        if(this.fileType_IN == null){
+                            this.fileType_IN = new ArrayList<String>();
+                        }
                         this.fileType_IN.add( fileTypeIn );
                     }
                     return this;
@@ -379,6 +395,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery fileTypeNotIn(String fileTypeNotIn) {
                     if(!IdUtils.isEmpty(fileTypeNotIn)){
+                        if(this.fileType_NOTIN == null){
+                            this.fileType_NOTIN = new ArrayList<String>();
+                        }
                         this.fileType_NOTIN.add( fileTypeNotIn );
                     }
                     return this;
@@ -453,6 +472,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetTitleIn(String templetTitleIn) {
                     if(!IdUtils.isEmpty(templetTitleIn)){
+                        if(this.templetTitle_IN == null){
+                            this.templetTitle_IN = new ArrayList<String>();
+                        }
                         this.templetTitle_IN.add( templetTitleIn );
                     }
                     return this;
@@ -462,6 +484,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetTitleNotIn(String templetTitleNotIn) {
                     if(!IdUtils.isEmpty(templetTitleNotIn)){
+                        if(this.templetTitle_NOTIN == null){
+                            this.templetTitle_NOTIN = new ArrayList<String>();
+                        }
                         this.templetTitle_NOTIN.add( templetTitleNotIn );
                     }
                     return this;
@@ -536,6 +561,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetDirIn(String templetDirIn) {
                     if(!IdUtils.isEmpty(templetDirIn)){
+                        if(this.templetDir_IN == null){
+                            this.templetDir_IN = new ArrayList<String>();
+                        }
                         this.templetDir_IN.add( templetDirIn );
                     }
                     return this;
@@ -545,6 +573,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetDirNotIn(String templetDirNotIn) {
                     if(!IdUtils.isEmpty(templetDirNotIn)){
+                        if(this.templetDir_NOTIN == null){
+                            this.templetDir_NOTIN = new ArrayList<String>();
+                        }
                         this.templetDir_NOTIN.add( templetDirNotIn );
                     }
                     return this;
@@ -619,6 +650,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetContentIn(String templetContentIn) {
                     if(!IdUtils.isEmpty(templetContentIn)){
+                        if(this.templetContent_IN == null){
+                            this.templetContent_IN = new ArrayList<String>();
+                        }
                         this.templetContent_IN.add( templetContentIn );
                     }
                     return this;
@@ -628,6 +662,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetContentNotIn(String templetContentNotIn) {
                     if(!IdUtils.isEmpty(templetContentNotIn)){
+                        if(this.templetContent_NOTIN == null){
+                            this.templetContent_NOTIN = new ArrayList<String>();
+                        }
                         this.templetContent_NOTIN.add( templetContentNotIn );
                     }
                     return this;
@@ -743,6 +780,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -752,6 +792,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -869,6 +912,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -878,6 +924,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;
@@ -996,6 +1045,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery deleteFlagIn(String deleteFlagIn) {
                     if(!IdUtils.isEmpty(deleteFlagIn)){
+                        if(this.deleteFlag_IN == null){
+                            this.deleteFlag_IN = new ArrayList<String>();
+                        }
                         this.deleteFlag_IN.add( deleteFlagIn );
                     }
                     return this;
@@ -1005,6 +1057,9 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                     public TcgTempletQuery deleteFlagNotIn(String deleteFlagNotIn) {
                     if(!IdUtils.isEmpty(deleteFlagNotIn)){
+                        if(this.deleteFlag_NOTIN == null){
+                            this.deleteFlag_NOTIN = new ArrayList<String>();
+                        }
                         this.deleteFlag_NOTIN.add( deleteFlagNotIn );
                     }
                     return this;

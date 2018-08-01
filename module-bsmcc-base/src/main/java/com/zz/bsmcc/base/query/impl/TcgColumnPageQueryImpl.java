@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgColumnPageQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 列界面设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:05
+ * @date 2018-8-1 12:58:14
  */
 public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPageAbstractQueryImpl<PK> implements TcgColumnPageQuery<PK>, Serializable  {
 
@@ -296,6 +297,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -305,6 +309,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -360,6 +367,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery tableIdIn(PK tableIdIn) {
                     if(!IdUtils.isEmpty(tableIdIn)){
+                        if(this.tableId_IN == null){
+                            this.tableId_IN = new ArrayList<PK>();
+                        }
                         this.tableId_IN.add( tableIdIn );
                     }
                     return this;
@@ -369,6 +379,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery tableIdNotIn(PK tableIdNotIn) {
                     if(!IdUtils.isEmpty(tableIdNotIn)){
+                        if(this.tableId_NOTIN == null){
+                            this.tableId_NOTIN = new ArrayList<PK>();
+                        }
                         this.tableId_NOTIN.add( tableIdNotIn );
                     }
                     return this;
@@ -424,6 +437,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery realColumnIn(String realColumnIn) {
                     if(!IdUtils.isEmpty(realColumnIn)){
+                        if(this.realColumn_IN == null){
+                            this.realColumn_IN = new ArrayList<String>();
+                        }
                         this.realColumn_IN.add( realColumnIn );
                     }
                     return this;
@@ -433,6 +449,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                     public TcgColumnPageQuery realColumnNotIn(String realColumnNotIn) {
                     if(!IdUtils.isEmpty(realColumnNotIn)){
+                        if(this.realColumn_NOTIN == null){
+                            this.realColumn_NOTIN = new ArrayList<String>();
+                        }
                         this.realColumn_NOTIN.add( realColumnNotIn );
                     }
                     return this;
@@ -487,6 +506,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery editableIn(String editableIn) {
                     if(!IdUtils.isEmpty(editableIn)){
+                        if(this.editable_IN == null){
+                            this.editable_IN = new ArrayList<String>();
+                        }
                         this.editable_IN.add( editableIn );
                     }
                     return this;
@@ -496,6 +518,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                     public TcgColumnPageQuery editableNotIn(String editableNotIn) {
                     if(!IdUtils.isEmpty(editableNotIn)){
+                        if(this.editable_NOTIN == null){
+                            this.editable_NOTIN = new ArrayList<String>();
+                        }
                         this.editable_NOTIN.add( editableNotIn );
                     }
                     return this;
@@ -550,6 +575,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery hiddenableIn(String hiddenableIn) {
                     if(!IdUtils.isEmpty(hiddenableIn)){
+                        if(this.hiddenable_IN == null){
+                            this.hiddenable_IN = new ArrayList<String>();
+                        }
                         this.hiddenable_IN.add( hiddenableIn );
                     }
                     return this;
@@ -559,6 +587,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                     public TcgColumnPageQuery hiddenableNotIn(String hiddenableNotIn) {
                     if(!IdUtils.isEmpty(hiddenableNotIn)){
+                        if(this.hiddenable_NOTIN == null){
+                            this.hiddenable_NOTIN = new ArrayList<String>();
+                        }
                         this.hiddenable_NOTIN.add( hiddenableNotIn );
                     }
                     return this;
@@ -613,6 +644,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery existPageIn(String existPageIn) {
                     if(!IdUtils.isEmpty(existPageIn)){
+                        if(this.existPage_IN == null){
+                            this.existPage_IN = new ArrayList<String>();
+                        }
                         this.existPage_IN.add( existPageIn );
                     }
                     return this;
@@ -622,6 +656,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                     public TcgColumnPageQuery existPageNotIn(String existPageNotIn) {
                     if(!IdUtils.isEmpty(existPageNotIn)){
+                        if(this.existPage_NOTIN == null){
+                            this.existPage_NOTIN = new ArrayList<String>();
+                        }
                         this.existPage_NOTIN.add( existPageNotIn );
                     }
                     return this;
@@ -697,6 +734,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery elementIn(String elementIn) {
                     if(!IdUtils.isEmpty(elementIn)){
+                        if(this.element_IN == null){
+                            this.element_IN = new ArrayList<String>();
+                        }
                         this.element_IN.add( elementIn );
                     }
                     return this;
@@ -706,6 +746,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery elementNotIn(String elementNotIn) {
                     if(!IdUtils.isEmpty(elementNotIn)){
+                        if(this.element_NOTIN == null){
+                            this.element_NOTIN = new ArrayList<String>();
+                        }
                         this.element_NOTIN.add( elementNotIn );
                     }
                     return this;
@@ -1011,6 +1054,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery requiredIn(String requiredIn) {
                     if(!IdUtils.isEmpty(requiredIn)){
+                        if(this.required_IN == null){
+                            this.required_IN = new ArrayList<String>();
+                        }
                         this.required_IN.add( requiredIn );
                     }
                     return this;
@@ -1020,6 +1066,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                     public TcgColumnPageQuery requiredNotIn(String requiredNotIn) {
                     if(!IdUtils.isEmpty(requiredNotIn)){
+                        if(this.required_NOTIN == null){
+                            this.required_NOTIN = new ArrayList<String>();
+                        }
                         this.required_NOTIN.add( requiredNotIn );
                     }
                     return this;
@@ -1074,6 +1123,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery listShowableIn(String listShowableIn) {
                     if(!IdUtils.isEmpty(listShowableIn)){
+                        if(this.listShowable_IN == null){
+                            this.listShowable_IN = new ArrayList<String>();
+                        }
                         this.listShowable_IN.add( listShowableIn );
                     }
                     return this;
@@ -1083,6 +1135,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                     public TcgColumnPageQuery listShowableNotIn(String listShowableNotIn) {
                     if(!IdUtils.isEmpty(listShowableNotIn)){
+                        if(this.listShowable_NOTIN == null){
+                            this.listShowable_NOTIN = new ArrayList<String>();
+                        }
                         this.listShowable_NOTIN.add( listShowableNotIn );
                     }
                     return this;
@@ -1199,6 +1254,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -1208,6 +1266,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -1325,6 +1386,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -1334,6 +1398,9 @@ public class TcgColumnPageQueryImpl<PK extends Serializable> extends TcgColumnPa
                 @Override
                 public TcgColumnPageQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgTableConfigQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 表设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:08
+ * @date 2018-8-1 12:58:17
  */
 public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements TcgTableConfigQuery<PK>, Serializable  {
 
@@ -406,6 +407,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -415,6 +419,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -470,6 +477,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery dbIdIn(PK dbIdIn) {
                     if(!IdUtils.isEmpty(dbIdIn)){
+                        if(this.dbId_IN == null){
+                            this.dbId_IN = new ArrayList<PK>();
+                        }
                         this.dbId_IN.add( dbIdIn );
                     }
                     return this;
@@ -479,6 +489,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery dbIdNotIn(PK dbIdNotIn) {
                     if(!IdUtils.isEmpty(dbIdNotIn)){
+                        if(this.dbId_NOTIN == null){
+                            this.dbId_NOTIN = new ArrayList<PK>();
+                        }
                         this.dbId_NOTIN.add( dbIdNotIn );
                     }
                     return this;
@@ -534,6 +547,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery projectIdIn(PK projectIdIn) {
                     if(!IdUtils.isEmpty(projectIdIn)){
+                        if(this.projectId_IN == null){
+                            this.projectId_IN = new ArrayList<PK>();
+                        }
                         this.projectId_IN.add( projectIdIn );
                     }
                     return this;
@@ -543,6 +559,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery projectIdNotIn(PK projectIdNotIn) {
                     if(!IdUtils.isEmpty(projectIdNotIn)){
+                        if(this.projectId_NOTIN == null){
+                            this.projectId_NOTIN = new ArrayList<PK>();
+                        }
                         this.projectId_NOTIN.add( projectIdNotIn );
                     }
                     return this;
@@ -598,6 +617,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery moduleIdIn(PK moduleIdIn) {
                     if(!IdUtils.isEmpty(moduleIdIn)){
+                        if(this.moduleId_IN == null){
+                            this.moduleId_IN = new ArrayList<PK>();
+                        }
                         this.moduleId_IN.add( moduleIdIn );
                     }
                     return this;
@@ -607,6 +629,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery moduleIdNotIn(PK moduleIdNotIn) {
                     if(!IdUtils.isEmpty(moduleIdNotIn)){
+                        if(this.moduleId_NOTIN == null){
+                            this.moduleId_NOTIN = new ArrayList<PK>();
+                        }
                         this.moduleId_NOTIN.add( moduleIdNotIn );
                     }
                     return this;
@@ -683,6 +708,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery schemaNameIn(String schemaNameIn) {
                     if(!IdUtils.isEmpty(schemaNameIn)){
+                        if(this.schemaName_IN == null){
+                            this.schemaName_IN = new ArrayList<String>();
+                        }
                         this.schemaName_IN.add( schemaNameIn );
                     }
                     return this;
@@ -692,6 +720,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery schemaNameNotIn(String schemaNameNotIn) {
                     if(!IdUtils.isEmpty(schemaNameNotIn)){
+                        if(this.schemaName_NOTIN == null){
+                            this.schemaName_NOTIN = new ArrayList<String>();
+                        }
                         this.schemaName_NOTIN.add( schemaNameNotIn );
                     }
                     return this;
@@ -766,6 +797,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableNameIn(String tableNameIn) {
                     if(!IdUtils.isEmpty(tableNameIn)){
+                        if(this.tableName_IN == null){
+                            this.tableName_IN = new ArrayList<String>();
+                        }
                         this.tableName_IN.add( tableNameIn );
                     }
                     return this;
@@ -775,6 +809,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableNameNotIn(String tableNameNotIn) {
                     if(!IdUtils.isEmpty(tableNameNotIn)){
+                        if(this.tableName_NOTIN == null){
+                            this.tableName_NOTIN = new ArrayList<String>();
+                        }
                         this.tableName_NOTIN.add( tableNameNotIn );
                     }
                     return this;
@@ -828,6 +865,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableTypeIn(String tableTypeIn) {
                     if(!IdUtils.isEmpty(tableTypeIn)){
+                        if(this.tableType_IN == null){
+                            this.tableType_IN = new ArrayList<String>();
+                        }
                         this.tableType_IN.add( tableTypeIn );
                     }
                     return this;
@@ -837,6 +877,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                     public TcgTableConfigQuery tableTypeNotIn(String tableTypeNotIn) {
                     if(!IdUtils.isEmpty(tableTypeNotIn)){
+                        if(this.tableType_NOTIN == null){
+                            this.tableType_NOTIN = new ArrayList<String>();
+                        }
                         this.tableType_NOTIN.add( tableTypeNotIn );
                     }
                     return this;
@@ -912,6 +955,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableRelationIn(String tableRelationIn) {
                     if(!IdUtils.isEmpty(tableRelationIn)){
+                        if(this.tableRelation_IN == null){
+                            this.tableRelation_IN = new ArrayList<String>();
+                        }
                         this.tableRelation_IN.add( tableRelationIn );
                     }
                     return this;
@@ -921,6 +967,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableRelationNotIn(String tableRelationNotIn) {
                     if(!IdUtils.isEmpty(tableRelationNotIn)){
+                        if(this.tableRelation_NOTIN == null){
+                            this.tableRelation_NOTIN = new ArrayList<String>();
+                        }
                         this.tableRelation_NOTIN.add( tableRelationNotIn );
                     }
                     return this;
@@ -974,6 +1023,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery isShowCheckboxIn(String isShowCheckboxIn) {
                     if(!IdUtils.isEmpty(isShowCheckboxIn)){
+                        if(this.isShowCheckbox_IN == null){
+                            this.isShowCheckbox_IN = new ArrayList<String>();
+                        }
                         this.isShowCheckbox_IN.add( isShowCheckboxIn );
                     }
                     return this;
@@ -983,6 +1035,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                     public TcgTableConfigQuery isShowCheckboxNotIn(String isShowCheckboxNotIn) {
                     if(!IdUtils.isEmpty(isShowCheckboxNotIn)){
+                        if(this.isShowCheckbox_NOTIN == null){
+                            this.isShowCheckbox_NOTIN = new ArrayList<String>();
+                        }
                         this.isShowCheckbox_NOTIN.add( isShowCheckboxNotIn );
                     }
                     return this;
@@ -1037,6 +1092,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery isTableIn(String isTableIn) {
                     if(!IdUtils.isEmpty(isTableIn)){
+                        if(this.isTable_IN == null){
+                            this.isTable_IN = new ArrayList<String>();
+                        }
                         this.isTable_IN.add( isTableIn );
                     }
                     return this;
@@ -1046,6 +1104,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                     public TcgTableConfigQuery isTableNotIn(String isTableNotIn) {
                     if(!IdUtils.isEmpty(isTableNotIn)){
+                        if(this.isTable_NOTIN == null){
+                            this.isTable_NOTIN = new ArrayList<String>();
+                        }
                         this.isTable_NOTIN.add( isTableNotIn );
                     }
                     return this;
@@ -1100,6 +1161,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery mainTableIdIn(PK mainTableIdIn) {
                     if(!IdUtils.isEmpty(mainTableIdIn)){
+                        if(this.mainTableId_IN == null){
+                            this.mainTableId_IN = new ArrayList<PK>();
+                        }
                         this.mainTableId_IN.add( mainTableIdIn );
                     }
                     return this;
@@ -1109,6 +1173,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery mainTableIdNotIn(PK mainTableIdNotIn) {
                     if(!IdUtils.isEmpty(mainTableIdNotIn)){
+                        if(this.mainTableId_NOTIN == null){
+                            this.mainTableId_NOTIN = new ArrayList<PK>();
+                        }
                         this.mainTableId_NOTIN.add( mainTableIdNotIn );
                     }
                     return this;
@@ -1185,6 +1252,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery resourceNameIn(String resourceNameIn) {
                     if(!IdUtils.isEmpty(resourceNameIn)){
+                        if(this.resourceName_IN == null){
+                            this.resourceName_IN = new ArrayList<String>();
+                        }
                         this.resourceName_IN.add( resourceNameIn );
                     }
                     return this;
@@ -1194,6 +1264,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery resourceNameNotIn(String resourceNameNotIn) {
                     if(!IdUtils.isEmpty(resourceNameNotIn)){
+                        if(this.resourceName_NOTIN == null){
+                            this.resourceName_NOTIN = new ArrayList<String>();
+                        }
                         this.resourceName_NOTIN.add( resourceNameNotIn );
                     }
                     return this;
@@ -1247,6 +1320,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery isTreeIn(String isTreeIn) {
                     if(!IdUtils.isEmpty(isTreeIn)){
+                        if(this.isTree_IN == null){
+                            this.isTree_IN = new ArrayList<String>();
+                        }
                         this.isTree_IN.add( isTreeIn );
                     }
                     return this;
@@ -1256,6 +1332,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                     public TcgTableConfigQuery isTreeNotIn(String isTreeNotIn) {
                     if(!IdUtils.isEmpty(isTreeNotIn)){
+                        if(this.isTree_NOTIN == null){
+                            this.isTree_NOTIN = new ArrayList<String>();
+                        }
                         this.isTree_NOTIN.add( isTreeNotIn );
                     }
                     return this;
@@ -1331,6 +1410,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery parentFieldNameIn(String parentFieldNameIn) {
                     if(!IdUtils.isEmpty(parentFieldNameIn)){
+                        if(this.parentFieldName_IN == null){
+                            this.parentFieldName_IN = new ArrayList<String>();
+                        }
                         this.parentFieldName_IN.add( parentFieldNameIn );
                     }
                     return this;
@@ -1340,6 +1422,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery parentFieldNameNotIn(String parentFieldNameNotIn) {
                     if(!IdUtils.isEmpty(parentFieldNameNotIn)){
+                        if(this.parentFieldName_NOTIN == null){
+                            this.parentFieldName_NOTIN = new ArrayList<String>();
+                        }
                         this.parentFieldName_NOTIN.add( parentFieldNameNotIn );
                     }
                     return this;
@@ -1414,6 +1499,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableCommentIn(String tableCommentIn) {
                     if(!IdUtils.isEmpty(tableCommentIn)){
+                        if(this.tableComment_IN == null){
+                            this.tableComment_IN = new ArrayList<String>();
+                        }
                         this.tableComment_IN.add( tableCommentIn );
                     }
                     return this;
@@ -1423,6 +1511,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableCommentNotIn(String tableCommentNotIn) {
                     if(!IdUtils.isEmpty(tableCommentNotIn)){
+                        if(this.tableComment_NOTIN == null){
+                            this.tableComment_NOTIN = new ArrayList<String>();
+                        }
                         this.tableComment_NOTIN.add( tableCommentNotIn );
                     }
                     return this;
@@ -1497,6 +1588,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery queryModeIn(String queryModeIn) {
                     if(!IdUtils.isEmpty(queryModeIn)){
+                        if(this.queryMode_IN == null){
+                            this.queryMode_IN = new ArrayList<String>();
+                        }
                         this.queryMode_IN.add( queryModeIn );
                     }
                     return this;
@@ -1506,6 +1600,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery queryModeNotIn(String queryModeNotIn) {
                     if(!IdUtils.isEmpty(queryModeNotIn)){
+                        if(this.queryMode_NOTIN == null){
+                            this.queryMode_NOTIN = new ArrayList<String>();
+                        }
                         this.queryMode_NOTIN.add( queryModeNotIn );
                     }
                     return this;
@@ -1559,6 +1656,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery isBuildControllerIn(String isBuildControllerIn) {
                     if(!IdUtils.isEmpty(isBuildControllerIn)){
+                        if(this.isBuildController_IN == null){
+                            this.isBuildController_IN = new ArrayList<String>();
+                        }
                         this.isBuildController_IN.add( isBuildControllerIn );
                     }
                     return this;
@@ -1568,6 +1668,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                     public TcgTableConfigQuery isBuildControllerNotIn(String isBuildControllerNotIn) {
                     if(!IdUtils.isEmpty(isBuildControllerNotIn)){
+                        if(this.isBuildController_NOTIN == null){
+                            this.isBuildController_NOTIN = new ArrayList<String>();
+                        }
                         this.isBuildController_NOTIN.add( isBuildControllerNotIn );
                     }
                     return this;
@@ -1622,6 +1725,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery isBuildMenuIn(String isBuildMenuIn) {
                     if(!IdUtils.isEmpty(isBuildMenuIn)){
+                        if(this.isBuildMenu_IN == null){
+                            this.isBuildMenu_IN = new ArrayList<String>();
+                        }
                         this.isBuildMenu_IN.add( isBuildMenuIn );
                     }
                     return this;
@@ -1631,6 +1737,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                     public TcgTableConfigQuery isBuildMenuNotIn(String isBuildMenuNotIn) {
                     if(!IdUtils.isEmpty(isBuildMenuNotIn)){
+                        if(this.isBuildMenu_NOTIN == null){
+                            this.isBuildMenu_NOTIN = new ArrayList<String>();
+                        }
                         this.isBuildMenu_NOTIN.add( isBuildMenuNotIn );
                     }
                     return this;
@@ -1706,6 +1815,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery javaNameIn(String javaNameIn) {
                     if(!IdUtils.isEmpty(javaNameIn)){
+                        if(this.javaName_IN == null){
+                            this.javaName_IN = new ArrayList<String>();
+                        }
                         this.javaName_IN.add( javaNameIn );
                     }
                     return this;
@@ -1715,6 +1827,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery javaNameNotIn(String javaNameNotIn) {
                     if(!IdUtils.isEmpty(javaNameNotIn)){
+                        if(this.javaName_NOTIN == null){
+                            this.javaName_NOTIN = new ArrayList<String>();
+                        }
                         this.javaName_NOTIN.add( javaNameNotIn );
                     }
                     return this;
@@ -1830,6 +1945,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -1839,6 +1957,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -1956,6 +2077,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -1965,6 +2089,9 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

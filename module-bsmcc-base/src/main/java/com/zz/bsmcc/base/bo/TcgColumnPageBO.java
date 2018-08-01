@@ -31,6 +31,8 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     private String listShowableName;
 
+    private String elementNmae;
+
 
     public String getColumnComment() {
         return columnComment;
@@ -86,5 +88,13 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     public void setListShowableName(String listShowableName) {
         this.listShowableName = listShowableName;
+    }
+
+    public String getElementNmae() {
+        return elementNmae;
+    }
+
+    public void setElementNmae(String elementNmae) {
+        this.elementNmae = elementNmae;
     }
 }

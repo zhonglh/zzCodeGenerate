@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgJavaDatatypeRealQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 数据类型关联 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:58:15
  */
 public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJavaDatatypeRealAbstractQueryImpl<PK> implements TcgJavaDatatypeRealQuery<PK>, Serializable  {
 
@@ -160,6 +161,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -169,6 +173,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -245,6 +252,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery javaTypeIn(String javaTypeIn) {
                     if(!IdUtils.isEmpty(javaTypeIn)){
+                        if(this.javaType_IN == null){
+                            this.javaType_IN = new ArrayList<String>();
+                        }
                         this.javaType_IN.add( javaTypeIn );
                     }
                     return this;
@@ -254,6 +264,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery javaTypeNotIn(String javaTypeNotIn) {
                     if(!IdUtils.isEmpty(javaTypeNotIn)){
+                        if(this.javaType_NOTIN == null){
+                            this.javaType_NOTIN = new ArrayList<String>();
+                        }
                         this.javaType_NOTIN.add( javaTypeNotIn );
                     }
                     return this;
@@ -328,6 +341,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery dataTypeIn(String dataTypeIn) {
                     if(!IdUtils.isEmpty(dataTypeIn)){
+                        if(this.dataType_IN == null){
+                            this.dataType_IN = new ArrayList<String>();
+                        }
                         this.dataType_IN.add( dataTypeIn );
                     }
                     return this;
@@ -337,6 +353,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery dataTypeNotIn(String dataTypeNotIn) {
                     if(!IdUtils.isEmpty(dataTypeNotIn)){
+                        if(this.dataType_NOTIN == null){
+                            this.dataType_NOTIN = new ArrayList<String>();
+                        }
                         this.dataType_NOTIN.add( dataTypeNotIn );
                     }
                     return this;
@@ -452,6 +471,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -461,6 +483,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -578,6 +603,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -587,6 +615,9 @@ public class TcgJavaDatatypeRealQueryImpl<PK extends Serializable> extends TcgJa
                 @Override
                 public TcgJavaDatatypeRealQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

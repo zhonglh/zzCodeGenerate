@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgDbConfigQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 连接池设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:06
+ * @date 2018-8-1 12:58:14
  */
 public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAbstractQueryImpl<PK> implements TcgDbConfigQuery<PK>, Serializable  {
 
@@ -205,6 +206,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -214,6 +218,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -290,6 +297,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbTypeIn(String dbTypeIn) {
                     if(!IdUtils.isEmpty(dbTypeIn)){
+                        if(this.dbType_IN == null){
+                            this.dbType_IN = new ArrayList<String>();
+                        }
                         this.dbType_IN.add( dbTypeIn );
                     }
                     return this;
@@ -299,6 +309,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbTypeNotIn(String dbTypeNotIn) {
                     if(!IdUtils.isEmpty(dbTypeNotIn)){
+                        if(this.dbType_NOTIN == null){
+                            this.dbType_NOTIN = new ArrayList<String>();
+                        }
                         this.dbType_NOTIN.add( dbTypeNotIn );
                     }
                     return this;
@@ -373,6 +386,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbUrlIn(String dbUrlIn) {
                     if(!IdUtils.isEmpty(dbUrlIn)){
+                        if(this.dbUrl_IN == null){
+                            this.dbUrl_IN = new ArrayList<String>();
+                        }
                         this.dbUrl_IN.add( dbUrlIn );
                     }
                     return this;
@@ -382,6 +398,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbUrlNotIn(String dbUrlNotIn) {
                     if(!IdUtils.isEmpty(dbUrlNotIn)){
+                        if(this.dbUrl_NOTIN == null){
+                            this.dbUrl_NOTIN = new ArrayList<String>();
+                        }
                         this.dbUrl_NOTIN.add( dbUrlNotIn );
                     }
                     return this;
@@ -456,6 +475,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbUsernameIn(String dbUsernameIn) {
                     if(!IdUtils.isEmpty(dbUsernameIn)){
+                        if(this.dbUsername_IN == null){
+                            this.dbUsername_IN = new ArrayList<String>();
+                        }
                         this.dbUsername_IN.add( dbUsernameIn );
                     }
                     return this;
@@ -465,6 +487,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbUsernameNotIn(String dbUsernameNotIn) {
                     if(!IdUtils.isEmpty(dbUsernameNotIn)){
+                        if(this.dbUsername_NOTIN == null){
+                            this.dbUsername_NOTIN = new ArrayList<String>();
+                        }
                         this.dbUsername_NOTIN.add( dbUsernameNotIn );
                     }
                     return this;
@@ -539,6 +564,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbPasswordIn(String dbPasswordIn) {
                     if(!IdUtils.isEmpty(dbPasswordIn)){
+                        if(this.dbPassword_IN == null){
+                            this.dbPassword_IN = new ArrayList<String>();
+                        }
                         this.dbPassword_IN.add( dbPasswordIn );
                     }
                     return this;
@@ -548,6 +576,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery dbPasswordNotIn(String dbPasswordNotIn) {
                     if(!IdUtils.isEmpty(dbPasswordNotIn)){
+                        if(this.dbPassword_NOTIN == null){
+                            this.dbPassword_NOTIN = new ArrayList<String>();
+                        }
                         this.dbPassword_NOTIN.add( dbPasswordNotIn );
                     }
                     return this;
@@ -622,6 +653,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery titleIn(String titleIn) {
                     if(!IdUtils.isEmpty(titleIn)){
+                        if(this.title_IN == null){
+                            this.title_IN = new ArrayList<String>();
+                        }
                         this.title_IN.add( titleIn );
                     }
                     return this;
@@ -631,6 +665,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery titleNotIn(String titleNotIn) {
                     if(!IdUtils.isEmpty(titleNotIn)){
+                        if(this.title_NOTIN == null){
+                            this.title_NOTIN = new ArrayList<String>();
+                        }
                         this.title_NOTIN.add( titleNotIn );
                     }
                     return this;
@@ -746,6 +783,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -755,6 +795,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -872,6 +915,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -881,6 +927,9 @@ public class TcgDbConfigQueryImpl<PK extends Serializable> extends TcgDbConfigAb
                 @Override
                 public TcgDbConfigQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

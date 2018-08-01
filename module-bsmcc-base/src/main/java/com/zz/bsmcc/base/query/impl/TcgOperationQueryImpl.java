@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgOperationQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 操作表 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:58:15
  */
 public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperationAbstractQueryImpl<PK> implements TcgOperationQuery<PK>, Serializable  {
 
@@ -176,6 +177,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -185,6 +189,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -261,6 +268,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery operationNameIn(String operationNameIn) {
                     if(!IdUtils.isEmpty(operationNameIn)){
+                        if(this.operationName_IN == null){
+                            this.operationName_IN = new ArrayList<String>();
+                        }
                         this.operationName_IN.add( operationNameIn );
                     }
                     return this;
@@ -270,6 +280,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery operationNameNotIn(String operationNameNotIn) {
                     if(!IdUtils.isEmpty(operationNameNotIn)){
+                        if(this.operationName_NOTIN == null){
+                            this.operationName_NOTIN = new ArrayList<String>();
+                        }
                         this.operationName_NOTIN.add( operationNameNotIn );
                     }
                     return this;
@@ -344,6 +357,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery operationResourceIn(String operationResourceIn) {
                     if(!IdUtils.isEmpty(operationResourceIn)){
+                        if(this.operationResource_IN == null){
+                            this.operationResource_IN = new ArrayList<String>();
+                        }
                         this.operationResource_IN.add( operationResourceIn );
                     }
                     return this;
@@ -353,6 +369,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery operationResourceNotIn(String operationResourceNotIn) {
                     if(!IdUtils.isEmpty(operationResourceNotIn)){
+                        if(this.operationResource_NOTIN == null){
+                            this.operationResource_NOTIN = new ArrayList<String>();
+                        }
                         this.operationResource_NOTIN.add( operationResourceNotIn );
                     }
                     return this;
@@ -468,6 +487,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -477,6 +499,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -594,6 +619,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -603,6 +631,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;
@@ -721,6 +752,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                 public TcgOperationQuery deleteFlagIn(String deleteFlagIn) {
                     if(!IdUtils.isEmpty(deleteFlagIn)){
+                        if(this.deleteFlag_IN == null){
+                            this.deleteFlag_IN = new ArrayList<String>();
+                        }
                         this.deleteFlag_IN.add( deleteFlagIn );
                     }
                     return this;
@@ -730,6 +764,9 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                 @Override
                     public TcgOperationQuery deleteFlagNotIn(String deleteFlagNotIn) {
                     if(!IdUtils.isEmpty(deleteFlagNotIn)){
+                        if(this.deleteFlag_NOTIN == null){
+                            this.deleteFlag_NOTIN = new ArrayList<String>();
+                        }
                         this.deleteFlag_NOTIN.add( deleteFlagNotIn );
                     }
                     return this;

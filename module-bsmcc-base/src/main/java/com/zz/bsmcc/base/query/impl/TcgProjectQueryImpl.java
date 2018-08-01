@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgProjectQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 项目管理 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:08
+ * @date 2018-8-1 12:58:16
  */
 public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbstractQueryImpl<PK> implements TcgProjectQuery<PK>, Serializable  {
 
@@ -299,6 +300,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -308,6 +312,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -384,6 +391,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectNameIn(String projectNameIn) {
                     if(!IdUtils.isEmpty(projectNameIn)){
+                        if(this.projectName_IN == null){
+                            this.projectName_IN = new ArrayList<String>();
+                        }
                         this.projectName_IN.add( projectNameIn );
                     }
                     return this;
@@ -393,6 +403,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectNameNotIn(String projectNameNotIn) {
                     if(!IdUtils.isEmpty(projectNameNotIn)){
+                        if(this.projectName_NOTIN == null){
+                            this.projectName_NOTIN = new ArrayList<String>();
+                        }
                         this.projectName_NOTIN.add( projectNameNotIn );
                     }
                     return this;
@@ -467,6 +480,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectRemarkIn(String projectRemarkIn) {
                     if(!IdUtils.isEmpty(projectRemarkIn)){
+                        if(this.projectRemark_IN == null){
+                            this.projectRemark_IN = new ArrayList<String>();
+                        }
                         this.projectRemark_IN.add( projectRemarkIn );
                     }
                     return this;
@@ -476,6 +492,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectRemarkNotIn(String projectRemarkNotIn) {
                     if(!IdUtils.isEmpty(projectRemarkNotIn)){
+                        if(this.projectRemark_NOTIN == null){
+                            this.projectRemark_NOTIN = new ArrayList<String>();
+                        }
                         this.projectRemark_NOTIN.add( projectRemarkNotIn );
                     }
                     return this;
@@ -550,6 +569,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectPackageIn(String projectPackageIn) {
                     if(!IdUtils.isEmpty(projectPackageIn)){
+                        if(this.projectPackage_IN == null){
+                            this.projectPackage_IN = new ArrayList<String>();
+                        }
                         this.projectPackage_IN.add( projectPackageIn );
                     }
                     return this;
@@ -559,6 +581,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectPackageNotIn(String projectPackageNotIn) {
                     if(!IdUtils.isEmpty(projectPackageNotIn)){
+                        if(this.projectPackage_NOTIN == null){
+                            this.projectPackage_NOTIN = new ArrayList<String>();
+                        }
                         this.projectPackage_NOTIN.add( projectPackageNotIn );
                     }
                     return this;
@@ -633,6 +658,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectLeadIn(String projectLeadIn) {
                     if(!IdUtils.isEmpty(projectLeadIn)){
+                        if(this.projectLead_IN == null){
+                            this.projectLead_IN = new ArrayList<String>();
+                        }
                         this.projectLead_IN.add( projectLeadIn );
                     }
                     return this;
@@ -642,6 +670,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectLeadNotIn(String projectLeadNotIn) {
                     if(!IdUtils.isEmpty(projectLeadNotIn)){
+                        if(this.projectLead_NOTIN == null){
+                            this.projectLead_NOTIN = new ArrayList<String>();
+                        }
                         this.projectLead_NOTIN.add( projectLeadNotIn );
                     }
                     return this;
@@ -716,6 +747,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectAuthorIn(String projectAuthorIn) {
                     if(!IdUtils.isEmpty(projectAuthorIn)){
+                        if(this.projectAuthor_IN == null){
+                            this.projectAuthor_IN = new ArrayList<String>();
+                        }
                         this.projectAuthor_IN.add( projectAuthorIn );
                     }
                     return this;
@@ -725,6 +759,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectAuthorNotIn(String projectAuthorNotIn) {
                     if(!IdUtils.isEmpty(projectAuthorNotIn)){
+                        if(this.projectAuthor_NOTIN == null){
+                            this.projectAuthor_NOTIN = new ArrayList<String>();
+                        }
                         this.projectAuthor_NOTIN.add( projectAuthorNotIn );
                     }
                     return this;
@@ -799,6 +836,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectNoteIn(String projectNoteIn) {
                     if(!IdUtils.isEmpty(projectNoteIn)){
+                        if(this.projectNote_IN == null){
+                            this.projectNote_IN = new ArrayList<String>();
+                        }
                         this.projectNote_IN.add( projectNoteIn );
                     }
                     return this;
@@ -808,6 +848,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectNoteNotIn(String projectNoteNotIn) {
                     if(!IdUtils.isEmpty(projectNoteNotIn)){
+                        if(this.projectNote_NOTIN == null){
+                            this.projectNote_NOTIN = new ArrayList<String>();
+                        }
                         this.projectNote_NOTIN.add( projectNoteNotIn );
                     }
                     return this;
@@ -861,6 +904,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectI18nIn(String projectI18nIn) {
                     if(!IdUtils.isEmpty(projectI18nIn)){
+                        if(this.projectI18n_IN == null){
+                            this.projectI18n_IN = new ArrayList<String>();
+                        }
                         this.projectI18n_IN.add( projectI18nIn );
                     }
                     return this;
@@ -870,6 +916,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                     public TcgProjectQuery projectI18nNotIn(String projectI18nNotIn) {
                     if(!IdUtils.isEmpty(projectI18nNotIn)){
+                        if(this.projectI18n_NOTIN == null){
+                            this.projectI18n_NOTIN = new ArrayList<String>();
+                        }
                         this.projectI18n_NOTIN.add( projectI18nNotIn );
                     }
                     return this;
@@ -924,6 +973,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery projectTenantIn(String projectTenantIn) {
                     if(!IdUtils.isEmpty(projectTenantIn)){
+                        if(this.projectTenant_IN == null){
+                            this.projectTenant_IN = new ArrayList<String>();
+                        }
                         this.projectTenant_IN.add( projectTenantIn );
                     }
                     return this;
@@ -933,6 +985,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                     public TcgProjectQuery projectTenantNotIn(String projectTenantNotIn) {
                     if(!IdUtils.isEmpty(projectTenantNotIn)){
+                        if(this.projectTenant_NOTIN == null){
+                            this.projectTenant_NOTIN = new ArrayList<String>();
+                        }
                         this.projectTenant_NOTIN.add( projectTenantNotIn );
                     }
                     return this;
@@ -1008,6 +1063,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery queryModeIn(String queryModeIn) {
                     if(!IdUtils.isEmpty(queryModeIn)){
+                        if(this.queryMode_IN == null){
+                            this.queryMode_IN = new ArrayList<String>();
+                        }
                         this.queryMode_IN.add( queryModeIn );
                     }
                     return this;
@@ -1017,6 +1075,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery queryModeNotIn(String queryModeNotIn) {
                     if(!IdUtils.isEmpty(queryModeNotIn)){
+                        if(this.queryMode_NOTIN == null){
+                            this.queryMode_NOTIN = new ArrayList<String>();
+                        }
                         this.queryMode_NOTIN.add( queryModeNotIn );
                     }
                     return this;
@@ -1070,6 +1131,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery pageUseViewIn(String pageUseViewIn) {
                     if(!IdUtils.isEmpty(pageUseViewIn)){
+                        if(this.pageUseView_IN == null){
+                            this.pageUseView_IN = new ArrayList<String>();
+                        }
                         this.pageUseView_IN.add( pageUseViewIn );
                     }
                     return this;
@@ -1079,6 +1143,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                     public TcgProjectQuery pageUseViewNotIn(String pageUseViewNotIn) {
                     if(!IdUtils.isEmpty(pageUseViewNotIn)){
+                        if(this.pageUseView_NOTIN == null){
+                            this.pageUseView_NOTIN = new ArrayList<String>();
+                        }
                         this.pageUseView_NOTIN.add( pageUseViewNotIn );
                     }
                     return this;
@@ -1195,6 +1262,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -1204,6 +1274,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -1321,6 +1394,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -1330,6 +1406,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;
@@ -1448,6 +1527,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                 public TcgProjectQuery deleteFlagIn(String deleteFlagIn) {
                     if(!IdUtils.isEmpty(deleteFlagIn)){
+                        if(this.deleteFlag_IN == null){
+                            this.deleteFlag_IN = new ArrayList<String>();
+                        }
                         this.deleteFlag_IN.add( deleteFlagIn );
                     }
                     return this;
@@ -1457,6 +1539,9 @@ public class TcgProjectQueryImpl<PK extends Serializable> extends TcgProjectAbst
                 @Override
                     public TcgProjectQuery deleteFlagNotIn(String deleteFlagNotIn) {
                     if(!IdUtils.isEmpty(deleteFlagNotIn)){
+                        if(this.deleteFlag_NOTIN == null){
+                            this.deleteFlag_NOTIN = new ArrayList<String>();
+                        }
                         this.deleteFlag_NOTIN.add( deleteFlagNotIn );
                     }
                     return this;

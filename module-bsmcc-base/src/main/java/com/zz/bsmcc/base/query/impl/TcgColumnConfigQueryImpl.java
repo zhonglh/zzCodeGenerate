@@ -6,6 +6,7 @@ import com.zz.bsmcc.base.query.TcgColumnConfigQuery;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
  * 列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-7-30 17:18:04
+ * @date 2018-8-1 12:58:13
  */
 public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements TcgColumnConfigQuery<PK>, Serializable  {
 
@@ -223,6 +224,21 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
 
 
+            private List<String> columnOtherComment_IN;
+            private List<String> columnOtherComment_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
             private List<String> javaSimpleClass_IN;
             private List<String> javaSimpleClass_NOTIN;
 
@@ -374,6 +390,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery idIn(PK idIn) {
                     if(!IdUtils.isEmpty(idIn)){
+                        if(this.id_IN == null){
+                            this.id_IN = new ArrayList<PK>();
+                        }
                         this.id_IN.add( idIn );
                     }
                     return this;
@@ -383,6 +402,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery idNotIn(PK idNotIn) {
                     if(!IdUtils.isEmpty(idNotIn)){
+                        if(this.id_NOTIN == null){
+                            this.id_NOTIN = new ArrayList<PK>();
+                        }
                         this.id_NOTIN.add( idNotIn );
                     }
                     return this;
@@ -438,6 +460,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery tableIdIn(PK tableIdIn) {
                     if(!IdUtils.isEmpty(tableIdIn)){
+                        if(this.tableId_IN == null){
+                            this.tableId_IN = new ArrayList<PK>();
+                        }
                         this.tableId_IN.add( tableIdIn );
                     }
                     return this;
@@ -447,6 +472,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery tableIdNotIn(PK tableIdNotIn) {
                     if(!IdUtils.isEmpty(tableIdNotIn)){
+                        if(this.tableId_NOTIN == null){
+                            this.tableId_NOTIN = new ArrayList<PK>();
+                        }
                         this.tableId_NOTIN.add( tableIdNotIn );
                     }
                     return this;
@@ -523,6 +551,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnNameIn(String columnNameIn) {
                     if(!IdUtils.isEmpty(columnNameIn)){
+                        if(this.columnName_IN == null){
+                            this.columnName_IN = new ArrayList<String>();
+                        }
                         this.columnName_IN.add( columnNameIn );
                     }
                     return this;
@@ -532,6 +563,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnNameNotIn(String columnNameNotIn) {
                     if(!IdUtils.isEmpty(columnNameNotIn)){
+                        if(this.columnName_NOTIN == null){
+                            this.columnName_NOTIN = new ArrayList<String>();
+                        }
                         this.columnName_NOTIN.add( columnNameNotIn );
                     }
                     return this;
@@ -606,6 +640,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnTypeIn(String columnTypeIn) {
                     if(!IdUtils.isEmpty(columnTypeIn)){
+                        if(this.columnType_IN == null){
+                            this.columnType_IN = new ArrayList<String>();
+                        }
                         this.columnType_IN.add( columnTypeIn );
                     }
                     return this;
@@ -615,6 +652,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnTypeNotIn(String columnTypeNotIn) {
                     if(!IdUtils.isEmpty(columnTypeNotIn)){
+                        if(this.columnType_NOTIN == null){
+                            this.columnType_NOTIN = new ArrayList<String>();
+                        }
                         this.columnType_NOTIN.add( columnTypeNotIn );
                     }
                     return this;
@@ -815,6 +855,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnDefaultIn(String columnDefaultIn) {
                     if(!IdUtils.isEmpty(columnDefaultIn)){
+                        if(this.columnDefault_IN == null){
+                            this.columnDefault_IN = new ArrayList<String>();
+                        }
                         this.columnDefault_IN.add( columnDefaultIn );
                     }
                     return this;
@@ -824,6 +867,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnDefaultNotIn(String columnDefaultNotIn) {
                     if(!IdUtils.isEmpty(columnDefaultNotIn)){
+                        if(this.columnDefault_NOTIN == null){
+                            this.columnDefault_NOTIN = new ArrayList<String>();
+                        }
                         this.columnDefault_NOTIN.add( columnDefaultNotIn );
                     }
                     return this;
@@ -877,6 +923,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnIsnullIn(String columnIsnullIn) {
                     if(!IdUtils.isEmpty(columnIsnullIn)){
+                        if(this.columnIsnull_IN == null){
+                            this.columnIsnull_IN = new ArrayList<String>();
+                        }
                         this.columnIsnull_IN.add( columnIsnullIn );
                     }
                     return this;
@@ -886,6 +935,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                     public TcgColumnConfigQuery columnIsnullNotIn(String columnIsnullNotIn) {
                     if(!IdUtils.isEmpty(columnIsnullNotIn)){
+                        if(this.columnIsnull_NOTIN == null){
+                            this.columnIsnull_NOTIN = new ArrayList<String>();
+                        }
                         this.columnIsnull_NOTIN.add( columnIsnullNotIn );
                     }
                     return this;
@@ -1003,6 +1055,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnIsfkIn(String columnIsfkIn) {
                     if(!IdUtils.isEmpty(columnIsfkIn)){
+                        if(this.columnIsfk_IN == null){
+                            this.columnIsfk_IN = new ArrayList<String>();
+                        }
                         this.columnIsfk_IN.add( columnIsfkIn );
                     }
                     return this;
@@ -1012,6 +1067,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                     public TcgColumnConfigQuery columnIsfkNotIn(String columnIsfkNotIn) {
                     if(!IdUtils.isEmpty(columnIsfkNotIn)){
+                        if(this.columnIsfk_NOTIN == null){
+                            this.columnIsfk_NOTIN = new ArrayList<String>();
+                        }
                         this.columnIsfk_NOTIN.add( columnIsfkNotIn );
                     }
                     return this;
@@ -1066,6 +1124,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnIskeyIn(String columnIskeyIn) {
                     if(!IdUtils.isEmpty(columnIskeyIn)){
+                        if(this.columnIskey_IN == null){
+                            this.columnIskey_IN = new ArrayList<String>();
+                        }
                         this.columnIskey_IN.add( columnIskeyIn );
                     }
                     return this;
@@ -1075,6 +1136,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                     public TcgColumnConfigQuery columnIskeyNotIn(String columnIskeyNotIn) {
                     if(!IdUtils.isEmpty(columnIskeyNotIn)){
+                        if(this.columnIskey_NOTIN == null){
+                            this.columnIskey_NOTIN = new ArrayList<String>();
+                        }
                         this.columnIskey_NOTIN.add( columnIskeyNotIn );
                     }
                     return this;
@@ -1129,6 +1193,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnIsdictIn(String columnIsdictIn) {
                     if(!IdUtils.isEmpty(columnIsdictIn)){
+                        if(this.columnIsdict_IN == null){
+                            this.columnIsdict_IN = new ArrayList<String>();
+                        }
                         this.columnIsdict_IN.add( columnIsdictIn );
                     }
                     return this;
@@ -1138,6 +1205,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                     public TcgColumnConfigQuery columnIsdictNotIn(String columnIsdictNotIn) {
                     if(!IdUtils.isEmpty(columnIsdictNotIn)){
+                        if(this.columnIsdict_NOTIN == null){
+                            this.columnIsdict_NOTIN = new ArrayList<String>();
+                        }
                         this.columnIsdict_NOTIN.add( columnIsdictNotIn );
                     }
                     return this;
@@ -1213,6 +1283,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery dictTypeIn(String dictTypeIn) {
                     if(!IdUtils.isEmpty(dictTypeIn)){
+                        if(this.dictType_IN == null){
+                            this.dictType_IN = new ArrayList<String>();
+                        }
                         this.dictType_IN.add( dictTypeIn );
                     }
                     return this;
@@ -1222,6 +1295,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery dictTypeNotIn(String dictTypeNotIn) {
                     if(!IdUtils.isEmpty(dictTypeNotIn)){
+                        if(this.dictType_NOTIN == null){
+                            this.dictType_NOTIN = new ArrayList<String>();
+                        }
                         this.dictType_NOTIN.add( dictTypeNotIn );
                     }
                     return this;
@@ -1296,6 +1372,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnCommentIn(String columnCommentIn) {
                     if(!IdUtils.isEmpty(columnCommentIn)){
+                        if(this.columnComment_IN == null){
+                            this.columnComment_IN = new ArrayList<String>();
+                        }
                         this.columnComment_IN.add( columnCommentIn );
                     }
                     return this;
@@ -1305,6 +1384,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnCommentNotIn(String columnCommentNotIn) {
                     if(!IdUtils.isEmpty(columnCommentNotIn)){
+                        if(this.columnComment_NOTIN == null){
+                            this.columnComment_NOTIN = new ArrayList<String>();
+                        }
                         this.columnComment_NOTIN.add( columnCommentNotIn );
                     }
                     return this;
@@ -1323,6 +1405,95 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery columnCommentIsNotNull() {
                     this.isNotNulls.add("columnComment");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherComment(String columnOtherComment) {
+                    if(!IdUtils.isEmpty(columnOtherComment)){
+                        this.columnOtherComment = columnOtherComment;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentNot(String columnOtherCommentNot) {
+                    if(!IdUtils.isEmpty(columnOtherCommentNot)){
+                        this.columnOtherComment_NE = columnOtherCommentNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentLike(String columnOtherCommentLike) {
+                    if(!IdUtils.isEmpty(columnOtherCommentLike)){
+                        this.columnOtherComment_LIKE = columnOtherCommentLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentNotLike(String columnOtherCommentNotLike) {
+                    if(!IdUtils.isEmpty(columnOtherCommentNotLike)){
+                        this.columnOtherComment_NOTLIKE = columnOtherCommentNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentIn(String columnOtherCommentIn) {
+                    if(!IdUtils.isEmpty(columnOtherCommentIn)){
+                        if(this.columnOtherComment_IN == null){
+                            this.columnOtherComment_IN = new ArrayList<String>();
+                        }
+                        this.columnOtherComment_IN.add( columnOtherCommentIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentNotIn(String columnOtherCommentNotIn) {
+                    if(!IdUtils.isEmpty(columnOtherCommentNotIn)){
+                        if(this.columnOtherComment_NOTIN == null){
+                            this.columnOtherComment_NOTIN = new ArrayList<String>();
+                        }
+                        this.columnOtherComment_NOTIN.add( columnOtherCommentNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentIsNull() {
+                    this.isNulls.add("columnOtherComment");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery columnOtherCommentIsNotNull() {
+                    this.isNotNulls.add("columnOtherComment");
                     return this;
                 }
 
@@ -1379,6 +1550,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery javaSimpleClassIn(String javaSimpleClassIn) {
                     if(!IdUtils.isEmpty(javaSimpleClassIn)){
+                        if(this.javaSimpleClass_IN == null){
+                            this.javaSimpleClass_IN = new ArrayList<String>();
+                        }
                         this.javaSimpleClass_IN.add( javaSimpleClassIn );
                     }
                     return this;
@@ -1388,6 +1562,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery javaSimpleClassNotIn(String javaSimpleClassNotIn) {
                     if(!IdUtils.isEmpty(javaSimpleClassNotIn)){
+                        if(this.javaSimpleClass_NOTIN == null){
+                            this.javaSimpleClass_NOTIN = new ArrayList<String>();
+                        }
                         this.javaSimpleClass_NOTIN.add( javaSimpleClassNotIn );
                     }
                     return this;
@@ -1462,6 +1639,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery javaFullClassIn(String javaFullClassIn) {
                     if(!IdUtils.isEmpty(javaFullClassIn)){
+                        if(this.javaFullClass_IN == null){
+                            this.javaFullClass_IN = new ArrayList<String>();
+                        }
                         this.javaFullClass_IN.add( javaFullClassIn );
                     }
                     return this;
@@ -1471,6 +1651,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery javaFullClassNotIn(String javaFullClassNotIn) {
                     if(!IdUtils.isEmpty(javaFullClassNotIn)){
+                        if(this.javaFullClass_NOTIN == null){
+                            this.javaFullClass_NOTIN = new ArrayList<String>();
+                        }
                         this.javaFullClass_NOTIN.add( javaFullClassNotIn );
                     }
                     return this;
@@ -1545,6 +1728,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery javaNameIn(String javaNameIn) {
                     if(!IdUtils.isEmpty(javaNameIn)){
+                        if(this.javaName_IN == null){
+                            this.javaName_IN = new ArrayList<String>();
+                        }
                         this.javaName_IN.add( javaNameIn );
                     }
                     return this;
@@ -1554,6 +1740,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery javaNameNotIn(String javaNameNotIn) {
                     if(!IdUtils.isEmpty(javaNameNotIn)){
+                        if(this.javaName_NOTIN == null){
+                            this.javaName_NOTIN = new ArrayList<String>();
+                        }
                         this.javaName_NOTIN.add( javaNameNotIn );
                     }
                     return this;
@@ -1628,6 +1817,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery groupCodeIn(String groupCodeIn) {
                     if(!IdUtils.isEmpty(groupCodeIn)){
+                        if(this.groupCode_IN == null){
+                            this.groupCode_IN = new ArrayList<String>();
+                        }
                         this.groupCode_IN.add( groupCodeIn );
                     }
                     return this;
@@ -1637,6 +1829,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery groupCodeNotIn(String groupCodeNotIn) {
                     if(!IdUtils.isEmpty(groupCodeNotIn)){
+                        if(this.groupCode_NOTIN == null){
+                            this.groupCode_NOTIN = new ArrayList<String>();
+                        }
                         this.groupCode_NOTIN.add( groupCodeNotIn );
                     }
                     return this;
@@ -1752,6 +1947,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery createUserIdIn(PK createUserIdIn) {
                     if(!IdUtils.isEmpty(createUserIdIn)){
+                        if(this.createUserId_IN == null){
+                            this.createUserId_IN = new ArrayList<PK>();
+                        }
                         this.createUserId_IN.add( createUserIdIn );
                     }
                     return this;
@@ -1761,6 +1959,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery createUserIdNotIn(PK createUserIdNotIn) {
                     if(!IdUtils.isEmpty(createUserIdNotIn)){
+                        if(this.createUserId_NOTIN == null){
+                            this.createUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.createUserId_NOTIN.add( createUserIdNotIn );
                     }
                     return this;
@@ -1878,6 +2079,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery updateUserIdIn(PK updateUserIdIn) {
                     if(!IdUtils.isEmpty(updateUserIdIn)){
+                        if(this.updateUserId_IN == null){
+                            this.updateUserId_IN = new ArrayList<PK>();
+                        }
                         this.updateUserId_IN.add( updateUserIdIn );
                     }
                     return this;
@@ -1887,6 +2091,9 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery updateUserIdNotIn(PK updateUserIdNotIn) {
                     if(!IdUtils.isEmpty(updateUserIdNotIn)){
+                        if(this.updateUserId_NOTIN == null){
+                            this.updateUserId_NOTIN = new ArrayList<PK>();
+                        }
                         this.updateUserId_NOTIN.add( updateUserIdNotIn );
                     }
                     return this;

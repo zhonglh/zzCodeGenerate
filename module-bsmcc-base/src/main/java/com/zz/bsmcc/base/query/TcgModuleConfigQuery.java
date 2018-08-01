@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 功能模块设置查询接口
  *
  * @author Administrator
- * @date 2018-7-30 17:18:07
+ * @date 2018-8-1 12:52:59
  */
 public interface TcgModuleConfigQuery<PK extends Serializable> extends Query<TcgModuleConfigEntity,PK> {
 
