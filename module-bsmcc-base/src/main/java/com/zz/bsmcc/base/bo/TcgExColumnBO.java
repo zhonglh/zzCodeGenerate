@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgExColumnEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -17,20 +18,26 @@ import java.io.Serializable;
 @TableName(value="tcg_ex_column" , resultMap = "TcgExColumnResultMap")
 public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
+    @TableField(exist = false)
     private String originalColumnFk;
 
+    @TableField(exist = false)
     private String originalColumnDict;
 
     //@EntityAttrAnnotation(attrName="组编码",sort=11  , attrLength=50    )
     //一般相同的数据项用相同的组名 ， 比如在项目表中， 客户名称，客户编号， 客户电话 ，客户ID等
+    @TableField(exist = false)
     private String groupCode;
 
     //@EntityAttrAnnotation(attrName="字典类型",sort=12  , attrLength=50    )
+    @TableField(exist = false)
     private String dictType;
 
 
+    @TableField(exist = false)
     private String originalColumnFkName ;
 
+    @TableField(exist = false)
     private String originalColumnDictName;
 
     /**
