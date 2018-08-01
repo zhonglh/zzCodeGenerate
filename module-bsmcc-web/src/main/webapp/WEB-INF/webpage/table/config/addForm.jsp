@@ -59,7 +59,7 @@
 									<form id="addForm" >
 									<div class="row ">
 										<div class="col-sm-4" style="margin: 5px">
-											<button type="button" id="docg" class="btn btn-outline btn-default" title='你确定要从这个表中读取吗?'  url='${ctx}/table/config/create' onClick="ajaxConfirm4Page('tables',this ,'40', 'addForm');">
+											<button type="button" id="docg" class="btn btn-outline btn-default" title='你确定要从这个表中读取吗?'  url='${ctx}/table/config/createAll' onClick="ajaxConfirm4Page('tables',this ,'40', 'addForm');">
 												<i class="glyphicon glyphicon-wrench	" aria-hidden="true"></i>确认添加
 											</button>
 										</div>

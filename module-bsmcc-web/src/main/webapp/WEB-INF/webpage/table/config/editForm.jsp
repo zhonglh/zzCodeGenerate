@@ -46,7 +46,7 @@
 <div class="wrapper wrapper-content animated fadeInRight">
 
 
-    <form id="form" action="${ctx}/table/config/${entity.id}/update" class="wizard-big">
+    <form id="form" action="${ctx}/table/config/${entity.id}/updateAll" class="wizard-big">
 
         <input type="hidden" id="id" name="id" value="${entity.id }">
 
