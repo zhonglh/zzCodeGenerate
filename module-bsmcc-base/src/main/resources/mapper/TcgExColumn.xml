@@ -13,11 +13,10 @@
          	<result column="java_simple_class" property="javaSimpleClass"/>
          	<result column="java_full_class" property="javaFullClass"/>
          	<result column="java_name" property="javaName"/>
+         	<result column="column_sort" property="columnSort"/>
          	<result column="column_title" property="columnTitle"/>
          	<result column="group_code" property="groupCode"/>
          	<result column="dict_type" property="dictType"/>
-         	<result column="table_schema" property="tableSchema"/>
-         	<result column="table_name" property="tableName"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>
@@ -84,6 +83,9 @@
 
 
 
+					<if test="columnSort != null"> AND T.column_sort = #{columnSort} </if>
+
+
 
                         <if test="columnTitle != null and columnTitle != ''"> AND T.column_title = #{columnTitle} </if>
 
@@ -98,18 +100,6 @@
 
 
                         <if test="dictType != null and dictType != ''"> AND T.dict_type = #{dictType} </if>
-
-
-
-
-
-                        <if test="tableSchema != null and tableSchema != ''"> AND T.table_schema = #{tableSchema} </if>
-
-
-
-
-
-                        <if test="tableName != null and tableName != ''"> AND T.table_name = #{tableName} </if>
 
 
 

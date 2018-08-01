@@ -17,9 +17,10 @@
          	<result column="column_iskey" property="columnIskey"/>
          	<result column="column_isdict" property="columnIsdict"/>
          	<result column="dict_type" property="dictType"/>
+         	<result column="fk_schema" property="fkSchema"/>
+         	<result column="fk_name" property="fkName"/>
          	<result column="column_comment" property="columnComment"/>
-			<result column="column_other_comment" property="columnOtherComment"/>
-
+         	<result column="column_other_comment" property="columnOtherComment"/>
          	<result column="java_simple_class" property="javaSimpleClass"/>
          	<result column="java_full_class" property="javaFullClass"/>
          	<result column="java_name" property="javaName"/>
@@ -106,7 +107,25 @@
 
 
 
+                        <if test="fkSchema != null and fkSchema != ''"> AND T.fk_schema = #{fkSchema} </if>
+
+
+
+
+
+                        <if test="fkName != null and fkName != ''"> AND T.fk_name = #{fkName} </if>
+
+
+
+
+
                         <if test="columnComment != null and columnComment != ''"> AND T.column_comment = #{columnComment} </if>
+
+
+
+
+
+                        <if test="columnOtherComment != null and columnOtherComment != ''"> AND T.column_other_comment = #{columnOtherComment} </if>
 
 
 

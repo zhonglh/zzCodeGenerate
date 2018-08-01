@@ -4,17 +4,16 @@ package com.zz.bsmcc.base.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 
 /**
  * 列设置实体类
  *
  * @author Administrator
- * @date 2018-7-30 13:51:09
+ * @date 2018-8-1 16:18:00
  */
 public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -24,7 +23,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
 
-    //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
+    //@EntityAttrAnnotation(attrName="表",sort=1  , attrLength=32    )
 	private String tableId;
 
 
@@ -109,37 +108,57 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
 
-    //@EntityAttrAnnotation(attrName="说明",sort=13  , attrLength=100    )
+    //@EntityAttrAnnotation(attrName="外键对应表的Schema",sort=13  , attrLength=50    )
+	private String fkSchema;
+
+
+
+
+
+    //@EntityAttrAnnotation(attrName="外键对应表的表名",sort=14  , attrLength=50    )
+	private String fkName;
+
+
+
+
+
+    //@EntityAttrAnnotation(attrName="说明",sort=15  , attrLength=20    )
 	private String columnComment;
 
-	//@EntityAttrAnnotation(attrName="其它说明",sort=13  , attrLength=100    )
+
+
+
+
+    //@EntityAttrAnnotation(attrName="其它说明",sort=16  , attrLength=100    )
 	private String columnOtherComment;
 
 
 
-    //@EntityAttrAnnotation(attrName="Java类名",sort=14  , attrLength=100    )
+
+
+    //@EntityAttrAnnotation(attrName="Java类名",sort=17  , attrLength=100    )
 	private String javaSimpleClass;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="Java类全名",sort=15  , attrLength=200    )
+    //@EntityAttrAnnotation(attrName="Java类全名",sort=18  , attrLength=200    )
 	private String javaFullClass;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="Java 属性名",sort=16  , attrLength=100    )
+    //@EntityAttrAnnotation(attrName="Java 属性名",sort=19  , attrLength=100    )
 	private String javaName;
 
 
 
 
 
-    //@EntityAttrAnnotation(attrName="组名称",sort=17  , attrLength=50    )
-	//一般相同的数据项用相同的组名 ， 比如在项目表中， 客户名称，客户编号， 客户电话 ，客户ID等  
+    //@EntityAttrAnnotation(attrName="组编码",sort=20  , attrLength=50    )
+	//一般相同的数据项用相同的组名 ， 比如在项目表中，  客户名称，客户编号， 客户电话 ，客户ID等 都是客户组  
 	private String groupCode;
 
 
@@ -149,7 +168,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 
 
 	/** 
-	 * 
+	 * 表
 	 * @return the tableId
 	 */
 	public String getTableId() {
@@ -157,7 +176,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	}
 	
 	/** 
-	 * 
+	 * 表
 	 */
 	public void setTableId(String tableId) {
 		this.tableId = tableId;
@@ -317,6 +336,34 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 		this.dictType = dictType;
 	}
 	/** 
+	 * 外键对应表的Schema
+	 * @return the fkSchema
+	 */
+	public String getFkSchema() {
+		return fkSchema;
+	}
+	
+	/** 
+	 * 外键对应表的Schema
+	 */
+	public void setFkSchema(String fkSchema) {
+		this.fkSchema = fkSchema;
+	}
+	/** 
+	 * 外键对应表的表名
+	 * @return the fkName
+	 */
+	public String getFkName() {
+		return fkName;
+	}
+	
+	/** 
+	 * 外键对应表的表名
+	 */
+	public void setFkName(String fkName) {
+		this.fkName = fkName;
+	}
+	/** 
 	 * 说明
 	 * @return the columnComment
 	 */
@@ -330,16 +377,21 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	public void setColumnComment(String columnComment) {
 		this.columnComment = columnComment;
 	}
-
+	/** 
+	 * 其它说明
+	 * @return the columnOtherComment
+	 */
 	public String getColumnOtherComment() {
 		return columnOtherComment;
 	}
-
+	
+	/** 
+	 * 其它说明
+	 */
 	public void setColumnOtherComment(String columnOtherComment) {
 		this.columnOtherComment = columnOtherComment;
 	}
-
-	/**
+	/** 
 	 * Java类名
 	 * @return the javaSimpleClass
 	 */
@@ -382,7 +434,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 		this.javaName = javaName;
 	}
 	/** 
-	 * 组名称
+	 * 组编码
 	 * @return the groupCode
 	 */
 	public String getGroupCode() {
@@ -390,7 +442,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	}
 	
 	/** 
-	 * 组名称
+	 * 组编码
 	 */
 	public void setGroupCode(String groupCode) {
 		this.groupCode = groupCode;

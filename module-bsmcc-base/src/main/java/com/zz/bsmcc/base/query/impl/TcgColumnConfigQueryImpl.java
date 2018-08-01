@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:13
+ * @date 2018-8-1 16:18:00
  */
 public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements TcgColumnConfigQuery<PK>, Serializable  {
 
@@ -196,6 +196,36 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
 
             private List<String> dictType_IN;
             private List<String> dictType_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> fkSchema_IN;
+            private List<String> fkSchema_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> fkName_IN;
+            private List<String> fkName_NOTIN;
 
 
 
@@ -1316,6 +1346,184 @@ public class TcgColumnConfigQueryImpl<PK extends Serializable> extends TcgColumn
                 @Override
                 public TcgColumnConfigQuery dictTypeIsNotNull() {
                     this.isNotNulls.add("dictType");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchema(String fkSchema) {
+                    if(!IdUtils.isEmpty(fkSchema)){
+                        this.fkSchema = fkSchema;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaNot(String fkSchemaNot) {
+                    if(!IdUtils.isEmpty(fkSchemaNot)){
+                        this.fkSchema_NE = fkSchemaNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaLike(String fkSchemaLike) {
+                    if(!IdUtils.isEmpty(fkSchemaLike)){
+                        this.fkSchema_LIKE = fkSchemaLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaNotLike(String fkSchemaNotLike) {
+                    if(!IdUtils.isEmpty(fkSchemaNotLike)){
+                        this.fkSchema_NOTLIKE = fkSchemaNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaIn(String fkSchemaIn) {
+                    if(!IdUtils.isEmpty(fkSchemaIn)){
+                        if(this.fkSchema_IN == null){
+                            this.fkSchema_IN = new ArrayList<String>();
+                        }
+                        this.fkSchema_IN.add( fkSchemaIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaNotIn(String fkSchemaNotIn) {
+                    if(!IdUtils.isEmpty(fkSchemaNotIn)){
+                        if(this.fkSchema_NOTIN == null){
+                            this.fkSchema_NOTIN = new ArrayList<String>();
+                        }
+                        this.fkSchema_NOTIN.add( fkSchemaNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaIsNull() {
+                    this.isNulls.add("fkSchema");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkSchemaIsNotNull() {
+                    this.isNotNulls.add("fkSchema");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkName(String fkName) {
+                    if(!IdUtils.isEmpty(fkName)){
+                        this.fkName = fkName;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery fkNameNot(String fkNameNot) {
+                    if(!IdUtils.isEmpty(fkNameNot)){
+                        this.fkName_NE = fkNameNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkNameLike(String fkNameLike) {
+                    if(!IdUtils.isEmpty(fkNameLike)){
+                        this.fkName_LIKE = fkNameLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkNameNotLike(String fkNameNotLike) {
+                    if(!IdUtils.isEmpty(fkNameNotLike)){
+                        this.fkName_NOTLIKE = fkNameNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgColumnConfigQuery fkNameIn(String fkNameIn) {
+                    if(!IdUtils.isEmpty(fkNameIn)){
+                        if(this.fkName_IN == null){
+                            this.fkName_IN = new ArrayList<String>();
+                        }
+                        this.fkName_IN.add( fkNameIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgColumnConfigQuery fkNameNotIn(String fkNameNotIn) {
+                    if(!IdUtils.isEmpty(fkNameNotIn)){
+                        if(this.fkName_NOTIN == null){
+                            this.fkName_NOTIN = new ArrayList<String>();
+                        }
+                        this.fkName_NOTIN.add( fkNameNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkNameIsNull() {
+                    this.isNulls.add("fkName");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgColumnConfigQuery fkNameIsNotNull() {
+                    this.isNotNulls.add("fkName");
                     return this;
                 }
 

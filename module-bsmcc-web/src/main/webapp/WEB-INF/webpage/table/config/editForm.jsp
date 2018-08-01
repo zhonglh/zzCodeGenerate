@@ -281,6 +281,11 @@
                                 <td><input type="text" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }" /></td>
                                 <td><input type="text" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
 
+                                <td><input type="text"  id="columns[${status1.index }].fkSchema" name="exColumns[${status1.index }].fkSchema" value="${column.fkSchema }" /></td>
+                                <td><input type="text"  id="columns[${status1.index }].fkName" name="exColumns[${status1.index }].fkName" value="${column.fkName }" /></td>
+
+
+
                                 <td><input type="text" required id="columns[${status1.index }].javaFullClass" name="columns[${status1.index }].javaFullClass" value="${column.javaFullClass }" /></td>
                                 <td><input type="text" required id="columns[${status1.index }].javaName" name="columns[${status1.index }].javaName" value="${column.javaName }" /></td>
                                 <td><input type="text"  id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
@@ -323,8 +328,6 @@
                         <th width="150">Java名称</th>
                         <th width="150">顺序</th>
                         <th width="150">扩展列标题</th>
-                        <th width="150">关联表SCHEMA</th>
-                        <th width="150">关联表表名</th>
 
                         </thead>
 
@@ -346,8 +349,6 @@
                                 <td><input type="text"  id="exColumns[${status1.index }].javaName" name="exColumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
                                 <td><input type="number"  id="exColumns[${status1.index }].columnSort" name="exColumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
                                 <td><input type="text"  id="exColumns[${status1.index }].columnTitle" name="exColumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
-                                <td><input type="text"  id="exColumns[${status1.index }].tableSchema" name="exColumns[${status1.index }].tableSchema" value="${exColumn.tableSchema }" /></td>
-                                <td><input type="text"  id="exColumns[${status1.index }].tableName" name="exColumns[${status1.index }].tableName" value="${exColumn.tableName }" /></td>
 
 
                             </tr>

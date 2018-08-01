@@ -356,14 +356,17 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         model.put("columnConfigs" , columnConfigBOs);
 
 
-
+        TcgExColumnQuery exColumnQuery = new TcgExColumnQueryImpl();
+        exColumnQuery.tableId(m.getId());
+        Wrapper<TcgExColumnBO> exColumnWrapper = exColumnQuery.buildWrapper();
+        exColumnWrapper.orderBy(true, "column_sort", true);
+        List<TcgExColumnBO> exColumnBOs = tcgExColumnService.selectList(exColumnWrapper);
+        model.put("exColumns" , exColumnBOs);
 
 
         Map<String , Object> map = new HashMap<String , Object>();
         map.put("table_id" , m.getId());
 
-        List<TcgExColumnBO> exColumnBOs = tcgExColumnService.selectByMap(map) ;
-        model.put("exColumns" , exColumnBOs);
 
         List<TcgColumnPageBO> columnPageBOs = tcgColumnPageService.selectByMap(map) ;
         model.put("columnPages" , columnPageBOs);

@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 扩展列设置查询接口
  *
  * @author Administrator
- * @date 2018-8-1 12:52:58
+ * @date 2018-8-1 16:18:03
  */
 public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExColumnEntity,PK> {
 
@@ -257,46 +257,6 @@ public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExCo
             public TcgExColumnQuery dictTypeNotLike(String dictTypeNotLike);
             public TcgExColumnQuery dictTypeIsNull();
             public TcgExColumnQuery dictTypeIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgExColumnQuery tableSchema(String tableSchema);
-            public TcgExColumnQuery tableSchemaNot(String tableSchemaNot);
-            public TcgExColumnQuery tableSchemaIn(String tableSchemaIn);
-            public TcgExColumnQuery tableSchemaNotIn(String tableSchemaNotIn);
-            public TcgExColumnQuery tableSchemaLike(String tableSchemaLike);
-            public TcgExColumnQuery tableSchemaNotLike(String tableSchemaNotLike);
-            public TcgExColumnQuery tableSchemaIsNull();
-            public TcgExColumnQuery tableSchemaIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgExColumnQuery tableName(String tableName);
-            public TcgExColumnQuery tableNameNot(String tableNameNot);
-            public TcgExColumnQuery tableNameIn(String tableNameIn);
-            public TcgExColumnQuery tableNameNotIn(String tableNameNotIn);
-            public TcgExColumnQuery tableNameLike(String tableNameLike);
-            public TcgExColumnQuery tableNameNotLike(String tableNameNotLike);
-            public TcgExColumnQuery tableNameIsNull();
-            public TcgExColumnQuery tableNameIsNotNull();
 
 
 

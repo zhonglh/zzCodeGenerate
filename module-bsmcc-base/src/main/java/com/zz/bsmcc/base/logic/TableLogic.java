@@ -158,7 +158,17 @@ public class TableLogic {
         exColumnBO.setOriginalColumnDict(EnumYesNo.NO.getCode());
         exColumnBO.setOriginalColumnFk(EnumYesNo.NO.getCode());
 
-        exColumnBO.setColumnTitle(columnBO.getColumnComment());
+        String title = columnBO.getColumnComment();
+        if(title.length()<=2){
+            title = title + "名称";
+        }else {
+            if(title.toLowerCase().endsWith("id")){
+                title = title.substring(0, title.length() -2) + "名称";
+            }else {
+                title = title + "名称";
+            }
+        }
+        exColumnBO.setColumnTitle(title);
         String javaName = columnBO.getJavaName();
         if(javaName.endsWith("Id") || javaName.endsWith("id")){
             javaName = javaName.substring(0 , javaName.length() -2) + "Name";

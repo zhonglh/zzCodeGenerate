@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 列设置查询接口
  *
  * @author Administrator
- * @date 2018-8-1 12:52:57
+ * @date 2018-8-1 16:18:00
  */
 public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<TcgColumnConfigEntity,PK> {
 
@@ -249,6 +249,46 @@ public interface TcgColumnConfigQuery<PK extends Serializable> extends Query<Tcg
             public TcgColumnConfigQuery dictTypeNotLike(String dictTypeNotLike);
             public TcgColumnConfigQuery dictTypeIsNull();
             public TcgColumnConfigQuery dictTypeIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnConfigQuery fkSchema(String fkSchema);
+            public TcgColumnConfigQuery fkSchemaNot(String fkSchemaNot);
+            public TcgColumnConfigQuery fkSchemaIn(String fkSchemaIn);
+            public TcgColumnConfigQuery fkSchemaNotIn(String fkSchemaNotIn);
+            public TcgColumnConfigQuery fkSchemaLike(String fkSchemaLike);
+            public TcgColumnConfigQuery fkSchemaNotLike(String fkSchemaNotLike);
+            public TcgColumnConfigQuery fkSchemaIsNull();
+            public TcgColumnConfigQuery fkSchemaIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgColumnConfigQuery fkName(String fkName);
+            public TcgColumnConfigQuery fkNameNot(String fkNameNot);
+            public TcgColumnConfigQuery fkNameIn(String fkNameIn);
+            public TcgColumnConfigQuery fkNameNotIn(String fkNameNotIn);
+            public TcgColumnConfigQuery fkNameLike(String fkNameLike);
+            public TcgColumnConfigQuery fkNameNotLike(String fkNameNotLike);
+            public TcgColumnConfigQuery fkNameIsNull();
+            public TcgColumnConfigQuery fkNameIsNotNull();
 
 
 

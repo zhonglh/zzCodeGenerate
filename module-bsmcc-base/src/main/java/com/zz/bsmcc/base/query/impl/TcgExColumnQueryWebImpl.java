@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 扩展列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:14
+ * @date 2018-8-1 16:18:03
  */
 public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColumnAbstractQueryImpl<PK> implements Serializable {
 
@@ -167,30 +167,6 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
             private String dictType_IN;
             private String dictType_NOTIN;
-
-
-
-
-
-
-
-
-
-
-            private String tableSchema_IN;
-            private String tableSchema_NOTIN;
-
-
-
-
-
-
-
-
-
-
-            private String tableName_IN;
-            private String tableName_NOTIN;
 
 
 
@@ -1093,146 +1069,6 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
                 public void setDictType_NOTLIKE(String dictType_NOTLIKE) {
                     this.dictType_NOTLIKE = dictType_NOTLIKE;
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getTableSchema() {
-                    return tableSchema;
-                }
-
-
-                public void setTableSchema(String tableSchema) {
-                    this.tableSchema = tableSchema;
-                }
-
-
-                public String getTableSchema_NE() {
-                    return tableSchema_NE;
-                }
-
-
-                public void setTableSchema_NE(String tableSchema_NE) {
-                    this.tableSchema_NE = tableSchema_NE;
-                }
-
-
-
-                public String getTableSchema_IN() {
-                    return tableSchema_IN;
-                }
-
-                public void setTableSchema_IN(String tableSchema_IN) {
-                    this.tableSchema_IN = tableSchema_IN;
-                }
-
-                public String getTableSchema_NOTIN() {
-                    return tableSchema_NOTIN;
-                }
-
-                public void setTableSchema_NOTIN(String tableSchema_NOTIN) {
-                    this.tableSchema_NOTIN = tableSchema_NOTIN;
-                }
-
-
-
-
-                public String getTableSchema_LIKE() {
-                    return tableSchema_LIKE;
-                }
-
-                public void setTableSchema_LIKE(String tableSchema_LIKE) {
-                    this.tableSchema_LIKE = tableSchema_LIKE;
-                }
-
-                public String getTableSchema_NOTLIKE() {
-                    return tableSchema_NOTLIKE;
-                }
-
-                public void setTableSchema_NOTLIKE(String tableSchema_NOTLIKE) {
-                    this.tableSchema_NOTLIKE = tableSchema_NOTLIKE;
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getTableName() {
-                    return tableName;
-                }
-
-
-                public void setTableName(String tableName) {
-                    this.tableName = tableName;
-                }
-
-
-                public String getTableName_NE() {
-                    return tableName_NE;
-                }
-
-
-                public void setTableName_NE(String tableName_NE) {
-                    this.tableName_NE = tableName_NE;
-                }
-
-
-
-                public String getTableName_IN() {
-                    return tableName_IN;
-                }
-
-                public void setTableName_IN(String tableName_IN) {
-                    this.tableName_IN = tableName_IN;
-                }
-
-                public String getTableName_NOTIN() {
-                    return tableName_NOTIN;
-                }
-
-                public void setTableName_NOTIN(String tableName_NOTIN) {
-                    this.tableName_NOTIN = tableName_NOTIN;
-                }
-
-
-
-
-                public String getTableName_LIKE() {
-                    return tableName_LIKE;
-                }
-
-                public void setTableName_LIKE(String tableName_LIKE) {
-                    this.tableName_LIKE = tableName_LIKE;
-                }
-
-                public String getTableName_NOTLIKE() {
-                    return tableName_NOTLIKE;
-                }
-
-                public void setTableName_NOTLIKE(String tableName_NOTLIKE) {
-                    this.tableName_NOTLIKE = tableName_NOTLIKE;
                 }
 
 

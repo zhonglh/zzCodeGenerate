@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:13
+ * @date 2018-8-1 16:18:00
  */
 public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements Serializable {
 
@@ -162,6 +162,30 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
             private String dictType_IN;
             private String dictType_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String fkSchema_IN;
+            private String fkSchema_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String fkName_IN;
+            private String fkName_NOTIN;
 
 
 
@@ -1117,6 +1141,146 @@ public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgCol
 
                 public void setDictType_NOTLIKE(String dictType_NOTLIKE) {
                     this.dictType_NOTLIKE = dictType_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getFkSchema() {
+                    return fkSchema;
+                }
+
+
+                public void setFkSchema(String fkSchema) {
+                    this.fkSchema = fkSchema;
+                }
+
+
+                public String getFkSchema_NE() {
+                    return fkSchema_NE;
+                }
+
+
+                public void setFkSchema_NE(String fkSchema_NE) {
+                    this.fkSchema_NE = fkSchema_NE;
+                }
+
+
+
+                public String getFkSchema_IN() {
+                    return fkSchema_IN;
+                }
+
+                public void setFkSchema_IN(String fkSchema_IN) {
+                    this.fkSchema_IN = fkSchema_IN;
+                }
+
+                public String getFkSchema_NOTIN() {
+                    return fkSchema_NOTIN;
+                }
+
+                public void setFkSchema_NOTIN(String fkSchema_NOTIN) {
+                    this.fkSchema_NOTIN = fkSchema_NOTIN;
+                }
+
+
+
+
+                public String getFkSchema_LIKE() {
+                    return fkSchema_LIKE;
+                }
+
+                public void setFkSchema_LIKE(String fkSchema_LIKE) {
+                    this.fkSchema_LIKE = fkSchema_LIKE;
+                }
+
+                public String getFkSchema_NOTLIKE() {
+                    return fkSchema_NOTLIKE;
+                }
+
+                public void setFkSchema_NOTLIKE(String fkSchema_NOTLIKE) {
+                    this.fkSchema_NOTLIKE = fkSchema_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getFkName() {
+                    return fkName;
+                }
+
+
+                public void setFkName(String fkName) {
+                    this.fkName = fkName;
+                }
+
+
+                public String getFkName_NE() {
+                    return fkName_NE;
+                }
+
+
+                public void setFkName_NE(String fkName_NE) {
+                    this.fkName_NE = fkName_NE;
+                }
+
+
+
+                public String getFkName_IN() {
+                    return fkName_IN;
+                }
+
+                public void setFkName_IN(String fkName_IN) {
+                    this.fkName_IN = fkName_IN;
+                }
+
+                public String getFkName_NOTIN() {
+                    return fkName_NOTIN;
+                }
+
+                public void setFkName_NOTIN(String fkName_NOTIN) {
+                    this.fkName_NOTIN = fkName_NOTIN;
+                }
+
+
+
+
+                public String getFkName_LIKE() {
+                    return fkName_LIKE;
+                }
+
+                public void setFkName_LIKE(String fkName_LIKE) {
+                    this.fkName_LIKE = fkName_LIKE;
+                }
+
+                public String getFkName_NOTLIKE() {
+                    return fkName_NOTLIKE;
+                }
+
+                public void setFkName_NOTLIKE(String fkName_NOTLIKE) {
+                    this.fkName_NOTLIKE = fkName_NOTLIKE;
                 }
 
 

@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:12
+ * @date 2018-8-1 16:18:00
  */
 public abstract class TcgColumnConfigAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnConfigEntity,PK> {
 
@@ -211,6 +211,38 @@ public abstract class TcgColumnConfigAbstractQueryImpl<PK extends Serializable> 
             protected String dictType_NE;
             protected String dictType_LIKE;
             protected String dictType_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String fkSchema;
+            protected String fkSchema_NE;
+            protected String fkSchema_LIKE;
+            protected String fkSchema_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String fkName;
+            protected String fkName_NE;
+            protected String fkName_LIKE;
+            protected String fkName_NOTLIKE;
 
 
 

@@ -4,17 +4,16 @@ package com.zz.bsmcc.base.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 
 /**
  * 扩展列设置实体类
  *
  * @author Administrator
- * @date 2018-7-30 15:21:03
+ * @date 2018-8-1 16:18:03
  */
 public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -104,20 +103,6 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 
     //@EntityAttrAnnotation(attrName="字典类型",sort=12  , attrLength=50    )
 	private String dictType;
-
-
-
-
-
-    //@EntityAttrAnnotation(attrName="表的schema",sort=13  , attrLength=50    )
-	private String tableSchema;
-
-
-
-
-
-    //@EntityAttrAnnotation(attrName="表名",sort=14  , attrLength=50    )
-	private String tableName;
 
 
 
@@ -292,34 +277,6 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 	 */
 	public void setDictType(String dictType) {
 		this.dictType = dictType;
-	}
-	/** 
-	 * 表的schema
-	 * @return the tableSchema
-	 */
-	public String getTableSchema() {
-		return tableSchema;
-	}
-	
-	/** 
-	 * 表的schema
-	 */
-	public void setTableSchema(String tableSchema) {
-		this.tableSchema = tableSchema;
-	}
-	/** 
-	 * 表名
-	 * @return the tableName
-	 */
-	public String getTableName() {
-		return tableName;
-	}
-	
-	/** 
-	 * 表名
-	 */
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
 	}
 	
 }
