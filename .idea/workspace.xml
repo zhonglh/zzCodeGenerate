@@ -691,7 +691,7 @@
       <workItem from="1532963861837" duration="4445000" />
       <workItem from="1532997976884" duration="29463000" />
       <workItem from="1533045873255" duration="1165000" />
-      <workItem from="1533084952985" duration="14016000" />
+      <workItem from="1533084952985" duration="14044000" />
     </task>
     <task id="LOCAL-00001" summary="project init">
       <created>1532176737670</created>
@@ -931,7 +931,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533107723031</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="处理表格数据">
+      <created>1533107887699</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1533107887699</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -943,7 +950,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229371000" />
+    <option name="totallyTimeSpent" value="229399000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
