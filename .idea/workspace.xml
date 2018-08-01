@@ -119,8 +119,8 @@
       <file leaf-file-name="TcgColumnPageQueryWebImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/query/impl/TcgColumnPageQueryWebImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="779" column="27" lean-forward="false" selection-start-line="779" selection-start-column="27" selection-end-line="779" selection-end-column="27" />
+            <state relative-caret-position="76">
+              <caret line="775" column="0" lean-forward="true" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
               <folding>
                 <element signature="e#11657#11658#0" expanded="true" />
                 <element signature="e#11699#11700#0" expanded="true" />
@@ -691,7 +691,7 @@
       <workItem from="1532963861837" duration="4445000" />
       <workItem from="1532997976884" duration="29463000" />
       <workItem from="1533045873255" duration="1165000" />
-      <workItem from="1533084952985" duration="13854000" />
+      <workItem from="1533084952985" duration="14016000" />
     </task>
     <task id="LOCAL-00001" summary="project init">
       <created>1532176737670</created>
@@ -924,7 +924,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533106699562</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="处理表格数据">
+      <created>1533107723031</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1533107723031</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -936,7 +943,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229209000" />
+    <option name="totallyTimeSpent" value="229371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -1503,8 +1510,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/query/impl/TcgColumnPageQueryWebImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="779" column="27" lean-forward="false" selection-start-line="779" selection-start-column="27" selection-end-line="779" selection-end-column="27" />
+        <state relative-caret-position="76">
+          <caret line="775" column="0" lean-forward="true" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
           <folding>
             <element signature="e#11657#11658#0" expanded="true" />
             <element signature="e#11699#11700#0" expanded="true" />
