@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
  * 扩展列设置实体类
  *
  * @author Administrator
- * @date 2018-8-1 16:18:03
+ * @date 2018-8-1 17:35:08
  */
 public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -41,18 +41,6 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 	private String originalColumnName;
 
 
-
-
-
-    //@EntityAttrAnnotation(attrName="原始列是否外键",sort=4  , attrLength=1    )
-	private String originalColumnFk;
-
-
-
-
-
-    //@EntityAttrAnnotation(attrName="原始列是否字典",sort=5  , attrLength=1    )
-	private String originalColumnDict;
 
 
 
@@ -93,16 +81,11 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 
 
 
-    //@EntityAttrAnnotation(attrName="组编码",sort=11  , attrLength=50    )
-	//一般相同的数据项用相同的组名 ， 比如在项目表中， 客户名称，客户编号， 客户电话 ，客户ID等  
-	private String groupCode;
 
 
 
-
-
-    //@EntityAttrAnnotation(attrName="字典类型",sort=12  , attrLength=50    )
-	private String dictType;
+    //@EntityAttrAnnotation(attrName="对应外键表的列名",sort=13  , attrLength=50    )
+	private String fkColumnName;
 
 
 
@@ -152,34 +135,7 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 	public void setOriginalColumnName(String originalColumnName) {
 		this.originalColumnName = originalColumnName;
 	}
-	/** 
-	 * 原始列是否外键
-	 * @return the originalColumnFk
-	 */
-	public String getOriginalColumnFk() {
-		return originalColumnFk;
-	}
-	
-	/** 
-	 * 原始列是否外键
-	 */
-	public void setOriginalColumnFk(String originalColumnFk) {
-		this.originalColumnFk = originalColumnFk;
-	}
-	/** 
-	 * 原始列是否字典
-	 * @return the originalColumnDict
-	 */
-	public String getOriginalColumnDict() {
-		return originalColumnDict;
-	}
-	
-	/** 
-	 * 原始列是否字典
-	 */
-	public void setOriginalColumnDict(String originalColumnDict) {
-		this.originalColumnDict = originalColumnDict;
-	}
+
 	/** 
 	 * Java类名
 	 * @return the javaSimpleClass
@@ -250,33 +206,20 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 	public void setColumnTitle(String columnTitle) {
 		this.columnTitle = columnTitle;
 	}
+
 	/** 
-	 * 组编码
-	 * @return the groupCode
+	 * 对应外键表的列名
+	 * @return the fkColumnName
 	 */
-	public String getGroupCode() {
-		return groupCode;
+	public String getFkColumnName() {
+		return fkColumnName;
 	}
 	
 	/** 
-	 * 组编码
+	 * 对应外键表的列名
 	 */
-	public void setGroupCode(String groupCode) {
-		this.groupCode = groupCode;
-	}
-	/** 
-	 * 字典类型
-	 * @return the dictType
-	 */
-	public String getDictType() {
-		return dictType;
-	}
-	
-	/** 
-	 * 字典类型
-	 */
-	public void setDictType(String dictType) {
-		this.dictType = dictType;
+	public void setFkColumnName(String fkColumnName) {
+		this.fkColumnName = fkColumnName;
 	}
 	
 }

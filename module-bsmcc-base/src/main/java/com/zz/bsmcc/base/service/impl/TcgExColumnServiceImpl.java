@@ -5,8 +5,10 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
 import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
 import com.zz.bsmcc.base.bo.TcgColumnEventBO;
+import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
 import com.zz.bsmcc.base.service.TcgExColumnService;
 import com.zz.bsmcc.base.dao.TcgExColumnDAO;
 import com.zz.bsmcc.base.bo.TcgExColumnBO;
@@ -19,6 +21,11 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String> implements TcgExColumnService {
+
+
+
+	@Autowired
+	private TcgColumnConfigDAO tcgColumnConfigDAO ;
 
 
 	@Autowired
@@ -38,6 +45,17 @@ public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String
 
 	@Override
 	public TcgExColumnBO processResult(TcgExColumnBO tcgExColumnBO) {
+
+
+		if(StringUtil.isNotEmpty(tcgExColumnBO.getOriginalColumnId())) {
+			TcgColumnConfigBO tcgColumnConfigBO = tcgColumnConfigDAO.selectById(tcgExColumnBO.getOriginalColumnId());
+			if (tcgColumnConfigBO != null) {
+				tcgExColumnBO.setOriginalColumnDict(tcgColumnConfigBO.getColumnIsdict());
+				tcgExColumnBO.setOriginalColumnFk(tcgColumnConfigBO.getColumnIsfk());
+				tcgExColumnBO.setGroupCode(tcgColumnConfigBO.getGroupCode());
+				tcgExColumnBO.setDictType(tcgColumnConfigBO.getDictType());
+			}
+		}
 
 		if(StringUtils.isNotEmpty(tcgExColumnBO.getOriginalColumnDict())){
 			if(EnumYesNo.YES.getCode().equals(tcgExColumnBO.getOriginalColumnDict())){

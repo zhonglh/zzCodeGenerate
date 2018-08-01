@@ -8,15 +8,12 @@
          	<result column="table_id" property="tableId"/>
          	<result column="original_column_id" property="originalColumnId"/>
          	<result column="original_column_name" property="originalColumnName"/>
-         	<result column="original_column_fk" property="originalColumnFk"/>
-         	<result column="original_column_dict" property="originalColumnDict"/>
          	<result column="java_simple_class" property="javaSimpleClass"/>
          	<result column="java_full_class" property="javaFullClass"/>
          	<result column="java_name" property="javaName"/>
          	<result column="column_sort" property="columnSort"/>
          	<result column="column_title" property="columnTitle"/>
-         	<result column="group_code" property="groupCode"/>
-         	<result column="dict_type" property="dictType"/>
+         	<result column="fk_column_name" property="fkColumnName"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>
@@ -100,6 +97,12 @@
 
 
                         <if test="dictType != null and dictType != ''"> AND T.dict_type = #{dictType} </if>
+
+
+
+
+
+                        <if test="fkColumnName != null and fkColumnName != ''"> AND T.fk_column_name = #{fkColumnName} </if>
 
 
 
