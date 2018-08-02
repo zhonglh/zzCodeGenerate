@@ -164,7 +164,7 @@
 		if(ajax.success){	
 			
 			topShwoMessage("info",ajax.msg);
-			top.iframe5.window.refreshTable();
+			top.iframe6.window.refreshTable();
 			window.setTimeout(function(){top.layer.closeAll();},2000);
 			
 		}else {

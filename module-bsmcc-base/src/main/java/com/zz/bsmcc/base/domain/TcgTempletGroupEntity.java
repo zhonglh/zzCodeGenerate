@@ -6,7 +6,6 @@ import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -14,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 * 模板组实体类
 *
 * @author Administrator
-* @date 2018-7-30 17:18:09
+* @date 2018-8-2 12:09:03
 */
 public class TcgTempletGroupEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -33,6 +32,9 @@ public class TcgTempletGroupEntity extends BaseBusinessEntity<String> implements
 
         //@EntityAttrAnnotation(attrName="模板说明",sort=2  , attrLength=500    )
         private String groupRemark;
+
+
+
 
 
 

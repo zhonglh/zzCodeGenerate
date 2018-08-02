@@ -16,5 +16,13 @@ import java.io.Serializable;
 @EntityAnnotation(value="模板" , resource = "")
 @TableName(value="tcg_templet" , resultMap = "TcgTempletResultMap")
 public class TcgTempletBO extends TcgTempletEntity implements Serializable {
+    private String groupName;
 
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 }

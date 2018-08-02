@@ -111,14 +111,22 @@
         },{
             field: 'id',
             visible:false
-        }, {
+        },{
             field: 'groupName',
-            title: '模板组名称',
+            title: '模板组',
+            width:200
+        }, {
+            field: 'templetTitle',
+            title: '模板标题',
             width:150
         },{
-            field: 'groupRemark',
-            title: '模板组说明',
+            field: 'fileSuffix',
+            title: '文件后缀',
             width:200
+        },{
+            field: 'fileType',
+            title: '文件类型',
+            width:120
         }];
 		
 		init('templetForm','${ctx}/templet/list');

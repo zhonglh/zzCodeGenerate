@@ -6,9 +6,10 @@
 	<resultMap id="TcgTempletResultMap" type="com.zz.bsmcc.base.bo.TcgTempletBO" >
          	<result column="id" property="id"/>
          	<result column="group_id" property="groupId"/>
+         	<result column="file_dir" property="fileDir"/>
          	<result column="file_type" property="fileType"/>
+         	<result column="file_suffix" property="fileSuffix"/>
          	<result column="templet_title" property="templetTitle"/>
-         	<result column="templet_dir" property="templetDir"/>
          	<result column="templet_content" property="templetContent"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
@@ -36,19 +37,25 @@
 
 
 
+                        <if test="fileDir != null and fileDir != ''"> AND T.file_dir = #{fileDir} </if>
+
+
+
+
+
                         <if test="fileType != null and fileType != ''"> AND T.file_type = #{fileType} </if>
 
 
 
 
 
+                        <if test="fileSuffix != null and fileSuffix != ''"> AND T.file_suffix = #{fileSuffix} </if>
+
+
+
+
+
                         <if test="templetTitle != null and templetTitle != ''"> AND T.templet_title = #{templetTitle} </if>
-
-
-
-
-
-                        <if test="templetDir != null and templetDir != ''"> AND T.templet_dir = #{templetDir} </if>
 
 
 
