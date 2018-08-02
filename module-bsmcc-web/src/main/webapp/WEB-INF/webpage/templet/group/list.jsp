@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <%
 	session.setAttribute("lang", "zh-cn");
@@ -42,38 +41,35 @@
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
 
-		<div class="ibox float-e-margins">
+		<div class="ibox float-e-margins" style="height:100%" >
 
-			<div class="ibox-content">
+			<div class="ibox-content" style="padding: 1px 1px 1px 1px;">
 				<div class="row row-lg">
 
 					<div class="col-sm-12">
 						<!-- Example Events -->
 						
-						
-						    <table id="cgFormHeads">
-						    
-					    	</table>
+
+						<table id="templetGroupForm">
+
+						</table>
 
 
 
 						<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">						
 							
-							<button id="b1"  msg="从现有数据库中选取表信息" type="button" class="btn btn-outline btn-default" url='cgFormHeadController.do?toAdd' onClick="createWin('cgFormHeads',this,900,600);">
+							<button id="b1"  msg="增加模板组配置" type="button" class="btn btn-outline btn-default" url='${ctx}/templet/group/create' onClick="createWin('templetGroupForm',this,800,500);">
 								<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
 							</button>							
 						
-							<button id="b2"  msg="编辑表格信息" type="button" class="btn btn-outline btn-default" url='cgFormHeadController.do?toEdit' onClick="updateWin('cgFormHeads',this);">
+							<button id="b2"  msg="编辑模板组配置信息" type="button" class="btn btn-outline btn-default" url='${ctx}/templet/group/{id}/update' onClick="updateWin('templetGroupForm',this);">
 								<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
 							</button>								
 							
-							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='cgFormHeadController.do?doDelete' onClick="ajaxConfirm('cgFormHeads',this);">
+							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='${ctx}/templet/group/{id}/delete' onClick="ajaxConfirm('templetGroupForm',this);">
 								<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 							</button>
-							
-							<button id="b4" type="button" msg="将表格信息转化为对应的代码，可 减轻一半的工作量 ！" class="btn btn-outline btn-default"  url='cgFormHeadController.do?gc' onClick="ajaxConfirm('cgFormHeads',this,'download()');">
-								<i class="glyphicon glyphicon-film" aria-hidden="true"></i>
-							</button>
+
 								
 						</div>
 
@@ -102,43 +98,35 @@
 	<script src="${ctx}/statics/plug-in/toastr/toastr.min.js"></script>
 	<script src="${ctx}/statics/plug-in/toastr/toastr.js"></script>
 	<script type="text/javascript">
-	
-	
 
-	
+
+
+
+
+        var columns1 = [{
+            field: 'aa',
+            title: '选择',
+            checkbox:true,
+            width:40
+        },{
+            field: 'id',
+            visible:false
+        }, {
+            field: 'groupName',
+            title: '模板组名称',
+            width:150
+        },{
+            field: 'groupRemark',
+            title: '模板组说明',
+            width:200
+        }];
 		
-		var columns1 = [{
-	        field: 'aa',
-	        title: 'ID',
-	        checkbox:true,
-	        width:80
-	    },{
-	        field: 'id',
-	        visible:false
-	    },{
-	        field: 'dbType',
-	        title: '数据库类型',
-	        width:80
-	    },{
-	        field: 'schema',
-	        title: 'schema',
-	        width:80
-	    }, {
-	        field: 'tableName',
-	        title: '表名',
-	        width:150
-	    },  {
-	        field: 'content',
-	        title: '表描述',
-	        width:600
-	    } ];
-		
-		init('cgFormHeads','cgFormHeadController.do?datagrid');
+		init('templetGroupForm','${ctx}/templet/group/list');
 		
 		
 
 
-		
+
 		$(".btn-outline").mouseover(function(){
 				var message = $(this).attr("msg");
 				if(message == null || message == "" || message == undefined ) return ;
@@ -148,9 +136,11 @@
 				  time: 2000
 				});
 		});
-	function refreshTable() {
-		$('#cgFormHeads').bootstrapTable('refresh');
-	}
+
+		function refreshTable() {
+			$('#templetGroupForm').bootstrapTable('refresh');
+		}
+
 	</script>
 	
 	

@@ -167,6 +167,9 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         List<String> ids = new ArrayList<String>();
         if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()) {
             for (TcgQueryConfigBO item : tablePO.getQueryConfigs()) {
+                if(item == null || (StringUtils.isEmpty(item.getQueryRelation()) && StringUtils.isEmpty(item.getQueryTitle()) && StringUtils.isEmpty(item.getQueryPlaceholder()))  ){
+                    continue;
+                }
                 if(StringUtils.isEmpty(item.getId())){
                     item.setId(IdUtils.getId());
                     tcgQueryConfigDAO.insert(item);
@@ -197,6 +200,9 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         List<String> ids = new ArrayList<String>();
         if(tablePO.getColumnEvents() != null && !tablePO.getColumnEvents().isEmpty()) {
             for (TcgColumnEventBO item : tablePO.getColumnEvents()) {
+                if(item == null || StringUtils.isEmpty(item.getEventName())){
+                    continue;
+                }
                 if(StringUtils.isEmpty(item.getId())){
                     item.setId(IdUtils.getId());
                     tcgColumnEventDAO.insert(item);
@@ -226,6 +232,9 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         List<String> ids = new ArrayList<String>();
         if(tablePO.getColumnValidates() != null && !tablePO.getColumnValidates().isEmpty()) {
             for (TcgColumnValidateBO item : tablePO.getColumnValidates()) {
+                if(item == null || StringUtils.isEmpty(item.getRex())){
+                    continue;
+                }
                 if(StringUtils.isEmpty(item.getId())){
                     item.setId(IdUtils.getId());
                     tcgColumnValidateDAO.insert(item);
@@ -269,6 +278,8 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     private void updateColumns(TablePO tablePO) {
         if(tablePO.getColumns() != null && !tablePO.getColumns().isEmpty()) {
             for (TcgColumnConfigBO item : tablePO.getColumns()){
+                String[] clzs = item.getJavaFullClass().split(".");
+                item.setJavaSimpleClass(clzs[clzs.length-1]);
                 tcgColumnConfigDAO.updateById(item);
             }
         }
@@ -292,6 +303,11 @@ public class TableBusinessServiceImpl implements TableBusinessService {
             }
 
             for (TcgExColumnBO item : tablePO.getExColumns()) {
+                if(item == null || StringUtils.isEmpty(item.getJavaFullClass())){
+                    continue;
+                }
+                String[] clzs = item.getJavaFullClass().split(".");
+                item.setJavaSimpleClass(clzs[clzs.length-1]);
                 if(StringUtils.isEmpty(item.getId())){
                     item.setId(IdUtils.getId());
                     tcgExColumnDAO.insert(item);

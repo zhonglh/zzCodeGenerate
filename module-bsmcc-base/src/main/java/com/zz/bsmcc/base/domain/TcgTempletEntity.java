@@ -4,6 +4,7 @@ package com.zz.bsmcc.base.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
@@ -15,7 +16,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 * @author Administrator
 * @date 2018-7-29 1:16:15
 */
-public class TcgTempletEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
+public class TcgTempletEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
@@ -62,10 +63,6 @@ public class TcgTempletEntity extends BaseBusinessExEntity<String> implements ja
 
 
 
-
-
-        //@EntityAttrAnnotation(attrName="删除标志",sort=11  , attrLength=1    )
-        private String deleteFlag;
 
 
         /**
@@ -138,19 +135,6 @@ public class TcgTempletEntity extends BaseBusinessExEntity<String> implements ja
         public void setTempletContent(String templetContent) {
         this.templetContent = templetContent;
         }
-        /**
-        * 删除标志
-        * @return the deleteFlag
-        */
-        public String getDeleteFlag() {
-        return deleteFlag;
-        }
 
-        /**
-        * 删除标志
-        */
-        public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag;
-        }
 
 }

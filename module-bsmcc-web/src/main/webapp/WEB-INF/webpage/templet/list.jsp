@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <%
 	session.setAttribute("lang", "zh-cn");
@@ -16,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>代码生成平台</title>
+<title>福布罗代码生成平台</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link href="${ctx}/statics/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -42,35 +41,38 @@
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
 
-		<div class="ibox float-e-margins">
+		<div class="ibox float-e-margins" style="height:100%" >
 
-			<div class="ibox-content">
+			<div class="ibox-content" style="padding: 1px 1px 1px 1px;">
 				<div class="row row-lg">
 
 					<div class="col-sm-12">
 						<!-- Example Events -->
 						
-						
-						    <table id="dbconfigs">
-						    
-					    	</table>
+
+						<table id="templetForm">
+
+						</table>
 
 
 
 						<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">						
 							
-								<button id="a1" msg="增加数据库配置"  type="button" class="btn btn-outline btn-default" url='dbConfigController.do?toEdit' onClick="createWin('dbconfigs',this);">
-									<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
-								</button>
+							<button id="b1"  msg="增加模板组配置" type="button" class="btn btn-outline btn-default" url='${ctx}/templet/create' onClick="createWin('templetForm',this,800,500);">
+								<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+							</button>							
+						
+							<button id="b2"  msg="编辑模板组配置信息" type="button" class="btn btn-outline btn-default" url='${ctx}/templet/{id}/update' onClick="updateWin('templetForm',this);">
+								<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+							</button>								
 							
-								<button id="a2" msg="编辑数据库配置"  type="button" class="btn btn-outline btn-default" url='dbConfigController.do?toEdit' onClick="updateWin('dbconfigs',this);">
-									<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
-								</button>
+							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='${ctx}/templet/{id}/delete' onClick="ajaxConfirm('templetForm',this);">
+								<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+							</button>
+
 								
-								<button id="a3" type="button" msg="删除不需要的数据库配置" class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='dbConfigController.do?doDelete' onClick="ajaxConfirm('dbconfigs',this);">
-									<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-								</button>
 						</div>
+
 
 					</div>
 				</div>
@@ -96,53 +98,52 @@
 	<script src="${ctx}/statics/plug-in/toastr/toastr.min.js"></script>
 	<script src="${ctx}/statics/plug-in/toastr/toastr.js"></script>
 	<script type="text/javascript">
-	
-	
-	
-	var columns1 = [{
-        field: 'aa',
-        title: 'ID',
-        checkbox:true,
-        width:80
-    },{
-        field: 'id',
-        visible:false
-    }, {
-        field: 'dbType',
-        title: '数据库类型',
-        width:80
-    }, {
-        field: 'dbUsername',
-        title: '数据库名称',
-        width:80
-    }, {
-        field: 'dbPassword',
-        title: '数据库密码',
-        width:80
-    }, {
-        field: 'dbUrl',
-        title: '数据库地址',
-        width:700
-    } ];
-	
-	init('dbconfigs','dbConfigController.do?datagrid');
-	
 
-	
-	$(".btn-outline").mouseover(function(){
-			var message = $(this).attr("msg");
-			if(message == null || message == "" || message == undefined ) return ;
-			var id = $(this).attr("id");
-			layer.tips(message,'#'+id, {
-			  tips: [1, '#3595CC'],
-			  time: 2000
-			});
-	});
-	function refreshTable() {
-		$('#dbconfigs').bootstrapTable('refresh');
-	}
-	
+
+
+
+
+        var columns1 = [{
+            field: 'aa',
+            title: '选择',
+            checkbox:true,
+            width:40
+        },{
+            field: 'id',
+            visible:false
+        }, {
+            field: 'groupName',
+            title: '模板组名称',
+            width:150
+        },{
+            field: 'groupRemark',
+            title: '模板组说明',
+            width:200
+        }];
+		
+		init('templetForm','${ctx}/templet/list');
+		
+		
+
+
+
+		$(".btn-outline").mouseover(function(){
+				var message = $(this).attr("msg");
+				if(message == null || message == "" || message == undefined ) return ;
+				var id = $(this).attr("id");
+				layer.tips(message,'#'+id, {
+				  tips: [1, '#3595CC'],
+				  time: 2000
+				});
+		});
+
+		function refreshTable() {
+			$('#templetForm').bootstrapTable('refresh');
+		}
+
 	</script>
+	
+	
 
 </body>
 </html>

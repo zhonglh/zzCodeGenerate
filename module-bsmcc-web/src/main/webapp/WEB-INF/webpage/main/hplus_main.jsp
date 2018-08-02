@@ -74,6 +74,32 @@
                     <div class="logo-element">福布罗</div>
                 </li>
 
+
+                <li>
+                    <a class="J_menuItem" href="${ctx}/operation/toList" data-index="1"><i class="fa fa-edit"></i> <span class="nav-label">操作定义</span></a>
+                </li>
+
+
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i> <span class="nav-label">模板管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+                        <li>
+                            <a class="J_menuItem" href="${ctx}/templet/group/toList" data-index="5">模板组</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="${ctx}/templet/toList" data-index="6">模板设置</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+
+
                 <li>
 					<a class="J_menuItem" href="${ctx}/db/config/toList" data-index="10"><i class="fa fa-edit"></i> <span class="nav-label">数据库配置</span></a>
                 </li>
@@ -91,10 +117,6 @@
                     <a class="J_menuItem" href="${ctx}/table/config/toList" data-index="40"><i class="fa fa-edit"></i> <span class="nav-label">表格设置</span></a>
                 </li>
 
-
-                <li>
-					<a class="J_menuItem" href="cgFormHeadController.do?cgFormHeadList" data-index="100"><i class="fa fa-table"></i> <span class="nav-label">表格配置</span></a>
-                </li>
                 
 
             </ul>

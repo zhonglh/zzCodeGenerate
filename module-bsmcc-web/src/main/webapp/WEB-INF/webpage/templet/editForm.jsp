@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <%
 	session.setAttribute("lang", "zh-cn");
@@ -46,71 +45,72 @@
     <div class="animated">
        
                     <div class="ibox-content">
-                        <form class="form-horizontal m-t" onSubmit="javaScript:return false;" id="signupForm" action="dbConfigController.do?doSave">
+                        <form class="form-horizontal m-t" onSubmit="javaScript:return false;" id="signupForm" >
                         
                         	<input type="hidden" id="id" name="id" value="${entity.id }"/>
-                        
+
+
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库类型：</label>
+                                <label class="col-sm-3 control-label">模板组：</label>
                                 <div class="col-sm-8">
-                                   
-                                <select id="dbType" name="dbType"  class="form-control">
-                                    <option value="oracle"  <c:if test="${entity.dbType ==  'oracle' }">selected="selected"</c:if> hassubinfo="true">oracle</option>
-                                    <option value="db2" 	<c:if test="${entity.dbType ==  'db2' }">selected="selected"</c:if> hassubinfo="true">db2</option>
-                                    <option value="mysql" 	<c:if test="${entity.dbType ==  'mysql' }">selected="selected"</c:if> hassubinfo="true">mysql</option>
-                                </select>
-                           
-                                   
-                                   
+                                    <select id="groupId" name="groupId"  class="form-control">
+                                        <c:forEach items="${groups}" var="group">
+                                            <option value="${group.id}" <c:if test="${entity.groupId ==  group.id }">selected="selected"</c:if> >${group.groupName}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                             </div>
-                        
-                        
-                        
+
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库用户名：</label>
+                                <label class="col-sm-3 control-label">生成文件的文件类型：</label>
                                 <div class="col-sm-8">
-                                    <input id="dbUsername" name="dbUsername" value="${entity.dbUsername }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <select id="fileType" name="fileType"  class="form-control">
+                                        <c:forEach items="${fileTypes}" var="fileType">
+                                            <option value="${fileType.value}" <c:if test="${entity.fileType ==  fileType.value }">selected="selected"</c:if> >${fileType.name}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                             </div>
-                            
-                            
+
+
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库密码：</label>
+                                <label class="col-sm-3 control-label">生成文件所在文件夹：</label>
                                 <div class="col-sm-8">
-                                    <input id="dbPassword" name="dbPassword" value="${entity.dbPassword }" class="form-control" required="true" type="password">
+                                    <input id="fileDir" name="fileDir" value="${entity.fileDir }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">确认密码：</label>
+                                <label class="col-sm-3 control-label">生成文件的后缀：</label>
                                 <div class="col-sm-8">
-                                    <input id="confirm_password" name="confirm_password" value="${entity.dbPassword }" class="form-control" required="true" type="password">
-                                    <!-- <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span> -->
+                                    <input id="fileSuffix" name="fileSuffix" value="${entity.fileSuffix }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
-                            
-                           <div class="form-group">
-                                <label class="col-sm-3 control-label">数据库地址：</label>
-                                <div class="col-sm-8">
-                                    <input id="dbUrl" name="dbUrl" value="${entity.dbUrl }" class="form-control" type="text" aria-required="true"  required="true" aria-invalid="true" class="error">
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            <!-- 
+
+
                             <div class="form-group">
-                                <div class="col-sm-8 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" class="checkbox" id="agree" name="agree"> 我已经认真阅读并同意《H+使用协议》
-                                        </label>
-                                    </div>
+                                <label class="col-sm-3 control-label">模板标题：</label>
+                                <div class="col-sm-8">
+                                    <input id="templetTitle" name="templetTitle" value="${entity.templetTitle }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+
                                 </div>
                             </div>
-                             -->
-                            
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">模板内容：</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="10" cols="65" id="templetContent" name="templetContent">${entity.templetContent }</textarea></div>
+                            </div>
+
+
+
+
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" onclick="submitForm()">提交</button>
@@ -140,22 +140,22 @@
 
 	<script type="text/javascript">
 
+        var ctx = "${ctx}";
 	
 	
 	$( "#signupForm" ).validate({
 		  rules: {
-		    password: "required",
-		    confirm_password: {
-		      equalTo: "#dbPassword"
-		    }
+
 		  }
 	});
 	
 	function submitForm(){
+
 		
 		if( !$('form').valid() ) return false;
 
-		var actionurl=$('form').attr('action');
+		var actionurl= window.location.href;
+            //$('form').attr('action');
 		   
 		var formData = $('form').serializeArray();
 		
@@ -164,7 +164,7 @@
 		if(ajax.success){	
 			
 			topShwoMessage("info",ajax.msg);
-			top.iframe10.window.refreshTable();
+			top.iframe5.window.refreshTable();
 			window.setTimeout(function(){top.layer.closeAll();},2000);
 			
 		}else {
