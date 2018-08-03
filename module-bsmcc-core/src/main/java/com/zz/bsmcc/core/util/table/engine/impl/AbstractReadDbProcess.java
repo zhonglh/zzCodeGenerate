@@ -102,7 +102,25 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				table.setTableName(tableName);
 				table.setTableSchema(tableSchema);
 				table.setTableType(tableType);
+
+
+				String otherComment = null;
+				if(StringUtils.isNotEmpty(tableComment)) {
+					StringBuilder commentSb = new StringBuilder();
+					StringBuilder otherCommentSb = new StringBuilder();
+					processComment(tableComment ,commentSb, otherCommentSb);
+					tableComment = commentSb.toString();
+					if(otherCommentSb != null && otherCommentSb.length() >0) {
+						otherComment = otherCommentSb.toString();
+					}
+				}
+
+
 				table.setTableComment(tableComment);
+				table.setTableOtherComment(otherComment);
+
+
+
 				table.setId(tableSchema+":"+tableName);
 				table.setTable(this.isTable(table));
 				break;
@@ -158,7 +176,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				if(StringUtils.isNotEmpty(filedComment)) {
 					StringBuilder commentSb = new StringBuilder();
 					StringBuilder otherCommentSb = new StringBuilder();
-					processColumnCommon(filedComment ,commentSb, otherCommentSb);
+					processComment(filedComment ,commentSb, otherCommentSb);
 					filedComment = commentSb.toString();
 					if(otherCommentSb != null && otherCommentSb.length() >0) {
 						otherFiledComment = otherCommentSb.toString();
@@ -313,7 +331,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 
 
 
-	private void processColumnCommon(String comments,StringBuilder commentsSb ,StringBuilder otherCommentsSb  ){
+	private void processComment(String comments, StringBuilder commentsSb , StringBuilder otherCommentsSb  ){
 
 		String otherComments = "";
 		if(comments != null && !comments.isEmpty()){

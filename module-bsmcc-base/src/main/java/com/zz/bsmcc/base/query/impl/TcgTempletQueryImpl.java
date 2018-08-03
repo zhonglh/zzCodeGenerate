@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 模板 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:17
+ * @date 2018-8-3 12:03:13
  */
 public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbstractQueryImpl<PK> implements TcgTempletQuery<PK>, Serializable  {
 
@@ -55,6 +55,36 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
 
 
 
+            private List<String> fileOutDir_IN;
+            private List<String> fileOutDir_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> fileInnerDir_IN;
+            private List<String> fileInnerDir_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
             private List<String> fileType_IN;
             private List<String> fileType_NOTIN;
 
@@ -70,23 +100,23 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
 
 
 
+            private List<String> fileSuffix_IN;
+            private List<String> fileSuffix_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
             private List<String> templetTitle_IN;
             private List<String> templetTitle_NOTIN;
-
-
-
-
-
-
-
-
-
-
-
-
-
-            private List<String> templetDir_IN;
-            private List<String> templetDir_NOTIN;
 
 
 
@@ -343,6 +373,184 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
 
 
                 @Override
+                public TcgTempletQuery fileOutDir(String fileOutDir) {
+                    if(!IdUtils.isEmpty(fileOutDir)){
+                        this.fileOutDir = fileOutDir;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery fileOutDirNot(String fileOutDirNot) {
+                    if(!IdUtils.isEmpty(fileOutDirNot)){
+                        this.fileOutDir_NE = fileOutDirNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgTempletQuery fileOutDirLike(String fileOutDirLike) {
+                    if(!IdUtils.isEmpty(fileOutDirLike)){
+                        this.fileOutDir_LIKE = fileOutDirLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileOutDirNotLike(String fileOutDirNotLike) {
+                    if(!IdUtils.isEmpty(fileOutDirNotLike)){
+                        this.fileOutDir_NOTLIKE = fileOutDirNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTempletQuery fileOutDirIn(String fileOutDirIn) {
+                    if(!IdUtils.isEmpty(fileOutDirIn)){
+                        if(this.fileOutDir_IN == null){
+                            this.fileOutDir_IN = new ArrayList<String>();
+                        }
+                        this.fileOutDir_IN.add( fileOutDirIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery fileOutDirNotIn(String fileOutDirNotIn) {
+                    if(!IdUtils.isEmpty(fileOutDirNotIn)){
+                        if(this.fileOutDir_NOTIN == null){
+                            this.fileOutDir_NOTIN = new ArrayList<String>();
+                        }
+                        this.fileOutDir_NOTIN.add( fileOutDirNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileOutDirIsNull() {
+                    this.isNulls.add("fileOutDir");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileOutDirIsNotNull() {
+                    this.isNotNulls.add("fileOutDir");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgTempletQuery fileInnerDir(String fileInnerDir) {
+                    if(!IdUtils.isEmpty(fileInnerDir)){
+                        this.fileInnerDir = fileInnerDir;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery fileInnerDirNot(String fileInnerDirNot) {
+                    if(!IdUtils.isEmpty(fileInnerDirNot)){
+                        this.fileInnerDir_NE = fileInnerDirNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgTempletQuery fileInnerDirLike(String fileInnerDirLike) {
+                    if(!IdUtils.isEmpty(fileInnerDirLike)){
+                        this.fileInnerDir_LIKE = fileInnerDirLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileInnerDirNotLike(String fileInnerDirNotLike) {
+                    if(!IdUtils.isEmpty(fileInnerDirNotLike)){
+                        this.fileInnerDir_NOTLIKE = fileInnerDirNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTempletQuery fileInnerDirIn(String fileInnerDirIn) {
+                    if(!IdUtils.isEmpty(fileInnerDirIn)){
+                        if(this.fileInnerDir_IN == null){
+                            this.fileInnerDir_IN = new ArrayList<String>();
+                        }
+                        this.fileInnerDir_IN.add( fileInnerDirIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery fileInnerDirNotIn(String fileInnerDirNotIn) {
+                    if(!IdUtils.isEmpty(fileInnerDirNotIn)){
+                        if(this.fileInnerDir_NOTIN == null){
+                            this.fileInnerDir_NOTIN = new ArrayList<String>();
+                        }
+                        this.fileInnerDir_NOTIN.add( fileInnerDirNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileInnerDirIsNull() {
+                    this.isNulls.add("fileInnerDir");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileInnerDirIsNotNull() {
+                    this.isNotNulls.add("fileInnerDir");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
                 public TcgTempletQuery fileType(String fileType) {
                     if(!IdUtils.isEmpty(fileType)){
                         this.fileType = fileType;
@@ -432,6 +640,95 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
 
 
                 @Override
+                public TcgTempletQuery fileSuffix(String fileSuffix) {
+                    if(!IdUtils.isEmpty(fileSuffix)){
+                        this.fileSuffix = fileSuffix;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery fileSuffixNot(String fileSuffixNot) {
+                    if(!IdUtils.isEmpty(fileSuffixNot)){
+                        this.fileSuffix_NE = fileSuffixNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgTempletQuery fileSuffixLike(String fileSuffixLike) {
+                    if(!IdUtils.isEmpty(fileSuffixLike)){
+                        this.fileSuffix_LIKE = fileSuffixLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileSuffixNotLike(String fileSuffixNotLike) {
+                    if(!IdUtils.isEmpty(fileSuffixNotLike)){
+                        this.fileSuffix_NOTLIKE = fileSuffixNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTempletQuery fileSuffixIn(String fileSuffixIn) {
+                    if(!IdUtils.isEmpty(fileSuffixIn)){
+                        if(this.fileSuffix_IN == null){
+                            this.fileSuffix_IN = new ArrayList<String>();
+                        }
+                        this.fileSuffix_IN.add( fileSuffixIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery fileSuffixNotIn(String fileSuffixNotIn) {
+                    if(!IdUtils.isEmpty(fileSuffixNotIn)){
+                        if(this.fileSuffix_NOTIN == null){
+                            this.fileSuffix_NOTIN = new ArrayList<String>();
+                        }
+                        this.fileSuffix_NOTIN.add( fileSuffixNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileSuffixIsNull() {
+                    this.isNulls.add("fileSuffix");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery fileSuffixIsNotNull() {
+                    this.isNotNulls.add("fileSuffix");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
                 public TcgTempletQuery templetTitle(String templetTitle) {
                     if(!IdUtils.isEmpty(templetTitle)){
                         this.templetTitle = templetTitle;
@@ -505,95 +802,6 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                 @Override
                 public TcgTempletQuery templetTitleIsNotNull() {
                     this.isNotNulls.add("templetTitle");
-                    return this;
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-                @Override
-                public TcgTempletQuery templetDir(String templetDir) {
-                    if(!IdUtils.isEmpty(templetDir)){
-                        this.templetDir = templetDir;
-                    }
-                    return this;
-                }
-
-
-                @Override
-                public TcgTempletQuery templetDirNot(String templetDirNot) {
-                    if(!IdUtils.isEmpty(templetDirNot)){
-                        this.templetDir_NE = templetDirNot;
-                    }
-                    return this;
-                }
-
-
-
-
-                @Override
-                public TcgTempletQuery templetDirLike(String templetDirLike) {
-                    if(!IdUtils.isEmpty(templetDirLike)){
-                        this.templetDir_LIKE = templetDirLike;
-                    }
-                    return this;
-                }
-
-
-
-                @Override
-                public TcgTempletQuery templetDirNotLike(String templetDirNotLike) {
-                    if(!IdUtils.isEmpty(templetDirNotLike)){
-                        this.templetDir_NOTLIKE = templetDirNotLike;
-                    }
-                    return this;
-                }
-
-                @Override
-                public TcgTempletQuery templetDirIn(String templetDirIn) {
-                    if(!IdUtils.isEmpty(templetDirIn)){
-                        if(this.templetDir_IN == null){
-                            this.templetDir_IN = new ArrayList<String>();
-                        }
-                        this.templetDir_IN.add( templetDirIn );
-                    }
-                    return this;
-                }
-
-
-                @Override
-                public TcgTempletQuery templetDirNotIn(String templetDirNotIn) {
-                    if(!IdUtils.isEmpty(templetDirNotIn)){
-                        if(this.templetDir_NOTIN == null){
-                            this.templetDir_NOTIN = new ArrayList<String>();
-                        }
-                        this.templetDir_NOTIN.add( templetDirNotIn );
-                    }
-                    return this;
-                }
-
-
-
-                @Override
-                public TcgTempletQuery templetDirIsNull() {
-                    this.isNulls.add("templetDir");
-                    return this;
-                }
-
-
-
-                @Override
-                public TcgTempletQuery templetDirIsNotNull() {
-                    this.isNotNulls.add("templetDir");
                     return this;
                 }
 

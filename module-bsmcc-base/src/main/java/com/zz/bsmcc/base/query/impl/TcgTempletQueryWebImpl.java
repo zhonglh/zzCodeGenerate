@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 模板 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:17
+ * @date 2018-8-3 12:03:13
  */
 public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletAbstractQueryImpl<PK> implements Serializable {
 
@@ -44,6 +44,30 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
 
 
 
+            private String fileOutDir_IN;
+            private String fileOutDir_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String fileInnerDir_IN;
+            private String fileInnerDir_NOTIN;
+
+
+
+
+
+
+
+
+
+
             private String fileType_IN;
             private String fileType_NOTIN;
 
@@ -56,20 +80,20 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
 
 
 
+            private String fileSuffix_IN;
+            private String fileSuffix_NOTIN;
+
+
+
+
+
+
+
+
+
+
             private String templetTitle_IN;
             private String templetTitle_NOTIN;
-
-
-
-
-
-
-
-
-
-
-            private String templetDir_IN;
-            private String templetDir_NOTIN;
 
 
 
@@ -288,6 +312,146 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
 
 
 
+                public String getFileOutDir() {
+                    return fileOutDir;
+                }
+
+
+                public void setFileOutDir(String fileOutDir) {
+                    this.fileOutDir = fileOutDir;
+                }
+
+
+                public String getFileOutDir_NE() {
+                    return fileOutDir_NE;
+                }
+
+
+                public void setFileOutDir_NE(String fileOutDir_NE) {
+                    this.fileOutDir_NE = fileOutDir_NE;
+                }
+
+
+
+                public String getFileOutDir_IN() {
+                    return fileOutDir_IN;
+                }
+
+                public void setFileOutDir_IN(String fileOutDir_IN) {
+                    this.fileOutDir_IN = fileOutDir_IN;
+                }
+
+                public String getFileOutDir_NOTIN() {
+                    return fileOutDir_NOTIN;
+                }
+
+                public void setFileOutDir_NOTIN(String fileOutDir_NOTIN) {
+                    this.fileOutDir_NOTIN = fileOutDir_NOTIN;
+                }
+
+
+
+
+                public String getFileOutDir_LIKE() {
+                    return fileOutDir_LIKE;
+                }
+
+                public void setFileOutDir_LIKE(String fileOutDir_LIKE) {
+                    this.fileOutDir_LIKE = fileOutDir_LIKE;
+                }
+
+                public String getFileOutDir_NOTLIKE() {
+                    return fileOutDir_NOTLIKE;
+                }
+
+                public void setFileOutDir_NOTLIKE(String fileOutDir_NOTLIKE) {
+                    this.fileOutDir_NOTLIKE = fileOutDir_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getFileInnerDir() {
+                    return fileInnerDir;
+                }
+
+
+                public void setFileInnerDir(String fileInnerDir) {
+                    this.fileInnerDir = fileInnerDir;
+                }
+
+
+                public String getFileInnerDir_NE() {
+                    return fileInnerDir_NE;
+                }
+
+
+                public void setFileInnerDir_NE(String fileInnerDir_NE) {
+                    this.fileInnerDir_NE = fileInnerDir_NE;
+                }
+
+
+
+                public String getFileInnerDir_IN() {
+                    return fileInnerDir_IN;
+                }
+
+                public void setFileInnerDir_IN(String fileInnerDir_IN) {
+                    this.fileInnerDir_IN = fileInnerDir_IN;
+                }
+
+                public String getFileInnerDir_NOTIN() {
+                    return fileInnerDir_NOTIN;
+                }
+
+                public void setFileInnerDir_NOTIN(String fileInnerDir_NOTIN) {
+                    this.fileInnerDir_NOTIN = fileInnerDir_NOTIN;
+                }
+
+
+
+
+                public String getFileInnerDir_LIKE() {
+                    return fileInnerDir_LIKE;
+                }
+
+                public void setFileInnerDir_LIKE(String fileInnerDir_LIKE) {
+                    this.fileInnerDir_LIKE = fileInnerDir_LIKE;
+                }
+
+                public String getFileInnerDir_NOTLIKE() {
+                    return fileInnerDir_NOTLIKE;
+                }
+
+                public void setFileInnerDir_NOTLIKE(String fileInnerDir_NOTLIKE) {
+                    this.fileInnerDir_NOTLIKE = fileInnerDir_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 public String getFileType() {
                     return fileType;
                 }
@@ -358,6 +522,76 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
 
 
 
+                public String getFileSuffix() {
+                    return fileSuffix;
+                }
+
+
+                public void setFileSuffix(String fileSuffix) {
+                    this.fileSuffix = fileSuffix;
+                }
+
+
+                public String getFileSuffix_NE() {
+                    return fileSuffix_NE;
+                }
+
+
+                public void setFileSuffix_NE(String fileSuffix_NE) {
+                    this.fileSuffix_NE = fileSuffix_NE;
+                }
+
+
+
+                public String getFileSuffix_IN() {
+                    return fileSuffix_IN;
+                }
+
+                public void setFileSuffix_IN(String fileSuffix_IN) {
+                    this.fileSuffix_IN = fileSuffix_IN;
+                }
+
+                public String getFileSuffix_NOTIN() {
+                    return fileSuffix_NOTIN;
+                }
+
+                public void setFileSuffix_NOTIN(String fileSuffix_NOTIN) {
+                    this.fileSuffix_NOTIN = fileSuffix_NOTIN;
+                }
+
+
+
+
+                public String getFileSuffix_LIKE() {
+                    return fileSuffix_LIKE;
+                }
+
+                public void setFileSuffix_LIKE(String fileSuffix_LIKE) {
+                    this.fileSuffix_LIKE = fileSuffix_LIKE;
+                }
+
+                public String getFileSuffix_NOTLIKE() {
+                    return fileSuffix_NOTLIKE;
+                }
+
+                public void setFileSuffix_NOTLIKE(String fileSuffix_NOTLIKE) {
+                    this.fileSuffix_NOTLIKE = fileSuffix_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 public String getTempletTitle() {
                     return templetTitle;
                 }
@@ -412,76 +646,6 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
 
                 public void setTempletTitle_NOTLIKE(String templetTitle_NOTLIKE) {
                     this.templetTitle_NOTLIKE = templetTitle_NOTLIKE;
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getTempletDir() {
-                    return templetDir;
-                }
-
-
-                public void setTempletDir(String templetDir) {
-                    this.templetDir = templetDir;
-                }
-
-
-                public String getTempletDir_NE() {
-                    return templetDir_NE;
-                }
-
-
-                public void setTempletDir_NE(String templetDir_NE) {
-                    this.templetDir_NE = templetDir_NE;
-                }
-
-
-
-                public String getTempletDir_IN() {
-                    return templetDir_IN;
-                }
-
-                public void setTempletDir_IN(String templetDir_IN) {
-                    this.templetDir_IN = templetDir_IN;
-                }
-
-                public String getTempletDir_NOTIN() {
-                    return templetDir_NOTIN;
-                }
-
-                public void setTempletDir_NOTIN(String templetDir_NOTIN) {
-                    this.templetDir_NOTIN = templetDir_NOTIN;
-                }
-
-
-
-
-                public String getTempletDir_LIKE() {
-                    return templetDir_LIKE;
-                }
-
-                public void setTempletDir_LIKE(String templetDir_LIKE) {
-                    this.templetDir_LIKE = templetDir_LIKE;
-                }
-
-                public String getTempletDir_NOTLIKE() {
-                    return templetDir_NOTLIKE;
-                }
-
-                public void setTempletDir_NOTLIKE(String templetDir_NOTLIKE) {
-                    this.templetDir_NOTLIKE = templetDir_NOTLIKE;
                 }
 
 

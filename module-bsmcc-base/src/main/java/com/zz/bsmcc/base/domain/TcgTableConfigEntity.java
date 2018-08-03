@@ -125,6 +125,8 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
 
+	//@EntityAttrAnnotation(attrName="其它说明",sort=14  , attrLength=50    )
+	private String tableOtherComment;
 
 
     //@EntityAttrAnnotation(attrName="查询条件模式",sort=15  , attrLength=20    )
@@ -410,5 +412,12 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setJavaName(String javaName) {
 		this.javaName = javaName;
 	}
-	
+
+	public String getTableOtherComment() {
+		return tableOtherComment;
+	}
+
+	public void setTableOtherComment(String tableOtherComment) {
+		this.tableOtherComment = tableOtherComment;
+	}
 }

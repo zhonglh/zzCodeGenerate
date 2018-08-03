@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 模板查询接口
  *
  * @author Administrator
- * @date 2018-8-1 12:53:00
+ * @date 2018-8-3 12:03:13
  */
 public interface TcgTempletQuery<PK extends Serializable> extends Query<TcgTempletEntity,PK> {
 
@@ -57,6 +57,46 @@ public interface TcgTempletQuery<PK extends Serializable> extends Query<TcgTempl
 
 
 
+            public TcgTempletQuery fileOutDir(String fileOutDir);
+            public TcgTempletQuery fileOutDirNot(String fileOutDirNot);
+            public TcgTempletQuery fileOutDirIn(String fileOutDirIn);
+            public TcgTempletQuery fileOutDirNotIn(String fileOutDirNotIn);
+            public TcgTempletQuery fileOutDirLike(String fileOutDirLike);
+            public TcgTempletQuery fileOutDirNotLike(String fileOutDirNotLike);
+            public TcgTempletQuery fileOutDirIsNull();
+            public TcgTempletQuery fileOutDirIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgTempletQuery fileInnerDir(String fileInnerDir);
+            public TcgTempletQuery fileInnerDirNot(String fileInnerDirNot);
+            public TcgTempletQuery fileInnerDirIn(String fileInnerDirIn);
+            public TcgTempletQuery fileInnerDirNotIn(String fileInnerDirNotIn);
+            public TcgTempletQuery fileInnerDirLike(String fileInnerDirLike);
+            public TcgTempletQuery fileInnerDirNotLike(String fileInnerDirNotLike);
+            public TcgTempletQuery fileInnerDirIsNull();
+            public TcgTempletQuery fileInnerDirIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
             public TcgTempletQuery fileType(String fileType);
             public TcgTempletQuery fileTypeNot(String fileTypeNot);
             public TcgTempletQuery fileTypeIn(String fileTypeIn);
@@ -77,6 +117,26 @@ public interface TcgTempletQuery<PK extends Serializable> extends Query<TcgTempl
 
 
 
+            public TcgTempletQuery fileSuffix(String fileSuffix);
+            public TcgTempletQuery fileSuffixNot(String fileSuffixNot);
+            public TcgTempletQuery fileSuffixIn(String fileSuffixIn);
+            public TcgTempletQuery fileSuffixNotIn(String fileSuffixNotIn);
+            public TcgTempletQuery fileSuffixLike(String fileSuffixLike);
+            public TcgTempletQuery fileSuffixNotLike(String fileSuffixNotLike);
+            public TcgTempletQuery fileSuffixIsNull();
+            public TcgTempletQuery fileSuffixIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
             public TcgTempletQuery templetTitle(String templetTitle);
             public TcgTempletQuery templetTitleNot(String templetTitleNot);
             public TcgTempletQuery templetTitleIn(String templetTitleIn);
@@ -85,26 +145,6 @@ public interface TcgTempletQuery<PK extends Serializable> extends Query<TcgTempl
             public TcgTempletQuery templetTitleNotLike(String templetTitleNotLike);
             public TcgTempletQuery templetTitleIsNull();
             public TcgTempletQuery templetTitleIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgTempletQuery templetDir(String templetDir);
-            public TcgTempletQuery templetDirNot(String templetDirNot);
-            public TcgTempletQuery templetDirIn(String templetDirIn);
-            public TcgTempletQuery templetDirNotIn(String templetDirNotIn);
-            public TcgTempletQuery templetDirLike(String templetDirLike);
-            public TcgTempletQuery templetDirNotLike(String templetDirNotLike);
-            public TcgTempletQuery templetDirIsNull();
-            public TcgTempletQuery templetDirIsNotNull();
 
 
 

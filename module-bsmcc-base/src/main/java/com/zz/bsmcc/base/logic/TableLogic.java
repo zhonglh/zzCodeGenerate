@@ -42,6 +42,7 @@ public class TableLogic {
         tcgTableConfigBO.setTableName(table.getTableName());
         tcgTableConfigBO.setIsTable(table.isTable()? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
         tcgTableConfigBO.setTableComment(table.getTableComment());
+        tcgTableConfigBO.setTableOtherComment(table.getTableOtherComment());
 
 
         tcgTableConfigBO.setProjectName(project.getProjectName());

@@ -19,6 +19,7 @@
          	<result column="is_tree" property="isTree"/>
          	<result column="parent_field_name" property="parentFieldName"/>
          	<result column="table_comment" property="tableComment"/>
+			<result column="table_other_comment" property="tableOtherComment"/>
          	<result column="query_mode" property="queryMode"/>
          	<result column="is_build_controller" property="isBuildController"/>
          	<result column="is_build_menu" property="isBuildMenu"/>

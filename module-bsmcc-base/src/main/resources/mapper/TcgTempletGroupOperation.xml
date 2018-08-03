@@ -11,6 +11,8 @@
          	<result column="styles" property="styles"/>
          	<result column="classs" property="classs"/>
          	<result column="position" property="position"/>
+            <result column="other" property="other"/>
+
 	</resultMap>
 
 

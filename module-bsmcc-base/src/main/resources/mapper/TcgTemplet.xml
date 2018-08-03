@@ -6,7 +6,8 @@
 	<resultMap id="TcgTempletResultMap" type="com.zz.bsmcc.base.bo.TcgTempletBO" >
          	<result column="id" property="id"/>
          	<result column="group_id" property="groupId"/>
-         	<result column="file_dir" property="fileDir"/>
+         	<result column="file_out_dir" property="fileOutDir"/>
+         	<result column="file_inner_dir" property="fileInnerDir"/>
          	<result column="file_type" property="fileType"/>
          	<result column="file_suffix" property="fileSuffix"/>
          	<result column="templet_title" property="templetTitle"/>
@@ -37,7 +38,13 @@
 
 
 
-                        <if test="fileDir != null and fileDir != ''"> AND T.file_dir = #{fileDir} </if>
+                        <if test="fileOutDir != null and fileOutDir != ''"> AND T.file_out_dir = #{fileOutDir} </if>
+
+
+
+
+
+                        <if test="fileInnerDir != null and fileInnerDir != ''"> AND T.file_inner_dir = #{fileInnerDir} </if>
 
 
 

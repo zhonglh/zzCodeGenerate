@@ -44,6 +44,23 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private String queryModeName;
 
 
+    //用于模板生成数据
+
+    /**
+     * 实体类要继承的父类
+     * BaseEntity  BaseBussinessEntity
+     */
+    @TableField(exist = false)
+    private String parentClass;
+
+
+    /**
+     * 在实体类中汇总要import的类
+     */
+    @TableField(exist = false)
+    private String importClsss;
+
+
     public String getDbConfigTitle() {
         return dbConfigTitle;
     }
@@ -98,5 +115,21 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setQueryModeName(String queryModeName) {
         this.queryModeName = queryModeName;
+    }
+
+    public String getParentClass() {
+        return parentClass;
+    }
+
+    public void setParentClass(String parentClass) {
+        this.parentClass = parentClass;
+    }
+
+    public String getImportClsss() {
+        return importClsss;
+    }
+
+    public void setImportClsss(String importClsss) {
+        this.importClsss = importClsss;
     }
 }

@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 模板 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:17
+ * @date 2018-8-3 12:03:13
  */
 public abstract class TcgTempletAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgTempletEntity,PK> {
 
@@ -48,6 +48,38 @@ public abstract class TcgTempletAbstractQueryImpl<PK extends Serializable> exten
 
 
 
+            protected String fileOutDir;
+            protected String fileOutDir_NE;
+            protected String fileOutDir_LIKE;
+            protected String fileOutDir_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String fileInnerDir;
+            protected String fileInnerDir_NE;
+            protected String fileInnerDir_LIKE;
+            protected String fileInnerDir_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
             protected String fileType;
             protected String fileType_NE;
             protected String fileType_LIKE;
@@ -64,26 +96,26 @@ public abstract class TcgTempletAbstractQueryImpl<PK extends Serializable> exten
 
 
 
+            protected String fileSuffix;
+            protected String fileSuffix_NE;
+            protected String fileSuffix_LIKE;
+            protected String fileSuffix_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
             protected String templetTitle;
             protected String templetTitle_NE;
             protected String templetTitle_LIKE;
             protected String templetTitle_NOTLIKE;
-
-
-
-
-
-
-
-
-
-
-
-
-            protected String templetDir;
-            protected String templetDir_NE;
-            protected String templetDir_LIKE;
-            protected String templetDir_NOTLIKE;
 
 
 

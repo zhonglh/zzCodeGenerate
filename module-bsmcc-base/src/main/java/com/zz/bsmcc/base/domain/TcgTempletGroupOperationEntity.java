@@ -60,6 +60,9 @@ public class TcgTempletGroupOperationEntity extends BaseEntity<String> implement
                 //top     上面，    toolbar  right   右边，  操作列中  all      两个地方都有  
             private String position;
 
+            //其它
+            private String other;
+
 
             /**
             * 模板组

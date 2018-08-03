@@ -12,6 +12,7 @@ public class Table implements Serializable {
     String tableSchema;
     String tableType;
     String tableComment;
+    String tableOtherComment;
 
 
     String id;
@@ -73,4 +74,11 @@ public class Table implements Serializable {
     }
 
 
+    public String getTableOtherComment() {
+        return tableOtherComment;
+    }
+
+    public void setTableOtherComment(String tableOtherComment) {
+        this.tableOtherComment = tableOtherComment;
+    }
 }

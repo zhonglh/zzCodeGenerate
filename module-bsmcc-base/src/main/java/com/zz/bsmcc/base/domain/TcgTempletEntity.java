@@ -6,6 +6,7 @@ import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -13,7 +14,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 * 模板实体类
 *
 * @author Administrator
-* @date 2018-8-2 12:09:03
+* @date 2018-8-3 12:03:13
 */
 public class TcgTempletEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -30,14 +31,21 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
 
 
-        //@EntityAttrAnnotation(attrName="生成文件所在文件夹",sort=2  , attrLength=100    )
-        private String fileDir;
+        //@EntityAttrAnnotation(attrName="生成文件外部文件夹",sort=2  , attrLength=200    )
+        private String fileOutDir;
 
 
 
 
 
-        //@EntityAttrAnnotation(attrName="生成文件的文件类型",sort=3  , attrLength=10    )
+        //@EntityAttrAnnotation(attrName="生成文件内部文件夹",sort=3  , attrLength=200    )
+        private String fileInnerDir;
+
+
+
+
+
+        //@EntityAttrAnnotation(attrName="生成文件的文件类型",sort=4  , attrLength=10    )
             //如 jsp , js ,vue ,java等  
         private String fileType;
 
@@ -45,7 +53,7 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
 
 
-        //@EntityAttrAnnotation(attrName="生成文件的后缀",sort=4  , attrLength=10    )
+        //@EntityAttrAnnotation(attrName="生成文件的后缀",sort=5  , attrLength=10    )
             //如 jsp , js ,vue ,java等  
         private String fileSuffix;
 
@@ -53,14 +61,14 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
 
 
-        //@EntityAttrAnnotation(attrName="模板标题",sort=5  , attrLength=50    )
+        //@EntityAttrAnnotation(attrName="模板标题",sort=6  , attrLength=50    )
         private String templetTitle;
 
 
 
 
 
-        //@EntityAttrAnnotation(attrName="模板内容",sort=6  , attrLength=5000    )
+        //@EntityAttrAnnotation(attrName="模板内容",sort=7  , attrLength=5000    )
         private String templetContent;
 
 
@@ -71,6 +79,9 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
 
 
+
+        //@EntityAttrAnnotation(attrName="删除标志",sort=13  , attrLength=1    )
+        private String deleteFlag;
 
 
         /**
@@ -88,18 +99,32 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
         this.groupId = groupId;
         }
         /**
-        * 生成文件所在文件夹
-        * @return the fileDir
+        * 生成文件外部文件夹
+        * @return the fileOutDir
         */
-        public String getFileDir() {
-        return fileDir;
+        public String getFileOutDir() {
+        return fileOutDir;
         }
 
         /**
-        * 生成文件所在文件夹
+        * 生成文件外部文件夹
         */
-        public void setFileDir(String fileDir) {
-        this.fileDir = fileDir;
+        public void setFileOutDir(String fileOutDir) {
+        this.fileOutDir = fileOutDir;
+        }
+        /**
+        * 生成文件内部文件夹
+        * @return the fileInnerDir
+        */
+        public String getFileInnerDir() {
+        return fileInnerDir;
+        }
+
+        /**
+        * 生成文件内部文件夹
+        */
+        public void setFileInnerDir(String fileInnerDir) {
+        this.fileInnerDir = fileInnerDir;
         }
         /**
         * 生成文件的文件类型
