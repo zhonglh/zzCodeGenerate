@@ -165,6 +165,7 @@
                     <div class="form-group">
                         <label>主要的表(视图中的主表)：</label>
                         <select id="mainTableId" name="mainTableId"  class="form-control required">
+                            <option value="">--选择视图的主表--</option>
                             <c:forEach items="${tables}" var="table">
                                 <option value="${table.id}"  <c:if test="${entity.mainTableId ==  table.id }">selected="selected"</c:if> >${table.tableName}</option>
                             </c:forEach>

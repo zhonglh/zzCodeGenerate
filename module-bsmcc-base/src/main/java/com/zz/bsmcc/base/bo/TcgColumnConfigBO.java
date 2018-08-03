@@ -20,11 +20,59 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     private String columnIsnullName ;
 
+    //用于生成代码
+    private TcgTableConfigBO fkTableConfig;
+    private String fkColumnName;
+    private String fkJavaName;
+    private String fkJavaSimpleClass;
+    private String fkJavaFullClass;
+
     public String getColumnIsnullName() {
         return columnIsnullName;
     }
 
     public void setColumnIsnullName(String columnIsnullName) {
         this.columnIsnullName = columnIsnullName;
+    }
+
+
+    public TcgTableConfigBO getFkTableConfig() {
+        return fkTableConfig;
+    }
+
+    public void setFkTableConfig(TcgTableConfigBO fkTableConfig) {
+        this.fkTableConfig = fkTableConfig;
+    }
+
+    public String getFkColumnName() {
+        return fkColumnName;
+    }
+
+    public void setFkColumnName(String fkColumnName) {
+        this.fkColumnName = fkColumnName;
+    }
+
+    public String getFkJavaName() {
+        return fkJavaName;
+    }
+
+    public void setFkJavaName(String fkJavaName) {
+        this.fkJavaName = fkJavaName;
+    }
+
+    public String getFkJavaSimpleClass() {
+        return fkJavaSimpleClass;
+    }
+
+    public void setFkJavaSimpleClass(String fkJavaSimpleClass) {
+        this.fkJavaSimpleClass = fkJavaSimpleClass;
+    }
+
+    public String getFkJavaFullClass() {
+        return fkJavaFullClass;
+    }
+
+    public void setFkJavaFullClass(String fkJavaFullClass) {
+        this.fkJavaFullClass = fkJavaFullClass;
     }
 }

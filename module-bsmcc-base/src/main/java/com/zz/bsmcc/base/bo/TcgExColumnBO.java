@@ -18,6 +18,16 @@ import java.io.Serializable;
 @TableName(value="tcg_ex_column" , resultMap = "TcgExColumnResultMap")
 public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
+
+
+    @TableField(exist = false)
+    private String originalColumnName;
+
+
+    @TableField(exist = false)
+    private String originalJavaName;
+
+
     @TableField(exist = false)
     private String originalColumnFk;
 
@@ -40,35 +50,60 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     @TableField(exist = false)
     private String originalColumnDictName;
 
-    /**
-     * 原始列是否外键
-     * @return the originalColumnFk
-     */
+
+    //用于生成代码
+
+    @TableField(exist = false)
+    private String fkJavaName;
+
+
+    public String getOriginalColumnName() {
+        return originalColumnName;
+    }
+
+    public void setOriginalColumnName(String originalColumnName) {
+        this.originalColumnName = originalColumnName;
+    }
+
+    public String getOriginalJavaName() {
+        return originalJavaName;
+    }
+
+    public void setOriginalJavaName(String originalJavaName) {
+        this.originalJavaName = originalJavaName;
+    }
+
     public String getOriginalColumnFk() {
         return originalColumnFk;
     }
 
-    /**
-     * 原始列是否外键
-     */
     public void setOriginalColumnFk(String originalColumnFk) {
         this.originalColumnFk = originalColumnFk;
     }
-    /**
-     * 原始列是否字典
-     * @return the originalColumnDict
-     */
+
     public String getOriginalColumnDict() {
         return originalColumnDict;
     }
 
-    /**
-     * 原始列是否字典
-     */
     public void setOriginalColumnDict(String originalColumnDict) {
         this.originalColumnDict = originalColumnDict;
     }
 
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    public String getDictType() {
+        return dictType;
+    }
+
+    public void setDictType(String dictType) {
+        this.dictType = dictType;
+    }
 
     public String getOriginalColumnFkName() {
         return originalColumnFkName;
@@ -86,32 +121,11 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
         this.originalColumnDictName = originalColumnDictName;
     }
 
-    /**
-     * 组编码
-     * @return the groupCode
-     */
-    public String getGroupCode() {
-        return groupCode;
+    public String getFkJavaName() {
+        return fkJavaName;
     }
 
-    /**
-     * 组编码
-     */
-    public void setGroupCode(String groupCode) {
-        this.groupCode = groupCode;
-    }
-    /**
-     * 字典类型
-     * @return the dictType
-     */
-    public String getDictType() {
-        return dictType;
-    }
-
-    /**
-     * 字典类型
-     */
-    public void setDictType(String dictType) {
-        this.dictType = dictType;
+    public void setFkJavaName(String fkJavaName) {
+        this.fkJavaName = fkJavaName;
     }
 }

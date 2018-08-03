@@ -7,7 +7,7 @@
          	<result column="id" property="id"/>
          	<result column="table_id" property="tableId"/>
          	<result column="original_column_id" property="originalColumnId"/>
-         	<result column="original_column_name" property="originalColumnName"/>
+
          	<result column="java_simple_class" property="javaSimpleClass"/>
          	<result column="java_full_class" property="javaFullClass"/>
          	<result column="java_name" property="javaName"/>
@@ -40,25 +40,6 @@
 
 
                         <if test="originalColumnId != null and originalColumnId != ''"> AND T.original_column_id = #{originalColumnId} </if>
-
-
-
-
-
-                        <if test="originalColumnName != null and originalColumnName != ''"> AND T.original_column_name = #{originalColumnName} </if>
-
-
-
-
-
-                        <if test="originalColumnFk != null and originalColumnFk != ''"> AND T.original_column_fk = #{originalColumnFk} </if>
-
-
-
-
-
-                        <if test="originalColumnDict != null and originalColumnDict != ''"> AND T.original_column_dict = #{originalColumnDict} </if>
-
 
 
 

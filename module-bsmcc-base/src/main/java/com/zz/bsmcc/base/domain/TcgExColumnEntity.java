@@ -37,13 +37,6 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 
 
 
-    //@EntityAttrAnnotation(attrName="原始列的名称",sort=3  , attrLength=50    )
-	private String originalColumnName;
-
-
-
-
-
 
 
     //@EntityAttrAnnotation(attrName="Java类名",sort=6  , attrLength=100    )
@@ -121,20 +114,7 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 	public void setOriginalColumnId(String originalColumnId) {
 		this.originalColumnId = originalColumnId;
 	}
-	/** 
-	 * 原始列的名称
-	 * @return the originalColumnName
-	 */
-	public String getOriginalColumnName() {
-		return originalColumnName;
-	}
-	
-	/** 
-	 * 原始列的名称
-	 */
-	public void setOriginalColumnName(String originalColumnName) {
-		this.originalColumnName = originalColumnName;
-	}
+
 
 	/** 
 	 * Java类名

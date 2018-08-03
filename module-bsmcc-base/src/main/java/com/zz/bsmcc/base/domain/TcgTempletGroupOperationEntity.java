@@ -18,9 +18,6 @@ public class TcgTempletGroupOperationEntity extends BaseEntity<String> implement
     private static final long serialVersionUID = 1L;
 
 
-
-
-
             //@EntityAttrAnnotation(attrName="模板组",sort=1  , attrLength=32    )
             private String groupId;
 
@@ -149,4 +146,11 @@ public class TcgTempletGroupOperationEntity extends BaseEntity<String> implement
             this.position = position;
             }
 
-    }
+        public String getOther() {
+                return other;
+        }
+
+        public void setOther(String other) {
+                this.other = other;
+        }
+}

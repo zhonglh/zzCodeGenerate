@@ -17,4 +17,23 @@ import java.io.Serializable;
 @TableName(value="tcg_templet_group_operation" , resultMap = "TcgTempletGroupOperationResultMap")
 public class TcgTempletGroupOperationBO extends TcgTempletGroupOperationEntity implements Serializable {
 
+    private String operationName ;
+
+    private String operationResource;
+
+    public String getOperationName() {
+        return operationName;
+    }
+
+    public void setOperationName(String operationName) {
+        this.operationName = operationName;
+    }
+
+    public String getOperationResource() {
+        return operationResource;
+    }
+
+    public void setOperationResource(String operationResource) {
+        this.operationResource = operationResource;
+    }
 }

@@ -52,6 +52,8 @@ public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String
 			if (tcgColumnConfigBO != null) {
 				tcgExColumnBO.setOriginalColumnDict(tcgColumnConfigBO.getColumnIsdict());
 				tcgExColumnBO.setOriginalColumnFk(tcgColumnConfigBO.getColumnIsfk());
+				tcgExColumnBO.setOriginalColumnName(tcgColumnConfigBO.getColumnName());
+				tcgExColumnBO.setOriginalJavaName(tcgColumnConfigBO.getJavaName());
 				tcgExColumnBO.setGroupCode(tcgColumnConfigBO.getGroupCode());
 				tcgExColumnBO.setDictType(tcgColumnConfigBO.getDictType());
 			}

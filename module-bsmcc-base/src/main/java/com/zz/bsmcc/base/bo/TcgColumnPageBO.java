@@ -33,6 +33,17 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     private String elementNmae;
 
+    //用于代码生成
+
+    /**
+     * 列的信息
+     */
+    private TcgColumnConfigBO columnConfig ;
+    /**
+     * 扩展列的信息
+     */
+    private TcgExColumnBO exColumn ;
+
 
     public String getColumnComment() {
         return columnComment;
@@ -96,5 +107,21 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     public void setElementNmae(String elementNmae) {
         this.elementNmae = elementNmae;
+    }
+
+    public TcgColumnConfigBO getColumnConfig() {
+        return columnConfig;
+    }
+
+    public void setColumnConfig(TcgColumnConfigBO columnConfig) {
+        this.columnConfig = columnConfig;
+    }
+
+    public TcgExColumnBO getExColumn() {
+        return exColumn;
+    }
+
+    public void setExColumn(TcgExColumnBO exColumn) {
+        this.exColumn = exColumn;
     }
 }

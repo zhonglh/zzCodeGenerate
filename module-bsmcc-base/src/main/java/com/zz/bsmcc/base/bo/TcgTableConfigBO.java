@@ -7,7 +7,8 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
-
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -46,6 +47,19 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     //用于模板生成数据
 
+
+    private TcgTableConfigBO mainTableIdConfig;
+
+    /**
+     * 资源全称 , 模块的资源 + 本身的资源
+     */
+    private String fullResourceName;
+
+    /**
+     * 包全称 ， 项目的包名 + 模块的包名 ,  使用的时候还要在加上模板对应的包名
+     */
+    private String fullPackageName;
+
     /**
      * 实体类要继承的父类
      * BaseEntity  BaseBussinessEntity
@@ -58,7 +72,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      * 在实体类中汇总要import的类
      */
     @TableField(exist = false)
-    private String importClsss;
+    private List<String> importClsss;
 
 
     public String getDbConfigTitle() {
@@ -125,11 +139,35 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.parentClass = parentClass;
     }
 
-    public String getImportClsss() {
+    public List<String> getImportClsss() {
         return importClsss;
     }
 
-    public void setImportClsss(String importClsss) {
+    public void setImportClsss(List<String> importClsss) {
         this.importClsss = importClsss;
+    }
+
+    public String getFullResourceName() {
+        return fullResourceName;
+    }
+
+    public void setFullResourceName(String fullResourceName) {
+        this.fullResourceName = fullResourceName;
+    }
+
+    public String getFullPackageName() {
+        return fullPackageName;
+    }
+
+    public void setFullPackageName(String fullPackageName) {
+        this.fullPackageName = fullPackageName;
+    }
+
+    public TcgTableConfigBO getMainTableIdConfig() {
+        return mainTableIdConfig;
+    }
+
+    public void setMainTableIdConfig(TcgTableConfigBO mainTableIdConfig) {
+        this.mainTableIdConfig = mainTableIdConfig;
     }
 }
