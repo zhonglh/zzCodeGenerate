@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgTempletEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -16,6 +17,8 @@ import java.io.Serializable;
 @EntityAnnotation(value="模板" , resource = "")
 @TableName(value="tcg_templet" , resultMap = "TcgTempletResultMap")
 public class TcgTempletBO extends TcgTempletEntity implements Serializable {
+
+    @TableField(exist = false)
     private String groupName;
 
     public String getGroupName() {

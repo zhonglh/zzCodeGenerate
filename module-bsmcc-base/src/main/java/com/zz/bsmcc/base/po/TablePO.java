@@ -20,7 +20,11 @@ public class TablePO implements Serializable{
     private List<TcgColumnValidateBO> columnValidates;
     private List<TcgColumnEventBO> columnEvents;
     private List<TcgQueryConfigBO> queryConfigs;
+
+    //用于界面选择
     private List<TcgTableOperationBO> tableOperations;
+    //用于界面选择按钮
+    private List<TcgTempletGroupOperationBO> templetGroupOperations;
 
 
 
@@ -95,5 +99,13 @@ public class TablePO implements Serializable{
 
     public void setTableOperations(List<TcgTableOperationBO> tableOperations) {
         this.tableOperations = tableOperations;
+    }
+
+    public List<TcgTempletGroupOperationBO> getTempletGroupOperations() {
+        return templetGroupOperations;
+    }
+
+    public void setTempletGroupOperations(List<TcgTempletGroupOperationBO> templetGroupOperations) {
+        this.templetGroupOperations = templetGroupOperations;
     }
 }

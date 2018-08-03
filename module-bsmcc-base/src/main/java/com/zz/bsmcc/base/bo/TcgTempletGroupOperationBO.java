@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgTempletGroupOperationEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -17,8 +18,10 @@ import java.io.Serializable;
 @TableName(value="tcg_templet_group_operation" , resultMap = "TcgTempletGroupOperationResultMap")
 public class TcgTempletGroupOperationBO extends TcgTempletGroupOperationEntity implements Serializable {
 
+    @TableField(exist = false)
     private String operationName ;
 
+    @TableField(exist = false)
     private String operationResource;
 
     public String getOperationName() {

@@ -1,12 +1,13 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgIndexConfigEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 
 /**
@@ -17,4 +18,19 @@ import java.io.Serializable;
 @TableName(value="tcg_index_config" , resultMap = "TcgIndexConfigResultMap")
 public class TcgIndexConfigBO extends TcgIndexConfigEntity implements Serializable {
 
+    //用于代码生成
+
+    /**
+     * 索引列信息
+     */
+    @TableField(exist =  false)
+    private List<TcgColumnConfigBO> columns ;
+
+    public List<TcgColumnConfigBO> getColumns() {
+        return columns;
+    }
+
+    public void setColumns(List<TcgColumnConfigBO> columns) {
+        this.columns = columns;
+    }
 }

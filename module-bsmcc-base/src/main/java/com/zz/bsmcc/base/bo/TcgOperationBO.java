@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgOperationEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -16,8 +17,11 @@ import java.io.Serializable;
 @EntityAnnotation(value="操作表" , resource = "")
 @TableName(value="tcg_operation" , resultMap = "TcgOperationResultMap")
 public class TcgOperationBO extends TcgOperationEntity implements Serializable {
+
+    @TableField(exist = false)
     private boolean checked ;
 
+    @TableField(exist = false)
     private String isDefaultName;
 
     public boolean isChecked() {

@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgColumnPageEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -17,20 +18,28 @@ import java.io.Serializable;
 @TableName(value="tcg_column_page" , resultMap = "TcgColumnPageResultMap")
 public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable {
 
+    @TableField(exist = false)
     private String columnComment ;
 
+    @TableField(exist = false)
     private String realColumnName;
 
+    @TableField(exist = false)
     private String editableName;
 
+    @TableField(exist = false)
     private String hiddenableName;
 
+    @TableField(exist = false)
     private String existPageName;
 
+    @TableField(exist = false)
     private String requiredName;
 
+    @TableField(exist = false)
     private String listShowableName;
 
+    @TableField(exist = false)
     private String elementNmae;
 
     //用于代码生成
@@ -38,10 +47,12 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
     /**
      * 列的信息
      */
+    @TableField(exist = false)
     private TcgColumnConfigBO columnConfig ;
     /**
      * 扩展列的信息
      */
+    @TableField(exist = false)
     private TcgExColumnBO exColumn ;
 
 

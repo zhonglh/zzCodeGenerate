@@ -1,5 +1,6 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bsmcc.base.domain.TcgColumnConfigEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,13 +19,19 @@ import java.io.Serializable;
 public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializable {
 
 
+    @TableField(exist = false)
     private String columnIsnullName ;
 
     //用于生成代码
+    @TableField(exist = false)
     private TcgTableConfigBO fkTableConfig;
+    @TableField(exist = false)
     private String fkColumnName;
+    @TableField(exist = false)
     private String fkJavaName;
+    @TableField(exist = false)
     private String fkJavaSimpleClass;
+    @TableField(exist = false)
     private String fkJavaFullClass;
 
     public String getColumnIsnullName() {
