@@ -1,7 +1,7 @@
 package com.zz.bsmcc.core.enums;
 
-import org.apache.commons.lang3.StringUtils;
 
+import com.zz.bms.core.enums.EnumBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

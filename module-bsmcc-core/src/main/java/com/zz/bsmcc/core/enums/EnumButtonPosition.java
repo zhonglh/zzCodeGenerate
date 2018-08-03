@@ -1,6 +1,7 @@
 package com.zz.bsmcc.core.enums;
 
 import java.io.Serializable;
+import com.zz.bms.core.enums.EnumBase;
 
 /**
  * 按钮位置

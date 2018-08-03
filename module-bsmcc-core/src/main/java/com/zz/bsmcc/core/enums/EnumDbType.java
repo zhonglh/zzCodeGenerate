@@ -1,6 +1,6 @@
 package com.zz.bsmcc.core.enums;
 
-import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.enums.EnumBase;
 import com.zz.bms.core.exceptions.InternalException;
 
 import java.io.Serializable;

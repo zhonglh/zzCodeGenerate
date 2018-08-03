@@ -1,8 +1,7 @@
 package com.zz.bsmcc.core.enums;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import com.zz.bms.core.enums.EnumBase;
 
 /**
  * Java 类型
