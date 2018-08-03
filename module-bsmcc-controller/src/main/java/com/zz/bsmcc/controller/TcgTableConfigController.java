@@ -395,10 +395,10 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         }
 
         TcgOperationQuery operationQuery = new TcgOperationQueryImpl();
-        List<TcgTableOperationBO> operationBOs = tcgOperationService.selectList(operationQuery.buildWrapper());
+        List<TcgOperationBO> operationBOs = tcgOperationService.selectList(operationQuery.buildWrapper());
         if(operationBOs != null && !operationBOs.isEmpty() && !operationIdSet.isEmpty()) {
-            for (TcgTableOperationBO operationBO : operationBOs) {
-                if (operationIdSet.contains(operationBO.getOperationId())) {
+            for (TcgOperationBO operationBO : operationBOs) {
+                if (operationIdSet.contains(operationBO.getId())) {
                     operationBO.setChecked(true);
                 }
             }

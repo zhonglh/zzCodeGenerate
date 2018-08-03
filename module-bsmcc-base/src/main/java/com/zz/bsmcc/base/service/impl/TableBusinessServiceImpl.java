@@ -1,7 +1,9 @@
 package com.zz.bsmcc.base.service.impl;
 
 import com.zz.bms.core.Constant;
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.exceptions.InternalException;
@@ -59,6 +61,8 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     private TcgQueryConfigDAO tcgQueryConfigDAO;
     @Autowired
     private TcgTableOperationDAO tcgTableOperationDAO;
+    @Autowired
+    private TcgOperationDAO tcgOperationDAO;
 
 
 
@@ -102,9 +106,31 @@ public class TableBusinessServiceImpl implements TableBusinessService {
             for(TcgIndexConfigBO indexConfigBO : tablePO.getIndexs()) {
                 tcgIndexConfigDAO.insert(indexConfigBO);
             }
+
+            insertDefaultOperation(tablePO);
+
+
         }
         return true;
     }
+
+    private void insertDefaultOperation(TablePO tablePO) {
+        //增加  默认的操作
+        TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
+        tcgOperationQuery.isDefault(EnumYesNo.YES.getCode());
+        List<TcgOperationBO> operations =  tcgOperationDAO.selectList(tcgOperationQuery.buildWrapper());
+        if(operations != null && !operations.isEmpty()){
+            ILoginUserEntity session = getLoginUserEntity();
+            for(TcgOperationBO operation : operations){
+                TcgTableOperationBO to = new TcgTableOperationBO();
+                to.setId(IdUtils.getId());
+                to.setOperationId(operation.getId());
+                to.setTableId(tablePO.getTableBO().getId());
+                EntityUtil.autoSetEntity(to , session);
+            }
+        }
+    }
+
 
     @Override
     public boolean updateTable(TablePO tablePO) {
@@ -278,7 +304,7 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     private void updateColumns(TablePO tablePO) {
         if(tablePO.getColumns() != null && !tablePO.getColumns().isEmpty()) {
             for (TcgColumnConfigBO item : tablePO.getColumns()){
-                String[] clzs = item.getJavaFullClass().split(".");
+                String[] clzs = item.getJavaFullClass().split("\\.");
                 item.setJavaSimpleClass(clzs[clzs.length-1]);
                 tcgColumnConfigDAO.updateById(item);
             }
@@ -295,18 +321,13 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     private void updateExColumn(TablePO tablePO) {
         List<String> ids = new ArrayList<String>();
         if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
-            ILoginUserEntity session = null;
-            RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
-            if (requestAttributes != null) {
-                HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
-                session = (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
-            }
+            ILoginUserEntity session = getLoginUserEntity();
 
             for (TcgExColumnBO item : tablePO.getExColumns()) {
                 if(item == null || StringUtils.isEmpty(item.getJavaFullClass())){
                     continue;
                 }
-                String[] clzs = item.getJavaFullClass().split(".");
+                String[] clzs = item.getJavaFullClass().split("\\.");
                 item.setJavaSimpleClass(clzs[clzs.length-1]);
                 if(StringUtils.isEmpty(item.getId())){
                     item.setId(IdUtils.getId());
@@ -379,6 +400,16 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         tcgQueryConfigDAO.delete(queryConfigQuery.buildWrapper());
 
 
+    }
+
+    private ILoginUserEntity getLoginUserEntity() {
+        ILoginUserEntity session = null;
+        RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+        if (requestAttributes != null) {
+            HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
+            session = (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
+        }
+        return session;
     }
 
 }

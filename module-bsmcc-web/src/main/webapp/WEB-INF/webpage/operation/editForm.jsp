@@ -69,6 +69,18 @@
                             </div>
 
 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否默认：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="isDefault" name="isDefault"  class="form-control">
+                                        <option value="0" <c:if test="${entity.isDefault ==  '0' }">selected="selected"</c:if> >否</option>
+                                        <option value="1" <c:if test="${entity.isDefault ==  '1' }">selected="selected"</c:if> >是</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
 
                             
                             <div class="form-group">

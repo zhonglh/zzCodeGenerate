@@ -47,16 +47,20 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 	protected void setCommonData(TcgTempletBO m, ModelMap model) {
 		List<Map<String,String>> fileTypes = new ArrayList<Map<String,String>>();
 		Map<String,String> map = new HashMap<String,String>();
-		map.put("java","java");
+		map.put("name","java");
+		map.put("value","java");
 		fileTypes.add(map);
 		map = new HashMap<String,String>();
-		map.put("js","js");
+		map.put("name","js");
+		map.put("value","js");
 		fileTypes.add(map);
 		map = new HashMap<String,String>();
-		map.put("jsp","jsp");
+		map.put("name","jsp");
+		map.put("value","jsp");
 		fileTypes.add(map);
 		map = new HashMap<String,String>();
-		map.put("vue","vue");
+		map.put("name","vue");
+		map.put("value","vue");
 		fileTypes.add(map);
 
 		TcgTempletGroupQuery groupQuery = new TcgTempletGroupQueryImpl();

@@ -119,7 +119,12 @@
             field: 'operationResource',
             title: '操作资源',
             width:200
-        }];
+        },{
+            field: 'isDefaultName',
+            title: '是否默认',
+            width:100
+
+		}];
 		
 		init('operationForm','${ctx}/operation/list');
 		

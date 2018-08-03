@@ -7,6 +7,7 @@
          	<result column="id" property="id"/>
          	<result column="operation_name" property="operationName"/>
          	<result column="operation_resource" property="operationResource"/>
+         	<result column="is_default" property="isDefault"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>
@@ -34,6 +35,12 @@
 
 
                         <if test="operationResource != null and operationResource != ''"> AND T.operation_resource = #{operationResource} </if>
+
+
+
+
+
+                        <if test="isDefault != null and isDefault != ''"> AND T.is_default = #{isDefault} </if>
 
 
 

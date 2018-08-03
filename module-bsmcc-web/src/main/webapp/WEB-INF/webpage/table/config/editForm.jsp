@@ -280,9 +280,17 @@
                                 </td>
 
 
-                                <td><input type="text" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }" /></td>
-                                <td><input type="text"  id="columns[${status1.index }].fkSchema" name="columns[${status1.index }].fkSchema" value="${column.fkSchema }" /></td>
-                                <td><input type="text"  id="columns[${status1.index }].fkName" name="columns[${status1.index }].fkName" value="${column.fkName }" /></td>
+                                <td><input type="text" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }"
+                                           <c:if test="${column.columnIsdict == '1'}">class="form-control required"</c:if> />
+                                </td>
+                                <td>
+                                    <input type="text"  id="columns[${status1.index }].fkSchema" name="columns[${status1.index }].fkSchema" value="${column.fkSchema }"
+                                           <c:if test="${column.columnIsfk == '1'}">class="form-control required"</c:if>  />
+                                </td>
+                                <td>
+                                    <input type="text"  id="columns[${status1.index }].fkName" name="columns[${status1.index }].fkName" value="${column.fkName }"
+                                           <c:if test="${column.columnIsfk == '1'}">class="form-control required"</c:if>  />
+                                </td>
 
 
                                 <td><input type="text" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
@@ -350,7 +358,11 @@
                                 <td><input type="text"  id="exColumns[${status1.index }].javaName" name="exColumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
                                 <td><input type="number"  id="exColumns[${status1.index }].columnSort" name="exColumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
                                 <td><input type="text"  id="exColumns[${status1.index }].columnTitle" name="exColumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
-                                <td><input type="text"  id="exColumns[${status1.index }].fkColumnName" name="exColumns[${status1.index }].fkColumnName" value="${exColumn.fkColumnName }" /></td>
+                                <td>
+                                    <input type="text"  id="exColumns[${status1.index }].fkColumnName" name="exColumns[${status1.index }].fkColumnName" value="${exColumn.fkColumnName }"
+                                            <c:if test="${exColumn.originalColumnFk == '1'}">class="form-control required"</c:if>   />
+                                </td>
+
 
 
                             </tr>

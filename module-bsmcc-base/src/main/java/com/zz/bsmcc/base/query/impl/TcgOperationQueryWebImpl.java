@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 操作表 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:15
+ * @date 2018-8-3 10:03:26
  */
 public class TcgOperationQueryWebImpl<PK extends Serializable> extends TcgOperationAbstractQueryImpl<PK> implements Serializable {
 
@@ -45,6 +45,20 @@ public class TcgOperationQueryWebImpl<PK extends Serializable> extends TcgOperat
 
             private String operationResource_IN;
             private String operationResource_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String isDefault_IN;
+            private String isDefault_NOTIN;
+
 
 
 
@@ -317,6 +331,58 @@ public class TcgOperationQueryWebImpl<PK extends Serializable> extends TcgOperat
                 public void setOperationResource_NOTLIKE(String operationResource_NOTLIKE) {
                     this.operationResource_NOTLIKE = operationResource_NOTLIKE;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getIsDefault() {
+                    return isDefault;
+                }
+
+
+                public void setIsDefault(String isDefault) {
+                    this.isDefault = isDefault;
+                }
+
+
+                public String getIsDefault_NE() {
+                    return isDefault_NE;
+                }
+
+
+                public void setIsDefault_NE(String isDefault_NE) {
+                    this.isDefault_NE = isDefault_NE;
+                }
+
+
+
+                public String getIsDefault_IN() {
+                    return isDefault_IN;
+                }
+
+                public void setIsDefault_IN(String isDefault_IN) {
+                    this.isDefault_IN = isDefault_IN;
+                }
+
+                public String getIsDefault_NOTIN() {
+                    return isDefault_NOTIN;
+                }
+
+                public void setIsDefault_NOTIN(String isDefault_NOTIN) {
+                    this.isDefault_NOTIN = isDefault_NOTIN;
+                }
+
 
 
 

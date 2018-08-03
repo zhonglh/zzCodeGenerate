@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 操作表 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:15
+ * @date 2018-8-3 10:03:26
  */
 public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperationAbstractQueryImpl<PK> implements TcgOperationQuery<PK>, Serializable  {
 
@@ -57,6 +57,22 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
 
             private List<String> operationResource_IN;
             private List<String> operationResource_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> isDefault_IN;
+            private List<String> isDefault_NOTIN;
+
 
 
 
@@ -392,6 +408,75 @@ public class TcgOperationQueryImpl<PK extends Serializable> extends TcgOperation
                     this.isNotNulls.add("operationResource");
                     return this;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgOperationQuery isDefault(String isDefault) {
+                    if(!IdUtils.isEmpty(isDefault)){
+                        this.isDefault = isDefault;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgOperationQuery isDefaultNot(String isDefaultNot) {
+                    if(!IdUtils.isEmpty(isDefaultNot)){
+                        this.isDefault_NE = isDefaultNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgOperationQuery isDefaultIn(String isDefaultIn) {
+                    if(!IdUtils.isEmpty(isDefaultIn)){
+                        if(this.isDefault_IN == null){
+                            this.isDefault_IN = new ArrayList<String>();
+                        }
+                        this.isDefault_IN.add( isDefaultIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgOperationQuery isDefaultNotIn(String isDefaultNotIn) {
+                    if(!IdUtils.isEmpty(isDefaultNotIn)){
+                        if(this.isDefault_NOTIN == null){
+                            this.isDefault_NOTIN = new ArrayList<String>();
+                        }
+                        this.isDefault_NOTIN.add( isDefaultNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgOperationQuery isDefaultIsNull() {
+                    this.isNulls.add("isDefault");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgOperationQuery isDefaultIsNotNull() {
+                    this.isNotNulls.add("isDefault");
+                    return this;
+                }
+
 
 
 

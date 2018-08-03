@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 操作表查询接口
  *
  * @author Administrator
- * @date 2018-8-1 12:52:59
+ * @date 2018-8-3 10:03:26
  */
 public interface TcgOperationQuery<PK extends Serializable> extends Query<TcgOperationEntity,PK> {
 
@@ -67,6 +67,25 @@ public interface TcgOperationQuery<PK extends Serializable> extends Query<TcgOpe
             public TcgOperationQuery operationResourceNotLike(String operationResourceNotLike);
             public TcgOperationQuery operationResourceIsNull();
             public TcgOperationQuery operationResourceIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgOperationQuery isDefault(String isDefault);
+            public TcgOperationQuery isDefaultNot(String isDefaultNot);
+            public TcgOperationQuery isDefaultIn(String isDefaultIn);
+            public TcgOperationQuery isDefaultNotIn(String isDefaultNotIn);
+            public TcgOperationQuery isDefaultIsNull();
+            public TcgOperationQuery isDefaultIsNotNull();
+
 
 
 
