@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 表设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:17
+ * @date 2018-8-4 21:05:51
  */
 public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements Serializable {
 
@@ -201,6 +201,18 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
             private String tableComment_IN;
             private String tableComment_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String tableOtherComment_IN;
+            private String tableOtherComment_NOTIN;
 
 
 
@@ -1234,6 +1246,76 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
                 public void setTableComment_NOTLIKE(String tableComment_NOTLIKE) {
                     this.tableComment_NOTLIKE = tableComment_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getTableOtherComment() {
+                    return tableOtherComment;
+                }
+
+
+                public void setTableOtherComment(String tableOtherComment) {
+                    this.tableOtherComment = tableOtherComment;
+                }
+
+
+                public String getTableOtherComment_NE() {
+                    return tableOtherComment_NE;
+                }
+
+
+                public void setTableOtherComment_NE(String tableOtherComment_NE) {
+                    this.tableOtherComment_NE = tableOtherComment_NE;
+                }
+
+
+
+                public String getTableOtherComment_IN() {
+                    return tableOtherComment_IN;
+                }
+
+                public void setTableOtherComment_IN(String tableOtherComment_IN) {
+                    this.tableOtherComment_IN = tableOtherComment_IN;
+                }
+
+                public String getTableOtherComment_NOTIN() {
+                    return tableOtherComment_NOTIN;
+                }
+
+                public void setTableOtherComment_NOTIN(String tableOtherComment_NOTIN) {
+                    this.tableOtherComment_NOTIN = tableOtherComment_NOTIN;
+                }
+
+
+
+
+                public String getTableOtherComment_LIKE() {
+                    return tableOtherComment_LIKE;
+                }
+
+                public void setTableOtherComment_LIKE(String tableOtherComment_LIKE) {
+                    this.tableOtherComment_LIKE = tableOtherComment_LIKE;
+                }
+
+                public String getTableOtherComment_NOTLIKE() {
+                    return tableOtherComment_NOTLIKE;
+                }
+
+                public void setTableOtherComment_NOTLIKE(String tableOtherComment_NOTLIKE) {
+                    this.tableOtherComment_NOTLIKE = tableOtherComment_NOTLIKE;
                 }
 
 

@@ -8,12 +8,11 @@ import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.po.TablePO;
-import com.zz.bsmcc.base.query.TcgModuleConfigQuery;
-import com.zz.bsmcc.base.query.TcgTableConfigQuery;
-import com.zz.bsmcc.base.query.TcgTempletGroupOperationQuery;
+import com.zz.bsmcc.base.query.*;
 import com.zz.bsmcc.base.query.impl.TcgModuleConfigQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletGroupOperationQueryImpl;
+import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.*;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +30,10 @@ import java.util.*;
 public class CgBusiness {
 
 
+    @Autowired
+    private TcgProjectService tcgProjectService ;
+    @Autowired
+    private TcgTempletService tcgTempletService ;
     @Autowired
     private TcgModuleConfigService tcgModuleConfigService ;
     @Autowired
@@ -56,7 +59,27 @@ public class CgBusiness {
     private TcgIndexConfigService tcgIndexConfigService ;
 
 
-    public void cgBusiness(TcgProjectBO projectBO, List<TcgTempletBO> templets ) {
+    /**
+     * 生成代码
+     * @param projectId
+     * @param templetGroupId
+     */
+    public void cg(String projectId , String templetGroupId) {
+        TcgProjectBO projectBO = tcgProjectService.selectById(projectId);
+        TcgTempletQuery templetQuery = new TcgTempletQueryImpl();
+        templetQuery.groupId(templetGroupId);
+        List<TcgTempletBO> templets = tcgTempletService.selectList(templetQuery.buildWrapper());
+
+        cg(projectBO , templets);
+
+    }
+
+    /**
+     * 生成代码
+     * @param projectBO
+     * @param templets
+     */
+    public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets ) {
 
         Map<String , TcgTempletGroupOperationBO> operationBOMap = getOperations(templets.get(0).getGroupId());
 
@@ -260,6 +283,10 @@ public class CgBusiness {
             List<TcgTempletGroupOperationBO> operations = new ArrayList<TcgTempletGroupOperationBO>(operationBOMap.values());
             tablePO.setTempletGroupOperations(operations);
 
+
+
+
+
             cgCode(tablePO);
 
         }
@@ -270,7 +297,7 @@ public class CgBusiness {
     }
 
     /**
-     * 创建文件
+     * 生成代码
      * @param tablePO
      */
     private void cgCode(TablePO tablePO) {

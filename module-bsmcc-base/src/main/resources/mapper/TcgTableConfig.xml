@@ -21,7 +21,7 @@
          	<result column="table_comment" property="tableComment"/>
 			<result column="table_other_comment" property="tableOtherComment"/>
          	<result column="query_mode" property="queryMode"/>
-         	<result column="is_build_controller" property="isBuildController"/>
+         	<result column="is_build_ui" property="isBuildUi"/>
          	<result column="is_build_menu" property="isBuildMenu"/>
          	<result column="java_name" property="javaName"/>
          	<result column="create_time" property="createTime"/>
@@ -128,13 +128,6 @@
 
 
                         <if test="queryMode != null and queryMode != ''"> AND T.query_mode = #{queryMode} </if>
-
-
-
-
-
-                        <if test="isBuildController != null and isBuildController != ''"> AND T.is_build_controller = #{isBuildController} </if>
-
 
 
 

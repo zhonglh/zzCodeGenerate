@@ -138,7 +138,7 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
     //@EntityAttrAnnotation(attrName="是否生成界面",sort=16  , attrLength=1    )
-	private String isBuildController;
+	private String isBuildUi;
 
 
 
@@ -370,20 +370,7 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setQueryMode(String queryMode) {
 		this.queryMode = queryMode;
 	}
-	/** 
-	 * 是否生成界面
-	 * @return the isBuildController
-	 */
-	public String getIsBuildController() {
-		return isBuildController;
-	}
-	
-	/** 
-	 * 是否生成界面
-	 */
-	public void setIsBuildController(String isBuildController) {
-		this.isBuildController = isBuildController;
-	}
+
 	/** 
 	 * 是否生成菜单
 	 * @return the isBuildMenu
@@ -419,5 +406,13 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	public void setTableOtherComment(String tableOtherComment) {
 		this.tableOtherComment = tableOtherComment;
+	}
+
+	public String getIsBuildUi() {
+		return isBuildUi;
+	}
+
+	public void setIsBuildUi(String isBuildUi) {
+		this.isBuildUi = isBuildUi;
 	}
 }

@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 表设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:17
+ * @date 2018-8-4 21:05:51
  */
 public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements TcgTableConfigQuery<PK>, Serializable  {
 
@@ -241,6 +241,21 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
             private List<String> tableComment_IN;
             private List<String> tableComment_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> tableOtherComment_IN;
+            private List<String> tableOtherComment_NOTIN;
 
 
 
@@ -1532,6 +1547,95 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
                 @Override
                 public TcgTableConfigQuery tableCommentIsNotNull() {
                     this.isNotNulls.add("tableComment");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherComment(String tableOtherComment) {
+                    if(!IdUtils.isEmpty(tableOtherComment)){
+                        this.tableOtherComment = tableOtherComment;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentNot(String tableOtherCommentNot) {
+                    if(!IdUtils.isEmpty(tableOtherCommentNot)){
+                        this.tableOtherComment_NE = tableOtherCommentNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentLike(String tableOtherCommentLike) {
+                    if(!IdUtils.isEmpty(tableOtherCommentLike)){
+                        this.tableOtherComment_LIKE = tableOtherCommentLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentNotLike(String tableOtherCommentNotLike) {
+                    if(!IdUtils.isEmpty(tableOtherCommentNotLike)){
+                        this.tableOtherComment_NOTLIKE = tableOtherCommentNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentIn(String tableOtherCommentIn) {
+                    if(!IdUtils.isEmpty(tableOtherCommentIn)){
+                        if(this.tableOtherComment_IN == null){
+                            this.tableOtherComment_IN = new ArrayList<String>();
+                        }
+                        this.tableOtherComment_IN.add( tableOtherCommentIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentNotIn(String tableOtherCommentNotIn) {
+                    if(!IdUtils.isEmpty(tableOtherCommentNotIn)){
+                        if(this.tableOtherComment_NOTIN == null){
+                            this.tableOtherComment_NOTIN = new ArrayList<String>();
+                        }
+                        this.tableOtherComment_NOTIN.add( tableOtherCommentNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentIsNull() {
+                    this.isNulls.add("tableOtherComment");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTableConfigQuery tableOtherCommentIsNotNull() {
+                    this.isNotNulls.add("tableOtherComment");
                     return this;
                 }
 

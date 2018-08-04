@@ -79,9 +79,17 @@
 
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">生成文件所在文件夹：</label>
+                                <label class="col-sm-3 control-label">生成文件外文件夹：</label>
                                 <div class="col-sm-8">
-                                    <input id="fileDir" name="fileDir" value="${entity.fileDir }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <input id="fileOutDir" name="fileOutDir" value="${entity.fileOutDir }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">生成文件内文件夹：</label>
+                                <div class="col-sm-8">
+                                    <input id="fileInnerDir" name="fileInnerDir" value="${entity.fileInnerDir }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
 

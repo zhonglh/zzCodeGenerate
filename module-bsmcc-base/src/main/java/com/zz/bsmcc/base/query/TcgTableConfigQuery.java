@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 表设置查询接口
  *
  * @author Administrator
- * @date 2018-8-1 12:53:00
+ * @date 2018-8-4 21:05:51
  */
 public interface TcgTableConfigQuery<PK extends Serializable> extends Query<TcgTableConfigEntity,PK> {
 
@@ -295,6 +295,26 @@ public interface TcgTableConfigQuery<PK extends Serializable> extends Query<TcgT
             public TcgTableConfigQuery tableCommentNotLike(String tableCommentNotLike);
             public TcgTableConfigQuery tableCommentIsNull();
             public TcgTableConfigQuery tableCommentIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgTableConfigQuery tableOtherComment(String tableOtherComment);
+            public TcgTableConfigQuery tableOtherCommentNot(String tableOtherCommentNot);
+            public TcgTableConfigQuery tableOtherCommentIn(String tableOtherCommentIn);
+            public TcgTableConfigQuery tableOtherCommentNotIn(String tableOtherCommentNotIn);
+            public TcgTableConfigQuery tableOtherCommentLike(String tableOtherCommentLike);
+            public TcgTableConfigQuery tableOtherCommentNotLike(String tableOtherCommentNotLike);
+            public TcgTableConfigQuery tableOtherCommentIsNull();
+            public TcgTableConfigQuery tableOtherCommentIsNotNull();
 
 
 
