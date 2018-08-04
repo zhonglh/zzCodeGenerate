@@ -58,7 +58,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private String fullResourceName;
 
     /**
-     * 包全称 ， 项目的包名 + 模块的包名 ,  使用的时候还要在加上模板对应的包名
+     * 包全称 ， 项目的包名 + 模块的包名 , 使用的时候还要在加上模板对应的包名
      */
     @TableField(exist = false)
     private String fullPackageName;

@@ -5,6 +5,7 @@ import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.util.base.data.StringFormatKit;
+import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.po.TablePO;
@@ -329,6 +330,7 @@ public class CgBusiness {
                                      Map<String, TcgTableConfigBO> tableConfigMap , Map<String , TcgColumnConfigBO> columnMap) {
 
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
+            Set<String> parentFieldNames = getClassFieldName(BaseBusinessExEntity.class);
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
                 columnConfigBO.setFkColumnName("id");
                 columnConfigBO.setFkJavaFullClass("id");
@@ -340,6 +342,54 @@ public class CgBusiness {
                             tableConfig.getTableComment() + "    "+ columnConfigBO.getColumnComment());
                 }
                 columnConfigBO.setFkTableConfig(fkTableConfig);
+                if(parentFieldNames.contains(columnConfigBO.getJavaName())){
+                    columnConfigBO.setInParentClass(true);
+                }else if("id".equals(columnConfigBO.getJavaName())){
+                    columnConfigBO.setInParentClass(true);
+                }else {
+                    columnConfigBO.setInParentClass(false);
+                }
+
+
+                String setMethodName = "";
+                String getMethodName = "";
+                if("boolean".equals(columnConfigBO.getJavaFullClass())){
+
+                    if(columnConfigBO.getJavaName().length() >2){
+                        String firstTwo = columnConfigBO.getJavaName().substring(0,2);
+                        char c3 = columnConfigBO.getJavaName().charAt(2);
+                        if("is".equals(firstTwo) && c3 >= 'A' && c3 <= 'Z'){
+                            setMethodName = "set"+ columnConfigBO.getJavaName().substring(2);
+                            getMethodName = columnConfigBO.getJavaName();
+                        }else {
+                            setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                            getMethodName = "is"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                        }
+                    }else {
+                        setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                        getMethodName = "get"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                    }
+                }else if("java.lang.Boolean".equals(columnConfigBO.getJavaFullClass())){
+
+                    if(columnConfigBO.getJavaName().length() >2){
+                        String firstTwo = columnConfigBO.getJavaName().substring(0,2);
+                        char c3 = columnConfigBO.getJavaName().charAt(2);
+                        if("is".equals(firstTwo) && c3 >= 'A' && c3 <= 'Z'){
+                            setMethodName = "set"+ columnConfigBO.getJavaName().substring(2);
+                            getMethodName = "get"+ columnConfigBO.getJavaName().substring(2);
+                        }else {
+                            setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                            getMethodName = "get"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                        }
+                    }else {
+                        setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                        getMethodName = "get"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                    }
+
+                }else {
+                    setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                    getMethodName = "get"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                }
 
                 columnMap.put(columnConfigBO.getId() , columnConfigBO);
                 columnMap.put(columnConfigBO.getColumnName() , columnConfigBO);

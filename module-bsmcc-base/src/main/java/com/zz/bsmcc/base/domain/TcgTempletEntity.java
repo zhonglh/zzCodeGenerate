@@ -80,9 +80,6 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
 
 
-        //@EntityAttrAnnotation(attrName="删除标志",sort=13  , attrLength=1    )
-        private String deleteFlag;
-
 
         /**
         * 模板组
