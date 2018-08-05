@@ -18,6 +18,7 @@ import com.zz.bsmcc.base.query.impl.TcgTempletGroupOperationQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.Applications;
+import com.zz.bsmcc.core.util.CgBeanUtil;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -415,7 +416,7 @@ public class CgBusiness {
                                      Map<String, TcgTableConfigBO> tableConfigMap , Map<String , TcgColumnConfigBO> columnMap) {
 
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
-            Set<String> parentFieldNames = getClassFieldName(BaseBusinessExEntity.class);
+            Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
                 columnConfigBO.setFkColumnName("id");
                 columnConfigBO.setFkJavaFullClass("id");
@@ -556,13 +557,13 @@ public class CgBusiness {
             javaNames.add(tcgColumnConfigBO.getJavaName());
         }
 
-        if(contains(javaNames , getClassFieldName(BaseBusinessExEntity.class) )){
+        if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class) )){
             tableConfig.setParentClass( BaseBusinessExEntity.class.getName() );
-        }else if(contains(javaNames , getClassFieldName(BaseBusinessSimpleExEntity.class) )){
+        }else if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessSimpleExEntity.class) )){
             tableConfig.setParentClass( BaseBusinessSimpleExEntity.class.getName() );
-        }else if(contains(javaNames , getClassFieldName(BaseBusinessEntity.class) )){
+        }else if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessEntity.class) )){
             tableConfig.setParentClass( BaseBusinessEntity.class.getName() );
-        }else if(contains(javaNames , getClassFieldName(BaseBusinessSimpleEntity.class) )){
+        }else if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessSimpleEntity.class) )){
             tableConfig.setParentClass( BaseBusinessEntity.class.getName() );
         }else {
             tableConfig.setParentClass( BaseEntity.class.getName() );
@@ -570,22 +571,6 @@ public class CgBusiness {
         tableConfig.setImportClsss(new ArrayList<String>(imports));
     }
 
-    /**
-     * 获取类的字段名称
-     * @param clz
-     * @return
-     */
-    private Set<String> getClassFieldName(Class clz){
-        if(!clz.isAssignableFrom(BaseEntity.class)){
-            throw new InternalException("类型必须是 BaseEntity 的子类");
-        }
-        Set<String> nameSet = new HashSet<String>();
-        Field[] fs = ReflectionSuper.getAllField( clz , BaseEntity.class);
-        for(Field f : fs){
-            nameSet.add(f.getName());
-        }
-        return nameSet;
-    }
 
     /**
      * 是否包含

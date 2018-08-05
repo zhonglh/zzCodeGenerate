@@ -132,7 +132,7 @@
             title: 'Java名称',
             width:120
         }, {
-            field: 'content',
+            field: 'tableComment',
             title: '表说明'
         }];
 		

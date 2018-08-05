@@ -128,6 +128,7 @@ public class TableBusinessServiceImpl implements TableBusinessService {
                 to.setOperationId(operation.getId());
                 to.setTableId(tablePO.getTableBO().getId());
                 EntityUtil.autoSetEntity(to , session);
+                tcgTableOperationDAO.insert(to);
             }
         }
     }

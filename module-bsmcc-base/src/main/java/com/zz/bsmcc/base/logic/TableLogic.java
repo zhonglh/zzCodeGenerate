@@ -15,6 +15,7 @@ import com.zz.bsmcc.base.domain.TcgProjectEntity;
 import com.zz.bsmcc.core.enums.EnumDbColumnType;
 import com.zz.bsmcc.core.enums.EnumJavaType;
 import com.zz.bsmcc.core.enums.EnumPageElement;
+import com.zz.bsmcc.core.util.CgBeanUtil;
 import com.zz.bsmcc.core.util.table.pojo.Column;
 import com.zz.bsmcc.core.util.table.pojo.Index;
 import com.zz.bsmcc.core.util.table.pojo.Table;
@@ -83,23 +84,33 @@ public class TableLogic {
         columnBO.setColumnIsnull(column.isNullable()?EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
 
 
+        Set<String> fieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
+
+
         columnBO.setColumnIskey("id".equals(column.getColumnName()) ? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
 
         columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
-        if(columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode())) {
-            if (columnBO.getColumnLength() != null &&
-                    (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
-                    ) {
-                columnBO.setColumnIsfk(EnumYesNo.YES.getCode());
+
+
+        if(!fieldNames.contains(columnBO.getJavaName())) {
+            if (columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode())) {
+                if (columnBO.getColumnLength() != null &&
+                        (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
+                        ) {
+                    columnBO.setColumnIsfk(EnumYesNo.YES.getCode());
+                }
             }
         }
 
 
         columnBO.setColumnIsdict(EnumYesNo.NO.getCode());
 
-        if(columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode()) || columnBO.getColumnIsfk().equals(EnumYesNo.NO.getCode())) {
-            if (column.isFixedChar() && column.getCharmaxLength() <= 2) {
-                columnBO.setColumnIsdict(EnumYesNo.YES.getCode());
+        if(!fieldNames.contains(columnBO.getJavaName())) {
+            if (columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode()) || columnBO.getColumnIsfk().equals(EnumYesNo.NO.getCode())) {
+                //固定长度并且2位值的认为是 字典或者枚举
+                if (column.isFixedChar() && column.getCharmaxLength() <= 2) {
+                    columnBO.setColumnIsdict(EnumYesNo.YES.getCode());
+                }
             }
         }
 
