@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 表操作定义 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:17
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTableOperationQueryWebImpl<PK extends Serializable> extends TcgTableOperationAbstractQueryImpl<PK> implements Serializable {
 

@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 功能模块设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:15
+ * @date 2018-8-5 15:15:59
  */
 public class TcgModuleConfigQueryImpl<PK extends Serializable> extends TcgModuleConfigAbstractQueryImpl<PK> implements TcgModuleConfigQuery<PK>, Serializable  {
 

@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 模板 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-3 12:03:13
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbstractQueryImpl<PK> implements TcgTempletQuery<PK>, Serializable  {
 
@@ -117,6 +117,22 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
 
             private List<String> templetTitle_IN;
             private List<String> templetTitle_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> isUi_IN;
+            private List<String> isUi_NOTIN;
+
 
 
 
@@ -804,6 +820,75 @@ public class TcgTempletQueryImpl<PK extends Serializable> extends TcgTempletAbst
                     this.isNotNulls.add("templetTitle");
                     return this;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgTempletQuery isUi(String isUi) {
+                    if(!IdUtils.isEmpty(isUi)){
+                        this.isUi = isUi;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletQuery isUiNot(String isUiNot) {
+                    if(!IdUtils.isEmpty(isUiNot)){
+                        this.isUi_NE = isUiNot;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTempletQuery isUiIn(String isUiIn) {
+                    if(!IdUtils.isEmpty(isUiIn)){
+                        if(this.isUi_IN == null){
+                            this.isUi_IN = new ArrayList<String>();
+                        }
+                        this.isUi_IN.add( isUiIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                    public TcgTempletQuery isUiNotIn(String isUiNotIn) {
+                    if(!IdUtils.isEmpty(isUiNotIn)){
+                        if(this.isUi_NOTIN == null){
+                            this.isUi_NOTIN = new ArrayList<String>();
+                        }
+                        this.isUi_NOTIN.add( isUiNotIn );
+                    }
+                    return this;
+                    }
+
+
+
+                @Override
+                public TcgTempletQuery isUiIsNull() {
+                    this.isNulls.add("isUi");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletQuery isUiIsNotNull() {
+                    this.isNotNulls.add("isUi");
+                    return this;
+                }
+
 
 
 

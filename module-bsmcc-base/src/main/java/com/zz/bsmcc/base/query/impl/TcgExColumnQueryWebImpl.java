@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 扩展列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 16:18:03
+ * @date 2018-8-5 15:15:58
  */
 public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColumnAbstractQueryImpl<PK> implements Serializable {
 
@@ -47,46 +47,6 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
             private PK originalColumnId_IN;
             private PK originalColumnId_NOTIN;
-
-
-
-
-
-
-
-
-
-
-            private String originalColumnName_IN;
-            private String originalColumnName_NOTIN;
-
-
-
-
-
-
-
-
-
-
-
-            private String originalColumnFk_IN;
-            private String originalColumnFk_NOTIN;
-
-
-
-
-
-
-
-
-
-
-
-
-            private String originalColumnDict_IN;
-            private String originalColumnDict_NOTIN;
-
 
 
 
@@ -153,20 +113,8 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
 
 
-            private String groupCode_IN;
-            private String groupCode_NOTIN;
-
-
-
-
-
-
-
-
-
-
-            private String dictType_IN;
-            private String dictType_NOTIN;
+            private String fkColumnName_IN;
+            private String fkColumnName_NOTIN;
 
 
 
@@ -402,180 +350,6 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
                 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getOriginalColumnName() {
-                    return originalColumnName;
-                }
-
-
-                public void setOriginalColumnName(String originalColumnName) {
-                    this.originalColumnName = originalColumnName;
-                }
-
-
-                public String getOriginalColumnName_NE() {
-                    return originalColumnName_NE;
-                }
-
-
-                public void setOriginalColumnName_NE(String originalColumnName_NE) {
-                    this.originalColumnName_NE = originalColumnName_NE;
-                }
-
-
-
-                public String getOriginalColumnName_IN() {
-                    return originalColumnName_IN;
-                }
-
-                public void setOriginalColumnName_IN(String originalColumnName_IN) {
-                    this.originalColumnName_IN = originalColumnName_IN;
-                }
-
-                public String getOriginalColumnName_NOTIN() {
-                    return originalColumnName_NOTIN;
-                }
-
-                public void setOriginalColumnName_NOTIN(String originalColumnName_NOTIN) {
-                    this.originalColumnName_NOTIN = originalColumnName_NOTIN;
-                }
-
-
-
-
-                public String getOriginalColumnName_LIKE() {
-                    return originalColumnName_LIKE;
-                }
-
-                public void setOriginalColumnName_LIKE(String originalColumnName_LIKE) {
-                    this.originalColumnName_LIKE = originalColumnName_LIKE;
-                }
-
-                public String getOriginalColumnName_NOTLIKE() {
-                    return originalColumnName_NOTLIKE;
-                }
-
-                public void setOriginalColumnName_NOTLIKE(String originalColumnName_NOTLIKE) {
-                    this.originalColumnName_NOTLIKE = originalColumnName_NOTLIKE;
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getOriginalColumnFk() {
-                    return originalColumnFk;
-                }
-
-
-                public void setOriginalColumnFk(String originalColumnFk) {
-                    this.originalColumnFk = originalColumnFk;
-                }
-
-
-                public String getOriginalColumnFk_NE() {
-                    return originalColumnFk_NE;
-                }
-
-
-                public void setOriginalColumnFk_NE(String originalColumnFk_NE) {
-                    this.originalColumnFk_NE = originalColumnFk_NE;
-                }
-
-
-
-                public String getOriginalColumnFk_IN() {
-                    return originalColumnFk_IN;
-                }
-
-                public void setOriginalColumnFk_IN(String originalColumnFk_IN) {
-                    this.originalColumnFk_IN = originalColumnFk_IN;
-                }
-
-                public String getOriginalColumnFk_NOTIN() {
-                    return originalColumnFk_NOTIN;
-                }
-
-                public void setOriginalColumnFk_NOTIN(String originalColumnFk_NOTIN) {
-                    this.originalColumnFk_NOTIN = originalColumnFk_NOTIN;
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                public String getOriginalColumnDict() {
-                    return originalColumnDict;
-                }
-
-
-                public void setOriginalColumnDict(String originalColumnDict) {
-                    this.originalColumnDict = originalColumnDict;
-                }
-
-
-                public String getOriginalColumnDict_NE() {
-                    return originalColumnDict_NE;
-                }
-
-
-                public void setOriginalColumnDict_NE(String originalColumnDict_NE) {
-                    this.originalColumnDict_NE = originalColumnDict_NE;
-                }
-
-
-
-                public String getOriginalColumnDict_IN() {
-                    return originalColumnDict_IN;
-                }
-
-                public void setOriginalColumnDict_IN(String originalColumnDict_IN) {
-                    this.originalColumnDict_IN = originalColumnDict_IN;
-                }
-
-                public String getOriginalColumnDict_NOTIN() {
-                    return originalColumnDict_NOTIN;
-                }
-
-                public void setOriginalColumnDict_NOTIN(String originalColumnDict_NOTIN) {
-                    this.originalColumnDict_NOTIN = originalColumnDict_NOTIN;
-                }
 
 
 
@@ -945,130 +719,60 @@ public class TcgExColumnQueryWebImpl<PK extends Serializable> extends TcgExColum
 
 
 
-                public String getGroupCode() {
-                    return groupCode;
+                public String getFkColumnName() {
+                    return fkColumnName;
                 }
 
 
-                public void setGroupCode(String groupCode) {
-                    this.groupCode = groupCode;
+                public void setFkColumnName(String fkColumnName) {
+                    this.fkColumnName = fkColumnName;
                 }
 
 
-                public String getGroupCode_NE() {
-                    return groupCode_NE;
+                public String getFkColumnName_NE() {
+                    return fkColumnName_NE;
                 }
 
 
-                public void setGroupCode_NE(String groupCode_NE) {
-                    this.groupCode_NE = groupCode_NE;
-                }
-
-
-
-                public String getGroupCode_IN() {
-                    return groupCode_IN;
-                }
-
-                public void setGroupCode_IN(String groupCode_IN) {
-                    this.groupCode_IN = groupCode_IN;
-                }
-
-                public String getGroupCode_NOTIN() {
-                    return groupCode_NOTIN;
-                }
-
-                public void setGroupCode_NOTIN(String groupCode_NOTIN) {
-                    this.groupCode_NOTIN = groupCode_NOTIN;
+                public void setFkColumnName_NE(String fkColumnName_NE) {
+                    this.fkColumnName_NE = fkColumnName_NE;
                 }
 
 
 
-
-                public String getGroupCode_LIKE() {
-                    return groupCode_LIKE;
+                public String getFkColumnName_IN() {
+                    return fkColumnName_IN;
                 }
 
-                public void setGroupCode_LIKE(String groupCode_LIKE) {
-                    this.groupCode_LIKE = groupCode_LIKE;
+                public void setFkColumnName_IN(String fkColumnName_IN) {
+                    this.fkColumnName_IN = fkColumnName_IN;
                 }
 
-                public String getGroupCode_NOTLIKE() {
-                    return groupCode_NOTLIKE;
+                public String getFkColumnName_NOTIN() {
+                    return fkColumnName_NOTIN;
                 }
 
-                public void setGroupCode_NOTLIKE(String groupCode_NOTLIKE) {
-                    this.groupCode_NOTLIKE = groupCode_NOTLIKE;
+                public void setFkColumnName_NOTIN(String fkColumnName_NOTIN) {
+                    this.fkColumnName_NOTIN = fkColumnName_NOTIN;
                 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-                public String getDictType() {
-                    return dictType;
+                public String getFkColumnName_LIKE() {
+                    return fkColumnName_LIKE;
                 }
 
-
-                public void setDictType(String dictType) {
-                    this.dictType = dictType;
+                public void setFkColumnName_LIKE(String fkColumnName_LIKE) {
+                    this.fkColumnName_LIKE = fkColumnName_LIKE;
                 }
 
-
-                public String getDictType_NE() {
-                    return dictType_NE;
+                public String getFkColumnName_NOTLIKE() {
+                    return fkColumnName_NOTLIKE;
                 }
 
-
-                public void setDictType_NE(String dictType_NE) {
-                    this.dictType_NE = dictType_NE;
-                }
-
-
-
-                public String getDictType_IN() {
-                    return dictType_IN;
-                }
-
-                public void setDictType_IN(String dictType_IN) {
-                    this.dictType_IN = dictType_IN;
-                }
-
-                public String getDictType_NOTIN() {
-                    return dictType_NOTIN;
-                }
-
-                public void setDictType_NOTIN(String dictType_NOTIN) {
-                    this.dictType_NOTIN = dictType_NOTIN;
-                }
-
-
-
-
-                public String getDictType_LIKE() {
-                    return dictType_LIKE;
-                }
-
-                public void setDictType_LIKE(String dictType_LIKE) {
-                    this.dictType_LIKE = dictType_LIKE;
-                }
-
-                public String getDictType_NOTLIKE() {
-                    return dictType_NOTLIKE;
-                }
-
-                public void setDictType_NOTLIKE(String dictType_NOTLIKE) {
-                    this.dictType_NOTLIKE = dictType_NOTLIKE;
+                public void setFkColumnName_NOTLIKE(String fkColumnName_NOTLIKE) {
+                    this.fkColumnName_NOTLIKE = fkColumnName_NOTLIKE;
                 }
 
 

@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 列事件 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:13
+ * @date 2018-8-5 15:15:57
  */
 public abstract class TcgColumnEventAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgColumnEventEntity,PK> {
 

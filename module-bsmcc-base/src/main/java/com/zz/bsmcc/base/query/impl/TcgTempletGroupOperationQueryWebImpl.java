@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 模板组操作定义 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:18
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTempletGroupOperationQueryWebImpl<PK extends Serializable> extends TcgTempletGroupOperationAbstractQueryImpl<PK> implements Serializable {
 
@@ -95,6 +95,18 @@ public class TcgTempletGroupOperationQueryWebImpl<PK extends Serializable> exten
 
             private String position_IN;
             private String position_NOTIN;
+
+
+
+
+
+
+
+
+
+
+            private String other_IN;
+            private String other_NOTIN;
 
 
 
@@ -560,6 +572,76 @@ public class TcgTempletGroupOperationQueryWebImpl<PK extends Serializable> exten
 
                 public void setPosition_NOTLIKE(String position_NOTLIKE) {
                     this.position_NOTLIKE = position_NOTLIKE;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getOther() {
+                    return other;
+                }
+
+
+                public void setOther(String other) {
+                    this.other = other;
+                }
+
+
+                public String getOther_NE() {
+                    return other_NE;
+                }
+
+
+                public void setOther_NE(String other_NE) {
+                    this.other_NE = other_NE;
+                }
+
+
+
+                public String getOther_IN() {
+                    return other_IN;
+                }
+
+                public void setOther_IN(String other_IN) {
+                    this.other_IN = other_IN;
+                }
+
+                public String getOther_NOTIN() {
+                    return other_NOTIN;
+                }
+
+                public void setOther_NOTIN(String other_NOTIN) {
+                    this.other_NOTIN = other_NOTIN;
+                }
+
+
+
+
+                public String getOther_LIKE() {
+                    return other_LIKE;
+                }
+
+                public void setOther_LIKE(String other_LIKE) {
+                    this.other_LIKE = other_LIKE;
+                }
+
+                public String getOther_NOTLIKE() {
+                    return other_NOTLIKE;
+                }
+
+                public void setOther_NOTLIKE(String other_NOTLIKE) {
+                    this.other_NOTLIKE = other_NOTLIKE;
                 }
 
 

@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 表设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-4 21:05:51
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements TcgTableConfigQuery<PK>, Serializable  {
 
@@ -284,8 +284,8 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
 
-            private List<String> isBuildController_IN;
-            private List<String> isBuildController_NOTIN;
+            private List<String> isBuildUi_IN;
+            private List<String> isBuildUi_NOTIN;
 
 
 
@@ -1741,41 +1741,41 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery isBuildController(String isBuildController) {
-                    if(!IdUtils.isEmpty(isBuildController)){
-                        this.isBuildController = isBuildController;
+                public TcgTableConfigQuery isBuildUi(String isBuildUi) {
+                    if(!IdUtils.isEmpty(isBuildUi)){
+                        this.isBuildUi = isBuildUi;
                     }
                     return this;
                 }
 
 
                 @Override
-                public TcgTableConfigQuery isBuildControllerNot(String isBuildControllerNot) {
-                    if(!IdUtils.isEmpty(isBuildControllerNot)){
-                        this.isBuildController_NE = isBuildControllerNot;
+                public TcgTableConfigQuery isBuildUiNot(String isBuildUiNot) {
+                    if(!IdUtils.isEmpty(isBuildUiNot)){
+                        this.isBuildUi_NE = isBuildUiNot;
                     }
                     return this;
                 }
 
                 @Override
-                public TcgTableConfigQuery isBuildControllerIn(String isBuildControllerIn) {
-                    if(!IdUtils.isEmpty(isBuildControllerIn)){
-                        if(this.isBuildController_IN == null){
-                            this.isBuildController_IN = new ArrayList<String>();
+                public TcgTableConfigQuery isBuildUiIn(String isBuildUiIn) {
+                    if(!IdUtils.isEmpty(isBuildUiIn)){
+                        if(this.isBuildUi_IN == null){
+                            this.isBuildUi_IN = new ArrayList<String>();
                         }
-                        this.isBuildController_IN.add( isBuildControllerIn );
+                        this.isBuildUi_IN.add( isBuildUiIn );
                     }
                     return this;
                 }
 
 
                 @Override
-                    public TcgTableConfigQuery isBuildControllerNotIn(String isBuildControllerNotIn) {
-                    if(!IdUtils.isEmpty(isBuildControllerNotIn)){
-                        if(this.isBuildController_NOTIN == null){
-                            this.isBuildController_NOTIN = new ArrayList<String>();
+                    public TcgTableConfigQuery isBuildUiNotIn(String isBuildUiNotIn) {
+                    if(!IdUtils.isEmpty(isBuildUiNotIn)){
+                        if(this.isBuildUi_NOTIN == null){
+                            this.isBuildUi_NOTIN = new ArrayList<String>();
                         }
-                        this.isBuildController_NOTIN.add( isBuildControllerNotIn );
+                        this.isBuildUi_NOTIN.add( isBuildUiNotIn );
                     }
                     return this;
                     }
@@ -1783,16 +1783,16 @@ public class TcgTableConfigQueryImpl<PK extends Serializable> extends TcgTableCo
 
 
                 @Override
-                public TcgTableConfigQuery isBuildControllerIsNull() {
-                    this.isNulls.add("isBuildController");
+                public TcgTableConfigQuery isBuildUiIsNull() {
+                    this.isNulls.add("isBuildUi");
                     return this;
                 }
 
 
 
                 @Override
-                public TcgTableConfigQuery isBuildControllerIsNotNull() {
-                    this.isNotNulls.add("isBuildController");
+                public TcgTableConfigQuery isBuildUiIsNotNull() {
+                    this.isNotNulls.add("isBuildUi");
                     return this;
                 }
 

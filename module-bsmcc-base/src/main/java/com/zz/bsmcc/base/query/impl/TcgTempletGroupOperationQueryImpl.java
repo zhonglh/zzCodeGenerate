@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 模板组操作定义 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:18
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends TcgTempletGroupOperationAbstractQueryImpl<PK> implements TcgTempletGroupOperationQuery<PK>, Serializable  {
 
@@ -117,6 +117,21 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
 
             private List<String> position_IN;
             private List<String> position_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+
+
+            private List<String> other_IN;
+            private List<String> other_NOTIN;
 
 
 
@@ -692,6 +707,95 @@ public class TcgTempletGroupOperationQueryImpl<PK extends Serializable> extends 
                 @Override
                 public TcgTempletGroupOperationQuery positionIsNotNull() {
                     this.isNotNulls.add("position");
+                    return this;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @Override
+                public TcgTempletGroupOperationQuery other(String other) {
+                    if(!IdUtils.isEmpty(other)){
+                        this.other = other;
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletGroupOperationQuery otherNot(String otherNot) {
+                    if(!IdUtils.isEmpty(otherNot)){
+                        this.other_NE = otherNot;
+                    }
+                    return this;
+                }
+
+
+
+
+                @Override
+                public TcgTempletGroupOperationQuery otherLike(String otherLike) {
+                    if(!IdUtils.isEmpty(otherLike)){
+                        this.other_LIKE = otherLike;
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletGroupOperationQuery otherNotLike(String otherNotLike) {
+                    if(!IdUtils.isEmpty(otherNotLike)){
+                        this.other_NOTLIKE = otherNotLike;
+                    }
+                    return this;
+                }
+
+                @Override
+                public TcgTempletGroupOperationQuery otherIn(String otherIn) {
+                    if(!IdUtils.isEmpty(otherIn)){
+                        if(this.other_IN == null){
+                            this.other_IN = new ArrayList<String>();
+                        }
+                        this.other_IN.add( otherIn );
+                    }
+                    return this;
+                }
+
+
+                @Override
+                public TcgTempletGroupOperationQuery otherNotIn(String otherNotIn) {
+                    if(!IdUtils.isEmpty(otherNotIn)){
+                        if(this.other_NOTIN == null){
+                            this.other_NOTIN = new ArrayList<String>();
+                        }
+                        this.other_NOTIN.add( otherNotIn );
+                    }
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletGroupOperationQuery otherIsNull() {
+                    this.isNulls.add("other");
+                    return this;
+                }
+
+
+
+                @Override
+                public TcgTempletGroupOperationQuery otherIsNotNull() {
+                    this.isNotNulls.add("other");
                     return this;
                 }
 

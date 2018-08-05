@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  * 组设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:15
+ * @date 2018-8-5 15:15:58
  */
 public class TcgGroupConfigQueryImpl<PK extends Serializable> extends TcgGroupConfigAbstractQueryImpl<PK> implements TcgGroupConfigQuery<PK>, Serializable  {
 

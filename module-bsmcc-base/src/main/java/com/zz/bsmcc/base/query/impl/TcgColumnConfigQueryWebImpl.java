@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 列设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-1 16:18:00
+ * @date 2018-8-5 15:15:57
  */
 public class TcgColumnConfigQueryWebImpl<PK extends Serializable> extends TcgColumnConfigAbstractQueryImpl<PK> implements Serializable {
 

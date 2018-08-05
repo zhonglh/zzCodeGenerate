@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 模板组操作定义 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 12:58:18
+ * @date 2018-8-5 15:16:00
  */
 public abstract class TcgTempletGroupOperationAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgTempletGroupOperationEntity,PK> {
 
@@ -114,6 +114,22 @@ public abstract class TcgTempletGroupOperationAbstractQueryImpl<PK extends Seria
             protected String position_NE;
             protected String position_LIKE;
             protected String position_NOTLIKE;
+
+
+
+
+
+
+
+
+
+
+
+
+            protected String other;
+            protected String other_NE;
+            protected String other_LIKE;
+            protected String other_NOTLIKE;
 
 
 

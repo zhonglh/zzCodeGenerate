@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 表设置 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-4 21:05:51
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTableConfigAbstractQueryImpl<PK> implements Serializable {
 
@@ -236,8 +236,8 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
 
 
-            private String isBuildController_IN;
-            private String isBuildController_NOTIN;
+            private String isBuildUi_IN;
+            private String isBuildUi_NOTIN;
 
 
 
@@ -1402,41 +1402,41 @@ public class TcgTableConfigQueryWebImpl<PK extends Serializable> extends TcgTabl
 
 
 
-                public String getIsBuildController() {
-                    return isBuildController;
+                public String getIsBuildUi() {
+                    return isBuildUi;
                 }
 
 
-                public void setIsBuildController(String isBuildController) {
-                    this.isBuildController = isBuildController;
+                public void setIsBuildUi(String isBuildUi) {
+                    this.isBuildUi = isBuildUi;
                 }
 
 
-                public String getIsBuildController_NE() {
-                    return isBuildController_NE;
+                public String getIsBuildUi_NE() {
+                    return isBuildUi_NE;
                 }
 
 
-                public void setIsBuildController_NE(String isBuildController_NE) {
-                    this.isBuildController_NE = isBuildController_NE;
+                public void setIsBuildUi_NE(String isBuildUi_NE) {
+                    this.isBuildUi_NE = isBuildUi_NE;
                 }
 
 
 
-                public String getIsBuildController_IN() {
-                    return isBuildController_IN;
+                public String getIsBuildUi_IN() {
+                    return isBuildUi_IN;
                 }
 
-                public void setIsBuildController_IN(String isBuildController_IN) {
-                    this.isBuildController_IN = isBuildController_IN;
+                public void setIsBuildUi_IN(String isBuildUi_IN) {
+                    this.isBuildUi_IN = isBuildUi_IN;
                 }
 
-                public String getIsBuildController_NOTIN() {
-                    return isBuildController_NOTIN;
+                public String getIsBuildUi_NOTIN() {
+                    return isBuildUi_NOTIN;
                 }
 
-                public void setIsBuildController_NOTIN(String isBuildController_NOTIN) {
-                    this.isBuildController_NOTIN = isBuildController_NOTIN;
+                public void setIsBuildUi_NOTIN(String isBuildUi_NOTIN) {
+                    this.isBuildUi_NOTIN = isBuildUi_NOTIN;
                 }
 
 

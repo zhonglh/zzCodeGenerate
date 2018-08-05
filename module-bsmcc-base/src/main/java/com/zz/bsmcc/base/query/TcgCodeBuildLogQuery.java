@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 代码生成记录查询接口
  *
  * @author Administrator
- * @date 2018-8-3 11:23:12
+ * @date 2018-8-5 15:15:56
  */
 public interface TcgCodeBuildLogQuery<PK extends Serializable> extends Query<TcgCodeBuildLogEntity,PK> {
 

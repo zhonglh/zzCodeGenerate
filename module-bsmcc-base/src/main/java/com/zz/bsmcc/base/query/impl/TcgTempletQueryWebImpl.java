@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 模板 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-3 12:03:13
+ * @date 2018-8-5 15:16:00
  */
 public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletAbstractQueryImpl<PK> implements Serializable {
 
@@ -94,6 +94,20 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
 
             private String templetTitle_IN;
             private String templetTitle_NOTIN;
+
+
+
+
+
+
+
+
+
+
+
+            private String isUi_IN;
+            private String isUi_NOTIN;
+
 
 
 
@@ -647,6 +661,58 @@ public class TcgTempletQueryWebImpl<PK extends Serializable> extends TcgTempletA
                 public void setTempletTitle_NOTLIKE(String templetTitle_NOTLIKE) {
                     this.templetTitle_NOTLIKE = templetTitle_NOTLIKE;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                public String getIsUi() {
+                    return isUi;
+                }
+
+
+                public void setIsUi(String isUi) {
+                    this.isUi = isUi;
+                }
+
+
+                public String getIsUi_NE() {
+                    return isUi_NE;
+                }
+
+
+                public void setIsUi_NE(String isUi_NE) {
+                    this.isUi_NE = isUi_NE;
+                }
+
+
+
+                public String getIsUi_IN() {
+                    return isUi_IN;
+                }
+
+                public void setIsUi_IN(String isUi_IN) {
+                    this.isUi_IN = isUi_IN;
+                }
+
+                public String getIsUi_NOTIN() {
+                    return isUi_NOTIN;
+                }
+
+                public void setIsUi_NOTIN(String isUi_NOTIN) {
+                    this.isUi_NOTIN = isUi_NOTIN;
+                }
+
 
 
 

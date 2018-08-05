@@ -91,9 +91,9 @@
 
                     <div class="form-group">
                         <label>是否生成UI：</label>
-                        <select id="isBuildController" name="isBuildController"  class="form-control required">
-                            <option value="1"  <c:if test="${entity.isBuildController ==  '1' }">selected="selected"</c:if> > 是 </option>
-                            <option value="0"   <c:if test="${entity.isBuildController ==  '0' }">selected="selected"</c:if>  > 否 </option>
+                        <select id="isBuildUi" name="isBuildUi"  class="form-control required">
+                            <option value="1"  <c:if test="${entity.isBuildUi ==  '1' }">selected="selected"</c:if> > 是 </option>
+                            <option value="0"   <c:if test="${entity.isBuildUi ==  '0' }">selected="selected"</c:if>  > 否 </option>
                         </select>
                     </div>
 
@@ -104,7 +104,7 @@
                         <label>是否生成菜单数据：</label>
                         <select id="isBuildMenu" name="isBuildMenu"  class="form-control required">
                             <option value="1"  <c:if test="${entity.isBuildMenu ==  '1' }">selected="selected"</c:if> > 是 </option>
-                            <option value="0"   <c:if test="${entity.isBuildMenu ==  '0' }">selected="selected"</c:if>  > 否 </option>
+                            <option value="0"  <c:if test="${entity.isBuildMenu ==  '0' }">selected="selected"</c:if>  > 否 </option>
                         </select>
                     </div>
 

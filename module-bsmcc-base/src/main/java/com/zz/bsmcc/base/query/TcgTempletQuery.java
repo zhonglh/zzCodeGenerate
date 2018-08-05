@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 模板查询接口
  *
  * @author Administrator
- * @date 2018-8-3 12:03:13
+ * @date 2018-8-5 15:16:00
  */
 public interface TcgTempletQuery<PK extends Serializable> extends Query<TcgTempletEntity,PK> {
 
@@ -145,6 +145,25 @@ public interface TcgTempletQuery<PK extends Serializable> extends Query<TcgTempl
             public TcgTempletQuery templetTitleNotLike(String templetTitleNotLike);
             public TcgTempletQuery templetTitleIsNull();
             public TcgTempletQuery templetTitleIsNotNull();
+
+
+
+
+
+
+
+
+
+
+
+
+            public TcgTempletQuery isUi(String isUi);
+            public TcgTempletQuery isUiNot(String isUiNot);
+            public TcgTempletQuery isUiIn(String isUiIn);
+            public TcgTempletQuery isUiNotIn(String isUiNotIn);
+            public TcgTempletQuery isUiIsNull();
+            public TcgTempletQuery isUiIsNotNull();
+
 
 
 

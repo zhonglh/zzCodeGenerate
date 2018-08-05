@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * 代码生成记录 用于装载用户在查询时提交的数据
  * 链式查询
  * @author Administrator
- * @date 2018-8-3 11:23:12
+ * @date 2018-8-5 15:15:56
  */
 public class TcgCodeBuildLogQueryWebImpl<PK extends Serializable> extends TcgCodeBuildLogAbstractQueryImpl<PK> implements Serializable {
 

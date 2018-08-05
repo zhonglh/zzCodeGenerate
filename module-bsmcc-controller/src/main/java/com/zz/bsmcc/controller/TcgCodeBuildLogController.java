@@ -1,30 +1,16 @@
 package com.zz.bsmcc.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
-
-
 import com.zz.bsmcc.base.bo.TcgCodeBuildLogBO;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
-import com.zz.bsmcc.base.dao.TcgGroupConfigDAO;
-import com.zz.bsmcc.base.dao.TcgProjectDAO;
 import com.zz.bsmcc.base.query.TcgTempletQuery;
 import com.zz.bsmcc.base.query.impl.TcgCodeBuildLogQueryWebImpl;
-
-import com.zz.bms.util.base.java.IdUtils;
-
 import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
-import com.zz.bsmcc.base.service.TcgGroupConfigService;
 import com.zz.bsmcc.base.service.TcgProjectService;
 import com.zz.bsmcc.base.service.TcgTempletService;
 import com.zz.bsmcc.business.CgBusiness;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

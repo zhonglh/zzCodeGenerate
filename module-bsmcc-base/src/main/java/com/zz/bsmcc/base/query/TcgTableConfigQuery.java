@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 表设置查询接口
  *
  * @author Administrator
- * @date 2018-8-4 21:05:51
+ * @date 2018-8-5 15:16:00
  */
 public interface TcgTableConfigQuery<PK extends Serializable> extends Query<TcgTableConfigEntity,PK> {
 
@@ -347,12 +347,12 @@ public interface TcgTableConfigQuery<PK extends Serializable> extends Query<TcgT
 
 
 
-            public TcgTableConfigQuery isBuildController(String isBuildController);
-            public TcgTableConfigQuery isBuildControllerNot(String isBuildControllerNot);
-            public TcgTableConfigQuery isBuildControllerIn(String isBuildControllerIn);
-            public TcgTableConfigQuery isBuildControllerNotIn(String isBuildControllerNotIn);
-            public TcgTableConfigQuery isBuildControllerIsNull();
-            public TcgTableConfigQuery isBuildControllerIsNotNull();
+            public TcgTableConfigQuery isBuildUi(String isBuildUi);
+            public TcgTableConfigQuery isBuildUiNot(String isBuildUiNot);
+            public TcgTableConfigQuery isBuildUiIn(String isBuildUiIn);
+            public TcgTableConfigQuery isBuildUiNotIn(String isBuildUiNotIn);
+            public TcgTableConfigQuery isBuildUiIsNull();
+            public TcgTableConfigQuery isBuildUiIsNotNull();
 
 
 

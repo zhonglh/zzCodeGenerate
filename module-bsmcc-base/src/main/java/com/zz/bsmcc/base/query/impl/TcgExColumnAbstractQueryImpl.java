@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * 扩展列设置 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-8-1 16:18:03
+ * @date 2018-8-5 15:15:58
  */
 public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TcgExColumnEntity,PK> {
 
@@ -50,52 +50,6 @@ public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> exte
 
             protected PK originalColumnId;
             protected PK originalColumnId_NE;
-
-
-
-
-
-
-
-
-
-
-
-
-            protected String originalColumnName;
-            protected String originalColumnName_NE;
-            protected String originalColumnName_LIKE;
-            protected String originalColumnName_NOTLIKE;
-
-
-
-
-
-
-
-
-
-
-
-
-            protected String originalColumnFk;
-            protected String originalColumnFk_NE;
-
-
-
-
-
-
-
-
-
-
-
-
-
-            protected String originalColumnDict;
-            protected String originalColumnDict_NE;
-
 
 
 
@@ -189,26 +143,10 @@ public abstract class TcgExColumnAbstractQueryImpl<PK extends Serializable> exte
 
 
 
-            protected String groupCode;
-            protected String groupCode_NE;
-            protected String groupCode_LIKE;
-            protected String groupCode_NOTLIKE;
-
-
-
-
-
-
-
-
-
-
-
-
-            protected String dictType;
-            protected String dictType_NE;
-            protected String dictType_LIKE;
-            protected String dictType_NOTLIKE;
+            protected String fkColumnName;
+            protected String fkColumnName_NE;
+            protected String fkColumnName_LIKE;
+            protected String fkColumnName_NOTLIKE;
 
 
 

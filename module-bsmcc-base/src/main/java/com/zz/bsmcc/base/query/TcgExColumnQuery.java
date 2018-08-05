@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * 扩展列设置查询接口
  *
  * @author Administrator
- * @date 2018-8-1 16:18:03
+ * @date 2018-8-5 15:15:58
  */
 public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExColumnEntity,PK> {
 
@@ -63,64 +63,6 @@ public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExCo
             public TcgExColumnQuery originalColumnIdNotIn(PK originalColumnIdNotIn);
             public TcgExColumnQuery originalColumnIdIsNull();
             public TcgExColumnQuery originalColumnIdIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgExColumnQuery originalColumnName(String originalColumnName);
-            public TcgExColumnQuery originalColumnNameNot(String originalColumnNameNot);
-            public TcgExColumnQuery originalColumnNameIn(String originalColumnNameIn);
-            public TcgExColumnQuery originalColumnNameNotIn(String originalColumnNameNotIn);
-            public TcgExColumnQuery originalColumnNameLike(String originalColumnNameLike);
-            public TcgExColumnQuery originalColumnNameNotLike(String originalColumnNameNotLike);
-            public TcgExColumnQuery originalColumnNameIsNull();
-            public TcgExColumnQuery originalColumnNameIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgExColumnQuery originalColumnFk(String originalColumnFk);
-            public TcgExColumnQuery originalColumnFkNot(String originalColumnFkNot);
-            public TcgExColumnQuery originalColumnFkIn(String originalColumnFkIn);
-            public TcgExColumnQuery originalColumnFkNotIn(String originalColumnFkNotIn);
-            public TcgExColumnQuery originalColumnFkIsNull();
-            public TcgExColumnQuery originalColumnFkIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgExColumnQuery originalColumnDict(String originalColumnDict);
-            public TcgExColumnQuery originalColumnDictNot(String originalColumnDictNot);
-            public TcgExColumnQuery originalColumnDictIn(String originalColumnDictIn);
-            public TcgExColumnQuery originalColumnDictNotIn(String originalColumnDictNotIn);
-            public TcgExColumnQuery originalColumnDictIsNull();
-            public TcgExColumnQuery originalColumnDictIsNotNull();
-
 
 
 
@@ -229,34 +171,14 @@ public interface TcgExColumnQuery<PK extends Serializable> extends Query<TcgExCo
 
 
 
-            public TcgExColumnQuery groupCode(String groupCode);
-            public TcgExColumnQuery groupCodeNot(String groupCodeNot);
-            public TcgExColumnQuery groupCodeIn(String groupCodeIn);
-            public TcgExColumnQuery groupCodeNotIn(String groupCodeNotIn);
-            public TcgExColumnQuery groupCodeLike(String groupCodeLike);
-            public TcgExColumnQuery groupCodeNotLike(String groupCodeNotLike);
-            public TcgExColumnQuery groupCodeIsNull();
-            public TcgExColumnQuery groupCodeIsNotNull();
-
-
-
-
-
-
-
-
-
-
-
-
-            public TcgExColumnQuery dictType(String dictType);
-            public TcgExColumnQuery dictTypeNot(String dictTypeNot);
-            public TcgExColumnQuery dictTypeIn(String dictTypeIn);
-            public TcgExColumnQuery dictTypeNotIn(String dictTypeNotIn);
-            public TcgExColumnQuery dictTypeLike(String dictTypeLike);
-            public TcgExColumnQuery dictTypeNotLike(String dictTypeNotLike);
-            public TcgExColumnQuery dictTypeIsNull();
-            public TcgExColumnQuery dictTypeIsNotNull();
+            public TcgExColumnQuery fkColumnName(String fkColumnName);
+            public TcgExColumnQuery fkColumnNameNot(String fkColumnNameNot);
+            public TcgExColumnQuery fkColumnNameIn(String fkColumnNameIn);
+            public TcgExColumnQuery fkColumnNameNotIn(String fkColumnNameNotIn);
+            public TcgExColumnQuery fkColumnNameLike(String fkColumnNameLike);
+            public TcgExColumnQuery fkColumnNameNotLike(String fkColumnNameNotLike);
+            public TcgExColumnQuery fkColumnNameIsNull();
+            public TcgExColumnQuery fkColumnNameIsNotNull();
 
 
 
