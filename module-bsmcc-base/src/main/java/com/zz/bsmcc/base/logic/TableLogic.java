@@ -84,6 +84,7 @@ public class TableLogic {
         columnBO.setColumnIsnull(column.isNullable()?EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
 
 
+        processJavaType(columnBO, typeMap);
         Set<String> fieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
 
 
@@ -115,7 +116,6 @@ public class TableLogic {
         }
 
 
-        processJavaType(columnBO, typeMap);
 
 
 

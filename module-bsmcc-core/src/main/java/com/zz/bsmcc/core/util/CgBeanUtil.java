@@ -1,8 +1,8 @@
 package com.zz.bsmcc.core.util;
 
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.java.ReflectionSuper;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -19,9 +19,9 @@ public class CgBeanUtil {
      * @return
      */
     public static Set<String> getClassFieldName(Class clz){
-        if(!clz.isAssignableFrom(BaseEntity.class)){
+        /*if(!clz.isAssignableFrom(BaseEntity.class)){
             throw new InternalException("类型必须是 BaseEntity 的子类");
-        }
+        }*/
         Set<String> nameSet = new HashSet<String>();
         Field[] fs = ReflectionSuper.getAllField( clz , BaseEntity.class);
         for(Field f : fs){

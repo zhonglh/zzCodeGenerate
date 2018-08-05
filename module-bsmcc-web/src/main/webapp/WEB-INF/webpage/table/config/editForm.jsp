@@ -282,15 +282,15 @@
 
 
                                 <td><input type="text" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }"
-                                           <c:if test="${column.columnIsdict == '1'}">class="form-control required"</c:if> />
+                                           <c:if test="${column.columnIsdict == '1'}">class="required"</c:if> />
                                 </td>
                                 <td>
                                     <input type="text"  id="columns[${status1.index }].fkSchema" name="columns[${status1.index }].fkSchema" value="${column.fkSchema }"
-                                           <c:if test="${column.columnIsfk == '1'}">class="form-control required"</c:if>  />
+                                           <c:if test="${column.columnIsfk == '1'}">class="required"</c:if>  />
                                 </td>
                                 <td>
                                     <input type="text"  id="columns[${status1.index }].fkName" name="columns[${status1.index }].fkName" value="${column.fkName }"
-                                           <c:if test="${column.columnIsfk == '1'}">class="form-control required"</c:if>  />
+                                           <c:if test="${column.columnIsfk == '1'}">class="required"</c:if>  />
                                 </td>
 
 
@@ -361,7 +361,7 @@
                                 <td><input type="text"  id="exColumns[${status1.index }].columnTitle" name="exColumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
                                 <td>
                                     <input type="text"  id="exColumns[${status1.index }].fkColumnName" name="exColumns[${status1.index }].fkColumnName" value="${exColumn.fkColumnName }"
-                                            <c:if test="${exColumn.originalColumnFk == '1'}">class="form-control required"</c:if>   />
+                                            <c:if test="${exColumn.originalColumnFk == '1'}">class="required"</c:if>   />
                                 </td>
 
 
