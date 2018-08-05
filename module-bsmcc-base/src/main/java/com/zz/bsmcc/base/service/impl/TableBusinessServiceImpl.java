@@ -17,6 +17,7 @@ import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.TableBusinessService;
 import com.zz.bsmcc.base.service.TcgColumnEventService;
 import com.zz.bsmcc.base.service.TcgTableConfigService;
+import com.zz.bsmcc.core.Applications;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -120,7 +121,7 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         tcgOperationQuery.isDefault(EnumYesNo.YES.getCode());
         List<TcgOperationBO> operations =  tcgOperationDAO.selectList(tcgOperationQuery.buildWrapper());
         if(operations != null && !operations.isEmpty()){
-            ILoginUserEntity session = getLoginUserEntity();
+            ILoginUserEntity session = Applications.getLoginUserEntity();
             for(TcgOperationBO operation : operations){
                 TcgTableOperationBO to = new TcgTableOperationBO();
                 to.setId(IdUtils.getId());
@@ -321,7 +322,7 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     private void updateExColumn(TablePO tablePO) {
         List<String> ids = new ArrayList<String>();
         if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
-            ILoginUserEntity session = getLoginUserEntity();
+            ILoginUserEntity session = Applications.getLoginUserEntity();
 
             for (TcgExColumnBO item : tablePO.getExColumns()) {
                 if(item == null || StringUtils.isEmpty(item.getJavaFullClass())){
@@ -402,14 +403,5 @@ public class TableBusinessServiceImpl implements TableBusinessService {
 
     }
 
-    private ILoginUserEntity getLoginUserEntity() {
-        ILoginUserEntity session = null;
-        RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
-        if (requestAttributes != null) {
-            HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
-            session = (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
-        }
-        return session;
-    }
 
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 
@@ -22,6 +23,7 @@ import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.TcgGroupConfigService;
 import com.zz.bsmcc.base.service.TcgProjectService;
 import com.zz.bsmcc.base.service.TcgTempletService;
+import com.zz.bsmcc.business.CgBusiness;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +51,9 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 
 	@Autowired
 	private TcgTempletService templetService;
+
+	@Autowired
+	private CgBusiness cgBusiness;
 
 
 	@Override
@@ -78,7 +83,9 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 			throw new BizException("请先在该模板组添加模板");
 		}
 
-		return null;
+		cgBusiness.cg(projectBO , templets);
+
+		return AjaxJson.successAjax;
 
 
 

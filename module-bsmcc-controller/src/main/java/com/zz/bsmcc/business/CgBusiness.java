@@ -4,8 +4,10 @@ package com.zz.bsmcc.business;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.util.base.data.MyBeanUtils;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
+import com.zz.bms.util.base.files.FreemarkerUtils;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.po.TablePO;
@@ -15,11 +17,16 @@ import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletGroupOperationQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.*;
+import com.zz.bsmcc.core.Applications;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -284,16 +291,9 @@ public class CgBusiness {
             List<TcgTempletGroupOperationBO> operations = new ArrayList<TcgTempletGroupOperationBO>(operationBOMap.values());
             tablePO.setTempletGroupOperations(operations);
 
-
-
-
-
-            cgCode(tablePO);
+            cgCode(tablePO , projectBO , templets);
 
         }
-
-
-
 
     }
 
@@ -301,8 +301,93 @@ public class CgBusiness {
      * 生成代码
      * @param tablePO
      */
-    private void cgCode(TablePO tablePO) {
-        //todo
+    private void cgCode(TablePO tablePO , TcgProjectBO projectBO, List<TcgTempletBO> templets) {
+
+        String basePath = Applications.getUsrDir();
+        ILoginUserEntity session = Applications.getLoginUserEntity();
+
+        if(session != null ){
+            basePath = basePath + File.separator + session.getId();
+        }
+
+
+
+
+        for(TcgTempletBO templet : templets){
+
+            if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
+                continue;
+            }
+            String filePath = null;
+            if("java".equalsIgnoreCase(templet.getFileType())){
+                filePath = basePath + File.separator + templet.getFileOutDir() + File.separator +
+                        tablePO.getTableBO().getFullPackageName().replaceAll("\\.",File.separator) +
+                        File.separator +templet.getFileInnerDir();
+            }else if(EnumYesNo.YES.getCode().equals(templet.getIsUi())){
+                filePath = basePath + File.separator + templet.getFileOutDir() + File.separator +
+                        tablePO.getTableBO().getFullResourceName().replaceAll("//",File.separator);
+
+            }else {
+                filePath = basePath + File.separator + templet.getFileOutDir() + File.separator + templet.getFileInnerDir();
+            }
+
+            String fileName = tablePO.getTableBO().getJavaName() +
+                    (templet.getFileSuffix().isEmpty()?"":templet.getFileSuffix()) +
+                    templet.getFileType();
+
+            try {
+
+                Map<String  , Object >  model = buildModel(tablePO , projectBO);
+
+                model.put("templet" , templet) ;
+
+                String result = FreemarkerUtils.renderString(templet.getTempletContent() , model);
+
+                if(result != null && !result.isEmpty()){
+                    File dir = new File(filePath);
+                    if(!dir.exists()){
+                        dir.mkdirs();
+                    }
+                    File f = new File(dir.getAbsolutePath() , fileName);
+                    OutputStream output = new FileOutputStream(f);
+                    IOUtils.write(result , output , "UTF-8");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
+        }
+
+
+    }
+
+
+    /**
+     * 构建模板需要的变量
+     * @param tablePO
+     * @param projectBO
+     * @return
+     */
+    public Map<String  , Object > buildModel(TablePO tablePO , TcgProjectBO projectBO){
+
+        Map<String  , Object > freemarkerModel = new HashMap<String  , Object>();
+
+        freemarkerModel.put("table" , tablePO.getTableBO());
+        freemarkerModel.put("columns" , tablePO.getColumns());
+        freemarkerModel.put("exColumns" , tablePO.getExColumns());
+        freemarkerModel.put("columnPages" , tablePO.getColumnPages());
+        freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
+        freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
+
+        freemarkerModel.put("indexs" , tablePO.getIndexs());
+        freemarkerModel.put("querys" , tablePO.getQueryConfigs());
+        freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());
+
+
+        freemarkerModel.put("project" , projectBO);
+
+        return freemarkerModel;
     }
 
 

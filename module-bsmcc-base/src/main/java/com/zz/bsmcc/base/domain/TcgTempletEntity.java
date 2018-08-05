@@ -6,7 +6,6 @@ import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 
@@ -14,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 * 模板实体类
 *
 * @author Administrator
-* @date 2018-8-3 12:03:13
+* @date 2018-8-5 9:44:37
 */
 public class TcgTempletEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
     @TableField(exist=false)
@@ -68,15 +67,15 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
 
 
-        //@EntityAttrAnnotation(attrName="模板内容",sort=7  , attrLength=5000    )
+        //@EntityAttrAnnotation(attrName="是否UI",sort=7  , attrLength=1    )
+        private String isUi;
+
+
+
+
+
+        //@EntityAttrAnnotation(attrName="模板内容",sort=8  , attrLength=5000    )
         private String templetContent;
-
-
-
-
-
-
-
 
 
 
@@ -164,6 +163,20 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
         */
         public void setTempletTitle(String templetTitle) {
         this.templetTitle = templetTitle;
+        }
+        /**
+        * 是否UI
+        * @return the isUi
+        */
+        public String getIsUi() {
+        return isUi;
+        }
+
+        /**
+        * 是否UI
+        */
+        public void setIsUi(String isUi) {
+        this.isUi = isUi;
         }
         /**
         * 模板内容

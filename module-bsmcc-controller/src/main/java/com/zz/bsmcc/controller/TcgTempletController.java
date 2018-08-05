@@ -50,17 +50,25 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 		map.put("name","java");
 		map.put("value","java");
 		fileTypes.add(map);
+
 		map = new HashMap<String,String>();
 		map.put("name","js");
 		map.put("value","js");
 		fileTypes.add(map);
+
 		map = new HashMap<String,String>();
 		map.put("name","jsp");
 		map.put("value","jsp");
 		fileTypes.add(map);
+
 		map = new HashMap<String,String>();
 		map.put("name","vue");
 		map.put("value","vue");
+		fileTypes.add(map);
+
+		map = new HashMap<String,String>();
+		map.put("name","sql");
+		map.put("value","sql");
 		fileTypes.add(map);
 
 		TcgTempletGroupQuery groupQuery = new TcgTempletGroupQueryImpl();

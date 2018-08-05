@@ -48,11 +48,11 @@ public class TableLogic {
         tcgTableConfigBO.setProjectName(project.getProjectName());
         tcgTableConfigBO.setQueryMode(project.getQueryMode());
 
-        tcgTableConfigBO.setIsBuildController(EnumYesNo.YES.getCode());
+        tcgTableConfigBO.setIsBuildUi(EnumYesNo.YES.getCode());
         if(table.isTable() && project.getPageUseView().equals(EnumYesNo.YES.getCode())){
-            tcgTableConfigBO.setIsBuildController(EnumYesNo.NO.getCode());
+            tcgTableConfigBO.setIsBuildUi(EnumYesNo.NO.getCode());
         }
-        tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildController());
+        tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildUi());
         tcgTableConfigBO.setJavaName(StringUtil.firstUpperCase(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName())));
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
 

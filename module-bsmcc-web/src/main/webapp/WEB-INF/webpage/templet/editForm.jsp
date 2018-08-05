@@ -93,6 +93,18 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否UI：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="isUi" name="isUi"  class="form-control">
+                                        <option value="1" <c:if test="${entity.isUi ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                        <option value="0" <c:if test="${entity.isUi ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">生成文件的后缀：</label>
                                 <div class="col-sm-8">

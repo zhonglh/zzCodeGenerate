@@ -38,7 +38,14 @@ public class ${table.javaName}Entity extends ${table.parentClass}<String> implem
 <#list columns as being>
 <#if !being.isInParentClass>
 
+	public void ${being.setMethodName}(${being.javaSimpleClass} ${being.javaName}){
+		this.${being.javaName} = ${being.javaName};
+	}
 
+
+    public void ${being.getMethodName}(){
+    	return this.${being.javaName};
+    }
 
 
  </#if>
