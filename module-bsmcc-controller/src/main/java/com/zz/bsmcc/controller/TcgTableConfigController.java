@@ -296,6 +296,17 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     }
 
 
+    @RequestMapping(
+            value = {"/{id}/deleteAll"},
+            method = {RequestMethod.POST, RequestMethod.DELETE}
+    )
+    @ResponseBody
+    public Object deleteAll(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
+        tableBusinessService.deleteTable(id);
+        return AjaxJson.successAjax;
+    }
+
+
 
 
 	/**

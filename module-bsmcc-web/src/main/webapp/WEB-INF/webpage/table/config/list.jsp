@@ -66,7 +66,7 @@
 								<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
 							</button>								
 							
-							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='${ctx}/table/config/{id}/delete' onClick="ajaxConfirm('tableForm',this);">
+							<button id="b3" type="button" msg="删除无用数据"  class="btn btn-outline btn-default" confirm_message='你确定要删除选择的项目吗?' url='${ctx}/table/config/{id}/deleteAll' onClick="ajaxConfirm('tableForm',this);">
 								<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 							</button>
 
