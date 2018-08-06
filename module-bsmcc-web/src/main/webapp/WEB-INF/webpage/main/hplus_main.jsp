@@ -50,11 +50,11 @@
                     <div class="dropdown profile-element">
                         <span><img alt="image" class="img-circle" src="${ctx}/statics/plug-in/login/images/fbl.png" /></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                               <span class="clear">
-                              <span class="block m-t-xs"><strong class="font-bold">欢迎${user.userName }</strong></span>
-                               </span>
+                                <span class="clear">
+                                <span class="block m-t-xs"><strong class="font-bold">欢迎${user.userName }</strong></span>
+                                </span>
                         </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <%--<ul class="dropdown-menu animated fadeInRight m-t-xs">
 
                             <li>
                                 <a href="javascript:add('<t:mutiLang langKey="common.change.password"/>','userController.do?changepassword','',550,200)">
@@ -65,11 +65,10 @@
                             <li><a href="javascript:openwindow('<t:mutiLang langKey="common.ssms.getSysInfos"/>','tSSmsController.do?getSysInfos')"><t:mutiLang langKey="common.ssms.getSysInfos"/></a></li>
                             <li><a href="javascript:add('<t:mutiLang langKey="common.change.style"/>','userController.do?changestyle','',550,250)"><t:mutiLang langKey="common.my.style"/></a></li>
                             <li><a href="javascript:clearLocalstorage()"><t:mutiLang langKey="common.clear.localstorage"/></a></li>
-                            <li><a href="http://yun.jeecg.org" target="_blank">云应用中心</li>
                             <li class="divider"></li>
                             <li><a href="javascript:logout()">注销</a></li>
 
-                        </ul>
+                        </ul>--%>
                     </div>
                     <div class="logo-element">福布罗</div>
                 </li>
@@ -115,6 +114,11 @@
 
                 <li>
                     <a class="J_menuItem" href="${ctx}/table/config/toList" data-index="40"><i class="fa fa-edit"></i> <span class="nav-label">表格设置</span></a>
+                </li>
+
+
+                <li>
+                    <a class="J_menuItem" href="${ctx}/code/build/log/toList" data-index="90"><i class="fa fa-edit"></i> <span class="nav-label">生成代码</span></a>
                 </li>
 
                 
@@ -225,7 +229,7 @@
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"  frameborder="0" data-id="homes" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right"><a href="http://www.fullbloom.cn/" target="_blank">福布罗</a>
+            <div class="pull-right">AAA
             </div>
         </div>
     </div>
