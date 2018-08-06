@@ -91,13 +91,10 @@ public class TableLogic {
         columnBO.setColumnIskey("id".equals(column.getColumnName()) ? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
 
         columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
-
-
         if(!fieldNames.contains(columnBO.getJavaName())) {
             if (columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode())) {
-                if (columnBO.getColumnLength() != null &&
-                        (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
-                        ) {
+                boolean isFk = isFk(columnBO);
+                if(isFk) {
                     columnBO.setColumnIsfk(EnumYesNo.YES.getCode());
                 }
             }
@@ -108,8 +105,8 @@ public class TableLogic {
 
         if(!fieldNames.contains(columnBO.getJavaName())) {
             if (columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode()) || columnBO.getColumnIsfk().equals(EnumYesNo.NO.getCode())) {
-                //固定长度并且2位值的认为是 字典或者枚举
-                if (column.isFixedChar() && column.getCharmaxLength() <= 2) {
+                boolean isDict = isDict(columnBO , column);
+                if(isDict) {
                     columnBO.setColumnIsdict(EnumYesNo.YES.getCode());
                 }
             }
@@ -126,6 +123,7 @@ public class TableLogic {
         columnBO.setId(IdUtils.getId());
 
     }
+
 
     public static void processJavaType(TcgColumnConfigBO columnBO, Map<String, String> typeMap) {
         String javaType = typeMap.get(columnBO.getColumnType());
@@ -316,5 +314,27 @@ public class TableLogic {
             tableBO.setParentFieldName(column.getColumnName());
         }
     }
-    
+
+
+
+
+    private static boolean isFk(TcgColumnConfigBO columnBO) {
+        if (columnBO.getColumnLength() != null &&
+                (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
+                ) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private static boolean isDict(TcgColumnConfigBO columnBO , Column column){
+        //固定长度并且2位值的认为是 字典或者枚举
+        if (column.isFixedChar() && column.getCharmaxLength() <= 2) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
