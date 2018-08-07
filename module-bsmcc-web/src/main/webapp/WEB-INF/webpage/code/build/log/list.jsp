@@ -107,7 +107,7 @@
             title: '项目',
             width:120
         },{
-            field: 'templetGroupBane',
+            field: 'templetGroupName',
             title: '模板组',
             width:200
         }, {

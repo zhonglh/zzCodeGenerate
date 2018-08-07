@@ -45,7 +45,7 @@
     <div class="animated">
        
                     <div class="ibox-content">
-                        <form class="form-horizontal m-t" onSubmit="javaScript:return false;" id="signupForm" >
+                        <form class="form-horizontal m-t" onSubmit="javaScript:return false;" id="signupForm" action="${ctx}/code/build/log/cg">
                         
                         	<input type="hidden" id="id" name="id" value="${entity.id }"/>
 
@@ -74,9 +74,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">模板组：</label>
                                 <div class="col-sm-8">
-                                    <select id="groupId" name="groupId"  class="form-control">
+                                    <select id="templetGroupId" name="templetGroupId"  class="form-control">
                                         <c:forEach items="${groups}" var="group">
-                                            <option value="${group.id}" <c:if test="${entity.groupId ==  group.id }">selected="selected"</c:if> >${group.groupName}</option>
+                                            <option value="${group.id}" <c:if test="${entity.templetGroupId ==  group.id }">selected="selected"</c:if> >${group.groupName}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -130,8 +130,8 @@
 		
 		if( !$('form').valid() ) return false;
 
-		var actionurl= window.location.href;
-            //$('form').attr('action');
+		//var actionurl = window.location.href;
+        var actionurl = $('form').attr('action');
 		   
 		var formData = $('form').serializeArray();
 		
@@ -140,7 +140,7 @@
 		if(ajax.success){	
 			
 			topShwoMessage("info",ajax.msg);
-			top.iframe10.window.refreshTable();
+			top.iframe90.window.refreshTable();
 			window.setTimeout(function(){top.layer.closeAll();},2000);
 			
 		}else {

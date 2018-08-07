@@ -418,16 +418,21 @@ public class CgBusiness {
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
-                columnConfigBO.setFkColumnName("id");
-                columnConfigBO.setFkJavaFullClass("id");
-                columnConfigBO.setFkJavaFullClass(String.class.getName());
-                columnConfigBO.setFkJavaSimpleClass(String.class.getSimpleName());
-                TcgTableConfigBO fkTableConfig = tableConfigMap.get(columnConfigBO.getFkSchema()+"."+columnConfigBO.getFkName());
-                if(fkTableConfig == null){
-                    throw new BizException("列的外键Schema ， 外键表名 设置错误 : " +
-                            tableConfig.getTableComment() + "    "+ columnConfigBO.getColumnComment());
+                if(EnumYesNo.YES.getCode().equals(columnConfigBO.getColumnIsfk())) {
+                    columnConfigBO.setFkColumnName("id");
+                    columnConfigBO.setFkJavaFullClass("id");
+                    columnConfigBO.setFkJavaFullClass(String.class.getName());
+                    columnConfigBO.setFkJavaSimpleClass(String.class.getSimpleName());
+                    TcgTableConfigBO fkTableConfig = tableConfigMap.get(columnConfigBO.getFkSchema() + "." + columnConfigBO.getFkName());
+                    if (fkTableConfig == null) {
+                        throw new BizException("列的外键Schema ， 外键表名 设置错误 : " +
+                                tableConfig.getTableComment() + "    " + columnConfigBO.getColumnComment());
+                    }
+                    columnConfigBO.setFkTableConfig(fkTableConfig);
                 }
-                columnConfigBO.setFkTableConfig(fkTableConfig);
+
+
+
                 if(parentFieldNames.contains(columnConfigBO.getJavaName())){
                     columnConfigBO.setInParentClass(true);
                 }else if("id".equals(columnConfigBO.getJavaName())){
@@ -476,6 +481,9 @@ public class CgBusiness {
                     setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
                     getMethodName = "get"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
                 }
+
+                columnConfigBO.setSetMethodName(setMethodName);
+                columnConfigBO.setGetMethodName(getMethodName);
 
                 columnMap.put(columnConfigBO.getId() , columnConfigBO);
                 columnMap.put(columnConfigBO.getColumnName() , columnConfigBO);

@@ -5,10 +5,17 @@ import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bsmcc.base.bo.TcgCodeBuildLogBO;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
+import com.zz.bsmcc.base.bo.TcgTempletGroupBO;
+import com.zz.bsmcc.base.query.TcgProjectQuery;
+import com.zz.bsmcc.base.query.TcgTempletGroupOperationQuery;
+import com.zz.bsmcc.base.query.TcgTempletGroupQuery;
 import com.zz.bsmcc.base.query.TcgTempletQuery;
 import com.zz.bsmcc.base.query.impl.TcgCodeBuildLogQueryWebImpl;
+import com.zz.bsmcc.base.query.impl.TcgProjectQueryImpl;
+import com.zz.bsmcc.base.query.impl.TcgTempletGroupQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.TcgProjectService;
+import com.zz.bsmcc.base.service.TcgTempletGroupService;
 import com.zz.bsmcc.base.service.TcgTempletService;
 import com.zz.bsmcc.business.CgBusiness;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +43,9 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 	private TcgProjectService projectService;
 
 	@Autowired
+	private TcgTempletGroupService templetGroupService;
+
+	@Autowired
 	private TcgTempletService templetService;
 
 	@Autowired
@@ -47,11 +57,20 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 		return false;
 	}
 
+	@Override
+	protected void setCommonData(TcgCodeBuildLogBO tcgCodeBuildLogBO, ModelMap model) {
+		TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
+		List<TcgProjectBO> projects = projectService.selectList(projectQuery.buildWrapper());
 
-	@RequestMapping(
-			value = {"/cg"},
-			method = {RequestMethod.POST}
-	)
+		TcgTempletGroupQuery templetGroupQuery = new TcgTempletGroupQueryImpl();
+		List<TcgTempletGroupBO> groups = templetGroupService.selectList(templetGroupQuery.buildWrapper());
+
+		model.put("projects" , projects );
+		model.put("groups" , groups );
+	}
+
+
+	@RequestMapping(value = "/cg", method = RequestMethod.POST)
 	@ResponseBody
 	public Object cg(TcgCodeBuildLogBO m, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -65,7 +84,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 			throw new BizException("项目信息已经不存在了");
 		}
 
-		if( templets == null || !templets.isEmpty()){
+		if( templets == null || templets.isEmpty()){
 			throw new BizException("请先在该模板组添加模板");
 		}
 
