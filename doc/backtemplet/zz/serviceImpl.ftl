@@ -6,7 +6,7 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import ${table.fullPackageName}.dao.${table.javaName}DAO;
-<#if table.isTable == '1'>
+<#if table.isTable == '0'>
 import ${table.fullPackageName}.dao.${table.mainTableIdConfig.javaName}DAO;
 </#if>
 import ${table.fullPackageName}.service.${table.javaName}Service;
@@ -69,14 +69,11 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 	</#if>
 
-
-
-
-
+	<#if exColumnMap?exists >
 	@Override
 	public ${table.javaName}BO processResult(${table.javaName}BO ${table.javaName?uncap_first}BO) {
 
-		<#list exColumnMap?key as key>
+		<#list exColumnMap?keys as key>
 			<#assign fkTable = exColumnMap[key][0].originalColumn.fkTableConfig >
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
 				${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = ${exColumnMap[key][0].originalColumn.fkTableConfig.javaName}DAO.selectById(tcgExColumnBO.getOriginalColumnId());
@@ -88,11 +85,12 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 			<#else>
 				//todo 处理字典信息
 			</#if>
-
 		</#list>
 
-	}
+		return ${table.javaName?uncap_first}BO;
 
+	}
+	</#if>
 
 
 }

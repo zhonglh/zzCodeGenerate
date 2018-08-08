@@ -52,7 +52,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private TcgTableConfigBO mainTableIdConfig;
 
     /**
-     * 资源全称 , 模块的资源 + 本身的资源
+     * 资源全称 ,  本身的资源
      */
     @TableField(exist = false)
     private String fullResourceName;

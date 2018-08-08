@@ -343,6 +343,8 @@ public class CgBusiness {
 
                 model.put("templet" , templet) ;
 
+                System.out.println("Templet : "+templet.getTempletTitle());
+
                 String result = FreemarkerUtils.renderString(templet.getTempletContent() , model);
 
                 if(result != null && !result.isEmpty()){
@@ -575,7 +577,8 @@ public class CgBusiness {
                 fullPackageName = fullResourceName.replaceAll("/" , ".");
             }
         }
-        fullResourceName = fullResourceName + "/" + tableConfig.getResourceName();
+        //fullResourceName = fullResourceName + "/" + tableConfig.getResourceName();
+        fullResourceName = (tableConfig.getResourceName().startsWith("/")? "" : "/") + tableConfig.getResourceName();
         tableConfig.setFullResourceName(fullResourceName);
 
         fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".")?"":".") + fullPackageName;
