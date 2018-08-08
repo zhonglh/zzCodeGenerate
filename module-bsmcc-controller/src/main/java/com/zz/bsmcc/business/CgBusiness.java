@@ -4,11 +4,9 @@ package com.zz.bsmcc.business;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.util.base.data.MyBeanUtils;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.files.FreemarkerUtils;
-import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
@@ -19,7 +17,6 @@ import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.Applications;
 import com.zz.bsmcc.core.util.CgBeanUtil;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,6 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -154,6 +150,7 @@ public class CgBusiness {
 
 
             //处理扩展列的信息
+            Map<String,List<TcgExColumnBO>> exMap = null;
             Map<String , TcgExColumnBO> exColumnMap = new HashMap<String , TcgExColumnBO>();
             List<TcgExColumnBO> exColumns = tcgExColumnService.selectByMap(searchMap);
             if(exColumns != null && !exColumns.isEmpty()) {
@@ -165,6 +162,8 @@ public class CgBusiness {
                 });
                 //处理扩展列的信息
                 processExColumn(tableConfig ,exColumns , columns , exColumnMap);
+                exMap = processExColumnMap(exColumns);
+
             }
 
             //处理列界面信息
@@ -283,6 +282,7 @@ public class CgBusiness {
             tablePO.setTableBO(tableConfig);
             tablePO.setColumns(columns);
             tablePO.setExColumns(exColumns);
+            tablePO.setExColumnMap(exMap);
             tablePO.setColumnPages(columnPages);
             tablePO.setColumnValidates(validates);
             tablePO.setColumnEvents(events);
@@ -297,6 +297,7 @@ public class CgBusiness {
         }
 
     }
+
 
     /**
      * 生成代码
@@ -322,7 +323,7 @@ public class CgBusiness {
             String filePath = null;
             if("java".equalsIgnoreCase(templet.getFileType())){
                 filePath = basePath + File.separator + templet.getFileOutDir() + File.separator +
-                        tablePO.getTableBO().getFullPackageName().replaceAll("\\.",File.separator) +
+                        tablePO.getTableBO().getFullPackageName().replaceAll("\\.","/") +
                         File.separator +templet.getFileInnerDir();
             }else if(EnumYesNo.YES.getCode().equals(templet.getIsUi())){
                 filePath = basePath + File.separator + templet.getFileOutDir() + File.separator +
@@ -334,7 +335,7 @@ public class CgBusiness {
 
             String fileName = tablePO.getTableBO().getJavaName() +
                     (templet.getFileSuffix().isEmpty()?"":templet.getFileSuffix()) +
-                    templet.getFileType();
+                    "."+templet.getFileType();
 
             try {
 
@@ -354,7 +355,7 @@ public class CgBusiness {
                     IOUtils.write(result , output , "UTF-8");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new BizException(e);
 
             }
 
@@ -377,6 +378,7 @@ public class CgBusiness {
         freemarkerModel.put("table" , tablePO.getTableBO());
         freemarkerModel.put("columns" , tablePO.getColumns());
         freemarkerModel.put("exColumns" , tablePO.getExColumns());
+        freemarkerModel.put("exColumnMap" , tablePO.getExColumnMap());
         freemarkerModel.put("columnPages" , tablePO.getColumnPages());
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
@@ -402,8 +404,34 @@ public class CgBusiness {
                                  List<TcgColumnConfigBO> tcgColumnConfigBOs , Map<String , TcgExColumnBO> exColumnMap) {
         for(TcgExColumnBO exColumn : exColumns){
             exColumn.setFkJavaName(StringFormatKit.toCamelCase(exColumn.getFkColumnName()));
+            if(StringUtils.isNotEmpty(exColumn.getOriginalColumnId() )){
+                for(TcgColumnConfigBO columnBO : tcgColumnConfigBOs){
+                    if(columnBO.getId().equals(exColumn.getOriginalColumnId())){
+                        exColumn.setOriginalColumn(columnBO);
+                    }
+                }
+            }
             exColumnMap.put(exColumn.getId() , exColumn );
         }
+    }
+
+
+    private Map<String,List<TcgExColumnBO>> processExColumnMap(List<TcgExColumnBO> exColumns) {
+        Map<String,List<TcgExColumnBO>> map = new HashMap<String,List<TcgExColumnBO>>();
+        for(TcgExColumnBO exColumn : exColumns){
+            String key = exColumn.getOriginalColumnId();
+            if(key == null || key.isEmpty()){
+                continue;
+            }
+
+            List<TcgExColumnBO> list = map.get(key);
+            if(list == null){
+                list = new ArrayList<TcgExColumnBO>();
+                map.put(key , list);
+            }
+            list.add(exColumn);
+        }
+        return map;
     }
 
     /**
@@ -414,6 +442,8 @@ public class CgBusiness {
      */
     private void processColumnConfig(TcgTableConfigBO tableConfig, List<TcgColumnConfigBO> tcgColumnConfigBOs,
                                      Map<String, TcgTableConfigBO> tableConfigMap , Map<String , TcgColumnConfigBO> columnMap) {
+
+        Set<TcgTableConfigBO> fkTables = new HashSet<TcgTableConfigBO>();
 
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
@@ -429,6 +459,7 @@ public class CgBusiness {
                                 tableConfig.getTableComment() + "    " + columnConfigBO.getColumnComment());
                     }
                     columnConfigBO.setFkTableConfig(fkTableConfig);
+                    fkTables.add(fkTableConfig);
                 }
 
 
@@ -490,6 +521,8 @@ public class CgBusiness {
             }
         }
 
+        tableConfig.setFkTables(new ArrayList<>(fkTables));
+
     }
 
     /**
@@ -545,7 +578,7 @@ public class CgBusiness {
         fullResourceName = fullResourceName + "/" + tableConfig.getResourceName();
         tableConfig.setFullResourceName(fullResourceName);
 
-        fullPackageName = projectBO.getProjectPackage() + "." + fullPackageName;
+        fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".")?"":".") + fullPackageName;
         tableConfig.setFullPackageName(fullPackageName);
     }
 
@@ -576,7 +609,7 @@ public class CgBusiness {
         }else {
             tableConfig.setParentClass( BaseEntity.class.getName() );
         }
-        tableConfig.setImportClsss(new ArrayList<String>(imports));
+        tableConfig.setImportClasss(new ArrayList<String>(imports));
     }
 
 

@@ -21,11 +21,24 @@ public class TcgTempletBO extends TcgTempletEntity implements Serializable {
     @TableField(exist = false)
     private String groupName;
 
+
+
+    @TableField(exist = false)
+    private String fileInnerPackage;
+
     public String getGroupName() {
         return groupName;
     }
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public String getFileInnerPackage() {
+        return fileInnerPackage;
+    }
+
+    public void setFileInnerPackage(String fileInnerPackage) {
+        this.fileInnerPackage = fileInnerPackage;
     }
 }

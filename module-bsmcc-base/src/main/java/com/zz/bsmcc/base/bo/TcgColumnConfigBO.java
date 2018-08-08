@@ -34,7 +34,7 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     @TableField(exist = false)
     private String fkJavaFullClass;
     @TableField(exist = false)
-    private boolean isInParentClass;
+    private boolean inParentClass;
 
     @TableField(exist = false)
     private String setMethodName;
@@ -91,14 +91,6 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
         this.fkJavaFullClass = fkJavaFullClass;
     }
 
-    public boolean isInParentClass() {
-        return isInParentClass;
-    }
-
-    public void setInParentClass(boolean inParentClass) {
-        isInParentClass = inParentClass;
-    }
-
 
     public String getSetMethodName() {
         return setMethodName;
@@ -114,5 +106,13 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     public void setGetMethodName(String getMethodName) {
         this.getMethodName = getMethodName;
+    }
+
+    public boolean isInParentClass() {
+        return inParentClass;
+    }
+
+    public void setInParentClass(boolean inParentClass) {
+        this.inParentClass = inParentClass;
     }
 }

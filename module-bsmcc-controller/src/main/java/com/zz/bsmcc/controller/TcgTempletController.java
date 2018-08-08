@@ -71,6 +71,18 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 		map.put("value","sql");
 		fileTypes.add(map);
 
+
+		map = new HashMap<String,String>();
+		map.put("name","xml");
+		map.put("value","xml");
+		fileTypes.add(map);
+
+
+		map = new HashMap<String,String>();
+		map.put("name","properties");
+		map.put("value","properties");
+		fileTypes.add(map);
+
 		TcgTempletGroupQuery groupQuery = new TcgTempletGroupQueryImpl();
 		List<TcgTempletGroupBO> groups = tcgTempletGroupService.selectList(groupQuery.buildWrapper());
 

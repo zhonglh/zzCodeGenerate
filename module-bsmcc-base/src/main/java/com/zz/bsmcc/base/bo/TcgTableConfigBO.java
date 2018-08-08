@@ -8,7 +8,6 @@ import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -49,6 +48,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
     @TableField(exist = false)
+    //用于视图对应的主表信息
     private TcgTableConfigBO mainTableIdConfig;
 
     /**
@@ -75,7 +75,17 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      * 在实体类中汇总要import的类
      */
     @TableField(exist = false)
-    private List<String> importClsss;
+    private List<String> importClasss;
+
+    /**
+     * 所有外键对应的表信息
+     */
+    @TableField(exist = false)
+    private List<TcgTableConfigBO> fkTables;
+
+
+    @TableField(exist = false)
+    private List<String> dictTypes;
 
 
     public String getDbConfigTitle() {
@@ -142,12 +152,12 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.parentClass = parentClass;
     }
 
-    public List<String> getImportClsss() {
-        return importClsss;
+    public List<String> getImportClasss() {
+        return importClasss;
     }
 
-    public void setImportClsss(List<String> importClsss) {
-        this.importClsss = importClsss;
+    public void setImportClasss(List<String> importClasss) {
+        this.importClasss = importClasss;
     }
 
     public String getFullResourceName() {
@@ -172,5 +182,21 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setMainTableIdConfig(TcgTableConfigBO mainTableIdConfig) {
         this.mainTableIdConfig = mainTableIdConfig;
+    }
+
+    public List<TcgTableConfigBO> getFkTables() {
+        return fkTables;
+    }
+
+    public void setFkTables(List<TcgTableConfigBO> fkTables) {
+        this.fkTables = fkTables;
+    }
+
+    public List<String> getDictTypes() {
+        return dictTypes;
+    }
+
+    public void setDictTypes(List<String> dictTypes) {
+        this.dictTypes = dictTypes;
     }
 }

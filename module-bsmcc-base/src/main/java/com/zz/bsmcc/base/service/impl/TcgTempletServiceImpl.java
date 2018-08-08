@@ -51,6 +51,14 @@ public class TcgTempletServiceImpl extends BaseServiceImpl<TcgTempletBO,String> 
 			}
 		}
 
+
+		if(StringUtils.isNotEmpty(tcgTempletBO.getFileInnerDir())){
+			String innerPackage = tcgTempletBO.getFileInnerDir();
+			innerPackage = innerPackage.replace("/",".");
+			innerPackage = innerPackage.replace("\\",".");
+			tcgTempletBO.setFileInnerPackage(innerPackage);
+		}
+
 		return tcgTempletBO;
 
 	}

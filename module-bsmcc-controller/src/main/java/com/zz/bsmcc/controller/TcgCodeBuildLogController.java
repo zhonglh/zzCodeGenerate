@@ -90,9 +90,8 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 
 		cgBusiness.cg(projectBO , templets);
 
-		return AjaxJson.successAjax;
 
-
+		return this.create(m,model, request,  response);
 
 	}
 

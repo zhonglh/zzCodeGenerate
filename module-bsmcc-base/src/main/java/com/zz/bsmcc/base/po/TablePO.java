@@ -4,6 +4,7 @@ import com.zz.bsmcc.base.bo.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 表格的所有元素
@@ -25,6 +26,10 @@ public class TablePO implements Serializable{
     private List<TcgTableOperationBO> tableOperations;
     //用于界面选择按钮
     private List<TcgTempletGroupOperationBO> templetGroupOperations;
+
+
+
+    private Map<String,List<TcgExColumnBO>> exColumnMap;
 
 
 
@@ -107,5 +112,13 @@ public class TablePO implements Serializable{
 
     public void setTempletGroupOperations(List<TcgTempletGroupOperationBO> templetGroupOperations) {
         this.templetGroupOperations = templetGroupOperations;
+    }
+
+    public Map<String, List<TcgExColumnBO>> getExColumnMap() {
+        return exColumnMap;
+    }
+
+    public void setExColumnMap(Map<String, List<TcgExColumnBO>> exColumnMap) {
+        this.exColumnMap = exColumnMap;
     }
 }

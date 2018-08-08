@@ -15,12 +15,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="module-bsmcc-base" target="1.7" />
-      <module name="module-bsmcc-controller" target="1.7" />
-      <module name="module-bsmcc-core" target="1.7" />
-      <module name="module-bsmcc-web" target="1.7" />
-      <module name="module-cg" target="1.7" />
-      <module name="zzCodeGenerate" target="1.7" />
+      <module name="module-bsmcc-base" target="1.8" />
+      <module name="module-bsmcc-controller" target="1.8" />
+      <module name="module-bsmcc-core" target="1.8" />
+      <module name="module-bsmcc-web" target="1.8" />
+      <module name="module-cg" target="1.8" />
+      <module name="zzCodeGenerate" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -56,6 +56,10 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     @TableField(exist = false)
     private String fkJavaName;
 
+    //对应的原始列
+    @TableField(exist = false)
+    private TcgColumnConfigBO  originalColumn;
+
 
     public String getOriginalColumnName() {
         return originalColumnName;
@@ -127,5 +131,13 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
     public void setFkJavaName(String fkJavaName) {
         this.fkJavaName = fkJavaName;
+    }
+
+    public TcgColumnConfigBO getOriginalColumn() {
+        return originalColumn;
+    }
+
+    public void setOriginalColumn(TcgColumnConfigBO originalColumn) {
+        this.originalColumn = originalColumn;
     }
 }

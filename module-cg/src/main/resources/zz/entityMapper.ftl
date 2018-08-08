@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bsmcc.base.dao.${table.shortTableName?cap_first}DAO">
  	<!-- 映射配置 -->
-	<resultMap id="${table.shortTableName?cap_first}ResultMap" type="com.zz.bsmcc.base.bo.${table.shortTableName?cap_first}BO" >
+	<resultMap id="${table.shortTableName?cap_first}ResultMap"a type="com.zz.bsmcc.base.bo.${table.shortTableName?cap_first}BO" >
 		<#list table.columnList as being>
          	<#if being.isEnum>
          	<result column="${being.columnName}" property="${being.shortColumnName}" typeHandler=${"\"" + being.packageStr + ".handler."}<#if being.shortColumnName=="state">YesOrNoHandler"<#else>${being.enumClassName}Handler"</#if>/>

@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">生成文件内文件夹：</label>
                                 <div class="col-sm-8">
-                                    <input id="fileInnerDir" name="fileInnerDir" value="${entity.fileInnerDir }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <input id="fileInnerDir" name="fileInnerDir" value="${entity.fileInnerDir }" class="form-control" type="text" aria-invalid="true" class="error">
                                 </div>
                             </div>
 
@@ -108,7 +108,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">生成文件的后缀：</label>
                                 <div class="col-sm-8">
-                                    <input id="fileSuffix" name="fileSuffix" value="${entity.fileSuffix }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <input id="fileSuffix" name="fileSuffix" value="${entity.fileSuffix }" class="form-control" type="text"  aria-invalid="true"  class="error">
                                 </div>
                             </div>
 
