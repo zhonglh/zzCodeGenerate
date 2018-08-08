@@ -7,49 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/bo.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/dao.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/mapper.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/query.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/queryAbstractImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/queryImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/queryWebImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/service.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/dao.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/mapper.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/query.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/queryAbstractImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/queryImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/queryWebImpl.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/service.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/serviceImpl.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/module-bsmcc-base.iml" afterPath="$PROJECT_DIR$/module-bsmcc-base/module-bsmcc-base.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgTempletServiceImpl.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgTempletServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/module-bsmcc-controller.iml" afterPath="$PROJECT_DIR$/module-bsmcc-controller/module-bsmcc-controller.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgCodeBuildLogController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgCodeBuildLogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/module-bsmcc-core.iml" afterPath="$PROJECT_DIR$/module-bsmcc-core/module-bsmcc-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/module-bsmcc-web.iml" afterPath="$PROJECT_DIR$/module-bsmcc-web/module-bsmcc-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-cg/module-cg.iml" afterPath="$PROJECT_DIR$/module-cg/module-cg.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-cg/src/main/resources/zz/entityMapper.ftl" afterPath="$PROJECT_DIR$/module-cg/src/main/resources/zz/entityMapper.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-cg/src/main/resources/zz/query.ftl" afterPath="$PROJECT_DIR$/module-cg/src/main/resources/zz/query.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zzCodeGenerate.iml" afterPath="$PROJECT_DIR$/zzCodeGenerate.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/module-bsmcc-web/target/" />
@@ -286,76 +244,6 @@
             <path>
               <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
               <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
-              <item name="fund" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bsmcc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-cg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="zz" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -667,14 +555,7 @@
       <workItem from="1533563138507" duration="4028000" />
       <workItem from="1533602018311" duration="18082000" />
       <workItem from="1533642703863" duration="7872000" />
-      <workItem from="1533692353173" duration="19578000" />
-    </task>
-    <task id="LOCAL-00015" summary="project init">
-      <created>1532797996452</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1532797996453</updated>
+      <workItem from="1533692353173" duration="19655000" />
     </task>
     <task id="LOCAL-00016" summary="project init">
       <created>1532871167971</created>
@@ -1012,7 +893,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533616871065</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="处理表格数据">
+      <created>1533722491185</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1533722491189</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1024,7 +912,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="361706000" />
+    <option name="totallyTimeSpent" value="361783000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
