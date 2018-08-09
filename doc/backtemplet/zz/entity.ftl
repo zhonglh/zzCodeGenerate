@@ -9,7 +9,9 @@ import ${table.parentClass};
 <#list table.importClasss as importClass>
 import ${importClass};
 </#list>
-
+<#if table.isTable == '0'>
+import ${table.fullPackageName}.domain.${table.mainTableIdConfig.javaName}Entity;
+</#if>
 /**
  * ${table.tableComment} 实体类
 <#if table.tableOtherComment ? exists>
@@ -18,7 +20,7 @@ import ${importClass};
  * @author ${project.projectAuthor}
  * @date ${.now}
  */
-public class ${table.javaName}Entity extends ${table.parentClass}<String> implements java.io.Serializable{
+public class ${table.javaName}Entity extends <#if table.isTable == '0'>${table.mainTableIdConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;

@@ -58,7 +58,12 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 		if(StringUtils.isNotEmpty(tcgModuleConfigBO.getId())) {
 			query.idNot(tcgModuleConfigBO.getId());
 		}
-		List<TcgModuleConfigBO> modules =  this.baseService.selectList(query.buildWrapper());
+		if(projects != null && !projects.isEmpty()) {
+			query.projectId(projects.get(0).getId());
+		}
+		Wrapper wrapper = query.buildWrapper() ;
+		wrapper.orderBy("create_time" , false);
+		List<TcgModuleConfigBO> modules =  this.baseService.selectList(wrapper);
 		model.put("modules" , modules);
 
 	}

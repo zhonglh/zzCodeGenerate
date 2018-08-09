@@ -14,7 +14,8 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
     protected String getReadAllTableSQL() {
         String sql =  "select table_name , table_schema , table_type , table_comment " +
                 "from information_schema.tables " +
-                "where table_schema not in ('information_schema','test' )";
+                "where table_schema not in ('information_schema','test' ) " +
+                "order by table_schema , table_name";
         System.out.println("getReadAllTableSQL : "+sql);
         return sql;
     }

@@ -85,6 +85,7 @@ public class CgBusiness {
      * @param templets
      */
     public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets ) {
+        Map<String,TablePO> tablePOMap = new HashMap<String,TablePO>();
 
         Map<String , TcgTempletGroupOperationBO> operationBOMap = getOperations(templets.get(0).getGroupId());
 
@@ -274,6 +275,11 @@ public class CgBusiness {
                     throw new BizException("视图没有设置主要的表 : " + tableConfig.getTableComment());
                 }
                 tableConfig.setMainTableIdConfig(mainTableConfig);
+                tableConfig.setTableOtherComment(mainTableConfig.getTableOtherComment());
+                tableConfig.setTableComment(mainTableConfig.getTableComment());
+                //视图的实体类是继承表的实体类， 需要重新设置列是否要在类中
+                processColumnConfig(tableConfig , columns , tablePOMap.get( mainTableConfig.getId()).getColumns());
+
             }
 
 
@@ -293,6 +299,8 @@ public class CgBusiness {
             tablePO.setTempletGroupOperations(operations);
 
             cgCode(tablePO , projectBO , templets);
+
+            tablePOMap.put(tableConfig.getId(),tablePO);
 
         }
 
@@ -526,6 +534,26 @@ public class CgBusiness {
         tableConfig.setFkTables(new ArrayList<>(fkTables));
 
     }
+
+    /**
+     * 处理视图中 的列
+     * @param tableConfig
+     * @param columns
+     * @param mainTableColumns
+     */
+    private void processColumnConfig(TcgTableConfigBO tableConfig, List<TcgColumnConfigBO> columns, List<TcgColumnConfigBO> mainTableColumns) {
+        Set<String> mainTableCoumnSet = new HashSet<String>();
+        for(TcgColumnConfigBO mainTableColumn : mainTableColumns){
+            mainTableCoumnSet.add(mainTableColumn.getJavaName());
+        }
+
+        for(TcgColumnConfigBO column : columns){
+            if(mainTableCoumnSet.contains(column.getJavaName())){
+                column.setInParentClass(true);
+            }
+        }
+    }
+
 
     /**
      * 处理列的界面

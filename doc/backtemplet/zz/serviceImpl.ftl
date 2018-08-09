@@ -74,7 +74,7 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 	public ${table.javaName}BO processResult(${table.javaName}BO ${table.javaName?uncap_first}BO) {
 
 		<#list exColumnMap?keys as key>
-			<#assign fkTable = exColumnMap[key][0].originalColumn.fkTableConfig >
+			<#assign fkTable = "${exColumnMap[key][0].originalColumn.fkTableConfig}" >
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
 				${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = ${exColumnMap[key][0].originalColumn.fkTableConfig.javaName}DAO.selectById(tcgExColumnBO.getOriginalColumnId());
 				if(${fkTable.javaName?uncap_first}BO != null){
