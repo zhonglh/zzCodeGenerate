@@ -68,6 +68,19 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Java包名是否要包含模块：</label>
+                                <div class="col-sm-8">
+                                    <select id="packageIncludeModule" name="packageIncludeModule"  class="form-control">
+                                        <option value="0" <c:if test="${entity.packageIncludeModule ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                        <option value="1" <c:if test="${entity.packageIncludeModule ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                    </select>
+
+
+
+                                </div>
+                            </div>
+
 
 
                             <div class="form-group">

@@ -8,6 +8,7 @@
          	<result column="project_name" property="projectName"/>
          	<result column="project_remark" property="projectRemark"/>
          	<result column="project_package" property="projectPackage"/>
+			<result column="package_include_module" property="packageIncludeModule"/>
          	<result column="project_lead" property="projectLead"/>
          	<result column="project_author" property="projectAuthor"/>
          	<result column="project_note" property="projectNote"/>

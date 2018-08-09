@@ -571,12 +571,16 @@ public class CgBusiness {
     private void processTableResource(TcgProjectBO projectBO, Map<String, TcgModuleConfigBO> moduleConfigMap, TcgTableConfigBO tableConfig) {
         String fullResourceName = "";
         String fullPackageName = "";
-        if(StringUtils.isNotEmpty(tableConfig.getModuleId())) {
-            if (moduleConfigMap.containsKey(tableConfig.getModuleId())) {
-                fullResourceName = moduleConfigMap.get(tableConfig.getModuleId()).getModuleFullResource();
-                fullPackageName = fullResourceName.replaceAll("/" , ".");
+
+        if(EnumYesNo.YES.getCode().equals(projectBO.getPackageIncludeModule())) {
+            if (StringUtils.isNotEmpty(tableConfig.getModuleId())) {
+                if (moduleConfigMap.containsKey(tableConfig.getModuleId())) {
+                    //fullResourceName = moduleConfigMap.get(tableConfig.getModuleId()).getModuleFullResource();
+                    fullPackageName = fullResourceName.replaceAll("/", ".");
+                }
             }
         }
+
         //fullResourceName = fullResourceName + "/" + tableConfig.getResourceName();
         fullResourceName = (tableConfig.getResourceName().startsWith("/")? "" : "/") + tableConfig.getResourceName();
         tableConfig.setFullResourceName(fullResourceName);

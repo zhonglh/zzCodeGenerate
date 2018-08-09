@@ -42,6 +42,10 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
 
 
 
+        private String packageIncludeModule;
+
+
+
 
 
         //@EntityAttrAnnotation(attrName="项目经理",sort=4  , attrLength=50    )
@@ -124,7 +128,16 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
         public void setProjectPackage(String projectPackage) {
         this.projectPackage = projectPackage;
         }
-        /**
+
+        public String getPackageIncludeModule() {
+            return packageIncludeModule;
+        }
+
+        public void setPackageIncludeModule(String packageIncludeModule) {
+            this.packageIncludeModule = packageIncludeModule;
+        }
+
+    /**
         * 项目经理
         * @return the projectLead
         */

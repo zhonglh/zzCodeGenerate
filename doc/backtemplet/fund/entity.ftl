@@ -1,10 +1,8 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.Constant;
+import com.fullbloom.db.mybatis.entity.BaseBusinessEntity;
+import com.fullbloom.core.annotations.log.*;
 import ${table.parentClass};
 <#list table.importClasss as importClass>
 import ${importClass};
@@ -18,16 +16,16 @@ import ${importClass};
  * @author ${project.projectAuthor}
  * @date ${.now}
  */
-public class ${table.javaName}Entity extends ${table.parentClass}<String> implements java.io.Serializable{
+public class ${table.javaName} extends ${table.parentClass} implements java.io.Serializable{
 
-    @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
 <#list columns as being>
 <#if !being.inParentClass>
 	//${being.columnComment}
 	<#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>
-	private ${being.javaSimpleClass}  ${being.javaName} ;
+    @EntityAttrAnnotation(attrName="${being.columnComment}",sort=${being.columnSort}  , attrLength=${being.columnLength} <#if being.columnScale?exists && being.columnScale != "0" >  ,attr_decimals=${being.columnScale}</#if>   )
+    private ${being.javaSimpleClass}  ${being.javaName} ;
 
 </#if>
 </#list>

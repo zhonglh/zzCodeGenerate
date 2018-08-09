@@ -1,68 +1,249 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
-
-
-import ${table.fullPackageName}.bo.${table.javaName}BO;
-import  ${table.fullPackageName}.query.impl.${table.javaName}QueryWebImpl;
-
-import com.zz.bms.util.base.java.IdUtils;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.StringUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fullbloom.core.enums.EnumYesNo;
+import com.fullbloom.utils.data.DateKit;
+import com.fullbloom.core.vo.Pager;
+import com.fullbloom.core.vo.AjaxJson;
+import com.fullbloom.utils.java.IdUtils;
+
+import com.fullbloom.core.exceptions.DbException;
+
+import com.fullbloom.rbac.domain.TrUserBasicinfo;
+import ${project.projectPackage}.baseweb.controller.RestfulBaseController;
+import ${table.fullPackageName}.interfaces.${table.javaName}Service;
+import ${table.fullPackageName}.exceptions.${table.javaName}Exceptions;
+import ${table.fullPackageName}.domain.${table.javaName};
+
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ${table.tableComment} 控制层
-* @author ${project.projectAuthor}
-* @date ${.now}
+ *
+ * @author ${project.projectAuthor}
+ * @date ${.now}
  */
+@RestController
 @RequestMapping("${table.fullResourceName}")
-@Controller
-public class ${table.javaName}Controller extends MyBaseController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl> {
+public class ${table.javaName}Controller extends RestfulBaseController {
+
+	@Autowired
+	private ${table.javaName}Service ${table.javaName?uncap_first}Service;
+
+	/**
+	* 新增或者修改时，检验数据是否唯一
+	* @param request
+	* @param response
+	*/
+	@RequestMapping( value = "/checkUnique" ,method = RequestMethod.POST)
+	public Object checkUnique(HttpServletRequest request  , HttpServletResponse response )  {
+		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
+		${table.shortTableName?cap_first} temp = ${table.shortTableName}Service.findTopOne4Check(${table.shortTableName});
+		if(isEntityExist(temp)) {
+			return new AjaxJson(false,"数据重复！");
+		}else{
+			return AjaxJson.successAjax;
+		}
+	}
 
 
 
-	<#if (indexs?exists && indexs?size > 0) >
-	@Override
-	protected boolean isExist(${table.javaName}BO ${table.javaName?uncap_first}BO) {
+	@RequestMapping( value = "/checkAllUnique" ,method = RequestMethod.POST)
+	public Object checkAllUnique(HttpServletRequest request  , HttpServletResponse response )  {
+		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
+		boolean isExist =  this.isExist(${table.shortTableName});
+		if(isExist) {
+			return new AjaxJson(false,"数据重复！");
+		}else{
+			return AjaxJson.successAjax;
+		}
+	}
 
-		${table.javaName}BO ckBO ;
+
+
+	private boolean isExist(${table.shortTableName?cap_first} ${table.shortTableName})  {
+
+		${table.shortTableName?cap_first}  ckEntity = null;
 		boolean isExist = false;
-		${table.javaName}BO temp = null ;
 
-		<#list indexs as index>
-		ckBO = new ${table.javaName}BO();
-		ckBO.setId( ${table.javaName?uncap_first}BO.getId() );
-		<#list index.columns as col>
-        ckBO.${col.setMethodName}(${table.javaName?uncap_first}BO.${col.getMethodName}());
+
+		${table.shortTableName?cap_first}  temp = null;
+
+		<#list table.indexList as begin>
+		ckEntity = new ${table.shortTableName?cap_first} ();
+		<#list begin.javaNames as javaName>
+		ckEntity.set${javaName?cap_first}( ${table.shortTableName}.get${javaName?cap_first}() );
 		</#list>
-        temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+        ckEntity.setId( ${table.shortTableName}.getId() );
+        temp = ${table.shortTableName}Service.findTopOne4Check(ckEntity);
+        if(isEntityExist(temp)) {
+			return true;
+		}
+		</#list>
+
+
+
+		<#list table.constraintList as begin>
+		ckEntity = new ${table.shortTableName?cap_first} ();
+		<#list begin.javaNames as javaName>
+		ckEntity.set${javaName?cap_first}( ${table.shortTableName}.get${javaName?cap_first}() );
+		</#list>
+        ckEntity.setId( ${table.shortTableName}.getId() );
+		temp = ${table.shortTableName}Service.findTopOne4Check(ckEntity);
+		if(isEntityExist(temp)) {
+			return true;
+		}
 		</#list>
 
 		return isExist;
 	}
-	</#if>
 
 
-	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
-	@Override
-	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO bo ,ModelMap model) {
 
-		<#list table.dictTypes as dictType>
-			//todo ，处理字典 ${dictType}
-		</#list>
+
+	/**
+	 * 保存${table.tableComments}
+	 *
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/save",method = RequestMethod.POST)
+	public Object save(HttpServletRequest request, HttpServletResponse response ) {
+		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
+
+		if(isExist(${table.shortTableName}) ) {
+			throw DbException.DB_SAVE_SAME;
+		}
+
+		TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
+
+		AjaxJson ajaxJson = null;
+		String id = ${table.shortTableName}.getId();
+		if(StringUtils.isEmpty(id)){
+			//保存数据
+			${table.shortTableName}.setId(IdUtils.getId());
+			<#if table.isSlimple == "NO">
+			${table.shortTableName}.setVersionNo(0);
+			${table.shortTableName}.setCreateTime(DateKit.getCurrentDate());
+			${table.shortTableName}.setUpdateTime(DateKit.getCurrentDate());
+			${table.shortTableName}.setCreateUserId(loginUser.getId());
+			${table.shortTableName}.setUpdateUserId(loginUser.getId());
+			${table.shortTableName}.setDeleteFlag(EnumYesNo.NO.getCode());
+			</#if>
+			int size = ${table.shortTableName}Service.save(${table.shortTableName});
+ 			ajaxJson = new AjaxJson(true,"${table.tableComments}保存成功！");
+			if (size<=0){
+				throw ${table.shortTableName?cap_first}Exceptions.Save_Error;
+			}
+		}else{
+			//修改数据
+
+			<#if table.isSlimple == "NO">
+			${table.shortTableName?cap_first} temp = ${table.shortTableName}Service.findById(id);
+			${table.shortTableName}.setVersionNo(temp.getVersionNo());
+
+			${table.shortTableName}.setUpdateTime(DateKit.getCurrentDate());
+			${table.shortTableName}.setUpdateUserId(loginUser.getId());
+			</#if>
+
+			int size = ${table.shortTableName}Service.update(${table.shortTableName});
+			ajaxJson = new AjaxJson(true,"${table.tableComments}修改成功！");
+			if (size<=0){
+				throw ${table.shortTableName?cap_first}Exceptions.Update_Error;
+			}
+		}
+		return ajaxJson;
 	}
 
-	</#if>
+	/**
+	* 查询分页数据
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/list" ,method = RequestMethod.GET)
+	public Object list( HttpServletRequest request, HttpServletResponse response){
+
+		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
+
+		Pager pager = new Pager();
+		processPager(pager , ${table.shortTableName} , request);
+		pager = ${table.shortTableName}Service.findPageList(${table.shortTableName},pager);
+		return pager2Map(pager);
+	}
+
+
+	/**
+	* 明细信息
+	* @param id
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/detail/{id}" ,method = RequestMethod.GET)
+	public Object detail(@PathVariable("id") String id , HttpServletRequest request, HttpServletResponse response){
+		Map map = new HashMap<String,Object>();
+		${table.shortTableName?cap_first} ${table.shortTableName} = ${table.shortTableName}Service.findById(id);
+		map.put("${table.shortTableName}" , ${table.shortTableName});
+		return map;
+
+	}
+
+
+
+	/**
+	* 删除${table.tableComments}
+	*
+	* @param request
+	* @param response
+	*/
+	@RequestMapping(value = "/delete",method = RequestMethod.POST)
+	public Object delete( HttpServletRequest request, HttpServletResponse response) {
+
+		String ids = getParamString(request,"ids");
+
+		if(ids == null || ids.isEmpty()){
+			new AjaxJson(false,"请先选择要删除的记录！");
+		}
+
+		String []idString = ids.split(",");
+		if(idString == null || idString.length == 0 ){
+			new AjaxJson(false,"请先选择要删除的记录！");
+		}
+
+		List list = Arrays.asList(idString);
+
+		${table.shortTableName?cap_first} ${table.shortTableName} = new ${table.shortTableName?cap_first}();
+		${table.shortTableName}.setQueryIdList(list);
+
+		List<${table.shortTableName?cap_first}> ${table.shortTableName}s = ${table.shortTableName}Service.findList(${table.shortTableName});
+
+		if(${table.shortTableName}s == null || ${table.shortTableName}s.isEmpty()){
+			new AjaxJson(false,"该记录您无权删除！");
+		}
+
+		AjaxJson ajaxJson = new AjaxJson(true,"投资者删除成功！");
+		int size = ${table.shortTableName}Service.delete(${table.shortTableName}s);
+		if(size != ${table.shortTableName}s.size()){
+			throw ${table.shortTableName?cap_first}Exceptions.Delete_Error;
+		}
+		return ajaxJson;
+
+
+
+	}
 
 
 }
