@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/module-bsmcc-web/target/" />
@@ -671,14 +670,7 @@
       <workItem from="1533642703863" duration="7872000" />
       <workItem from="1533692353173" duration="20890000" />
       <workItem from="1533735581140" duration="7196000" />
-      <workItem from="1533775412621" duration="8525000" />
-    </task>
-    <task id="LOCAL-00020" summary="完善 curd .js">
-      <created>1532942913825</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1532942913825</updated>
+      <workItem from="1533775412621" duration="8545000" />
     </task>
     <task id="LOCAL-00021" summary="完善 curd .js">
       <created>1532943113608</created>
@@ -1016,7 +1008,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533779309172</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="处理表格数据">
+      <created>1533783999190</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1533783999190</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1028,7 +1027,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="378739000" />
+    <option name="totallyTimeSpent" value="378759000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
