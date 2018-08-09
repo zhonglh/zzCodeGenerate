@@ -44,6 +44,14 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 
 
 	@Override
+	protected Wrapper buildWrapper(TcgTempletQueryWebImpl query, TcgTempletBO m) {
+		Wrapper wrapper =  query.buildWrapper();
+		wrapper.orderBy(" group_id " );
+		return wrapper;
+	}
+
+
+	@Override
 	protected void setCommonData(TcgTempletBO m, ModelMap model) {
 		List<Map<String,String>> fileTypes = new ArrayList<Map<String,String>>();
 		Map<String,String> map = new HashMap<String,String>();
