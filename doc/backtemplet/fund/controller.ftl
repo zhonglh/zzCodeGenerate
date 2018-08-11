@@ -49,8 +49,8 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 	*/
 	@RequestMapping( value = "/checkUnique" ,method = RequestMethod.POST)
 	public Object checkUnique(HttpServletRequest request  , HttpServletResponse response )  {
-		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
-		${table.shortTableName?cap_first} temp = ${table.shortTableName}Service.findTopOne4Check(${table.shortTableName});
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+		${table.javaName} temp = ${table.javaName?uncap_first}Service.findTopOne4Check(${table.javaName?uncap_first});
 		if(isEntityExist(temp)) {
 			return new AjaxJson(false,"数据重复！");
 		}else{
@@ -62,8 +62,8 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 	@RequestMapping( value = "/checkAllUnique" ,method = RequestMethod.POST)
 	public Object checkAllUnique(HttpServletRequest request  , HttpServletResponse response )  {
-		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
-		boolean isExist =  this.isExist(${table.shortTableName});
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+		boolean isExist =  this.isExist(${table.javaName?uncap_first});
 		if(isExist) {
 			return new AjaxJson(false,"数据重复！");
 		}else{
@@ -73,39 +73,26 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 
 
-	private boolean isExist(${table.shortTableName?cap_first} ${table.shortTableName})  {
+	private boolean isExist(${table.javaName} ${table.javaName?uncap_first})  {
 
-		${table.shortTableName?cap_first}  ckEntity = null;
+		${table.javaName}  ckEntity = null;
 		boolean isExist = false;
 
 
-		${table.shortTableName?cap_first}  temp = null;
+		${table.javaName}  temp = null;
 
-		<#list table.indexList as begin>
-		ckEntity = new ${table.shortTableName?cap_first} ();
+		<#list indexs as begin>
+		ckEntity = new ${table.javaName} ();
 		<#list begin.javaNames as javaName>
-		ckEntity.set${javaName?cap_first}( ${table.shortTableName}.get${javaName?cap_first}() );
+		ckEntity.set${javaName?cap_first}( ${table.javaName?uncap_first}.get${javaName?cap_first}() );
 		</#list>
-        ckEntity.setId( ${table.shortTableName}.getId() );
-        temp = ${table.shortTableName}Service.findTopOne4Check(ckEntity);
+        ckEntity.setId( ${table.javaName?uncap_first}.getId() );
+        temp = ${table.javaName?uncap_first}Service.findTopOne4Check(ckEntity);
         if(isEntityExist(temp)) {
 			return true;
 		}
 		</#list>
 
-
-
-		<#list table.constraintList as begin>
-		ckEntity = new ${table.shortTableName?cap_first} ();
-		<#list begin.javaNames as javaName>
-		ckEntity.set${javaName?cap_first}( ${table.shortTableName}.get${javaName?cap_first}() );
-		</#list>
-        ckEntity.setId( ${table.shortTableName}.getId() );
-		temp = ${table.shortTableName}Service.findTopOne4Check(ckEntity);
-		if(isEntityExist(temp)) {
-			return true;
-		}
-		</#list>
 
 		return isExist;
 	}
@@ -114,54 +101,44 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 
 	/**
-	 * 保存${table.tableComments}
+	 * 保存${table.tableComment}
 	 *
 	 * @param request
 	 * @param response
 	 */
 	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	public Object save(HttpServletRequest request, HttpServletResponse response ) {
-		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
 
-		if(isExist(${table.shortTableName}) ) {
+		if(isExist(${table.javaName?uncap_first}) ) {
 			throw DbException.DB_SAVE_SAME;
 		}
 
 		TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
 
 		AjaxJson ajaxJson = null;
-		String id = ${table.shortTableName}.getId();
+		String id = ${table.javaName?uncap_first}.getId();
 		if(StringUtils.isEmpty(id)){
 			//保存数据
-			${table.shortTableName}.setId(IdUtils.getId());
-			<#if table.isSlimple == "NO">
-			${table.shortTableName}.setVersionNo(0);
-			${table.shortTableName}.setCreateTime(DateKit.getCurrentDate());
-			${table.shortTableName}.setUpdateTime(DateKit.getCurrentDate());
-			${table.shortTableName}.setCreateUserId(loginUser.getId());
-			${table.shortTableName}.setUpdateUserId(loginUser.getId());
-			${table.shortTableName}.setDeleteFlag(EnumYesNo.NO.getCode());
-			</#if>
-			int size = ${table.shortTableName}Service.save(${table.shortTableName});
- 			ajaxJson = new AjaxJson(true,"${table.tableComments}保存成功！");
+			autoSetInsertEntity(${table.javaName?uncap_first},loginUser);
+
+			int size = ${table.javaName?uncap_first}Service.save(${table.javaName?uncap_first});
+ 			ajaxJson = new AjaxJson(true,"${table.tableComment}保存成功！");
 			if (size<=0){
-				throw ${table.shortTableName?cap_first}Exceptions.Save_Error;
+				throw ${table.javaName}Exceptions.Save_Error;
 			}
 		}else{
 			//修改数据
 
-			<#if table.isSlimple == "NO">
-			${table.shortTableName?cap_first} temp = ${table.shortTableName}Service.findById(id);
-			${table.shortTableName}.setVersionNo(temp.getVersionNo());
+			${table.javaName} temp = ${table.javaName?uncap_first}Service.findById(id);
+			${table.javaName?uncap_first}.setVersionNo(temp.getVersionNo());
 
-			${table.shortTableName}.setUpdateTime(DateKit.getCurrentDate());
-			${table.shortTableName}.setUpdateUserId(loginUser.getId());
-			</#if>
+			autoSetUpdateEntity(${table.javaName?uncap_first},loginUser);
 
-			int size = ${table.shortTableName}Service.update(${table.shortTableName});
-			ajaxJson = new AjaxJson(true,"${table.tableComments}修改成功！");
+			int size = ${table.javaName?uncap_first}Service.update(${table.javaName?uncap_first});
+			ajaxJson = new AjaxJson(true,"${table.tableComment}修改成功！");
 			if (size<=0){
-				throw ${table.shortTableName?cap_first}Exceptions.Update_Error;
+				throw ${table.javaName}Exceptions.Update_Error;
 			}
 		}
 		return ajaxJson;
@@ -176,11 +153,11 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 	@RequestMapping(value = "/list" ,method = RequestMethod.GET)
 	public Object list( HttpServletRequest request, HttpServletResponse response){
 
-		${table.shortTableName?cap_first} ${table.shortTableName} = getObject(request , ${table.shortTableName?cap_first}.class);
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
 
 		Pager pager = new Pager();
-		processPager(pager , ${table.shortTableName} , request);
-		pager = ${table.shortTableName}Service.findPageList(${table.shortTableName},pager);
+		processPager(pager , ${table.javaName?uncap_first} , request);
+		pager = ${table.javaName?uncap_first}Service.findPageList(${table.javaName?uncap_first},pager);
 		return pager2Map(pager);
 	}
 
@@ -195,8 +172,8 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 	@RequestMapping(value = "/detail/{id}" ,method = RequestMethod.GET)
 	public Object detail(@PathVariable("id") String id , HttpServletRequest request, HttpServletResponse response){
 		Map map = new HashMap<String,Object>();
-		${table.shortTableName?cap_first} ${table.shortTableName} = ${table.shortTableName}Service.findById(id);
-		map.put("${table.shortTableName}" , ${table.shortTableName});
+		${table.javaName} ${table.javaName?uncap_first} = ${table.javaName?uncap_first}Service.findById(id);
+		map.put("${table.javaName?uncap_first}" , ${table.javaName?uncap_first});
 		return map;
 
 	}
@@ -204,7 +181,7 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 
 	/**
-	* 删除${table.tableComments}
+	* 删除${table.tableComment}
 	*
 	* @param request
 	* @param response
@@ -225,19 +202,19 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 		List list = Arrays.asList(idString);
 
-		${table.shortTableName?cap_first} ${table.shortTableName} = new ${table.shortTableName?cap_first}();
-		${table.shortTableName}.setQueryIdList(list);
+		${table.javaName} ${table.javaName?uncap_first} = new ${table.javaName}();
+		${table.javaName?uncap_first}.setQueryIdList(list);
 
-		List<${table.shortTableName?cap_first}> ${table.shortTableName}s = ${table.shortTableName}Service.findList(${table.shortTableName});
+		List<${table.javaName}> ${table.javaName?uncap_first}s = ${table.javaName?uncap_first}Service.findList(${table.javaName?uncap_first});
 
-		if(${table.shortTableName}s == null || ${table.shortTableName}s.isEmpty()){
+		if(${table.javaName?uncap_first}s == null || ${table.javaName?uncap_first}s.isEmpty()){
 			new AjaxJson(false,"该记录您无权删除！");
 		}
 
 		AjaxJson ajaxJson = new AjaxJson(true,"投资者删除成功！");
-		int size = ${table.shortTableName}Service.delete(${table.shortTableName}s);
-		if(size != ${table.shortTableName}s.size()){
-			throw ${table.shortTableName?cap_first}Exceptions.Delete_Error;
+		int size = ${table.javaName?uncap_first}Service.delete(${table.javaName?uncap_first}s);
+		if(size != ${table.javaName?uncap_first}s.size()){
+			throw ${table.javaName}Exceptions.Delete_Error;
 		}
 		return ajaxJson;
 

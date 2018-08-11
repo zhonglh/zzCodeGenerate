@@ -16,6 +16,7 @@ import com.zz.bsmcc.base.query.impl.TcgTempletGroupOperationQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.Applications;
+import com.zz.bsmcc.core.enums.EnumPageElement;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -295,12 +296,17 @@ public class CgBusiness {
             tablePO.setQueryConfigs(queryConfigs);
             tablePO.setIndexs(indexs);
 
+            processQueryFkDict(tablePO);
+            processFkDict(tablePO);
+
             List<TcgTempletGroupOperationBO> operations = new ArrayList<TcgTempletGroupOperationBO>(operationBOMap.values());
             tablePO.setTempletGroupOperations(operations);
 
             cgCode(tablePO , projectBO , templets);
 
             tablePOMap.put(tableConfig.getId(),tablePO);
+
+
 
         }
 
@@ -398,10 +404,108 @@ public class CgBusiness {
         freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());
 
 
+
+        freemarkerModel.put("queryDicts" , tablePO.getQueryDicts());
+        freemarkerModel.put("queryFks" , tablePO.getQueryFks());
+        freemarkerModel.put("dicts" , tablePO.getDicts());
+        freemarkerModel.put("fks" , tablePO.getFks());
+
+
+
         freemarkerModel.put("project" , projectBO);
 
         return freemarkerModel;
     }
+
+
+    /**
+     * 处理用于查询界面的弹框选择和字典选择
+     * @param tablePO
+     */
+    private void processQueryFkDict(TablePO tablePO) {
+        List<List<TcgQueryConfigBO>> queryFks = new ArrayList<List<TcgQueryConfigBO>>();
+        List<TcgQueryConfigBO> queryDicts = new ArrayList<TcgQueryConfigBO>();
+        if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()){
+            Map<String,List<TcgQueryConfigBO>> fkMap = new HashMap<String,List<TcgQueryConfigBO>>();
+            for(TcgQueryConfigBO query : tablePO.getQueryConfigs() ){
+                if(query.getColumnPage() != null &&
+                        EnumPageElement.openwin.getTheValue().equals(query.getColumnPage().getElement())){
+                    String key = null;
+                    if(query.getColumnPage().getExColumn() != null){
+                        key = query.getColumnPage().getExColumn().getOriginalColumn().getFkTableConfig().getFullResourceFile();
+                    }else {
+                        if(query.getColumnPage().getColumnConfig() != null && StringUtils.isNotEmpty(query.getColumnPage().getColumnConfig().getGroupCode())) {
+                            List<TcgColumnConfigBO> columns = getColumnsByGroup(query.getColumnPage().getColumnConfig().getGroupCode(), tablePO.getColumns());
+                            key = columns.get(0).getFkTableConfig().getFullResourceFile();
+                        }else {
+                            continue;
+                        }
+                    }
+                    List<TcgQueryConfigBO> list = fkMap.get(key);
+                    if(list == null){
+                        list = new ArrayList<TcgQueryConfigBO>();
+                        fkMap.put(key,list);
+                    }
+                    list.add(query);
+                }else  if(query.getColumnPage() != null &&
+                        (
+                            EnumPageElement.select.getTheValue().equals(query.getColumnPage().getElement()) ||
+                            EnumPageElement.checkbox.getTheValue().equals(query.getColumnPage().getElement()) ||
+                            EnumPageElement.radio.getTheValue().equals(query.getColumnPage().getElement())
+                        )
+                ){
+                    queryDicts.add(query);
+                }
+            }
+            queryFks = new ArrayList<List<TcgQueryConfigBO>>(fkMap.values());
+
+        }
+
+        tablePO.setQueryDicts(queryDicts);
+        tablePO.setQueryFks(queryFks);
+    }
+
+
+    /**
+     * 处理用于编辑界面的弹框选择和字典选择
+     * @param tablePO
+     */
+    private void processFkDict(TablePO tablePO) {
+        List<List<TcgColumnPageBO>> queryFks = new ArrayList<List<TcgColumnPageBO>>();
+        List<TcgColumnPageBO> queryDicts = new ArrayList<TcgColumnPageBO>();
+        Map<String,List<TcgColumnPageBO>> fkMap = new HashMap<String,List<TcgColumnPageBO>>();
+        for(TcgColumnPageBO page : tablePO.getColumnPages()){
+            if(  EnumPageElement.openwin.getTheValue().equals(page.getElement())){
+                String key = null;
+                if(page.getExColumn() != null) {
+                    key = page.getExColumn().getOriginalColumn().getFkTableConfig().getFullResourceFile();
+                }else if(page.getColumnConfig() != null && StringUtils.isNotEmpty(page.getColumnConfig().getGroupCode())) {
+                    List<TcgColumnConfigBO> columns = getColumnsByGroup(page.getColumnConfig().getGroupCode(), tablePO.getColumns());
+                    key = columns.get(0).getFkTableConfig().getFullResourceFile();
+                }else {
+                    continue;
+                }
+                List<TcgColumnPageBO> list = fkMap.get(key);
+                if(list == null){
+                    list = new ArrayList<TcgColumnPageBO>();
+                    fkMap.put(key,list);
+                }
+                list.add(page);
+            }else  if(
+                        EnumPageElement.select.getTheValue().equals(page.getElement()) ||
+                        EnumPageElement.checkbox.getTheValue().equals(page.getElement()) ||
+                        EnumPageElement.radio.getTheValue().equals(page.getElement())
+
+                    ){
+                queryDicts.add(page);
+            }
+        }
+
+        tablePO.setDicts(queryDicts);
+        tablePO.setFks(queryFks);
+    }
+
+
 
 
     /**
@@ -613,6 +717,10 @@ public class CgBusiness {
         fullResourceName = (tableConfig.getResourceName().startsWith("/")? "" : "/") + tableConfig.getResourceName();
         tableConfig.setFullResourceName(fullResourceName);
 
+        String fullResourceFile = fullResourceName;
+        fullResourceFile = fullResourceFile.replaceAll("/", "");
+        tableConfig.setFullResourceFile(fullResourceFile);
+
         fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".")?"":".") + fullPackageName;
         tableConfig.setFullPackageName(fullPackageName);
     }
@@ -675,6 +783,31 @@ public class CgBusiness {
             }
         }
         return operationBOMap;
+    }
+
+
+    /**
+     * 获取相同组的 列信息
+     * @param groupCode
+     * @param allColumns
+     * @return
+     */
+    private List<TcgColumnConfigBO> getColumnsByGroup(String groupCode , List<TcgColumnConfigBO> allColumns){
+        List<TcgColumnConfigBO> columns = new ArrayList<TcgColumnConfigBO>();
+        for(TcgColumnConfigBO column : allColumns){
+            if(groupCode.equals(column.getGroupCode())){
+                columns.add(column);
+            }
+        }
+        if(!columns.isEmpty()) {
+            columns.sort(new Comparator<TcgColumnConfigBO>() {
+                @Override
+                public int compare(TcgColumnConfigBO o1, TcgColumnConfigBO o2) {
+                    return o1.getColumnSort().compareTo(o2.getColumnSort());
+                }
+            });
+        }
+        return columns;
     }
 
 

@@ -115,8 +115,8 @@
                                 <div class="col-sm-8">
                                    
                                 <select id="projectI18n" name="projectI18n"  class="form-control">
-                                    <option value="1" <c:if test="${entity.projectI18n ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                     <option value="0" <c:if test="${entity.projectI18n ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    <option value="1" <c:if test="${entity.projectI18n ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                 </select>
                            
                                    
@@ -131,12 +131,9 @@
                                 <div class="col-sm-8">
 
                                     <select id="projectTenant" name="projectTenant"  class="form-control">
-                                        <option value="1" <c:if test="${entity.projectTenant ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                         <option value="0" <c:if test="${entity.projectTenant ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                        <option value="1" <c:if test="${entity.projectTenant ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                     </select>
-
-
-
                                 </div>
                             </div>
 
@@ -146,16 +143,23 @@
                                 <div class="col-sm-8">
 
                                     <select id="pageUseView" name="pageUseView"  class="form-control">
-                                        <option value="1" <c:if test="${entity.pageUseView ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                         <option value="0" <c:if test="${entity.pageUseView ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                        <option value="1" <c:if test="${entity.pageUseView ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                     </select>
-
-
-
                                 </div>
                             </div>
 
 
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否自动创建扩展列：</label>
+                                <div class="col-sm-8">
+                                    <select id="autoExColumn" name="autoExColumn"  class="form-control">
+                                        <option value="0" <c:if test="${entity.autoExColumn ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                        <option value="1" <c:if test="${entity.autoExColumn ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             
                             <div class="form-group">

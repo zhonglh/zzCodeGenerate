@@ -100,23 +100,25 @@ public class TableBusiness {
 
             //初始化列的扩展信息，  也就是BO里的属性
             List<TcgExColumnBO> exColumnBOs = new ArrayList<TcgExColumnBO>();
-            for(TcgColumnConfigBO columnBO : columnBOs){
-                if(TableLogic.insideFieldNames.contains(columnBO.getJavaName()) || "id".equals(columnBO.getJavaName())){
-                    continue;
-                }
-                if(columnBO.getColumnIsdict().equals(EnumYesNo.YES.getCode())) {
-                    //处理字典信息
-                    TcgExColumnBO exColumnBO = new TcgExColumnBO();
-                    TableLogic.initExColumn(exColumnBO, columnBO , sessionUserVO);
-                    exColumnBO.setOriginalColumnDict(EnumYesNo.YES.getCode());
-                    exColumnBOs.add(exColumnBO);
-                }
-                if(project.getPageUseView().equals(EnumYesNo.NO.getCode()) && columnBO.getColumnIsfk().equals(EnumYesNo.YES.getCode())){
-                    //处理外键信息
-                    TcgExColumnBO exColumnBO = new TcgExColumnBO();
-                    TableLogic.initExColumn(exColumnBO, columnBO ,sessionUserVO);
-                    exColumnBO.setOriginalColumnFk(EnumYesNo.YES.getCode());
-                    exColumnBOs.add(exColumnBO);
+            if(EnumYesNo.YES.getCode().equals(project.getAutoExColumn())) {
+                for (TcgColumnConfigBO columnBO : columnBOs) {
+                    if (TableLogic.insideFieldNames.contains(columnBO.getJavaName()) || "id".equals(columnBO.getJavaName())) {
+                        continue;
+                    }
+                    if (columnBO.getColumnIsdict().equals(EnumYesNo.YES.getCode())) {
+                        //处理字典信息
+                        TcgExColumnBO exColumnBO = new TcgExColumnBO();
+                        TableLogic.initExColumn(exColumnBO, columnBO, sessionUserVO);
+                        exColumnBO.setOriginalColumnDict(EnumYesNo.YES.getCode());
+                        exColumnBOs.add(exColumnBO);
+                    }
+                    if (project.getPageUseView().equals(EnumYesNo.NO.getCode()) && columnBO.getColumnIsfk().equals(EnumYesNo.YES.getCode())) {
+                        //处理外键信息
+                        TcgExColumnBO exColumnBO = new TcgExColumnBO();
+                        TableLogic.initExColumn(exColumnBO, columnBO, sessionUserVO);
+                        exColumnBO.setOriginalColumnFk(EnumYesNo.YES.getCode());
+                        exColumnBOs.add(exColumnBO);
+                    }
                 }
             }
 

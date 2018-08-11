@@ -232,7 +232,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
                 for (TcgExColumnBO item : tablePO.getExColumns()){
                     if(StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -241,7 +241,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getColumnEvents() != null && !tablePO.getColumnEvents().isEmpty()) {
                 for (TcgColumnEventBO item : tablePO.getColumnEvents()){
                     if(StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        EntityUtil.autoSetUpdateEntity(item , sessionUserVO);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -250,7 +250,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getColumnValidates() != null && !tablePO.getColumnValidates().isEmpty()) {
                 for (TcgColumnValidateBO item : tablePO.getColumnValidates()){
                     if(StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -261,7 +261,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()) {
                 for (TcgQueryConfigBO item : tablePO.getQueryConfigs()){
                     if(StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -275,7 +275,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                     operationBO.setTableId(tcgTableConfigBO.getId());
                     operationBO.setOperationId(operation);
                     operationBO.setId(IdUtils.getId());
-                    EntityUtil.autoSetEntity(operationBO , sessionUserVO);
+                    EntityUtil.autoSetInsertEntity(operationBO , sessionUserVO);
                     operationList.add(operationBO);
                 }
             }

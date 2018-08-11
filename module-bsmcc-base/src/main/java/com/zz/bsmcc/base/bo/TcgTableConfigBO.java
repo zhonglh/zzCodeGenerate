@@ -44,6 +44,9 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private String queryModeName;
 
 
+
+
+
     //用于模板生成数据
 
 
@@ -56,6 +59,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private String fullResourceName;
+
+    /**
+     * 和 fullResourceName 类似
+     * 去除fullResourceName 中的 / \
+     */
+    @TableField(exist = false)
+    private String fullResourceFile;
 
     /**
      * 包全称 ， 项目的包名 + 模块的包名 , 使用的时候还要在加上模板对应的包名
@@ -166,6 +176,14 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setFullResourceName(String fullResourceName) {
         this.fullResourceName = fullResourceName;
+    }
+
+    public String getFullResourceFile() {
+        return fullResourceFile;
+    }
+
+    public void setFullResourceFile(String fullResourceFile) {
+        this.fullResourceFile = fullResourceFile;
     }
 
     public String getFullPackageName() {

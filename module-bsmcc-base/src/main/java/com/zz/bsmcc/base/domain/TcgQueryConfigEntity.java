@@ -16,25 +16,17 @@ import com.baomidou.mybatisplus.annotations.TableField;
  * @date 2018-7-29 1:16:14
  */
 public class TcgQueryConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
+
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
-
-
-
 
 
     //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
 	private String tableId;
 
 
-
-
-
     //@EntityAttrAnnotation(attrName="列",sort=2  , attrLength=32    )
 	private String columnId;
-
-
-
 
 
     //@EntityAttrAnnotation(attrName="标题",sort=3  , attrLength=20    )
@@ -62,8 +54,9 @@ public class TcgQueryConfigEntity extends BaseBusinessSimpleEntity<String> imple
     //@EntityAttrAnnotation(attrName="查询顺序",sort=6  , attrLength=0    )
 	private Integer querySort;
 
-
-
+	//查询框Name
+	//没有使用列的情况需要设置， 比如关键字查询
+	private String queryFieldName;
 
 
 
@@ -152,5 +145,16 @@ public class TcgQueryConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setQuerySort(Integer querySort) {
 		this.querySort = querySort;
 	}
-	
+
+
+	/**
+	 * 查询框名称
+	 */
+	public String getQueryFieldName() {
+		return queryFieldName;
+	}
+
+	public void setQueryFieldName(String queryFieldName) {
+		this.queryFieldName = queryFieldName;
+	}
 }

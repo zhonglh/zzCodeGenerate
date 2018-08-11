@@ -86,6 +86,9 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
         //每个界面都用视图一一对应
         private String pageUseView;
 
+        //是否自动创建扩展列
+        private String autoExColumn;
+
         /**
         * 项目名称
         * @return the projectName
@@ -222,11 +225,19 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
         this.queryMode = queryMode;
         }
 
-    public String getPageUseView() {
-        return pageUseView;
-    }
+        public String getPageUseView() {
+            return pageUseView;
+        }
 
-    public void setPageUseView(String pageUseView) {
-        this.pageUseView = pageUseView;
-    }
+        public void setPageUseView(String pageUseView) {
+            this.pageUseView = pageUseView;
+        }
+
+        public String getAutoExColumn() {
+            return autoExColumn;
+        }
+
+        public void setAutoExColumn(String autoExColumn) {
+            this.autoExColumn = autoExColumn;
+        }
 }

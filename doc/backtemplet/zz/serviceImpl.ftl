@@ -69,21 +69,22 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 	</#if>
 
+
 	<#if exColumnMap?exists >
 	@Override
 	public ${table.javaName}BO processResult(${table.javaName}BO ${table.javaName?uncap_first}BO) {
 
 		<#list exColumnMap?keys as key>
-			<#assign fkTable = "${exColumnMap[key][0].originalColumn.fkTableConfig}" >
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
-				${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = ${exColumnMap[key][0].originalColumn.fkTableConfig.javaName}DAO.selectById(tcgExColumnBO.getOriginalColumnId());
-				if(${fkTable.javaName?uncap_first}BO != null){
-					<#list exColumnMap[key] as val>
-						${table.javaName?uncap_first}BO.set${val.javaName?cap_first}(${fkTable.javaName?uncap_first}BO.get${val.fkJavaName?cap_first}());
-					</#list>
-				}
+			<#assign fkTable = exColumnMap[key][0].originalColumn.fkTableConfig >
+			${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = ${exColumnMap[key][0].originalColumn.fkTableConfig.javaName}DAO.selectById(tcgExColumnBO.getOriginalColumnId());
+            if(${fkTable.javaName?uncap_first}BO != null){
+				<#list exColumnMap[key] as val>
+				${table.javaName?uncap_first}BO.set${val.javaName?cap_first}(${fkTable.javaName?uncap_first}BO.get${val.fkJavaName?cap_first}());
+				</#list>
+            }
 			<#else>
-				//todo 处理字典信息
+            //todo 处理字典信息
 			</#if>
 		</#list>
 

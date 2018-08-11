@@ -10,6 +10,7 @@
          	<result column="query_title" property="queryTitle"/>
          	<result column="query_placeholder" property="queryPlaceholder"/>
          	<result column="query_relation" property="queryRelation"/>
+			<result column="query_field_name" property="queryFieldName"/>
          	<result column="query_sort" property="querySort"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>

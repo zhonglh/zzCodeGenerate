@@ -28,8 +28,22 @@ public class TablePO implements Serializable{
     private List<TcgTempletGroupOperationBO> templetGroupOperations;
 
 
-
+    //扩展列
     private Map<String,List<TcgExColumnBO>> exColumnMap;
+
+
+    //用于列表界面上查询的弹框选择 ， 需要是外键列或者同组有外键列的
+    List<List<TcgQueryConfigBO>> queryFks;
+    //用于列表界面上查询的 字典选择
+    List<TcgQueryConfigBO> queryDicts;
+
+
+
+
+    //用于编辑界面 , 需要是外键列或者同组有外键列的
+    List<List<TcgColumnPageBO>> fks;
+    //用于编辑界面, 字典选择
+    List<TcgColumnPageBO> dicts;
 
 
 
@@ -120,5 +134,37 @@ public class TablePO implements Serializable{
 
     public void setExColumnMap(Map<String, List<TcgExColumnBO>> exColumnMap) {
         this.exColumnMap = exColumnMap;
+    }
+
+    public List<List<TcgQueryConfigBO>> getQueryFks() {
+        return queryFks;
+    }
+
+    public void setQueryFks(List<List<TcgQueryConfigBO>> queryFks) {
+        this.queryFks = queryFks;
+    }
+
+    public List<TcgQueryConfigBO> getQueryDicts() {
+        return queryDicts;
+    }
+
+    public void setQueryDicts(List<TcgQueryConfigBO> queryDicts) {
+        this.queryDicts = queryDicts;
+    }
+
+    public List<List<TcgColumnPageBO>> getFks() {
+        return fks;
+    }
+
+    public void setFks(List<List<TcgColumnPageBO>> fks) {
+        this.fks = fks;
+    }
+
+    public List<TcgColumnPageBO> getDicts() {
+        return dicts;
+    }
+
+    public void setDicts(List<TcgColumnPageBO> dicts) {
+        this.dicts = dicts;
     }
 }

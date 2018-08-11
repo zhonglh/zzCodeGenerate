@@ -58,7 +58,15 @@ public class TableLogic {
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
 
 
-        EntityUtil.autoSetEntity(tcgTableConfigBO , sessionUserVO);
+        String resourceName = table.getTableName();
+        if(resourceName.indexOf("_")!=-1) {
+            resourceName = resourceName.substring(table.getTableName().indexOf("_") + 1);
+        }
+        resourceName = resourceName.replaceAll("_","").toLowerCase();
+        tcgTableConfigBO.setResourceName(resourceName);
+
+
+        EntityUtil.autoSetInsertEntity(tcgTableConfigBO , sessionUserVO);
 
         tcgTableConfigBO.setId(IdUtils.getId());
 
@@ -118,7 +126,7 @@ public class TableLogic {
 
         setTableParent(tableBO , column);
 
-        EntityUtil.autoSetEntity(columnBO , sessionUserVO);
+        EntityUtil.autoSetInsertEntity(columnBO , sessionUserVO);
 
         columnBO.setId(IdUtils.getId());
 
@@ -154,7 +162,7 @@ public class TableLogic {
         columnNames.deleteCharAt(columnNames.length() -1);
         indexBO.setIndexCloumns(columnNames.toString());
 
-        EntityUtil.autoSetEntity(indexBO , sessionUserVO);
+        EntityUtil.autoSetInsertEntity(indexBO , sessionUserVO);
 
         indexBO.setId(IdUtils.getId());
 
@@ -193,7 +201,7 @@ public class TableLogic {
         exColumnBO.setColumnSort(columnBO.getColumnSort() + 1);
 
 
-        EntityUtil.autoSetEntity(exColumnBO , sessionUserVO);
+        EntityUtil.autoSetInsertEntity(exColumnBO , sessionUserVO);
 
 
 
@@ -217,7 +225,7 @@ public class TableLogic {
         pageBO.setListShowable(pageBO.getEditable());
 
 
-        EntityUtil.autoSetEntity(pageBO , sessionUserVO);
+        EntityUtil.autoSetInsertEntity(pageBO , sessionUserVO);
 
         pageBO.setId(columnBO.getId());
         pageBO.setTableId(columnBO.getTableId());
@@ -254,7 +262,7 @@ public class TableLogic {
         pageBO.setListShowable(pageBO.getEditable());
 
 
-        EntityUtil.autoSetEntity(pageBO , sessionUserVO);
+        EntityUtil.autoSetInsertEntity(pageBO , sessionUserVO);
 
         pageBO.setId(columnBO.getId());
         pageBO.setTableId(columnBO.getTableId());
