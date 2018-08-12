@@ -23,7 +23,7 @@ public class Applications {
      */
     public static String getUsrDir(){
         String dir = System.getProperty("user.dir");
-        if(dir == null){
+        if(dir == null || dir.isEmpty()){
             File d = new File("/");
             String path = d.getAbsolutePath();
             if(d.exists()){

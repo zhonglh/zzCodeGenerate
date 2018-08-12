@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
 
@@ -355,15 +356,12 @@ public class CgBusiness {
      */
     private void cgCode(TablePO tablePO , TcgProjectBO projectBO, List<TcgTempletBO> templets) {
 
-        String basePath = Applications.getUsrDir();
+        String basePath = Applications.getUsrDir()+ File.separator + "cg";
         ILoginUserEntity session = Applications.getLoginUserEntity();
 
         if(session != null ){
             basePath = basePath + File.separator + session.getId();
         }
-
-
-
 
         for(TcgTempletBO templet : templets){
 
@@ -387,6 +385,7 @@ public class CgBusiness {
                     (templet.getFileSuffix().isEmpty()?"":templet.getFileSuffix()) +
                     "."+templet.getFileType();
 
+            OutputStream output = null;
             try {
 
                 Map<String  , Object >  model = buildModel(tablePO , projectBO);
@@ -403,12 +402,22 @@ public class CgBusiness {
                         dir.mkdirs();
                     }
                     File f = new File(dir.getAbsolutePath() , fileName);
-                    OutputStream output = new FileOutputStream(f);
+                    output = new FileOutputStream(f);
                     IOUtils.write(result , output , "UTF-8");
+                    output.flush();
+                    output.close(); output = null;
                 }
             } catch (Exception e) {
                 throw new BizException(e);
-
+            }finally {
+                if(output != null){
+                    try {
+                        output.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    output = null;
+                }
             }
 
         }

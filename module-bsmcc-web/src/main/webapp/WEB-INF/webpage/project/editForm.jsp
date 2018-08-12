@@ -36,11 +36,6 @@
     <![endif]-->
 </head>
 
-</head>
-
-
-
-
 <body class="gray-bg">
     <div class="animated">
        
@@ -49,17 +44,12 @@
                         
                         	<input type="hidden" id="id" name="id" value="${entity.id }"/>
 
-
-
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-8">
                                     <input id="projectName" name="projectName" value="${entity.projectName }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
-
-
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目包名：</label>
@@ -75,13 +65,18 @@
                                         <option value="0" <c:if test="${entity.packageIncludeModule ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
                                         <option value="1" <c:if test="${entity.packageIncludeModule ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                     </select>
-
-
-
                                 </div>
                             </div>
 
-
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">查询模式：</label>
+                                <div class="col-sm-8">
+                                    <select id="queryMode" name="queryMode"  class="form-control">
+                                        <option value="toolbar" <c:if test="${entity.queryMode ==  'toolbar' }">selected="selected"</c:if> hassubinfo="true">工具栏样式</option>
+                                        <option value="ordinary" <c:if test="${entity.queryMode ==  'ordinary' }">selected="selected"</c:if> hassubinfo="true">普通样式</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目经理姓名：</label>
@@ -90,8 +85,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">作者：</label>
                                 <div class="col-sm-8">
@@ -99,16 +92,12 @@
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">代码总的注释：</label>
                                 <div class="col-sm-8">
                                     <input id="projectNote" name="projectNote" value="${entity.projectNote }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
                                 </div>
                             </div>
-
-
                         
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">国际化：</label>
@@ -118,13 +107,8 @@
                                     <option value="0" <c:if test="${entity.projectI18n ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
                                     <option value="1" <c:if test="${entity.projectI18n ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
                                 </select>
-                           
-                                   
-                                   
                                 </div>
                             </div>
-
-
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">租户模式：</label>
@@ -137,7 +121,6 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">页面使用视图：</label>
                                 <div class="col-sm-8">
@@ -149,8 +132,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">是否自动创建扩展列：</label>
                                 <div class="col-sm-8">
@@ -160,7 +141,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
@@ -172,28 +152,20 @@
                
     </div>
 
-
 	<script src="${ctx}/statics/js/jquery.min.js?v=2.1.4"></script>
     <script src="${ctx}/statics/js/bootstrap.min.js?v=3.3.6"></script>
     <script src="${ctx}/statics/js/content.min.js?v=1.0.0"></script>
-    
     
     <script src="${ctx}/statics/js/plugins/validate/jquery.validate.min.js"></script>
     <script src="${ctx}/statics/js/plugins/validate/messages_zh.min.js"></script>
     <script src="${ctx}/statics/js/demo/form-validate-demo.min.js"></script>
 	<script src="${ctx}/statics/plug-in/ajax/AjaxUtil.js"></script>
-    
     <script src="${ctx}/statics/js/layer.min.js"></script>
-    
-    
 	<script src="${ctx}/statics/plug-in/toastr/toastr.min.js"></script>
 	<script src="${ctx}/statics/plug-in/toastr/toastr.js"></script>
-
 	<script type="text/javascript">
 
-        var ctx = "${ctx}";
-	
-	
+    var ctx = "${ctx}";
 	$( "#signupForm" ).validate({
 		  rules: {
 

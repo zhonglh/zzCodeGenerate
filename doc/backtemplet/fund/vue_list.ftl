@@ -111,7 +111,7 @@
                 <#if operation.position == 'top' || operation.position == 'all'>
                     <Button type="success" icon="${operation.icons}" title="${operation.operationName}"
                         <#if operation.styles?exists && operation.styles?length > 0>style="${operation.styles}"</#if>
-                        <#if operation.styles?class && operation.class?length > 0>class="${operation.class}"</#if>
+                        <#if operation.class?exists && operation.class?length > 0>class="${operation.class}"</#if>
                             @click="changStatus">${operation.operationName}</Button>
                 </#if>
             </#list>

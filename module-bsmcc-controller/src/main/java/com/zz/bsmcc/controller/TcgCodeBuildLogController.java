@@ -95,8 +95,8 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 		}
 
 		cgBusiness.cg(projectBO , templets);
-
-
+		String basePath = Applications.getUsrDir() + File.separator + "cg";
+		logger.debug("代码已经生成， 请到该目录查看 : "+basePath);
 		return this.create(m,model, request,  response);
 
 	}
@@ -122,7 +122,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 
 		cgBusiness.cg(projectBO , templets);
 
-		String basePath = Applications.getUsrDir();
+		String basePath = Applications.getUsrDir() + File.separator + "cg";
 		ILoginUserEntity session = Applications.getLoginUserEntity();
 
 		if(session != null ){

@@ -45,12 +45,9 @@
     <div class="animated">
        
                     <div class="ibox-content">
-                        <form class="form-horizontal m-t" onSubmit="javaScript:return false;" id="signupForm" action="${ctx}/code/build/log/cg">
+                        <form class="form-horizontal m-t" method="post" id="signupForm" action="${ctx}/code/build/log/cg">
                         
                         	<input type="hidden" id="id" name="id" value="${entity.id }"/>
-
-
-
 
 
                             <div class="form-group">
@@ -136,6 +133,8 @@
 
 		//var actionurl = window.location.href;
         var actionurl = $('form').attr('action');
+
+        $('form').attr('onSubmit','javaScript:return false;');
 		   
 		var formData = $('form').serializeArray();
 		
@@ -158,6 +157,8 @@
         if( !$('form').valid() ) return false;
 
         $('form').attr('action','${ctx}/code/build/log/download');
+
+        $('form').removeAttr('onSubmit');
 
         $('form')[0].submit();
 
