@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 
 /**
@@ -20,6 +20,11 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     @TableField(exist = false)
     private String columnComment ;
+
+    @TableField(exist = false)
+    private String javaName ;
+
+
 
     @TableField(exist = false)
     private String realColumnName;
@@ -54,6 +59,16 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
      */
     @TableField(exist = false)
     private TcgExColumnBO exColumn ;
+
+    /**
+     * 列的事件
+     */
+    List<TcgColumnEventBO> events;
+
+    /**
+     * 列的校验规则
+     */
+    List<TcgColumnValidateBO> validates;
 
 
     public String getColumnComment() {
@@ -134,5 +149,29 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     public void setExColumn(TcgExColumnBO exColumn) {
         this.exColumn = exColumn;
+    }
+
+    public String getJavaName() {
+        return javaName;
+    }
+
+    public void setJavaName(String javaName) {
+        this.javaName = javaName;
+    }
+
+    public List<TcgColumnEventBO> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<TcgColumnEventBO> events) {
+        this.events = events;
+    }
+
+    public List<TcgColumnValidateBO> getValidates() {
+        return validates;
+    }
+
+    public void setValidates(List<TcgColumnValidateBO> validates) {
+        this.validates = validates;
     }
 }

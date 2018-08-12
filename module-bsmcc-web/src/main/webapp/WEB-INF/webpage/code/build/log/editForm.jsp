@@ -87,6 +87,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
                                     <button class="btn btn-primary" onclick="submitForm()">生成</button>
+                                    <button class="btn btn-primary" onclick="download()">下载</button>
                                 </div>
                             </div>
                         </form>
@@ -130,6 +131,9 @@
 		
 		if( !$('form').valid() ) return false;
 
+
+        $('form').attr('action','${ctx}/code/build/log/cg');
+
 		//var actionurl = window.location.href;
         var actionurl = $('form').attr('action');
 		   
@@ -147,6 +151,17 @@
 			topShwoMessage("error",ajax.msg);
 		}
 	}
+
+
+	function download(){
+
+        if( !$('form').valid() ) return false;
+
+        $('form').attr('action','${ctx}/code/build/log/download');
+
+        $('form')[0].submit();
+
+    }
 	
 	</script>
 

@@ -5,6 +5,7 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
 import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bsmcc.base.bo.TcgTableConfigBO;
 import com.zz.bsmcc.base.service.TcgColumnConfigService;
 import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
@@ -43,6 +44,10 @@ public class TcgColumnConfigServiceImpl extends BaseServiceImpl<TcgColumnConfigB
 			}else {
 				tcgColumnConfigBO.setColumnIsnullName(EnumYesNo.NO.getName());
 			}
+		}
+
+		if(StringUtils.isNotEmpty(tcgColumnConfigBO.getFkColumnName())){
+			tcgColumnConfigBO.setFkJavaName(StringFormatKit.toCamelCase(tcgColumnConfigBO.getFkColumnName()));
 		}
 		return tcgColumnConfigBO;
 	}

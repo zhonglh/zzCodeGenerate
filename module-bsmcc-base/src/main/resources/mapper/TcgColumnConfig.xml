@@ -19,6 +19,8 @@
          	<result column="dict_type" property="dictType"/>
          	<result column="fk_schema" property="fkSchema"/>
          	<result column="fk_name" property="fkName"/>
+			<result column="fk_column" property="fkColumn"/>
+
          	<result column="column_comment" property="columnComment"/>
          	<result column="column_other_comment" property="columnOtherComment"/>
          	<result column="java_simple_class" property="javaSimpleClass"/>

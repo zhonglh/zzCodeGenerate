@@ -119,6 +119,10 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	private String fkName;
 
 
+	//@EntityAttrAnnotation(attrName="外键对应表的列名称",sort=14  , attrLength=50    )
+	private String fkColumn;
+
+
 
 
 
@@ -447,5 +451,12 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	public void setGroupCode(String groupCode) {
 		this.groupCode = groupCode;
 	}
-	
+
+	public String getFkColumn() {
+		return fkColumn;
+	}
+
+	public void setFkColumn(String fkColumn) {
+		this.fkColumn = fkColumn;
+	}
 }

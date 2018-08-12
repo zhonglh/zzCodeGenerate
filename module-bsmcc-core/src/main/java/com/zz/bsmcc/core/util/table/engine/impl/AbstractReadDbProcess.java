@@ -190,6 +190,9 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				String nullable = rs.getString(7);
 
 				column.setColumnName(filedName);
+				if(StringUtils.isEmpty(filedComment)){
+					filedComment = filedName.toUpperCase();
+				}
 				column.setColumnComment(filedComment);
 				column.setColumnOtherComments(otherFiledComment);
 				column.setDataType(dataType);

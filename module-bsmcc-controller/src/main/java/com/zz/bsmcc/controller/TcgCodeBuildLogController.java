@@ -1,7 +1,11 @@
 package com.zz.bsmcc.controller;
 
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.util.base.files.FileKit;
+import com.zz.bms.util.base.files.FileUtils;
+import com.zz.bms.util.base.files.ZipKit;
 import com.zz.bsmcc.base.bo.TcgCodeBuildLogBO;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
@@ -18,6 +22,7 @@ import com.zz.bsmcc.base.service.TcgProjectService;
 import com.zz.bsmcc.base.service.TcgTempletGroupService;
 import com.zz.bsmcc.base.service.TcgTempletService;
 import com.zz.bsmcc.business.CgBusiness;
+import com.zz.bsmcc.core.Applications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -96,5 +102,55 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 	}
 
 
+
+	@RequestMapping(value = "/download", method = RequestMethod.POST)
+	public void download(TcgCodeBuildLogBO m, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+
+		TcgProjectBO projectBO = projectService.selectById(m.getProjectId());
+
+		TcgTempletQuery tcgTempletQuery = new TcgTempletQueryImpl();
+		tcgTempletQuery.groupId(m.getTempletGroupId());
+		List<TcgTempletBO> templets = templetService.selectList(tcgTempletQuery.buildWrapper());
+
+		if(projectBO == null){
+			throw new BizException("项目信息已经不存在了");
+		}
+
+		if( templets == null || templets.isEmpty()){
+			throw new BizException("请先在该模板组添加模板");
+		}
+
+		cgBusiness.cg(projectBO , templets);
+
+		String basePath = Applications.getUsrDir();
+		ILoginUserEntity session = Applications.getLoginUserEntity();
+
+		if(session != null ){
+			basePath = basePath + File.separator + session.getId();
+		}
+
+		String filePath = "code"+session.getId()+".zip";
+		String zipPath = Applications.getUsrDir()+"/"+filePath;
+
+		File f = new File(zipPath);
+		if(f.exists()) {
+			f.delete();
+		}
+
+		ZipKit.doZip (basePath, Applications.getUsrDir(), filePath);
+
+
+        String storeName = zipPath;
+        String realName = "code.zip";
+        String contentType = "application/octet-stream";
+
+		try {
+			FileKit.deleteFolder(basePath);
+            FileUtils.download(request, response, storeName, contentType,  realName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//return this.create(m,model, request,  response);
+	}
 
 }

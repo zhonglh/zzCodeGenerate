@@ -290,11 +290,15 @@ public class CgBusiness {
             tablePO.setColumns(columns);
             tablePO.setExColumns(exColumns);
             tablePO.setExColumnMap(exMap);
+
             tablePO.setColumnPages(columnPages);
             tablePO.setColumnValidates(validates);
             tablePO.setColumnEvents(events);
-            tablePO.setQueryConfigs(queryConfigs);
+            processPageOther(tablePO);
+
             tablePO.setIndexs(indexs);
+            tablePO.setQueryConfigs(queryConfigs);
+
 
             processQueryFkDict(tablePO);
             processFkDict(tablePO);
@@ -308,6 +312,38 @@ public class CgBusiness {
 
 
 
+        }
+
+    }
+
+    /**
+     * 处理 columnPage 的 events , validates
+     * @param tablePO
+     */
+    private void processPageOther(TablePO tablePO) {
+        if(tablePO.getColumnPages() == null || tablePO.getColumnPages().isEmpty()){
+            return ;
+        }
+
+
+        if( tablePO.getColumnEvents() != null && !tablePO.getColumnEvents().isEmpty()) {
+            for (TcgColumnEventBO event : tablePO.getColumnEvents()){
+                TcgColumnPageBO page = event.getColumnPage();
+                if(page.getEvents() == null){
+                    page.setEvents(new ArrayList<TcgColumnEventBO>());
+                }
+                page.getEvents().add(event);
+            }
+        }
+
+        if( tablePO.getColumnValidates() != null && !tablePO.getColumnValidates().isEmpty()) {
+            for (TcgColumnValidateBO validate : tablePO.getColumnValidates()){
+                TcgColumnPageBO page = validate.getColumnPage();
+                if(page.getValidates() == null){
+                    page.setValidates(new ArrayList<TcgColumnValidateBO>());
+                }
+                page.getValidates().add(validate);
+            }
         }
 
     }
@@ -403,12 +439,16 @@ public class CgBusiness {
         freemarkerModel.put("querys" , tablePO.getQueryConfigs());
         freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());
 
-
-
         freemarkerModel.put("queryDicts" , tablePO.getQueryDicts());
         freemarkerModel.put("queryFks" , tablePO.getQueryFks());
+        freemarkerModel.put("queryFkTables" , tablePO.getQueryFkTables());
+        freemarkerModel.put("queryDictSet" , tablePO.getQueryDictSet());
+
+
         freemarkerModel.put("dicts" , tablePO.getDicts());
         freemarkerModel.put("fks" , tablePO.getFks());
+        freemarkerModel.put("fkTables" , tablePO.getFkTables());
+        freemarkerModel.put("dictSet" , tablePO.getDictSet());
 
 
 
@@ -423,20 +463,25 @@ public class CgBusiness {
      * @param tablePO
      */
     private void processQueryFkDict(TablePO tablePO) {
-        List<List<TcgQueryConfigBO>> queryFks = new ArrayList<List<TcgQueryConfigBO>>();
         List<TcgQueryConfigBO> queryDicts = new ArrayList<TcgQueryConfigBO>();
+        Set<TcgQueryConfigBO> queryDictSet = new HashSet<TcgQueryConfigBO>();
+        Map<String,List<TcgQueryConfigBO>> fkMap = new HashMap<String,List<TcgQueryConfigBO>>();
+
+        Map<String,TcgTableConfigBO> queryFkTableMap = new HashMap<String,TcgTableConfigBO>();
         if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()){
-            Map<String,List<TcgQueryConfigBO>> fkMap = new HashMap<String,List<TcgQueryConfigBO>>();
             for(TcgQueryConfigBO query : tablePO.getQueryConfigs() ){
                 if(query.getColumnPage() != null &&
                         EnumPageElement.openwin.getTheValue().equals(query.getColumnPage().getElement())){
                     String key = null;
                     if(query.getColumnPage().getExColumn() != null){
                         key = query.getColumnPage().getExColumn().getOriginalColumn().getFkTableConfig().getFullResourceFile();
+                        queryFkTableMap.put(key,query.getColumnPage().getExColumn().getOriginalColumn().getFkTableConfig());
                     }else {
                         if(query.getColumnPage().getColumnConfig() != null && StringUtils.isNotEmpty(query.getColumnPage().getColumnConfig().getGroupCode())) {
-                            List<TcgColumnConfigBO> columns = getColumnsByGroup(query.getColumnPage().getColumnConfig().getGroupCode(), tablePO.getColumns());
-                            key = columns.get(0).getFkTableConfig().getFullResourceFile();
+                            TcgColumnConfigBO originalColumn = getOriginalColumnByGroup(query.getColumnPage().getColumnConfig().getGroupCode(), tablePO.getColumns());
+                            key = originalColumn.getFkTableConfig().getFullResourceFile();
+                            query.getColumnPage().getColumnConfig().setOriginalColumn(originalColumn);
+                            queryFkTableMap.put(key,originalColumn.getFkTableConfig());
                         }else {
                             continue;
                         }
@@ -455,14 +500,17 @@ public class CgBusiness {
                         )
                 ){
                     queryDicts.add(query);
+                    queryDictSet.add(query);
                 }
             }
-            queryFks = new ArrayList<List<TcgQueryConfigBO>>(fkMap.values());
 
         }
 
         tablePO.setQueryDicts(queryDicts);
-        tablePO.setQueryFks(queryFks);
+        tablePO.setQueryFks(fkMap);
+
+        tablePO.setQueryFkTables(new ArrayList<TcgTableConfigBO>(queryFkTableMap.values()));
+        tablePO.setQueryDictSet(queryDictSet);
     }
 
 
@@ -471,17 +519,25 @@ public class CgBusiness {
      * @param tablePO
      */
     private void processFkDict(TablePO tablePO) {
-        List<List<TcgColumnPageBO>> queryFks = new ArrayList<List<TcgColumnPageBO>>();
         List<TcgColumnPageBO> queryDicts = new ArrayList<TcgColumnPageBO>();
+        Set<TcgColumnPageBO> queryDictSet = new HashSet<TcgColumnPageBO>();
+
         Map<String,List<TcgColumnPageBO>> fkMap = new HashMap<String,List<TcgColumnPageBO>>();
+        Map<String,TcgTableConfigBO> fkTableMap = new HashMap<String,TcgTableConfigBO>();
         for(TcgColumnPageBO page : tablePO.getColumnPages()){
             if(  EnumPageElement.openwin.getTheValue().equals(page.getElement())){
                 String key = null;
                 if(page.getExColumn() != null) {
                     key = page.getExColumn().getOriginalColumn().getFkTableConfig().getFullResourceFile();
+                    fkTableMap.put(key , page.getExColumn().getOriginalColumn().getFkTableConfig());
                 }else if(page.getColumnConfig() != null && StringUtils.isNotEmpty(page.getColumnConfig().getGroupCode())) {
-                    List<TcgColumnConfigBO> columns = getColumnsByGroup(page.getColumnConfig().getGroupCode(), tablePO.getColumns());
-                    key = columns.get(0).getFkTableConfig().getFullResourceFile();
+                    TcgColumnConfigBO originalColumn = getOriginalColumnByGroup(page.getColumnConfig().getGroupCode(), tablePO.getColumns());
+                    if(originalColumn == null){
+                        throw new BizException("配置错误， 相同组的列没有是外键的");
+                    }
+                    key = originalColumn.getFkTableConfig().getFullResourceFile();
+                    page.getColumnConfig().setOriginalColumn(originalColumn);
+                    fkTableMap.put(key , originalColumn.getFkTableConfig());
                 }else {
                     continue;
                 }
@@ -498,11 +554,16 @@ public class CgBusiness {
 
                     ){
                 queryDicts.add(page);
+                queryDictSet.add(page);
             }
         }
 
+
+
         tablePO.setDicts(queryDicts);
-        tablePO.setFks(queryFks);
+        tablePO.setFks(fkMap);
+        tablePO.setDictSet(queryDictSet);
+        tablePO.setFkTables(new ArrayList<TcgTableConfigBO>(fkTableMap.values()));
     }
 
 
@@ -792,12 +853,15 @@ public class CgBusiness {
      * @param allColumns
      * @return
      */
-    private List<TcgColumnConfigBO> getColumnsByGroup(String groupCode , List<TcgColumnConfigBO> allColumns){
+    private TcgColumnConfigBO getOriginalColumnByGroup(String groupCode , List<TcgColumnConfigBO> allColumns){
         List<TcgColumnConfigBO> columns = new ArrayList<TcgColumnConfigBO>();
         for(TcgColumnConfigBO column : allColumns){
             if(groupCode.equals(column.getGroupCode())){
                 columns.add(column);
             }
+        }
+        if(columns.isEmpty()){
+            return null;
         }
         if(!columns.isEmpty()) {
             columns.sort(new Comparator<TcgColumnConfigBO>() {
@@ -807,7 +871,12 @@ public class CgBusiness {
                 }
             });
         }
-        return columns;
+        for(TcgColumnConfigBO column : columns){
+            if(EnumYesNo.YES.getCode().equals(column.getColumnIsfk())){
+                return column;
+            }
+        }
+        return null;
     }
 
 

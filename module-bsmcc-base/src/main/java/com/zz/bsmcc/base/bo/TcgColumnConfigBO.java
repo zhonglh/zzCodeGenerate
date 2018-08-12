@@ -42,6 +42,12 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     private String getMethodName;
 
 
+    //对应的原始列 , 比如 project_name ,  对应的应该就是project_id 列
+    //用于外键 弹框选择
+    @TableField(exist = false)
+    private TcgColumnConfigBO  originalColumn;
+
+
     public String getColumnIsnullName() {
         return columnIsnullName;
     }
@@ -114,5 +120,13 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     public void setInParentClass(boolean inParentClass) {
         this.inParentClass = inParentClass;
+    }
+
+    public TcgColumnConfigBO getOriginalColumn() {
+        return originalColumn;
+    }
+
+    public void setOriginalColumn(TcgColumnConfigBO originalColumn) {
+        this.originalColumn = originalColumn;
     }
 }

@@ -47,13 +47,15 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 
 	@Override
 	public TcgColumnPageBO processResult(TcgColumnPageBO tcgColumnPageBO) {
-		TcgColumnConfigBO TcgColumnConfigBO = tcgColumnConfigDAO.selectById(tcgColumnPageBO.getId());
-		if(TcgColumnConfigBO != null){
-			tcgColumnPageBO.setColumnComment(TcgColumnConfigBO.getColumnComment());
+		TcgColumnConfigBO tcgColumnConfigBO = tcgColumnConfigDAO.selectById(tcgColumnPageBO.getId());
+		if(tcgColumnConfigBO != null){
+			tcgColumnPageBO.setColumnComment(tcgColumnConfigBO.getColumnComment());
+			tcgColumnPageBO.setJavaName(tcgColumnConfigBO.getJavaName());
 		}else {
 			TcgExColumnBO tcgExColumnBO = tcgExColumnDAO.selectById(tcgColumnPageBO.getId());
 			if(tcgExColumnBO != null){
 				tcgColumnPageBO.setColumnComment(tcgExColumnBO.getColumnTitle());
+				tcgColumnPageBO.setJavaName(tcgExColumnBO.getJavaName());
 			}
 		}
 

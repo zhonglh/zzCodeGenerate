@@ -5,6 +5,7 @@ import com.zz.bsmcc.base.bo.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 表格的所有元素
@@ -33,17 +34,25 @@ public class TablePO implements Serializable{
 
 
     //用于列表界面上查询的弹框选择 ， 需要是外键列或者同组有外键列的
-    List<List<TcgQueryConfigBO>> queryFks;
+    Map<String,List<TcgQueryConfigBO>> queryFks;
     //用于列表界面上查询的 字典选择
     List<TcgQueryConfigBO> queryDicts;
+    //用于列表界面上查询的弹框选择 ，
+    List<TcgTableConfigBO> queryFkTables;
+    //用于列表界面上查询的 queryDicts 去重
+    Set<TcgQueryConfigBO> queryDictSet;
 
 
 
 
     //用于编辑界面 , 需要是外键列或者同组有外键列的
-    List<List<TcgColumnPageBO>> fks;
+    Map<String,List<TcgColumnPageBO>> fks;
     //用于编辑界面, 字典选择
     List<TcgColumnPageBO> dicts;
+    //用于编辑界面 ,
+    List<TcgTableConfigBO> fkTables;
+    //用于编辑界面, dicts去重
+    Set<TcgColumnPageBO> dictSet;
 
 
 
@@ -136,11 +145,11 @@ public class TablePO implements Serializable{
         this.exColumnMap = exColumnMap;
     }
 
-    public List<List<TcgQueryConfigBO>> getQueryFks() {
+    public Map<String,List<TcgQueryConfigBO>> getQueryFks() {
         return queryFks;
     }
 
-    public void setQueryFks(List<List<TcgQueryConfigBO>> queryFks) {
+    public void setQueryFks(Map<String,List<TcgQueryConfigBO>> queryFks) {
         this.queryFks = queryFks;
     }
 
@@ -152,11 +161,11 @@ public class TablePO implements Serializable{
         this.queryDicts = queryDicts;
     }
 
-    public List<List<TcgColumnPageBO>> getFks() {
+    public Map<String,List<TcgColumnPageBO>> getFks() {
         return fks;
     }
 
-    public void setFks(List<List<TcgColumnPageBO>> fks) {
+    public void setFks(Map<String,List<TcgColumnPageBO>> fks) {
         this.fks = fks;
     }
 
@@ -166,5 +175,37 @@ public class TablePO implements Serializable{
 
     public void setDicts(List<TcgColumnPageBO> dicts) {
         this.dicts = dicts;
+    }
+
+    public List<TcgTableConfigBO> getQueryFkTables() {
+        return queryFkTables;
+    }
+
+    public void setQueryFkTables(List<TcgTableConfigBO> queryFkTables) {
+        this.queryFkTables = queryFkTables;
+    }
+
+    public List<TcgTableConfigBO> getFkTables() {
+        return fkTables;
+    }
+
+    public void setFkTables(List<TcgTableConfigBO> fkTables) {
+        this.fkTables = fkTables;
+    }
+
+    public Set<TcgQueryConfigBO> getQueryDictSet() {
+        return queryDictSet;
+    }
+
+    public void setQueryDictSet(Set<TcgQueryConfigBO> queryDictSet) {
+        this.queryDictSet = queryDictSet;
+    }
+
+    public Set<TcgColumnPageBO> getDictSet() {
+        return dictSet;
+    }
+
+    public void setDictSet(Set<TcgColumnPageBO> dictSet) {
+        this.dictSet = dictSet;
     }
 }

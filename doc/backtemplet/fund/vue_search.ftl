@@ -1,9 +1,16 @@
 <style lang="less">
-
 </style>
 
 <template>
     <div class="page-body">
+        <Modal
+                v-model="shows"
+                :title="title"
+                @on-visible-change="onVisibleChange"
+                @on-ok="okFun"
+                width="1000"
+                loading
+                scrollable>
 
         <table-list :columns="columns" :tableData="data" :total="total" :loading="loading" @selectionChange="selectionChange" @callback="callback">
         <#if querys?exists >
@@ -106,16 +113,6 @@
             </div>
         </#if>
 
-        <div slot="toolbar">
-            <#list operations as operation>
-                <#if operation.position == 'top' || operation.position == 'all'>
-                    <Button type="success" icon="${operation.icons}" title="${operation.operationName}"
-                        <#if operation.styles?exists && operation.styles?length > 0>style="${operation.styles}"</#if>
-                        <#if operation.styles?class && operation.class?length > 0>class="${operation.class}"</#if>
-                            @click="changStatus">${operation.operationName}</Button>
-                </#if>
-            </#list>
-        </div>
         </table-list>
 
     <#list queryFkTables as fkTable>
@@ -127,6 +124,7 @@
 
     </#list>
 
+        </Modal>
     </div>
 </template>
 
@@ -160,6 +158,29 @@
                 </#list>
             </#if>
 
+        },
+        props: {
+            url: {
+                type: String,
+                default: ''
+            },
+            display: {
+                type: Boolean,
+                default: false
+            },
+            mutiSelect: {
+                type: Boolean,
+                default: false
+            },
+            type: {
+                type: String,
+                default: ''
+            }
+        },
+        computed: {
+            shows () {
+                return this.display;
+            }
         },
         mixins:[tableMix],
         data () {

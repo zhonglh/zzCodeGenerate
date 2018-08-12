@@ -9,7 +9,6 @@
          	<result column="column_id" property="columnId"/>
          	<result column="event_name" property="eventName"/>
          	<result column="func_name" property="funcName"/>
-         	<result column="func_param" property="funcParam"/>
          	<result column="func_body" property="funcBody"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
@@ -52,9 +51,6 @@
 
 
 
-
-
-                        <if test="funcParam != null and funcParam != ''"> AND T.func_param = #{funcParam} </if>
 
 
 

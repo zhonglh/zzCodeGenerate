@@ -223,22 +223,23 @@
                         <thead>
 
                         <th width="80">序号</th>
-                        <th width="350">列名称</th>
-                        <th width="350">列类型</th>
-                        <th width="350">列长度</th>
-                        <th width="350">小数点位数</th>
-                        <th width="350">允许空值</th>
+                        <th width="200">列名称</th>
+                        <th width="200">列类型</th>
+                        <th width="200">列长度</th>
+                        <th width="200">小数点位数</th>
+                        <th width="200">允许空值</th>
                         <th width="150">顺序</th>
                         <th width="150">是否为主键</th>
                         <th width="150">是否为外键</th>
                         <th width="150">是否为字典</th>
                         <th width="150">字典类型</th>
-                        <th width="350">外键对应表SCHEMA</th>
-                        <th width="350">外键对应表名</th>
-                        <th width="350">列说明</th>
-                        <th width="350">Java类全称</th>
-                        <th width="350">Java名称</th>
-                        <th width="350">组编码</th>
+                        <th width="200">外键对应表SCHEMA</th>
+                        <th width="200">外键对应表名</th>
+                        <th width="200">外键对应列名</th>
+                        <th width="200">列说明</th>
+                        <th width="200">Java类全称</th>
+                        <th width="200">Java名称</th>
+                        <th width="200">组编码</th>
 
                         </thead>
 
@@ -291,6 +292,10 @@
                                 <td>
                                     <input type="text"  id="columns[${status1.index }].fkName" name="columns[${status1.index }].fkName" value="${column.fkName }"
                                            <c:if test="${column.columnIsfk == '1'}">class="required"</c:if>  />
+                                </td>
+                                <td>
+                                    <input type="text"  id="columns[${status1.index }].fkColumn" name="columns[${status1.index }].fkColumn" value="${column.fkColumn }"
+                                           <c:if test="${column.groupCode != null }">class="required"</c:if>  />
                                 </td>
 
 
@@ -541,7 +546,6 @@
                         <th width="150">列说明</th>
                         <th width="150">事件名</th>
                         <th width="150">函数名</th>
-                        <th width="150">参数</th>
                         <th width="150">函数体内容</th>
 
                         </thead>
@@ -558,7 +562,6 @@
                                 </td>
                                 <td><input type="text"  id="columnEvents[${status1.index }].eventName" name="columnEvents[${status1.index }].eventName" value="${columnEvent.eventName }" /></td>
                                 <td><input type="text"  id="columnEvents[${status1.index }].funcName" name="columnEvents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
-                                <td><input type="text"  id="columnEvents[${status1.index }].funcParam" name="columnEvents[${status1.index }].funcParam" value="${columnEvent.funcParam }" /></td>
                                 <td><textarea id="columnEvents[${status1.index }].funcBody" name="columnEvents[${status1.index }].funcBody">${columnEvent.funcBody}</textarea></td>
                             </tr>
                         </c:forEach>

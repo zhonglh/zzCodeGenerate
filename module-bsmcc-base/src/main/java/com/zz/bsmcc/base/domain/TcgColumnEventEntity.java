@@ -42,18 +42,8 @@ public class TcgColumnEventEntity extends BaseBusinessSimpleEntity<String> imple
 
 
 
-
-
     //@EntityAttrAnnotation(attrName="函数名",sort=4  , attrLength=50    )
 	private String funcName;
-
-
-
-
-
-    //@EntityAttrAnnotation(attrName="参数",sort=5  , attrLength=100    )
-	private String funcParam;
-
 
 
 
@@ -123,20 +113,7 @@ public class TcgColumnEventEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setFuncName(String funcName) {
 		this.funcName = funcName;
 	}
-	/** 
-	 * 参数
-	 * @return the funcParam
-	 */
-	public String getFuncParam() {
-		return funcParam;
-	}
-	
-	/** 
-	 * 参数
-	 */
-	public void setFuncParam(String funcParam) {
-		this.funcParam = funcParam;
-	}
+
 	/** 
 	 * 函数体内容
 	 * @return the funcBody
