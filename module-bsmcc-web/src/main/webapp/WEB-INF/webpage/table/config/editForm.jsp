@@ -295,7 +295,7 @@
                                 </td>
                                 <td>
                                     <input type="text"  id="columns[${status1.index }].fkColumn" name="columns[${status1.index }].fkColumn" value="${column.fkColumn }"
-                                           <c:if test="${column.groupCode != null }">class="required"</c:if>  />
+                                           <c:if test="${column.groupCode != null && column.groupCode != '' }">class="required"</c:if>  />
                                 </td>
 
 

@@ -18,19 +18,17 @@
                     <#if page.hiddenable == '1'>
 
                     <#elseif page.editable == '0'>
-                    <FormItem label="${being.columnComment}" prop="${being.javaName}">
+                    <FormItem label="${page.columnComment}" prop="${page.javaName}">
                         {{ formValidate.${page.javaName} }}
                     </FormItem>
                     <#elseif page.editable == '1'>
-
-
-                        <FormItem label="${being.columnComment}" prop="${being.javaName}">
+                        <FormItem label="${page.columnComment}" prop="${page.javaName}">
                         <#if page?exists && page.columnConfig?exists>
                             <#if page.element == 'input' >
                                 <Input type="text" v-model="searchForm.${page.columnConfig.javaName}" step="1" precision="0"
                                        <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
                                        <#if page.minlength ?exists && page.minlength != 0>maxlength="${page.minlength}" </#if>
-                                       style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}"
+                                       style="width: 200px;margin-left: 7px"
                                         <#if page.events?exists>
                                             <#list page.events as event>
                                                 @${event.eventName}="${event.funcName}"
@@ -40,7 +38,7 @@
                             <#elseif page.element == 'digits' >
                                 <InputNumber  v-model="searchForm.${page.columnConfig.javaName}"
                                               <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
-                                              style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}"
+                                              style="width: 200px;margin-left: 7px"
                                             <#if page.events?exists>
                                                 <#list page.events as event>
                                                       @${event.eventName}="${event.funcName}"
@@ -50,7 +48,7 @@
                             <#elseif page.element == 'number' >
                                 <InputNumber  v-model="searchForm.${page.columnConfig.javaName}"  precision="2"
                                               <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
-                                              style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}"
+                                              style="width: 200px;margin-left: 7px"
                                             <#if page.events?exists>
                                                 <#list page.events as event>
                                                       @${event.eventName}="${event.funcName}"
@@ -64,7 +62,7 @@
                                             @${event.eventName}="${event.funcName}"
                                         </#list>
                                     </#if>
-                                            style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
+                                            style="width: 200px;margin-left: 7px"  />
                             <#elseif page.element == 'timestamp' >
                                 <DatePicker type="datetime"   v-model="searchForm.${page.columnConfig.javaName}"  clearable editable="false"
                                     <#if page.events?exists>
@@ -72,7 +70,7 @@
                                             @${event.eventName}="${event.funcName}"
                                         </#list>
                                     </#if>
-                                            style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
+                                            style="width: 200px;margin-left: 7px"  />
                             <#elseif page.element == 'email' >
                                 <Input type="email" v-model="searchForm.${page.columnConfig.javaName}"
                                        <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
@@ -82,7 +80,7 @@
                                        @${event.eventName}="${event.funcName}"
                                         </#list>
                                     </#if>
-                                       style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
+                                       style="width: 200px;margin-left: 7px"  />
                             <#elseif page.element == 'url' >
                                 <Input type="url" v-model="searchForm.${page.columnConfig.javaName}"
                                        <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
@@ -92,18 +90,18 @@
                                        @${event.eventName}="${event.funcName}"
                                         </#list>
                                     </#if>
-                                       style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
+                                       style="width: 200px;margin-left: 7px"  />
 
                             <#elseif page.element == 'radio' >
                                 <RadioGroup v-model="searchForm.${page.columnConfig.javaName}">
-                                    <Radio v-for="(item, index) in ${page.columnConfig.dictType}s" :label="item.val" :key="item.val">
+                                    <Radio v-for="(item, index) in ${page.columnConfig.dictType}Dicts" :label="item.val" :key="item.val">
                                         <span>{{item.name}}</span>
                                     </Radio>
                                 </RadioGroup>
 
                             <#elseif page.element == 'checkbox' >
                                 <CheckboxGroup  v-model="searchForm.${page.columnConfig.javaName}">
-                                    <Checkbox  v-for="(item, index) in ${page.columnConfig.dictType}s" :label="item.val" :key="item.val">
+                                    <Checkbox  v-for="(item, index) in ${page.columnConfig.dictType}Dicts" :label="item.val" :key="item.val">
                                         <span>{{item.name}}</span>
                                     </Checkbox >
                                 </CheckboxGroup >
@@ -111,7 +109,7 @@
 
 
                             <#elseif page.element == 'select' >
-                                <Select v-model="searchForm.${page.columnConfig.javaName}" placeholder="${being.queryPlaceholder}"
+                                <Select v-model="searchForm.${page.columnConfig.javaName}" 
                                     <#if page.events?exists>
                                         <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -121,14 +119,14 @@
                                     <#if page.required == '0'>
                                     <Option value=""></Option>
                                     </#if>
-                                    <Option v-for="(item, index) in ${page.columnConfig.dictType}s" :value="item.val" :key="item.val" >{{item.name}}</Option>
+                                    <Option v-for="(item, index) in ${page.columnConfig.dictType}Dicts" :value="item.val" :key="item.val" >{{item.name}}</Option>
                                 </Select>
 
                             <#elseif page.element == 'openwin' >
                                 <Input v-model="searchForm.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.fkTableConfig.fullResourceFile}"/>
 
                             <#else >
-                                <Input type="text" v-model="searchForm.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}"
+                                <Input type="text" v-model="searchForm.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" 
                                     <#if page.events?exists>
                                         <#list page.events as event>
                                        @${event.eventName}="${event.funcName}"
@@ -191,10 +189,16 @@
                     </#list>
                     aaaaaa
                 },
+                    <#list dictSet as dictPage>
+                        <#if dictPage.exColumn?exists>${dictPage.exColumn.dictType}Dicts:{},
+                        <#else>${dictPage.columnConfig.dictType}Dicts:[],
+                        </#if>
+                    </#list>
                 ruleValidate: {
 
                     <#list columnPages as page>
                         <#if page.existPage == '1' && page.editable == '1' >
+                        <#if page.required == '1' || page.validates?exists>
                      ${page.javaName}:[
                             <#if page.required == '1'>
                                 <#if page.element == 'select' >
@@ -228,6 +232,7 @@
 
 
                         ],
+                        </#if>
                         </#if>
                     </#list>
 
@@ -291,17 +296,19 @@
 
             // this.width = document.documentElement.clientWidth;
             let that = this;
-            commonApi.address().then(response => {
-                that.addresses = response.data.result.body.data
+
+
+            commonApi.allDicts().then(response => {
+                let dictMap = response.data.result.body.data;
+                <#list dictSet as dictPage>
+                        <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dicts=dictMap.get("${dictPage.exColumn.dictType}"),
+                        <#else>that.${dictPage.columnConfig.dictType}Dicts=dictMap.get("${dictPage.columnConfig.dictType}"),
+                    </#if>
+                </#list>
+
             });
 
-            commonApi.postList().then(response => {
-                that.postList = response.data.result.body.data
-            });
 
-            commonApi.loveList().then(response => {
-                that.loveList = response.data.result.body.data
-            });
 
             this.$on('findById', function (id) {
                 that.id = id;

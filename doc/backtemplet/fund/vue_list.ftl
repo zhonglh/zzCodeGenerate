@@ -52,14 +52,14 @@
                                     </Select>
 
                                 <#elseif being.columnPage.element == 'openwin' >
-                                    <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.fkTableConfig.fullResourceFile}"/>
+                                    <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.fkTableConfig.javaName}"/>
 
                                 <#else >
                                     <Input type="text" v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
                                 </#if>
                             <#elseif being.columnPage?exists && being.columnPage.exColumn?exists>
                                 <#if being.columnPage.element == 'openwin' >
-                                    <Input v-model="searchForm.${being.columnPage.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.fullResourceFile}"/>
+                                    <Input v-model="searchForm.${being.columnPage.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}"/>
                                 </#if>
                             <#else>
                                 <Input type="text" v-model="searchForm.${being.queryFieldName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -73,7 +73,7 @@
                             <#if being.columnPage.element == 'select' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'radio'>
                                 <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
                             <#elseif being.columnPage.element == 'openwin' >
-                                <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.fkTableConfig.javaName}"/>
                             <#else>
                                 <#if being.columnPage.element == 'input' >
                                     <Input type="text" v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -93,7 +93,7 @@
                             </#if>
                         <#elseif being.columnPage?exists && being.columnPage.exColumn?exists>
                             <#if being.columnPage.element == 'openwin' >
-                                <Input v-model="searchForm.${being.columnPage.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="searchForm.${being.columnPage.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}"/>
                             </#if>
                         <#else>
                             <Input type="text" v-model="searchForm.${being.queryFieldName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -119,8 +119,8 @@
         </table-list>
 
     <#list queryFkTables as fkTable>
-        <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :type="type"
-                                           <#list queryFks[fkTable().getFullResourceFile()] as queryField >
+        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :type="type"
+                                           <#list queryFks[fkTable().getjavaName()] as queryField >
                                            @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Fun"
                                            </#list>
         />
@@ -131,9 +131,9 @@
 </template>
 
 <script>
-    import ${table.fullResourceFile}Edit from './${table.fullResourceFile}Edit' ;
-    import ${table.fullResourceFile}View from './${table.fullResourceFile}View' ;
-    import ${table.fullResourceFile}Api from '@/api/${table.fullResourceFile}Api' ;
+    import ${table.javaName}Edit from './${table.javaName}Edit' ;
+    import ${table.javaName}View from './${table.javaName}View' ;
+    import ${table.javaName}Api from '@/api/${table.javaName}Api' ;
     import tableList from '@/views/page-template/tableList' ;
     import tableMix from '@/views/mixins/tableMix' ;
     import timeFormat from '@/utils/timeformat';
@@ -142,17 +142,17 @@
     </#if>
 
     <#list queryFkTables as fkTable>
-    import ${fkTable.fullResourceFile}Search from '@/views/${fkTable.fullResourceName}/${fkTable.fullResourceFile}Search'
+    import ${fkTable.javaName}Search from '@/views/${fkTable.fullResourceName}/${fkTable.javaName}Search'
     </#list>
 
     export default {
-        name: '${table.fullResourceFile}List',
+        name: '${table.javaName}List',
         components: {
-            ${table.fullResourceFile}Edit,
-            ${table.fullResourceFile}View,
+            ${table.javaName}Edit,
+            ${table.javaName}View,
             tableList,
             <#list queryFkTables as fkTable>
-                ${fkTable.fullResourceFile}Search <#if fkTable_has_next>,</#if>
+                ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
             </#list>
             <#if project.queryMode == 'ordinary' >
                 <#list queryDicts as dict>
@@ -164,7 +164,7 @@
         mixins:[tableMix],
         data () {
             return {
-                ${table.fullResourceFile}: {},
+                ${table.javaName}: {},
                 selectDisplay: false,
                 type: '',
                 searchForm:{
@@ -182,8 +182,12 @@
                     ${being.queryFieldName},
                     </#if>
                     </#list>
-
                 },
+            <#list queryDictSet as queryColumn>
+                <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
+                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dicts :[],
+                </#if>
+            </#list>
                 columns: [
                     {
                         title: '序号',
@@ -230,7 +234,7 @@
 
             findList () {
                 let that = this;
-                ${table.fullResourceFile}Api.${table.fullResourceFile}List(this.param).then(response => {
+                ${table.javaName}Api.${table.javaName}List(this.param).then(response => {
                     const body = response.data.result.body;
                 that.total = body.total;
                 that.loading = false;
@@ -242,6 +246,18 @@
         mounted () {
             let that = this;
             this.findList();
+
+
+
+            commonApi.allDicts().then(response => {
+                let dictMap = response.data.result.body.data;
+            <#list queryDictSet as queryColumn>
+                <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dicts=dictMap.get("${queryColumn.columnPage.exColumn.dictType}"),
+                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dicts=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}"),
+                </#if>
+            </#list>
+
+            });
 
             this.permissions = ['add','edit'];
             commonApi.postList().then(response => {

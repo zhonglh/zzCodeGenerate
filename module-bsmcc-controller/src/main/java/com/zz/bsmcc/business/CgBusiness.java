@@ -791,7 +791,11 @@ public class CgBusiness {
         fullResourceFile = fullResourceFile.replaceAll("/", "");
         tableConfig.setFullResourceFile(fullResourceFile);
 
-        fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".")?"":".") + fullPackageName;
+        if(StringUtils.isNotEmpty(fullPackageName)) {
+            fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".") ? "" : ".") + fullPackageName;
+        }else {
+            fullPackageName = projectBO.getProjectPackage();
+        }
         tableConfig.setFullPackageName(fullPackageName);
     }
 
