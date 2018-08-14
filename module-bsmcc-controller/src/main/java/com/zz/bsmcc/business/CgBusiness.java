@@ -444,6 +444,10 @@ public class CgBusiness {
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 
+        freemarkerModel.put("listColumnPages",
+            tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable()))
+        );
+
         freemarkerModel.put("indexs" , tablePO.getIndexs());
         freemarkerModel.put("querys" , tablePO.getQueryConfigs());
         freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());

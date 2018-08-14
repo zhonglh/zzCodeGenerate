@@ -16,8 +16,8 @@ public class TablePO implements Serializable{
     private TcgTableConfigBO tableBO;
     private List<TcgColumnConfigBO> columns;
     private List<TcgExColumnBO> exColumns;
-    private List<TcgColumnPageBO> columnPages;
     private List<TcgIndexConfigBO> indexs;
+    private List<TcgColumnPageBO> columnPages;
 
     private List<TcgColumnValidateBO> columnValidates;
     private List<TcgColumnEventBO> columnEvents;

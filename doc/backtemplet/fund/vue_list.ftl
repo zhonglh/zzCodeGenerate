@@ -156,7 +156,7 @@
             </#list>
             <#if project.queryMode == 'ordinary' >
                 <#list queryDicts as dict>
-                    ${dict.columnPage.columnConfig.javaName}Dicts : selectSpan,
+                    ${dict.columnPage.columnConfig.javaName}Dict : selectSpan,
                 </#list>
             </#if>
 
@@ -177,15 +177,15 @@
                         ${being.columnPage.columnConfig.originalColumn.javaName},
                         </#if>
                     </#if>
-                    ${being.columnPage.javaName},
+                    ${being.columnPage.javaName}<#if fkTable_has_next>,</#if>
                     <#else>
-                    ${being.queryFieldName},
+                    ${being.queryFieldName}<#if fkTable_has_next>,</#if>
                     </#if>
                     </#list>
                 },
             <#list queryDictSet as queryColumn>
                 <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
-                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dicts :[],
+                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict :[],
                 </#if>
             </#list>
                 columns: [
@@ -196,16 +196,14 @@
                         fixed: 'left',
                         align: 'center'
                     },
-                    <#list columnPages as page>
-                        <#if page.listShowable == '1'>
-                            {
-                                title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
-                                key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
-                                fixed: 'left',
-                                align: 'center',
-                                width: 150
-                            }<#if page_has_next>,</#if>
-                        </#if>
+                    <#list listColumnPages as page>
+                        {
+                            title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
+                            key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
+                            fixed: 'left',
+                            align: 'center',
+                            width: 150
+                        }<#if page_has_next>,</#if>
                     </#list>
 
                 ]
@@ -252,17 +250,13 @@
             commonApi.allDicts().then(response => {
                 let dictMap = response.data.result.body.data;
             <#list queryDictSet as queryColumn>
-                <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dicts=dictMap.get("${queryColumn.columnPage.exColumn.dictType}"),
-                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dicts=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}"),
+                <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}"),
+                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}"),
                 </#if>
             </#list>
 
             });
 
-            this.permissions = ['add','edit'];
-            commonApi.postList().then(response => {
-                that.postList = response.data.result.body.data
-        });
         }
     };
 </script>
