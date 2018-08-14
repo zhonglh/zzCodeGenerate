@@ -159,8 +159,8 @@
 
     <#list fkTables as fkTable>
         <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :type="type"
-            <#list fks[fkTable().getjavaName()] as field >
-                                   @on-selected-${field.columnPage.javaName}="selected${field.columnPage.javaName}Fun"
+            <#list fks[fkTable.fullResourceFile] as field >
+                                   @on-selected-${field.javaName}="selected${field.javaName}Fun"
             </#list>
         />
 

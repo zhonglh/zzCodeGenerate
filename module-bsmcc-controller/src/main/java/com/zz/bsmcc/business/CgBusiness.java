@@ -127,16 +127,21 @@ public class CgBusiness {
         for(TcgTableConfigBO tableConfig : tableConfigs){
             tableConfigMap.put(tableConfig.getSchemaName()+"."+tableConfig.getTableName(), tableConfig);
             tableConfigMap.put(tableConfig.getId(), tableConfig);
+
+
+            //处理表的资源和包名
+            processTableResource(projectBO, moduleConfigMap, tableConfig);
         }
+
 
         for(TcgTableConfigBO tableConfig : tableConfigs){
             Map<String,Object> searchMap = new HashMap<String,Object>();
             searchMap.put("table_id" , tableConfig.getId());
 
 
-            //处理列的信息
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
             List<TcgColumnConfigBO> columns = tcgColumnConfigService.selectByMap(searchMap);
+
             if(columns != null && !columns.isEmpty()) {
                 processColumnConfig(tableConfig , columns , tableConfigMap , columnMap);
                 columns.sort(new Comparator<TcgColumnConfigBO>(){
@@ -152,9 +157,6 @@ public class CgBusiness {
 
             //处理表对应实体类的 imports 和 基类
             processTableImprotAndParent(tableConfig, columns );
-
-            //处理表的资源和包名
-            processTableResource(projectBO, moduleConfigMap, tableConfig);
 
 
             //处理扩展列的信息

@@ -115,9 +115,10 @@
 
             </table-list>
 
+
         <#list queryFkTables as fkTable>
             <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :type="type"
-                                               <#list queryFks[fkTable().getFullResourceFile()] as queryField >
+                                               <#list queryFks[fkTable.ullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Fun"
                                                </#list>
             />
