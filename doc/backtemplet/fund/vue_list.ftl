@@ -52,7 +52,7 @@
                                     </Select>
 
                                 <#elseif being.columnPage.element == 'openwin' >
-                                    <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.fkTableConfig.javaName}"/>
+                                    <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.originalColumn.fkTableConfig.javaName}"/>
 
                                 <#else >
                                     <Input type="text" v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -73,7 +73,7 @@
                             <#if being.columnPage.element == 'select' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'radio'>
                                 <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
                             <#elseif being.columnPage.element == 'openwin' >
-                                <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.fkTableConfig.javaName}"/>
+                                <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.originalColumn.fkTableConfig.javaName}"/>
                             <#else>
                                 <#if being.columnPage.element == 'input' >
                                     <Input type="text" v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -134,11 +134,13 @@
     import ${table.javaName}Edit from './${table.javaName}Edit' ;
     import ${table.javaName}View from './${table.javaName}View' ;
     import ${table.javaName}Api from '@/api/${table.javaName}Api' ;
-    import tableList from '@/views/page-template/tableList' ;
-    import tableMix from '@/views/mixins/tableMix' ;
+
+
+    import tableList from '@/components/table-list/tableList'
+    import tableMix from '@/mixins/tableMix'
     import timeFormat from '@/utils/timeformat';
     <#if project.queryMode == 'ordinary' >
-    import selectSpan from '@/views/my-components/select-span/select-span';
+    import selectSpan from '@/components/select-span/select-span';
     </#if>
 
     <#list queryFkTables as fkTable>
@@ -250,8 +252,8 @@
             commonApi.allDicts().then(response => {
                 let dictMap = response.data.result.body.data;
             <#list queryDictSet as queryColumn>
-                <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}"),
-                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}"),
+                <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
+                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}")<#if queryColumn_has_next>;</#if>
                 </#if>
             </#list>
 

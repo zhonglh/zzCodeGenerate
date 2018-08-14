@@ -83,8 +83,8 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 		<#list indexs as begin>
 		ckEntity = new ${table.javaName} ();
-		<#list begin.javaNames as javaName>
-		ckEntity.set${javaName?cap_first}( ${table.javaName?uncap_first}.get${javaName?cap_first}() );
+		<#list begin.columns as column>
+		ckEntity.set${column.javaName?cap_first}( ${table.javaName?uncap_first}.get${column.javaName?cap_first}() );
 		</#list>
         ckEntity.setId( ${table.javaName?uncap_first}.getId() );
         temp = ${table.javaName?uncap_first}Service.findTopOne4Check(ckEntity);

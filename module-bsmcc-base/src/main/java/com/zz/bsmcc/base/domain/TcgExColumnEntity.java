@@ -199,6 +199,9 @@ public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implemen
 	 * 对应外键表的列名
 	 */
 	public void setFkColumnName(String fkColumnName) {
+		if(fkColumnName != null){
+			fkColumnName = fkColumnName.toLowerCase();
+		}
 		this.fkColumnName = fkColumnName;
 	}
 	

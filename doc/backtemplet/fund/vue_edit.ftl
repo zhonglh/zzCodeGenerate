@@ -94,14 +94,14 @@
 
                             <#elseif page.element == 'radio' >
                                 <RadioGroup v-model="searchForm.${page.columnConfig.javaName}">
-                                    <Radio v-for="(item, index) in ${page.columnConfig.dictType}Dicts" :label="item.val" :key="item.val">
+                                    <Radio v-for="(item, index) in ${page.columnConfig.dictType}Dict" :label="item.val" :key="item.val">
                                         <span>{{item.name}}</span>
                                     </Radio>
                                 </RadioGroup>
 
                             <#elseif page.element == 'checkbox' >
                                 <CheckboxGroup  v-model="searchForm.${page.columnConfig.javaName}">
-                                    <Checkbox  v-for="(item, index) in ${page.columnConfig.dictType}Dicts" :label="item.val" :key="item.val">
+                                    <Checkbox  v-for="(item, index) in ${page.columnConfig.dictType}Dict" :label="item.val" :key="item.val">
                                         <span>{{item.name}}</span>
                                     </Checkbox >
                                 </CheckboxGroup >
@@ -119,11 +119,11 @@
                                     <#if page.required == '0'>
                                     <Option value=""></Option>
                                     </#if>
-                                    <Option v-for="(item, index) in ${page.columnConfig.dictType}Dicts" :value="item.val" :key="item.val" >{{item.name}}</Option>
+                                    <Option v-for="(item, index) in ${page.columnConfig.dictType}Dict" :value="item.val" :key="item.val" >{{item.name}}</Option>
                                 </Select>
 
                             <#elseif page.element == 'openwin' >
-                                <Input v-model="searchForm.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="searchForm.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
 
                             <#else >
                                 <Input type="text" v-model="searchForm.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" 
@@ -166,7 +166,7 @@
 
 
     <#list fkTables as fkTable>
-    import ${fkTable.fullResourceFile}Search from '@/views/${fkTable.fullResourceName}/${fkTable.fullResourceFile}Search'
+    import ${fkTable.fullResourceFile}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
     </#list>
 
     export default {
@@ -190,8 +190,8 @@
                     aaaaaa
                 },
                     <#list dictSet as dictPage>
-                        <#if dictPage.exColumn?exists>${dictPage.exColumn.dictType}Dicts:{},
-                        <#else>${dictPage.columnConfig.dictType}Dicts:[],
+                        <#if dictPage.exColumn?exists>${dictPage.exColumn.dictType}Dict:{},
+                        <#else>${dictPage.columnConfig.dictType}Dict:[],
                         </#if>
                     </#list>
                 ruleValidate: {
@@ -248,10 +248,10 @@
                 selected${page.javaName}Fun(selection){
                     <#if page.exColumn?exists>
                         this.searchForm.${page.exColumn.originalColumn.javaName} = selection.id;
-                        this.searchForm.${queryField.javaName} = selection.${page.exColumn.fkJavaName};
+                        this.searchForm.${page.javaName} = selection.${page.exColumn.fkJavaName};
                     <#else >
                         this.searchForm.${page.columnConfig.originalColumn.javaName} = selection.id;
-                        this.searchForm.${queryField.javaName} = selection.${page.columnConfig.fkJavaName};
+                        this.searchForm.${page.javaName} = selection.${page.columnConfig.fkJavaName};
                     </#if>
                     this.selectDisplay = false;
 
@@ -301,8 +301,8 @@
             commonApi.allDicts().then(response => {
                 let dictMap = response.data.result.body.data;
                 <#list dictSet as dictPage>
-                        <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dicts=dictMap.get("${dictPage.exColumn.dictType}"),
-                        <#else>that.${dictPage.columnConfig.dictType}Dicts=dictMap.get("${dictPage.columnConfig.dictType}"),
+                        <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dict=dictMap.get("${dictPage.exColumn.dictType}")<#if dictPage_has_next>,</#if>
+                        <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap.get("${dictPage.columnConfig.dictType}")<#if dictPage_has_next>;</#if>
                     </#if>
                 </#list>
 

@@ -8,6 +8,7 @@ import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.zz.bsmcc.core.util.CgBeanUtil;
 
 /**
  * 列设置实体类
@@ -351,7 +352,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	 * 外键对应表的Schema
 	 */
 	public void setFkSchema(String fkSchema) {
-		this.fkSchema = fkSchema;
+		this.fkSchema = CgBeanUtil.nameProcess(fkSchema);
 	}
 	/** 
 	 * 外键对应表的表名
@@ -365,7 +366,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	 * 外键对应表的表名
 	 */
 	public void setFkName(String fkName) {
-		this.fkName = fkName;
+		this.fkName = CgBeanUtil.nameProcess(fkName);
 	}
 	/** 
 	 * 说明
@@ -380,6 +381,7 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	 */
 	public void setColumnComment(String columnComment) {
 		this.columnComment = columnComment;
+
 	}
 	/** 
 	 * 其它说明
@@ -457,6 +459,9 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	}
 
 	public void setFkColumn(String fkColumn) {
+		if(fkColumn != null){
+			fkColumn = fkColumn.toLowerCase();
+		}
 		this.fkColumn = fkColumn;
 	}
 }

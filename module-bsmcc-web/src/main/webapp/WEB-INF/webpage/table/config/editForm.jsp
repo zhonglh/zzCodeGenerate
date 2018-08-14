@@ -396,7 +396,7 @@
                         <thead>
 
                         <th width="80">序号</th>
-                        <th width="150">列说明</th>
+                        <th width="250">列说明</th>
                         <th width="150">是否真实列</th>
                         <th width="150">是否在界面里</th>
                         <th width="150">是否可编辑</th>

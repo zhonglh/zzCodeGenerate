@@ -3,6 +3,7 @@ package com.zz.bsmcc.core.util;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.java.ReflectionSuper;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -28,6 +29,20 @@ public class CgBeanUtil {
             nameSet.add(f.getName());
         }
         return nameSet;
+    }
+
+    /**
+     * 名字处理，  包括表名称 和Sehema名称
+     * @return
+     */
+    public static String nameProcess(String name){
+        //目前是处理为全小写
+        if(StringUtils.isNotEmpty(name)){
+            return name.toLowerCase();
+        }else {
+            return name;
+        }
+
     }
 
 

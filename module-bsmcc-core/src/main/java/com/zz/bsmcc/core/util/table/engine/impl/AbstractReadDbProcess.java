@@ -252,7 +252,11 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				rs = stmt.executeQuery(getReadIndexColumnsByTable(tableSchema ,tableName , index.getIndexName()));
 				index.setColumnNames(new ArrayList<String>());
 				while (rs.next()) {
-					index.getColumnNames().add(rs.getString(1));
+					String columnName = rs.getString(1);
+					if(columnName != null && !columnName.isEmpty()){
+						columnName = columnName.toLowerCase();
+					}
+					index.getColumnNames().add(columnName);
 				}
 			}
 
@@ -305,7 +309,11 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				rs = stmt.executeQuery(getReadConstraintColumnsByTable(tableSchema ,tableName , constraint.getIndexName()));
 				constraint.setColumnNames(new ArrayList<String>());
 				while (rs.next()) {
-					constraint.getColumnNames().add(rs.getString(1));
+					String columnName = rs.getString(1);
+					if(columnName != null && !columnName.isEmpty()){
+						columnName = columnName.toLowerCase();
+					}
+					constraint.getColumnNames().add(columnName);
 				}
 			}
 

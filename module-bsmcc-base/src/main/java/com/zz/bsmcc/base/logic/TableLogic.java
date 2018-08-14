@@ -39,8 +39,8 @@ public class TableLogic {
     }
 
     public static void initTableConfig(TcgTableConfigBO tcgTableConfigBO , Table table , TcgProjectEntity project , ILoginUserEntity<String> sessionUserVO){
-        tcgTableConfigBO.setSchemaName(table.getTableSchema());
-        tcgTableConfigBO.setTableName(table.getTableName());
+        tcgTableConfigBO.setSchemaName(CgBeanUtil.nameProcess(table.getTableSchema()));
+        tcgTableConfigBO.setTableName(CgBeanUtil.nameProcess(table.getTableName()));
         tcgTableConfigBO.setIsTable(table.isTable()? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
         tcgTableConfigBO.setTableComment(table.getTableComment());
         tcgTableConfigBO.setTableOtherComment(table.getTableOtherComment());
@@ -77,7 +77,7 @@ public class TableLogic {
     public static void initColumnConfig(TcgColumnConfigBO columnBO, TcgTableConfigBO tableBO , Column column ,
                                     Map<String,String> typeMap , ILoginUserEntity<String> sessionUserVO){
         columnBO.setTableId(tableBO.getId());
-        columnBO.setColumnName(column.getColumnName());
+        columnBO.setColumnName(column.getColumnName().toLowerCase());
         columnBO.setColumnComment(column.getColumnComment());
         columnBO.setColumnOtherComment(column.getColumnOtherComments());
         columnBO.setColumnType(column.getDataType());
@@ -104,6 +104,7 @@ public class TableLogic {
                 boolean isFk = isFk(columnBO);
                 if(isFk) {
                     columnBO.setColumnIsfk(EnumYesNo.YES.getCode());
+                    columnBO.setFkColumn("id");
                 }
             }
         }
@@ -176,6 +177,8 @@ public class TableLogic {
         exColumnBO.setOriginalColumnDict(EnumYesNo.NO.getCode());
         exColumnBO.setOriginalColumnFk(EnumYesNo.NO.getCode());
 
+        exColumnBO.setOriginalColumn(columnBO);
+
         String title = columnBO.getColumnComment();
         if(title.length()<=2){
             title = title + "名称";
@@ -219,6 +222,9 @@ public class TableLogic {
         pageBO.setHiddenable(EnumYesNo.NO.getCode());
 
         pageBO.setElement((String) EnumPageElement.text.getTheValue());
+        if(columnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumn().getColumnIsfk())){
+            pageBO.setElement((String) EnumPageElement.openwin.getTheValue());
+        }
 
         pageBO.setRequired(EnumYesNo.YES.getCode());
 
@@ -241,6 +247,11 @@ public class TableLogic {
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
         }else if("id".equalsIgnoreCase(columnBO.getJavaName())){
+            //主键
+            pageBO.setExistPage(EnumYesNo.YES.getCode());
+            pageBO.setEditable(EnumYesNo.NO.getCode());
+            pageBO.setHiddenable(EnumYesNo.YES.getCode());
+        }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())){
             //主键
             pageBO.setExistPage(EnumYesNo.YES.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
@@ -277,7 +288,7 @@ public class TableLogic {
      */
     public static void processPageElement(TcgColumnPageBO pageBO, TcgColumnConfigBO columnBO) {
         if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())){
-            pageBO.setElement((String) EnumPageElement.openwin.getTheValue());
+            pageBO.setElement((String) EnumPageElement.text.getTheValue());
         }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsdict())){
             pageBO.setElement((String)EnumPageElement.select.getTheValue());
         }else {

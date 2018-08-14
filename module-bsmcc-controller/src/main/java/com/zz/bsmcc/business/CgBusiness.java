@@ -20,6 +20,7 @@ import com.zz.bsmcc.core.enums.EnumPageElement;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 代码生成处理
@@ -35,6 +37,9 @@ import java.util.*;
  */
 @Component
 public class CgBusiness {
+
+
+    public Logger logger = Logger.getLogger(this.getClass());
 
 
     @Autowired
@@ -307,12 +312,14 @@ public class CgBusiness {
             List<TcgTempletGroupOperationBO> operations = new ArrayList<TcgTempletGroupOperationBO>(operationBOMap.values());
             tablePO.setTempletGroupOperations(operations);
 
-            cgCode(tablePO , projectBO , templets);
 
             tablePOMap.put(tableConfig.getId(),tablePO);
 
+        }
 
 
+        for(TablePO tablePO : tablePOMap.values()){
+            cgCode(tablePO , projectBO , templets);
         }
 
     }
@@ -363,6 +370,9 @@ public class CgBusiness {
             basePath = basePath + File.separator + session.getId();
         }
 
+        logger.debug("table name : "+tablePO.getTableBO().getTableName());
+
+
         for(TcgTempletBO templet : templets){
 
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
@@ -392,7 +402,7 @@ public class CgBusiness {
 
                 model.put("templet" , templet) ;
 
-                System.out.println("Templet : "+templet.getTempletTitle());
+                logger.debug("Templet : "+templet.getTempletTitle());
 
                 String result = FreemarkerUtils.renderString(templet.getTempletContent() , model);
 
@@ -445,7 +455,7 @@ public class CgBusiness {
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 
         freemarkerModel.put("listColumnPages",
-            tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable()))
+            tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList())
         );
 
         freemarkerModel.put("indexs" , tablePO.getIndexs());
