@@ -253,6 +253,43 @@
                 </#list>
                 </#list>
 
+
+
+            <#list querys as being>
+                <#if being.columnPage?exists && being.columnPage.element == 'openwin' >
+                    <#if being.columnPage.columnConfig?exists>
+                    <#elseif  being.columnPage.exColumn?exists>
+                        select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
+
+                            this.type='${being.columnPage.javaName}';
+                    this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+                    }
+                    </#if>
+                </#if>
+            </#list>
+
+
+            onVisibleChange(v) {
+                this.$emit('onVisibleChange',v);
+            },
+            okFun(){
+
+                let selectedData = this.selectedData;
+
+
+
+                if (selectedData.length<1){
+                    this.$Message.error('请选择要数据！')
+                }else {
+                    if (this.mutiSelect){
+                        this.$emit('on-selected-'+this.type,selectedData);
+                    } else {
+                        this.$emit('on-selected-'+this.type,selectedData[0]);
+                    }
+
+                }
+            },
+
                 findList () {
                     let that = this;
                     ${table.fullResourceFile}Api.${table.fullResourceFile}List(this.param).then(response => {
@@ -269,9 +306,8 @@
                 this.findList();
 
 
-
-                commonApi.allDicts().then(response => {
-                    let dictMap = response.data.result.body.data;
+            commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>).then(response => {
+                let dictMap = response.data.result.body.data;
                     <#list queryDictSet as queryColumn>
                         <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}"),
                         <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}"),

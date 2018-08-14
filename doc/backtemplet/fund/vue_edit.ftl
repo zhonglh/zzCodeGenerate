@@ -155,6 +155,17 @@
             <Button type="primary" @click="save">保存</Button>
             <Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
         </div>
+
+
+    <#list fkTables as fkTable>
+        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :type="type"
+            <#list fks[fkTable().getjavaName()] as field >
+                                   @on-selected-${field.columnPage.javaName}="selected${field.columnPage.javaName}Fun"
+            </#list>
+        />
+
+    </#list>
+
     </Modal>
 
 </template>
@@ -163,6 +174,7 @@
 <script>
     import baseForm from '@/mixins/baseForm';
     import commonApi from '@/api/commonApi';
+    import ${table.javaName}Api from '@/api/${table.javaName}Api';
 
 
     <#list fkTables as fkTable>
@@ -259,6 +271,20 @@
             </#list>
         </#list>
 
+
+    <#list columnPages as columnPage>
+        <#if columnPage?exists && columnPage.element == 'openwin' >
+            <#if columnPage.columnConfig?exists>
+            <#elseif  columnPage.exColumn?exists>
+                select_${columnPage.exColumn.javaName}_${columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
+
+                    this.type='${columnPage.javaName}';
+                    this.select${columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+            }
+            </#if>
+        </#if>
+    </#list>
+
     <#if events?exists>
         <#list events as event>
         ${event.funcBody} ,
@@ -271,13 +297,13 @@
                     let that = this;
                     if (this.id != '') {
                         this.formValidate.id = this.id;
-                        userApi.update(this.formValidate).then((response) => {
+                        ${table.javaName}Api.save(this.formValidate).then((response) => {
                             that.handleReset('formValidate');
                         that.$emit('saveSuccess');
 
                     })
                     } else {
-                        userApi.save(this.formValidate).then((response) => {
+                        ${table.javaName}Api.save(this.formValidate).then((response) => {
                             that.handleReset('formValidate');
                         that.$emit('saveSuccess');
                     })
@@ -286,8 +312,8 @@
             },
             findById() {
                 let that = this;
-                userApi.findUserById(this.id).then((response) =>{
-                    const body = response.data.result.body;
+                ${table.javaName}Api.findById(this.id).then((response) =>{
+                const body = response.data.result.body;
                 that.formValidate = body;
             })
             }
@@ -297,9 +323,8 @@
             // this.width = document.documentElement.clientWidth;
             let that = this;
 
-
-            commonApi.allDicts().then(response => {
-                let dictMap = response.data.result.body.data;
+        commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>).then(response => {
+            let dictMap = response.data.result.body.data;
                 <#list dictSet as dictPage>
                         <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dict=dictMap.get("${dictPage.exColumn.dictType}")<#if dictPage_has_next>,</#if>
                         <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap.get("${dictPage.columnConfig.dictType}")<#if dictPage_has_next>;</#if>

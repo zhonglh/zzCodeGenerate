@@ -118,8 +118,15 @@
         </div>
         </table-list>
 
+
+
+        <${table.javaName}Edit @saveSuccess="saveSuccess"  :title="title"  @closeDialog="closeEditDialog" ref="editRef" :display="editDisplay" />
+        <${table.javaName}View :title="title"  @closeDialog="closeViewDialog" ref="displayRef" :display="viewDisplay" />
+
+
+
     <#list queryFkTables as fkTable>
-        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :type="type"
+        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :type="type"
                                            <#list queryFks[fkTable().getjavaName()] as queryField >
                                            @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Fun"
                                            </#list>
@@ -167,7 +174,13 @@
         data () {
             return {
                 ${table.javaName}: {},
-                selectDisplay: false,
+                    viewDisplay: false,
+                    editDisplay: false,
+
+                <#list queryFkTables as fkTable>
+                    select${fkTable.javaName}Display: false,
+                </#list>
+
                 type: '',
                 searchForm:{
                     <#list querys as being >
@@ -232,6 +245,19 @@
             </#list>
             </#list>
 
+        <#list querys as being>
+            <#if being.columnPage?exists && being.columnPage.element == 'openwin' >
+                <#if being.columnPage.columnConfig?exists>
+                <#elseif  being.columnPage.exColumn?exists>
+                select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
+
+                    this.type='${being.columnPage.javaName}';
+                    this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+                }
+                </#if>
+            </#if>
+        </#list>
+
             findList () {
                 let that = this;
                 ${table.javaName}Api.${table.javaName}List(this.param).then(response => {
@@ -249,7 +275,7 @@
 
 
 
-            commonApi.allDicts().then(response => {
+            commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>).then(response => {
                 let dictMap = response.data.result.body.data;
             <#list queryDictSet as queryColumn>
                 <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
