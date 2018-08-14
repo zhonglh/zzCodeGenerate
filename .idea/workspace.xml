@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,8 +32,8 @@
       <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="129" column="83" lean-forward="true" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="83" />
+            <state relative-caret-position="183">
+              <caret line="132" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_search.ftl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vue_search.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="120" column="86" lean-forward="false" selection-start-line="120" selection-start-column="86" selection-end-line="120" selection-end-column="86" />
+            <state relative-caret-position="74">
+              <caret line="115" column="25" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#Input#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#InputNumber#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -120,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_api.ftl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vue_api.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-51">
@@ -769,14 +764,7 @@
       <workItem from="1533946908458" duration="59680000" />
       <workItem from="1534121578640" duration="7117000" />
       <workItem from="1534158913586" duration="910000" />
-      <workItem from="1534208123705" duration="28935000" />
-    </task>
-    <task id="LOCAL-00033" summary="处理表格数据">
-      <created>1533106699562</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1533106699562</updated>
+      <workItem from="1534208123705" duration="29007000" />
     </task>
     <task id="LOCAL-00034" summary="处理表格数据">
       <created>1533107723031</created>
@@ -1114,7 +1102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534247888622</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="处理表格数据">
+      <created>1534251251085</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1534251251085</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1126,7 +1121,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="495959000" />
+    <option name="totallyTimeSpent" value="496031000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1704,18 +1699,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="0" column="35" lean-forward="true" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="129" column="83" lean-forward="true" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="83" />
+        <state relative-caret-position="183">
+          <caret line="132" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="120" column="86" lean-forward="false" selection-start-line="120" selection-start-column="86" selection-end-line="120" selection-end-column="86" />
+        <state relative-caret-position="74">
+          <caret line="115" column="25" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#Input#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#InputNumber#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1741,14 +1744,6 @@
             <element signature="n#style#0;n#Input#5;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#11028#11105#0#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="0" column="35" lean-forward="true" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
