@@ -108,10 +108,11 @@
 
         <div slot="toolbar">
             <#list operations as operation>
-                <#if operation.position == 'top' || operation.position == 'all'>
-                    <Button type="success" icon="${operation.icons}" title="${operation.operationName}"
-                        <#if operation.styles?exists && operation.styles?length > 0>style="${operation.styles}"</#if>
-                        <#if operation.class?exists && operation.class?length > 0>class="${operation.class}"</#if>
+                <#if operation.position?exists && operation.position == 'top' || operation.position == 'all'>
+                    <Button type="success"  title="${operation.operationName}"
+                        <#if operation.icons?exists>icon="${operation.icons}"</#if>
+                        <#if operation.styles?exists >style="${operation.styles}"</#if>
+                        <#if operation.class?exists>class="${operation.class}"</#if>
                     <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
                         @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'${operation.operationResource}')"
                     <#else>
@@ -125,21 +126,28 @@
 
 
 
-        <${table.javaName}View :title="title"  @closeDialog="closeViewDialog" ref="viewRef" :display="viewDisplay" />
 
 
-        <#list operations as operation>
-        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
-        <${table.javaName}Edit @saveSuccess="saveSuccess"  :title="title"  @closeDialog="closeEditDialog" ref="editRef" :display="editDisplay" />
-        <#break>
+    <#list operations as operation>
+    <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
+    <${table.javaName}Edit @saveSuccess="saveSuccess('edit')"  :title="title"  ref="editRef" :display="editDisplay" />
+    <#break>
+    </#if>
+    </#list>
+
+
+    <#list operations as operation>
+        <#if operation.operationResource == 'view'>
+            <${table.javaName}View :title="title"  @closeDialog="closeDialog('view')" ref="viewRef" :display="viewDisplay" />
+            <#break>
         </#if>
-        </#list>
+    </#list>
 
 
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update'  && operation.operationResource != 'view'>
-            <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess"  :title="title"  @closeDialog="closeEditDialog" ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
+            <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess('${operation.operationResource}')"  :title="title"   ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
             </#if>
         </#if>
     </#list>
@@ -162,8 +170,25 @@
     import ${table.javaName}Api from '@/api/${table.javaName}Api' ;
 
 
-    import ${table.javaName}View from './${table.javaName}View' ;
-    import ${table.javaName}Edit from './${table.javaName}Edit' ;
+
+
+    <#list operations as operation>
+        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
+        import ${table.javaName}Edit from './${table.javaName}Edit' ;
+            <#break>
+        </#if>
+    </#list>
+
+    <#list operations as operation>
+        <#if operation.operationResource == 'view'>
+        import ${table.javaName}View from './${table.javaName}View' ;
+            <#break>
+        </#if>
+    </#list>
+
+
+
+
 
 
     <#list operations as operation>
@@ -193,8 +218,36 @@
     export default {
         name: '${table.javaName}List',
         components: {
+
+
+
+
+    <#list operations as operation>
+        <#if operation.operationResource == 'add' || operation.operationResource == 'update'
+
             ${table.javaName}Edit,
-            ${table.javaName}View,
+            <#break>
+        </#if>
+    </#list>
+
+    <#list operations as operation>
+        <#if operation.operationResource == 'view'>
+        ${table.javaName}View,
+        <#break>
+        </#if>
+    </#list>
+
+
+
+    <#list operations as operation>
+        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'view'>
+
+                ${table.javaName}${operation.operationResource?cap_first} ,
+            </#if>
+        </#if>
+    </#list>
+
             tableList,
             <#list queryFkTables as fkTable>
                 ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
@@ -324,29 +377,28 @@
         let dialogFlag = dialog.confirm(confirmMsg);
 
         if (dialogFlag) {
-            ${task.javaName}Api.${operation.operationResource>({ids: this.selectedIds.join(',')}, {
+            ${table.javaName}Api.${operation.operationResource}({ids: this.selectedIds.join(',')}, {
             onSuccess(res){
                 dialog.success("${operation.operationName}${table.tableComment}成功",that);
                 that.findList();
             }
             })
         }
-
-        }
-
     },
     </#if>
 </#list>
 
-            findList () {
+          findList (){
                 let that = this;
-                ${table.javaName}Api.${table.javaName}List(this.param).then(response => {
-                    const body = response.data.result.body;
-                that.total = body.total;
-                that.loading = false;
-                that.data = body.data;
-            });
+                ${table.javaName}Api.list(this.param, {
+                    onSuccess(res) {
+
+                        that.total = res.total;
+                        that.data = res.rows;
+                    }
+                    });
             }
+
         },
 
         mounted () {
@@ -354,16 +406,18 @@
             this.findList();
 
 
-
-            commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>).then(response => {
-                let dictMap = response.data.result.body.data;
+        <#if queryDictSet?exists && (queryDictSet?size > 0) >
+        commonApi.allDicts("<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>", {
+            onSuccess(dictMap) {
             <#list queryDictSet as queryColumn>
                 <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
                 <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}")<#if queryColumn_has_next>;</#if>
                 </#if>
             </#list>
+            }
+        });
+        </#if>
 
-            });
 
         }
     };

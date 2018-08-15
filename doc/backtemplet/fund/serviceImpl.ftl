@@ -159,4 +159,68 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 
 
+
+
+
+<#list operations as op>
+
+	<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'delete' && op.operationResource != 'view'>
+		<#if op.operationBO.opMode == '1'>
+			<#if op.operationBO.selectMode == '0'>
+                /**
+                * ${op.operationName}${table.tableComment}
+                */
+                public int ${op.operationResource}(${table.javaName} ${table.javaName?uncap_first}) {
+					//todo
+					return 1;
+				}
+			<#elseif op.operationBO.selectMode == '1'>
+
+                /**
+                * ${op.operationName}${table.tableComment}
+                */
+                public int ${op.operationResource}(${table.javaName} ${table.javaName?uncap_first})  {
+					//todo
+					return 1;
+                }
+			<#elseif op.operationBO.selectMode == '2'>
+
+			</#if>
+		<#else >
+			<#if op.operationBO.selectMode == '0'>
+
+                /**
+                * ${op.operationName}${table.tableComment}
+                */
+                public void ${op.operationResource}(){
+					//todo
+					return ;
+				}
+
+			<#elseif op.operationBO.selectMode == '1'>
+
+                /**
+                * ${op.operationName}${table.tableComment}
+                */
+                public int ${op.operationResource}(${table.javaName} ${table.javaName?uncap_first}) {
+					//todo
+					return 1;
+				}
+			<#elseif op.operationBO.selectMode == '2'>
+
+                /**
+                * ${op.operationName}${table.tableComment}
+                */
+                public int ${op.operationResource}(List<${table.javaName}> ${table.javaName?uncap_first}s) {
+					//todo
+					return 0;
+                }
+			</#if>
+
+		</#if>
+	</#if>
+</#list>
+
+
+
 }

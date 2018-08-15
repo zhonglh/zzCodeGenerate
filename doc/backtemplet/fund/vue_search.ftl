@@ -307,15 +307,25 @@
                 this.findList();
 
 
-            commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>).then(response => {
-                let dictMap = response.data.result.body.data;
-                    <#list queryDictSet as queryColumn>
-                        <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}"),
-                        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}"),
-                        </#if>
-                    </#list>
 
-                    });
+
+
+
+    <#if queryDictSet?exists && (queryDictSet?size > 0) >
+            commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>, {
+                onSuccess(dictMap) {
+                <#list queryDictSet as queryColumn>
+                    <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
+                    <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}")<#if queryColumn_has_next>;</#if>
+                    </#if>
+                </#list>
+                }
+            });
+
+    </#if>
+
+
+
 
             }
         };

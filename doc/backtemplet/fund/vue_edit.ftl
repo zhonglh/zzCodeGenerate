@@ -212,19 +212,7 @@
                         <#if page.existPage == '1' && page.editable == '1' >
                         <#if page.required == '1' || page.validates?exists>
                      ${page.javaName}:[
-                            <#if page.required == '1'>
-                                <#if page.element == 'select' >
-                                    { required: true,  message: '请选择${page.columnComment}', trigger: 'change' }
-                                <#elseif  page.element == 'radio' >
-                                { required: true, type: 'array', min: 1, message: '请选择${page.columnComment}', trigger: 'change' },
-                                <#elseif  page.element == 'checkbox' >
-                                    { required: true, type: 'array', min: 1, message: '请至少选择一项${page.columnComment}', trigger: 'change' },
-                                <#elseif  page.element == 'openwin' >
-                                    { required: true,  message: '请选择${page.columnComment}', trigger: 'blur' },
-                                <#else>
-                                    { required: true, message: '请输入${page.columnComment}', trigger: 'blur' },
-                                </#if>
-                            </#if>
+
 
                             <#if page.validates?exists>
                                 <#list  page.validates as validate>
@@ -242,6 +230,19 @@
                                 </#list>
                             </#if>
 
+                            <#if page.required == '1'>
+                                <#if page.element == 'select' >
+                                    { required: true,  message: '请选择${page.columnComment}', trigger: 'change' }
+                                <#elseif  page.element == 'radio' >
+                                    { required: true, type: 'array', min: 1, message: '请选择${page.columnComment}', trigger: 'change' }
+                                <#elseif  page.element == 'checkbox' >
+                                    { required: true, type: 'array', min: 1, message: '请至少选择一项${page.columnComment}', trigger: 'change' }
+                                <#elseif  page.element == 'openwin' >
+                                    { required: true,  message: '请选择${page.columnComment}', trigger: 'blur' }
+                                <#else>
+                                    { required: true, message: '请输入${page.columnComment}', trigger: 'blur' }
+                                </#if>
+                            </#if>
 
                         ],
                         </#if>
@@ -297,25 +298,34 @@
                     let that = this;
                     if (this.id != '') {
                         this.formValidate.id = this.id;
-                        ${table.javaName}Api.save(this.formValidate).then((response) => {
-                            that.handleReset('formValidate');
-                        that.$emit('saveSuccess');
+                        ${table.javaName}Api.update(this.formValidate,{
+                            onSuccess(body){
+                                that.handleReset('formValidate');
+                                that.$emit('saveSuccess');
 
-                    })
-                    } else {
-                        ${table.javaName}Api.save(this.formValidate).then((response) => {
-                            that.handleReset('formValidate');
-                        that.$emit('saveSuccess');
-                    })
+                            }
+                        });
+
+
+                   } else {
+                        ${table.javaName}Api.add(this.formValidate,{
+                            onSuccess(body){
+                                that.handleReset('formValidate');
+                                that.$emit('saveSuccess');
+                            }
+                        });
+
                     }
                 }
             },
             findById() {
                 let that = this;
-                ${table.javaName}Api.findById(this.id).then((response) =>{
-                const body = response.data.result.body;
-                that.formValidate = body;
-            })
+                ${table.javaName}Api.findById(this.id,{
+                    onSuccess(body){
+                        that.formValidate = body;
+                    }
+                });
+
             }
         },
         mounted() {
@@ -323,17 +333,18 @@
             // this.width = document.documentElement.clientWidth;
             let that = this;
 
-        commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>).then(response => {
-            let dictMap = response.data.result.body.data;
-                <#list dictSet as dictPage>
+
+<#if dictSet?exists && (dictSet?size > 0) >
+            commonApi.allDicts(<#list dictSet as columnPage><#if columnPage.exColumn?exists>${columnPage.exColumn.dictType}<#if columnPage_has_next>,</#if><#else>that.${columnPage.columnConfig.dictType}<#if columnPage_has_next>,</#if></#if></#list>, {
+                onSuccess(dictMap){
+                    <#list dictSet as dictPage>
                         <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dict=dictMap.get("${dictPage.exColumn.dictType}")<#if dictPage_has_next>,</#if>
                         <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap.get("${dictPage.columnConfig.dictType}")<#if dictPage_has_next>;</#if>
-                    </#if>
-                </#list>
-
+                        </#if>
+                    </#list>
+                }
             });
-
-
+            </#if>
 
             this.$on('findById', function (id) {
                 that.id = id;

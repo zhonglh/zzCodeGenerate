@@ -228,10 +228,10 @@
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"  frameborder="0" data-id="homes" seamless></iframe>
         </div>
-        <div class="footer">
+        <%--<div class="footer">
             <div class="pull-right">AAA
             </div>
-        </div>
+        </div>--%>
     </div>
     <!--右侧部分结束-->
     

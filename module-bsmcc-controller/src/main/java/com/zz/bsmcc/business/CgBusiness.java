@@ -13,6 +13,7 @@ import com.zz.bsmcc.base.query.*;
 import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.Applications;
+import com.zz.bsmcc.core.enums.EnumButtonPosition;
 import com.zz.bsmcc.core.enums.EnumPageElement;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.io.IOUtils;
@@ -920,6 +921,7 @@ public class CgBusiness {
                     tgo.setOperationName(op.getOperationName());
                     tgo.setOperationResource(op.getOperationResource());
                     tgo.setOperationId(op.getId());
+                    tgo.setPosition((String)EnumButtonPosition.top.getTheValue());
                     operationBOMap.put(op.getId() , tgo);
                 }
             }

@@ -50,11 +50,12 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     //用于模板生成数据
 
     //是否有版本信息
+    @TableField(exist = false)
     private boolean haveVersion;
 
 
-    @TableField(exist = false)
     //用于视图对应的主表信息
+    @TableField(exist = false)
     private TcgTableConfigBO mainTableIdConfig;
 
     /**

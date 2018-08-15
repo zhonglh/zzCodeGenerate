@@ -156,13 +156,14 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 		AjaxJson ajaxJson = null;
 		String id = ${table.javaName?uncap_first}.getId();
 		if(StringUtils.isEmpty(id)){
-		//保存数据
-		autoSetInsertEntity(${table.javaName?uncap_first},loginUser);
+			//保存数据
+			autoSetInsertEntity(${table.javaName?uncap_first},loginUser);
 
-		int size = ${table.javaName?uncap_first}Service.save(${table.javaName?uncap_first});
-		ajaxJson = new AjaxJson(true,"${table.tableComment}保存成功！");
-		if (size<=0){
-			throw ${table.javaName}Exceptions.Save_Error;
+			int size = ${table.javaName?uncap_first}Service.save(${table.javaName?uncap_first});
+			ajaxJson = new AjaxJson(true,"${table.tableComment}保存成功！");
+			if (size<=0){
+				throw ${table.javaName}Exceptions.Save_Error;
+			}
 		}else {
 			return new AjaxJson(false,"调用错误！");
 		}
@@ -170,6 +171,7 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 	}
 
 
+	<#elseif op.operationResource=='view'>
 
 	<#elseif op.operationResource=='update'>
 	/**
@@ -225,12 +227,12 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 		String ids = getParamString(request,"ids");
 
 		if(ids == null || ids.isEmpty()){
-			new AjaxJson(false,"请先选择要删除的记录！");
+			return new AjaxJson(false,"请先选择要删除的记录！");
 		}
 
 		String []idString = ids.split(",");
 		if(idString == null || idString.length == 0 ){
-			new AjaxJson(false,"请先选择要删除的记录！");
+    		return new AjaxJson(false,"请先选择要删除的记录！");
 		}
 
 		List list = Arrays.asList(idString);
@@ -241,7 +243,7 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 		List<${table.javaName}> ${table.javaName?uncap_first}s = ${table.javaName?uncap_first}Service.findList(${table.javaName?uncap_first});
 
 		if(${table.javaName?uncap_first}s == null || ${table.javaName?uncap_first}s.isEmpty()){
-			new AjaxJson(false,"该记录您无权删除！");
+    		return new AjaxJson(false,"该记录您无权删除！");
 		}
 
 		AjaxJson ajaxJson = new AjaxJson(true,"投资者删除成功！");
@@ -260,8 +262,108 @@ public class ${table.javaName}Controller extends RestfulBaseController {
     */
     @RequestMapping(value = "/${op.operationResource}",method = RequestMethod.POST)
     public Object ${op.operationResource}( HttpServletRequest request, HttpServletResponse response) {
-		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
-		//todo  完成${op.operationName}${table.tableComment} 的业务功能
+
+	<#if op.operationBO.opMode == '1'>
+		<#if op.operationBO.selectMode == '0'>
+			${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+			TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
+			AjaxJson ajaxJson = null;
+			String id = ${table.javaName?uncap_first}.getId();
+			if(StringUtils.isEmpty(id)){
+				int size = ${table.javaName?uncap_first}Service.${op.operationResource}(${table.javaName?uncap_first});
+				ajaxJson = new AjaxJson(true,"${table.tableComment}${op.operationName}成功！");
+				if (size<=0){
+        			return new AjaxJson(false,"${table.tableComment} ${op.operationName}失败！");
+				}
+			}else {
+				return new AjaxJson(false,"调用错误！");
+			}
+		<#elseif op.operationBO.selectMode == '1'>
+			${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+
+			TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
+
+			AjaxJson ajaxJson = null;
+			String id = ${table.javaName?uncap_first}.getId();
+			if(StringUtils.isEmpty(id)){
+				return new AjaxJson(false,"调用错误！");
+			}
+
+			<#if table.haveVersion == true>
+			${table.javaName} temp = ${table.javaName?uncap_first}Service.findById(id);
+			${table.javaName?uncap_first}.setVersionNo(temp.getVersionNo());
+			</#if>
+			int size = ${table.javaName?uncap_first}Service.${op.operationResource}(${table.javaName?uncap_first});
+			ajaxJson = new AjaxJson(true,"${table.tableComment} ${op.operationName}成功！");
+			if (size<=0){
+				return new AjaxJson(false,"${table.tableComment} ${op.operationName}失败！");
+			}
+
+			return ajaxJson;
+
+		<#elseif op.operationBO.selectMode == '2'>
+			//todo
+
+        	return AjaxJson.successAjax;
+		</#if>
+	<#else >
+
+		<#if op.operationBO.selectMode == '0'>
+			${table.javaName?uncap_first}Service.${op.operationResource}();
+			return AjaxJson.successAjax;
+
+		<#elseif op.operationBO.selectMode == '1'>
+			String ids = getParamString(request,"ids");
+
+			if(ids == null || ids.isEmpty()){
+				return new AjaxJson(false,"请先选择要${op.operationName}的记录！");
+			}
+
+       		 ${table.javaName}> ${table.javaName?uncap_first} = ${table.javaName?uncap_first}Service.findById(ids);
+
+			if(${table.javaName?uncap_first} == null ){
+				return new AjaxJson(false,"该记录您无权操作！");
+			}
+
+
+			AjaxJson ajaxJson = new AjaxJson(true,"${table.tableComment}${op.operationName}成功！");
+			int size = ${table.javaName?uncap_first}Service.${op.operationResource}(${table.javaName?uncap_first});
+			if(size != 1){
+        		return new AjaxJson(false,"${table.tableComment} ${op.operationName}失败！");
+			}
+			return ajaxJson;
+		<#elseif op.operationBO.selectMode == '2'>
+			String ids = getParamString(request,"ids");
+
+			if(ids == null || ids.isEmpty()){
+				return new AjaxJson(false,"请先选择要${op.operationName}的记录！");
+			}
+
+
+			String []idString = ids.split(",");
+			if(idString == null || idString.length == 0 ){
+			return new AjaxJson(false,"请先选择要${op.operationName}的记录！");
+			}
+
+			List list = Arrays.asList(idString);
+			${table.javaName} ${table.javaName?uncap_first} = new ${table.javaName}();
+			${table.javaName?uncap_first}.setQueryIdList(list);
+
+			List<${table.javaName}> ${table.javaName?uncap_first}s = ${table.javaName?uncap_first}Service.findList(${table.javaName?uncap_first});
+
+			if(${table.javaName?uncap_first}s == null || ${table.javaName?uncap_first}s.isEmpty()){
+				return new AjaxJson(false,"该记录您无权${op.operationName}！");
+			}
+
+        	AjaxJson ajaxJson = new AjaxJson(true,"${table.tableComment}${op.operationName}成功！");
+			int size = ${table.javaName?uncap_first}Service.${op.operationResource}(${table.javaName?uncap_first}s);
+			if(size != ${table.javaName?uncap_first}s.size()){
+        		return new AjaxJson(false,"${table.tableComment} ${op.operationName}失败！");
+			}
+			return ajaxJson;
+		</#if>
+
+	</#if>
 	}
 	</#if>
 	</#list>
