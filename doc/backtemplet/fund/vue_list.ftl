@@ -112,7 +112,7 @@
                     <Button type="success"  title="${operation.operationName}"
                         <#if operation.icons?exists>icon="${operation.icons}"</#if>
                         <#if operation.styles?exists >style="${operation.styles}"</#if>
-                        <#if operation.class?exists>class="${operation.class}"</#if>
+                        <#if operation.classs?exists>class="${operation.classs}"</#if>
                     <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
                         @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'${operation.operationResource}')"
                     <#else>
