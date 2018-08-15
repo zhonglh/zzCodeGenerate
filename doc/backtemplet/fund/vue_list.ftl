@@ -138,7 +138,7 @@
 
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update'  && operation.operationResource != 'view'>
             <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess"  :title="title"  @closeDialog="closeEditDialog" ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
             </#if>
         </#if>
@@ -159,16 +159,16 @@
 </template>
 
 <script>
-    import ${table.javaName}View from './${table.javaName}View' ;
     import ${table.javaName}Api from '@/api/${table.javaName}Api' ;
 
 
+    import ${table.javaName}View from './${table.javaName}View' ;
     import ${table.javaName}Edit from './${table.javaName}Edit' ;
 
 
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'view'>
 
             import ${table.javaName}${operation.operationResource?cap_first} from './${table.javaName}${operation.operationResource?cap_first}' ;
             </#if>
@@ -214,7 +214,7 @@
                     editDisplay: false,
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'view'>
                     ${operation.operationResource}Display: false,
             </#if>
         </#if>

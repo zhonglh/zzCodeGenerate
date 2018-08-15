@@ -22,7 +22,7 @@
 					</#if>
 
 				<#else>
-					<if test="${being.javaName} != null"> AND T.${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
+					<if test="${being.javaName} != null and ${being.javaName} != ''"> AND T.${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
 				</#if>
 
 			</#list>
@@ -53,7 +53,7 @@
 
 
 				<#else>
-					<if test="${being.javaName} != null"> AND T.${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
+					<if test="${being.javaName} != null and ${being.javaName} != ''"> AND T.${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
 				</#if>
 
 
