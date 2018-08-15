@@ -45,8 +45,9 @@ public class TcgTempletGroupOperationServiceImpl extends BaseServiceImpl<TcgTemp
 		}
 		if(StringUtils.isNotEmpty(t.getOperationId())){
 			TcgOperationBO operationBO = tcgOperationDAO.selectById(t.getOperationId());
-			operationBO.setOperationName(operationBO.getOperationName());
-			operationBO.setOperationResource(operationBO.getOperationResource());
+			t.setOperationName(operationBO.getOperationName());
+			t.setOperationResource(operationBO.getOperationResource());
+			t.setOperationBO(operationBO);
 		}
 		return t;
 	}

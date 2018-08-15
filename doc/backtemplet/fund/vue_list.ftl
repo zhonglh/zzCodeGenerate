@@ -112,7 +112,12 @@
                     <Button type="success" icon="${operation.icons}" title="${operation.operationName}"
                         <#if operation.styles?exists && operation.styles?length > 0>style="${operation.styles}"</#if>
                         <#if operation.class?exists && operation.class?length > 0>class="${operation.class}"</#if>
-                            @click="changStatus">${operation.operationName}</Button>
+                    <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+                        @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'${operation.operationResource}')"
+                    <#else>
+                        @click="${operation.operationResource}"
+                    </#if>
+                        v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')">${operation.operationName}</Button>
                 </#if>
             </#list>
         </div>
@@ -120,8 +125,24 @@
 
 
 
+        <${table.javaName}View :title="title"  @closeDialog="closeViewDialog" ref="viewRef" :display="viewDisplay" />
+
+
+        <#list operations as operation>
+        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
         <${table.javaName}Edit @saveSuccess="saveSuccess"  :title="title"  @closeDialog="closeEditDialog" ref="editRef" :display="editDisplay" />
-        <${table.javaName}View :title="title"  @closeDialog="closeViewDialog" ref="displayRef" :display="viewDisplay" />
+        <#break>
+        </#if>
+        </#list>
+
+
+    <#list operations as operation>
+        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update'>
+            <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess"  :title="title"  @closeDialog="closeEditDialog" ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
+            </#if>
+        </#if>
+    </#list>
 
 
 
@@ -138,9 +159,23 @@
 </template>
 
 <script>
-    import ${table.javaName}Edit from './${table.javaName}Edit' ;
     import ${table.javaName}View from './${table.javaName}View' ;
     import ${table.javaName}Api from '@/api/${table.javaName}Api' ;
+
+
+    import ${table.javaName}Edit from './${table.javaName}Edit' ;
+
+
+    <#list operations as operation>
+        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update'>
+
+            import ${table.javaName}${operation.operationResource?cap_first} from './${table.javaName}${operation.operationResource?cap_first}' ;
+            </#if>
+        </#if>
+    </#list>
+
+
 
 
     import tableList from '@/components/table-list/tableList'
@@ -148,6 +183,7 @@
     import timeFormat from '@/utils/timeformat';
     <#if project.queryMode == 'ordinary' >
     import selectSpan from '@/components/select-span/select-span';
+    import dialog from '@/utils/dialog'
     </#if>
 
     <#list queryFkTables as fkTable>
@@ -176,7 +212,13 @@
                 ${table.javaName}: {},
                     viewDisplay: false,
                     editDisplay: false,
-
+    <#list operations as operation>
+        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update'>
+                    ${operation.operationResource}Display: false,
+            </#if>
+        </#if>
+    </#list>
                 <#list queryFkTables as fkTable>
                     select${fkTable.javaName}Display: false,
                 </#list>
@@ -257,6 +299,44 @@
                 </#if>
             </#if>
         </#list>
+
+<#list operations as operation>
+    <#if operation.operationBO?exists && operation.operationBO.opMode != '1' >
+    ${operation.operationResource}(){
+        let that = this;
+
+
+        <#if operation.operationBO.selectMode == '2' >
+        if (this.selectedIds.length <1){
+            dialog.warning('请选择要操作的数据!',that);
+            return ;
+        }
+        <#elseif operation.operationBO.selectMode == '1' >
+            if (this.selectedIds.length <1){
+                dialog.warning('请选择要操作的数据!',that);
+                return ;
+            }else if (this.selectedIds.length >1){
+                dialog.warning('每次只能操作一条数据!',that);
+                return ;
+            }
+        </#if>
+        let confirmMsg = '确认要${operation.operationName}该${table.tableComment}？';
+        let dialogFlag = dialog.confirm(confirmMsg);
+
+        if (dialogFlag) {
+            ${task.javaName}Api.${operation.operationResource>({ids: this.selectedIds.join(',')}, {
+            onSuccess(res){
+                dialog.success("${operation.operationName}${table.tableComment}成功",that);
+                that.findList();
+            }
+            })
+        }
+
+        }
+
+    },
+    </#if>
+</#list>
 
             findList () {
                 let that = this;

@@ -82,6 +82,31 @@
 
 
 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">选择模式：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="selectMode" name="selectMode"  class="form-control">
+                                        <option value="0" <c:if test="${entity.selectMode ==  '0' }">selected="selected"</c:if> >不需要选中数据</option>
+                                        <option value="1" <c:if test="${entity.selectMode ==  '1' }">selected="selected"</c:if> >必须选中一条</option>
+                                        <option value="2" <c:if test="${entity.selectMode ==  '2' }">selected="selected"</c:if> >必须选中至少一条</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">操作模式：</label>
+                                <div class="col-sm-8">
+                                    <select id="opMode" name="opMode"  class="form-control">
+                                        <option value="1" <c:if test="${entity.opMode ==  '1' }">selected="selected"</c:if> >弹框</option>
+                                        <option value="2" <c:if test="${entity.opMode ==  '2' }">selected="selected"</c:if> >执行</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">

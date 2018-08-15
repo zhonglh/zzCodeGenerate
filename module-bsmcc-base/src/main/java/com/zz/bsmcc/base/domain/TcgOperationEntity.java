@@ -42,12 +42,16 @@ public class TcgOperationEntity extends BaseBusinessEntity<String> implements ja
         private String isDefault;
 
 
+        //是否系统预设的
+        private String isSystem;
 
+        //选择模式
+        //0: 不要去先选择数据  1: 必须选择一行数据， 2: 不少于选择一条数据
+        private String selectMode;
 
-
-
-
-
+        //操作模式
+        //1: 弹框模式    2: 执行模式
+        private String opMode;
 
 
 
@@ -95,4 +99,27 @@ public class TcgOperationEntity extends BaseBusinessEntity<String> implements ja
         }
 
 
+        public String getIsSystem() {
+            return isSystem;
+        }
+
+        public void setIsSystem(String isSystem) {
+            this.isSystem = isSystem;
+        }
+
+        public String getSelectMode() {
+            return selectMode;
+        }
+
+        public void setSelectMode(String selectMode) {
+            this.selectMode = selectMode;
+        }
+
+        public String getOpMode() {
+            return opMode;
+        }
+
+        public void setOpMode(String opMode) {
+            this.opMode = opMode;
+        }
 }

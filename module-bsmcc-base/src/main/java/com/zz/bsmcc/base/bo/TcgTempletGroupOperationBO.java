@@ -24,6 +24,8 @@ public class TcgTempletGroupOperationBO extends TcgTempletGroupOperationEntity i
     @TableField(exist = false)
     private String operationResource;
 
+    private TcgOperationBO operationBO;
+
     public String getOperationName() {
         return operationName;
     }
@@ -38,5 +40,13 @@ public class TcgTempletGroupOperationBO extends TcgTempletGroupOperationEntity i
 
     public void setOperationResource(String operationResource) {
         this.operationResource = operationResource;
+    }
+
+    public TcgOperationBO getOperationBO() {
+        return operationBO;
+    }
+
+    public void setOperationBO(TcgOperationBO operationBO) {
+        this.operationBO = operationBO;
     }
 }

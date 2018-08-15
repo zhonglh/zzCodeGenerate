@@ -101,50 +101,6 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 
 	/**
-	 * 保存${table.tableComment}
-	 *
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(value = "/save",method = RequestMethod.POST)
-	public Object save(HttpServletRequest request, HttpServletResponse response ) {
-		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
-
-		if(isExist(${table.javaName?uncap_first}) ) {
-			throw DbException.DB_SAVE_SAME;
-		}
-
-		TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
-
-		AjaxJson ajaxJson = null;
-		String id = ${table.javaName?uncap_first}.getId();
-		if(StringUtils.isEmpty(id)){
-			//保存数据
-			autoSetInsertEntity(${table.javaName?uncap_first},loginUser);
-
-			int size = ${table.javaName?uncap_first}Service.save(${table.javaName?uncap_first});
- 			ajaxJson = new AjaxJson(true,"${table.tableComment}保存成功！");
-			if (size<=0){
-				throw ${table.javaName}Exceptions.Save_Error;
-			}
-		}else{
-			//修改数据
-
-			${table.javaName} temp = ${table.javaName?uncap_first}Service.findById(id);
-			${table.javaName?uncap_first}.setVersionNo(temp.getVersionNo());
-
-			autoSetUpdateEntity(${table.javaName?uncap_first},loginUser);
-
-			int size = ${table.javaName?uncap_first}Service.update(${table.javaName?uncap_first});
-			ajaxJson = new AjaxJson(true,"${table.tableComment}修改成功！");
-			if (size<=0){
-				throw ${table.javaName}Exceptions.Update_Error;
-			}
-		}
-		return ajaxJson;
-	}
-
-	/**
 	* 查询分页数据
 	* @param request
 	* @param response
@@ -178,10 +134,87 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 	}
 
+	<#list operations as op>
 
-
+	<#if op.operationResource=='add'>
 	/**
-	* 删除${table.tableComment}
+	* ${op.operationName}${table.tableComment}
+	*
+	* @param request
+	* @param response
+	*/
+	@RequestMapping(value = "/add",method = RequestMethod.POST)
+	public Object add(HttpServletRequest request, HttpServletResponse response ) {
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+
+		if(isExist(${table.javaName?uncap_first}) ) {
+		throw DbException.DB_SAVE_SAME;
+		}
+
+		TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
+
+		AjaxJson ajaxJson = null;
+		String id = ${table.javaName?uncap_first}.getId();
+		if(StringUtils.isEmpty(id)){
+		//保存数据
+		autoSetInsertEntity(${table.javaName?uncap_first},loginUser);
+
+		int size = ${table.javaName?uncap_first}Service.save(${table.javaName?uncap_first});
+		ajaxJson = new AjaxJson(true,"${table.tableComment}保存成功！");
+		if (size<=0){
+			throw ${table.javaName}Exceptions.Save_Error;
+		}else {
+			return new AjaxJson(false,"调用错误！");
+		}
+		return ajaxJson;
+	}
+
+
+
+	<#elseif op.operationResource=='update'>
+	/**
+	* ${op.operationName}${table.tableComment}
+	*
+	* @param request
+	* @param response
+	*/
+	@RequestMapping(value = "/update",method = RequestMethod.POST)
+	public Object update(HttpServletRequest request, HttpServletResponse response ) {
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+
+		if(isExist(${table.javaName?uncap_first}) ) {
+			throw DbException.DB_SAVE_SAME;
+		}
+
+		TrUserBasicinfo loginUser = this.getSessionVO().getTrUserBasicinfo();
+
+		AjaxJson ajaxJson = null;
+		String id = ${table.javaName?uncap_first}.getId();
+		if(StringUtils.isEmpty(id)){
+			return new AjaxJson(false,"调用错误！");
+		}
+
+		//修改数据
+		<#if table.haveVersion == true>
+		${table.javaName} temp = ${table.javaName?uncap_first}Service.findById(id);
+		${table.javaName?uncap_first}.setVersionNo(temp.getVersionNo());
+		</#if>
+
+		autoSetUpdateEntity(${table.javaName?uncap_first},loginUser);
+
+		int size = ${table.javaName?uncap_first}Service.update(${table.javaName?uncap_first});
+		ajaxJson = new AjaxJson(true,"${table.tableComment}修改成功！");
+		if (size<=0){
+			throw ${table.javaName}Exceptions.Update_Error;
+		}
+
+		return ajaxJson;
+	}
+
+
+	<#elseif op.operationResource=='delete'>
+	/**
+	* ${op.operationName}${table.tableComment}
 	*
 	* @param request
 	* @param response
@@ -217,10 +250,22 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 			throw ${table.javaName}Exceptions.Delete_Error;
 		}
 		return ajaxJson;
-
-
-
 	}
+	<#else>
+    /**
+    * ${op.operationName}${table.tableComment}
+    *
+    * @param request
+    * @param response
+    */
+    @RequestMapping(value = "/${op.operationResource}",method = RequestMethod.POST)
+    public Object ${op.operationResource}( HttpServletRequest request, HttpServletResponse response) {
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+		//todo  完成${op.operationName}${table.tableComment} 的业务功能
+	}
+	</#if>
+	</#list>
+
 
 
 }

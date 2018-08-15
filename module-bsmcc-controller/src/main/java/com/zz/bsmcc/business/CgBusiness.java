@@ -10,10 +10,7 @@ import com.zz.bms.util.base.files.FreemarkerUtils;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
-import com.zz.bsmcc.base.query.impl.TcgModuleConfigQueryImpl;
-import com.zz.bsmcc.base.query.impl.TcgTableConfigQueryImpl;
-import com.zz.bsmcc.base.query.impl.TcgTempletGroupOperationQueryImpl;
-import com.zz.bsmcc.base.query.impl.TcgTempletQueryImpl;
+import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.Applications;
 import com.zz.bsmcc.core.enums.EnumPageElement;
@@ -50,6 +47,8 @@ public class CgBusiness {
     private TcgModuleConfigService tcgModuleConfigService ;
     @Autowired
     private TcgTempletGroupOperationService tcgTempletGroupOperationService ;
+    @Autowired
+    private TcgOperationService tcgOperationService ;
     @Autowired
     private TcgTableConfigService tcgTableConfigService ;
     @Autowired
@@ -128,7 +127,6 @@ public class CgBusiness {
             tableConfigMap.put(tableConfig.getSchemaName()+"."+tableConfig.getTableName(), tableConfig);
             tableConfigMap.put(tableConfig.getId(), tableConfig);
 
-
             //处理表的资源和包名
             processTableResource(projectBO, moduleConfigMap, tableConfig);
         }
@@ -142,6 +140,7 @@ public class CgBusiness {
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
             List<TcgColumnConfigBO> columns = tcgColumnConfigService.selectByMap(searchMap);
 
+            //处理列的信息
             if(columns != null && !columns.isEmpty()) {
                 processColumnConfig(tableConfig , columns , tableConfigMap , columnMap);
                 columns.sort(new Comparator<TcgColumnConfigBO>(){
@@ -677,10 +676,25 @@ public class CgBusiness {
                 String getMethodName = "";
                 if("boolean".equals(columnConfigBO.getJavaFullClass())){
 
-                    if(columnConfigBO.getJavaName().length() >2){
-                        String firstTwo = columnConfigBO.getJavaName().substring(0,2);
+                    if(columnConfigBO.getJavaName().length() >4){
+                        String first2 = columnConfigBO.getJavaName().substring(0,2);
+                        String first4 = columnConfigBO.getJavaName().substring(0,4);
                         char c3 = columnConfigBO.getJavaName().charAt(2);
-                        if("is".equals(firstTwo) && c3 >= 'A' && c3 <= 'Z'){
+                        char c5 = columnConfigBO.getJavaName().charAt(4);
+                        if("is".equals(first2) && c3 >= 'A' && c3 <= 'Z'){
+                            setMethodName = "set"+ columnConfigBO.getJavaName().substring(2);
+                            getMethodName = columnConfigBO.getJavaName();
+                        }else if("have".equals(first4) && c5 >= 'A' && c5 <= 'Z'){
+                            setMethodName = "set"+ columnConfigBO.getJavaName().substring(4);
+                            getMethodName = columnConfigBO.getJavaName();
+                        }else {
+                            setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                            getMethodName = "is"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                        }
+                    }if(columnConfigBO.getJavaName().length() >2){
+                        String first2 = columnConfigBO.getJavaName().substring(0,2);
+                        char c3 = columnConfigBO.getJavaName().charAt(2);
+                        if("is".equals(first2) && c3 >= 'A' && c3 <= 'Z'){
                             setMethodName = "set"+ columnConfigBO.getJavaName().substring(2);
                             getMethodName = columnConfigBO.getJavaName();
                         }else {
@@ -693,10 +707,25 @@ public class CgBusiness {
                     }
                 }else if("java.lang.Boolean".equals(columnConfigBO.getJavaFullClass())){
 
-                    if(columnConfigBO.getJavaName().length() >2){
-                        String firstTwo = columnConfigBO.getJavaName().substring(0,2);
+                    if(columnConfigBO.getJavaName().length() >4){
+                        String first2 = columnConfigBO.getJavaName().substring(0,2);
+                        String first4 = columnConfigBO.getJavaName().substring(0,4);
                         char c3 = columnConfigBO.getJavaName().charAt(2);
-                        if("is".equals(firstTwo) && c3 >= 'A' && c3 <= 'Z'){
+                        char c5 = columnConfigBO.getJavaName().charAt(4);
+                        if("is".equals(first2) && c3 >= 'A' && c3 <= 'Z'){
+                            setMethodName = "set"+ columnConfigBO.getJavaName().substring(2);
+                            getMethodName = "get"+ columnConfigBO.getJavaName().substring(2);
+                        }else if("have".equals(first4) && c3 >= 'A' && c3 <= 'Z'){
+                            setMethodName = "set"+ columnConfigBO.getJavaName().substring(4);
+                            getMethodName = "get"+ columnConfigBO.getJavaName().substring(4);
+                        }else {
+                            setMethodName = "set"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                            getMethodName = "get"+ StringUtil.firstUpperCase(columnConfigBO.getJavaName());
+                        }
+                    }else if(columnConfigBO.getJavaName().length() >2){
+                        String first2 = columnConfigBO.getJavaName().substring(0,2);
+                        char c3 = columnConfigBO.getJavaName().charAt(2);
+                        if("is".equals(first2) && c3 >= 'A' && c3 <= 'Z'){
                             setMethodName = "set"+ columnConfigBO.getJavaName().substring(2);
                             getMethodName = "get"+ columnConfigBO.getJavaName().substring(2);
                         }else {
@@ -833,14 +862,19 @@ public class CgBusiness {
 
         if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class) )){
             tableConfig.setParentClass( BaseBusinessExEntity.class.getName() );
+            tableConfig.setHaveVersion(true);
         }else if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessSimpleExEntity.class) )){
             tableConfig.setParentClass( BaseBusinessSimpleExEntity.class.getName() );
+            tableConfig.setHaveVersion(true);
         }else if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessEntity.class) )){
             tableConfig.setParentClass( BaseBusinessEntity.class.getName() );
+            tableConfig.setHaveVersion(true);
         }else if(contains(javaNames , CgBeanUtil.getClassFieldName(BaseBusinessSimpleEntity.class) )){
             tableConfig.setParentClass( BaseBusinessEntity.class.getName() );
+            tableConfig.setHaveVersion(true);
         }else {
             tableConfig.setParentClass( BaseEntity.class.getName() );
+            tableConfig.setHaveVersion(false);
         }
         tableConfig.setImportClasss(new ArrayList<String>(imports));
     }
@@ -867,11 +901,32 @@ public class CgBusiness {
         TcgTempletGroupOperationQuery operationQuery = new TcgTempletGroupOperationQueryImpl();
         operationQuery.groupId(templetGroupId);
         operationBOs = tcgTempletGroupOperationService.selectList(operationQuery.buildWrapper());
+
+
         if(operationBOs  != null && !operationBOs.isEmpty()){
             for(TcgTempletGroupOperationBO operationBO : operationBOs){
                 operationBOMap.put(operationBO.getOperationId() , operationBO);
             }
         }
+
+        TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
+        List<TcgOperationBO> ops = tcgOperationService.selectList(tcgOperationQuery.buildWrapper());
+        if(ops != null && !ops.isEmpty()){
+            for(TcgOperationBO op : ops) {
+                TcgTempletGroupOperationBO tgo = operationBOMap.get(op.getId());
+                if(tgo == null){
+                    tgo = new TcgTempletGroupOperationBO();
+                    tgo.setOperationBO(op);
+                    tgo.setOperationName(op.getOperationName());
+                    tgo.setOperationResource(op.getOperationResource());
+                    tgo.setOperationId(op.getId());
+                    operationBOMap.put(op.getId() , tgo);
+                }
+            }
+        }
+
+
+
         return operationBOMap;
     }
 

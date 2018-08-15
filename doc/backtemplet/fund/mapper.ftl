@@ -146,8 +146,9 @@
 		<#list columns as being>
 		<#if being.columnName =="version_no">
 		and version_no = #${"{versionNo"}}
-		<if test="rbac != null"> and( $${"{rbac}"} )</if>
 		</#if>
+		<if test="rbac != null"> and( $${"{rbac}"} )</if>
+
 		</#list>
     </update>
 

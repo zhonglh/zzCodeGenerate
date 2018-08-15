@@ -49,6 +49,9 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     //用于模板生成数据
 
+    //是否有版本信息
+    private boolean haveVersion;
+
 
     @TableField(exist = false)
     //用于视图对应的主表信息
@@ -96,6 +99,9 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     @TableField(exist = false)
     private List<String> dictTypes;
+
+
+
 
 
     public String getDbConfigTitle() {
@@ -216,5 +222,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setDictTypes(List<String> dictTypes) {
         this.dictTypes = dictTypes;
+    }
+
+    public boolean isHaveVersion() {
+        return haveVersion;
+    }
+
+    public void setHaveVersion(boolean haveVersion) {
+        this.haveVersion = haveVersion;
     }
 }
