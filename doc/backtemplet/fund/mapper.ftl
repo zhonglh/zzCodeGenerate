@@ -70,19 +70,19 @@
 
 			<#if being.columnType=="CHAR" || being.columnType=="VARCHAR2" || being.columnType=="VARCHAR" || being.columnType=="LONGTEXT">
 				<#if being.columnIsfk == '1' || being.columnIskey == '1' || being.columnIsdict == '1' >
-                    <if test="${being.javaName} != null and ${being.javaName} != ''"> AND T.${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
+                    <if test="${being.javaName} != null and ${being.javaName} != ''"> AND ${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
 				<#else>
-                    <if test="${being.javaName} != null and ${being.javaName} != ''"> AND T.${being.columnName} like CONCAT('%',${emptyString!'#'}{${being.javaName}},'%' ) </if>
+                    <if test="${being.javaName} != null and ${being.javaName} != ''"> AND ${being.columnName} like CONCAT('%',${emptyString!'#'}{${being.javaName}},'%' ) </if>
 				</#if>
 
 			<#else>
-                <if test="${being.javaName} != null"> AND T.${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
+                <if test="${being.javaName} != null"> AND ${being.columnName} = ${emptyString!'#'}{${being.javaName}} </if>
 			</#if>
 
 		</#list>
             <if test="rbac != null"> and( $${"{rbac}"} )</if>
 
-            <if test="queryIdList != null"> AND T.ID IN
+            <if test="queryIdList != null"> AND ID IN
                 <foreach collection="queryIdList" index="index" item="item" open="(" separator="," close=")">${emptyString!'#'}{item}</foreach>
             </if>
         </where>
@@ -134,7 +134,7 @@
 
     <!-- 删除${table.tableComment} -->
     <delete id="delete" parameterType="${table.fullPackageName}.domain.${table.javaName}">
-        DELETE FROM ${table.tableName} T
+        DELETE FROM ${table.tableName}
         <include refid="${table.javaName}DeleteFilter"/>
     </delete>
 
@@ -147,9 +147,9 @@
 		<#if being.columnName =="version_no">
 		and version_no = #${"{versionNo"}}
 		</#if>
+		</#list>
 		<if test="rbac != null"> and( $${"{rbac}"} )</if>
 
-		</#list>
     </update>
 
 
