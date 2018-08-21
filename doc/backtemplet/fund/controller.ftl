@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fullbloom.fund.baseweb.controller.FundBaseController;
 import com.fullbloom.core.enums.EnumYesNo;
 import com.fullbloom.utils.data.DateKit;
 import com.fullbloom.core.vo.Pager;
@@ -37,7 +38,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("${table.fullResourceName}")
-public class ${table.javaName}Controller extends RestfulBaseController {
+public class ${table.javaName}Controller extends FundBaseController {
 
 	@Autowired
 	private ${table.javaName}Service ${table.javaName?uncap_first}Service;
@@ -99,6 +100,23 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 
 
 
+	/**
+	* 明细信息
+	* @param id
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/detail/{id}" ,method = RequestMethod.GET)
+		public Object detail(@PathVariable("id") String id , HttpServletRequest request, HttpServletResponse response){
+		Map map = new HashMap<String,Object>();
+		${table.javaName} ${table.javaName?uncap_first} = ${table.javaName?uncap_first}Service.findById(id);
+		map.put("${table.javaName?uncap_first}" , ${table.javaName?uncap_first});
+		return map;
+	}
+
+
+
 
 	/**
 	* 查询分页数据
@@ -118,21 +136,6 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 	}
 
 
-	/**
-	* 明细信息
-	* @param id
-	* @param request
-	* @param response
-	* @return
-	*/
-	@RequestMapping(value = "/detail/{id}" ,method = RequestMethod.GET)
-	public Object detail(@PathVariable("id") String id , HttpServletRequest request, HttpServletResponse response){
-		Map map = new HashMap<String,Object>();
-		${table.javaName} ${table.javaName?uncap_first} = ${table.javaName?uncap_first}Service.findById(id);
-		map.put("${table.javaName?uncap_first}" , ${table.javaName?uncap_first});
-		return map;
-
-	}
 
 	<#list operations as op>
 
@@ -171,7 +174,8 @@ public class ${table.javaName}Controller extends RestfulBaseController {
 	}
 
 
-	<#elseif op.operationResource=='view'>
+	<#elseif op.operationResource=='detail'>
+
 
 	<#elseif op.operationResource=='update'>
 	/**

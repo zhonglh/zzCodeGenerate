@@ -48,6 +48,10 @@ public class CgBusiness {
     private TcgModuleConfigService tcgModuleConfigService ;
     @Autowired
     private TcgTempletGroupOperationService tcgTempletGroupOperationService ;
+
+    @Autowired
+    private TcgTableOperationService tcgTableOperationService;
+
     @Autowired
     private TcgOperationService tcgOperationService ;
     @Autowired
@@ -311,8 +315,28 @@ public class CgBusiness {
             processQueryFkDict(tablePO);
             processFkDict(tablePO);
 
-            List<TcgTempletGroupOperationBO> operations = new ArrayList<TcgTempletGroupOperationBO>(operationBOMap.values());
-            tablePO.setTempletGroupOperations(operations);
+
+            if(operationBOMap == null || operationBOMap.isEmpty()){
+                tablePO.setTempletGroupOperations(new ArrayList<>());
+            }else {
+                TcgTableOperationQuery tableOperationQuery = new TcgTableOperationQueryImpl();
+                tableOperationQuery.tableId(tableConfig.getId());
+                List<TcgTableOperationBO> tableOperations = tcgTableOperationService.selectList(tableOperationQuery.buildWrapper());
+                if (tableOperations != null && !tableOperations.isEmpty()) {
+
+                    Map<String, TcgTempletGroupOperationBO> tableOperationMap = new HashMap<String, TcgTempletGroupOperationBO>();
+                    for(TcgTableOperationBO tableOperation : tableOperations){
+                        if(operationBOMap.containsKey(tableOperation.getOperationId())){
+                            tableOperationMap.put(tableOperation.getOperationId() , operationBOMap.get(tableOperation.getOperationId()));
+                        }
+                    }
+
+                    List<TcgTempletGroupOperationBO> operations = new ArrayList<TcgTempletGroupOperationBO>(tableOperationMap.values());
+                    tablePO.setTempletGroupOperations(operations);
+                } else {
+                    tablePO.setTempletGroupOperations(new ArrayList<>());
+                }
+            }
 
 
             tablePOMap.put(tableConfig.getId(),tablePO);
@@ -910,19 +934,21 @@ public class CgBusiness {
             }
         }
 
-        TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
-        List<TcgOperationBO> ops = tcgOperationService.selectList(tcgOperationQuery.buildWrapper());
-        if(ops != null && !ops.isEmpty()){
-            for(TcgOperationBO op : ops) {
-                TcgTempletGroupOperationBO tgo = operationBOMap.get(op.getId());
-                if(tgo == null){
-                    tgo = new TcgTempletGroupOperationBO();
-                    tgo.setOperationBO(op);
-                    tgo.setOperationName(op.getOperationName());
-                    tgo.setOperationResource(op.getOperationResource());
-                    tgo.setOperationId(op.getId());
-                    tgo.setPosition((String)EnumButtonPosition.top.getTheValue());
-                    operationBOMap.put(op.getId() , tgo);
+        if(operationBOMap.isEmpty()) {
+            TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
+            List<TcgOperationBO> ops = tcgOperationService.selectList(tcgOperationQuery.buildWrapper());
+            if (ops != null && !ops.isEmpty()) {
+                for (TcgOperationBO op : ops) {
+                    TcgTempletGroupOperationBO tgo = operationBOMap.get(op.getId());
+                    if (tgo == null) {
+                        tgo = new TcgTempletGroupOperationBO();
+                        tgo.setOperationBO(op);
+                        tgo.setOperationName(op.getOperationName());
+                        tgo.setOperationResource(op.getOperationResource());
+                        tgo.setOperationId(op.getId());
+                        tgo.setPosition((String) EnumButtonPosition.top.getTheValue());
+                        operationBOMap.put(op.getId(), tgo);
+                    }
                 }
             }
         }

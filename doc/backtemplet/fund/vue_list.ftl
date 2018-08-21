@@ -137,8 +137,8 @@
 
 
     <#list operations as operation>
-        <#if operation.operationResource == 'view'>
-            <${table.javaName}View :title="title"  @closeDialog="closeDialog('view')" ref="viewRef" :display="viewDisplay" />
+        <#if operation.operationResource == 'detail'>
+            <${table.javaName}Detail :title="title"  @closeDialog="closeDialog('detail')" ref="detailRef" :display="detailDisplay" />
             <#break>
         </#if>
     </#list>
@@ -180,8 +180,8 @@
     </#list>
 
     <#list operations as operation>
-        <#if operation.operationResource == 'view'>
-        import ${table.javaName}View from './${table.javaName}View' ;
+        <#if operation.operationResource == 'detail'>
+        import ${table.javaName}Detail from './${table.javaName}Detail' ;
             <#break>
         </#if>
     </#list>
@@ -223,7 +223,7 @@
 
 
     <#list operations as operation>
-        <#if operation.operationResource == 'add' || operation.operationResource == 'update'
+        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
 
             ${table.javaName}Edit,
             <#break>

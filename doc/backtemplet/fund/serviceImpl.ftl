@@ -164,12 +164,13 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 <#list operations as op>
 
-	<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'delete' && op.operationResource != 'view'>
+	<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'delete' && op.operationResource != 'detail'>
 		<#if op.operationBO.opMode == '1'>
 			<#if op.operationBO.selectMode == '0'>
                 /**
                 * ${op.operationName}${table.tableComment}
                 */
+                @Override
                 public int ${op.operationResource}(${table.javaName} ${table.javaName?uncap_first}) {
 					//todo
 					return 1;
@@ -179,6 +180,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
                 /**
                 * ${op.operationName}${table.tableComment}
                 */
+                @Override
                 public int ${op.operationResource}(${table.javaName} ${table.javaName?uncap_first})  {
 					//todo
 					return 1;
@@ -192,6 +194,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
                 /**
                 * ${op.operationName}${table.tableComment}
                 */
+                @Override
                 public void ${op.operationResource}(){
 					//todo
 					return ;
@@ -202,6 +205,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
                 /**
                 * ${op.operationName}${table.tableComment}
                 */
+                @Override
                 public int ${op.operationResource}(${table.javaName} ${table.javaName?uncap_first}) {
 					//todo
 					return 1;
@@ -211,6 +215,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
                 /**
                 * ${op.operationName}${table.tableComment}
                 */
+                @Override
                 public int ${op.operationResource}(List<${table.javaName}> ${table.javaName?uncap_first}s) {
 					//todo
 					return 0;

@@ -11,7 +11,10 @@ let serverPath = process.env.SERVER_URL;
         checkUnique: serverPath + '${table.fullResourceName}/checkUnique/',
         checkAllUnique: serverPath + '${table.fullResourceName}/checkAllUnique/',
         <#list operations as op>
+
+            <#if op.operationResource != 'detail'>
         ${op.operationResource}: serverPath + '${table.fullResourceName}/${op.operationResource}'<#if op_has_next>,</#if>
+            </#if>
         </#list>
     };
 }
@@ -57,6 +60,7 @@ let serverPath = process.env.SERVER_URL;
 
 
     <#list operations as op>
+    <#if op.operationResource != 'detail'>
     /**
     * ${op.operationName}${table.tableComment}
     * @param id
@@ -65,6 +69,7 @@ let serverPath = process.env.SERVER_URL;
     static ${op.operationResource}(params,callBack){
         return this.Post(this.restApi().${op.operationResource}, params, callBack)
     }
+    </#if>
     </#list>
 
 }

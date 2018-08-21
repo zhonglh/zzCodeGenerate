@@ -100,7 +100,7 @@ public interface ${table.javaName}Service {
 
 <#list operations as op>
 
-<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'delete' && op.operationResource != 'view'>
+<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'delete' && op.operationResource != 'detail'>
 <#if op.operationBO.opMode == '1'>
 	<#if op.operationBO.selectMode == '0'>
     /**
