@@ -38,15 +38,15 @@
 
                                     <#elseif being.columnPage.element == 'radio' >
                                         <RadioGroup v-model="searchForm.${being.columnPage.columnConfig.javaName}">
-                                            <Radio v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :label="item.val" :key="item.val">
-                                                <span>{{item.name}}</span>
+                                            <Radio v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :label="item.dictVal" :key="item.dictVal">
+                                                <span>{{item.dictName}}</span>
                                             </Radio>
                                         </RadioGroup>
 
                                     <#elseif being.columnPage.element == 'checkbox' >
                                         <CheckboxGroup  v-model="searchForm.${being.columnPage.columnConfig.javaName}">
-                                            <Checkbox  v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :label="item.val" :key="item.val">
-                                                <span>{{item.name}}</span>
+                                            <Checkbox  v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :label="item.dictVal" :key="item.dictVal">
+                                                <span>{{item.dictName}}</span>
                                             </Checkbox >
                                         </CheckboxGroup >
 
@@ -55,7 +55,7 @@
                                     <#elseif being.columnPage.element == 'select' >
                                         <Select v-model="searchForm.${being.columnPage.columnConfig.javaName}" placeholder="${being.queryPlaceholder}" style="width: 200px">
                                             <Option value="">所有</Option>
-                                            <Option v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :value="item.val" :key="item.val" >{{item.name}}</Option>
+                                            <Option v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :value="item.dictVal" :key="item.dictVal" >{{item.dictName}}</Option>
                                         </Select>
 
                                     <#elseif being.columnPage.element == 'openwin' >
@@ -308,18 +308,17 @@
 
 
 
-    <#if queryDictSet?exists && (queryDictSet?size > 0) >
-            commonApi.allDicts(<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>that.${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>, {
+        <#if queryDictSet?exists && (queryDictSet?size > 0) >
+            commonApi.allDicts('<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>', {
                 onSuccess(dictMap) {
-                <#list queryDictSet as queryColumn>
-                    <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
-                    <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.get("${queryColumn.columnPage.columnConfig.dictType}")<#if queryColumn_has_next>;</#if>
-                    </#if>
-                </#list>
+                    <#list queryDictSet as queryColumn>
+                        <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
+                        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.[("${queryColumn.columnPage.columnConfig.dictType}")<#if queryColumn_has_next>];</#if>
+                        </#if>
+                    </#list>
                 }
             });
-
-    </#if>
+        </#if>
 
 
 

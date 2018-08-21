@@ -226,6 +226,12 @@ public class TableLogic {
             pageBO.setElement((String) EnumPageElement.openwin.getTheValue());
         }
 
+        if(EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumnDict())){
+            pageBO.setExistPage(EnumYesNo.NO.getCode());
+            pageBO.setEditable(EnumYesNo.NO.getCode());
+            pageBO.setHiddenable(EnumYesNo.NO.getCode());
+        }
+
         pageBO.setRequired(EnumYesNo.YES.getCode());
 
         pageBO.setListShowable(pageBO.getEditable());
@@ -252,14 +258,16 @@ public class TableLogic {
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.YES.getCode());
         }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())){
-            //主键
+            //外键
             pageBO.setExistPage(EnumYesNo.YES.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.YES.getCode());
         }else {
-            pageBO.setExistPage(EnumYesNo.YES.getCode());
-            pageBO.setEditable(EnumYesNo.YES.getCode());
-            pageBO.setHiddenable(EnumYesNo.NO.getCode());
+
+                pageBO.setExistPage(EnumYesNo.YES.getCode());
+                pageBO.setEditable(EnumYesNo.YES.getCode());
+                pageBO.setHiddenable(EnumYesNo.NO.getCode());
+
         }
 
 

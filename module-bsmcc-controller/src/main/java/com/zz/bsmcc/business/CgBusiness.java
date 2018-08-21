@@ -491,13 +491,13 @@ public class CgBusiness {
         freemarkerModel.put("queryDicts" , tablePO.getQueryDicts());
         freemarkerModel.put("queryFks" , tablePO.getQueryFks());
         freemarkerModel.put("queryFkTables" , tablePO.getQueryFkTables());
-        freemarkerModel.put("queryDictSet" , tablePO.getQueryDictSet());
+        freemarkerModel.put("queryDictSet" , tablePO.getQueryDictSet().values());
 
 
         freemarkerModel.put("dicts" , tablePO.getDicts());
         freemarkerModel.put("fks" , tablePO.getFks());
         freemarkerModel.put("fkTables" , tablePO.getFkTables());
-        freemarkerModel.put("dictSet" , tablePO.getDictSet());
+        freemarkerModel.put("dictSet" , tablePO.getDictSet().values());
 
 
 
@@ -513,7 +513,7 @@ public class CgBusiness {
      */
     private void processQueryFkDict(TablePO tablePO) {
         List<TcgQueryConfigBO> queryDicts = new ArrayList<TcgQueryConfigBO>();
-        Set<TcgQueryConfigBO> queryDictSet = new HashSet<TcgQueryConfigBO>();
+        Map<String,TcgQueryConfigBO> queryDictSet = new HashMap<String,TcgQueryConfigBO>();
         Map<String,List<TcgQueryConfigBO>> fkMap = new HashMap<String,List<TcgQueryConfigBO>>();
 
         Map<String,TcgTableConfigBO> queryFkTableMap = new HashMap<String,TcgTableConfigBO>();
@@ -549,7 +549,14 @@ public class CgBusiness {
                         )
                 ){
                     queryDicts.add(query);
-                    queryDictSet.add(query);
+                    String key = null;
+
+                    if(query.getColumnPage().getExColumn()!=null){
+                        key = query.getColumnPage().getExColumn().getDictType();
+                    }else {
+                            key = query.getColumnPage().getColumnConfig().getDictType();
+                    }
+                    queryDictSet.put(key, query);
                 }
             }
 
@@ -569,7 +576,7 @@ public class CgBusiness {
      */
     private void processFkDict(TablePO tablePO) {
         List<TcgColumnPageBO> queryDicts = new ArrayList<TcgColumnPageBO>();
-        Set<TcgColumnPageBO> queryDictSet = new HashSet<TcgColumnPageBO>();
+        Map<String,TcgColumnPageBO> dictMap = new HashMap<String,TcgColumnPageBO>();
 
         Map<String,List<TcgColumnPageBO>> fkMap = new HashMap<String,List<TcgColumnPageBO>>();
         Map<String,TcgTableConfigBO> fkTableMap = new HashMap<String,TcgTableConfigBO>();
@@ -603,7 +610,15 @@ public class CgBusiness {
 
                     ){
                 queryDicts.add(page);
-                queryDictSet.add(page);
+
+                String key = null;
+
+                if(page.getExColumn()!=null){
+                    key = page.getExColumn().getDictType();
+                }else {
+                        key = page.getColumnConfig().getDictType();
+                }
+                dictMap.put(key,page);
             }
         }
 
@@ -611,7 +626,7 @@ public class CgBusiness {
 
         tablePO.setDicts(queryDicts);
         tablePO.setFks(fkMap);
-        tablePO.setDictSet(queryDictSet);
+        tablePO.setDictSet(dictMap);
         tablePO.setFkTables(new ArrayList<TcgTableConfigBO>(fkTableMap.values()));
     }
 

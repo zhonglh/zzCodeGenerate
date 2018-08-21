@@ -134,7 +134,7 @@
 
     <!-- 删除${table.tableComment} -->
     <delete id="delete" parameterType="${table.fullPackageName}.domain.${table.javaName}">
-        DELETE FROM ${table.tableName}
+        DELETE FROM ${table.tableName} T
         <include refid="${table.javaName}DeleteFilter"/>
     </delete>
 

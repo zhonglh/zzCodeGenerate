@@ -6,12 +6,12 @@
             v-model="show"
             :title="title"
             @on-visible-change="onVisibleChange"
-            :width="width"
+            :width="dialogWidth"
             loading
             scrollable>
 
 
-        <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+        <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="labelWidth">
             <#list columnPages as page>
                 <#if page.existPage == '1'>
 
@@ -25,7 +25,7 @@
                         <FormItem label="${page.columnComment}" prop="${page.javaName}">
                         <#if page?exists && page.columnConfig?exists>
                             <#if page.element == 'input' >
-                                <Input type="text" v-model="searchForm.${page.columnConfig.javaName}" step="1" precision="0"
+                                <Input type="text" v-model="formValidate.${page.columnConfig.javaName}" step="1" precision="0"
                                        <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
                                        <#if page.minlength ?exists && page.minlength != 0>maxlength="${page.minlength}" </#if>
                                        style="width: 200px;margin-left: 7px"
@@ -36,7 +36,7 @@
                                         </#if>
                                 />
                             <#elseif page.element == 'digits' >
-                                <InputNumber  v-model="searchForm.${page.columnConfig.javaName}"
+                                <InputNumber  v-model="formValidate.${page.columnConfig.javaName}"
                                               <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
                                               style="width: 200px;margin-left: 7px"
                                             <#if page.events?exists>
@@ -46,7 +46,7 @@
                                             </#if>
                                 />
                             <#elseif page.element == 'number' >
-                                <InputNumber  v-model="searchForm.${page.columnConfig.javaName}"  precision="2"
+                                <InputNumber  v-model="formValidate.${page.columnConfig.javaName}"  precision="2"
                                               <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
                                               style="width: 200px;margin-left: 7px"
                                             <#if page.events?exists>
@@ -56,7 +56,7 @@
                                             </#if>
                                 />
                             <#elseif page.element == 'date' >
-                                <DatePicker type="date"   v-model="searchForm.${page.columnConfig.javaName}"  clearable editable="false"
+                                <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable editable="false"
                                     <#if page.events?exists>
                                         <#list page.events as event>
                                             @${event.eventName}="${event.funcName}"
@@ -64,7 +64,7 @@
                                     </#if>
                                             style="width: 200px;margin-left: 7px"  />
                             <#elseif page.element == 'timestamp' >
-                                <DatePicker type="datetime"   v-model="searchForm.${page.columnConfig.javaName}"  clearable editable="false"
+                                <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable editable="false"
                                     <#if page.events?exists>
                                         <#list page.events as event>
                                             @${event.eventName}="${event.funcName}"
@@ -72,7 +72,7 @@
                                     </#if>
                                             style="width: 200px;margin-left: 7px"  />
                             <#elseif page.element == 'email' >
-                                <Input type="email" v-model="searchForm.${page.columnConfig.javaName}"
+                                <Input type="email" v-model="formValidate.${page.columnConfig.javaName}"
                                        <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
                                        <#if page.minlength ?exists && page.minlength != 0>maxlength="${page.minlength}" </#if>
                                     <#if page.events?exists>
@@ -82,7 +82,7 @@
                                     </#if>
                                        style="width: 200px;margin-left: 7px"  />
                             <#elseif page.element == 'url' >
-                                <Input type="url" v-model="searchForm.${page.columnConfig.javaName}"
+                                <Input type="url" v-model="formValidate.${page.columnConfig.javaName}"
                                        <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
                                        <#if page.minlength ?exists && page.minlength != 0>maxlength="${page.minlength}" </#if>
                                     <#if page.events?exists>
@@ -93,23 +93,23 @@
                                        style="width: 200px;margin-left: 7px"  />
 
                             <#elseif page.element == 'radio' >
-                                <RadioGroup v-model="searchForm.${page.columnConfig.javaName}">
-                                    <Radio v-for="(item, index) in ${page.columnConfig.dictType}Dict" :label="item.val" :key="item.val">
-                                        <span>{{item.name}}</span>
+                                <RadioGroup v-model="formValidate.${page.columnConfig.javaName}">
+                                    <Radio v-for="(item, index) in ${page.columnConfig.dictType}Dict" :label="item.dictVal" :key="item.dictVal">
+                                        <span>{{item.dictName}}</span>
                                     </Radio>
                                 </RadioGroup>
 
                             <#elseif page.element == 'checkbox' >
-                                <CheckboxGroup  v-model="searchForm.${page.columnConfig.javaName}">
-                                    <Checkbox  v-for="(item, index) in ${page.columnConfig.dictType}Dict" :label="item.val" :key="item.val">
-                                        <span>{{item.name}}</span>
+                                <CheckboxGroup  v-model="formValidate.${page.columnConfig.javaName}">
+                                    <Checkbox  v-for="(item, index) in ${page.columnConfig.dictType}Dict" :label="item.dictVal" :key="item.dictVal">
+                                        <span>{{item.dictName}}</span>
                                     </Checkbox >
                                 </CheckboxGroup >
 
 
 
                             <#elseif page.element == 'select' >
-                                <Select v-model="searchForm.${page.columnConfig.javaName}" 
+                                <Select v-model="formValidate.${page.columnConfig.javaName}" 
                                     <#if page.events?exists>
                                         <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -119,14 +119,14 @@
                                     <#if page.required == '0'>
                                     <Option value=""></Option>
                                     </#if>
-                                    <Option v-for="(item, index) in ${page.columnConfig.dictType}Dict" :value="item.val" :key="item.val" >{{item.name}}</Option>
+                                    <Option v-for="(item, index) in ${page.columnConfig.dictType}Dict" :value="item.dictVal" :key="item.dictVal" >{{item.dictName}}</Option>
                                 </Select>
 
                             <#elseif page.element == 'openwin' >
-                                <Input v-model="searchForm.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="formValidate.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
 
                             <#else >
-                                <Input type="text" v-model="searchForm.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" 
+                                <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" 
                                     <#if page.events?exists>
                                         <#list page.events as event>
                                        @${event.eventName}="${event.funcName}"
@@ -136,7 +136,7 @@
                             </#if>
                         <#elseif page?exists && page.exColumn?exists>
                             <#if page.element == 'openwin' >
-                                <Input v-model="searchForm.${page.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.exColumn.javaName}_${page.exColumn.originalColumn.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="formValidate.${page.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.exColumn.javaName}_${page.exColumn.originalColumn.fkTableConfig.fullResourceFile}"/>
                             </#if>
                         <#else>
                             //todo 生成编辑界面错误， columnPage 应该没有这种情况
@@ -145,15 +145,17 @@
                         </FormItem>
 
                     </#if>
-
                 </#if>
+
+
+
             </#list>
         </Form>
 
 
         <div slot="footer">
             <Button type="primary" @click="save">保存</Button>
-            <Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
+            <Button @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
         </div>
 
 
@@ -260,11 +262,11 @@
             <#list fkList as page >
                 selected${page.javaName}Fun(selection){
                     <#if page.exColumn?exists>
-                        this.searchForm.${page.exColumn.originalColumn.javaName} = selection.id;
-                        this.searchForm.${page.javaName} = selection.${page.exColumn.fkJavaName};
+                        this.formValidate.${page.exColumn.originalColumn.javaName} = selection.id;
+                        this.formValidate.${page.javaName} = selection.${page.exColumn.fkJavaName};
                     <#else >
-                        this.searchForm.${page.columnConfig.originalColumn.javaName} = selection.id;
-                        this.searchForm.${page.javaName} = selection.${page.columnConfig.fkJavaName};
+                        this.formValidate.${page.columnConfig.originalColumn.javaName} = selection.id;
+                        this.formValidate.${page.javaName} = selection.${page.columnConfig.fkJavaName};
                     </#if>
                     this.selectDisplay = false;
 
@@ -320,9 +322,9 @@
             },
             findById() {
                 let that = this;
-                ${table.javaName}Api.findById(this.id,{
+                ${table.javaName}Api.detail(this.id,{
                     onSuccess(body){
-                        that.formValidate = body;
+                        that.formValidate = body["${table.javaName?uncap_first}"];
                     }
                 });
 
@@ -335,11 +337,11 @@
 
 
 <#if dictSet?exists && (dictSet?size > 0) >
-            commonApi.allDicts(<#list dictSet as columnPage><#if columnPage.exColumn?exists>${columnPage.exColumn.dictType}<#if columnPage_has_next>,</#if><#else>that.${columnPage.columnConfig.dictType}<#if columnPage_has_next>,</#if></#if></#list>, {
+            commonApi.allDicts('<#list dictSet as columnPage><#if columnPage.exColumn?exists>${columnPage.exColumn.dictType}<#if columnPage_has_next>,</#if><#else>${columnPage.columnConfig.dictType}<#if columnPage_has_next>,</#if></#if></#list>', {
                 onSuccess(dictMap){
                     <#list dictSet as dictPage>
                         <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dict=dictMap.get("${dictPage.exColumn.dictType}")<#if dictPage_has_next>,</#if>
-                        <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap.get("${dictPage.columnConfig.dictType}")<#if dictPage_has_next>;</#if>
+                        <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap[("${dictPage.columnConfig.dictType}")]<#if dictPage_has_next>;</#if>
                         </#if>
                     </#list>
                 }

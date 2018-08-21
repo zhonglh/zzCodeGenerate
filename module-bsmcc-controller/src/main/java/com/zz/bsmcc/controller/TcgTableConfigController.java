@@ -139,6 +139,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                 tableMap.remove(tableBO.getSchemaName()+tableBO.getTableName());
             }
 
+
             Collection<Table> ts = tableMap.values();
             tables = new ArrayList(ts);
             tables.sort(new Comparator<Table>(){

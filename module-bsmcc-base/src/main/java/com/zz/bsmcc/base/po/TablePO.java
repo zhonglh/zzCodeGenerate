@@ -3,6 +3,7 @@ package com.zz.bsmcc.base.po;
 import com.zz.bsmcc.base.bo.*;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class TablePO implements Serializable{
     //用于列表界面上查询的弹框选择 ，
     List<TcgTableConfigBO> queryFkTables;
     //用于列表界面上查询的 queryDicts 去重
-    Set<TcgQueryConfigBO> queryDictSet;
+    Map<String,TcgQueryConfigBO> queryDictSet;
 
 
 
@@ -52,7 +53,7 @@ public class TablePO implements Serializable{
     //用于编辑界面 ,
     List<TcgTableConfigBO> fkTables;
     //用于编辑界面, dicts去重
-    Set<TcgColumnPageBO> dictSet;
+    Map<String,TcgColumnPageBO> dictSet;
 
 
 
@@ -193,19 +194,19 @@ public class TablePO implements Serializable{
         this.fkTables = fkTables;
     }
 
-    public Set<TcgQueryConfigBO> getQueryDictSet() {
+    public Map<String, TcgQueryConfigBO> getQueryDictSet() {
         return queryDictSet;
     }
 
-    public void setQueryDictSet(Set<TcgQueryConfigBO> queryDictSet) {
+    public void setQueryDictSet(Map<String, TcgQueryConfigBO> queryDictSet) {
         this.queryDictSet = queryDictSet;
     }
 
-    public Set<TcgColumnPageBO> getDictSet() {
+    public Map<String, TcgColumnPageBO> getDictSet() {
         return dictSet;
     }
 
-    public void setDictSet(Set<TcgColumnPageBO> dictSet) {
+    public void setDictSet(Map<String, TcgColumnPageBO> dictSet) {
         this.dictSet = dictSet;
     }
 }
