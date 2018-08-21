@@ -174,7 +174,7 @@
 <script>
     import baseForm from '@/mixins/baseForm';
     import commonApi from '@/api/commonApi';
-    import ${table.javaName}Api from '@/api/${table.javaName}Api';
+    import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
 
 
     <#list fkTables as fkTable>
@@ -196,10 +196,10 @@
                 formValidate: {
                     <#list columnPages as page>
                         <#if page.existPage == '1'>
-                        ${page.javaName},
+                        ${page.javaName}:'',
                         </#if>
                     </#list>
-                    aaaaaa
+                    aaaaaa:''
                 },
                     <#list dictSet as dictPage>
                         <#if dictPage.exColumn?exists>${dictPage.exColumn.dictType}Dict:{},

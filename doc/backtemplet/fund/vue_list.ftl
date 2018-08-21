@@ -146,7 +146,7 @@
 
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update'  && operation.operationResource != 'view'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update'  && operation.operationResource != 'detail'>
             <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess('${operation.operationResource}')"  :title="title"   ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
             </#if>
         </#if>
@@ -167,7 +167,7 @@
 </template>
 
 <script>
-    import ${table.javaName}Api from '@/api/${table.javaName}Api' ;
+    import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
 
 
 
@@ -193,7 +193,7 @@
 
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'view'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
 
             import ${table.javaName}${operation.operationResource?cap_first} from './${table.javaName}${operation.operationResource?cap_first}' ;
             </#if>
@@ -231,8 +231,8 @@
     </#list>
 
     <#list operations as operation>
-        <#if operation.operationResource == 'view'>
-        ${table.javaName}View,
+        <#if operation.operationResource == 'detail'>
+        ${table.javaName}Detail,
         <#break>
         </#if>
     </#list>
@@ -241,7 +241,7 @@
 
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'view'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
 
                 ${table.javaName}${operation.operationResource?cap_first} ,
             </#if>
@@ -263,11 +263,11 @@
         data () {
             return {
                 ${table.javaName}: {},
-                    viewDisplay: false,
+                    detailDisplay: false,
                     editDisplay: false,
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'view'>
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
                     ${operation.operationResource}Display: false,
             </#if>
         </#if>

@@ -7,14 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_detail.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/mapper.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/mapper.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/service.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/service.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,10 +40,11 @@
       <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="127" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+            <state relative-caret-position="431">
+              <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
               <folding>
-                <element signature="e#13689#13751#0#HTML" expanded="true" />
+                <element signature="e#13520#13577#0#HTML" expanded="true" />
+                <element signature="e#13719#13781#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,18 +53,18 @@
       <file leaf-file-name="controller.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="127" column="82" lean-forward="false" selection-start-line="127" selection-start-column="82" selection-end-line="127" selection-end-column="82" />
+            <state relative-caret-position="534">
+              <caret line="228" column="82" lean-forward="true" selection-start-line="228" selection-start-column="82" selection-end-line="228" selection-end-column="82" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_search.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
+      <file leaf-file-name="bootstrap-datepicker.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/statics/js/plugins/datapicker/bootstrap-datepicker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="311" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
+            <state relative-caret-position="194">
+              <caret line="935" column="82" lean-forward="false" selection-start-line="935" selection-start-column="82" selection-end-line="935" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -71,18 +73,8 @@
       <file leaf-file-name="service.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/service.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="129" column="46" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="200" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+            <state relative-caret-position="160">
+              <caret line="100" column="24" lean-forward="true" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -91,78 +83,53 @@
       <file leaf-file-name="serviceImpl.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="205" column="58" lean-forward="false" selection-start-line="205" selection-start-column="58" selection-end-line="205" selection-end-column="58" />
+            <state relative-caret-position="255">
+              <caret line="45" column="21" lean-forward="false" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CgBusiness.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="317" column="0" lean-forward="true" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2975#2991#0" expanded="true" />
-                <element signature="e#3313#3339#0" expanded="true" />
-                <element signature="e#3767#3792#0" expanded="true" />
-                <element signature="e#4881#4896#0" expanded="true" />
-                <element signature="e#5030#5058#0" expanded="true" />
-                <element signature="e#5994#6018#0" expanded="true" />
-                <element signature="e#6733#6758#0" expanded="true" />
-                <element signature="e#13957#13993#0" expanded="true" />
-                <element signature="e#14431#14459#0" expanded="true" />
-                <element signature="e#20949#20967#0" expanded="true" />
-                <element signature="e#21027#21045#0" expanded="true" />
-                <element signature="e#21111#21142#0" expanded="true" />
-                <element signature="e#21213#21238#0" expanded="true" />
-                <element signature="e#23939#23956#0" expanded="true" />
-                <element signature="e#24015#24032#0" expanded="true" />
-                <element signature="e#24098#24128#0" expanded="true" />
-                <element signature="e#24193#24218#0" expanded="true" />
-                <element signature="e#27286#27314#0" expanded="true" />
-                <element signature="e#28179#28197#0" expanded="true" />
-                <element signature="e#35262#35270#0" expanded="true" />
-                <element signature="e#38548#38556#0" expanded="true" />
-                <element signature="e#38601#38609#0" expanded="true" />
-                <element signature="e#40563#40600#0" expanded="true" />
-                <element signature="e#42426#42445#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entity.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TablePO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="135" column="25" lean-forward="false" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="41" />
-              <folding>
-                <element signature="e#3244#3245#0" expanded="true" />
-                <element signature="e#3289#3290#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vue_api.ftl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl">
+      <file leaf-file-name="vue_detail.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_detail.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="75" lean-forward="true" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
+              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vue_api.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-510">
+              <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="200" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+              <folding>
+                <element signature="e#10169#10210#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vue_search.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="129" column="15" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
+              <folding>
+                <element signature="e#11028#11117#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,18 +145,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fks</find>
-      <find>processFkDict</find>
-      <find>processExColumn</find>
-      <find>on-selected-</find>
-      <find>processColumnConfig</find>
-      <find>SetFilter</find>
-      <find>firstTwo</find>
-      <find>getMethodName</find>
       <find>has</find>
       <find>OperationService</find>
       <find>tcgTempletGroupOperationService</find>
-      <find>api</find>
       <find>operations</find>
       <find>operation.operationResource</find>
       <find>top</find>
@@ -204,13 +162,21 @@
       <find>setNumberFormat</find>
       <find>zz</find>
       <find>=='view'</find>
-      <find>'view'</find>
       <find>tcgTableOperationService</find>
       <find>operationBOMap</find>
       <find>getOperations</find>
+      <find>Message</find>
+      <find>dialog</find>
+      <find>Api</find>
+      <find>'delete'</find>
+      <find>'view'</find>
+      <find>api</find>
+      <find>delete</find>
+      <find>exp</find>
+      <find>view</find>
+      <find>detailDisplay</find>
     </findStrings>
     <replaceStrings>
-      <replace>BaseBusinessSimpleEntity</replace>
       <replace>column</replace>
       <replace>&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</replace>
       <replace>dataType</replace>
@@ -240,6 +206,7 @@
       <replace>javaName</replace>
       <replace>first2</replace>
       <replace>columnPage</replace>
+      <replace>'detail'</replace>
     </replaceStrings>
     <dirStrings>
       <dir>E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-base\src\main\java\com\zz\bsmcc\base\domain</dir>
@@ -258,7 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/service.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/dao.ftl" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletController.java" />
@@ -299,16 +265,17 @@
         <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/operation/editForm.jsp" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/main/hplus_main.jsp" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
         <option value="$MAVEN_REPOSITORY$/com/zz/bms/module-bms-util-base/1.0.1/module-bms-util-base-1.0.1.jar!/com/zz/bms/util/base/files/FreemarkerUtils.class" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/mapper.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/service.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/service.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_detail.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
       </list>
     </option>
   </component>
@@ -517,12 +484,8 @@
     <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\workspace_scaffolds\zzCodeGenerate\doc" />
-      <recent name="E:\workspace_scaffolds\zzCodeGenerate\doc\backtemplet\fund" />
-      <recent name="E:\workspace_scaffolds\zzCodeGenerate\doc\backtemplet\zz" />
-      <recent name="E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-web\src\main\webapp\WEB-INF\webpage\code\build\log" />
-      <recent name="E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-base\src\main\java\com\zz\bsmcc\base\query\impl" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-web\src\main\webapp\WEB-INF" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.zz.bsmcc.core.util.table" />
@@ -531,8 +494,12 @@
       <recent name="com.zz.bsmcc.core.util" />
       <recent name="com.zz.bsmcc.controller" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-web\src\main\webapp\WEB-INF" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace_scaffolds\zzCodeGenerate\doc\backtemplet\fund" />
+      <recent name="E:\workspace_scaffolds\zzCodeGenerate\doc" />
+      <recent name="E:\workspace_scaffolds\zzCodeGenerate\doc\backtemplet\zz" />
+      <recent name="E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-web\src\main\webapp\WEB-INF\webpage\code\build\log" />
+      <recent name="E:\workspace_scaffolds\zzCodeGenerate\module-bsmcc-base\src\main\java\com\zz\bsmcc\base\query\impl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -815,14 +782,7 @@
       <workItem from="1534208123705" duration="29059000" />
       <workItem from="1534294535218" duration="16999000" />
       <workItem from="1534320287401" duration="8665000" />
-      <workItem from="1534823775920" duration="8683000" />
-    </task>
-    <task id="LOCAL-00040" summary="处理表格数据">
-      <created>1533109828461</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1533109828461</updated>
+      <workItem from="1534823775920" duration="14548000" />
     </task>
     <task id="LOCAL-00041" summary="处理表格数据">
       <created>1533109897293</created>
@@ -1160,7 +1120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534331168243</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="处理表格数据">
+      <created>1534839771541</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1534839771541</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1172,7 +1139,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="530430000" />
+    <option name="totallyTimeSpent" value="536295000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1185,6 +1152,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1372" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1207,7 +1175,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40589198" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25381097" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25381097" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18389058" sideWeight="0.5096419" order="3" side_tool="true" content_ui="tabs" />
@@ -1247,7 +1215,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40589198" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25381097" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25381097" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18389058" sideWeight="0.5096419" order="3" side_tool="true" content_ui="tabs" />
@@ -1304,20 +1272,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/TableBusinessService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="392" column="0" lean-forward="true" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TableBusinessServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -1613,48 +1567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/service.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="129" column="46" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="200" column="28" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
-          <folding>
-            <element signature="e#13689#13751#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="311" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="205" column="58" lean-forward="false" selection-start-line="205" selection-start-column="58" selection-end-line="205" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -1663,14 +1575,6 @@
             <element signature="e#3244#3245#0" expanded="true" />
             <element signature="e#3289#3290#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="127" column="82" lean-forward="false" selection-start-line="127" selection-start-column="82" selection-end-line="127" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1696,7 +1600,7 @@
     <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
-          <caret line="317" column="0" lean-forward="true" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+          <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2975#2991#0" expanded="true" />
@@ -1727,11 +1631,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/statics/js/plugins/datapicker/bootstrap-datepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="935" column="82" lean-forward="false" selection-start-line="935" selection-start-column="82" selection-end-line="935" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/service.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="100" column="24" lean-forward="true" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="129" column="15" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
+          <folding>
+            <element signature="e#11028#11117#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="228" column="82" lean-forward="true" selection-start-line="228" selection-start-column="82" selection-end-line="228" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/serviceImpl.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="45" column="21" lean-forward="false" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_api.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="75" lean-forward="true" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
+        <state relative-caret-position="-510">
+          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_detail.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding>
+            <element signature="e#13520#13577#0#HTML" expanded="true" />
+            <element signature="e#13719#13781#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="200" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+          <folding>
+            <element signature="e#10169#10210#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

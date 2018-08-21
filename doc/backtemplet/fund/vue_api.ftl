@@ -11,10 +11,9 @@ let serverPath = process.env.SERVER_URL;
         checkUnique: serverPath + '${table.fullResourceName}/checkUnique/',
         checkAllUnique: serverPath + '${table.fullResourceName}/checkAllUnique/',
         <#list operations as op>
-
-            <#if op.operationResource != 'detail'>
+        <#if op.operationResource != 'detail'>
         ${op.operationResource}: serverPath + '${table.fullResourceName}/${op.operationResource}'<#if op_has_next>,</#if>
-            </#if>
+        </#if>
         </#list>
     };
 }

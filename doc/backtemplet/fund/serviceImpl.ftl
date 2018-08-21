@@ -164,7 +164,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 <#list operations as op>
 
-	<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'delete' && op.operationResource != 'detail'>
+	<#if op.operationResource != 'add' && op.operationResource != 'update' && op.operationResource != 'del' && op.operationResource != 'detail'>
 		<#if op.operationBO.opMode == '1'>
 			<#if op.operationBO.selectMode == '0'>
                 /**

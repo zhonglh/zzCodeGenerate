@@ -218,15 +218,15 @@ public class ${table.javaName}Controller extends FundBaseController {
 	}
 
 
-	<#elseif op.operationResource=='delete'>
+	<#elseif op.operationResource=='del'>
 	/**
 	* ${op.operationName}${table.tableComment}
 	*
 	* @param request
 	* @param response
 	*/
-	@RequestMapping(value = "/delete",method = RequestMethod.POST)
-	public Object delete( HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/del",method = RequestMethod.POST)
+	public Object del( HttpServletRequest request, HttpServletResponse response) {
 
 		String ids = getParamString(request,"ids");
 

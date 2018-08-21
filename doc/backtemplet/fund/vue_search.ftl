@@ -130,9 +130,8 @@
     </template>
 
     <script>
-        import ${table.fullResourceFile}Edit from './${table.fullResourceFile}Edit' ;
-        import ${table.fullResourceFile}View from './${table.fullResourceFile}View' ;
-        import ${table.fullResourceFile}Api from '@/api/${table.fullResourceFile}Api' ;
+        import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
+        import dialog from '@/utils/dialog'
 
         import tableList from '@/components/table-list/tableList'
         import tableMix from '@/mixins/tableMix'
@@ -148,8 +147,6 @@
         export default {
             name: '${table.fullResourceFile}List',
             components: {
-                ${table.fullResourceFile}Edit,
-                ${table.fullResourceFile}View,
                 tableList,
                 <#list queryFkTables as fkTable>
                     ${fkTable.fullResourceFile}Search <#if fkTable_has_next>,</#if>
@@ -280,7 +277,7 @@
 
 
                 if (selectedData.length<1){
-                    this.$Message.error('请选择要数据！')
+                    dialog.warning('请选择要操作的数据!', this);
                 }else {
                     if (this.mutiSelect){
                         this.$emit('on-selected-'+this.type,selectedData);
