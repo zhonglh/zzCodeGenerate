@@ -313,8 +313,8 @@
             commonApi.allDicts('<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>', {
                 onSuccess(dictMap) {
                     <#list queryDictSet as queryColumn>
-                        <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap.get("${queryColumn.columnPage.exColumn.dictType}")<#if queryColumn_has_next>;</#if>
-                        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap.[("${queryColumn.columnPage.columnConfig.dictType}")<#if queryColumn_has_next>];</#if>
+                        <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap["${queryColumn.columnPage.exColumn.dictType}"]<#if queryColumn_has_next>;</#if>
+                        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap["${queryColumn.columnPage.columnConfig.dictType}"]<#if queryColumn_has_next>;</#if>
                         </#if>
                     </#list>
                 }
