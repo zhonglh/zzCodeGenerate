@@ -123,7 +123,7 @@
                                 </Select>
 
                             <#elseif page.element == 'openwin' >
-                                <Input v-model="formValidate.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="formValidate.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.javaName}"/>
 
                             <#else >
                                 <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" 
@@ -136,7 +136,7 @@
                             </#if>
                         <#elseif page?exists && page.exColumn?exists>
                             <#if page.element == 'openwin' >
-                                <Input v-model="formValidate.${page.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.exColumn.javaName}_${page.exColumn.originalColumn.fkTableConfig.fullResourceFile}"/>
+                                <Input v-model="formValidate.${page.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.exColumn.javaName}_${page.exColumn.originalColumn.fkTableConfig.javaName}"/>
                             </#if>
                         <#else>
                             //todo 生成编辑界面错误， columnPage 应该没有这种情况
@@ -162,7 +162,7 @@
     <#list fkTables as fkTable>
         <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :type="type"
             <#list fks[fkTable.fullResourceFile] as field >
-                                   @on-selected-${field.javaName}="selected${field.javaName}Fun"
+                                   @on-selected-${field.javaName}="selected${field.javaName}Callback"
             </#list>
         />
 
@@ -180,14 +180,14 @@
 
 
     <#list fkTables as fkTable>
-    import ${fkTable.fullResourceFile}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
+    import ${fkTable.javaName}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
     </#list>
 
     export default {
         mixins:[baseForm],
         components: {
         <#list fkTables as fkTable>
-            ${fkTable.fullResourceFile}Search <#if fkTable_has_next>,</#if>
+            ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
         </#list>
 
 
@@ -203,6 +203,11 @@
                     </#list>
                     aaaaaa:''
                 },
+
+        <#list fkTables as fkTable>
+                select${fkTable.javaName}Display: false,
+        </#list>
+
                     <#list dictSet as dictPage>
                         <#if dictPage.exColumn?exists>${dictPage.exColumn.dictType}Dict:{},
                         <#else>${dictPage.columnConfig.dictType}Dict:[],
@@ -260,7 +265,7 @@
 
         <#list fks?values as fkList >
             <#list fkList as page >
-                selected${page.javaName}Fun(selection){
+                selected${page.javaName}Callback(selection){
                     <#if page.exColumn?exists>
                         this.formValidate.${page.exColumn.originalColumn.javaName} = selection.id;
                         this.formValidate.${page.javaName} = selection.${page.exColumn.fkJavaName};
@@ -279,11 +284,10 @@
         <#if columnPage?exists && columnPage.element == 'openwin' >
             <#if columnPage.columnConfig?exists>
             <#elseif  columnPage.exColumn?exists>
-                select_${columnPage.exColumn.javaName}_${columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
-
+                select_${columnPage.exColumn.javaName}_${columnPage.exColumn.originalColumn.fkTableConfig.javaName}(){
                     this.type='${columnPage.javaName}';
                     this.select${columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
-            }
+            },
             </#if>
         </#if>
     </#list>
