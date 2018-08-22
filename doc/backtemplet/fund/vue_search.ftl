@@ -117,9 +117,9 @@
 
 
         <#list queryFkTables as fkTable>
-            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :type="type"
+            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :businessType="bsType"
                                                <#list queryFks[fkTable.ullResourceFile] as queryField >
-                                               @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Fun"
+                                               @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                                                </#list>
             />
 
@@ -171,7 +171,7 @@
                     type: Boolean,
                     default: false
                 },
-                type: {
+                businessType: {
                     type: String,
                     default: ''
                 }
@@ -186,7 +186,7 @@
                 return {
                     ${table.fullResourceFile}: {},
                     selectDisplay: false,
-                    type: '',
+                    bsType: '',
                     searchForm:{
                         <#list querys as being >
                         <#if being.columnPage?exists>
@@ -237,7 +237,7 @@
 
                 <#list queryFks?values as queryFkList >
                 <#list queryFkList as queryField >
-                    selected${queryField.columnPage.javaName}Fun(selection){
+                    selected${queryField.columnPage.javaName}Callback(selection){
                         <#if queryField.columnPage.exColumn?exists>
                             this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
                             this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
@@ -259,7 +259,7 @@
                     <#elseif  being.columnPage.exColumn?exists>
                         select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
 
-                            this.type='${being.columnPage.javaName}';
+                            this.bsType='${being.columnPage.javaName}';
                     this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
                     }
                     </#if>
@@ -280,9 +280,9 @@
                     dialog.warning('请选择要操作的数据!', this);
                 }else {
                     if (this.mutiSelect){
-                        this.$emit('on-selected-'+this.type,selectedData);
+                        this.$emit('on-selected-'+this.bsType,selectedData);
                     } else {
-                        this.$emit('on-selected-'+this.type,selectedData[0]);
+                        this.$emit('on-selected-'+this.bsType,selectedData[0]);
                     }
 
                 }
@@ -290,12 +290,13 @@
 
                 findList () {
                     let that = this;
-                    ${table.fullResourceFile}Api.${table.fullResourceFile}List(this.param).then(response => {
-                        const body = response.data.result.body;
-                    that.total = body.total;
-                    that.loading = false;
-                    that.data = body.data;
-                });
+                    ${table.javaName}Api.list(this.param, {
+                        onSuccess(res) {
+                            that.loading = false;
+                            that.total = res.total;
+                            that.data = res.rows;
+                        }
+                    });
                 }
             },
 

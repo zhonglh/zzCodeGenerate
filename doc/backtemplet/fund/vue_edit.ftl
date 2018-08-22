@@ -160,7 +160,7 @@
 
 
     <#list fkTables as fkTable>
-        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :type="type"
+        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType"
             <#list fks[fkTable.fullResourceFile] as field >
                                    @on-selected-${field.javaName}="selected${field.javaName}Callback"
             </#list>
@@ -195,6 +195,7 @@
         data () {
             return {
                 width:500,
+                bsType: '',
                 formValidate: {
                     <#list columnPages as page>
                         <#if page.existPage == '1'>
@@ -285,7 +286,7 @@
             <#if columnPage.columnConfig?exists>
             <#elseif  columnPage.exColumn?exists>
                 select_${columnPage.exColumn.javaName}_${columnPage.exColumn.originalColumn.fkTableConfig.javaName}(){
-                    this.type='${columnPage.javaName}';
+                    this.bsType='${columnPage.javaName}';
                     this.select${columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
             },
             </#if>

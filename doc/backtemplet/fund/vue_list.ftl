@@ -155,9 +155,9 @@
 
 
     <#list queryFkTables as fkTable>
-        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :type="type"
+        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType"
                                            <#list queryFks[fkTable.fullResourceFile] as queryField >
-                                           @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Fun"
+                                           @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                                            </#list>
         />
 
@@ -276,7 +276,7 @@
                     select${fkTable.javaName}Display: false,
                 </#list>
 
-                type: '',
+                bsType: '',
                 searchForm:{
                     <#list querys as being >
                     <#if being.columnPage?exists>
@@ -326,7 +326,7 @@
 
             <#list queryFks?values as queryFkList >
             <#list queryFkList as queryField >
-                selected${queryField.columnPage.javaName}Fun(selection){
+                selected${queryField.columnPage.javaName}Callback(selection){
                     <#if queryField.columnPage.exColumn?exists>
                         this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
                         this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
@@ -346,7 +346,7 @@
                 <#elseif  being.columnPage.exColumn?exists>
                 select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
 
-                    this.type='${being.columnPage.javaName}';
+                    this.bsType='${being.columnPage.javaName}';
                     this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
                 }
                 </#if>
