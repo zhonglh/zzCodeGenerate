@@ -9,8 +9,6 @@
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="412" column="167" lean-forward="false" selection-start-line="412" selection-start-column="167" selection-end-line="412" selection-end-column="167" />
+            <state relative-caret-position="176">
+              <caret line="363" column="18" lean-forward="false" selection-start-line="363" selection-start-column="12" selection-end-line="363" selection-end-column="18" />
               <folding>
                 <element signature="e#13674#13731#0#HTML" expanded="true" />
                 <element signature="e#13873#13935#0#HTML" expanded="true" />
@@ -45,13 +43,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="347" column="100" lean-forward="false" selection-start-line="347" selection-start-column="100" selection-end-line="347" selection-end-column="100" />
+            <state relative-caret-position="57">
+              <caret line="172" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
               <folding>
-                <element signature="e#10233#10274#0#HTML" expanded="true" />
+                <element signature="e#10234#10269#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,8 +58,8 @@
       <file leaf-file-name="vue_search.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="316" column="95" lean-forward="true" selection-start-line="316" selection-start-column="95" selection-end-line="316" selection-end-column="95" />
+            <state relative-caret-position="122">
+              <caret line="311" column="61" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
               <folding>
                 <element signature="e#11079#11168#0#HTML" expanded="true" />
               </folding>
@@ -80,9 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>aaa</find>
-      <find>dictSet</find>
-      <find>HashMap</find>
       <find>item.val</find>
       <find>{{item.name}}</find>
       <find>dicttype</find>
@@ -110,6 +105,9 @@
       <find>businessType</find>
       <find>Fun</find>
       <find>bsType</find>
+      <find>handleReset</find>
+      <find>saveSuccess</find>
+      <find>dialog</find>
     </findStrings>
     <replaceStrings>
       <replace>exColumns[</replace>
@@ -209,8 +207,8 @@
         <option value="$PROJECT_DIR$/module-bsmcc-core/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
       </list>
     </option>
   </component>
@@ -740,14 +738,7 @@
       <workItem from="1534294535218" duration="16999000" />
       <workItem from="1534320287401" duration="8665000" />
       <workItem from="1534823775920" duration="26273000" />
-      <workItem from="1534898581946" duration="15373000" />
-    </task>
-    <task id="LOCAL-00048" summary="处理表格数据">
-      <created>1533183842121</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1533183842121</updated>
+      <workItem from="1534898581946" duration="16086000" />
     </task>
     <task id="LOCAL-00049" summary="处理表格数据">
       <created>1533262944026</created>
@@ -1085,7 +1076,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534929223503</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="处理表格数据">
+      <created>1534930396911</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1534930396911</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1097,7 +1095,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="563393000" />
+    <option name="totallyTimeSpent" value="564106000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1677,31 +1675,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="316" column="95" lean-forward="true" selection-start-line="316" selection-start-column="95" selection-end-line="316" selection-end-column="95" />
+        <state relative-caret-position="122">
+          <caret line="311" column="61" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
           <folding>
             <element signature="e#11079#11168#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="347" column="100" lean-forward="false" selection-start-line="347" selection-start-column="100" selection-end-line="347" selection-end-column="100" />
+        <state relative-caret-position="176">
+          <caret line="363" column="18" lean-forward="false" selection-start-line="363" selection-start-column="12" selection-end-line="363" selection-end-column="18" />
           <folding>
-            <element signature="e#10233#10274#0#HTML" expanded="true" />
+            <element signature="e#13674#13731#0#HTML" expanded="true" />
+            <element signature="e#13873#13935#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="412" column="167" lean-forward="false" selection-start-line="412" selection-start-column="167" selection-end-line="412" selection-end-column="167" />
+        <state relative-caret-position="57">
+          <caret line="172" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="365" selection-end-column="0" />
           <folding>
-            <element signature="e#13674#13731#0#HTML" expanded="true" />
-            <element signature="e#13873#13935#0#HTML" expanded="true" />
+            <element signature="e#10234#10269#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -174,6 +174,8 @@
 
 
 <script>
+
+    import dialog from '@/utils/dialog'
     import baseForm from '@/mixins/baseForm';
     import commonApi from '@/api/commonApi';
     import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
@@ -309,7 +311,7 @@
                             onSuccess(body){
                                 that.handleReset('formValidate');
                                 that.$emit('saveSuccess');
-
+                                dialog.success(body.msg);
                             }
                         });
 
@@ -319,6 +321,7 @@
                             onSuccess(body){
                                 that.handleReset('formValidate');
                                 that.$emit('saveSuccess');
+                                dialog.success(body.msg);
                             }
                         });
 
