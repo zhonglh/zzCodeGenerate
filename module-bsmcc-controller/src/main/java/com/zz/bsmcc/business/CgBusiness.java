@@ -134,7 +134,13 @@ public class CgBusiness {
 
             //处理表的资源和包名
             processTableResource(projectBO, moduleConfigMap, tableConfig);
+
+
+            TablePO tablePO = new TablePO();
+            tablePO.setTableBO(tableConfig);
+            tablePOMap.put(tableConfig.getId(),tablePO);
         }
+
 
 
         for(TcgTableConfigBO tableConfig : tableConfigs){
@@ -297,7 +303,7 @@ public class CgBusiness {
 
 
 
-            TablePO tablePO = new TablePO();
+            TablePO tablePO = tablePOMap.get( tableConfig.getId());
             tablePO.setTableBO(tableConfig);
             tablePO.setColumns(columns);
             tablePO.setExColumns(exColumns);
@@ -339,7 +345,7 @@ public class CgBusiness {
             }
 
 
-            tablePOMap.put(tableConfig.getId(),tablePO);
+
 
         }
 
