@@ -483,6 +483,16 @@ public class CgBusiness {
         freemarkerModel.put("exColumns" , tablePO.getExColumns());
         freemarkerModel.put("exColumnMap" , tablePO.getExColumnMap());
         freemarkerModel.put("columnPages" , tablePO.getColumnPages());
+
+        List<TcgColumnPageBO> showPages = new ArrayList<TcgColumnPageBO>();
+        for(TcgColumnPageBO page : tablePO.getColumnPages()){
+            if(EnumYesNo.YES.getCode().equals(page.getExistPage()) && EnumYesNo.NO.getCode().equals(page.getHiddenable())){
+                showPages.add(page);
+            }
+        }
+        freemarkerModel.put("showColumnPages" , tablePO.getColumnPages());
+
+
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 

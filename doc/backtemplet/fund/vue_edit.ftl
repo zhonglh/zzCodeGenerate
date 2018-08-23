@@ -12,16 +12,21 @@
 
 
         <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="labelWidth">
-            <#list columnPages as page>
-                <#if page.existPage == '1'>
 
-                    <#if page.hiddenable == '1'>
+            <#list showColumnPages as page>
+                    <#if (page_index%2==0)>
+                    <Row>
+                    </#if>
 
-                    <#elseif page.editable == '0'>
+                    <#if page.editable == '0'>
+                    <Col :xs="24" :sm="12" :md="12" :lg="12">
                     <FormItem label="${page.columnComment}" prop="${page.javaName}">
                         {{ formValidate.${page.javaName} }}
                     </FormItem>
+                    </Col>
                     <#elseif page.editable == '1'>
+
+                        <Col :xs="24" :sm="12" :md="12" :lg="12">
                         <FormItem label="${page.columnComment}" prop="${page.javaName}">
                         <#if page?exists && page.columnConfig?exists>
                             <#if page.element == 'input' >
@@ -143,12 +148,12 @@
                             ${page.id}
                         </#if>
                         </FormItem>
-
+                        </Col>
                     </#if>
-                </#if>
 
-
-
+                    <#if (page_index%2==1 || !page_has_next)>
+                    </Row>
+                    </#if>
             </#list>
         </Form>
 
