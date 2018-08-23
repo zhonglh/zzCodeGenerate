@@ -310,7 +310,6 @@
             {
                 title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
                 key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
-                fixed: 'left',
                 align: 'center',
                 width: 150
             }<#if page_has_next>,</#if>

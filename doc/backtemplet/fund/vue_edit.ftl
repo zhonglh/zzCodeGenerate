@@ -346,8 +346,6 @@
         }
     },
     mounted() {
-
-        // this.width = document.documentElement.clientWidth;
         let that = this;
 
 
