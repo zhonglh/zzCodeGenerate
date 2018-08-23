@@ -71,7 +71,7 @@
                         <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
 
                             <#if being.columnPage.element == 'select' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'radio'>
-                                <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
+                                    <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
                             <#elseif being.columnPage.element == 'openwin' >
                                 <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.originalColumn.fkTableConfig.javaName}"/>
                             <#else>
@@ -106,22 +106,22 @@
             </div>
         </#if>
 
-        <div slot="toolbar">
+            <div slot="toolbar">
             <#list operations as operation>
                 <#if operation.position?exists && operation.position == 'top' || operation.position == 'all'>
                     <Button type="success"  title="${operation.operationName}"
-                        <#if operation.icons?exists>icon="${operation.icons}"</#if>
-                        <#if operation.styles?exists >style="${operation.styles}"</#if>
-                        <#if operation.classs?exists>class="${operation.classs}"</#if>
-                    <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-                        @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
-                    <#else>
-                        @click="${operation.operationResource}"
-                    </#if>
-                        v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')">${operation.operationName}</Button>
+                            <#if operation.icons?exists>icon="${operation.icons}"</#if>
+                            <#if operation.styles?exists >style="${operation.styles}"</#if>
+                            <#if operation.classs?exists>class="${operation.classs}"</#if>
+                        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+                            @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
+                        <#else>
+                            @click="${operation.operationResource}"
+                        </#if>
+                            v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')">${operation.operationName}</Button>
                 </#if>
             </#list>
-        </div>
+            </div>
         </table-list>
 
 
@@ -129,10 +129,10 @@
 
 
     <#list operations as operation>
-    <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
-    <${table.javaName}Edit @saveSuccess="saveSuccess('edit')"  :title="title"  ref="editRef" :display="editDisplay" />
-    <#break>
-    </#if>
+        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
+            <${table.javaName}Edit @saveSuccess="saveSuccess('edit')"  @closeDialog="closeDialog('edit')" :title="title"  ref="editRef" :display="editDisplay" />
+            <#break>
+        </#if>
     </#list>
 
 
@@ -147,7 +147,7 @@
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update'  && operation.operationResource != 'detail'>
-            <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess('${operation.operationResource}')"  :title="title"   ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
+                <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess('${operation.operationResource}')" @closeDialog="closeDialog('${operation.operationResource}')" :title="title"   ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
             </#if>
         </#if>
     </#list>
@@ -155,10 +155,10 @@
 
 
     <#list queryFkTables as fkTable>
-        <${fkTable.javaName}Search title="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType"
-                                           <#list queryFks[fkTable.fullResourceFile] as queryField >
-                                           @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
-                                           </#list>
+        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType"
+            <#list queryFks[fkTable.fullResourceFile] as queryField >
+                                   @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
+            </#list>
         />
 
     </#list>
@@ -217,7 +217,7 @@
 
     export default {
         name: '${table.javaName}List',
-        components: {
+    components: {
 
 
 
@@ -232,8 +232,8 @@
 
     <#list operations as operation>
         <#if operation.operationResource == 'detail'>
-        ${table.javaName}Detail,
-        <#break>
+            ${table.javaName}Detail,
+            <#break>
         </#if>
     </#list>
 
@@ -243,28 +243,28 @@
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
 
-                ${table.javaName}${operation.operationResource?cap_first} ,
+            ${table.javaName}${operation.operationResource?cap_first} ,
             </#if>
         </#if>
     </#list>
 
-            tableList,
-            <#list queryFkTables as fkTable>
-                ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
-            </#list>
-            <#if project.queryMode == 'ordinary' >
-                <#list queryDicts as dict>
-                    ${dict.columnPage.columnConfig.javaName}Dict : selectSpan,
-                </#list>
-            </#if>
+        tableList,
+    <#list queryFkTables as fkTable>
+        ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
+    </#list>
+    <#if project.queryMode == 'ordinary' >
+        <#list queryDicts as dict>
+            ${dict.columnPage.columnConfig.javaName}Dict : selectSpan,
+        </#list>
+    </#if>
 
-        },
-        mixins:[tableMix],
-        data () {
-            return {
-                ${table.javaName}: {},
-                    detailDisplay: false,
-                    editDisplay: false,
+    },
+    mixins:[tableMix],
+            data () {
+        return {
+    ${table.javaName}: {},
+        detailDisplay: false,
+                editDisplay: false,
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
@@ -272,153 +272,153 @@
             </#if>
         </#if>
     </#list>
-                <#list queryFkTables as fkTable>
-                    select${fkTable.javaName}Display: false,
-                </#list>
+    <#list queryFkTables as fkTable>
+            select${fkTable.javaName}Display: false,
+    </#list>
 
-                bsType: '',
+            bsType: '',
                 searchForm:{
-                    <#list querys as being >
-                    <#if being.columnPage?exists>
-                    <#if being.columnPage.element == 'openwin'>
-                        <#if being.columnPage.exColumn?exists>
-                        ${being.columnPage.exColumn.originalColumn.javaName},
-                        <#else>
-                        ${being.columnPage.columnConfig.originalColumn.javaName},
-                        </#if>
-                    </#if>
-                    ${being.columnPage.javaName}<#if fkTable_has_next>,</#if>
+        <#list querys as being >
+            <#if being.columnPage?exists>
+                <#if being.columnPage.element == 'openwin'>
+                    <#if being.columnPage.exColumn?exists>
+                    ${being.columnPage.exColumn.originalColumn.javaName},
                     <#else>
-                    ${being.queryFieldName}<#if fkTable_has_next>,</#if>
+                    ${being.columnPage.columnConfig.originalColumn.javaName},
                     </#if>
-                    </#list>
-                },
-            <#list queryDictSet as queryColumn>
-                <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
-                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict :[],
                 </#if>
-            </#list>
-                columns: [
-                    {
-                        title: '序号',
-                        type: 'selection',
-                        width: 80,
-                        fixed: 'left',
-                        align: 'center'
-                    },
-                    <#list listColumnPages as page>
-                        {
-                            title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
-                            key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
-                            fixed: 'left',
-                            align: 'center',
-                            width: 150
-                        }<#if page_has_next>,</#if>
-                    </#list>
-
-                ]
-            };
-        },
-
-
-
-        methods: {
-
-            <#list queryFks?values as queryFkList >
-            <#list queryFkList as queryField >
-                selected${queryField.columnPage.javaName}Callback(selection){
-                    <#if queryField.columnPage.exColumn?exists>
-                        this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
-                        this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
-                    <#else >
-                        this.searchForm.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
-                        this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
-                    </#if>
-                    this.selectDisplay = false;
-
-                },
-            </#list>
-            </#list>
-
-        <#list querys as being>
-            <#if being.columnPage?exists && being.columnPage.element == 'openwin' >
-                <#if being.columnPage.columnConfig?exists>
-                <#elseif  being.columnPage.exColumn?exists>
-                select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
-
-                    this.bsType='${being.columnPage.javaName}';
-                    this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
-                }
-                </#if>
+            ${being.columnPage.javaName}<#if fkTable_has_next>,</#if>
+            <#else>
+            ${being.queryFieldName}<#if fkTable_has_next>,</#if>
             </#if>
         </#list>
-
-<#list operations as operation>
-    <#if operation.operationBO?exists && operation.operationBO.opMode != '1' >
-    ${operation.operationResource}(){
-        let that = this;
-
-
-        <#if operation.operationBO.selectMode == '2' >
-        if (this.selectedIds.length <1){
-            dialog.warning('请选择要操作的数据!',that);
-            return ;
-        }
-        <#elseif operation.operationBO.selectMode == '1' >
-            if (this.selectedIds.length <1){
-                dialog.warning('请选择要操作的数据!',that);
-                return ;
-            }else if (this.selectedIds.length >1){
-                dialog.warning('每次只能操作一条数据!',that);
-                return ;
-            }
+        },
+    <#list queryDictSet as queryColumn>
+        <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
+        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict :[],
         </#if>
-        let confirmMsg = '确认要${operation.operationName}该${table.tableComment}？';
-        let dialogFlag = dialog.confirm(confirmMsg);
+    </#list>
+            columns: [
+            {
+                title: '序号',
+                type: 'selection',
+                width: 80,
+                fixed: 'left',
+                align: 'center'
+            },
+        <#list listColumnPages as page>
+            {
+                title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
+                key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
+                fixed: 'left',
+                align: 'center',
+                width: 150
+            }<#if page_has_next>,</#if>
+        </#list>
 
-        if (dialogFlag) {
-            ${table.javaName}Api.${operation.operationResource}({ids: this.selectedIds.join(',')}, {
-            onSuccess(res){
-                dialog.success("${operation.operationName}${table.tableComment}成功",that);
-                that.findList();
-            }
-            })
-        }
+        ]
+    };
     },
-    </#if>
-</#list>
 
-          findList (){
-                let that = this;
-                ${table.javaName}Api.list(this.param, {
-                    onSuccess(res) {
-                        that.loading = false;
-                        that.total = res.total;
-                        that.data = res.rows;
-                    }
-                    });
-            }
+
+
+    methods: {
+
+    <#list queryFks?values as queryFkList >
+        <#list queryFkList as queryField >
+            selected${queryField.columnPage.javaName}Callback(selection){
+            <#if queryField.columnPage.exColumn?exists>
+                this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
+                this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
+            <#else >
+                this.searchForm.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
+                this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
+            </#if>
+            this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = false ;
 
         },
+        </#list>
+    </#list>
 
-        mounted () {
+    <#list querys as being>
+        <#if being.columnPage?exists && being.columnPage.element == 'openwin' >
+            <#if being.columnPage.columnConfig?exists>
+            <#elseif  being.columnPage.exColumn?exists>
+                select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
+
+                this.bsType='${being.columnPage.javaName}';
+                this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+            }
+            </#if>
+        </#if>
+    </#list>
+
+    <#list operations as operation>
+        <#if operation.operationBO?exists && operation.operationBO.opMode != '1' >
+            ${operation.operationResource}(){
             let that = this;
-            this.findList();
 
 
-        <#if queryDictSet?exists && (queryDictSet?size > 0) >
+            <#if operation.operationBO.selectMode == '2' >
+                if (this.selectedIds.length <1){
+                    dialog.warning('请选择要操作的数据!',that);
+                    return ;
+                }
+            <#elseif operation.operationBO.selectMode == '1' >
+                if (this.selectedIds.length <1){
+                    dialog.warning('请选择要操作的数据!',that);
+                    return ;
+                }else if (this.selectedIds.length >1){
+                    dialog.warning('每次只能操作一条数据!',that);
+                    return ;
+                }
+            </#if>
+            let confirmMsg = '确认要${operation.operationName}该${table.tableComment}？';
+            let dialogFlag = dialog.confirm(confirmMsg);
+
+            if (dialogFlag) {
+                ${table.javaName}Api.${operation.operationResource}({ids: this.selectedIds.join(',')}, {
+                    onSuccess(res){
+                        dialog.success("${operation.operationName}${table.tableComment}成功",that);
+                        that.findList();
+                    }
+                })
+            }
+        },
+        </#if>
+    </#list>
+
+        findList (){
+            let that = this;
+            ${table.javaName}Api.list(this.param, {
+                onSuccess(res) {
+                    that.loading = false;
+                    that.total = res.total;
+                    that.data = res.rows;
+                }
+            });
+        }
+
+    },
+
+    mounted () {
+        let that = this;
+        this.findList();
+
+
+    <#if queryDictSet?exists && (queryDictSet?size > 0) >
         commonApi.allDicts('<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>', {
             onSuccess(dictMap) {
-            <#list queryDictSet as queryColumn>
-                <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap["${queryColumn.columnPage.exColumn.dictType}"]<#if queryColumn_has_next>;</#if>
-                <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap["${queryColumn.columnPage.columnConfig.dictType}"]<#if queryColumn_has_next>;</#if>
-                </#if>
-            </#list>
+                <#list queryDictSet as queryColumn>
+                    <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap["${queryColumn.columnPage.exColumn.dictType}"]<#if queryColumn_has_next>;</#if>
+                    <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap["${queryColumn.columnPage.columnConfig.dictType}"]<#if queryColumn_has_next>;</#if>
+                    </#if>
+                </#list>
             }
         });
-        </#if>
+    </#if>
 
 
-        }
+    }
     };
 </script>

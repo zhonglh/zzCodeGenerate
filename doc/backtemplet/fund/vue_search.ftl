@@ -1,18 +1,21 @@
-    <style lang="less">
-    </style>
+<style lang="less">
+</style>
 
-    <template>
-        <div class="page-body">
-            <Modal
-                    v-model="shows"
-                    :title="title"
-                    @on-visible-change="onVisibleChange"
-                    @on-ok="okFun"
-                    width="1000"
-                    loading
-                    scrollable>
+<template>
+    <div class="page-body">
+        <Modal
+                v-model="shows"
+                :title="modalTitle"
+                @on-visible-change="onVisibleChange"
+                @on-ok="okFun"
+                width="1000"
+                loading
+                draggable
+                :transfer="transfer"
+                :mask-closable="maskClosable"
+                scrollable>
 
-            <table-list :columns="columns" :tableData="data" :total="total" :loading="loading" @selectionChange="selectionChange" @callback="callback">
+            <table-list :columns="columns" :tableData="data" :total="total" :loading="loading" :dialogInModal="dialogInModal" @selectionChange="selectionChange" @callback="callback">
             <#if querys?exists >
                 <div slot="form">
                     <#list querys as being>
@@ -78,7 +81,7 @@
                             <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
 
                                 <#if being.columnPage.element == 'select' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'radio'>
-                                    <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
+                                        <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
                                 <#elseif being.columnPage.element == 'openwin' >
                                     <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
                                 <#else>
@@ -118,212 +121,226 @@
 
         <#list queryFkTables as fkTable>
             <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :businessType="bsType"
-                                               <#list queryFks[fkTable.ullResourceFile] as queryField >
+                <#list queryFks[fkTable.ullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
-                                               </#list>
+                </#list>
             />
 
         </#list>
 
-            </Modal>
-        </div>
-    </template>
+        </Modal>
+    </div>
+</template>
 
-    <script>
-        import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
-        import dialog from '@/utils/dialog'
+<script>
+    import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
+    import dialog from '@/utils/dialog'
 
-        import tableList from '@/components/table-list/tableList'
-        import tableMix from '@/mixins/tableMix'
-        import timeFormat from '@/utils/timeformat';
+    import tableList from '@/components/table-list/tableList'
+    import tableMix from '@/mixins/tableMix'
+    import timeFormat from '@/utils/timeformat';
+    <#if project.queryMode == 'ordinary' >
+    import selectSpan from '@/components/select-span/select-span';
+    </#if>
+
+    <#list queryFkTables as fkTable>
+    import ${fkTable.fullResourceFile}Search from '@/views/${fkTable.fullResourceName}/${fkTable.javaName}Search'
+    </#list>
+
+    export default {
+        name: '${table.fullResourceFile}List',
+        components: {
+            tableList,
+        <#list queryFkTables as fkTable>
+            ${fkTable.fullResourceFile}Search <#if fkTable_has_next>,</#if>
+        </#list>
         <#if project.queryMode == 'ordinary' >
-        import selectSpan from '@/components/select-span/select-span';
+            <#list queryDicts as dict>
+                ${dict.columnPage.columnConfig.javaName}Dict : selectSpan,
+            </#list>
         </#if>
 
-        <#list queryFkTables as fkTable>
-        import ${fkTable.fullResourceFile}Search from '@/views/${fkTable.fullResourceName}/${fkTable.javaName}Search'
-        </#list>
-
-        export default {
-            name: '${table.fullResourceFile}List',
-            components: {
-                tableList,
-                <#list queryFkTables as fkTable>
-                    ${fkTable.fullResourceFile}Search <#if fkTable_has_next>,</#if>
-                </#list>
-                <#if project.queryMode == 'ordinary' >
-                    <#list queryDicts as dict>
-                        ${dict.columnPage.columnConfig.javaName}Dict : selectSpan,
-                    </#list>
-                </#if>
-
+        },
+        props: {
+            modalTitle: {
+                type: String,
+                default: ''
             },
-            props: {
-                url: {
-                    type: String,
-                    default: ''
-                },
-                display: {
-                    type: Boolean,
-                    default: false
-                },
-                mutiSelect: {
-                    type: Boolean,
-                    default: false
-                },
-                businessType: {
-                    type: String,
-                    default: ''
-                }
+            url: {
+                type: String,
+                default: ''
             },
-            computed: {
-                shows () {
-                    return this.display;
-                }
+            display: {
+                type: Boolean,
+                default: false
             },
-            mixins:[tableMix],
-            data () {
-                return {
-                    ${table.fullResourceFile}: {},
-                    selectDisplay: false,
+            mutiSelect: {
+                type: Boolean,
+                default: false
+            },
+            businessType: {
+                type: String,
+                default: ''
+            }
+        },
+        computed: {
+            shows () {
+                return this.display;
+            }
+        },
+        mixins:[tableMix],
+        data () {
+            return {
+        ${table.fullResourceFile}: {},
+            selectDisplay: false,
+                    maskClosable: false,
                     bsType: '',
-                    searchForm:{
-                        <#list querys as being >
-                        <#if being.columnPage?exists>
-                        <#if being.columnPage.element == 'openwin'>
-                            <#if being.columnPage.exColumn?exists>
-                            ${being.columnPage.exColumn.originalColumn.javaName},
-                            <#else>
-                            ${being.columnPage.columnConfig.originalColumn.javaName},
-                            </#if>
-                        </#if>
-                        ${being.columnPage.javaName},
-                        <#else>
-                        ${being.queryFieldName},
-                        </#if>
-                        </#list>
+                    transfer: false,
+                    dialogInModal: true,
 
-                    },
-                    <#list queryDictSet as queryColumn>
-                        <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
-                        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict :[],
-                        </#if>
-                    </#list>
-                    columns: [
-                        {
-                            title: '序号',
-                            type: 'index',
-                            width: 80,
-                            fixed: 'left',
-                            align: 'center'
-                        },
-                        <#list listColumnPages as page>
-                            {
-                                title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
-                                key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
-                                fixed: 'left',
-                                align: 'center',
-                                width: 150
-                            }<#if page_has_next>,</#if>
-                        </#list>
-
-                    ]
-                };
-            },
-
-
-
-            methods: {
-
-                <#list queryFks?values as queryFkList >
-                <#list queryFkList as queryField >
-                    selected${queryField.columnPage.javaName}Callback(selection){
-                        <#if queryField.columnPage.exColumn?exists>
-                            this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
-                            this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
-                        <#else >
-                            this.searchForm.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
-                            this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
-                        </#if>
-                        this.selectDisplay = false;
-
-                    },
-                </#list>
-                </#list>
-
-
-
-            <#list querys as being>
-                <#if being.columnPage?exists && being.columnPage.element == 'openwin' >
-                    <#if being.columnPage.columnConfig?exists>
-                    <#elseif  being.columnPage.exColumn?exists>
-                        select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
-
-                            this.bsType='${being.columnPage.javaName}';
-                    this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
-                    }
-                    </#if>
-                </#if>
+            <#list queryFkTables as fkTable>
+                    select${fkTable.javaName}Display: false,
             </#list>
 
 
-            onVisibleChange(v) {
-                this.$emit('onVisibleChange',v);
-            },
-            okFun(){
-
-                let selectedData = this.selectedData;
-
-
-
-                if (selectedData.length<1){
-                    dialog.warning('请选择要操作的数据!', this);
-                }else {
-                    if (this.mutiSelect){
-                        this.$emit('on-selected-'+this.bsType,selectedData);
-                    } else {
-                        this.$emit('on-selected-'+this.bsType,selectedData[0]);
-                    }
-
-                }
-            },
-
-                findList () {
-                    let that = this;
-                    ${table.javaName}Api.list(this.param, {
-                        onSuccess(res) {
-                            that.loading = false;
-                            that.total = res.total;
-                            that.data = res.rows;
-                        }
-                    });
-                }
-            },
-
-            mounted () {
-                let that = this;
-                this.findList();
-
-
-
-
-
-
-        <#if queryDictSet?exists && (queryDictSet?size > 0) >
-            commonApi.allDicts('<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>', {
-                onSuccess(dictMap) {
-                    <#list queryDictSet as queryColumn>
-                        <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap["${queryColumn.columnPage.exColumn.dictType}"]<#if queryColumn_has_next>;</#if>
-                        <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap["${queryColumn.columnPage.columnConfig.dictType}"]<#if queryColumn_has_next>;</#if>
+                    searchForm:{
+            <#list querys as being >
+                <#if being.columnPage?exists>
+                    <#if being.columnPage.element == 'openwin'>
+                        <#if being.columnPage.exColumn?exists>
+                        ${being.columnPage.exColumn.originalColumn.javaName},
+                        <#else>
+                        ${being.columnPage.columnConfig.originalColumn.javaName},
                         </#if>
-                    </#list>
-                }
-            });
-        </#if>
+                    </#if>
+                ${being.columnPage.javaName},
+                <#else>
+                ${being.queryFieldName},
+                </#if>
+            </#list>
 
+            },
+        <#list queryDictSet as queryColumn>
+            <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
+            <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict :[],
+            </#if>
+        </#list>
+                columns: [
+                {
+                    title: '序号',
+                    type: 'selection',
+                    width: 80,
+                    fixed: 'left',
+                    align: 'center'
+                },
+            <#list listColumnPages as page>
+                {
+                    title: '<#if page.columnConfig?exists>${page.columnConfig.columnComment}<#else >${page.exColumn.columnTitle}</#if>',
+                    key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
+                    fixed: 'left',
+                    align: 'center',
+                    width: 150
+                }<#if page_has_next>,</#if>
+            </#list>
 
-
-
-            }
+            ]
         };
-    </script>
+        },
+
+
+
+    methods: {
+
+    <#list queryFks?values as queryFkList >
+        <#list queryFkList as queryField >
+            selected${queryField.columnPage.javaName}Callback(selection){
+                <#if queryField.columnPage.exColumn?exists>
+                    this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
+                    this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
+                <#else >
+                    this.searchForm.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
+                    this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
+                </#if>
+                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = false;
+
+            },
+        </#list>
+    </#list>
+
+
+
+    <#list querys as being>
+        <#if being.columnPage?exists && being.columnPage.element == 'openwin' >
+            <#if being.columnPage.columnConfig?exists>
+            <#elseif  being.columnPage.exColumn?exists>
+                select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
+
+                    this.bsType='${being.columnPage.javaName}';
+            this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+            }
+            </#if>
+        </#if>
+    </#list>
+
+
+    onVisibleChange(v) {
+        if (!v){
+            this.$emit('closeDialog')
+        }
+    },
+    okFun(){
+
+        let selectedData = this.selectedData;
+
+
+
+        if (selectedData.length<1){
+            dialog.warning('请选择要操作的数据!', this);
+        }else {
+            if (this.mutiSelect){
+                this.$emit('on-selected-'+this.businessType,selectedData);
+            } else {
+                this.$emit('on-selected-'+this.businessType,selectedData[0]);
+            }
+
+        }
+    },
+
+    findList () {
+        let that = this;
+        ${table.javaName}Api.list(this.param, {
+            onSuccess(res) {
+                that.loading = false;
+                that.total = res.total;
+                that.data = res.rows;
+            }
+        });
+    }
+    },
+
+    mounted () {
+        let that = this;
+        this.findList();
+
+
+
+
+
+
+    <#if queryDictSet?exists && (queryDictSet?size > 0) >
+        commonApi.allDicts('<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>', {
+            onSuccess(dictMap) {
+                <#list queryDictSet as queryColumn>
+                    <#if queryColumn.columnPage.exColumn?exists>that.${queryColumn.columnPage.exColumn.dictType}Dict=dictMap["${queryColumn.columnPage.exColumn.dictType}"]<#if queryColumn_has_next>;</#if>
+                    <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict=dictMap["${queryColumn.columnPage.columnConfig.dictType}"]<#if queryColumn_has_next>;</#if>
+                    </#if>
+                </#list>
+            }
+        });
+    </#if>
+
+
+
+    }
+    };
+</script>
