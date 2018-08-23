@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -69,8 +67,8 @@
       <file leaf-file-name="vue_search.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="319" column="17" lean-forward="true" selection-start-line="319" selection-start-column="17" selection-end-line="319" selection-end-column="17" />
+            <state relative-caret-position="442">
+              <caret line="329" column="0" lean-forward="true" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#Input#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#InputNumber#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -772,14 +770,7 @@
       <workItem from="1534320287401" duration="8665000" />
       <workItem from="1534823775920" duration="26273000" />
       <workItem from="1534898581946" duration="16647000" />
-      <workItem from="1534985949813" duration="5394000" />
-    </task>
-    <task id="LOCAL-00050" summary="处理表格数据">
-      <created>1533263056979</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1533263056980</updated>
+      <workItem from="1534985949813" duration="7662000" />
     </task>
     <task id="LOCAL-00051" summary="处理表格数据">
       <created>1533269208521</created>
@@ -1117,7 +1108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534931127302</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="处理表格数据">
+      <created>1535004713607</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1535004713607</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1129,7 +1127,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="570061000" />
+    <option name="totallyTimeSpent" value="572329000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1721,8 +1719,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="319" column="17" lean-forward="true" selection-start-line="319" selection-start-column="17" selection-end-line="319" selection-end-column="17" />
+        <state relative-caret-position="442">
+          <caret line="329" column="0" lean-forward="true" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#Input#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#InputNumber#0;n#FormItem#0;n#div#0;n#table-list#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
