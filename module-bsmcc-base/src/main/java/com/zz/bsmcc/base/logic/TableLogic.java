@@ -220,6 +220,7 @@ public class TableLogic {
         pageBO.setExistPage(EnumYesNo.YES.getCode());
         pageBO.setEditable(EnumYesNo.YES.getCode());
         pageBO.setHiddenable(EnumYesNo.NO.getCode());
+        pageBO.setListShowable(pageBO.getEditable());
 
         pageBO.setElement((String) EnumPageElement.text.getTheValue());
         if(columnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumn().getColumnIsfk())){
@@ -230,11 +231,11 @@ public class TableLogic {
             pageBO.setExistPage(EnumYesNo.NO.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
+            pageBO.setListShowable(EnumYesNo.YES.getCode());
         }
 
         pageBO.setRequired(EnumYesNo.YES.getCode());
 
-        pageBO.setListShowable(pageBO.getEditable());
 
 
         EntityUtil.autoSetInsertEntity(pageBO , sessionUserVO);
@@ -246,28 +247,38 @@ public class TableLogic {
     }
 
     public static void initColumnPage(TcgColumnPageBO pageBO, TcgColumnConfigBO columnBO, ILoginUserEntity<String> sessionUserVO) {
+
         pageBO.setRealColumn(EnumYesNo.YES.getCode());
+
+        pageBO.setListShowable(pageBO.getEditable());
 
         if(insideFieldNames.contains(columnBO.getJavaName())){
             pageBO.setExistPage(EnumYesNo.NO.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
         }else if("id".equalsIgnoreCase(columnBO.getJavaName())){
             //主键
             pageBO.setExistPage(EnumYesNo.YES.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.YES.getCode());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
         }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())){
             //外键
             pageBO.setExistPage(EnumYesNo.YES.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.YES.getCode());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
+        }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsdict())){
+            //字典
+            pageBO.setExistPage(EnumYesNo.YES.getCode());
+            pageBO.setEditable(EnumYesNo.YES.getCode());
+            pageBO.setHiddenable(EnumYesNo.NO.getCode());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
         }else {
-
                 pageBO.setExistPage(EnumYesNo.YES.getCode());
                 pageBO.setEditable(EnumYesNo.YES.getCode());
                 pageBO.setHiddenable(EnumYesNo.NO.getCode());
-
         }
 
 
@@ -278,7 +289,7 @@ public class TableLogic {
         }
 
         pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
-        pageBO.setListShowable(pageBO.getEditable());
+
 
 
         EntityUtil.autoSetInsertEntity(pageBO , sessionUserVO);

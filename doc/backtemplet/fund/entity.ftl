@@ -66,13 +66,15 @@ private ${page.exColumn.javaSimpleClass} ${page.exColumn.javaName} ;
 <#list columnPages as page>
     <#if page.exColumn?exists>
         <#if page.listShowable=='1'>
-    public void ${page.exColumn.setMethodName}(${page.exColumn.javaSimpleClass} ${page.exColumn.javaName}){
-        this.${page.exColumn.javaName} = ${page.exColumn.javaName};
-    }
 
-    public ${page.exColumn.javaSimpleClass} ${page.exColumn.getMethodName}(){
-        return this.${page.exColumn.javaName};
-    }
+
+        public void set${page.exColumn.javaName?cap_first}(${page.exColumn.javaSimpleClass} ${page.exColumn.javaName}){
+            this.${page.exColumn.javaName} = ${page.exColumn.javaName};
+        }
+
+        public ${page.exColumn.javaSimpleClass} get${page.exColumn.javaName?cap_first}(){
+            return this.${page.exColumn.javaName};
+        }
 
         </#if>
     </#if>
