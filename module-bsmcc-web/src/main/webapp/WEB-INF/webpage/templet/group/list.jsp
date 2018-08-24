@@ -70,6 +70,9 @@
 								<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
 							</button>
 
+							<button id="b2"  msg="配置操作按钮" type="button" class="btn btn-outline btn-default" url='${ctx}/templet/group/{id}/operations' onClick="updateWin('templetGroupForm',this);">
+								<i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+							</button>
 								
 						</div>
 
