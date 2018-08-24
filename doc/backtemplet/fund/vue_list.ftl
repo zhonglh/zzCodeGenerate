@@ -109,10 +109,11 @@
             <div slot="toolbar">
             <#list operations as operation>
                 <#if operation.position?exists && operation.position == 'top' || operation.position == 'all'>
-                    <Button type="success"  title="${operation.operationName}"
-                            <#if operation.icons?exists>icon="${operation.icons}"</#if>
-                            <#if operation.styles?exists >style="${operation.styles}"</#if>
-                            <#if operation.classs?exists>class="${operation.classs}"</#if>
+                    <Button   <#if (operation.other?exists && operation.other?length > 0)>type="${operation.other}"<#else >type="success"</#if>
+                            title="${operation.operationName}"
+                            <#if (operation.icons?exists && operation.icons?length > 0)>icon="${operation.icons}"</#if>
+                            <#if (operation.styles?exists && operation.styles?length > 0)>style="${operation.styles}"</#if>
+                            <#if (operation.classs?exists && operation.classs?length > 0)>class="${operation.classs}"</#if>
                         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
                             @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
                         <#else>

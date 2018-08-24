@@ -61,6 +61,9 @@ public class TcgTempletGroupOperationEntity extends BaseEntity<String> implement
             private String other;
 
 
+            private int sort;
+
+
             /**
             * 模板组
             * @return the groupId
@@ -152,5 +155,13 @@ public class TcgTempletGroupOperationEntity extends BaseEntity<String> implement
 
         public void setOther(String other) {
                 this.other = other;
+        }
+
+        public int getSort() {
+                return sort;
+        }
+
+        public void setSort(int sort) {
+                this.sort = sort;
         }
 }

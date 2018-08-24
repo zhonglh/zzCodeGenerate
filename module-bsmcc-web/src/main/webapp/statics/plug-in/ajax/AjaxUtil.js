@@ -35,8 +35,7 @@ function ajaxSyncData(url,data){
 function ajax_Url(op){
 	
 	var async = op.async;
-	
-	
+
 	
 	if(!async){
 		//同步请求 
@@ -99,8 +98,7 @@ function ajax_Url(op){
 
 
 
-function ajaxError(xhr, ajaxOptions, thrownError){	
-		//xhr.responseText
-		tip("操作失败，请登录后重试！");
+function ajaxError(xhr, ajaxOptions, thrownError){
+    toastr.error("操作失败，请登录后重试！");
 }
 

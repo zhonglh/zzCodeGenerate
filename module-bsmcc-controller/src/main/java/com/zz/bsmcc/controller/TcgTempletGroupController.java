@@ -12,6 +12,7 @@ import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
 import com.zz.bsmcc.base.bo.TcgOperationBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupOperationBO;
+import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.TcgOperationQuery;
 import com.zz.bsmcc.base.query.TcgTempletGroupOperationQuery;
 import com.zz.bsmcc.base.query.impl.TcgOperationQueryImpl;
@@ -27,9 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -88,7 +87,9 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 			list = operationBOs;
 		}else {
 			list = new ArrayList<TcgTempletGroupOperationBO>();
+			int index = 0;
 			for (TcgOperationBO opBO : opBOs) {
+				index ++;
 				if(operationMap.containsKey(opBO.getId())){
 					list.add(operationMap.get(opBO.getId()));
 				}else {
@@ -98,6 +99,7 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 					tgo.setOperationResource(opBO.getOperationResource());
 					tgo.setOperationId(opBO.getId());
 					tgo.setPosition((String) EnumButtonPosition.top.getTheValue());
+					tgo.setSort(index);
 					list.add(tgo);
 				}
 			}
@@ -118,16 +120,18 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 			value = {"/{id}/operationsEdit"},
 			method = {RequestMethod.POST}
 	)
-	public Object operationsEdit(@PathVariable("id") String id, List<TcgTempletGroupOperationBO> operations, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public Object operationsEdit(@PathVariable("id") String id, TablePO tablePO, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 
 		this.permissionList.assertHasPermission("operationsEdit");
 		ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
 
+		List<TcgTempletGroupOperationBO> operations = tablePO.getTempletGroupOperations();
 		if(operations != null && !operations.isEmpty()){
 			for(TcgTempletGroupOperationBO operation : operations){
 				operation.setGroupId(id);
-				if(StringUtils.isNotEmpty(operation.getId())){
+				if(StringUtils.isEmpty(operation.getId())){
 					this.setInsertInfo(operation, sessionUserVO);
 					tcgTempletGroupOperationService.insert(operation);
 				}else {

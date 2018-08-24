@@ -72,10 +72,15 @@
 	function updateWin(tableid,this1,width,height){
 
 		var title = $(this1).attr('title');
+		if(title == null || title == undefined){
+            title = $(this1).attr('msg');
+		}
 		var url = $(this1).attr('url');
 		var row = getSelect(tableid);
 		if(row != null && row.id != null){
 			openWin(tableid,title,url,row.id,width,height);
+		}else {
+            topShwoMessage("error","请先选择数据！");
 		}
 		
 		

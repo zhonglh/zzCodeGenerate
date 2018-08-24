@@ -61,7 +61,8 @@
                         <th width="150">Style</th>
                         <th width="150">Class</th>
                         <th width="150">位置</th>
-                        <th width="150">其它</th>
+                        <th width="150">按钮类型</th>
+                        <th width="150">顺序</th>
                         </thead>
 
                         <tbody>
@@ -71,23 +72,25 @@
                                 <td>${status1.index+1 }</td>
                                 <td>
                                         ${operation.operationName }
-                                    <input type="hidden" id="operations[${status1.index }].id" name="operations[${status1.index }].id" value="${operation.id }" />
-                                    <input type="hidden" id="operations[${status1.index }].operationId" name="operations[${status1.index }].operationId" value="${operation.operationId }" />
+                                    <input type="hidden" id="templetGroupOperations[${status1.index }].id" name="templetGroupOperations[${status1.index }].id" value="${operation.id }" />
+                                    <input type="hidden" id="templetGroupOperations[${status1.index }].operationId" name="templetGroupOperations[${status1.index }].operationId" value="${operation.operationId }" />
                                 </td>
                                 <td>${operation.operationResource }</td>
 
 
-                                <td><input type="text"  id="operations[${status1.index }].icons" name="operations[${status1.index }].icons" value="${operation.icons }" /></td>
-                                <td><input type="text"  id="operations[${status1.index }].styles" name="operations[${status1.index }].styles" value="${operation.styles }" /></td>
-                                <td><input type="text"  id="operations[${status1.index }].classs" name="operations[${status1.index }].classs" value="${operation.classs }" /></td>
-
-                                <select id="operations[${status1.index }].position" name="operations[${status1.index }].position" class="form-control required">
+                                <td><input type="text" size="8"  id="templetGroupOperations[${status1.index }].icons" name="templetGroupOperations[${status1.index }].icons" value="${operation.icons }" /></td>
+                                <td><input type="text" size="8"  id="templetGroupOperations[${status1.index }].styles" name="templetGroupOperations[${status1.index }].styles" value="${operation.styles }" /></td>
+                                <td><input type="text" size="8"  id="templetGroupOperations[${status1.index }].classs" name="templetGroupOperations[${status1.index }].classs" value="${operation.classs }" /></td>
+                                <td>
+                                <select style="width: 100px;" id="templetGroupOperations[${status1.index }].position" name="templetGroupOperations[${status1.index }].position" class="form-control required">
                                     <option value="top"     <c:if test="${operation.position ==  'top' }">selected="selected"</c:if>>工具栏</option>
                                     <option value="right"   <c:if test="${operation.position ==  'right' }">selected="selected"</c:if>>操作列</option>
                                     <option value="all"     <c:if test="${operation.position ==  'all' }">selected="selected"</c:if>>全部</option>
                                 </select>
-                                <td><input type="text"  id="operations[${status1.index }].other" name="operations[${status1.index }].other" value="${operation.other }" /></td>
+                                </td>
+                                <td><input type="text"  id="templetGroupOperations[${status1.index }].other" name="templetGroupOperations[${status1.index }].other" value="${operation.other }" /></td>
 
+                                <td><input type="text" size="6"  class="required" id="templetGroupOperations[${status1.index }].sort" name="templetGroupOperations[${status1.index }].sort" value="${operation.sort }" /></td>
 
 
 
@@ -97,6 +100,8 @@
                     </table>
                 </div>
             </div>
+
+            <br><br>
 
 
 

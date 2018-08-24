@@ -344,7 +344,12 @@ public class CgBusiness {
                 }
             }
 
-
+            tablePO.getTempletGroupOperations().sort(new Comparator<TcgTempletGroupOperationBO>() {
+                @Override
+                public int compare(TcgTempletGroupOperationBO o1, TcgTempletGroupOperationBO o2) {
+                    return o1.getSort() > o2.getSort() ? 1 : (o1.getSort() < o2.getSort()? -1 : 0);
+                }
+            });
 
 
         }
@@ -969,6 +974,7 @@ public class CgBusiness {
             TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
             List<TcgOperationBO> ops = tcgOperationService.selectList(tcgOperationQuery.buildWrapper());
             if (ops != null && !ops.isEmpty()) {
+                int index = 0;
                 for (TcgOperationBO op : ops) {
                     TcgTempletGroupOperationBO tgo = operationBOMap.get(op.getId());
                     if (tgo == null) {
@@ -978,6 +984,7 @@ public class CgBusiness {
                         tgo.setOperationResource(op.getOperationResource());
                         tgo.setOperationId(op.getId());
                         tgo.setPosition((String) EnumButtonPosition.top.getTheValue());
+                        tgo.setSort(++index);
                         operationBOMap.put(op.getId(), tgo);
                     }
                 }
