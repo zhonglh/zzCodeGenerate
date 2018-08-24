@@ -2,11 +2,14 @@ package com.zz.bsmcc.controller;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 
-
+import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
+import com.zz.bsmcc.base.bo.TcgOperationBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupOperationBO;
 import com.zz.bsmcc.base.query.TcgOperationQuery;
@@ -19,6 +22,7 @@ import com.zz.bms.util.base.java.IdUtils;
 
 import com.zz.bsmcc.base.service.TcgOperationService;
 import com.zz.bsmcc.base.service.TcgTempletGroupOperationService;
+import com.zz.bsmcc.core.enums.EnumButtonPosition;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +33,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 模板组 控制层
@@ -60,21 +67,79 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 		this.permissionList.assertHasPermission("operationsEdit");
 
 
+		List<TcgTempletGroupOperationBO> list = null;
+
 		TcgTempletGroupOperationQuery query = new TcgTempletGroupOperationQueryImpl();
 		query.groupId(id);
-		List<TcgTempletGroupOperationBO> operationBOS = tcgTempletGroupOperationService.selectList(query.buildWrapper());
+		List<TcgTempletGroupOperationBO> operationBOs = tcgTempletGroupOperationService.selectList(query.buildWrapper());
+		Map<String,TcgTempletGroupOperationBO> operationMap  = new HashMap<String,TcgTempletGroupOperationBO>();
+
+		if(operationBOs != null && !operationBOs.isEmpty() ){
+			for(TcgTempletGroupOperationBO operationBO : operationBOs){
+				operationMap.put(operationBO.getOperationId() , operationBO);
+			}
+		}
+
 
 		TcgOperationQuery operationQuery = new TcgOperationQueryImpl();
-		tcgOperationService.selectList();
+		List<TcgOperationBO> opBOs = tcgOperationService.selectList(operationQuery.buildWrapper());
 
+		if(operationBOs != null && operationBOs.size() == opBOs.size()){
+			list = operationBOs;
+		}else {
+			list = new ArrayList<TcgTempletGroupOperationBO>();
+			for (TcgOperationBO opBO : opBOs) {
+				if(operationMap.containsKey(opBO.getId())){
+					list.add(operationMap.get(opBO.getId()));
+				}else {
+					TcgTempletGroupOperationBO tgo = new TcgTempletGroupOperationBO();
+					tgo.setOperationBO(opBO);
+					tgo.setOperationName(opBO.getOperationName());
+					tgo.setOperationResource(opBO.getOperationResource());
+					tgo.setOperationId(opBO.getId());
+					tgo.setPosition((String) EnumButtonPosition.top.getTheValue());
+					list.add(tgo);
+				}
+			}
+		}
 
-		if(operationBOS == null || )
+		model.addAttribute("operations", list);
 
 
 
 		return viewName("operationsEdit");
 
 	}
+
+
+
+
+	@RequestMapping(
+			value = {"/{id}/operationsEdit"},
+			method = {RequestMethod.POST}
+	)
+	public Object operationsEdit(@PathVariable("id") String id, List<TcgTempletGroupOperationBO> operations, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+
+
+		this.permissionList.assertHasPermission("operationsEdit");
+		ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
+
+		if(operations != null && !operations.isEmpty()){
+			for(TcgTempletGroupOperationBO operation : operations){
+				operation.setGroupId(id);
+				if(StringUtils.isNotEmpty(operation.getId())){
+					this.setInsertInfo(operation, sessionUserVO);
+					tcgTempletGroupOperationService.insert(operation);
+				}else {
+					this.setUpdateInfo(operation, sessionUserVO);
+					tcgTempletGroupOperationService.updateById(operation);
+				}
+			}
+		}
+
+		return AjaxJson.successAjax;
+	}
+
 
 
 
