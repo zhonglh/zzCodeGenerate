@@ -331,7 +331,7 @@
                 <div class="col-xs-12">
 
 
-                    <input type="button" value="新增扩展列" onclick="insertExColumn()" style="height: 30px;width: 80px;background-color: #1AB394">
+                    <input type="button" value="新增扩展列" onclick="insertExColumn()" style="height: 30px;width: 80px; color: white; color: white; background-color: #1AB394">
 
 
                     <table width="100%" id="exColumnTable">
@@ -375,10 +375,8 @@
                                 </td>
 
                                 <td>
-                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">
                                 </td>
-
-
 
                             </tr>
                         </c:forEach>
@@ -410,13 +408,13 @@
                         <th width="150">是否在界面里</th>
                         <th width="150">是否可编辑</th>
                         <th width="150">是否隐藏</th>
+                        <th width="150">是否必填</th>
+                        <th width="150">是否在列表中显示</th>
                         <th width="150">界面元素</th>
                         <th width="150">最大长度</th>
                         <th width="150">最小长度</th>
                         <th width="150">最大值</th>
                         <th width="150">最小值</th>
-                        <th width="150">是否必填</th>
-                        <th width="150">是否在列表中显示</th>
 
                         </thead>
 
@@ -477,11 +475,6 @@
                                     </select>
                                 </td>
 
-
-                                <td><input type="number"  id="columnPages[${status1.index }].maxlength" name="columnPages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
-                                <td><input type="number"  id="columnPages[${status1.index }].minlength" name="columnPages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
-                                <td><input type="number"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
-                                <td><input type="number"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
                                 <td>
                                     <select name="columnPages[${status1.index }].required" >
                                         <option value="1" <c:if test="${columnPage.required ==  '1' }">selected="selected"</c:if>>是</option>
@@ -494,6 +487,12 @@
                                         <option value="0" <c:if test="${columnPage.listShowable ==  '0' }">selected="selected"</c:if>>否</option>
                                     </select>
                                 </td>
+
+                                <td><input type="number"  id="columnPages[${status1.index }].maxlength" name="columnPages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].minlength" name="columnPages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
+                                <td><input type="number"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
+
 
                             </tr>
                         </c:forEach>
@@ -511,7 +510,7 @@
                 <div class="col-xs-12">
 
 
-                    <input type="button" value="插入校验信息" onclick="insertColumnValidates()" style="height: 30px;width: 80px;background-color: #1AB394">
+                    <input type="button" value="插入校验信息" onclick="insertColumnValidates()" style="height: 30px;width: 100px;color: white; background-color: #1AB394">
 
                     <table width="100%" id="columnValidateTable">
 
@@ -539,7 +538,7 @@
                                 <td><input type="text"  id="columnValidates[${status1.index }].msg" name="columnValidates[${status1.index }].msg" value="${columnValidate.msg }" /></td>
 
                                 <td>
-                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">
                                 </td>
                             </tr>
                         </c:forEach>
@@ -555,7 +554,7 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    <input type="button" value="插入事件信息" onclick="insertColumnEvents()" style="height: 30px;width: 80px;background-color: #1AB394">
+                    <input type="button" value="插入事件信息" onclick="insertColumnEvents()" style="height: 30px;width: 100px;color: white; background-color: #1AB394">
 
                     <table width="100%" id="columnEventTable">
 
@@ -584,7 +583,7 @@
                                 <td><input type="text"  id="columnEvents[${status1.index }].funcName" name="columnEvents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
                                 <td><textarea id="columnEvents[${status1.index }].funcBody" name="columnEvents[${status1.index }].funcBody">${columnEvent.funcBody}</textarea></td>
                                 <td>
-                                    <input type="button" value="删除" onclick="deleteColumnEvents(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                    <input type="button" value="删除" onclick="deleteColumnEvents(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">
                                 </td>
                             </tr>
                         </c:forEach>
@@ -630,7 +629,7 @@
         <fieldset>
             <div class="row">
                 <div class="col-xs-12">
-                    <input type="button" value="插入查询条件" onclick="insertQueryConfigTables()" style="height: 30px;width: 80px;background-color: #1AB394">
+                    <input type="button" value="插入查询条件" onclick="insertQueryConfigTables()" style="height: 30px;width: 100px;color: white; background-color: #1AB394">
 
                     <table width="100%" id="queryConfigTable">
 
@@ -673,7 +672,7 @@
 
                                 <td><input type="number"  id="queryConfigs[${status1.index }].querySort" name="queryConfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
                                 <td>
-                                    <input type="button" value="删除" onclick="deleteQueryConfigTables(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                    <input type="button" value="删除" onclick="deleteQueryConfigTables(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">
                                 </td>
                             </tr>
                         </c:forEach>
@@ -850,7 +849,7 @@
             '                                    <input type="text" size="10"  name="exColumns['+mySize+'].fkColumnName" value="" class="required" />\n' +
             '                                </td>\n' +
             '                                <td>\n' +
-            '                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '\n' +
             '\n' +
@@ -868,9 +867,19 @@
 
 
     //处理列验证信息
+
     var columnValidateTableSize = $('#columnValidateTable tr').size()-1;
     function insertColumnValidates() {
         var trObjs = $('#columnValidateTable tr');
+
+        if(trObjs.size() == 2 ){
+            var $tr = $(trObjs[1]);
+            if($tr.hasClass("no-records-found")) {
+                $tr.remove();
+                columnValidateTableSize--;
+            }
+        }
+
         var mySize = columnValidateTableSize ;
         var selectHtml = '';
         selectHtml = '<select name="columnValidates['+mySize+'].columnId">' ;
@@ -887,14 +896,12 @@
             '                                        <input type="hidden"  name="columnValidates['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="columnValidates['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
-            '                                <td></td>\n' +
-            '                                <td></td>\n' +
             '\n' +
             '\n' +
             '                                <td><input type="text" size="20"  name="columnValidates['+mySize+'].rex" value="" class="required"/></td>\n' +
             '                                <td><input type="text"  size="20" name="columnValidates['+mySize+'].msg" value="" class="required"/></td>\n' +
             '                                <td>\n' +
-            '                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '\n' +
             '\n' +
@@ -915,6 +922,14 @@
     var columnEventTableSize = $('#columnEventTable tr').size()-1;
     function insertColumnEvents() {
         var trObjs = $('#columnEventTable tr');
+        if(trObjs.size() == 2 ){
+            var $tr = $(trObjs[1]);
+            if($tr.hasClass("no-records-found")) {
+                $tr.remove();
+                columnEventTableSize--;
+            }
+        }
+
         var mySize = columnEventTableSize ;
         var selectHtml = '';
         selectHtml = '<select name="columnEvents['+mySize+'].columnId">' ;
@@ -931,15 +946,13 @@
             '                                        <input type="hidden"  name="columnEvents['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="columnEvents['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
-            '                                <td></td>\n' +
-            '                                <td></td>\n' +
             '\n' +
             '\n' +
-            '                                <td><input size="10"  type="text" size="20"  name="columnEvents['+mySize+'].eventName" value="" class="required"/></td>\n' +
-            '                                <td><input size="20"  type="text"  size="20" name="columnEvents['+mySize+'].funcName" value="" class="required"/></td>\n' +
+            '                                <td><input size="10"  type="text"  name="columnEvents['+mySize+'].eventName" value="" class="required"/></td>\n' +
+            '                                <td><input size="20"  type="text"   name="columnEvents['+mySize+'].funcName" value="" class="required"/></td>\n' +
             '                                <td><textarea  name="columnEvents['+mySize+'].funcBody" value="" class="required"/></td>\n' +
             '                                <td>\n' +
-            '                                    <input type="button" value="删除" onclick="deletecolumnEvents(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                    <input type="button" value="删除" onclick="deletecolumnEvents(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '\n' +
             '\n' +
@@ -961,6 +974,14 @@
     var queryConfigTableSize = $('#queryConfigTable tr').size()-1;
     function insertQueryConfigTables() {
         var trObjs = $('#queryConfigTable tr');
+        if(trObjs.size() == 2 ){
+            var $tr = $(trObjs[1]);
+            if($tr.hasClass("no-records-found")) {
+                $tr.remove();
+                queryConfigTableSize--;
+            }
+        }
+
         var mySize = queryConfigTableSize ;
         var selectHtml = '';
         selectHtml = '<select name="queryConfigs['+mySize+'].columnId">' ;
@@ -977,19 +998,13 @@
             '                                        <input type="hidden"  name="queryConfigs['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="queryConfigs['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
-            '                                <td></td>\n' +
-            '                                <td></td>\n' +
-            '\n' +
-            '\n' +
-            '                                <td><input size="10"  type="text" size="20"  name="queryConfigs['+mySize+'].eventName" value="" class="required"/></td>\n' +
-            '                                <td><input size="20"  type="text"  size="20" name="queryConfigs['+mySize+'].funcName" value="" class="required"/></td>\n' +
-            '                                <td><textarea  name="queryConfigs['+mySize+'].funcBody" value="" class="required"/></td>\n' +
+            '                                <td><input size="20"  type="text"   name="queryConfigs['+mySize+'].queryTitle" value="" class="required"/></td>\n' +
+            '                                <td>123</td>\n' +
+            '                                <td><input size="20"  type="text" " name="queryConfigs['+mySize+'].queryPlaceholder" value="" class="required"/></td>\n' +
+            '                                <td><input style="width:80px" type="number" name="queryConfigs['+mySize+'].querySort" value="" class="required"/></td>\n' +
             '                                <td>\n' +
-            '                                    <input type="button" value="删除" onclick="deletequeryConfigs(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                    <input type="button" value="删除" onclick="deletequeryConfigs(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
-            '\n' +
-            '\n' +
-            '\n' +
             '                            </tr>';
         $('#queryConfigTable tbody').append(trTemplete);
         queryConfigTableSize = queryConfigTableSize+1;
