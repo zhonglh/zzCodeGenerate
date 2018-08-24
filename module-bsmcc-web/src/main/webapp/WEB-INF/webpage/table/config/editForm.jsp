@@ -257,7 +257,7 @@
                                 <td>
                                     <input type="hidden" id="columns[${status1.index }].id" name="columns[${status1.index }].id" value="${column.id }" />
                                     <input type="hidden" id="columns[${status1.index }].tableId" name="columns[${status1.index }].tableId" value="${column.tableId }" />
-                                    <input type="number" required id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" size="10" />
+                                    <input type="number" size="8" required id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" size="10" />
                                 </td>
 
                                 <td>
@@ -282,27 +282,27 @@
                                 </td>
 
 
-                                <td><input type="text" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }"
+                                <td><input type="text" size="10" id="columns[${status1.index }].dictType" name="columns[${status1.index }].dictType" value="${column.dictType }"
                                            <c:if test="${column.columnIsdict == '1'}">class="required"</c:if> />
                                 </td>
                                 <td>
-                                    <input type="text"  id="columns[${status1.index }].fkSchema" name="columns[${status1.index }].fkSchema" value="${column.fkSchema }"
+                                    <input type="text" size="8" id="columns[${status1.index }].fkSchema" name="columns[${status1.index }].fkSchema" value="${column.fkSchema }"
                                            <c:if test="${column.columnIsfk == '1'}">class="required"</c:if>  />
                                 </td>
                                 <td>
-                                    <input type="text"  id="columns[${status1.index }].fkName" name="columns[${status1.index }].fkName" value="${column.fkName }"
+                                    <input type="text" size="15" id="columns[${status1.index }].fkName" name="columns[${status1.index }].fkName" value="${column.fkName }"
                                            <c:if test="${column.columnIsfk == '1'}">class="required"</c:if>  />
                                 </td>
                                 <td>
-                                    <input type="text"  id="columns[${status1.index }].fkColumn" name="columns[${status1.index }].fkColumn" value="${column.fkColumn }"
+                                    <input type="text" size="6" id="columns[${status1.index }].fkColumn" name="columns[${status1.index }].fkColumn" value="${column.fkColumn }"
                                            <c:if test="${column.groupCode != null && column.groupCode != '' }">class="required"</c:if>  />
                                 </td>
 
 
-                                <td><input type="text" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
-                                <td><input type="text" required id="columns[${status1.index }].javaFullClass" name="columns[${status1.index }].javaFullClass" value="${column.javaFullClass }" /></td>
-                                <td><input type="text" required id="columns[${status1.index }].javaName" name="columns[${status1.index }].javaName" value="${column.javaName }" /></td>
-                                <td><input type="text"  id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
+                                <td><input type="text" size="15" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
+                                <td><input type="text" size="10" required id="columns[${status1.index }].javaFullClass" name="columns[${status1.index }].javaFullClass" value="${column.javaFullClass }" /></td>
+                                <td><input type="text" size="10" required id="columns[${status1.index }].javaName" name="columns[${status1.index }].javaName" value="${column.javaName }" /></td>
+                                <td><input type="text" size="10" id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
 
 
 
@@ -330,7 +330,11 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    <table width="100%">
+
+                    <input type="button" value="新增扩展列" onclick="insertExColumn()" style="height: 30px;width: 80px;background-color: #1AB394">
+
+
+                    <table width="100%" id="exColumnTable">
 
                         <thead>
 
@@ -343,6 +347,7 @@
                         <th width="150">顺序</th>
                         <th width="150">扩展列标题</th>
                         <th width="200">外键对应的列名</th>
+                        <th width="100">操作</th>
 
                         </thead>
 
@@ -360,13 +365,17 @@
                                 <td>${exColumn.originalColumnDictName }</td>
 
 
-                                <td><input type="text"  id="exColumns[${status1.index }].javaFullClass" name="exColumns[${status1.index }].javaFullClass" value="${exColumn.javaFullClass }" /></td>
-                                <td><input type="text"  id="exColumns[${status1.index }].javaName" name="exColumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
-                                <td><input type="number"  id="exColumns[${status1.index }].columnSort" name="exColumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
-                                <td><input type="text"  id="exColumns[${status1.index }].columnTitle" name="exColumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
+                                <td><input type="text" size="15" class="required  id="exColumns[${status1.index }].javaFullClass" name="exColumns[${status1.index }].javaFullClass" value="${exColumn.javaFullClass }" /></td>
+                                <td><input type="text" size="15" class="required  id="exColumns[${status1.index }].javaName" name="exColumns[${status1.index }].javaName" value="${exColumn.javaName }" /></td>
+                                <td><input type="number" size="6" class="required id="exColumns[${status1.index }].columnSort" name="exColumns[${status1.index }].columnSort" value="${exColumn.columnSort }" /></td>
+                                <td><input type="text" size="10" class="required  id="exColumns[${status1.index }].columnTitle" name="exColumns[${status1.index }].columnTitle" value="${exColumn.columnTitle }" /></td>
                                 <td>
-                                    <input type="text"  id="exColumns[${status1.index }].fkColumnName" name="exColumns[${status1.index }].fkColumnName" value="${exColumn.fkColumnName }"
+                                    <input type="text" size="10" id="exColumns[${status1.index }].fkColumnName" name="exColumns[${status1.index }].fkColumnName" value="${exColumn.fkColumnName }"
                                             <c:if test="${exColumn.originalColumnFk == '1'}">class="required"</c:if>   />
+                                </td>
+
+                                <td>
+                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
                                 </td>
 
 
@@ -501,7 +510,10 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    <table width="100%">
+
+                    <input type="button" value="插入校验信息" onclick="insertColumnValidates()" style="height: 30px;width: 80px;background-color: #1AB394">
+
+                    <table width="100%" id="columnValidateTable">
 
                         <thead>
 
@@ -509,6 +521,7 @@
                         <th width="150">列说明</th>
                         <th width="150">校验表达式</th>
                         <th width="150">错误提示信息</th>
+                        <th width="150">操作</th>
 
                         </thead>
 
@@ -524,7 +537,11 @@
                                 </td>
                                 <td><input type="text"  id="columnValidates[${status1.index }].rex" name="columnValidates[${status1.index }].rex" value="${columnValidate.rex }" /></td>
                                 <td><input type="text"  id="columnValidates[${status1.index }].msg" name="columnValidates[${status1.index }].msg" value="${columnValidate.msg }" /></td>
-                                </tr>
+
+                                <td>
+                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                </td>
+                            </tr>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -538,15 +555,18 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    <table width="100%">
+                    <input type="button" value="插入事件信息" onclick="insertColumnEvents()" style="height: 30px;width: 80px;background-color: #1AB394">
+
+                    <table width="100%" id="columnEventTable">
 
                         <thead>
 
                         <th width="80">序号</th>
                         <th width="150">列说明</th>
-                        <th width="150">事件名</th>
+                        <th width="100">事件名</th>
                         <th width="150">函数名</th>
-                        <th width="150">函数体内容</th>
+                        <th width="450">函数体内容</th>
+                        <th width="150">操作</th>
 
                         </thead>
 
@@ -563,6 +583,9 @@
                                 <td><input type="text"  id="columnEvents[${status1.index }].eventName" name="columnEvents[${status1.index }].eventName" value="${columnEvent.eventName }" /></td>
                                 <td><input type="text"  id="columnEvents[${status1.index }].funcName" name="columnEvents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
                                 <td><textarea id="columnEvents[${status1.index }].funcBody" name="columnEvents[${status1.index }].funcBody">${columnEvent.funcBody}</textarea></td>
+                                <td>
+                                    <input type="button" value="删除" onclick="deleteColumnEvents(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -607,8 +630,9 @@
         <fieldset>
             <div class="row">
                 <div class="col-xs-12">
+                    <input type="button" value="插入查询条件" onclick="insertQueryConfigTables()" style="height: 30px;width: 80px;background-color: #1AB394">
 
-                    <table width="100%">
+                    <table width="100%" id="queryConfigTable">
 
                         <thead>
 
@@ -618,6 +642,7 @@
                         <th width="150">占位符</th>
                         <th width="150">查询关系</th>
                         <th width="150">查询顺序</th>
+                        <th width="150">操作</th>
 
                         </thead>
 
@@ -647,6 +672,9 @@
                                 </select>
 
                                 <td><input type="number"  id="queryConfigs[${status1.index }].querySort" name="queryConfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
+                                <td>
+                                    <input type="button" value="删除" onclick="deleteQueryConfigTables(this)" style="height: 30px;width: 50px;background-color: #2c35cc">
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -781,8 +809,212 @@
 
 
     //增加此处  解决有些元素隐藏的问题
-    $('.wizard > .content > .body').css({'position':'relative'})
-    $('table').bootstrapTable({height:300});
+    $('.wizard > .content > .body').css({'position':'relative'});
+    $('table').bootstrapTable({height:getHeight()-200});
+
+
+
+    var tableId = '${entity.id }';
+
+
+
+    //处理扩展列
+    var exColTableSize = $('#exColumnTable tr').size()-1;
+    function insertExColumn() {
+        var trObjs = $('#exColumnTable tr');
+        var mySize = exColTableSize ;
+        var selectExColumn = '';
+        selectExColumn = '<select name="exColumns['+mySize+'].originalColumnId">' ;
+            <c:forEach items="${columnConfigs}" var="column" >
+                <c:if test="${column.columnIsfk == '1'}">
+        selectExColumn += '<option value="${column.id}" >${column.columnComment}</option>' ;
+                </c:if>
+            </c:forEach>
+        selectExColumn +='</select>';
+        var trTemplete = '<tr>\n' +
+            '\n' +
+            '                                <td>'+mySize+'</td>\n' +
+            '                                <td>'+selectExColumn +
+            '                                        <input type="hidden"  name="exColumns['+mySize+'].id" />\n' +
+            '                                        <input type="hidden"  name="exColumns['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
+            '                                </td>' +
+            '                                <td></td>\n' +
+            '                                <td></td>\n' +
+            '\n' +
+            '\n' +
+            '                                <td><input type="text" size="15"  name="exColumns['+mySize+'].javaFullClass" value="" class="required"/></td>\n' +
+            '                                <td><input type="text"  size="15" name="exColumns['+mySize+'].javaName" value="" class="required"/></td>\n' +
+            '                                <td><input type="number" size="6"  name="exColumns['+mySize+'].columnSort" value="" class="required"/></td>\n' +
+            '                                <td><input type="text" size="10"  name="exColumns['+mySize+'].columnTitle" value="" class="required"/></td>\n' +
+            '                                <td>\n' +
+            '                                    <input type="text" size="10"  name="exColumns['+mySize+'].fkColumnName" value="" class="required" />\n' +
+            '                                </td>\n' +
+            '                                <td>\n' +
+            '                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                </td>\n' +
+            '\n' +
+            '\n' +
+            '\n' +
+            '                            </tr>';
+        $('#exColumnTable tbody').append(trTemplete);
+        exColTableSize = exColTableSize+1;
+        resizeIndex('exColumnTable');
+        //changeExColumn();
+    }
+    function deleteExColumn(that) {
+        $(that).parent().parent().remove();
+        resizeIndex('exColumnTable');
+    }
+
+
+    //处理列验证信息
+    var columnValidateTableSize = $('#columnValidateTable tr').size()-1;
+    function insertColumnValidates() {
+        var trObjs = $('#columnValidateTable tr');
+        var mySize = columnValidateTableSize ;
+        var selectHtml = '';
+        selectHtml = '<select name="columnValidates['+mySize+'].columnId">' ;
+        <c:forEach items="${columnPages}" var="column" >
+        <c:if test="${column.existPage == '1' && column.editable == '1'}">
+        selectHtml += '<option value="${column.id}" >${column.columnComment}</option>' ;
+        </c:if>
+        </c:forEach>
+        selectHtml +='</select>';
+        var trTemplete = '<tr>\n' +
+            '\n' +
+            '                                <td>'+mySize+'</td>\n' +
+            '                                <td>'+selectHtml +
+            '                                        <input type="hidden"  name="columnValidates['+mySize+'].id" />\n' +
+            '                                        <input type="hidden"  name="columnValidates['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
+            '                                </td>' +
+            '                                <td></td>\n' +
+            '                                <td></td>\n' +
+            '\n' +
+            '\n' +
+            '                                <td><input type="text" size="20"  name="columnValidates['+mySize+'].rex" value="" class="required"/></td>\n' +
+            '                                <td><input type="text"  size="20" name="columnValidates['+mySize+'].msg" value="" class="required"/></td>\n' +
+            '                                <td>\n' +
+            '                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                </td>\n' +
+            '\n' +
+            '\n' +
+            '\n' +
+            '                            </tr>';
+        $('#columnValidateTable tbody').append(trTemplete);
+        columnValidateTableSize = columnValidateTableSize+1;
+        resizeIndex('columnValidateTable');
+    }
+    function deleteColumnValidates(that) {
+        $(that).parent().parent().remove();
+        resizeIndex('columnValidateTable');
+    }
+
+
+
+    //处理列事件信息
+    var columnEventTableSize = $('#columnEventTable tr').size()-1;
+    function insertColumnEvents() {
+        var trObjs = $('#columnEventTable tr');
+        var mySize = columnEventTableSize ;
+        var selectHtml = '';
+        selectHtml = '<select name="columnEvents['+mySize+'].columnId">' ;
+        <c:forEach items="${columnPages}" var="column" >
+        <c:if test="${column.existPage == '1' && column.editable == '1'}">
+        selectHtml += '<option value="${column.id}" >${column.columnComment}</option>' ;
+        </c:if>
+        </c:forEach>
+        selectHtml +='</select>';
+        var trTemplete = '<tr>\n' +
+            '\n' +
+            '                                <td>'+mySize+'</td>\n' +
+            '                                <td>'+selectHtml +
+            '                                        <input type="hidden"  name="columnEvents['+mySize+'].id" />\n' +
+            '                                        <input type="hidden"  name="columnEvents['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
+            '                                </td>' +
+            '                                <td></td>\n' +
+            '                                <td></td>\n' +
+            '\n' +
+            '\n' +
+            '                                <td><input size="10"  type="text" size="20"  name="columnEvents['+mySize+'].eventName" value="" class="required"/></td>\n' +
+            '                                <td><input size="20"  type="text"  size="20" name="columnEvents['+mySize+'].funcName" value="" class="required"/></td>\n' +
+            '                                <td><textarea  name="columnEvents['+mySize+'].funcBody" value="" class="required"/></td>\n' +
+            '                                <td>\n' +
+            '                                    <input type="button" value="删除" onclick="deletecolumnEvents(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                </td>\n' +
+            '\n' +
+            '\n' +
+            '\n' +
+            '                            </tr>';
+        $('#columnEventTable tbody').append(trTemplete);
+        columnEventTableSize = columnEventTableSize+1;
+        resizeIndex('columnEventTable');
+    }
+    function deletecolumnEvents(that) {
+        $(that).parent().parent().remove();
+        resizeIndex('columnEventTable');
+    }
+
+
+
+
+    //处理查询条件
+    var queryConfigTableSize = $('#queryConfigTable tr').size()-1;
+    function insertQueryConfigTables() {
+        var trObjs = $('#queryConfigTable tr');
+        var mySize = queryConfigTableSize ;
+        var selectHtml = '';
+        selectHtml = '<select name="queryConfigs['+mySize+'].columnId">' ;
+        <c:forEach items="${columnPages}" var="column" >
+        <c:if test="${column.existPage == '1' && column.editable == '1'}">
+        selectHtml += '<option value="${column.id}" >${column.columnComment}</option>' ;
+        </c:if>
+        </c:forEach>
+        selectHtml +='</select>';
+        var trTemplete = '<tr>\n' +
+            '\n' +
+            '                                <td>'+mySize+'</td>\n' +
+            '                                <td>'+selectHtml +
+            '                                        <input type="hidden"  name="queryConfigs['+mySize+'].id" />\n' +
+            '                                        <input type="hidden"  name="queryConfigs['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
+            '                                </td>' +
+            '                                <td></td>\n' +
+            '                                <td></td>\n' +
+            '\n' +
+            '\n' +
+            '                                <td><input size="10"  type="text" size="20"  name="queryConfigs['+mySize+'].eventName" value="" class="required"/></td>\n' +
+            '                                <td><input size="20"  type="text"  size="20" name="queryConfigs['+mySize+'].funcName" value="" class="required"/></td>\n' +
+            '                                <td><textarea  name="queryConfigs['+mySize+'].funcBody" value="" class="required"/></td>\n' +
+            '                                <td>\n' +
+            '                                    <input type="button" value="删除" onclick="deletequeryConfigs(this)" style="height: 30px;width: 50px;background-color: #ccc">\n' +
+            '                                </td>\n' +
+            '\n' +
+            '\n' +
+            '\n' +
+            '                            </tr>';
+        $('#queryConfigTable tbody').append(trTemplete);
+        queryConfigTableSize = queryConfigTableSize+1;
+        resizeIndex('queryConfigTable');
+    }
+    function deletequeryConfigs(that) {
+        $(that).parent().parent().remove();
+        resizeIndex('queryConfigTable');
+    }
+
+
+
+
+
+    /**
+     * 序号重新排序
+     * @param tableId
+     */
+    function resizeIndex(tableId) {
+
+        $("#"+tableId).find('tr').each(function (index, item) {
+            $(item).children().eq(0).html(index);
+        });
+    }
+
 
 </script>
 

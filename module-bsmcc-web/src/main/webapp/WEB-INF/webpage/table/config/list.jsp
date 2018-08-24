@@ -135,7 +135,7 @@
             field: 'tableComment',
             title: '表说明'
         }];
-		
+		debugger;
 		init('tableForm','${ctx}/table/config/list');
 		
 		

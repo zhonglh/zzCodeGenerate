@@ -254,6 +254,7 @@
     }
 	
 	function init(tablename,url){
+    	debugger;
 		$url = url;
 		$bt = $('#'+tablename).bootstrapTable({
 		    url: url,
@@ -276,7 +277,7 @@
 		    singleSelect:true,
 		    showHeader:true,
 		    showFooter:false,
-		    height: getHeight()-100
+		    height: getHeight()
 		});
 		
 	}
