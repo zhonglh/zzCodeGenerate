@@ -338,15 +338,15 @@
 
                         <thead>
 
-                        <th width="80">序号</th>
+                        <th width="60">序号</th>
                         <th width="150">源列名</th>
                         <th width="150">外键扩展</th>
                         <th width="150">字典扩展</th>
                         <th width="150">Java类全称</th>
                         <th width="150">Java名称</th>
-                        <th width="150">顺序</th>
-                        <th width="150">扩展列标题</th>
-                        <th width="200">外键对应的列名</th>
+                        <th width="100">顺序</th>
+                        <th width="200">扩展列标题</th>
+                        <th width="100">外键对应的列名</th>
                         <th width="100">操作</th>
 
                         </thead>
@@ -504,6 +504,94 @@
 
 
 
+
+
+
+        <h1>查询条件</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="button" value="插入查询条件" onclick="insertQueryConfigTables()" style="height: 30px;width: 100px;color: white; background-color: #1AB394">
+
+                    <table width="100%" id="queryConfigTable">
+
+                        <thead>
+
+                        <th width="60">序号</th>
+                        <th width="200">列说明</th>
+                        <th width="200">标题</th>
+                        <th width="200">占位符</th>
+                        <th width="100">查询关系</th>
+                        <th width="100">查询框名称</th>
+
+                        <th width="100">查询顺序</th>
+                        <th width="100">操作</th>
+
+                        </thead>
+
+                        <tbody>
+
+
+
+                        <c:forEach var="queryConfig"   items="${queryConfigs}"   varStatus="status1">
+                            <tr>
+                                <td>${status1.index+1 }</td>
+                                <td>
+                                        ${queryConfig.columnComment }
+                                        <input type="hidden"  id="queryConfigs[${status1.index }].id" name="queryConfigs[${status1.index }].id" value="${queryConfig.id}" />
+                                        <input type="hidden"  id="queryConfigs[${status1.index }].columnId" name="queryConfigs[${status1.index }].columnId" value="${queryConfig.columnId}" />
+                                        <input type="hidden"  id="queryConfigs[${status1.index }].tableId" name="queryConfigs[${status1.index }].tableId" value="${queryConfig.tableId}" />
+                                </td>
+                                <td><input type="text"  id="queryConfigs[${status1.index }].queryTitle" name="queryConfigs[${status1.index }].queryTitle" value="${queryConfig.queryTitle }" /></td>
+                                <td><input type="text"  id="queryConfigs[${status1.index }].queryPlaceholder" name="queryConfigs[${status1.index }].queryPlaceholder" value="${queryConfig.queryPlaceholder }" /></td>
+
+                                <td>
+                                <select name="queryConfigs[${status1.index }].queryRelation" >
+                                    <option value="eq" <c:if test="${queryConfig.queryRelation ==  'eq' }">selected="selected"</c:if>>等于</option>
+                                    <option value="ne" <c:if test="${queryConfig.queryRelation ==  'ne' }">selected="selected"</c:if>>不等于</option>
+                                    <option value="gt" <c:if test="${queryConfig.queryRelation ==  'gt' }">selected="selected"</c:if>>大于</option>
+                                    <option value="ge" <c:if test="${queryConfig.queryRelation ==  'ge' }">selected="selected"</c:if>>大于等于</option>
+                                    <option value="lt" <c:if test="${queryConfig.queryRelation ==  'lt' }">selected="selected"</c:if>>小于</option>
+                                    <option value="le" <c:if test="${queryConfig.queryRelation ==  'le' }">selected="selected"</c:if>>小于等于</option>
+                                    <option value="like" <c:if test="${queryConfig.queryRelation ==  'like' }">selected="selected"</c:if>>模糊匹配</option>
+                                    <option value="notlike" <c:if test="${queryConfig.queryRelation ==  'notlike' }">selected="selected"</c:if>>模糊不匹配</option>
+                                </select>
+                                </td>
+
+                                <td><input type="text" <c:if test="${not empty queryConfig.columnId}">readonly</c:if> id="queryConfigs[${status1.index }].queryFieldName" name="queryConfigs[${status1.index }].queryFieldName" value="${queryConfig.queryFieldName }" /></td>
+
+
+                                <td><input type="number" style="width:80px" id="queryConfigs[${status1.index }].querySort" name="queryConfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
+                                <td>
+                                    <input type="button" value="删除" onclick="deletequeryConfigs(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+
+
+        <h1>功能操作</h1>
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+                    <c:forEach var="operation"   items="${operations}"   varStatus="status1">
+                        <input id="op${operation.id}" name="operations" type="checkbox" value="${operation.id}" <c:if test="${operation.checked}">checked</c:if>  />
+                        <span for="op${operation.id}">${operation.operationName}</span>
+                    </c:forEach>
+
+                </div>
+            </div>
+        </fieldset>
+
+
+
         <h1>校验信息</h1>
         <fieldset>
             <div class="row">
@@ -516,23 +604,26 @@
 
                         <thead>
 
-                        <th width="80">序号</th>
-                        <th width="150">列说明</th>
-                        <th width="150">校验表达式</th>
-                        <th width="150">错误提示信息</th>
-                        <th width="150">操作</th>
+                        <th width="60">序号</th>
+                        <th width="250">列说明</th>
+                        <th width="250">校验表达式</th>
+                        <th width="250">错误提示信息</th>
+                        <th width="100">操作</th>
 
                         </thead>
 
                         <tbody>
+
+
+
                         <c:forEach var="columnValidate"   items="${columnValidates}"   varStatus="status1">
                             <tr>
                                 <td>${status1.index+1 }</td>
                                 <td>
                                         ${columnValidate.columnComment }
-                                        <input type="hidden"  id="columnValidates[${status1.index }].id" name="columnValidates[${status1.index }].id" value="${columnValidate.id}" />
-                                        <input type="hidden"  id="columnValidates[${status1.index }].columnId" name="columnValidates[${status1.index }].columnId" value="${columnValidate.columnId}" />
-                                        <input type="hidden"  id="columnValidates[${status1.index }].tableId" name="columnValidates[${status1.index }].tableId" value="${columnValidate.tableId}" />
+                                    <input type="hidden"  id="columnValidates[${status1.index }].id" name="columnValidates[${status1.index }].id" value="${columnValidate.id}" />
+                                    <input type="hidden"  id="columnValidates[${status1.index }].columnId" name="columnValidates[${status1.index }].columnId" value="${columnValidate.columnId}" />
+                                    <input type="hidden"  id="columnValidates[${status1.index }].tableId" name="columnValidates[${status1.index }].tableId" value="${columnValidate.tableId}" />
                                 </td>
                                 <td><input type="text"  id="columnValidates[${status1.index }].rex" name="columnValidates[${status1.index }].rex" value="${columnValidate.rex }" /></td>
                                 <td><input type="text"  id="columnValidates[${status1.index }].msg" name="columnValidates[${status1.index }].msg" value="${columnValidate.msg }" /></td>
@@ -560,12 +651,12 @@
 
                         <thead>
 
-                        <th width="80">序号</th>
+                        <th width="60">序号</th>
                         <th width="150">列说明</th>
                         <th width="100">事件名</th>
-                        <th width="150">函数名</th>
-                        <th width="450">函数体内容</th>
-                        <th width="150">操作</th>
+                        <th width="200">函数名</th>
+                        <th width="500">函数体内容</th>
+                        <th width="100">操作</th>
 
                         </thead>
 
@@ -574,10 +665,10 @@
                             <tr>
                                 <td>${status1.index+1 }</td>
                                 <td>
-                                    ${columnEvent.columnComment }
+                                        ${columnEvent.columnComment }
                                     <input type="hidden"  id="columnEvents[${status1.index }].id" name="columnEvents[${status1.index }].id" value="${columnEvent.id}" />
-                                        <input type="hidden"  id="columnEvents[${status1.index }].columnId" name="columnEvents[${status1.index }].columnId" value="${columnEvent.columnId}" />
-                                        <input type="hidden"  id="columnEvents[${status1.index }].tableId" name="columnEvents[${status1.index }].tableId" value="${columnEvent.tableId}" />
+                                    <input type="hidden"  id="columnEvents[${status1.index }].columnId" name="columnEvents[${status1.index }].columnId" value="${columnEvent.columnId}" />
+                                    <input type="hidden"  id="columnEvents[${status1.index }].tableId" name="columnEvents[${status1.index }].tableId" value="${columnEvent.tableId}" />
                                 </td>
                                 <td><input type="text"  id="columnEvents[${status1.index }].eventName" name="columnEvents[${status1.index }].eventName" value="${columnEvent.eventName }" /></td>
                                 <td><input type="text"  id="columnEvents[${status1.index }].funcName" name="columnEvents[${status1.index }].funcName" value="${columnEvent.funcName }" /></td>
@@ -619,82 +710,6 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </fieldset>
-
-
-
-        <h1>查询条件</h1>
-        <fieldset>
-            <div class="row">
-                <div class="col-xs-12">
-                    <input type="button" value="插入查询条件" onclick="insertQueryConfigTables()" style="height: 30px;width: 100px;color: white; background-color: #1AB394">
-
-                    <table width="100%" id="queryConfigTable">
-
-                        <thead>
-
-                        <th width="80">序号</th>
-                        <th width="150">列说明</th>
-                        <th width="150">标题</th>
-                        <th width="150">占位符</th>
-                        <th width="150">查询关系</th>
-                        <th width="150">查询顺序</th>
-                        <th width="150">操作</th>
-
-                        </thead>
-
-                        <tbody>
-                        <c:forEach var="queryConfig"   items="${queryConfigs}"   varStatus="status1">
-                            <tr>
-                                <td>${status1.index+1 }</td>
-                                <td>
-                                        ${queryConfig.columnComment }
-                                        <input type="hidden"  id="queryConfigs[${status1.index }].id" name="queryConfigs[${status1.index }].id" value="${queryConfig.id}" />
-                                        <input type="hidden"  id="queryConfigs[${status1.index }].columnId" name="queryConfigs[${status1.index }].columnId" value="${queryConfig.columnId}" />
-                                        <input type="hidden"  id="queryConfigs[${status1.index }].tableId" name="queryConfigs[${status1.index }].tableId" value="${queryConfig.tableId}" />
-                                </td>
-                                <td><input type="text"  id="queryConfigs[${status1.index }].queryTitle" name="queryConfigs[${status1.index }].queryTitle" value="${queryConfig.queryTitle }" /></td>
-                                <td><input type="text"  id="queryConfigs[${status1.index }].queryPlaceholder" name="queryConfigs[${status1.index }].queryPlaceholder" value="${queryConfig.queryPlaceholder }" /></td>
-
-
-                                <select name="queryConfigs[${status1.index }].queryRelation" >
-                                    <option value="eq" <c:if test="${queryConfig.queryRelation ==  'eq' }">selected="selected"</c:if>>等于</option>
-                                    <option value="ne" <c:if test="${queryConfig.queryRelation ==  'ne' }">selected="selected"</c:if>>不等于</option>
-                                    <option value="gt" <c:if test="${queryConfig.queryRelation ==  'gt' }">selected="selected"</c:if>>大于</option>
-                                    <option value="ge" <c:if test="${queryConfig.queryRelation ==  'ge' }">selected="selected"</c:if>>大于等于</option>
-                                    <option value="lt" <c:if test="${queryConfig.queryRelation ==  'lt' }">selected="selected"</c:if>>小于</option>
-                                    <option value="le" <c:if test="${queryConfig.queryRelation ==  'le' }">selected="selected"</c:if>>小于等于</option>
-                                    <option value="like" <c:if test="${queryConfig.queryRelation ==  'like' }">selected="selected"</c:if>>模糊匹配</option>
-                                    <option value="notlike" <c:if test="${queryConfig.queryRelation ==  'notlike' }">selected="selected"</c:if>>模糊不匹配</option>
-                                </select>
-
-                                <td><input type="number"  id="queryConfigs[${status1.index }].querySort" name="queryConfigs[${status1.index }].querySort" value="${queryConfig.querySort }" /></td>
-                                <td>
-                                    <input type="button" value="删除" onclick="deleteQueryConfigTables(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </fieldset>
-
-
-
-
-
-        <h1>功能操作</h1>
-        <fieldset>
-            <div class="row">
-                <div class="col-xs-12">
-                    <c:forEach var="operation"   items="${operations}"   varStatus="status1">
-                        <input id="op${operation.id}" name="operations" type="checkbox" value="${operation.id}" <c:if test="${operation.checked}">checked</c:if>  />
-                        <span for="op${operation.id}">${operation.operationName}</span>
-                    </c:forEach>
-
                 </div>
             </div>
         </fieldset>
@@ -832,23 +847,23 @@
         selectExColumn +='</select>';
         var trTemplete = '<tr>\n' +
             '\n' +
-            '                                <td>'+mySize+'</td>\n' +
-            '                                <td>'+selectExColumn +
+            '                                <td width="60">'+mySize+'</td>\n' +
+            '                                <td width="150">'+selectExColumn +
             '                                        <input type="hidden"  name="exColumns['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="exColumns['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
-            '                                <td></td>\n' +
-            '                                <td></td>\n' +
+            '                                <td width="150"></td>\n' +
+            '                                <td width="150"></td>\n' +
             '\n' +
             '\n' +
-            '                                <td><input type="text" size="15"  name="exColumns['+mySize+'].javaFullClass" value="" class="required"/></td>\n' +
-            '                                <td><input type="text"  size="15" name="exColumns['+mySize+'].javaName" value="" class="required"/></td>\n' +
-            '                                <td><input type="number" size="6"  name="exColumns['+mySize+'].columnSort" value="" class="required"/></td>\n' +
-            '                                <td><input type="text" size="10"  name="exColumns['+mySize+'].columnTitle" value="" class="required"/></td>\n' +
-            '                                <td>\n' +
+            '                                <td width="150"><input type="text" size="15"  name="exColumns['+mySize+'].javaFullClass" value="" class="required"/></td>\n' +
+            '                                <td width="150"><input type="text"  size="15" name="exColumns['+mySize+'].javaName" value="" class="required"/></td>\n' +
+            '                                <td width="100"><input type="number" size="6"  name="exColumns['+mySize+'].columnSort" value="" class="required"/></td>\n' +
+            '                                <td width="200"><input type="text" size="10"  name="exColumns['+mySize+'].columnTitle" value="" class="required"/></td>\n' +
+            '                                <td width="100">\n' +
             '                                    <input type="text" size="10"  name="exColumns['+mySize+'].fkColumnName" value="" class="required" />\n' +
             '                                </td>\n' +
-            '                                <td>\n' +
+            '                                <td width="100">\n' +
             '                                    <input type="button" value="删除" onclick="deleteExColumn(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '\n' +
@@ -891,22 +906,23 @@
         selectHtml +='</select>';
         var trTemplete = '<tr>\n' +
             '\n' +
-            '                                <td>'+mySize+'</td>\n' +
-            '                                <td>'+selectHtml +
+            '                                <td width="60">'+mySize+'</td>\n' +
+            '                                <td width="250">'+selectHtml +
             '                                        <input type="hidden"  name="columnValidates['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="columnValidates['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
             '\n' +
             '\n' +
-            '                                <td><input type="text" size="20"  name="columnValidates['+mySize+'].rex" value="" class="required"/></td>\n' +
-            '                                <td><input type="text"  size="20" name="columnValidates['+mySize+'].msg" value="" class="required"/></td>\n' +
-            '                                <td>\n' +
+            '                                <td width="250"><input type="text" size="20"  name="columnValidates['+mySize+'].rex" value="" class="required"/></td>\n' +
+            '                                <td width="250"><input type="text"  size="20" name="columnValidates['+mySize+'].msg" value="" class="required"/></td>\n' +
+            '                                <td width="100">\n' +
             '                                    <input type="button" value="删除" onclick="deleteColumnValidates(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '\n' +
             '\n' +
             '\n' +
             '                            </tr>';
+        console.log(trTemplete)
         $('#columnValidateTable tbody').append(trTemplete);
         columnValidateTableSize = columnValidateTableSize+1;
         resizeIndex('columnValidateTable');
@@ -941,17 +957,15 @@
         selectHtml +='</select>';
         var trTemplete = '<tr>\n' +
             '\n' +
-            '                                <td>'+mySize+'</td>\n' +
-            '                                <td>'+selectHtml +
+            '                                <td width="60">'+mySize+'</td>\n' +
+            '                                <td width="150">'+selectHtml +
             '                                        <input type="hidden"  name="columnEvents['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="columnEvents['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
-            '\n' +
-            '\n' +
-            '                                <td><input size="10"  type="text"  name="columnEvents['+mySize+'].eventName" value="" class="required"/></td>\n' +
-            '                                <td><input size="20"  type="text"   name="columnEvents['+mySize+'].funcName" value="" class="required"/></td>\n' +
-            '                                <td><textarea  name="columnEvents['+mySize+'].funcBody" value="" class="required"/></td>\n' +
-            '                                <td>\n' +
+            '                                <td width="100"><input size="10"  type="text"  name="columnEvents['+mySize+'].eventName" value="" class="required"/></td>\n' +
+            '                                <td width="200"><input size="20"  type="text"   name="columnEvents['+mySize+'].funcName" value="" class="required"/></td>\n' +
+            '                                <td width="500"><textarea  name="columnEvents['+mySize+'].funcBody" value="" class="required"/></td>\n' +
+            '                                <td width="100">\n' +
             '                                    <input type="button" value="删除" onclick="deletecolumnEvents(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '\n' +
@@ -984,29 +998,35 @@
 
         var mySize = queryConfigTableSize ;
         var selectHtml = '';
+        //所有column可以作为查询条件 , 扩展列如果是 openwin的也可以是查询条件
         selectHtml = '<select name="queryConfigs['+mySize+'].columnId">' ;
+        selectHtml += '<option value="" ></option>' ;
         <c:forEach items="${columnPages}" var="column" >
-        <c:if test="${column.existPage == '1' && column.editable == '1'}">
+
+        console.log('${column.javaName} : '+ '${column.realColumn} ${column.element}');
+        <c:if test="${column.realColumn == '1' || column.element == 'openwin'}">
         selectHtml += '<option value="${column.id}" >${column.columnComment}</option>' ;
         </c:if>
         </c:forEach>
         selectHtml +='</select>';
         var trTemplete = '<tr>\n' +
             '\n' +
-            '                                <td>'+mySize+'</td>\n' +
-            '                                <td>'+selectHtml +
+            '                                <td width="60">'+mySize+'</td>\n' +
+            '                                <td width="200">'+selectHtml +
             '                                        <input type="hidden"  name="queryConfigs['+mySize+'].id" />\n' +
             '                                        <input type="hidden"  name="queryConfigs['+mySize+'].tableId"  value="'+tableId+'"/>\n' +
             '                                </td>' +
-            '                                <td><input size="20"  type="text"   name="queryConfigs['+mySize+'].queryTitle" value="" class="required"/></td>\n' +
-            '                                <td>123</td>\n' +
-            '                                <td><input size="20"  type="text" " name="queryConfigs['+mySize+'].queryPlaceholder" value="" class="required"/></td>\n' +
-            '                                <td><input style="width:80px" type="number" name="queryConfigs['+mySize+'].querySort" value="" class="required"/></td>\n' +
-            '                                <td>\n' +
+            '                                <td width="200"><input size="20"  type="text"   name="queryConfigs['+mySize+'].queryTitle" value="" /></td>\n' +
+            '                                <td width="200"><input size="20"  type="text"  name="queryConfigs['+mySize+'].queryPlaceholder" value="" /></td>\n' +
+            '                                <td width="100"><select name="queryConfigs['+mySize+'].queryRelation" ><option value="eq">等于</option><option value="ne">不等于</option><option value="gt">大于</option><option value="ge">大于等于</option><option value="lt">小于</option><option value="le">小于等于</option><option value="like">模糊匹配</option><option value="notlike">模糊不匹配</option></select></td>\n' +
+            '                                <td width="100"><input size="20"  type="text"  name="queryConfigs['+mySize+'].queryFieldName" value="" /></td>\n' +
+            '                                <td width="100"><input style="width:80px" type="number" name="queryConfigs['+mySize+'].querySort" value="" class="required"/></td>\n' +
+            '                                <td width="100">\n' +
             '                                    <input type="button" value="删除" onclick="deletequeryConfigs(this)" style="height: 30px;width: 50px;color: white; background-color: #2c35cc">\n' +
             '                                </td>\n' +
             '                            </tr>';
         $('#queryConfigTable tbody').append(trTemplete);
+        console.log(trTemplete);
         queryConfigTableSize = queryConfigTableSize+1;
         resizeIndex('queryConfigTable');
     }

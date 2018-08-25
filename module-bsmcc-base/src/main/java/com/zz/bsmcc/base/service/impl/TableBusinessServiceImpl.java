@@ -207,14 +207,14 @@ public class TableBusinessServiceImpl implements TableBusinessService {
                 ids.add(item.getId());
             }
         }
-        TcgQueryConfigQuery query = new TcgQueryConfigQueryImpl();
+        /*TcgQueryConfigQuery query = new TcgQueryConfigQueryImpl();
         query.tableId(tablePO.getTableBO().getId());
         if(!ids.isEmpty()) {
             for(String id : ids) {
                 query.idNotIn(id);
             }
         }
-        tcgQueryConfigDAO.delete(query.buildWrapper());
+        tcgQueryConfigDAO.delete(query.buildWrapper());*/
     }
 
 

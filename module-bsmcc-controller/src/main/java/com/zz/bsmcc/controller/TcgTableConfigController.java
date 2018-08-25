@@ -233,7 +233,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
                 for (TcgExColumnBO item : tablePO.getExColumns()){
                     if(item != null && StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetInsertEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO,false);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -242,7 +242,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getColumnEvents() != null && !tablePO.getColumnEvents().isEmpty()) {
                 for (TcgColumnEventBO item : tablePO.getColumnEvents()){
                     if(item != null && StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetUpdateEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO,false);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -251,7 +251,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getColumnValidates() != null && !tablePO.getColumnValidates().isEmpty()) {
                 for (TcgColumnValidateBO item : tablePO.getColumnValidates()){
                     if(item != null && StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetInsertEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO,false);
                         item.setTableId(tcgTableConfigBO.getId());
                     }
                 }
@@ -262,8 +262,18 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()) {
                 for (TcgQueryConfigBO item : tablePO.getQueryConfigs()){
                     if(item != null && StringUtils.isEmpty(item.getId())){
-                        EntityUtil.autoSetInsertEntity(item , sessionUserVO);
+                        EntityUtil.autoSetInsertEntity(item , sessionUserVO,false);
                         item.setTableId(tcgTableConfigBO.getId());
+
+                        if(StringUtils.isNotEmpty(item.getColumnId())){
+
+                            TcgColumnPageBO page = tcgColumnPageService.selectById(item.getColumnId());
+                            if(page != null) {
+                                item.setQueryFieldName(page.getJavaName());
+                                item.setQueryTitle(page.getColumnComment());
+                            }
+
+                        }
                     }
                 }
             }

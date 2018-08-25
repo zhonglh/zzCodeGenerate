@@ -24,7 +24,7 @@
                             <FormItem   <#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if> >
 
                                 <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
-                                    <#if being.columnPage.element == 'input' >
+                                    <#if being.columnPage.element == 'text' || being.columnPage.element == 'textarea' >
                                         <Input type="text" v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
                                     <#elseif being.columnPage.element == 'digits' >
                                         <InputNumber  v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -41,14 +41,14 @@
 
                                     <#elseif being.columnPage.element == 'radio' >
                                         <RadioGroup v-model="searchForm.${being.columnPage.columnConfig.javaName}">
-                                            <Radio v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :label="item.dictVal" :key="item.dictVal">
+                                            <Radio v-for="(item, index) in ${being.columnPage.columnConfig.dictType}Dict" :label="item.dictVal" :key="item.dictVal">
                                                 <span>{{item.dictName}}</span>
                                             </Radio>
                                         </RadioGroup>
 
                                     <#elseif being.columnPage.element == 'checkbox' >
                                         <CheckboxGroup  v-model="searchForm.${being.columnPage.columnConfig.javaName}">
-                                            <Checkbox  v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :label="item.dictVal" :key="item.dictVal">
+                                            <Checkbox  v-for="(item, index) in ${being.columnPage.columnConfig.dictType}Dict" :label="item.dictVal" :key="item.dictVal">
                                                 <span>{{item.dictName}}</span>
                                             </Checkbox >
                                         </CheckboxGroup >
@@ -58,7 +58,7 @@
                                     <#elseif being.columnPage.element == 'select' >
                                         <Select v-model="searchForm.${being.columnPage.columnConfig.javaName}" placeholder="${being.queryPlaceholder}" style="width: 200px">
                                             <Option value="">所有</Option>
-                                            <Option v-for="(item, index) in ${being.columnPage.columnConfig.dictType}s" :value="item.dictVal" :key="item.dictVal" >{{item.dictName}}</Option>
+                                            <Option v-for="(item, index) in ${being.columnPage.columnConfig.dictType}Dict" :value="item.dictVal" :key="item.dictVal" >{{item.dictName}}</Option>
                                         </Select>
 
                                     <#elseif being.columnPage.element == 'openwin' >
@@ -81,11 +81,11 @@
                             <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
 
                                 <#if being.columnPage.element == 'select' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'radio'>
-                                        <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}s"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
+                                        <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}Dict"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
                                 <#elseif being.columnPage.element == 'openwin' >
                                     <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
                                 <#else>
-                                    <#if being.columnPage.element == 'input' >
+                                    <#if being.columnPage.element == 'text' || being.columnPage.element == 'textarea' >
                                         <Input type="text" v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
                                     <#elseif being.columnPage.element == 'digits' >
                                         <InputNumber  v-model="searchForm.${being.columnPage.columnConfig.javaName}"   style="width: 200px;margin-left: 7px" placeholder="${being.queryPlaceholder}" />
@@ -121,7 +121,7 @@
 
         <#list queryFkTables as fkTable>
             <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :businessType="bsType"
-                <#list queryFks[fkTable.ullResourceFile] as queryField >
+                <#list queryFks[fkTable.fullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                 </#list>
             />
@@ -222,7 +222,7 @@
             },
         <#list queryDictSet as queryColumn>
             <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
-            <#else>that.${queryColumn.columnPage.columnConfig.dictType}Dict :[],
+            <#else>${queryColumn.columnPage.columnConfig.dictType}Dict :[],
             </#if>
         </#list>
                 columns: [
@@ -255,16 +255,18 @@
             selected${queryField.columnPage.javaName}Callback(selection){
                 <#if queryField.columnPage.exColumn?exists>
                     this.searchForm.${queryField.columnPage.exColumn.originalColumn.javaName} = selection.id;
-                    this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.exColumn.fkJavaName};
+                    this.searchForm.${queryField.queryFieldName} = selection.${queryField.columnPage.exColumn.fkJavaName};
                 <#else >
                     this.searchForm.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
-                    this.searchForm.${queryField.javaName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
+                    this.searchForm.${queryField.queryFieldName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
                 </#if>
-                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = false;
+                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = false ;
 
             },
         </#list>
     </#list>
+
+
 
 
 
