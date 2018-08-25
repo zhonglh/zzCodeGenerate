@@ -582,6 +582,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <c:forEach var="operation"   items="${operations}"   varStatus="status1">
+                        <br>
                         <input id="op${operation.id}" name="operations" type="checkbox" value="${operation.id}" <c:if test="${operation.checked}">checked</c:if>  />
                         <span for="op${operation.id}">${operation.operationName}</span>
                     </c:forEach>

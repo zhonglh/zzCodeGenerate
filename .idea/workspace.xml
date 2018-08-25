@@ -8,11 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TableBusinessServiceImpl.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TableBusinessServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgQueryConfigServiceImpl.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgQueryConfigServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
     </list>
@@ -35,25 +30,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="editForm.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="editForm.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="690" column="39" lean-forward="true" selection-start-line="690" selection-start-column="39" selection-end-line="690" selection-end-column="39" />
+            <state relative-caret-position="295">
+              <caret line="580" column="18" lean-forward="true" selection-start-line="580" selection-start-column="18" selection-end-line="580" selection-end-column="18" />
               <folding>
-                <marker date="1535163904578" expanded="true" signature="44722:44747" ph="..." />
-                <marker date="1535163904578" expanded="true" signature="44722:44786" ph="..." />
-                <marker date="1535163904578" expanded="true" signature="47194:47258" ph="..." />
-                <marker date="1535163904578" expanded="true" signature="49803:49867" ph="..." />
-                <marker date="1535163904578" expanded="true" signature="52834:52844" ph="..." />
-                <marker date="1535163904578" expanded="true" signature="53130:53194" ph="..." />
-                <marker date="1535163904578" expanded="true" signature="53192:53194" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="44751:44776" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="44751:44815" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="47223:47287" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="49832:49896" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="52863:52873" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="53159:53223" ph="..." />
+                <marker date="1535164901668" expanded="true" signature="53221:53223" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -223,9 +218,9 @@
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgQueryConfigServiceImpl.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TableBusinessServiceImpl.java" />
-        <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_search.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
+        <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
       </list>
     </option>
   </component>
@@ -897,14 +892,7 @@
       <workItem from="1534985949813" duration="13441000" />
       <workItem from="1535030443100" duration="1238000" />
       <workItem from="1535074880205" duration="21307000" />
-      <workItem from="1535118437595" duration="18229000" />
-    </task>
-    <task id="LOCAL-00061" summary="处理表格数据">
-      <created>1533517303837</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1533517303838</updated>
+      <workItem from="1535118437595" duration="18438000" />
     </task>
     <task id="LOCAL-00062" summary="处理表格数据">
       <created>1533572072830</created>
@@ -1242,7 +1230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535126631674</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="增加模板按钮样式的处理">
+      <created>1535164779474</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1535164779474</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1254,7 +1249,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="618882000" />
+    <option name="totallyTimeSpent" value="619091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1812,22 +1807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="690" column="39" lean-forward="true" selection-start-line="690" selection-start-column="39" selection-end-line="690" selection-end-column="39" />
-          <folding>
-            <marker date="1535163904578" expanded="true" signature="44722:44747" ph="..." />
-            <marker date="1535163904578" expanded="true" signature="44722:44786" ph="..." />
-            <marker date="1535163904578" expanded="true" signature="47194:47258" ph="..." />
-            <marker date="1535163904578" expanded="true" signature="49803:49867" ph="..." />
-            <marker date="1535163904578" expanded="true" signature="52834:52844" ph="..." />
-            <marker date="1535163904578" expanded="true" signature="53130:53194" ph="..." />
-            <marker date="1535163904578" expanded="true" signature="53192:53194" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5774">
@@ -1849,6 +1828,22 @@
         <state relative-caret-position="51">
           <caret line="3" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="580" column="18" lean-forward="true" selection-start-line="580" selection-start-column="18" selection-end-line="580" selection-end-column="18" />
+          <folding>
+            <marker date="1535164901668" expanded="true" signature="44751:44776" ph="..." />
+            <marker date="1535164901668" expanded="true" signature="44751:44815" ph="..." />
+            <marker date="1535164901668" expanded="true" signature="47223:47287" ph="..." />
+            <marker date="1535164901668" expanded="true" signature="49832:49896" ph="..." />
+            <marker date="1535164901668" expanded="true" signature="52863:52873" ph="..." />
+            <marker date="1535164901668" expanded="true" signature="53159:53223" ph="..." />
+            <marker date="1535164901668" expanded="true" signature="53221:53223" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
