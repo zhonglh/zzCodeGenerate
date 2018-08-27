@@ -81,7 +81,7 @@
                             <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
 
                                 <#if being.columnPage.element == 'select' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'radio'>
-                                        <${being.columnPage.columnConfig.javaName}Dict label="<#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if>" :selectData="${being.columnPage.columnConfig.dictType}Dict"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
+                                        <${being.columnPage.columnConfig.javaName}Dict <#if (being.queryTitle?exists) && (being.queryTitle?length > 0) > label="${being.queryTitle}" </#if> :selectData="${being.columnPage.columnConfig.dictType}Dict"  v-model="searchForm.${being.columnPage.columnConfig.javaName}"  @change="findList" />
                                 <#elseif being.columnPage.element == 'openwin' >
                                     <Input v-model="searchForm.${being.columnPage.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${being.columnPage.columnConfig.javaName}_${being.columnPage.columnConfig.originalColumn.fkTableConfig.fullResourceFile}"/>
                                 <#else>
@@ -135,6 +135,8 @@
 <script>
     import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
     import dialog from '@/utils/dialog'
+
+    import commonApi from '@/api/commonApi';
 
     import tableList from '@/components/table-list/tableList'
     import tableMix from '@/mixins/tableMix'
@@ -208,14 +210,14 @@
                 <#if being.columnPage?exists>
                     <#if being.columnPage.element == 'openwin'>
                         <#if being.columnPage.exColumn?exists>
-                        ${being.columnPage.exColumn.originalColumn.javaName},
+                        ${being.columnPage.exColumn.originalColumn.javaName}:'',
                         <#else>
-                        ${being.columnPage.columnConfig.originalColumn.javaName},
+                        ${being.columnPage.columnConfig.originalColumn.javaName}:'',
                         </#if>
                     </#if>
-                ${being.columnPage.javaName},
+                ${being.columnPage.javaName}:'',
                 <#else>
-                ${being.queryFieldName},
+                ${being.queryFieldName}:'',
                 </#if>
             </#list>
 

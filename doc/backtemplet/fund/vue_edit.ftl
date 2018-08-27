@@ -15,7 +15,7 @@
 
         <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="labelWidth">
         <#list showColumnPages as page>
-            <#if (page_index%2==0)>
+            <#if (page_index==0)>
             <Row>
             </#if>
 
@@ -34,7 +34,6 @@
                             <Input type="text" v-model="formValidate.${page.columnConfig.javaName}" step="1" precision="0"
                                    <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
                                    <#if page.minlength ?exists && page.minlength != 0>maxlength="${page.minlength}" </#if>
-                                   style="width: 200px;margin-left: 7px"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                    @${event.eventName}="${event.funcName}"
@@ -44,7 +43,7 @@
                         <#elseif page.element == 'digits' >
                             <InputNumber  v-model="formValidate.${page.columnConfig.javaName}"
                                           <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
-                                          style="width: 200px;margin-left: 7px"
+                                             
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                           @${event.eventName}="${event.funcName}"
@@ -54,7 +53,7 @@
                         <#elseif page.element == 'number' >
                             <InputNumber  v-model="formValidate.${page.columnConfig.javaName}"  precision="2"
                                           <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
-                                          style="width: 200px;margin-left: 7px"
+                                             
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                           @${event.eventName}="${event.funcName}"
@@ -68,7 +67,7 @@
                                         @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                                        style="width: 200px;margin-left: 7px"  />
+                                             />
                         <#elseif page.element == 'timestamp' >
                             <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable editable="false"
                                 <#if page.events?exists>
@@ -76,7 +75,7 @@
                                         @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                                        style="width: 200px;margin-left: 7px"  />
+                                             />
                         <#elseif page.element == 'email' >
                             <Input type="email" v-model="formValidate.${page.columnConfig.javaName}"
                                    <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
@@ -85,8 +84,7 @@
                                     <#list page.events as event>
                                    @${event.eventName}="${event.funcName}"
                                     </#list>
-                                </#if>
-                                   style="width: 200px;margin-left: 7px"  />
+                                </#if>  />
                         <#elseif page.element == 'url' >
                             <Input type="url" v-model="formValidate.${page.columnConfig.javaName}"
                                    <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
@@ -95,8 +93,7 @@
                                     <#list page.events as event>
                                    @${event.eventName}="${event.funcName}"
                                     </#list>
-                                </#if>
-                                   style="width: 200px;margin-left: 7px"  />
+                                </#if>  />
 
                         <#elseif page.element == 'radio' >
                             <RadioGroup v-model="formValidate.${page.columnConfig.javaName}">
@@ -121,7 +118,7 @@
                                     @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                                    style="width: 200px">
+                             >
                                 <#if page.required == '0'>
                                     <Option value=""></Option>
                                 </#if>
@@ -129,10 +126,10 @@
                             </Select>
 
                         <#elseif page.element == 'openwin' >
-                            <Input v-model="formValidate.${page.columnConfig.javaName}Name"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.javaName}"/>
+                            <Input v-model="formValidate.${page.columnConfig.javaName}Name"       @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.javaName}"/>
 
                         <#else >
-                            <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"   style="width: 200px;margin-left: 7px"
+                            <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"      
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                    @${event.eventName}="${event.funcName}"
@@ -142,7 +139,7 @@
                         </#if>
                     <#elseif page?exists && page.exColumn?exists>
                         <#if page.element == 'openwin' >
-                            <Input v-model="formValidate.${page.exColumn.javaName}"   style="width: 200px;margin-left: 7px" @on-focus="select_${page.exColumn.javaName}_${page.exColumn.originalColumn.fkTableConfig.javaName}"/>
+                            <Input v-model="formValidate.${page.exColumn.javaName}"       @on-focus="select_${page.exColumn.javaName}_${page.exColumn.originalColumn.fkTableConfig.javaName}"/>
                         </#if>
                     <#else>
                         //todo 生成编辑界面错误， columnPage 应该没有这种情况
@@ -152,7 +149,7 @@
                 </Col>
             </#if>
 
-            <#if (page_index%2==1 || !page_has_next)>
+            <#if (!page_has_next)>
             </Row>
             </#if>
         </#list>
@@ -272,6 +269,10 @@
         };
         },
     methods: {
+
+    <#list columnEvents as event>
+    ${event.funcBody},
+    </#list>
 
     <#list fks?values as fkList >
         <#list fkList as page >
