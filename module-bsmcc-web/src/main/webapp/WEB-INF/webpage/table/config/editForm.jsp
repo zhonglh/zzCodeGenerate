@@ -101,7 +101,7 @@
 
 
                     <div class="form-group">
-                        <label>是否生成菜单数据：</label>
+                        <label>是否生成菜单权限SQL：</label>
                         <select id="isBuildMenu" name="isBuildMenu"  class="form-control required">
                             <option value="1"  <c:if test="${entity.isBuildMenu ==  '1' }">selected="selected"</c:if> > 是 </option>
                             <option value="0"  <c:if test="${entity.isBuildMenu ==  '0' }">selected="selected"</c:if>  > 否 </option>
@@ -127,7 +127,7 @@
 
                     <div class="form-group">
                         <label>表类型：</label>
-                        <select id="tableType" name="tableType"  class="form-control">
+                        <select id="tableType" name="tableType"  class="form-control" onchange="changeTableType(this)">
                             <option value="1"  <c:if test="${entity.tableType ==  '1' }">selected="selected"</c:if> >单表</option>
                             <option value="2"  <c:if test="${entity.tableType ==  '2' }">selected="selected"</c:if> >主表</option>
                             <option value="3"  <c:if test="${entity.tableType ==  '3' }">selected="selected"</c:if> >副表</option>
@@ -138,15 +138,13 @@
 
 
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: block">
                         <label>和主表的关系：</label>
                         <select id="tableRelation" name="tableRelation"  class="form-control">
                             <option value="one-one"  <c:if test="${entity.tableRelation ==  'one-one' }">selected="selected"</c:if> >一对一</option>
                             <option value="one-multi"   <c:if test="${entity.tableRelation ==  'one-multi' }">selected="selected"</c:if>  >一对多</option>
                         </select>
                     </div>
-
-
 
 
 
@@ -186,7 +184,7 @@
 
                     <div class="form-group">
                         <label>是否为树状</label>
-                        <select id="isTree" name="isTree"  class="form-control required">
+                        <select id="isTree" name="isTree"  class="form-control required" onchange="changeIsTree(this)">
                             <option value="1"  <c:if test="${entity.isTree ==  '1' }">selected="selected"</c:if> >是</option>
                             <option value="0"  <c:if test="${entity.isTree ==  '0' }">selected="selected"</c:if> >否</option>
                         </select>
@@ -523,7 +521,6 @@
                         <th width="200">占位符</th>
                         <th width="100">查询关系</th>
                         <th width="100">查询框名称</th>
-
                         <th width="100">查询顺序</th>
                         <th width="100">操作</th>
 
@@ -1049,6 +1046,30 @@
         $("#"+tableId).find('tr').each(function (index, item) {
             $(item).children().eq(0).html(index);
         });
+    }
+
+    function changeTableType(tableType){
+        var $tableType = $(tableType);
+        if($tableType.val() == '1' || $tableType.val() == '2'){
+            $("#isBuildMenu").val("1");
+            $("#tableRelation").val("one-one");
+        }else if($tableType.val() == '3'){
+            $("#isBuildMenu").val("0");
+            $("#tableRelation").val("one-one");
+        }else if($tableType.val() == '4'){
+            $("#isBuildMenu").val("0");
+            $("#tableRelation").val("one-multi");
+        }
+    }
+
+    function changeIsTree(isTree){
+        var $isTree = $(isTree);
+        if($isTree.val() == "1"){
+            $("#parentFieldName").removeAttr("readonly");
+        }else {
+            $("#parentFieldName").attr("readonly" , "readonly");
+            $("#parentFieldName").val("");
+        }
     }
 
 

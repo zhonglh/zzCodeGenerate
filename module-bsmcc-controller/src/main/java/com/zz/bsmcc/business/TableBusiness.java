@@ -112,7 +112,9 @@ public class TableBusiness {
                         exColumnBO.setOriginalColumnDict(EnumYesNo.YES.getCode());
                         exColumnBOs.add(exColumnBO);
                     }
-                    if (project.getPageUseView().equals(EnumYesNo.NO.getCode()) && columnBO.getColumnIsfk().equals(EnumYesNo.YES.getCode())) {
+                    if (project.getPageUseView().equals(EnumYesNo.NO.getCode())
+                            && EnumYesNo.YES.getCode().equals(tableBO.getIsTable())
+                            && columnBO.getColumnIsfk().equals(EnumYesNo.YES.getCode())) {
                         //处理外键信息
                         TcgExColumnBO exColumnBO = new TcgExColumnBO();
                         TableLogic.initExColumn(exColumnBO, columnBO, sessionUserVO);

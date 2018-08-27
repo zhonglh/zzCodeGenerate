@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">代码总的注释：</label>
                                 <div class="col-sm-8">
-                                    <input id="projectNote" name="projectNote" value="${entity.projectNote }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
+                                    <textarea id="projectNote" name="projectNote">${entity.projectNote }</textarea>
                                 </div>
                             </div>
                         

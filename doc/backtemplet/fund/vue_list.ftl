@@ -7,7 +7,7 @@
 
         <table-list :columns="columns" :tableData="data" :total="total" :loading="loading" @selectionChange="selectionChange" @callback="callback">
         <#if querys?exists >
-            <div slot="form">
+            <ROW slot="form">
                 <#list querys as being>
 
                     <#if project.queryMode == 'toolbar' >
@@ -104,34 +104,37 @@
                     </#if>
 
                 </#list>
-            </div>
+            </ROW>
         </#if>
 
-            <div slot="toolbar">
-            <#list operations as operation>
-                <#if operation.position?exists && operation.position == 'top' || operation.position == 'all'>
-                    <Button   <#if (operation.other?exists && operation.other?length > 0)>type="${operation.other}"<#else >type="success"</#if>
-                            title="${operation.operationName}"
-                            <#if (operation.icons?exists && operation.icons?length > 0)>icon="${operation.icons}"</#if>
-                            <#if (operation.styles?exists && operation.styles?length > 0)>style="${operation.styles}"</#if>
-                            <#if (operation.classs?exists && operation.classs?length > 0)>class="${operation.classs}"</#if>
-                        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-                            @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
-                        <#else>
-                            @click="${operation.operationResource}"
-                        </#if>
-                            v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')">${operation.operationName}</Button>
-                </#if>
-            </#list>
-            </div>
+        <ROW slot="toolbar">
+        <#list operations as operation>
+            <#if (operation.position?exists && operation.position == 'top' || operation.position == 'all') && (operation.operationResource!='update')>
+                <Button   <#if (operation.other?exists && operation.other?length > 0)>type="${operation.other}"<#else >type="success"</#if>
+                        title="${operation.operationName}"
+                        <#if (operation.icons?exists && operation.icons?length > 0)>icon="${operation.icons}"</#if>
+                        <#if (operation.styles?exists && operation.styles?length > 0)>style="${operation.styles}"</#if>
+                        <#if (operation.classs?exists && operation.classs?length > 0)>class="${operation.classs}"</#if>
+                    <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+                        @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
+                    <#else>
+                        @click="${operation.operationResource}"
+                    </#if>
+                        v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')">${operation.operationName}</Button>
+            </#if>
+        </#list>
+        </ROW>
         </table-list>
 
-
-
+    <#list operations as operation>
+    <#if operation.operationResource == 'update' >
+        <${table.javaName}All :${table.javaName}="${table.javaName}" @closeDialog="closeDialog('all')"  :display="allDisplay"  />
+    </#if>
+    </#list>
 
 
     <#list operations as operation>
-        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
+        <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update' ))>
             <${table.javaName}Edit @saveSuccess="saveSuccess('edit')"  @closeDialog="closeDialog('edit')" :title="title"  ref="editRef" :display="editDisplay" />
             <#break>
         </#if>
@@ -174,35 +177,27 @@
 
     import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
 
-
-
-
     <#list operations as operation>
-        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
-        import ${table.javaName}Edit from './${table.javaName}Edit' ;
-            <#break>
-        </#if>
-    </#list>
+    <#if (operation.operationResource == 'update' && table.tableType =='2') >
+    import ${table.javaName}All from './${table.javaName}All' ;
+    </#if>
 
-    <#list operations as operation>
-        <#if operation.operationResource == 'detail'>
-        import ${table.javaName}Detail from './${table.javaName}Detail' ;
-            <#break>
-        </#if>
+    <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update'))>
+    import ${table.javaName}Edit from './${table.javaName}Edit' ;
+    </#if>
+
+    <#if operation.operationResource == 'detail'>
+    import ${table.javaName}Detail from './${table.javaName}Detail' ;
+    </#if>
     </#list>
 
 
-
-
-
-
     <#list operations as operation>
-        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
-
-            import ${table.javaName}${operation.operationResource?cap_first} from './${table.javaName}${operation.operationResource?cap_first}' ;
-            </#if>
-        </#if>
+    <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+    <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
+    import ${table.javaName}${operation.operationResource?cap_first} from './${table.javaName}${operation.operationResource?cap_first}' ;
+    </#if>
+    </#if>
     </#list>
 
 
@@ -223,20 +218,19 @@
 
     export default {
         name: '${table.javaName}List',
-    components: {
 
-
-
+        components: {
 
     <#list operations as operation>
-        <#if operation.operationResource == 'add' || operation.operationResource == 'update'>
+        <#if (operation.operationResource == 'update' && table.tableType =='2') >
+            ${table.javaName}All ,
+        </#if>
 
+        <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update'))>
             ${table.javaName}Edit,
             <#break>
         </#if>
-    </#list>
 
-    <#list operations as operation>
         <#if operation.operationResource == 'detail'>
             ${table.javaName}Detail,
             <#break>
@@ -270,7 +264,15 @@
         return {
     ${table.javaName}: {},
         detailDisplay: false,
-                editDisplay: false,
+        editDisplay: false,
+
+
+        <#list operations as operation>
+        <#if (operation.operationResource == 'update' && table.tableType =='2') >
+        allDisplay: false,
+        </#if>
+        </#list>
+
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
@@ -318,6 +320,43 @@
                 key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
                 align: 'center',
                 width: 150
+
+            <#if (page_index == 1 )>
+
+                <#list operations as operation>
+                <#if (operation.operationResource == 'update') >
+                    ,
+                    render: (h, params) => {
+                        let that = this;
+                        let data = params.row;
+                        let title = data[<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>];
+                        return h('a',{
+                            style: {
+                                height: '50px',
+                                lineHeight:'50px',
+                                fontWeight:'bold'
+                            },
+                            on: {
+                                click: () => {
+                                    <#if table.tableType =='2'>
+                                    that.showModelDialog(`${table.tableComment}详细`, 'all', true);
+                                    that.${table.javaName} =  that.data[params.index];
+                                    <#else >
+                                        todo 问liweizhi
+                                        showDialog('${operation.operationName}',${operation.operationBO.selectMode},'edit');
+                                    </#if>
+                                }
+                            }
+                        },`${title}`);
+                    }
+                    <#break >
+                </#if>
+
+
+
+                </#list>
+
+            </#if>
             }<#if page_has_next>,</#if>
         </#list>
 

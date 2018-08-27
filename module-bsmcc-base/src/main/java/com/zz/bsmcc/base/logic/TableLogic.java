@@ -250,7 +250,6 @@ public class TableLogic {
 
         pageBO.setRealColumn(EnumYesNo.YES.getCode());
 
-        pageBO.setListShowable(pageBO.getEditable());
 
         if(insideFieldNames.contains(columnBO.getJavaName())){
             pageBO.setExistPage(EnumYesNo.NO.getCode());
@@ -279,6 +278,7 @@ public class TableLogic {
                 pageBO.setExistPage(EnumYesNo.YES.getCode());
                 pageBO.setEditable(EnumYesNo.YES.getCode());
                 pageBO.setHiddenable(EnumYesNo.NO.getCode());
+                pageBO.setListShowable(pageBO.getEditable());
         }
 
 

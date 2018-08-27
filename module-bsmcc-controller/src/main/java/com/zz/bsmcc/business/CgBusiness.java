@@ -15,6 +15,7 @@ import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.Applications;
 import com.zz.bsmcc.core.enums.EnumButtonPosition;
 import com.zz.bsmcc.core.enums.EnumPageElement;
+import com.zz.bsmcc.core.enums.EnumTableType;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -127,6 +128,7 @@ public class CgBusiness {
         }else {
             return ;
         }
+
 
         for(TcgTableConfigBO tableConfig : tableConfigs){
             tableConfigMap.put(tableConfig.getSchemaName()+"."+tableConfig.getTableName(), tableConfig);
@@ -354,7 +356,26 @@ public class CgBusiness {
 
         }
 
+        //处理 tableBO的 childFkTables , 就是拿到表的 子表信息
+        for(TcgTableConfigBO tableConfig : tableConfigs){
+            if(EnumTableType.mainTable.getTheValue().equals(tableConfig.getTableType())){
+                tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
+                for(TcgTableConfigBO childTable : tableConfigs){
+                    if(tableConfig != childTable){
+                        if(childTable.getFkTables() != null && !childTable.getFkTables().isEmpty()){
+                            for(TcgTableConfigBO table : childTable.getFkTables()){
+                                if(table.getId().equals(tableConfig.getId()) ){
+                                    tableConfig.getChildFkTables().add(childTable);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        //生成代码
         for(TablePO tablePO : tablePOMap.values()){
             cgCode(tablePO , projectBO , templets);
         }
@@ -407,11 +428,25 @@ public class CgBusiness {
             basePath = basePath + File.separator + session.getId();
         }
 
-        logger.debug("table name : "+tablePO.getTableBO().getTableName());
+
+        String projectNote = projectBO.getProjectNote();
+        StringBuilder projectNoteBuild = new StringBuilder("");
+        if(StringUtils.isNotEmpty(projectNote)){
+            String[] notes = projectNote.split("\n");
+            projectNoteBuild.append("/**").append("\n");
+            for(String note : notes ){
+                projectNoteBuild.append(" * ").append(note).append("\n");
+            }
+            projectNoteBuild.append(" */").append("\n");
+        }
+
+
+
 
 
         for(TcgTempletBO templet : templets){
 
+            //如果表里设置的不生成UI, 而模板是UI的模板， 将不继续
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
                 continue;
             }
@@ -439,9 +474,16 @@ public class CgBusiness {
 
                 model.put("templet" , templet) ;
 
-                logger.debug("Templet : "+templet.getTempletTitle());
+                logger.debug("table name : "+tablePO.getTableBO().getTableName() + "  Templet : "+templet.getTempletTitle());
 
-                String result = FreemarkerUtils.renderString(templet.getTempletContent() , model);
+                String templetContent = templet.getTempletContent();
+
+                //生成的 Java 文件加上项目的总注释
+                if("java".equalsIgnoreCase(templet.getFileType())) {
+                    templetContent =  projectNoteBuild.toString() + templetContent;
+                }
+
+                String result = FreemarkerUtils.renderString( templetContent , model);
 
                 if(result != null && !result.isEmpty()){
                     File dir = new File(filePath);
@@ -481,8 +523,17 @@ public class CgBusiness {
      */
     public Map<String  , Object > buildModel(TablePO tablePO , TcgProjectBO projectBO){
 
-        Map<String  , Object > freemarkerModel = new HashMap<String  , Object>();
+        /**
+         * 如果项目中设置了界面使用视图， 那么在表格对应的UI就不生成了
+         */
+        if(EnumYesNo.YES.getCode().equals(projectBO.getPageUseView())){
+            if(EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsTable())){
+                tablePO.getTableBO().setIsBuildUi(EnumYesNo.NO.getCode());
+            }
+        }
 
+
+        Map<String  , Object > freemarkerModel = new HashMap<String  , Object>();
         freemarkerModel.put("table" , tablePO.getTableBO());
         freemarkerModel.put("columns" , tablePO.getColumns());
         freemarkerModel.put("exColumns" , tablePO.getExColumns());
@@ -496,8 +547,6 @@ public class CgBusiness {
             }
         }
         freemarkerModel.put("showColumnPages" , tablePO.getColumnPages());
-
-
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 

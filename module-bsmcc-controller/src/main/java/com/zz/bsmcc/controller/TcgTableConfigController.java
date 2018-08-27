@@ -188,6 +188,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             String[] sn = sns.split(":");
             tcgTableConfigBO.setSchemaName(sn[0]);
             tcgTableConfigBO.setTableName(sn[1]);
+
             if (StringUtils.isEmpty(tcgTableConfigBO.getDbId()) || StringUtils.isEmpty(tcgTableConfigBO.getTableName()) || StringUtils.isEmpty(tcgTableConfigBO.getProjectId())) {
                 continue;
             }

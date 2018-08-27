@@ -104,6 +104,15 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
 
+    /**
+     * 本表ID是哪些表的外键
+     */
+    @TableField(exist = false)
+    private List<TcgTableConfigBO> childFkTables;
+
+
+
+
 
     public String getDbConfigTitle() {
         return dbConfigTitle;
@@ -231,5 +240,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setHaveVersion(boolean haveVersion) {
         this.haveVersion = haveVersion;
+    }
+
+    public List<TcgTableConfigBO> getChildFkTables() {
+        return childFkTables;
+    }
+
+    public void setChildFkTables(List<TcgTableConfigBO> childFkTables) {
+        this.childFkTables = childFkTables;
     }
 }
