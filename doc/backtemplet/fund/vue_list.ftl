@@ -127,7 +127,7 @@
         </table-list>
 
     <#list operations as operation>
-    <#if operation.operationResource == 'update' >
+    <#if operation.operationResource == 'update' && table.tableType =='2'>
         <${table.javaName}All :${table.javaName}="${table.javaName}" @closeDialog="closeDialog('all')"  :display="allDisplay"  />
     </#if>
     </#list>
@@ -180,12 +180,18 @@
     <#list operations as operation>
     <#if (operation.operationResource == 'update' && table.tableType =='2') >
     import ${table.javaName}All from './${table.javaName}All' ;
+    <#break >
     </#if>
+    </#list>
 
+    <#list operations as operation>
     <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update'))>
     import ${table.javaName}Edit from './${table.javaName}Edit' ;
+    <#break >
     </#if>
+    </#list>
 
+    <#list operations as operation>
     <#if operation.operationResource == 'detail'>
     import ${table.javaName}Detail from './${table.javaName}Detail' ;
     </#if>
@@ -224,17 +230,22 @@
     <#list operations as operation>
         <#if (operation.operationResource == 'update' && table.tableType =='2') >
             ${table.javaName}All ,
+            <#break >
         </#if>
+    </#list>
 
-        <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update'))>
-            ${table.javaName}Edit,
-            <#break>
-        </#if>
+    <#list operations as operation>
+    <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update'))>
+        ${table.javaName}Edit,
+        <#break >
+    </#if>
+    </#list>
 
-        <#if operation.operationResource == 'detail'>
-            ${table.javaName}Detail,
-            <#break>
-        </#if>
+    <#list operations as operation>
+    <#if operation.operationResource == 'detail'>
+        ${table.javaName}Detail,
+    <#break>
+    </#if>
     </#list>
 
 
@@ -242,7 +253,6 @@
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
-
             ${table.javaName}${operation.operationResource?cap_first} ,
             </#if>
         </#if>
@@ -260,32 +270,48 @@
 
     },
     mixins:[tableMix],
-            data () {
+    data () {
         return {
-    ${table.javaName}: {},
-        detailDisplay: false,
-        editDisplay: false,
+            ${table.javaName}: {},
 
 
-        <#list operations as operation>
-        <#if (operation.operationResource == 'update' && table.tableType =='2') >
-        allDisplay: false,
-        </#if>
-        </#list>
 
-    <#list operations as operation>
-        <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
-                    ${operation.operationResource}Display: false,
+            <#list operations as operation>
+            <#if operation.operationResource == 'detail'>
+            detailDisplay: false,
+            <#break>
             </#if>
-        </#if>
-    </#list>
+            </#list>
+
+
+            <#list operations as operation>
+            <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update'))>
+            editDisplay: false,
+            <#break >
+            </#if>
+            </#list>
+
+
+            <#list operations as operation>
+            <#if (operation.operationResource == 'update' && table.tableType =='2') >
+            allDisplay: false,
+            </#if>
+            </#list>
+
+            <#list operations as operation>
+            <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
+            <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
+            ${operation.operationResource}Display: false,
+            </#if>
+            </#if>
+            </#list>
+
     <#list queryFkTables as fkTable>
             select${fkTable.javaName}Display: false,
     </#list>
 
             bsType: '',
-                searchForm:{
+            searchForm:{
         <#list querys as being >
             <#if being.columnPage?exists>
                 <#if being.columnPage.element == 'openwin'>
@@ -300,11 +326,15 @@
             ${being.queryFieldName}:''<#if being_has_next>,</#if>
             </#if>
         </#list>
-        },
+            },
+
     <#list queryDictSet as queryColumn>
-        <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
-        <#else>${queryColumn.columnPage.columnConfig.dictType}Dict :[],
+        <#if queryColumn.columnPage.exColumn?exists>
+                    ${queryColumn.columnPage.exColumn.dictType}Dict : [],
+        <#else>
+                    ${queryColumn.columnPage.columnConfig.dictType}Dict :[],
         </#if>
+
     </#list>
             columns: [
             {
@@ -320,8 +350,7 @@
                 key: '<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>',
                 align: 'center',
                 width: 150
-
-            <#if (page_index == 1 )>
+            <#if (page_index == 0 )>
 
                 <#list operations as operation>
                 <#if (operation.operationResource == 'update') >
@@ -332,8 +361,8 @@
                         let title = data[<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>];
                         return h('a',{
                             style: {
-                                height: '50px',
-                                lineHeight:'50px',
+                                height: '30px',
+                                lineHeight:'30px',
                                 fontWeight:'bold'
                             },
                             on: {
@@ -342,12 +371,12 @@
                                     that.showModelDialog(`${table.tableComment}详细`, 'all', true);
                                     that.${table.javaName} =  that.data[params.index];
                                     <#else >
-                                        todo 问liweizhi
                                         showDialog('${operation.operationName}',${operation.operationBO.selectMode},'edit');
+                                        that.${table.javaName} =  that.data[params.index];
                                     </#if>
                                 }
                             }
-                        },`${title}`);
+                        },`${r'${title}'}`);
                     }
                     <#break >
                 </#if>
