@@ -16,7 +16,7 @@
         <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="labelWidth">
         <#list showColumnPages as page>
             <#if (page_index==0)>
-            <Row>
+            <Row style="padding : 10px ">
             </#if>
 
             <#if page.editable == '0'>
