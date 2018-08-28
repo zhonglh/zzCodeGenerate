@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <context:property-placeholder location="classpath*:jdbc.properties"  ignore-unresolvable="true"  />
+    <context:property-placeholder location="classpath*:cg_jdbc.properties"  ignore-unresolvable="true"  />
 
     <!-- 配置druid数据源 更多配置参考http://www.cnblogs.com/niejunlei/p/5977895.html-->
     <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"

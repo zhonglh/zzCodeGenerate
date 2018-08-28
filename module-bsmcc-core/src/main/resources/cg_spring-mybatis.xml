@@ -21,7 +21,7 @@
 
 
 
-    <import resource="classpath*:spring-druid.xml" />
+    <import resource="classpath*:cg_spring-druid.xml" />
 
 
 
