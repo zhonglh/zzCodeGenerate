@@ -6,7 +6,7 @@
 
 
 
-  <display-name>后台管理系统</display-name>
+  <display-name>代码生成系统</display-name>
 
 
 
@@ -14,8 +14,8 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:spring-context.xml
-      classpath:spring-mybatis.xml
+      classpath:cg_spring-context.xml
+      classpath:cg_spring-mybatis.xml
 
       classpath:spring-shiro-redis.xml
       classpath:spring-redis.xml
