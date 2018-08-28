@@ -12,6 +12,19 @@ import ${table.fullPackageName}.domain.${table.javaName};
 import ${table.fullPackageName}.dao.${table.javaName}Dao;
 
 
+<#list table.fkTables as being>
+import ${being.fullPackageName}.Service.${being.javaName}Service;
+</#list>
+
+
+<#list table.fkTables as being>
+import ${being.fullPackageName}.domain.${being.javaName};
+</#list>
+
+
+import com.fullbloom.source.component.dict.dao.TsDictDao;
+
+
 /**
  * ${table.tableComment}Service
  *
@@ -22,7 +35,18 @@ import ${table.fullPackageName}.dao.${table.javaName}Dao;
 public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 	@Autowired
-	private ${table.javaName}Dao ${table.javaName?uncap_first}Dao;
+	private ${table.javaName}Dao; ${table.javaName?uncap_first}Dao;
+
+	@Autowired
+	private TsDictDao tsDictDao;
+
+
+
+	<#list table.fkTables as being>
+	@Autowired
+	private ${being.javaName}Service ${being.javaName?uncap_first}Service;
+	</#list>
+
 
 	/**
 	* 保存${table.tableComment}
@@ -94,7 +118,9 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	public ${table.javaName} findById(String id){
 		${table.javaName} ${table.javaName?uncap_first} = new ${table.javaName}();
 		${table.javaName?uncap_first}.setId(id);
-		return ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
+		${table.javaName}  result = ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
+		processResult(result);
+		return result;
 	}
 
 	/**
@@ -106,8 +132,10 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	@Override
 	public ${table.javaName} findTopOne(${table.javaName} ${table.javaName?uncap_first}){
 
-		return ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
-	}
+		${table.javaName}  ${table.javaName?uncap_first} = ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
+    	processResult(${table.javaName?uncap_first} );
+		return ${table.javaName?uncap_first};
+    }
 
 
 	/**
@@ -131,7 +159,13 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	@Override
 	public List<${table.javaName}> findList(${table.javaName} ${table.javaName?uncap_first}){
 
-		return ${table.javaName?uncap_first}Dao.findList(${table.javaName?uncap_first});
+		List list =  ${table.javaName?uncap_first}Dao.findList(${table.javaName?uncap_first});
+		if(list != null && !list.isEmpty()){
+			for(${table.javaName} temp : list){
+				processResult(temp);
+			}
+		}
+		return list;
 	}
 
 	/**
@@ -154,11 +188,38 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 		PageHelper.startPage(pager.getPageNum(), pager.getPageSize());
 		List<${table.javaName}> list = this.findList(${table.javaName?uncap_first});
+		if(list != null && !list.isEmpty()){
+			for(${table.javaName} temp : list){
+    			processResult(temp);
+			}
+		}
 		return new Pager<${table.javaName}>(list);
 	}
 
 
+	private processResult(${table.javaName} ${table.javaName?uncap_first}){
 
+		<#if exColumnMap?exists>
+		<#list exColumnMap?keys as key>
+			<#if exColumnMap[key][0].originalColumnFk == '1'>
+				<#assign fkTable = exColumnMap[key][0].originalColumn.fkTableConfig >
+			${fkTable.javaName} ${exColumnMap[key][0].originalColumn.javaName}Obj = ${exColumnMap[key][0].originalColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${exColumnMap[key][0].originalColumn.getMethodName}());
+			if(${exColumnMap[key][0].originalColumn.javaName}Obj != null){
+			<#list exColumnMap[key] as val>
+				${table.javaName?uncap_first}.set${val.javaName?cap_first}(${exColumnMap[key][0].originalColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
+			</#list>
+			}
+
+			<#else>
+				<#list exColumnMap[key] as val>
+			${table.javaName?uncap_first}.set${val.javaName?cap_first}(  tsDictDao.findByTypeVal(${table.javaName?uncap_first}.${exColumnMap[key][0].originalColumn.getMethodName}())  );
+				</#list>
+
+			</#if>
+		</#list>
+		</#if>
+
+	}
 
 
 

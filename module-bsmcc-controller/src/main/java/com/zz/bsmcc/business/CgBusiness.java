@@ -554,6 +554,8 @@ public class CgBusiness {
             tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList())
         );
 
+
+
         freemarkerModel.put("indexs" , tablePO.getIndexs());
         freemarkerModel.put("querys" , tablePO.getQueryConfigs());
         freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());

@@ -33,19 +33,16 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
 
 
-<#list columnPages as page>
-<#if page.exColumn?exists>
-    <#if page.listShowable=='1'>
-private ${page.exColumn.javaSimpleClass} ${page.exColumn.javaName} ;
+    <#list columnPages as page>
+    <#if page.exColumn?exists>
+    @EntityAttrAnnotation(attrName="${page.exColumn.columnTitle}",sort=${page.exColumn.columnSort})
+    private ${page.exColumn.javaSimpleClass} ${page.exColumn.javaName} ;
+
     </#if>
-</#if>
-</#list>
+    </#list>
 
-
-
-
-<#list columns as being>
-<#if !being.inParentClass>
+    <#list columns as being>
+    <#if !being.inParentClass>
 	public void ${being.setMethodName}(${being.javaSimpleClass} ${being.javaName}){
 		this.${being.javaName} = ${being.javaName};
 	}
@@ -54,30 +51,25 @@ private ${page.exColumn.javaSimpleClass} ${page.exColumn.javaName} ;
     	return this.${being.javaName};
     }
 
-
- </#if>
-</#list>
-
-
-
-
-
-
-<#list columnPages as page>
-    <#if page.exColumn?exists>
-        <#if page.listShowable=='1'>
-
-
-        public void set${page.exColumn.javaName?cap_first}(${page.exColumn.javaSimpleClass} ${page.exColumn.javaName}){
-            this.${page.exColumn.javaName} = ${page.exColumn.javaName};
-        }
-
-        public ${page.exColumn.javaSimpleClass} get${page.exColumn.javaName?cap_first}(){
-            return this.${page.exColumn.javaName};
-        }
-
-        </#if>
     </#if>
-</#list>
+    </#list>
+
+
+
+
+
+
+    <#list columnPages as page>
+    <#if page.exColumn?exists>
+
+    public void set${page.exColumn.javaName?cap_first}(${page.exColumn.javaSimpleClass} ${page.exColumn.javaName}){
+        this.${page.exColumn.javaName} = ${page.exColumn.javaName};
+    }
+
+    public ${page.exColumn.javaSimpleClass} get${page.exColumn.javaName?cap_first}(){
+        return this.${page.exColumn.javaName};
+    }
+    </#if>
+    </#list>
 	
 }

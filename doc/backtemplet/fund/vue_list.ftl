@@ -219,7 +219,7 @@
     </#if>
 
     <#list queryFkTables as fkTable>
-    import ${fkTable.javaName}Search from '@/views/${fkTable.fullResourceName}/${fkTable.javaName}Search'
+    import ${fkTable.javaName}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
     </#list>
 
     export default {

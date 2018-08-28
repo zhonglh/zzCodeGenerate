@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">代码总的注释：</label>
                                 <div class="col-sm-8">
-                                    <textarea id="projectNote" name="projectNote">${entity.projectNote }</textarea>
+                                    <textarea style="width : 100%" rows="5" id="projectNote" name="projectNote">${entity.projectNote }</textarea>
                                 </div>
                             </div>
                         

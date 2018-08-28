@@ -73,10 +73,17 @@
 
             assemblingComponent(){
                 this.tabs = [];
-                <#list childFkTables as child>
-                this.tabs.push({title: ${child.tableComment}, component: ${child.javaName}List);
-                this.$options.components[${child.javaName}List] = _import(${child.fullResourceName}//${child.javaName}List);
+
+                this.tabs.push({title: '基本信息', component: '${table.javaName}Edit');
+                this.$options.components['${table.javaName}List'] = _import('./${table.javaName}Edit');
+
+
+                <#if table.childFkTables?exists >
+                <#list table.childFkTables as child>
+                this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List');
+                this.$options.components['${child.javaName}List'] = _import('@/views${child.fullResourceName}/${child.javaName}List');
                 </#list>
+                </#if>
 
                 this.handleTask(0,this.tabs[0]);
             }
