@@ -347,25 +347,30 @@
         }
     },
     mounted() {
-        let that = this;
+
+        this.$nextTick(function () {
+            let that = this;
 
 
-    <#if dictSet?exists && (dictSet?size > 0) >
-        commonApi.allDicts('<#list dictSet as columnPage><#if columnPage.exColumn?exists>${columnPage.exColumn.dictType}<#if columnPage_has_next>,</#if><#else>${columnPage.columnConfig.dictType}<#if columnPage_has_next>,</#if></#if></#list>', {
-            onSuccess(dictMap){
-                <#list dictSet as dictPage>
-                    <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dict=dictMap["${dictPage.exColumn.dictType}"]<#if dictPage_has_next>,</#if>
-                    <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap["${dictPage.columnConfig.dictType}"]<#if dictPage_has_next>;</#if>
-                    </#if>
-                </#list>
-            }
-        });
-    </#if>
+        <#if dictSet?exists && (dictSet?size > 0) >
+            commonApi.allDicts('<#list dictSet as columnPage><#if columnPage.exColumn?exists>${columnPage.exColumn.dictType}<#if columnPage_has_next>,</#if><#else>${columnPage.columnConfig.dictType}<#if columnPage_has_next>,</#if></#if></#list>', {
+                onSuccess(dictMap){
+                    <#list dictSet as dictPage>
+                        <#if dictPage.exColumn?exists>that.${dictPage.exColumn.dictType}Dict=dictMap["${dictPage.exColumn.dictType}"]<#if dictPage_has_next>,</#if>
+                        <#else>that.${dictPage.columnConfig.dictType}Dict=dictMap["${dictPage.columnConfig.dictType}"]<#if dictPage_has_next>;</#if>
+                        </#if>
+                    </#list>
+                }
+            });
+        </#if>
 
-        this.$on('findById', function (id) {
-            that.id = id;
-            that.findById();
-        })
+            this.$on('findById', function (id) {
+                that.id = id;
+                that.findById();
+            })
+        }
     }
-    };
+
+
+ };
 </script>

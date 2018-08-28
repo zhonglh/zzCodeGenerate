@@ -5,11 +5,11 @@
         margin: 5px;
         border-left: 1px #ccc solid;
 
-    .tabs{
-        width: 100%;
-        border-bottom: 1px #ccc solid;
-        padding: 5px;
-    }
+        .tabs{
+            width: 100%;
+            border-bottom: 1px #ccc solid;
+            padding: 5px;
+        }
 
     }
 </style>
@@ -21,9 +21,7 @@
                 <span v-for="(item,index) in tabs" :key="index">
                     <Button :type="btnType" icon="android-add-circle" ghost  v-if="stepIndex != index"  style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
                     <Button :type="btnType" icon="android-add-circle" v-if="stepIndex == index"   style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
-
                 </span>
-
         </div>
 
         </Col>
@@ -37,11 +35,14 @@
 
 <script>
     const _import = require('@/router/_import_production');
-    import projectStepTaskApi from '@/api/projectStepTaskApi';
-    import onfire from 'onfire.js'
+    import onfire from 'onfire.js';
+
     export default {
+
         components:{
+
         },
+
         props: {
             ${table.javaName}:  {
                 type:Object,
@@ -50,6 +51,7 @@
                 }
             }
         },
+
         data () {
             return {
                 btnType: 'success',
@@ -60,8 +62,7 @@
         },
         watch: {
             ${table.javaName}(val ,oldVal){
-                onfire.fire('projectInfo',this.${table.javaName}, this.step);
-                this.findStepTaskList();
+                onfire.fire('${table.javaName}',this.${table.javaName});
             }
         },
         methods:{
@@ -69,10 +70,12 @@
             handleTask(index,item){
                 this.currentComponent = item.component;
             },
+
             assemblingComponent(){
                 this.tabs = [];
                 <#list childFkTables as child>
-                this.tabs.push({id: item.id, isMust: item.isMust,title: item.taskName, component: componentName});
+                this.tabs.push({title: ${child.tableComment}, component: ${child.javaName}List);
+                this.$options.components[${child.javaName}List] = _import(${child.fullResourceName}//${child.javaName}List);
                 </#list>
 
                 this.handleTask(0,this.tabs[0]);
@@ -80,11 +83,9 @@
 
         },
         mounted() {
-            let that = this;
-            this.assemblingComponent();
-        },
-
-        created: function () {
+            this.$nextTick(function () {
+                this.assemblingComponent();
+            }
         }
     };
 </script>
