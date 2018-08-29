@@ -15,6 +15,16 @@
 </style>
 
 <template>
+    <Modal
+            v-model="show"
+            :title="title"
+            @on-visible-change="onVisibleChange"
+            :width="dialogWidth"
+            loading
+            draggable
+            :mask-closable="maskClosable"
+            scrollable>
+
     <Row class="m-container">
         <Col :xs="24" :sm="24" :md="24" :lg="24">
         <div class="tabs">
@@ -31,6 +41,7 @@
         </keep-alive>
         </Col>
     </Row>
+    </Modal>
 </template>
 
 <script>
@@ -77,13 +88,13 @@
                 this.tabs = [];
 
                 this.tabs.push({title: '基本信息', component: '${table.javaName}Edit');
-                this.$options.components['${table.javaName}Edit'] = _import('${child.fullResourceName}/${table.javaName}Edit');
+                this.$options.components['${table.javaName}Edit'] = _import('${table.fullResourceName?substring(1)}/${table.javaName}Edit');
 
 
                 <#if table.childFkTables?exists >
                 <#list table.childFkTables as child>
                 this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List'});
-                this.$options.components['${child.javaName}List'] = _import('${child.fullResourceName}/${child.javaName}List');
+                this.$options.components['${child.javaName}List'] = _import('${child.fullResourceName?substring(1)}/${child.javaName}List');
                 </#list>
                 </#if>
 

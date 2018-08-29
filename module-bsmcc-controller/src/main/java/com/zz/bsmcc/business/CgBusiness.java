@@ -454,8 +454,8 @@ public class CgBusiness extends CgBaseBusiness{
                     this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName()) ||
                     this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName())
                     ){
-                if("java".equalsIgnoreCase(templet.getFileType())){
-                    //第三方（或者组件）用到的表， Java文件将不再生成
+                if("java".equalsIgnoreCase(templet.getFileType()) || "xml".equalsIgnoreCase(templet.getFileType())){
+                    //第三方（或者组件）用到的表， Java和XML文件将不再生成
                     continue;
                 }
 

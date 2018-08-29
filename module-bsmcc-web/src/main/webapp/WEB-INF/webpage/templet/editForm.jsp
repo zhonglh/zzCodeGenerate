@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">模板内容：</label>
                                 <div class="col-sm-8">
-                                    <textarea rows="10" cols="65" id="templetContent" name="templetContent">${entity.templetContent }</textarea></div>
+                                    <textarea rows="10" style="width:100%;" id="templetContent" name="templetContent">${entity.templetContent }</textarea></div>
                             </div>
 
 

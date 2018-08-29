@@ -4,21 +4,22 @@ public class CgBaseBusiness {
 
     /**
      * 是否第三方的库表
-     * @param schema
-     * @param table
+     * @param schemaName
+     * @param tableName
      * @return
      */
-    public boolean isThirdParty(String schema , String table){
+    public boolean isThirdParty(String schemaName , String tableName){
         return false;
     }
 
     /**
-     * @param schema
-     * @param table
+     * @param schemaName
+     * @param tableName
      * @return
      */
-    public boolean isComponent(String schema , String table){
-        return table.startsWith("tr") || table.startsWith("ts");
+    public boolean isComponent(String schemaName , String tableName){
+        String table = tableName.toLowerCase();
+        return table.startsWith("tr") || table.startsWith("ts") || table.startsWith("vr") || table.startsWith("vs");
     }
 
 

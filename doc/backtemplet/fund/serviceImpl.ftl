@@ -13,7 +13,7 @@ import ${table.fullPackageName}.dao.${table.javaName}Dao;
 
 
 <#list table.fkTables as being>
-import ${being.fullPackageName}.Service.${being.javaName}Service;
+import ${being.fullPackageName}.interfaces.${being.javaName}Service;
 </#list>
 
 
@@ -22,7 +22,7 @@ import ${being.fullPackageName}.domain.${being.javaName};
 </#list>
 
 
-import com.fullbloom.source.component.dict.dao.TsDictDao;
+import com.fullbloom.source.component.dict.interfaces.TsDictService;
 
 
 /**
@@ -35,10 +35,10 @@ import com.fullbloom.source.component.dict.dao.TsDictDao;
 public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 	@Autowired
-	private ${table.javaName}Dao; ${table.javaName?uncap_first}Dao;
+	private ${table.javaName}Dao ${table.javaName?uncap_first}Dao;
 
 	@Autowired
-	private TsDictDao tsDictDao;
+	private TsDictService tsDictService;
 
 
 
@@ -132,9 +132,9 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	@Override
 	public ${table.javaName} findTopOne(${table.javaName} ${table.javaName?uncap_first}){
 
-		${table.javaName}  ${table.javaName?uncap_first} = ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
-    	processResult(${table.javaName?uncap_first} );
-		return ${table.javaName?uncap_first};
+		${table.javaName}  result = ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
+    	processResult(result);
+		return result;
     }
 
 
@@ -159,7 +159,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	@Override
 	public List<${table.javaName}> findList(${table.javaName} ${table.javaName?uncap_first}){
 
-		List list =  ${table.javaName?uncap_first}Dao.findList(${table.javaName?uncap_first});
+		List<${table.javaName}> list =  ${table.javaName?uncap_first}Dao.findList(${table.javaName?uncap_first});
 		if(list != null && !list.isEmpty()){
 			for(${table.javaName} temp : list){
 				processResult(temp);
@@ -197,7 +197,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	}
 
 
-	private processResult(${table.javaName} ${table.javaName?uncap_first}){
+	private void processResult(${table.javaName} ${table.javaName?uncap_first}){
 
 		<#if exColumnMap?exists>
 		<#list exColumnMap?keys as key>
@@ -212,7 +212,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 			<#else>
 				<#list exColumnMap[key] as val>
-			${table.javaName?uncap_first}.set${val.javaName?cap_first}(  tsDictDao.findByTypeVal(${table.javaName?uncap_first}.${exColumnMap[key][0].originalColumn.getMethodName}())  );
+			${table.javaName?uncap_first}.set${val.javaName?cap_first}(   tsDictService.findByTypeVal(  "${exColumnMap[key][0].originalColumn.dictType}",${table.javaName?uncap_first}.${exColumnMap[key][0].originalColumn.getMethodName}()).getDictName()  );
 				</#list>
 
 			</#if>

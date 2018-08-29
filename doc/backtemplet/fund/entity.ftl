@@ -21,9 +21,9 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
 <#list columns as being>
 <#if !being.inParentClass>
-	//${being.columnComment}
+
 	<#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>
-    @EntityAttrAnnotation(attrName="${being.columnComment}",sort=${being.columnSort},<#if being.columnLength?exists && being.columnLength != 0 >attrLength=${being.columnLength}</#if><#if being.columnScale?exists && being.columnScale != 0 >,attr_decimals=${being.columnScale}</#if>)
+    @EntityAttrAnnotation(attrName="${being.columnComment}",sort=${being.columnSort}<#if being.columnLength?exists && being.columnLength != 0 >,attrLength=${being.columnLength}</#if><#if being.columnScale?exists && being.columnScale != 0 >,attrDecimals=${being.columnScale}</#if>)
     private ${being.javaSimpleClass}  ${being.javaName} ;
 
 </#if>
