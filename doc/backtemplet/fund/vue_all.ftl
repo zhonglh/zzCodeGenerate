@@ -19,8 +19,8 @@
         <Col :xs="24" :sm="24" :md="24" :lg="24">
         <div class="tabs">
                 <span v-for="(item,index) in tabs" :key="index">
-                    <Button :type="btnType" icon="android-add-circle" ghost  v-if="stepIndex != index"  style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
-                    <Button :type="btnType" icon="android-add-circle" v-if="stepIndex == index"   style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
+                    <Button :type="btnType" icon="android-add-circle" ghost  v-if="tabIndex != index"  style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
+                    <Button :type="btnType" icon="android-add-circle" v-if="tabIndex == index"   style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
                 </span>
         </div>
 
@@ -57,6 +57,7 @@
                 btnType: 'success',
                 btnGhost: 'ghost',
                 currentComponent: '',
+                tabIndex : 0,
                 tabs: []
             };
         },
@@ -69,19 +70,20 @@
 
             handleTask(index,item){
                 this.currentComponent = item.component;
+                this.tabIndex = index;
             },
 
             assemblingComponent(){
                 this.tabs = [];
 
                 this.tabs.push({title: '基本信息', component: '${table.javaName}Edit');
-                this.$options.components['${table.javaName}List'] = _import('./${table.javaName}Edit');
+                this.$options.components['${table.javaName}Edit'] = _import('${child.fullResourceName}/${table.javaName}Edit');
 
 
                 <#if table.childFkTables?exists >
                 <#list table.childFkTables as child>
                 this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List'});
-                this.$options.components['${child.javaName}List'] = _import('@/views${child.fullResourceName}/${child.javaName}List');
+                this.$options.components['${child.javaName}List'] = _import('${child.fullResourceName}/${child.javaName}List');
                 </#list>
                 </#if>
 

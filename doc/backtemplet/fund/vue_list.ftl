@@ -7,7 +7,7 @@
 
         <table-list :columns="columns" :tableData="data" :total="total" :loading="loading" @selectionChange="selectionChange" @callback="callback">
         <#if querys?exists >
-            <ROW slot="form">
+            <Row slot="form">
                 <#list querys as being>
 
                     <#if project.queryMode == 'toolbar' >
@@ -104,10 +104,10 @@
                     </#if>
 
                 </#list>
-            </ROW>
+            </Row>
         </#if>
 
-        <ROW slot="toolbar">
+        <Row slot="toolbar">
         <#list operations as operation>
             <#if (operation.position?exists && operation.position == 'top' || operation.position == 'all') && (operation.operationResource!='update')>
                 <Button   <#if (operation.other?exists && operation.other?length > 0)>type="${operation.other}"<#else >type="success"</#if>
@@ -123,7 +123,7 @@
                         v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')">${operation.operationName}</Button>
             </#if>
         </#list>
-        </ROW>
+        </Row>
         </table-list>
 
     <#list operations as operation>

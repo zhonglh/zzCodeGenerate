@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  * @author Administrator
  */
 @Component
-public class CgBusiness {
+public class CgBusiness extends CgBaseBusiness{
 
 
     public Logger logger = Logger.getLogger(this.getClass());
@@ -377,9 +377,8 @@ public class CgBusiness {
 
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
-            cgCode(tablePO , projectBO , templets);
+            cgCode(tablePO, projectBO, templets);
         }
-
     }
 
     /**
@@ -450,6 +449,18 @@ public class CgBusiness {
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
                 continue;
             }
+
+            if(
+                    this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName()) ||
+                    this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName())
+                    ){
+                if("java".equalsIgnoreCase(templet.getFileType())){
+                    //第三方（或者组件）用到的表， Java文件将不再生成
+                    continue;
+                }
+
+            }
+
             String filePath = null;
             if("java".equalsIgnoreCase(templet.getFileType())){
                 filePath = basePath + File.separator + templet.getFileOutDir() + File.separator +

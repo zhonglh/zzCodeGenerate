@@ -3,7 +3,6 @@ package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 import com.fullbloom.db.mybatis.entity.BaseBusinessEntity;
 import com.fullbloom.core.annotations.log.*;
-import ${table.parentClass};
 <#list table.importClasss as importClass>
 import ${importClass};
 </#list>

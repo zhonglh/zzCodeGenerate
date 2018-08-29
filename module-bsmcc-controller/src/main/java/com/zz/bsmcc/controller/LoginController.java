@@ -63,10 +63,6 @@ public class LoginController extends BaseBussinessController {
                 req.getSession().setAttribute(Constant.SESSION_USER , dbUser);
             }
 
-
-
-
-
         } catch (Exception e) {
             j.setSuccess(false);
             j.setMsg("出现错误");
@@ -137,13 +133,10 @@ public class LoginController extends BaseBussinessController {
      * @param request
      * @return
      */
-    /*@RequestMapping(value = "logout")
-    public ModelAndView logout(HttpServletRequest request) {
-        HttpSession session = ContextHolderUtils.getSession();
-        ClientManager.getInstance().removeClinet(session.getId());
-        session.invalidate();
-        ModelAndView modelAndView = new ModelAndView(new RedirectView("loginController.do?login"));
-        return modelAndView;
-    }*/
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute(Constant.SESSION_USER);
+        return "redirect:/login" ;
+    }
 
 }

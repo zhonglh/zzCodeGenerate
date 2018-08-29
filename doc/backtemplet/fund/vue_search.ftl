@@ -17,7 +17,7 @@
 
             <table-list :columns="columns" :tableData="data" :total="total" :loading="loading" :dialogInModal="dialogInModal" @selectionChange="selectionChange" @callback="callback">
             <#if querys?exists >
-                <ROW slot="form">
+                <Row slot="form">
                     <#list querys as being>
                         <#if project.queryMode == 'toolbar' >
                             <!-- 工具栏 方式 -->
@@ -113,7 +113,7 @@
                         </#if>
 
                     </#list>
-                </ROW>
+                </Row>
             </#if>
 
             </table-list>
