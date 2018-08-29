@@ -80,7 +80,7 @@
 
                 <#if table.childFkTables?exists >
                 <#list table.childFkTables as child>
-                this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List');
+                this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List'});
                 this.$options.components['${child.javaName}List'] = _import('@/views${child.fullResourceName}/${child.javaName}List');
                 </#list>
                 </#if>
@@ -92,7 +92,7 @@
         mounted() {
             this.$nextTick(function () {
                 this.assemblingComponent();
-            }
+            });
         }
     };
 </script>

@@ -368,7 +368,7 @@
                 that.id = id;
                 that.findById();
             })
-        }
+        });
     }
 
 
