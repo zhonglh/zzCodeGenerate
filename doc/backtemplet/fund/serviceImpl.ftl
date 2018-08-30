@@ -2,6 +2,8 @@ package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -23,6 +25,8 @@ import ${being.fullPackageName}.domain.${being.javaName};
 
 
 import com.fullbloom.source.component.dict.interfaces.TsDictService;
+
+import com.fullbloom.source.component.dict.domain.TsDict;
 
 
 /**
@@ -174,8 +178,13 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	*/
 	@Override
 	public List<${table.javaName}> findAll(){
-		return ${table.javaName?uncap_first}Dao.findAll();
+    	List<${table.javaName}> list = ${table.javaName?uncap_first}Dao.findAll();
+		for(${table.javaName} temp : list){
+			processResult(temp);
+		}
+		return list;
 	}
+
 	/**
 	* 根据条件分页查询${table.tableComment}列表
 	*
@@ -202,17 +211,25 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 		<#if exColumnMap?exists>
 		<#list exColumnMap?keys as key>
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
-				<#assign fkTable = exColumnMap[key][0].originalColumn.fkTableConfig >
-			${fkTable.javaName} ${exColumnMap[key][0].originalColumn.javaName}Obj = ${exColumnMap[key][0].originalColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${exColumnMap[key][0].originalColumn.getMethodName}());
-			if(${exColumnMap[key][0].originalColumn.javaName}Obj != null){
-			<#list exColumnMap[key] as val>
-				${table.javaName?uncap_first}.set${val.javaName?cap_first}(${exColumnMap[key][0].originalColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
-			</#list>
+				<#assign fkColumn = exColumnMap[key][0].originalColumn >
+			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
+				${fkColumn.fkTableConfig.javaName} ${fkColumn.javaName}Obj = ${fkColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${fkColumn.getMethodName}());
+				if(${fkColumn.javaName}Obj != null){
+				<#list exColumnMap[key] as val>
+					${table.javaName?uncap_first}.set${val.javaName?cap_first}(${fkColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
+				</#list>
+				}
 			}
 
 			<#else>
+                TsDict tempDict = null;
 				<#list exColumnMap[key] as val>
-			${table.javaName?uncap_first}.set${val.javaName?cap_first}(   tsDictService.findByTypeVal(  "${exColumnMap[key][0].originalColumn.dictType}",${table.javaName?uncap_first}.${exColumnMap[key][0].originalColumn.getMethodName}()).getDictName()  );
+				if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
+                    tempDict = tsDictService.findByTypeVal(  "${fkColumn.dictType}",${table.javaName?uncap_first}.${fkColumn.getMethodName}());
+					if(tempDict != null){
+					${table.javaName?uncap_first}.set${val.javaName?cap_first}(   tempDict.getDictName()  );
+					}
+				}
 				</#list>
 
 			</#if>

@@ -336,6 +336,8 @@ public class TableLogic {
                 }
             }else {
                 pageBO.setElement((String) EnumPageElement.text.getTheValue());
+                //处理文件类型和图片类型
+                setFileImage4Page(pageBO);
             }
         }
     }
@@ -360,10 +362,69 @@ public class TableLogic {
         if (columnBO.getColumnLength() != null &&
                 (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
                 ) {
+            if(
+                    !columnBO.getColumnName().toLowerCase().endsWith("file") &&
+                    !columnBO.getColumnName().toLowerCase().endsWith("files") &&
+                    !columnBO.getColumnName().toLowerCase().endsWith("image")&&
+                    !columnBO.getColumnName().toLowerCase().endsWith("images")
+                    ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static void setFileImage4Page(TcgColumnPageBO pageBO) {
+        if(isFiles(pageBO.getColumnConfig())){
+            pageBO.setElement(EnumPageElement.multifile.getValue());
+            pageBO.setElementNmae(EnumPageElement.multifile.getName());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
+        }else if(isFile(pageBO.getColumnConfig())){
+            pageBO.setElement(EnumPageElement.singlefile.getValue());
+            pageBO.setElementNmae(EnumPageElement.singlefile.getName());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
+        }else if(isImages(pageBO.getColumnConfig())){
+            pageBO.setElement(EnumPageElement.multiimage.getValue());
+            pageBO.setElementNmae(EnumPageElement.multiimage.getName());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
+        }else if(isImage(pageBO.getColumnConfig())){
+            pageBO.setElement(EnumPageElement.singleimage.getValue());
+            pageBO.setElementNmae(EnumPageElement.singleimage.getName());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
+        }
+    }
+    public static boolean isFiles(TcgColumnConfigBO columnBO) {
+
+        if( columnBO.getColumnName().toLowerCase().endsWith("files") ) {
             return true;
         }
         return false;
     }
+    public static boolean isFile(TcgColumnConfigBO columnBO) {
+
+        if( columnBO.getColumnName().toLowerCase().endsWith("file") ) {
+            return true;
+        }
+        return false;
+    }
+    public static boolean isImages(TcgColumnConfigBO columnBO) {
+
+        if (columnBO.getColumnName().toLowerCase().endsWith("images")) {
+            return true;
+        }
+        return false;
+    }
+    public static boolean isImage(TcgColumnConfigBO columnBO) {
+
+        if (columnBO.getColumnName().toLowerCase().endsWith("image")) {
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 
     private static boolean isDict(TcgColumnConfigBO columnBO , Column column){

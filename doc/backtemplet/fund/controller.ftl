@@ -22,7 +22,6 @@ import com.fullbloom.core.exceptions.DbException;
 import com.fullbloom.rbac.domain.TrUserBasicinfo;
 import ${project.projectPackage}.baseweb.controller.RestfulBaseController;
 import ${table.fullPackageName}.interfaces.${table.javaName}Service;
-import ${table.fullPackageName}.exceptions.${table.javaName}Exceptions;
 import ${table.fullPackageName}.domain.${table.javaName};
 
 import java.util.Arrays;
@@ -163,9 +162,9 @@ public class ${table.javaName}Controller extends FundBaseController {
 			autoSetInsertEntity(${table.javaName?uncap_first},loginUser);
 
 			int size = ${table.javaName?uncap_first}Service.save(${table.javaName?uncap_first});
-			ajaxJson = new AjaxJson(true,"${table.tableComment}保存成功！");
+			ajaxJson = new AjaxJson(true,"${table.tableComment}${op.operationName}成功！");
 			if (size<=0){
-				throw ${table.javaName}Exceptions.Save_Error;
+    			return new AjaxJson(false,"${table.tableComment}${op.operationName}失败");
 			}
 		}else {
 			return new AjaxJson(false,"调用错误！");
@@ -209,9 +208,9 @@ public class ${table.javaName}Controller extends FundBaseController {
 		autoSetUpdateEntity(${table.javaName?uncap_first},loginUser);
 
 		int size = ${table.javaName?uncap_first}Service.update(${table.javaName?uncap_first});
-		ajaxJson = new AjaxJson(true,"${table.tableComment}修改成功！");
+		ajaxJson = new AjaxJson(true,"${table.tableComment}${op.operationName}成功！");
 		if (size<=0){
-			throw ${table.javaName}Exceptions.Update_Error;
+    		return new AjaxJson(false,"${table.tableComment}${op.operationName}失败");
 		}
 
 		return ajaxJson;
@@ -250,10 +249,10 @@ public class ${table.javaName}Controller extends FundBaseController {
     		return new AjaxJson(false,"该记录您无权删除！");
 		}
 
-		AjaxJson ajaxJson = new AjaxJson(true,"投资者删除成功！");
+		AjaxJson ajaxJson = new AjaxJson(true,"${table.tableComment}${op.operationName}成功！");
 		int size = ${table.javaName?uncap_first}Service.delete(${table.javaName?uncap_first}s);
 		if(size != ${table.javaName?uncap_first}s.size()){
-			throw ${table.javaName}Exceptions.Delete_Error;
+    		return new AjaxJson(false,"${table.tableComment}${op.operationName}失败");
 		}
 		return ajaxJson;
 	}
@@ -346,7 +345,7 @@ public class ${table.javaName}Controller extends FundBaseController {
 
 			String []idString = ids.split(",");
 			if(idString == null || idString.length == 0 ){
-			return new AjaxJson(false,"请先选择要${op.operationName}的记录！");
+				return new AjaxJson(false,"请先选择要${op.operationName}的记录！");
 			}
 
 			List list = Arrays.asList(idString);

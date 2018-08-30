@@ -87,7 +87,7 @@
             assemblingComponent(){
                 this.tabs = [];
 
-                this.tabs.push({title: '基本信息', component: '${table.javaName}Edit');
+                this.tabs.push({title: '基本信息', component: '${table.javaName}Edit'});
                 this.$options.components['${table.javaName}Edit'] = _import('${table.fullResourceName?substring(1)}/${table.javaName}Edit');
 
 

@@ -23,7 +23,7 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 <#if !being.inParentClass>
 
 	<#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>
-    @EntityAttrAnnotation(attrName="${being.columnComment}",sort=${being.columnSort}<#if being.columnLength?exists && being.columnLength != 0 >,attrLength=${being.columnLength}</#if><#if being.columnScale?exists && being.columnScale != 0 >,attrDecimals=${being.columnScale}</#if>)
+    @EntityAttrAnnotation(attrName="${being.columnComment}",sort=${being.columnSort}<#if being.columnIsnull?exists && being.columnIsnull == '0' >,notNull=true</#if><#if (being.dictType?exists && being.dictType?length >0) >,enumType="dictType"</#if><#if being.columnLength?exists && being.columnLength != 0 >,attrLength=${being.columnLength}</#if><#if being.columnScale?exists && being.columnScale != 0 >,attrDecimals=${being.columnScale}</#if>)
     private ${being.javaSimpleClass}  ${being.javaName} ;
 
 </#if>

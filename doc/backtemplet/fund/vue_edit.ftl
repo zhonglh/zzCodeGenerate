@@ -128,6 +128,15 @@
                         <#elseif page.element == 'openwin' >
                             <Input v-model="formValidate.${page.columnConfig.javaName}Name"       @on-focus="select_${page.columnConfig.javaName}_${page.columnConfig.originalColumn.fkTableConfig.javaName}"/>
 
+
+
+
+                        <#elseif page.element == 'singlefile' >
+                        <#elseif page.element == 'multifile' >
+                        <#elseif page.element == 'singleimage' >
+                        <#elseif page.element == 'multiimage' >
+
+
                         <#else >
                             <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"      
                                 <#if page.events?exists>
