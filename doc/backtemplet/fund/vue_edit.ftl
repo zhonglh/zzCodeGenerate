@@ -19,15 +19,23 @@
             <Row style="padding : 10px ">
             </#if>
 
-            <#if page.editable == '0'>
+            <#if (page.existPage == '1' &&  page.editable == '0')>
+                <#if page.hiddenable == '0'>
                 <Col :xs="24" :sm="12" :md="12" :lg="12">
                 <FormItem label="${page.columnComment}" prop="${page.javaName}">
                     {{ formValidate.${page.javaName} }}
                 </FormItem>
                 </Col>
-            <#elseif page.editable == '1'>
+                </#if>
+            <#elseif (page.existPage == '1' && page.editable == '1')>
 
+                <#if (page.element == 'textarea' || page.element == 'singlefile' || page.element == 'multifile' || page.element == 'singleimage' || page.element == 'multiimage' ) >
+                <Col :xs="24" :sm="24" :md="24" :lg="24">
+                <#else >
                 <Col :xs="24" :sm="12" :md="12" :lg="12">
+                </#if>
+
+
                 <FormItem label="${page.columnComment}" prop="${page.javaName}">
                     <#if page?exists && page.columnConfig?exists>
                         <#if page.element == 'input' >
@@ -132,7 +140,9 @@
 
 
                         <#elseif page.element == 'singlefile' >
+                            <${page.columnConfig.javaName}Upload :businessType.sync="${page.columnConfig.javaName}" :action="uploadApi"  :fileSize="1" :format="uploadFormat" :multiple='singleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
                         <#elseif page.element == 'multifile' >
+                            <${page.columnConfig.javaName}Upload :businessType.sync="${page.columnConfig.javaName}" :action="uploadApi"  :format="uploadFormat" :multiple='multipleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
                         <#elseif page.element == 'singleimage' >
                         <#elseif page.element == 'multiimage' >
 
@@ -191,6 +201,7 @@
     import baseForm from '@/mixins/baseForm';
     import commonApi from '@/api/commonApi';
     import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
+    import fileUpload from '@/components/file-upload/file-upload';
 
 
     <#list fkTables as fkTable>
@@ -200,14 +211,31 @@
     export default {
         mixins:[baseForm],
         components: {
+
+        <#list showColumnPages as page>
+        <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
+            ${page.columnConfig.javaName}Upload :fileUpload,
+        </#if>
+        </#list>
+
+
         <#list fkTables as fkTable>
-            ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
+            ${fkTable.javaName}Search ,
         </#list>
 
 
         },
         data () {
             return {
+                multipleFile:true,
+                singleFile:false,
+
+        <#list showColumnPages as page>
+            <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
+            ${page.columnConfig.javaName}FileList :[],
+            </#if>
+        </#list>
+
                 width:500,
                 bsType: '',
                 maskClosable: false,
@@ -217,7 +245,6 @@
             ${page.javaName}:'',
             </#if>
         </#list>
-                aaaaaa:''
         },
 
         <#list fkTables as fkTable>

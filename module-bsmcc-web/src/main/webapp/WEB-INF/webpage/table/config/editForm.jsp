@@ -222,6 +222,7 @@
 
                         <th width="80">序号</th>
                         <th width="200">列名称</th>
+                        <th width="200">列说明</th>
                         <th width="200">列类型</th>
                         <th width="200">列长度</th>
                         <th width="200">小数点位数</th>
@@ -234,7 +235,6 @@
                         <th width="200">外键对应表SCHEMA</th>
                         <th width="200">外键对应表名</th>
                         <th width="200">外键对应列名</th>
-                        <th width="200">列说明</th>
                         <th width="200">Java类全称</th>
                         <th width="200">Java名称</th>
                         <th width="200">组编码</th>
@@ -246,6 +246,7 @@
                             <tr>
                                 <td>${status1.index+1 }</td>
                                 <td>${column.columnName }</td>
+                                <td><input type="text" size="15" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
                                 <td>${column.columnType }</td>
 
                                 <td>${column.columnLength }</td>
@@ -255,7 +256,7 @@
                                 <td>
                                     <input type="hidden" id="columns[${status1.index }].id" name="columns[${status1.index }].id" value="${column.id }" />
                                     <input type="hidden" id="columns[${status1.index }].tableId" name="columns[${status1.index }].tableId" value="${column.tableId }" />
-                                    <input type="number" size="8" required id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" size="10" />
+                                    <input type="number" style="width: 60px" required id="columns[${status1.index }].columnSort" name="columns[${status1.index }].columnSort" value="${column.columnSort }" size="10" />
                                 </td>
 
                                 <td>
@@ -297,7 +298,6 @@
                                 </td>
 
 
-                                <td><input type="text" size="15" required id="columns[${status1.index }].columnComment" name="columns[${status1.index }].columnComment" value="${column.columnComment }" /></td>
                                 <td><input type="text" size="10" required id="columns[${status1.index }].javaFullClass" name="columns[${status1.index }].javaFullClass" value="${column.javaFullClass }" /></td>
                                 <td><input type="text" size="10" required id="columns[${status1.index }].javaName" name="columns[${status1.index }].javaName" value="${column.javaName }" /></td>
                                 <td><input type="text" size="10" id="columns[${status1.index }].groupCode" name="columns[${status1.index }].groupCode" value="${column.groupCode }" /></td>
@@ -401,14 +401,15 @@
                         <thead>
 
                         <th width="80">序号</th>
+                        <th width="250">列名</th>
                         <th width="250">列说明</th>
                         <th width="150">是否真实列</th>
                         <th width="150">是否在界面里</th>
                         <th width="150">是否可编辑</th>
                         <th width="150">是否隐藏</th>
+                        <th width="150">界面元素</th>
                         <th width="150">是否必填</th>
                         <th width="150">是否在列表中显示</th>
-                        <th width="150">界面元素</th>
                         <th width="150">最大长度</th>
                         <th width="150">最小长度</th>
                         <th width="150">最大值</th>
@@ -421,6 +422,9 @@
                             <tr>
 
                                 <td>${status1.index+1 }</td>
+                                <td>
+                                    <c:if test="${empty columnPage.exColumn}">${columnPage.columnConfig.columnName}</c:if><c:if test="${empty columnPage.columnConfig}">${columnPage.exColumn.javaName}</c:if>
+                                </td>
                                 <td>
                                         ${columnPage.columnComment }
                                         <input type="hidden" id="columnPages[${status1.index }].id" name="columnPages[${status1.index }].id" value="${columnPage.id }" />
@@ -486,10 +490,10 @@
                                     </select>
                                 </td>
 
-                                <td><input type="number"  id="columnPages[${status1.index }].maxlength" name="columnPages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
-                                <td><input type="number"  id="columnPages[${status1.index }].minlength" name="columnPages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
-                                <td><input type="number"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
-                                <td><input type="number"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
+                                <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].maxlength" name="columnPages[${status1.index }].maxlength" value="${columnPage.maxlength }" /></td>
+                                <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].minlength" name="columnPages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
+                                <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
+                                <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
 
 
                             </tr>

@@ -214,7 +214,10 @@ public class TableLogic {
 
 
 
-    public static void initColumnPage(TcgColumnPageBO pageBO, TcgExColumnBO columnBO, ILoginUserEntity<String> sessionUserVO) {
+    public static void initColumnPage(TcgColumnPageBO pageBO, TcgExColumnBO exColumnBO, ILoginUserEntity<String> sessionUserVO) {
+
+        pageBO.setExColumn(exColumnBO);
+
         pageBO.setRealColumn(EnumYesNo.NO.getCode());
 
         pageBO.setExistPage(EnumYesNo.YES.getCode());
@@ -223,11 +226,11 @@ public class TableLogic {
         pageBO.setListShowable(pageBO.getEditable());
 
         pageBO.setElement((String) EnumPageElement.text.getTheValue());
-        if(columnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumn().getColumnIsfk())){
+        if(exColumnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsfk())){
             pageBO.setElement((String) EnumPageElement.openwin.getTheValue());
         }
 
-        if(EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumnDict())){
+        if(EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumnDict())){
             pageBO.setExistPage(EnumYesNo.NO.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
@@ -240,13 +243,15 @@ public class TableLogic {
 
         EntityUtil.autoSetInsertEntity(pageBO , sessionUserVO);
 
-        pageBO.setId(columnBO.getId());
-        pageBO.setTableId(columnBO.getTableId());
+        pageBO.setId(exColumnBO.getId());
+        pageBO.setTableId(exColumnBO.getTableId());
 
 
     }
 
     public static void initColumnPage(TcgColumnPageBO pageBO, TcgColumnConfigBO columnBO, ILoginUserEntity<String> sessionUserVO) {
+
+        pageBO.setColumnConfig(columnBO);
 
         pageBO.setRealColumn(EnumYesNo.YES.getCode());
 
@@ -284,6 +289,7 @@ public class TableLogic {
 
         processPageElement(pageBO, columnBO);
 
+
         if(columnBO.getColumnLength() != null && columnBO.getColumnLength() > 0){
             pageBO.setMaxlength(columnBO.getColumnLength());
         }
@@ -306,6 +312,8 @@ public class TableLogic {
      * @param columnBO
      */
     public static void processPageElement(TcgColumnPageBO pageBO, TcgColumnConfigBO columnBO) {
+
+
         if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())){
             pageBO.setElement((String) EnumPageElement.text.getTheValue());
         }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsdict())){
@@ -329,10 +337,15 @@ public class TableLogic {
                 pageBO.setElement((String) EnumPageElement.timestamp.getTheValue());
             }else if(clz == String.class){
                 pageBO.setElement((String) EnumPageElement.text.getTheValue());
-                if(columnBO.getColumnLength() > 100){
+                if(columnBO.getColumnLength() >= 100){
                     pageBO.setElement((String) EnumPageElement.textarea.getTheValue());
+                    pageBO.setListShowable(EnumYesNo.NO.getCode());
+                    //处理文件类型和图片类型
+                    setFileImage4Page(pageBO);
                 }else {
                     pageBO.setElement((String) EnumPageElement.text.getTheValue());
+                    //处理文件类型和图片类型
+                    setFileImage4Page(pageBO);
                 }
             }else {
                 pageBO.setElement((String) EnumPageElement.text.getTheValue());

@@ -96,6 +96,11 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgTableConfigBO> fkTables;
+    /**
+     * 所有外键对应的列名称
+     */
+    @TableField(exist = false)
+    private List<TcgColumnConfigBO> fkColumns;
 
 
     @TableField(exist = false)
@@ -109,6 +114,11 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgTableConfigBO> childFkTables;
+    /**
+     * 本表ID是哪些表的外键 , 外键的列名
+     */
+    @TableField(exist = false)
+    private List<TcgColumnConfigBO> childFkColumns;
 
 
 
@@ -226,6 +236,8 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.fkTables = fkTables;
     }
 
+
+
     public List<String> getDictTypes() {
         return dictTypes;
     }
@@ -248,5 +260,22 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setChildFkTables(List<TcgTableConfigBO> childFkTables) {
         this.childFkTables = childFkTables;
+    }
+
+
+    public List<TcgColumnConfigBO> getFkColumns() {
+        return fkColumns;
+    }
+
+    public void setFkColumns(List<TcgColumnConfigBO> fkColumns) {
+        this.fkColumns = fkColumns;
+    }
+
+    public List<TcgColumnConfigBO> getChildFkColumns() {
+        return childFkColumns;
+    }
+
+    public void setChildFkColumns(List<TcgColumnConfigBO> childFkColumns) {
+        this.childFkColumns = childFkColumns;
     }
 }

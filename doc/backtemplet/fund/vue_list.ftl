@@ -208,7 +208,7 @@
 
 
 
-
+    import onfire from 'onfire.js';
     import dialog from '@/utils/dialog'
     import commonApi from '@/api/commonApi';
     import tableList from '@/components/table-list/tableList'
@@ -312,6 +312,9 @@
     </#list>
 
             bsType: '',
+            fks:{
+
+            },
             searchForm:{
         <#list querys as being >
             <#if being.columnPage?exists>
@@ -479,7 +482,20 @@
 
         this.$nextTick(function () {
             let that = this;
+
+            <#list table.childFkColumns as fkColumn>
+            onfire.on('${fkColumn.fkTableConfig.javaName}',function (id ) {
+                that.fks.${fkColumn.javaName} = id;
+                this.findList();
+            });
+            </#list>
+
+
+
+
             this.findList();
+
+
 
 
         <#if queryDictSet?exists && (queryDictSet?size > 0) >

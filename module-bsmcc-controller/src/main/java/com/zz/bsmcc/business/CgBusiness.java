@@ -358,21 +358,24 @@ public class CgBusiness extends CgBaseBusiness{
 
         //处理 tableBO的 childFkTables , 就是拿到表的 子表信息
         for(TcgTableConfigBO tableConfig : tableConfigs){
-            if(EnumTableType.mainTable.getTheValue().equals(tableConfig.getTableType())){
                 tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
+                tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
                 for(TcgTableConfigBO childTable : tableConfigs){
                     if(tableConfig != childTable){
                         if(childTable.getFkTables() != null && !childTable.getFkTables().isEmpty()){
+                            int index = 0;
                             for(TcgTableConfigBO table : childTable.getFkTables()){
                                 if(table.getId().equals(tableConfig.getId()) ){
                                     tableConfig.getChildFkTables().add(childTable);
+                                    tableConfig.getChildFkColumns().add(childTable.getFkColumns().get(index));
                                     break;
                                 }
+                                index ++;
                             }
                         }
                     }
                 }
-            }
+
         }
 
         //生成代码
@@ -777,7 +780,9 @@ public class CgBusiness extends CgBaseBusiness{
     private void processColumnConfig(TcgTableConfigBO tableConfig, List<TcgColumnConfigBO> tcgColumnConfigBOs,
                                      Map<String, TcgTableConfigBO> tableConfigMap , Map<String , TcgColumnConfigBO> columnMap) {
 
-        Set<TcgTableConfigBO> fkTables = new HashSet<TcgTableConfigBO>();
+        List fkTables = new ArrayList<TcgTableConfigBO>();
+        List<TcgColumnConfigBO> fkColumns = new ArrayList<TcgColumnConfigBO>();
+
 
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
@@ -794,6 +799,7 @@ public class CgBusiness extends CgBaseBusiness{
                     }
                     columnConfigBO.setFkTableConfig(fkTableConfig);
                     fkTables.add(fkTableConfig);
+                    fkColumns.add(columnConfigBO);
                 }
 
 
@@ -885,7 +891,8 @@ public class CgBusiness extends CgBaseBusiness{
             }
         }
 
-        tableConfig.setFkTables(new ArrayList<>(fkTables));
+        tableConfig.setFkTables(fkTables);
+        tableConfig.setFkColumns(fkColumns);
 
     }
 
