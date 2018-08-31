@@ -8,10 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_all.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_all.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/module-bsmcc-web/target/" />
@@ -58,8 +55,8 @@
       <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="315" column="47" lean-forward="true" selection-start-line="315" selection-start-column="47" selection-end-line="315" selection-end-column="47" />
+            <state relative-caret-position="272">
+              <caret line="318" column="14" lean-forward="true" selection-start-line="318" selection-start-column="14" selection-end-line="318" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -827,14 +824,7 @@
       <workItem from="1535420361496" duration="17838000" />
       <workItem from="1535460295266" duration="18506000" />
       <workItem from="1535590223201" duration="17078000" />
-      <workItem from="1535676566124" duration="22423000" />
-    </task>
-    <task id="LOCAL-00077" summary="处理表格数据">
-      <created>1534156296109</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1534156296109</updated>
+      <workItem from="1535676566124" duration="23059000" />
     </task>
     <task id="LOCAL-00078" summary="处理表格数据">
       <created>1534209655410</created>
@@ -1172,7 +1162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535707250638</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="增加模板按钮样式的处理">
+      <created>1535709793947</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1535709793947</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1184,7 +1181,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="722765000" />
+    <option name="totallyTimeSpent" value="723401000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1740,8 +1737,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="315" column="47" lean-forward="true" selection-start-line="315" selection-start-column="47" selection-end-line="315" selection-end-column="47" />
+        <state relative-caret-position="272">
+          <caret line="318" column="14" lean-forward="true" selection-start-line="318" selection-start-column="14" selection-end-line="318" selection-end-column="14" />
           <folding />
         </state>
       </provider>
