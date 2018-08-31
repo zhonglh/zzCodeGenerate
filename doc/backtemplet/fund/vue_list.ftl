@@ -313,7 +313,9 @@
 
             bsType: '',
             fks:{
-
+            <#list table.fkColumns as fkColumn>
+                ${fkColumn.javaName}:'',
+            </#list>
             },
             searchForm:{
         <#list querys as being >
@@ -375,7 +377,7 @@
                                     that.showModelDialog(`${table.tableComment}详细`, 'all', true);
                                     that.${table.javaName} =  that.data[params.index];
                                     <#else >
-                                        showDialog('${operation.operationName}',${operation.operationBO.selectMode},'edit');
+                                        that.showModelDialog(`${table.tableComment}`, 'edit', true);
                                         that.${table.javaName} =  that.data[params.index];
                                     </#if>
                                 }
@@ -482,9 +484,8 @@
 
         this.$nextTick(function () {
             let that = this;
-
-            <#list table.childFkColumns as fkColumn>
-            onfire.on('${fkColumn.fkTableConfig.javaName}',function (id ) {
+            <#list table.fkColumns as fkColumn>
+            onfire.on('${fkColumn.fkTableConfig.javaName}Event',function (id ) {
                 that.fks.${fkColumn.javaName} = id;
                 this.findList();
             });

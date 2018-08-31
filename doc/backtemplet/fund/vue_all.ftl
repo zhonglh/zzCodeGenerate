@@ -74,7 +74,7 @@
         },
         watch: {
             ${table.javaName}(val ,oldVal){
-                onfire.fire('${table.javaName}',this.${table.javaName}['id']);
+                onfire.fire('${table.javaName}Event',this.${table.javaName}['id']);
             }
         },
         methods:{
