@@ -5,11 +5,15 @@ import com.zz.bsmcc.gen.entity.ColumnEntity;
 import com.zz.bsmcc.gen.entity.EnumEntity;
 import com.zz.bsmcc.gen.entity.TableEntity;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EntityUtils {
+
+
+	public static Logger logger = Logger.getLogger(EntityUtils.class);
 
 	/**
 	 * WLK_QYH_BASE_USER 转换为 wlkQyhBaseUser
@@ -117,11 +121,9 @@ public class EntityUtils {
 
 	public static void main(String[] args) {
 		// String column = "WLK_QYH_BASE_USER";
-		// System.out.println(column2JavaProperty(column ));
-		// System.out.println(comments2Enum("状态@0:正常,1:删除"));
-		System.out.println(getSequence("WLK_QYH_SIGN_RECORD"));
-		System.out.println(getSubPackage("WLK_QYH_SIGN_RECORD"));
-		System.out.println(getLastName("WLK_QYH_SIGN_RECORD"));
+		logger.debug(getSequence("WLK_QYH_SIGN_RECORD"));
+		logger.debug(getSubPackage("WLK_QYH_SIGN_RECORD"));
+		logger.debug(getLastName("WLK_QYH_SIGN_RECORD"));
 
 	}
 }

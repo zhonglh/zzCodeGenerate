@@ -22,7 +22,7 @@ public class GenAction {
 	public static final String ROOTPATH = Applications.get("root.path");
 
 	public static void logger(String log) {
-		System.out.println(log);
+
 	}
 
 	public static void genJava(TableEntity tableEntity, String packageName, String ftlName) throws IOException {

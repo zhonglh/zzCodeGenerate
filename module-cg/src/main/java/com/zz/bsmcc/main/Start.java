@@ -3,14 +3,18 @@ package com.zz.bsmcc.main;
 
 
 import com.zz.bsmcc.gen.action.GenAction;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Start {
+	public static Logger logger = Logger.getLogger(Start.class);
 
 	public static void main(String[] args) throws IOException {
+
+
 
 		List<String> tableNames = new ArrayList<String>();
 
@@ -24,12 +28,12 @@ public class Start {
 
 
 		for (String tableName : tableNames) {
-			System.out.println("开始生成：" + tableName);
+			logger.debug("开始生成：" + tableName);
 
 			GenAction.gen(tableName, author,schemeName);
 		}
 
-		System.err.println("生成成功");
+		logger.debug("生成成功");
 
 
 	}

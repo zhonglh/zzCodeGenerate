@@ -73,6 +73,7 @@
                     <div class="form-group">
                         <label>模块：</label>
                         <select id="moduleId" name="moduleId" class="form-control required">
+                            <option value="" ></option>
                             <c:forEach var="module"   items="${modules }"   varStatus="status1">
                                 <option value="${module.id }" >${module.moduleName}</option>
                             </c:forEach>

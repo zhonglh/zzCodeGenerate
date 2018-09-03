@@ -60,8 +60,7 @@ public class ConnectionDB {
             // 加载数据库驱动程序  
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println("加载驱动错误");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }  
     }  
   
@@ -107,7 +106,7 @@ public class ConnectionDB {
             affectedLine = preparedStatement.executeUpdate();  
   
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {  
             // 释放资源  
             closeAll();  
@@ -140,7 +139,7 @@ public class ConnectionDB {
             resultSet = preparedStatement.executeQuery();  
   
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }   
   
         return resultSet;  
@@ -176,7 +175,7 @@ public class ConnectionDB {
             }  
               
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {  
             closeAll();  
         }  
@@ -207,7 +206,7 @@ public class ConnectionDB {
             // 获得结果集列数  
             columnCount = rsmd.getColumnCount();  
         } catch (SQLException e1) {
-            System.out.println(e1.getMessage());
+            e1.printStackTrace();
         }  
   
         // 创建List  
@@ -223,7 +222,7 @@ public class ConnectionDB {
                 list.add(map);  
             }  
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {  
             // 关闭所有资源  
             closeAll();  
@@ -264,7 +263,7 @@ public class ConnectionDB {
             object = callableStatement.getObject(outParamPos);  
               
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {  
             // 释放资源  
             closeAll();  
@@ -282,7 +281,7 @@ public class ConnectionDB {
             try {  
                 resultSet.close();  
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }  
         }  
   
@@ -291,7 +290,7 @@ public class ConnectionDB {
             try {  
                 preparedStatement.close();  
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }  
         }  
           
@@ -300,7 +299,7 @@ public class ConnectionDB {
             try {  
                 callableStatement.close();  
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }  
         }  
   
@@ -309,7 +308,7 @@ public class ConnectionDB {
             try {  
                 connnection.close();  
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }  
         }     
     }  

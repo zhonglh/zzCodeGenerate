@@ -132,7 +132,7 @@ public class GenService {
 		String tableName = "t_u_user";
 		TableService.getTableComments(tableEntity, tableName,"woodmall");
 		TableService.getTableColumnsMeta(tableEntity, tableName,"woodmall");
-		System.out.println(tableEntity.getTableComments());
+
 	}
 
 }

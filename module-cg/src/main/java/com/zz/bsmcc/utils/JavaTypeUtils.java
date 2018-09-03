@@ -52,8 +52,5 @@ public class JavaTypeUtils {
 		String[] split = temp.split("\\.");
 		return split[split.length-1];
 	}
-	
-	public static void main(String[] args) {
-//		System.out.println(getJavaType("NUMBER"));
-	}
+
 }

@@ -3,6 +3,7 @@ package com.zz.bsmcc.core.util.table.engine.impl;
 import com.zz.bsmcc.core.util.table.engine.ReadDbProcess;
 import com.zz.bsmcc.core.util.table.pojo.Column;
 import com.zz.bsmcc.core.util.table.pojo.Table;
+import org.apache.log4j.Logger;
 
 /**
  * MySQL 数据库读取器
@@ -10,13 +11,15 @@ import com.zz.bsmcc.core.util.table.pojo.Table;
  */
 public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbProcess {
 
+    public Logger logger = Logger.getLogger(this.getClass());
+
     @Override
     protected String getReadAllTableSQL() {
         String sql =  "select table_name , table_schema , table_type , table_comment " +
                 "from information_schema.tables " +
                 "where table_schema not in ('information_schema','test' ) " +
                 "order by table_schema , table_name";
-        System.out.println("getReadAllTableSQL : "+sql);
+        logger.debug("getReadAllTableSQL : "+sql);
         return sql;
     }
 
@@ -25,7 +28,7 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
         String sql =  "select table_name , table_schema , table_type , table_comment " +
                 "from information_schema.tables T " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " ;
-        System.out.println("getReadOneTableSQL : "+sql);
+        logger.debug("getReadOneTableSQL : "+sql);
         return sql;
     }
 
@@ -34,7 +37,7 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
         String sql =  "SELECT column_name , column_comment , data_type , character_maximum_length , " +
                 "numeric_precision , numeric_scale , is_nullable " +
                 "from information_schema.COLUMNS T where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' ";
-        System.out.println("getReadColumnsByTable : "+sql);
+        logger.debug("getReadColumnsByTable : "+sql);
         return sql;
     }
 
@@ -44,7 +47,7 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
         String sql =  " select constraint_name from information_schema.TABLE_CONSTRAINTS t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_TYPE = 'UNIQUE'";
-        System.out.println("getReadIndexsByTable : "+sql);
+        logger.debug("getReadIndexsByTable : "+sql);
         return sql;
     }
 
@@ -53,7 +56,7 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
         String sql =  " select column_name from information_schema.KEY_COLUMN_USAGE t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_NAME = '"+indexName+"' " ;
-        System.out.println("getReadIndexColumnsByTable : "+sql);
+        logger.debug("getReadIndexColumnsByTable : "+sql);
         return sql;
     }
 
@@ -62,7 +65,7 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
         String sql =   " select constraint_name from information_schema.TABLE_CONSTRAINTS t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_TYPE = 'PRIMARY KEY'  and CONSTRAINT_NAME <> 'PRIMARY'";
-        System.out.println("getReadConstraintsByTable : "+sql);
+        logger.debug("getReadConstraintsByTable : "+sql);
         return sql;
     }
 
@@ -71,7 +74,7 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
         String sql =  " select column_name from information_schema.KEY_COLUMN_USAGE t " +
                 "where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' " +
                 "and CONSTRAINT_NAME = '"+constraintName+"' " ;
-        System.out.println("getReadConstraintColumnsByTable : "+sql);
+        logger.debug("getReadConstraintColumnsByTable : "+sql);
         return sql;
 
     }
