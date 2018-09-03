@@ -197,6 +197,7 @@
 
 <script>
 
+    import onfire from 'onfire.js';
     import dialog from '@/utils/dialog'
     import baseForm from '@/mixins/baseForm';
     import commonApi from '@/api/commonApi';
@@ -229,6 +230,11 @@
             return {
                 multipleFile:true,
                 singleFile:false,
+                fks:{
+                <#list table.fkColumns as fkColumn>
+                    ${fkColumn.javaName}:'',
+                </#list>
+                },
 
         <#list showColumnPages as page>
             <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
@@ -380,12 +386,31 @@
                 }
             });
 
+        },
+
+        findByFkId(fkColumnName, val) {
+            let that = this;
+            ${table.javaName}Api.detailByFk(fkColumnName,val,{
+                onSuccess(body){
+                    that.formValidate = body["${table.javaName?uncap_first}"];
+                    that.formValidate["+fkColumnName+"] = val;
+                }
+            });
+
         }
+
     },
     mounted() {
 
         this.$nextTick(function () {
             let that = this;
+
+        <#list table.fkColumns as fkColumn>
+            onfire.on('${fkColumn.fkTableConfig.javaName}Event',function (id ) {
+                that.fks.${fkColumn.javaName} = id;
+                that.findByFkId("${fkColumn.javaName}" , id);
+            });
+        </#list>
 
 
         <#if dictSet?exists && (dictSet?size > 0) >

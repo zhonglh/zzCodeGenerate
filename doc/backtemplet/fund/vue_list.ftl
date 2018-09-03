@@ -487,7 +487,7 @@
             <#list table.fkColumns as fkColumn>
             onfire.on('${fkColumn.fkTableConfig.javaName}Event',function (id ) {
                 that.fks.${fkColumn.javaName} = id;
-                this.findList();
+                that.findList();
             });
             </#list>
 

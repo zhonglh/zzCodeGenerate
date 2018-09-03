@@ -93,8 +93,13 @@
 
                 <#if table.childFkTables?exists >
                 <#list table.childFkTables as child>
+                <#if table.tableRelation?exists && table.tableRelation == 'one-multi'>
                 this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List'});
                 this.$options.components['${child.javaName}List'] = _import('${child.fullResourceName?substring(1)}/${child.javaName}List');
+                <#else >
+                    this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}Edit'});
+                    this.$options.components['${child.javaName}Edit'] = _import('${child.fullResourceName?substring(1)}/${child.javaName}Edit');
+                </#if>
                 </#list>
                 </#if>
 

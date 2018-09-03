@@ -14,6 +14,7 @@ public enum EnumDbColumnType implements EnumBase{
 
 	INT,
 	INTEGER,
+	BIGINT,
 	LONG,
 	FLOAT,
 	DOUBLE,
@@ -113,7 +114,7 @@ public enum EnumDbColumnType implements EnumBase{
 		else if(enumDbColumnType == INTEGER || enumDbColumnType == INT) {
 			return EnumJavaType._Integer;
 		}
-		else if(enumDbColumnType == LONG) {
+		else if(enumDbColumnType == LONG || enumDbColumnType == BIGINT) {
 			return EnumJavaType._Long;
 		}
 		else if(enumDbColumnType == DOUBLE) {

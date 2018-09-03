@@ -165,6 +165,7 @@ public class TableBusiness {
             e.printStackTrace();
         }catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
 
         return null;

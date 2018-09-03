@@ -93,9 +93,18 @@ public class TableBusinessServiceImpl implements TableBusinessService {
 
     @Override
     public boolean insertTable(List<TablePO> tablePOList) {
+        int index = 0;
         for(TablePO tablePO : tablePOList){
+            if(tablePO == null){
+                continue;
+            }
+            System.out.println("index:"+index++);
+            System.out.println("tcgTableConfigDAO:"+tcgTableConfigDAO);
+            System.out.println("tablePO.getTableBO():"+tablePO.getTableBO().getTableName());
             tcgTableConfigDAO.insert(tablePO.getTableBO());
             for(TcgColumnConfigBO columnConfigBO : tablePO.getColumns()) {
+                System.out.println("columnConfigBO:"+columnConfigBO.getColumnName());
+                System.out.println("columnConfigBO:"+columnConfigBO.getColumnComment());
                 tcgColumnConfigDAO.insert(columnConfigBO);
             }
             for(TcgExColumnBO exColumnBO : tablePO.getExColumns()) {

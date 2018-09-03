@@ -5,8 +5,10 @@ import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 
@@ -42,7 +44,6 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     @TableField(exist = false)
     private String queryModeName;
-
 
 
 
@@ -130,6 +131,8 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setDbConfigTitle(String dbConfigTitle) {
         this.dbConfigTitle = dbConfigTitle;
+
+
     }
 
     public String getProjectName() {

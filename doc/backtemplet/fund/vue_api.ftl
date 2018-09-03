@@ -8,10 +8,11 @@ let serverPath = process.env.SERVER_URL;
     return {
         list: serverPath + '${table.fullResourceName}/list',
         detail: serverPath + '${table.fullResourceName}/detail/',
+        detailByFk: serverPath + '${table.fullResourceName}/detailByFk/',
         checkUnique: serverPath + '${table.fullResourceName}/checkUnique/',
         checkAllUnique: serverPath + '${table.fullResourceName}/checkAllUnique/',
         <#list operations as op>
-        <#if op.operationResource != 'detail'>
+        <#if (op.operationResource != 'detail' && op.operationResource != 'detailByFk')>
         ${op.operationResource}: serverPath + '${table.fullResourceName}/${op.operationResource}'<#if op_has_next>,</#if>
         </#if>
         </#list>
@@ -57,9 +58,21 @@ let serverPath = process.env.SERVER_URL;
         return this.Get(this.restApi().detail + id, '' , callBack)
     }
 
+    /**
+    * 查看${table.tableComment} , 根据外键
+    * @param id
+    * @param callBack
+    * @returns {Promise<*>}
+    */
+    static detailByFk(fkName, fkId, callBack){
+        return this.Get(this.restApi().detailByFk + fkName + "/"+fkId, '' , callBack)
+    }
+
+
+
 
     <#list operations as op>
-    <#if op.operationResource != 'detail'>
+    <#if (op.operationResource != 'detail' && op.operationResource != 'detailByFk')>
     /**
     * ${op.operationName}${table.tableComment}
     * @param id

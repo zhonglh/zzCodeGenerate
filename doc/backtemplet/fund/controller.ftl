@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.fullbloom.fund.baseweb.controller.FundBaseController;
 import com.fullbloom.core.enums.EnumYesNo;
@@ -116,8 +117,34 @@ public class ${table.javaName}Controller extends FundBaseController {
 
 
 
-
 	/**
+	* 明细信息 , 根据外键获取明细信息
+	* @param id
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/detailByFk/{fkColumnName}/fkId" ,method = RequestMethod.GET)
+		public Object detailByFk(@PathVariable("fkColumnName") String fkColumnName ,@PathVariable("fkId") String fkId , HttpServletRequest request, HttpServletResponse response){
+		Map map = new HashMap<String,Object>();
+		${table.javaName} ${table.javaName?uncap_first} = new ${table.javaName}();
+		try {
+			BeanUtils.setProperty(${table.javaName?uncap_first},fkColumnName,fkId);
+		} catch (Exception e) {
+			return new AjaxJson(false,"数据参数错误！");
+		}
+		${table.javaName} result= ${table.javaName?uncap_first}Service.findTopOne(${table.javaName?uncap_first} );
+		map.put("${table.javaName?uncap_first}" , (result==null)?new ${table.javaName}() : result);
+		return map;
+	}
+
+
+
+
+
+
+
+/**
 	* 查询分页数据
 	* @param request
 	* @param response
