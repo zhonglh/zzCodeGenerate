@@ -208,40 +208,45 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 	private void processResult(${table.javaName} ${table.javaName?uncap_first}){
 
+
+	<#if project.pageUseView == '0' ||  (project.pageUseView == '1' && table.isTable == '0')>
+
 		if( ${table.javaName?uncap_first} == null ) {
 			return ;
 		}
 
-	<#if exColumnMap?exists>
+		<#if exColumnMap?exists>
 
-        TsDict tempDict = null;
+			TsDict tempDict = null;
 
-	<#list exColumnMap?keys as key>
-		<#if exColumnMap[key][0].originalColumnFk == '1'>
-			<#assign fkColumn = exColumnMap[key][0].originalColumn >
-		if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
-			${fkColumn.fkTableConfig.javaName} ${fkColumn.javaName}Obj = ${fkColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${fkColumn.getMethodName}());
-			if(${fkColumn.javaName}Obj != null){
+		<#list exColumnMap?keys as key>
+			<#if exColumnMap[key][0].originalColumnFk == '1'>
+				<#assign fkColumn = exColumnMap[key][0].originalColumn >
+			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
+				${fkColumn.fkTableConfig.javaName} ${fkColumn.javaName}Obj = ${fkColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${fkColumn.getMethodName}());
+				if(${fkColumn.javaName}Obj != null){
+				<#list exColumnMap[key] as val>
+					${table.javaName?uncap_first}.set${val.javaName?cap_first}(${fkColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
+				</#list>
+				}
+			}
+
+			<#else>
+
 			<#list exColumnMap[key] as val>
-				${table.javaName?uncap_first}.set${val.javaName?cap_first}(${fkColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
+				<#assign fkColumn = exColumnMap[key][0].originalColumn >
+			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
+				tempDict = tsDictService.findByTypeVal(  "${fkColumn.dictType}",${table.javaName?uncap_first}.${fkColumn.getMethodName}());
+				if(tempDict != null){
+					${table.javaName?uncap_first}.set${val.javaName?cap_first}(   tempDict.getDictName()  );
+				}
+			}
 			</#list>
-			}
-		}
 
-		<#else>
-
-		<#list exColumnMap[key] as val>
-			<#assign fkColumn = exColumnMap[key][0].originalColumn >
-		if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
-			tempDict = tsDictService.findByTypeVal(  "${fkColumn.dictType}",${table.javaName?uncap_first}.${fkColumn.getMethodName}());
-			if(tempDict != null){
-				${table.javaName?uncap_first}.set${val.javaName?cap_first}(   tempDict.getDictName()  );
-			}
-		}
+			</#if>
 		</#list>
-
 		</#if>
-	</#list>
+
 	</#if>
 
 	}
