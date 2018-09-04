@@ -9,10 +9,7 @@
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/module-bsmcc-web/target/" />
@@ -79,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="390" column="39" lean-forward="true" selection-start-line="390" selection-start-column="39" selection-end-line="390" selection-end-column="39" />
+            <state relative-caret-position="192">
+              <caret line="397" column="17" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
               <folding>
                 <element signature="e#10764#10795#0#HTML" expanded="true" />
               </folding>
@@ -91,7 +88,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TableLogic.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TableLogic.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
@@ -114,8 +111,8 @@
       <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="120" column="63" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="520" selection-end-column="0" />
+            <state relative-caret-position="312">
+              <caret line="385" column="44" lean-forward="true" selection-start-line="385" selection-start-column="44" selection-end-line="385" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -155,8 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tableConfig</find>
-      <find>fkTables</find>
       <find>javName</find>
       <find>fkColumn.fkTableConfig.javName</find>
       <find>search</find>
@@ -185,6 +180,8 @@
       <find>v-show</find>
       <find>名称</find>
       <find>findByFkId</find>
+      <find>fkColumnName</find>
+      <find>`</find>
     </findStrings>
     <replaceStrings>
       <replace>javaSimpleClass</replace>
@@ -284,9 +281,9 @@
         <option value="$PROJECT_DIR$/module-cg/src/main/java/com/zz/bsmcc/utils/EntityUtils.java" />
         <option value="$PROJECT_DIR$/module-cg/src/main/java/com/zz/bsmcc/utils/JavaTypeUtils.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
       </list>
     </option>
   </component>
@@ -974,14 +971,7 @@
       <workItem from="1535676566124" duration="28764000" />
       <workItem from="1535963264830" duration="734000" />
       <workItem from="1535976072667" duration="6343000" />
-      <workItem from="1536022790714" duration="5357000" />
-    </task>
-    <task id="LOCAL-00081" summary="处理表格数据">
-      <created>1534247888622</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1534247888622</updated>
+      <workItem from="1536022790714" duration="5750000" />
     </task>
     <task id="LOCAL-00082" summary="处理表格数据">
       <created>1534251251085</created>
@@ -1319,7 +1309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535981328564</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="增加模板按钮样式的处理">
+      <created>1536037204333</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1536037204334</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1331,7 +1328,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="741540000" />
+    <option name="totallyTimeSpent" value="741933000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1355,7 +1352,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30278233" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5057283" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5744681" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1394,7 +1391,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30278233" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5057283" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5744681" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1892,29 +1889,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="183" column="36" lean-forward="true" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="120" column="63" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="520" selection-end-column="0" />
+        <state relative-caret-position="312">
+          <caret line="385" column="44" lean-forward="true" selection-start-line="385" selection-start-column="44" selection-end-line="385" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="390" column="39" lean-forward="true" selection-start-line="390" selection-start-column="39" selection-end-line="390" selection-end-column="39" />
+        <state relative-caret-position="192">
+          <caret line="397" column="17" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
           <folding>
             <element signature="e#10764#10795#0#HTML" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="183" column="36" lean-forward="true" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
