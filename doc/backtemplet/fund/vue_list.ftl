@@ -217,7 +217,6 @@
     import timeFormat from '@/utils/timeformat';
     <#if project.queryMode == 'ordinary' >
     import selectSpan from '@/components/select-span/select-span';
-    import dialog from '@/utils/dialog'
     </#if>
 
     <#list queryFkTables as fkTable>
