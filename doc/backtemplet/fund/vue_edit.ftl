@@ -393,7 +393,7 @@
             ${table.javaName}Api.detailByFk(fkColumnName,val,{
                 onSuccess(body){
                     that.formValidate = body["${table.javaName?uncap_first}"];
-                    that.formValidate["+fkColumnName+"] = val;
+                    that.formValidate[`${fkColumnName}`] = val;
                 }
             });
 

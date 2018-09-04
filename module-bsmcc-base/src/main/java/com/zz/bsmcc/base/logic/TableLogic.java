@@ -181,12 +181,12 @@ public class TableLogic {
 
         String title = columnBO.getColumnComment();
         if(title.length()<=2){
-            title = title + "名称";
+            //title = title  + "名称";
         }else {
             if(title.toLowerCase().endsWith("id")){
-                title = title.substring(0, title.length() -2) + "名称";
+                title = title.substring(0, title.length() -2) ;//+ "名称";
             }else {
-                title = title + "名称";
+                //title = title + "名称";
             }
         }
         exColumnBO.setColumnTitle(title);
