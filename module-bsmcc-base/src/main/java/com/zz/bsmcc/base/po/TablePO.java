@@ -36,10 +36,11 @@ public class TablePO implements Serializable{
 
     //用于列表界面上查询的弹框选择 ， 需要是外键列或者同组有外键列的
     Map<String,List<TcgQueryConfigBO>> queryFks;
-    //用于列表界面上查询的 字典选择
-    List<TcgQueryConfigBO> queryDicts;
-    //用于列表界面上查询的弹框选择 ，
+    //用于列表界面上查询的弹框选择， 需要 去重
     List<TcgTableConfigBO> queryFkTables;
+
+    //用于列表界面上查询的 字典选择 , 不用去重
+    List<TcgQueryConfigBO> queryDicts;
     //用于列表界面上查询的 queryDicts 去重
     Map<String,TcgQueryConfigBO> queryDictSet;
 
@@ -48,10 +49,11 @@ public class TablePO implements Serializable{
 
     //用于编辑界面 , 需要是外键列或者同组有外键列的
     Map<String,List<TcgColumnPageBO>> fks;
+    //用于编辑界面 , 需要 去重
+    List<TcgTableConfigBO> fkTables;
+
     //用于编辑界面, 字典选择
     List<TcgColumnPageBO> dicts;
-    //用于编辑界面 ,
-    List<TcgTableConfigBO> fkTables;
     //用于编辑界面, dicts去重
     Map<String,TcgColumnPageBO> dictSet;
 

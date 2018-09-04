@@ -232,9 +232,6 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         try {
 
-
-
-
             if(tablePO.getColumns() != null && !tablePO.getColumns().isEmpty()) {
                 for (TcgColumnConfigBO item : tablePO.getColumns()) {
                     //替换掉空格 , Tab 键

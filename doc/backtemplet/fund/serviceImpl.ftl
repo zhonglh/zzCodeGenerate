@@ -14,12 +14,12 @@ import ${table.fullPackageName}.domain.${table.javaName};
 import ${table.fullPackageName}.dao.${table.javaName}Dao;
 
 
-<#list table.fkTables as being>
+<#list fkTables as being>
 import ${being.fullPackageName}.interfaces.${being.javaName}Service;
 </#list>
 
 
-<#list table.fkTables as being>
+<#list fkTables as being>
 import ${being.fullPackageName}.domain.${being.javaName};
 </#list>
 
