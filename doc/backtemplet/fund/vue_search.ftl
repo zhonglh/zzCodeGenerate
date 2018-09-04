@@ -120,11 +120,14 @@
 
 
         <#list queryFkTables as fkTable>
+
+            <#if fkTable.isBuildUi == '1'>
             <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :businessType="bsType"
                 <#list queryFks[fkTable.fullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                 </#list>
             />
+            </#if>
 
         </#list>
 
@@ -146,7 +149,9 @@
     </#if>
 
     <#list queryFkTables as fkTable>
+        <#if fkTable.isBuildUi == '1'>
     import ${fkTable.fullResourceFile}Search from '@/views/${fkTable.fullResourceName}/${fkTable.javaName}Search'
+        </#if>
     </#list>
 
     export default {
@@ -154,7 +159,10 @@
         components: {
             tableList,
         <#list queryFkTables as fkTable>
+
+            <#if fkTable.isBuildUi == '1'>
             ${fkTable.fullResourceFile}Search <#if fkTable_has_next>,</#if>
+            </#if>
         </#list>
         <#if project.queryMode == 'ordinary' >
             <#list queryDicts as dict>

@@ -231,6 +231,26 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         tablePO.setTableBO(tcgTableConfigBO);
 
         try {
+
+
+
+
+            if(tablePO.getColumns() != null && !tablePO.getColumns().isEmpty()) {
+                for (TcgColumnConfigBO item : tablePO.getColumns()) {
+                    //替换掉空格 , Tab 键
+                    if(StringUtils.isNotEmpty(item.getDictType())){
+                        item.setDictType(item.getDictType().trim().replaceAll("\t",""));
+                    }
+                    if(StringUtils.isNotEmpty(item.getFkSchema())){
+                        item.setFkSchema(item.getFkSchema().trim().replaceAll("\t",""));
+                    }
+                    if(StringUtils.isNotEmpty(item.getFkName())){
+                        item.setFkName(item.getFkName().trim().replaceAll("\t",""));
+                    }
+                }
+            }
+
+
             if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
                 for (TcgExColumnBO item : tablePO.getExColumns()){
                     if(item != null && StringUtils.isEmpty(item.getId())){

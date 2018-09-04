@@ -161,11 +161,14 @@
 
 
     <#list queryFkTables as fkTable>
+
+        <#if fkTable.isBuildUi == '1'>
         <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType"
             <#list queryFks[fkTable.fullResourceFile] as queryField >
                                    @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
             </#list>
         />
+        </#if>
 
     </#list>
 
@@ -220,7 +223,9 @@
     </#if>
 
     <#list queryFkTables as fkTable>
+    <#if fkTable.isBuildUi == '1'>
     import ${fkTable.javaName}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
+    </#if>
     </#list>
 
     export default {
@@ -261,7 +266,9 @@
 
         tableList,
     <#list queryFkTables as fkTable>
+        <#if fkTable.isBuildUi == '1'>
         ${fkTable.javaName}Search <#if fkTable_has_next>,</#if>
+        </#if>
     </#list>
     <#if project.queryMode == 'ordinary' >
         <#list queryDicts as dict>

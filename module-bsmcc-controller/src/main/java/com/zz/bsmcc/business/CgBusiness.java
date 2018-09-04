@@ -787,6 +787,18 @@ public class CgBusiness extends CgBaseBusiness{
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
+                //替换掉空格 , Tab 键
+                if(StringUtils.isNotEmpty(columnConfigBO.getDictType())){
+                    columnConfigBO.setDictType(columnConfigBO.getDictType().trim().replaceAll("\t",""));
+                }
+                if(StringUtils.isNotEmpty(columnConfigBO.getFkSchema())){
+                    columnConfigBO.setFkSchema(columnConfigBO.getFkSchema().trim().replaceAll("\t",""));
+                }
+                if(StringUtils.isNotEmpty(columnConfigBO.getFkName())){
+                    columnConfigBO.setFkName(columnConfigBO.getFkName().trim().replaceAll("\t",""));
+                }
+
+
                 if(EnumYesNo.YES.getCode().equals(columnConfigBO.getColumnIsfk())) {
                     columnConfigBO.setFkColumnName("id");
                     columnConfigBO.setFkJavaFullClass("id");
@@ -1108,6 +1120,14 @@ public class CgBusiness extends CgBaseBusiness{
             }
         }
         return null;
+    }
+
+
+    public static void main(String[] args) {
+        String sss = "111       ";
+        System.out.println(sss.length());
+        System.out.println(sss.trim().length());
+
     }
 
 

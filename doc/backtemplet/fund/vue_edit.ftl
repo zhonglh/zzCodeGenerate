@@ -182,11 +182,14 @@
 
 
     <#list fkTables as fkTable>
+
+        <#if fkTable.isBuildUi == '1'>
         <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType" @closeDialog="closeDialog('select${fkTable.javaName}')"
             <#list fks[fkTable.fullResourceFile] as field >
                                    @on-selected-${field.javaName}="selected${field.javaName}Callback"
             </#list>
         />
+        </#if>
 
     </#list>
 
@@ -206,7 +209,9 @@
 
 
     <#list fkTables as fkTable>
+    <#if fkTable.isBuildUi == '1'>
     import ${fkTable.javaName}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
+    </#if>
     </#list>
 
     export default {
@@ -221,7 +226,9 @@
 
 
         <#list fkTables as fkTable>
+            <#if fkTable.isBuildUi == '1'>
             ${fkTable.javaName}Search ,
+            </#if>
         </#list>
 
 
