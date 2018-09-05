@@ -141,6 +141,25 @@
                                     </select>
                                 </div>
                             </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否有多个Schema：</label>
+                                <div class="col-sm-8">
+                                    <select id="isMultiSchema" name="isMultiSchema"  class="form-control" onchange="changeMultiSchema(this)">
+                                        <option value="0" <c:if test="${entity.isMultiSchema ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                        <option value="1" <c:if test="${entity.isMultiSchema ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Scheam名称：</label>
+                                <div class="col-sm-8">
+                                    <input id="otherSchema" name="otherSchema" value="${entity.otherSchema }" class="form-control" placeholder="多个Schema用逗号隔开" readonly type="text" aria-required="true" aria-invalid="true"  class="error">
+                                </div>
+                            </div>
                             
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">
@@ -171,6 +190,17 @@
 
 		  }
 	});
+
+
+    function changeMultiSchema(ms){
+        var $ms = $(ms);
+        if($ms.val() == "1"){
+            $("#otherSchema").removeAttr("readonly");
+        }else {
+            $("#otherSchema").attr("readonly" , "readonly");
+            $("#otherSchema").val("");
+        }
+    }
 	
 	function submitForm(){
 
