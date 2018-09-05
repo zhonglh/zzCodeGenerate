@@ -5,6 +5,7 @@ import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
@@ -22,6 +23,7 @@ import com.zz.bms.util.base.java.IdUtils;
 
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.business.TableBusiness;
+import com.zz.bsmcc.core.TablesLocalThread;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
 import com.zz.bsmcc.core.util.table.pojo.*;
 import org.apache.commons.lang3.StringUtils;
@@ -176,12 +178,60 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         boolean success = false;
 
         String[] tablesn = request.getParameterValues("ids");
-
+        if(tablesn == null || tablesn.length == 0){
+            return new AjaxJson(false,"请先选择要添加的表");
+        }
 
         TcgDbConfigBO dbConfigBO = tcgDbConfigService.selectById(m.getDbId());
+        TcgProjectBO projectBO = tcgProjectService.selectById(m.getProjectId());
+
+
+
+        Map<String,List<String>> tablesMap = new HashMap<String,List<String>>();
+        try {
+            List<String> schemaList = null;
+            if(EnumYesNo.YES.getCode().equals(projectBO.getIsMultiSchema())) {
+                schemaList = new ArrayList<String>();
+                if(StringUtils.isNotEmpty(projectBO.getOtherSchema())){
+                    String[] schemas = projectBO.getOtherSchema().split(",");
+                    for(String schema : schemas) {
+                        if(StringUtils.isNotEmpty(schema)) {
+                            schema = schema.toLowerCase().trim().replaceAll("\t", "");
+                            schemaList.add(schema);
+                        }
+
+                    }
+                }
+            }
+
+            List<Table> dbTables = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readAllTable(
+                    new DbConfig(dbConfigBO.getDbType(), dbConfigBO.getDbUrl(), dbConfigBO.getDbUsername(), dbConfigBO.getDbPassword())
+            );
+            for(Table table : dbTables){
+                String tableSchema = table.getTableSchema();
+                String tableName = table.getTableName();
+                if(schemaList != null && !schemaList.contains(tableSchema)){
+                    continue;
+                }
+                List<String> list = tablesMap.get(tableSchema);
+                if(list == null){
+                    list = new ArrayList<String>();
+                    tablesMap.put(tableSchema,list);
+                }
+                list.add(tableName);
+            }
+        }catch(Exception e){
+            throw new BizException(e);
+        }
+
+
 
         List<TablePO> tablePOs = new ArrayList<TablePO>();
 
+        TablesLocalThread.setTables(null);
+        if(EnumYesNo.YES.getCode().equals(projectBO.getIsMultiSchema())) {
+            TablesLocalThread.setTablesMap(tablesMap);
+        }
         for(String sns : tablesn) {
             TcgTableConfigBO tcgTableConfigBO = new TcgTableConfigBO();
             BeanUtils.copyProperties(m , tcgTableConfigBO);
@@ -189,15 +239,20 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             tcgTableConfigBO.setSchemaName(sn[0]);
             tcgTableConfigBO.setTableName(sn[1]);
 
+
             if (StringUtils.isEmpty(tcgTableConfigBO.getDbId()) || StringUtils.isEmpty(tcgTableConfigBO.getTableName()) || StringUtils.isEmpty(tcgTableConfigBO.getProjectId())) {
                 continue;
             }
             if (this.isExist(tcgTableConfigBO)) {
                 continue;
             }
+            TablesLocalThread.setTables(tablesMap.get(tcgTableConfigBO.getSchemaName()));
             TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, sessionUserVO);
             tablePOs.add(tablePO);
+            TablesLocalThread.setTables(null);
         }
+        TablesLocalThread.setTables(null);
+        TablesLocalThread.setTablesMap(null);
 
         try {
             success = tableBusinessService.insertTable(tablePOs);

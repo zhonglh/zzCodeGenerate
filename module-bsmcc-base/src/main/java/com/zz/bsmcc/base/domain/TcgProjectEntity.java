@@ -89,6 +89,12 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
         //是否自动创建扩展列
         private String autoExColumn;
 
+        //是否有多个Schema
+        private String isMultiSchema ;
+
+        //Schema 名称
+        private String otherSchema;
+
         /**
         * 项目名称
         * @return the projectName
@@ -239,5 +245,22 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
 
         public void setAutoExColumn(String autoExColumn) {
             this.autoExColumn = autoExColumn;
+        }
+
+
+        public String getIsMultiSchema() {
+            return isMultiSchema;
+        }
+
+        public void setIsMultiSchema(String isMultiSchema) {
+            this.isMultiSchema = isMultiSchema;
+        }
+
+        public String getOtherSchema() {
+            return otherSchema;
+        }
+
+        public void setOtherSchema(String otherSchema) {
+            this.otherSchema = otherSchema;
         }
 }

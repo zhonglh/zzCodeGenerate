@@ -12,6 +12,7 @@ import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.domain.TcgProjectEntity;
+import com.zz.bsmcc.core.TablesLocalThread;
 import com.zz.bsmcc.core.enums.EnumDbColumnType;
 import com.zz.bsmcc.core.enums.EnumJavaType;
 import com.zz.bsmcc.core.enums.EnumPageElement;
@@ -29,6 +30,7 @@ import java.util.*;
  */
 public class TableLogic {
 
+    private static String regex = "^[a-z_]+[0-9]*$";
 
     public static List<String> insideFieldNames = new ArrayList<String>();
     static{
@@ -95,8 +97,8 @@ public class TableLogic {
         processJavaType(columnBO, typeMap);
         Set<String> fieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
 
-
-        columnBO.setColumnIskey("id".equals(column.getColumnName()) ? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
+        //约定每个表的主键为id
+        columnBO.setColumnIskey("id".equals(column.getColumnName().toLowerCase()) ? EnumYesNo.YES.getCode():EnumYesNo.NO.getCode());
 
         columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
         if(!fieldNames.contains(columnBO.getJavaName())) {
@@ -105,6 +107,13 @@ public class TableLogic {
                 if(isFk) {
                     columnBO.setColumnIsfk(EnumYesNo.YES.getCode());
                     columnBO.setFkColumn("id");
+                    //约定 schema外键和本表的是相同的
+                    columnBO.setFkSchema(tableBO.getSchemaName());
+                    //约定 外键的列名称是外键的表名称有一定的相似度，
+                    //如外键表是tb_project ,外键就是 project_id
+                    //如外键表是tb_project_asc ,外键就是 project_asc_id
+                    processFkTable(columnBO);
+
                 }
             }
         }
@@ -117,6 +126,15 @@ public class TableLogic {
                 boolean isDict = isDict(columnBO , column);
                 if(isDict) {
                     columnBO.setColumnIsdict(EnumYesNo.YES.getCode());
+                    String dictType = columnBO.getColumnName().toLowerCase();
+                    if(StringUtils.isNotEmpty(columnBO.getColumnOtherComment())){
+                        String[] others = columnBO.getColumnOtherComment().split("        ");
+                        String other0 = others[0].trim().replaceAll("\t","");
+                        if(isDictTypeStr(other0)){
+                            dictType = other0;
+                        }
+                    }
+                    columnBO.setDictType(dictType);
                 }
             }
         }
@@ -132,6 +150,7 @@ public class TableLogic {
         columnBO.setId(IdUtils.getId());
 
     }
+
 
 
     public static void processJavaType(TcgColumnConfigBO columnBO, Map<String, String> typeMap) {
@@ -200,6 +219,14 @@ public class TableLogic {
         exColumnBO.setJavaFullClass("java.lang.String");
         exColumnBO.setJavaSimpleClass("String");
         exColumnBO.setGroupCode(columnBO.getColumnName());
+
+        //约定， 名称列就是表名加name
+        //比如tb_project , 名称列就是project_name ;
+        //比如tb_fund_buyer,名称列就是fund_buyer_name ;
+        String fkColumnName = columnBO.getFkName();
+        fkColumnName = fkColumnName.substring(fkColumnName.indexOf("_")+1)+"_name";
+        exColumnBO.setFkColumnName(fkColumnName);
+
 
         exColumnBO.setColumnSort(columnBO.getColumnSort() + 1);
 
@@ -362,9 +389,18 @@ public class TableLogic {
      * @param column
      */
     public static void setTableParent(TcgTableConfigBO tableBO , Column column){
-        if(column.getColumnName().equalsIgnoreCase("pid") || column.getColumnName().equalsIgnoreCase("parent_id") ){
+        //约定， 如果是上级表的外键， 名称为pid 或者 parent_id
+        if(isTableParent(column.getColumnName()) ){
             tableBO.setIsTree(EnumYesNo.YES.getCode());
             tableBO.setParentFieldName(column.getColumnName());
+        }
+    }
+
+    public static boolean isTableParent(String columnName) {
+        if (columnName.equalsIgnoreCase("pid") || columnName.equalsIgnoreCase("parent_id")) {
+            return true;
+        }else  {
+            return false;
         }
     }
 
@@ -372,6 +408,7 @@ public class TableLogic {
 
 
     private static boolean isFk(TcgColumnConfigBO columnBO) {
+        //约定  外键列的长度为 32 , 36 , 64 , 并且不是file , files , image , images 结尾的
         if (columnBO.getColumnLength() != null &&
                 (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)
                 ) {
@@ -387,8 +424,12 @@ public class TableLogic {
         return false;
     }
 
-
+    /**
+     * 数字列是否图片 文件
+     * @param pageBO
+     */
     public static void setFileImage4Page(TcgColumnPageBO pageBO) {
+        //约定 ， 单文件以file结尾，  多文件以files结尾， 单图片以image结尾， 多图片以images结尾
         if(isFiles(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.multifile.getValue());
             pageBO.setElementNmae(EnumPageElement.multifile.getName());
@@ -437,16 +478,165 @@ public class TableLogic {
     }
 
 
-
-
-
+    /**
+     * 判断列是否是字典
+     * @param columnBO
+     * @param column
+     * @return
+     */
     private static boolean isDict(TcgColumnConfigBO columnBO , Column column){
-        //固定长度并且2位值的认为是 字典或者枚举
-        if (column.isFixedChar() && column.getCharmaxLength() <= 2) {
+        //约定 字典或者枚举 列类型为  char(1) , varchar(2)
+        if ( (column.isFixedChar() && column.getCharmaxLength() == 1) || column.getCharmaxLength() == 2) {
             return true;
         }
         return false;
     }
+
+
+    /**
+     * 判断字符串是否符合字典类型的命名
+     * @param dicttype
+     * @return
+     */
+    private static boolean isDictTypeStr(String dicttype){
+        if(StringUtils.isEmpty(dicttype)){
+            return false;
+        }
+        if(dicttype.length() > 100){
+            return false;
+        }
+        //约定 字典类型只能是数字加下划线
+        return dicttype.matches(regex);
+    }
+
+
+    /**
+     * 处理外键的schema 和 tableName
+     * @param columnBO
+     */
+    private static void processFkTable(TcgColumnConfigBO columnBO) {
+        //如果外键对应的是表自己
+        if(isTableParent(columnBO.getColumnName())){
+            columnBO.setFkName(columnBO.getFkTableConfig().getTableName());
+            return ;
+        }
+
+        List<String> tables = TablesLocalThread.getTables();
+        if(tables == null || tables.isEmpty()){
+            return ;
+        }
+        Map<String,List<String>> tablesMap = TablesLocalThread.getTablesMap();
+        String[] columnNames = columnBO.getFkColumnName().split("_");
+        if(columnNames.length<2){
+            return ;
+        }
+        String prefixFkTableNme = columnBO.getFkTableConfig().getTableName().substring(0,columnBO.getFkTableConfig().getTableName().indexOf("_")) ;
+
+
+        for(int index = 0 ; index < columnNames.length - 1; index ++){
+            String suffixFkTableNme = getSuffixTableName(columnNames , index);
+            String tableName = prefixFkTableNme + "_" + suffixFkTableNme;
+            //先在本schema 下精确查找
+            String table = findTableName(tableName , tables , true);
+            if(table == null){
+                //再在本scheam下匹配查找
+                table = findTableName(suffixFkTableNme , tables , false);
+            }
+            if(table == null && tablesMap != null && !tablesMap.isEmpty()) {
+                String[] st = null;
+                //在全数据库下精确查找
+                st = findTableName(tableName, tablesMap, true);
+
+                if(st == null){
+                    st = findTableName(suffixFkTableNme, tablesMap, false);
+                }
+
+                if(st != null){
+                    columnBO.setFkSchema(st[0]);
+                    columnBO.setFkName(st[1]);
+                    break;
+                }
+            }
+            if(StringUtils.isNotEmpty(table)){
+                columnBO.setFkName(table);
+                break;
+            }
+        }
+
+    }
+
+
+    /**
+     * 在本schema 下查找表名称
+     * @param tableName  表名的一部分
+     * @param tables     所有的表名
+     * @return
+     */
+    private static String findTableName(String tableName , List<String> tables , boolean isEquals ){
+        for(String table : tables){
+            if(isEquals){
+                if(table.equalsIgnoreCase(tableName)){
+                    return table;
+                }else {
+                    String tab = table.substring(table.indexOf("_")+1);
+                    if(tab.equalsIgnoreCase(tableName)){
+                        return table;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 在整个数据库 下查找表名称
+     * @param tableName  表名的一部分
+     * @param tablesMap     所有的表名
+     * @return
+     */
+    private static String[] findTableName(String tableName , Map<String,List<String>> tablesMap , boolean isEquals ){
+        if(tablesMap == null){
+            return null;
+        }
+        for(String key : tablesMap.keySet()) {
+            List<String> tables = tablesMap.get(key);
+            String table = findTableName(tableName ,tables , isEquals );
+            if(table != null){
+                return new String[]{key , table};
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 根据列名称或者表的后面部分
+     * 如列为 lead_user_id ,  获取 lead_user , 或者 user
+     * @param columnNames
+     * @param index
+     * @return
+     */
+    private static String getSuffixTableName(String[] columnNames, int index) {
+        StringBuilder sb = new StringBuilder("");
+        for( ; index < columnNames.length -1 ; index++){
+            sb.append(columnNames[index]).append("_");
+        }
+        if(sb.length() > 1){
+            sb = sb.deleteCharAt(sb.length()-1);
+        }
+        return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+        String column = "project_acs_id";
+        String table = "tb_project_acs";
+        System.out.println(table.substring(0,table.indexOf("_")) );
+        System.out.println(getSuffixTableName(column.split("_"),0));
+        System.out.println(getSuffixTableName(column.split("_"),1));
+    }
+
 
 
 }

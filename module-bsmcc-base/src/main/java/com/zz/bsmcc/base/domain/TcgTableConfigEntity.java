@@ -1,12 +1,6 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
-import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 
@@ -113,7 +107,7 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
     //@EntityAttrAnnotation(attrName="上级字段名称",sort=13  , attrLength=50    )
-	//树状数据时使用  
+	//树状数据时使用   , 列的名称
 	private String parentFieldName;
 
 

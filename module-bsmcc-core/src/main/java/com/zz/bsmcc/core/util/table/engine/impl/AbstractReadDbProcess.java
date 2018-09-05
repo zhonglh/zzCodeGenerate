@@ -45,6 +45,8 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				String tableSchema = rs.getString(2);
 				String tableType = rs.getString(3);
 				String tableComment = rs.getString(4);
+				tableName = tableName.toLowerCase();
+				tableSchema = tableSchema.toLowerCase();
 				table.setTableName(tableName);
 				table.setTableSchema(tableSchema);
 				table.setTableType(tableType);
@@ -99,6 +101,8 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 			while (rs.next()) {
 				String tableType = rs.getString(3);
 				String tableComment = rs.getString(4);
+
+
 				table.setTableName(tableName);
 				table.setTableSchema(tableSchema);
 				table.setTableType(tableType);
@@ -172,6 +176,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 
 				String filedName = rs.getString(1);
 				String filedComment = rs.getString(2);
+				filedName = filedName.toLowerCase();
 				String otherFiledComment = null;
 				if(StringUtils.isNotEmpty(filedComment)) {
 					StringBuilder commentSb = new StringBuilder();
@@ -350,7 +355,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 			comments = c[0].trim();
 			if(c.length > 1){
 				for(int i=1;i<c.length;i++){
-					otherComments += c[i].trim()+"  ";
+					otherComments += c[i].trim()+"        ";
 				}
 			}
 		}else {
