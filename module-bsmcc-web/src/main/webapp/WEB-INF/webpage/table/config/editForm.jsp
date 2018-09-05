@@ -102,10 +102,20 @@
 
 
                     <div class="form-group">
-                        <label>是否生成菜单权限SQL：</label>
+                        <label>是否生成菜单SQL：</label>
                         <select id="isBuildMenu" name="isBuildMenu"  class="form-control required">
                             <option value="1"  <c:if test="${entity.isBuildMenu ==  '1' }">selected="selected"</c:if> > 是 </option>
                             <option value="0"  <c:if test="${entity.isBuildMenu ==  '0' }">selected="selected"</c:if>  > 否 </option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>是否生成权限SQL：</label>
+                        <select id="isBuildRbac" name="isBuildRbac"  class="form-control required">
+                            <option value="1"  <c:if test="${entity.isBuildRbac ==  '1' }">selected="selected"</c:if> > 是 </option>
+                            <option value="0"  <c:if test="${entity.isBuildRbac ==  '0' }">selected="selected"</c:if>  > 否 </option>
                         </select>
                     </div>
 

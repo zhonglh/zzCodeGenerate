@@ -120,7 +120,7 @@
                     <#else>
                         @click="${operation.operationResource}"
                     </#if>
-                    <#if table.isBuildMenu == '1'>v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')"</#if>
+                    <#if table.isBuildRbac == '1'>v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')"</#if>
                     >${operation.operationName}</Button>
             </#if>
         </#list>

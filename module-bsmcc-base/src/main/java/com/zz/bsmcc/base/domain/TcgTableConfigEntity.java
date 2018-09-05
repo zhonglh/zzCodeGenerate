@@ -149,6 +149,10 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
 
+	//@EntityAttrAnnotation(attrName="是否生成权限数据",sort=17  , attrLength=1    )
+	private String isBuildRbac;
+
+
 
 
     //@EntityAttrAnnotation(attrName="Java名称",sort=18  , attrLength=50    )
@@ -414,5 +418,13 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	public void setIsBuildUi(String isBuildUi) {
 		this.isBuildUi = isBuildUi;
+	}
+
+	public String getIsBuildRbac() {
+		return isBuildRbac;
+	}
+
+	public void setIsBuildRbac(String isBuildRbac) {
+		this.isBuildRbac = isBuildRbac;
 	}
 }

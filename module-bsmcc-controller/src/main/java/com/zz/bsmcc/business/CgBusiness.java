@@ -568,16 +568,7 @@ public class CgBusiness extends CgBaseBusiness{
             tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList())
         );
 
-        /*
 
-        List listColumnPages = new ArrayList();
-        for(TcgColumnPageBO page : tablePO.getColumnPages()){
-            if(EnumYesNo.YES.getCode().equals(page.getListShowable())){
-                listColumnPages.add(page);
-            }
-        }
-        freemarkerModel.put("listColumnPages",listColumnPages);
-        */
 
 
 
