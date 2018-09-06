@@ -2,6 +2,8 @@ package com.zz.bsmcc.controller;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
@@ -503,6 +505,15 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
 
+    }
+
+
+
+    @Override
+    protected Wrapper buildWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {
+        Wrapper wrapper = query.buildWrapper();
+        wrapper.orderBy("is_table" , false);
+        return wrapper;
     }
 
 	@Override

@@ -1,6 +1,7 @@
 package com.zz.bsmcc.business;
 
 
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
@@ -116,7 +117,9 @@ public class CgBusiness extends CgBaseBusiness{
         Map<String,TcgTableConfigBO> tableConfigMap = new HashMap<String,TcgTableConfigBO>();
         TcgTableConfigQuery tableConfigQuery = new TcgTableConfigQueryImpl();
         tableConfigQuery.projectId(projectBO.getId());
-        List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.selectList(tableConfigQuery.buildWrapper());
+        Wrapper tableWrapper = tableConfigQuery.buildWrapper();
+        tableWrapper.orderBy("is_table" , false);
+        List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.selectList(tableWrapper);
 
         if(tableConfigs != null && !tableConfigs.isEmpty()){
             tableConfigs.sort(new Comparator<TcgTableConfigBO>(){
