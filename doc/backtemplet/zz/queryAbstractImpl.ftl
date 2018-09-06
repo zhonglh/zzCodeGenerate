@@ -34,7 +34,7 @@ public abstract class ${table.javaName}AbstractQueryImpl<PK extends Serializable
             protected String ${being.javaName}_NOTLIKE;
 
 		</#if>
-	<#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" >
+	<#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" || being.columnType=="BIGINT" >
         protected ${being.javaSimpleClass} ${being.javaName};
         protected ${being.javaSimpleClass} ${being.javaName}_NE;
         protected ${being.javaSimpleClass} ${being.javaName}_GT;
@@ -42,7 +42,7 @@ public abstract class ${table.javaName}AbstractQueryImpl<PK extends Serializable
         protected ${being.javaSimpleClass} ${being.javaName}_LT;
         protected ${being.javaSimpleClass} ${being.javaName}_LE;
 
-	<#elseif being.columnType=="DATE" || being.columnType=="TIMESTAMP" >
+	<#elseif being.columnType=="DATE" || being.columnType=="DATETIME" || being.columnType=="TIMESTAMP" >
         protected ${being.javaSimpleClass} ${being.javaName};
         protected ${being.javaSimpleClass} ${being.javaName}_NE;
         protected ${being.javaSimpleClass} ${being.javaName}_GT;
@@ -51,8 +51,8 @@ public abstract class ${table.javaName}AbstractQueryImpl<PK extends Serializable
         protected ${being.javaSimpleClass} ${being.javaName}_LE;
 
 	<#else>
-        //todo 生成代码错误 , 数据库类型没有包括
-        ${being.columnType};
+
+        //todo ${being.columnType} ${being.javaName};
 	</#if>
 </#list>
 

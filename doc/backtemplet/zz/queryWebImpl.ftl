@@ -33,8 +33,9 @@ public class ${table.javaName}QueryWebImpl<PK extends Serializable> extends ${ta
 		</#if>
 
 	<#else>
-        //todo 生成代码错误 , 数据库类型没有包括
-        ${being.columnType};
+
+
+        //todo ${being.columnType} ${being.javaName};
 	</#if>
 </#list>
 
@@ -159,7 +160,7 @@ public class ${table.javaName}QueryWebImpl<PK extends Serializable> extends ${ta
                 this.${being.javaName}_NOTLIKE = ${being.javaName}_NOTLIKE;
             }
             </#if>
-    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" >
+    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" || being.columnType=="BIGINT" >
             public ${being.javaSimpleClass} get${being.javaName?cap_first}() {
                 return ${being.javaName};
             }
@@ -208,7 +209,7 @@ public class ${table.javaName}QueryWebImpl<PK extends Serializable> extends ${ta
                 this.${being.javaName}_LE = ${being.javaName}_LE;
             }
 
-    <#elseif being.columnType=="DATE" || being.columnType=="TIMESTAMP" >
+    <#elseif being.columnType=="DATE" || being.columnType=="DATETIME" || being.columnType=="TIMESTAMP" >
             public ${being.javaSimpleClass} get${being.javaName?cap_first}() {
                 return ${being.javaName};
             }
@@ -257,8 +258,8 @@ public class ${table.javaName}QueryWebImpl<PK extends Serializable> extends ${ta
                 this.${being.javaName}_LE = ${being.javaName}_LE;
             }
         <#else>
-            //todo 生成代码错误 , 数据库类型没有包括
-            ${being.columnType};
+
+            //todo ${being.columnType} ${being.javaName};
         </#if>
 </#list>
 }

@@ -171,6 +171,12 @@ public class TableBusiness {
                         }
                     }
                 }
+
+                if(StringUtils.isEmpty(tableBO.getMainTableName())){
+                    tableBO.setIsBuildRbac(EnumYesNo.NO.getCode());
+                    tableBO.setIsBuildUi(EnumYesNo.NO.getCode());
+                    tableBO.setIsBuildMenu(EnumYesNo.NO.getCode());
+                }
             }
 
             tablePO.setTableBO(tableBO);

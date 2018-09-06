@@ -3,6 +3,8 @@ package com.zz.bsmcc.business;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.db.entity.*;
+import com.zz.bms.core.enums.EnumBase;
+import com.zz.bms.core.enums.EnumSearchType;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.util.base.data.StringFormatKit;
@@ -24,10 +26,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -98,6 +97,9 @@ public class CgBusiness extends CgBaseBusiness{
      * @param templets
      */
     public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets ) {
+        //所有的字典类型
+        Map<String,String> dictTypeMap = new HashMap<String,String>();
+
         Map<String,TablePO> tablePOMap = new HashMap<String,TablePO>();
 
         Map<String , TcgTempletGroupOperationBO> operationBOMap = getOperations(templets.get(0).getGroupId());
@@ -121,16 +123,6 @@ public class CgBusiness extends CgBaseBusiness{
         tableWrapper.orderBy("is_table" , false);
         List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.selectList(tableWrapper);
 
-        if(tableConfigs != null && !tableConfigs.isEmpty()){
-            tableConfigs.sort(new Comparator<TcgTableConfigBO>(){
-                @Override
-                public int compare(TcgTableConfigBO o1, TcgTableConfigBO o2) {
-                    return o1.getIsTable().compareTo(o2.getIsTable());
-                }
-            });
-        }else {
-            return ;
-        }
 
 
         for(TcgTableConfigBO tableConfig : tableConfigs){
@@ -303,7 +295,7 @@ public class CgBusiness extends CgBaseBusiness{
                         tableConfig.setTableOtherComment(po.getTableBO().getTableOtherComment());
                         tableConfig.setTableComment(po.getTableBO().getTableComment());
                         //视图的实体类是继承表的实体类， 需要重新设置列是否要在类中
-                        processColumnConfig(tableConfig , columns , tablePOMap.get( po.getTableBO().getId()).getColumns());
+                        processColumnConfig(tableConfig , columns , po.getColumns());
 
                         //将表的 约束加到视图中来
                         if(indexs == null || indexs.isEmpty()){
@@ -314,6 +306,12 @@ public class CgBusiness extends CgBaseBusiness{
 
 
 
+            }
+
+            for(TcgColumnConfigBO column : columns){
+                if(EnumYesNo.YES.getCode().equals(column.getColumnIsdict()) && StringUtils.isNotEmpty(column.getDictType())){
+                    dictTypeMap.put(column.getDictType() , column.getColumnComment());
+                }
             }
 
 
@@ -395,7 +393,13 @@ public class CgBusiness extends CgBaseBusiness{
         for(TablePO tablePO : tablePOMap.values()){
             cgCode(tablePO, projectBO, templets);
         }
+
+        if(!dictTypeMap.isEmpty()){
+
+            DictTypeBusiness.buildDictType(projectBO, dictTypeMap);
+        }
     }
+
 
     /**
      * 处理 columnPage 的 events , validates
@@ -436,24 +440,10 @@ public class CgBusiness extends CgBaseBusiness{
      */
     private void cgCode(TablePO tablePO , TcgProjectBO projectBO, List<TcgTempletBO> templets) {
 
-        String basePath = Applications.getUsrDir()+ File.separator + "cg";
-        ILoginUserEntity session = Applications.getLoginUserEntity();
-
-        if(session != null ){
-            basePath = basePath + File.separator + session.getId();
-        }
+        String basePath = BusinessUtil.getBasePath();
 
 
-        String projectNote = projectBO.getProjectNote();
-        StringBuilder projectNoteBuild = new StringBuilder("");
-        if(StringUtils.isNotEmpty(projectNote)){
-            String[] notes = projectNote.split("\n");
-            projectNoteBuild.append("/**").append("\n");
-            for(String note : notes ){
-                projectNoteBuild.append(" * ").append(note).append("\n");
-            }
-            projectNoteBuild.append(" */").append("\n");
-        }
+        StringBuilder projectNoteBuild = BusinessUtil.getProjectNote(projectBO);
 
 
 
@@ -466,10 +456,7 @@ public class CgBusiness extends CgBaseBusiness{
                 continue;
             }
 
-            if(
-                    this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName()) ||
-                    this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName())
-                    ){
+            if( this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName())  ){
                 if("java".equalsIgnoreCase(templet.getFileType()) || "xml".equalsIgnoreCase(templet.getFileType())){
                     //第三方（或者组件）用到的表， Java和XML文件将不再生成
                     continue;
@@ -494,52 +481,29 @@ public class CgBusiness extends CgBaseBusiness{
                     (templet.getFileSuffix().isEmpty()?"":templet.getFileSuffix()) +
                     "."+templet.getFileType();
 
-            OutputStream output = null;
-            try {
 
-                Map<String  , Object >  model = buildModel(tablePO , projectBO);
+            Map<String  , Object >  model = buildModel(tablePO , projectBO);
 
-                model.put("templet" , templet) ;
+            model.put("templet" , templet) ;
 
-                logger.debug("table name : "+tablePO.getTableBO().getTableName() + "  Templet : "+templet.getTempletTitle());
 
-                String templetContent = templet.getTempletContent();
+            String templetContent = templet.getTempletContent();
 
-                //生成的 Java 文件加上项目的总注释
-                if("java".equalsIgnoreCase(templet.getFileType())) {
-                    templetContent =  projectNoteBuild.toString() + templetContent;
-                }
-
-                String result = FreemarkerUtils.renderString( templetContent , model);
-
-                if(result != null && !result.isEmpty()){
-                    File dir = new File(filePath);
-                    if(!dir.exists()){
-                        dir.mkdirs();
-                    }
-                    File f = new File(dir.getAbsolutePath() , fileName);
-                    output = new FileOutputStream(f);
-                    IOUtils.write(result , output , "UTF-8");
-                    output.flush();
-                    output.close(); output = null;
-                }
-            } catch (Exception e) {
-                throw new BizException(e);
-            }finally {
-                if(output != null){
-                    try {
-                        output.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    output = null;
-                }
+            //生成的 Java 文件加上项目的总注释
+            if("java".equalsIgnoreCase(templet.getFileType())) {
+                templetContent =  projectNoteBuild.toString() + templetContent;
             }
+
+            String result = FreemarkerUtils.renderString( templetContent , model);
+
+            BusinessUtil.buildFile(filePath, fileName, result);
 
         }
 
 
     }
+
+
 
 
     /**
@@ -984,14 +948,14 @@ public class CgBusiness extends CgBaseBusiness{
         if(EnumYesNo.YES.getCode().equals(projectBO.getPackageIncludeModule())) {
             if (StringUtils.isNotEmpty(tableConfig.getModuleId())) {
                 if (moduleConfigMap.containsKey(tableConfig.getModuleId())) {
-                    //fullResourceName = moduleConfigMap.get(tableConfig.getModuleId()).getModuleFullResource();
+                    fullResourceName = moduleConfigMap.get(tableConfig.getModuleId()).getModuleFullResource();
                     fullPackageName = fullResourceName.replaceAll("/", ".");
                 }
             }
         }
 
-        //fullResourceName = fullResourceName + "/" + tableConfig.getResourceName();
-        fullResourceName = (tableConfig.getResourceName().startsWith("/")? "" : "/") + tableConfig.getResourceName();
+        String tableSourceName = (tableConfig.getResourceName().startsWith("/")? "" : "/") + tableConfig.getResourceName();
+        fullResourceName = fullResourceName +  tableSourceName;
         tableConfig.setFullResourceName(fullResourceName);
 
         String fullResourceFile = fullResourceName;

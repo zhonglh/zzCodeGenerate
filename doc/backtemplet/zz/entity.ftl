@@ -5,12 +5,13 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.Constant;
-import ${table.parentClass};
 <#list table.importClasss as importClass>
 import ${importClass};
 </#list>
-<#if table.isTable == '0'>
+<#if (table.isTable == '0' && table.mainTableIdConfig?exists)>
 import ${table.fullPackageName}.domain.${table.mainTableIdConfig.javaName}Entity;
+<#else >
+import ${table.parentClass};
 </#if>
 /**
  * ${table.tableComment} 实体类
@@ -20,7 +21,7 @@ import ${table.fullPackageName}.domain.${table.mainTableIdConfig.javaName}Entity
  * @author ${project.projectAuthor}
  * @date ${.now}
  */
-public class ${table.javaName}Entity extends <#if table.isTable == '0'>${table.mainTableIdConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable{
+public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table.mainTableIdConfig?exists)>${table.mainTableIdConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;

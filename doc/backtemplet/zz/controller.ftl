@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RequestMapping("${table.fullResourceName}")
 @Controller
-public class ${table.javaName}Controller extends MyBaseController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl> {
+public class ${table.javaName}Controller extends DefaultController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl> {
 
 
 

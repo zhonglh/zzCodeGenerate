@@ -19,7 +19,7 @@ public class CgBaseBusiness {
      */
     public boolean isComponent(String schemaName , String tableName){
         String table = tableName.toLowerCase();
-        return table.startsWith("tr") || table.startsWith("ts") || table.startsWith("vr") || table.startsWith("vs");
+        return false;
     }
 
 

@@ -36,11 +36,11 @@ public class ${table.javaName}QueryImpl<PK extends Serializable> extends ${table
         private List<String> ${being.javaName}_IN;
         private List<String> ${being.javaName}_NOTIN;
 		</#if>
-    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" >
-    <#elseif being.columnType=="DATE" || being.columnType=="TIMESTAMP" >
+    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" || being.columnType=="BIGINT">
+    <#elseif being.columnType=="DATE"  || being.columnType=="DATETIME" || being.columnType=="TIMESTAMP" >
     <#else>
-        //todo 生成代码错误 , 数据库类型没有包括
-        ${being.columnType};
+
+        //todo ${being.columnType} ${being.javaName};
 	</#if>
 </#list>
 
@@ -219,7 +219,7 @@ public class ${table.javaName}QueryImpl<PK extends Serializable> extends ${table
 
             </#if>
 
-    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" >
+    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" || being.columnType=="BIGINT">
         @Override
         public ${table.javaName}Query ${being.javaName}(${being.javaSimpleClass} ${being.javaName}) {
             if(!IdUtils.isEmpty(${being.javaName})){
@@ -268,7 +268,7 @@ public class ${table.javaName}QueryImpl<PK extends Serializable> extends ${table
             return this;
         }
 
-    <#elseif being.columnType=="DATE" || being.columnType=="TIMESTAMP" >
+    <#elseif being.columnType=="DATE" || being.columnType=="DATETIME" || being.columnType=="TIMESTAMP" >
         @Override
         public ${table.javaName}Query ${being.javaName}(${being.javaSimpleClass} ${being.javaName}) {
             if(!IdUtils.isEmpty(${being.javaName})){
@@ -319,8 +319,8 @@ public class ${table.javaName}QueryImpl<PK extends Serializable> extends ${table
         }
 
         <#else>
-            //todo 生成代码错误 , 数据库类型没有包括
-            ${being.columnType};
+
+        //todo ${being.columnType} ${being.javaName};
         </#if>
 </#list>
 

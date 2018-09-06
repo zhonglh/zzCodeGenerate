@@ -21,15 +21,22 @@ public enum EnumDbColumnType implements EnumBase{
 	NUMBER,
 	NUMERIC,
 	DECIMAL,
+
+	BOOL,
+
+
+
 	CHAR,
 	VARCHAR,
+	VARCHAR2,
+	LONGTEXT,
+
 	DATE,
 	DATETIME,
 	TIMESTAMP,
 	TINYINT,
 	SMALLINT,
 	SHORT,
-	VARCHAR2,
 	CLOB,
 	BLOB,
 	
@@ -100,15 +107,16 @@ public enum EnumDbColumnType implements EnumBase{
 		}
 		
 		
-		if(enumDbColumnType == CHAR) {
+		if(enumDbColumnType == CHAR || enumDbColumnType == VARCHAR  || enumDbColumnType == VARCHAR2  || enumDbColumnType == LONGTEXT) {
 			return EnumJavaType._String;
 		}
-		if(enumDbColumnType == VARCHAR) {
-			return EnumJavaType._String;
+
+
+
+		if(enumDbColumnType == BOOL) {
+			return EnumJavaType._Boolean;
 		}
-		if(enumDbColumnType == VARCHAR2) {
-			return EnumJavaType._String;
-		}
+
 		
 		
 		else if(enumDbColumnType == INTEGER || enumDbColumnType == INT) {

@@ -6,7 +6,7 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import ${table.fullPackageName}.dao.${table.javaName}DAO;
-<#if table.isTable == '0'>
+<#if (table.isTable == '0' && table.mainTableIdConfig?exists)>
 import ${table.fullPackageName}.dao.${table.mainTableIdConfig.javaName}DAO;
 </#if>
 import ${table.fullPackageName}.service.${table.javaName}Service;
@@ -30,12 +30,14 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 
 	<#list table.fkTables as being>
+	<#if ((table.mainTableIdConfig?exists && table.mainTableIdConfig.id!=being.id && table.id!=being.id) || (!table.mainTableIdConfig?exists && table.id!=being.id))>
     @Autowired
     private ${being.javaName}DAO ${being.javaName?uncap_first}DAO;
+	</#if>
 	</#list>
 
 
-	<#if table.isTable == '1'>
+	<#if (table.isTable == '1' || ! table.mainTableIdConfig?exists) >
 	@Autowired
 	private ${table.javaName}DAO ${table.javaName?uncap_first}DAO ;
 

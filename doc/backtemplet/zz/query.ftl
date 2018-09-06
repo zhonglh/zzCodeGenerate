@@ -46,7 +46,7 @@ public interface ${table.javaName}Query<PK extends Serializable> extends Query<$
         public ${table.javaName}Query ${being.javaName}IsNotNull();
 
 		</#if>
-    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" >
+    <#elseif being.columnType=="INT" || being.columnType=="DOUBLE" || being.columnType=="DECIMAL" || being.columnType=="LONG"  || being.columnType=="NUMBER" || being.columnType=="BIGINT" >
         public ${table.javaName}Query ${being.javaName}(${being.javaSimpleClass} ${being.javaName});
         public ${table.javaName}Query ${being.javaName}Not(${being.javaSimpleClass} ${being.javaName}Not);
         public ${table.javaName}Query ${being.javaName}GreaterThan(${being.javaSimpleClass} ${being.javaName}GreaterThan);
@@ -54,7 +54,7 @@ public interface ${table.javaName}Query<PK extends Serializable> extends Query<$
         public ${table.javaName}Query ${being.javaName}LessThan(${being.javaSimpleClass} ${being.javaName}LessThan);
         public ${table.javaName}Query ${being.javaName}LessEqual(${being.javaSimpleClass} ${being.javaName}LessEqual);
 
-    <#elseif being.columnType=="DATE" || being.columnType=="TIMESTAMP" >
+    <#elseif being.columnType=="DATE" || being.columnType=="DATETIME"  || being.columnType=="TIMESTAMP" >
         public ${table.javaName}Query ${being.javaName}(${being.javaSimpleClass} ${being.javaName});
         public ${table.javaName}Query ${being.javaName}Not(${being.javaSimpleClass} ${being.javaName}Not);
         public ${table.javaName}Query ${being.javaName}GreaterThan(${being.javaSimpleClass} ${being.javaName}GreaterThan);
@@ -63,8 +63,8 @@ public interface ${table.javaName}Query<PK extends Serializable> extends Query<$
         public ${table.javaName}Query ${being.javaName}LessEqual(${being.javaSimpleClass} ${being.javaName}LessEqual);
 
 	<#else>
-        //todo 生成代码错误 , 数据库类型没有包括
-        ${being.columnType};
+
+        //todo ${being.columnType} ${being.javaName};
 	</#if>
 
 

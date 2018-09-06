@@ -10,6 +10,8 @@ import com.zz.bms.core.enums.EnumBase;
 
 public enum EnumJavaType implements EnumBase{
 
+
+
 	_Short("java.lang.Short")	,
 	_Integer("java.lang.Integer"),
 	_Long("java.lang.Long"),
@@ -24,7 +26,9 @@ public enum EnumJavaType implements EnumBase{
 
 	_Clob("java.sql.Clob"),
 	_Byte("java.lang.Byte"),
-	_Bytes("byte[]")	
+	_Bytes("byte[]"),
+
+	_Boolean("java.lang.Boolean")
 	
 	;
 	
@@ -32,7 +36,7 @@ public enum EnumJavaType implements EnumBase{
 	private String fullname;
 
 	private EnumJavaType(String fullname) {
-		
+
 		this.fullname = fullname;
 	}
 
