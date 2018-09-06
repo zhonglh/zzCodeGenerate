@@ -38,9 +38,6 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private String tableRelationName;
 
 
-    @TableField(exist = false)
-    private String mainTableName;
-
 
     @TableField(exist = false)
     private String queryModeName;
@@ -167,13 +164,6 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.tableRelationName = tableRelationName;
     }
 
-    public String getMainTableName() {
-        return mainTableName;
-    }
-
-    public void setMainTableName(String mainTableName) {
-        this.mainTableName = mainTableName;
-    }
 
     public String getQueryModeName() {
         return queryModeName;

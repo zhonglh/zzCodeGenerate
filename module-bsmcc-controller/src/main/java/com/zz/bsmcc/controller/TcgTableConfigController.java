@@ -189,7 +189,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
 
-        Map<String,List<String>> tablesMap = new HashMap<String,List<String>>();
+        Map<String,List<Table>> tablesMap = new HashMap<String,List<Table>>();
         try {
             List<String> schemaList = null;
             if(EnumYesNo.YES.getCode().equals(projectBO.getIsMultiSchema())) {
@@ -215,12 +215,12 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                 if(schemaList != null && !schemaList.contains(tableSchema)){
                     continue;
                 }
-                List<String> list = tablesMap.get(tableSchema);
+                List<Table> list = tablesMap.get(tableSchema);
                 if(list == null){
-                    list = new ArrayList<String>();
+                    list = new ArrayList<Table>();
                     tablesMap.put(tableSchema,list);
                 }
-                list.add(tableName);
+                list.add(table);
             }
         }catch(Exception e){
             throw new BizException(e);
@@ -513,6 +513,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     protected Wrapper buildWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {
         Wrapper wrapper = query.buildWrapper();
         wrapper.orderBy("is_table" , false);
+        wrapper.orderBy("table_name" , true);
         return wrapper;
     }
 

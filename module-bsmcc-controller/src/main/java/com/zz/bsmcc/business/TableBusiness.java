@@ -159,12 +159,14 @@ public class TableBusiness {
             if(EnumYesNo.NO.getCode().equals(tableBO.getIsTable())){
                 //约定， 视图名称是以 ‘v' 开头 , 表是以 't' 开头
                 String tableName = "t"+tableBO.getTableName().substring(1);
-                List<String> tables = TablesLocalThread.getTables();
+                List<Table> tables = TablesLocalThread.getTables();
                 if(tables != null){
-                    for(String tn : tables){
-                        if(tableName.equals(tn)){
+                    for(Table t : tables){
+                        if(tableName.equals(t.getTableName())){
                             tableBO.setMainTableSchema(tableBO.getSchemaName());
-                            tableBO.setMainTableName(tn);
+                            tableBO.setMainTableName(tableName);
+                            tableBO.setTableComment(t.getTableComment());
+                            tableBO.setTableOtherComment(t.getTableOtherComment());
                             break;
                         }
                     }

@@ -533,11 +533,11 @@ public class TableLogic {
             return ;
         }
 
-        List<String> tables = TablesLocalThread.getTables();
+        List<Table> tables = TablesLocalThread.getTables();
         if(tables == null || tables.isEmpty()){
             return ;
         }
-        Map<String,List<String>> tablesMap = TablesLocalThread.getTablesMap();
+        Map<String,List<Table>> tablesMap = TablesLocalThread.getTablesMap();
         String[] columnNames = columnBO.getColumnName().split("_");
         if(columnNames.length<2){
             //约定， 外键的列名称必须通过'_'间隔 ， 除非是pid
@@ -604,15 +604,15 @@ public class TableLogic {
      * @param tables     所有的表名
      * @return
      */
-    private static String findTableName(String tableName , List<String> tables , boolean isEquals ){
-        for(String table : tables){
+    private static String findTableName(String tableName , List<Table> tables , boolean isEquals ){
+        for(Table table : tables){
             if(isEquals){
-                if(table.equalsIgnoreCase(tableName)){
-                    return table;
+                if(table.getTableName().equalsIgnoreCase(tableName)){
+                    return table.getTableName();
                 }else {
-                    String tab = table.substring(table.indexOf("_")+1);
+                    String tab = table.getTableName().substring(table.getTableName().indexOf("_")+1);
                     if(tab.equalsIgnoreCase(tableName)){
-                        return table;
+                        return table.getTableName();
                     }
                 }
             }
@@ -627,12 +627,12 @@ public class TableLogic {
      * @param tablesMap     所有的表名
      * @return
      */
-    private static String[] findTableName(String tableName , Map<String,List<String>> tablesMap , boolean isEquals ){
+    private static String[] findTableName(String tableName , Map<String,List<Table>> tablesMap , boolean isEquals ){
         if(tablesMap == null){
             return null;
         }
         for(String key : tablesMap.keySet()) {
-            List<String> tables = tablesMap.get(key);
+            List<Table> tables = tablesMap.get(key);
             String table = findTableName(tableName ,tables , isEquals );
             if(table != null){
                 return new String[]{key , table};
