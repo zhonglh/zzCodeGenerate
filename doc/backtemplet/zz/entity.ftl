@@ -1,6 +1,7 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;

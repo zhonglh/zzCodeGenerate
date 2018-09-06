@@ -7,21 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/BusinessUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/DictTypeBusiness.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/query.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/query.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/queryAbstractImpl.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/queryAbstractImpl.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/queryImpl.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/queryImpl.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/queryWebImpl.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/queryWebImpl.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/serviceImpl.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/serviceImpl.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBaseBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBaseBusiness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/TableBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/TableBusiness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumDbColumnType.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumDbColumnType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumJavaType.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumJavaType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,17 +39,17 @@
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/queryWebImpl.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="153" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="264" selection-end-column="1" />
+              <caret line="153" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="264" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serviceImpl.ftl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serviceImpl.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/serviceImpl.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="98" selection-end-column="1" />
+            <state relative-caret-position="255">
+              <caret line="15" column="57" lean-forward="false" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -72,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/queryAbstractImpl.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="159">
-              <caret line="11" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
+              <caret line="11" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -82,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/query.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="13" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="75" selection-end-column="1" />
+              <caret line="13" column="2" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="75" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -92,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/queryImpl.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="142">
-              <caret line="311" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="327" selection-end-column="1" />
+              <caret line="311" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="327" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -102,17 +89,17 @@
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <caret line="7" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entity.ftl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="entity.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="32" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="1" />
+            <state relative-caret-position="51">
+              <caret line="3" column="55" lean-forward="true" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -259,7 +246,6 @@
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/TableBusiness.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBaseBusiness.java" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/serviceImpl.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/BusinessUtil.java" />
@@ -273,6 +259,7 @@
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/queryImpl.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/queryAbstractImpl.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/query.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" />
       </list>
     </option>
   </component>
@@ -366,148 +353,6 @@
               <item name="doc" type="462c0819:PsiDirectoryNode" />
               <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
               <item name="zz" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-base" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-base" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-base" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-base" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.zz.bms:module-bms-core:1.0.1" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.zz.bms:module-bms-core:1.0.1" type="70bed36:NamedLibraryElementNode" />
-              <item name="module-bms-core-1.0.1.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.zz.bms:module-bms-core:1.0.1" type="70bed36:NamedLibraryElementNode" />
-              <item name="module-bms-core-1.0.1.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.zz.bms:module-bms-core:1.0.1" type="70bed36:NamedLibraryElementNode" />
-              <item name="module-bms-core-1.0.1.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.zz.bms:module-bms-core:1.0.1" type="70bed36:NamedLibraryElementNode" />
-              <item name="module-bms-core-1.0.1.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -895,14 +740,7 @@
       <workItem from="1536060148115" duration="585000" />
       <workItem from="1536066932416" duration="25039000" />
       <workItem from="1536156891394" duration="4734000" />
-      <workItem from="1536194353776" duration="39064000" />
-    </task>
-    <task id="LOCAL-00093" summary="处理表格数据">
-      <created>1534914301209</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1534914301213</updated>
+      <workItem from="1536194353776" duration="40051000" />
     </task>
     <task id="LOCAL-00094" summary="处理表格数据">
       <created>1534914359495</created>
@@ -1240,7 +1078,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536225439742</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="增加模板按钮样式的处理">
+      <created>1536249266959</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1536249266959</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1252,7 +1097,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="818295000" />
+    <option name="totallyTimeSpent" value="819282000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1798,15 +1643,7 @@
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="1" />
+          <caret line="7" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1814,7 +1651,7 @@
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/query.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="13" column="2" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="75" selection-end-column="1" />
+          <caret line="13" column="2" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="75" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1822,7 +1659,7 @@
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/queryAbstractImpl.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
+          <caret line="11" column="3" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1830,7 +1667,7 @@
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/queryImpl.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
-          <caret line="311" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="327" selection-end-column="1" />
+          <caret line="311" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="327" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1838,15 +1675,23 @@
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/queryWebImpl.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="153" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="264" selection-end-column="1" />
+          <caret line="153" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="264" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/serviceImpl.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="98" selection-end-column="1" />
+        <state relative-caret-position="255">
+          <caret line="15" column="57" lean-forward="false" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="55" lean-forward="true" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
           <folding />
         </state>
       </provider>
