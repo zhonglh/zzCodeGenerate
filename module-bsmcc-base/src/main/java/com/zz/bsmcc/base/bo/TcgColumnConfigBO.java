@@ -22,9 +22,17 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     @TableField(exist = false)
     private String columnIsnullName ;
 
-    //用于生成代码
     @TableField(exist = false)
+    //用来存放本列对应的表
+    private TcgTableConfigBO tableBO;
+
+    //用于生成代码
+
+    //如果是外键， 外键对应的表
+   @TableField(exist = false)
     private TcgTableConfigBO fkTableConfig;
+
+
     @TableField(exist = false)
     private String fkColumnName;
     @TableField(exist = false)
@@ -128,5 +136,13 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     public void setOriginalColumn(TcgColumnConfigBO originalColumn) {
         this.originalColumn = originalColumn;
+    }
+
+    public TcgTableConfigBO getTableBO() {
+        return tableBO;
+    }
+
+    public void setTableBO(TcgTableConfigBO tableBO) {
+        this.tableBO = tableBO;
     }
 }

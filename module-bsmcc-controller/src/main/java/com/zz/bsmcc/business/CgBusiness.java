@@ -141,6 +141,7 @@ public class CgBusiness extends CgBaseBusiness{
             TablePO tablePO = new TablePO();
             tablePO.setTableBO(tableConfig);
             tablePOMap.put(tableConfig.getId(),tablePO);
+            tablePOMap.put(tableConfig.getSchemaName()+tableConfig.getTableName(),tablePO);
         }
 
 
@@ -291,15 +292,24 @@ public class CgBusiness extends CgBaseBusiness{
 
             //处理视图的主表
             if(!EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())){
-                TcgTableConfigBO mainTableConfig = tableConfigMap.get(tableConfig.getMainTableId());
-                if(mainTableConfig == null){
-                    throw new BizException("视图没有设置主要的表 : " + tableConfig.getTableComment());
+
+                if(StringUtils.isNotEmpty(tableConfig.getMainTableName())){
+                    TablePO po = tablePOMap.get(tableConfig.getMainTableSchema()+tableConfig.getMainTableName());
+                    if(po != null){
+                        tableConfig.setMainTableIdConfig(po.getTableBO());
+                        tableConfig.setTableOtherComment(po.getTableBO().getTableOtherComment());
+                        tableConfig.setTableComment(po.getTableBO().getTableComment());
+                        //视图的实体类是继承表的实体类， 需要重新设置列是否要在类中
+                        processColumnConfig(tableConfig , columns , tablePOMap.get( po.getTableBO().getId()).getColumns());
+
+                        //将表的 约束加到视图中来
+                        if(indexs == null || indexs.isEmpty()){
+                            indexs = po.getIndexs();
+                        }
+                    }
                 }
-                tableConfig.setMainTableIdConfig(mainTableConfig);
-                tableConfig.setTableOtherComment(mainTableConfig.getTableOtherComment());
-                tableConfig.setTableComment(mainTableConfig.getTableComment());
-                //视图的实体类是继承表的实体类， 需要重新设置列是否要在类中
-                processColumnConfig(tableConfig , columns , tablePOMap.get( mainTableConfig.getId()).getColumns());
+
+
 
             }
 
@@ -731,6 +741,7 @@ public class CgBusiness extends CgBaseBusiness{
     private void processExColumn(TcgTableConfigBO tableConfig, List<TcgExColumnBO> exColumns,
                                  List<TcgColumnConfigBO> tcgColumnConfigBOs , Map<String , TcgExColumnBO> exColumnMap) {
         for(TcgExColumnBO exColumn : exColumns){
+            exColumn.setTableBO(tableConfig);
             exColumn.setFkJavaName(StringFormatKit.toCamelCase(exColumn.getFkColumnName()));
             if(StringUtils.isNotEmpty(exColumn.getOriginalColumnId() )){
                 for(TcgColumnConfigBO columnBO : tcgColumnConfigBOs){
@@ -778,6 +789,9 @@ public class CgBusiness extends CgBaseBusiness{
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
+
+                columnConfigBO.setTableBO(tableConfig);
+
                 //替换掉空格 , Tab 键
                 if(StringUtils.isNotEmpty(columnConfigBO.getDictType())){
                     columnConfigBO.setDictType(columnConfigBO.getDictType().trim().replaceAll("\t",""));
@@ -798,7 +812,7 @@ public class CgBusiness extends CgBaseBusiness{
                     TcgTableConfigBO fkTableConfig = tableConfigMap.get(columnConfigBO.getFkSchema() + "." + columnConfigBO.getFkName());
                     if (fkTableConfig == null) {
                         throw new BizException("列的外键Schema ， 外键表名 设置错误 : " +
-                                tableConfig.getTableComment() + "    " + columnConfigBO.getColumnComment());
+                                tableConfig.getTableName() + "    " + columnConfigBO.getColumnName());
                     }
                     columnConfigBO.setFkTableConfig(fkTableConfig);
                     fkTables.add(fkTableConfig);

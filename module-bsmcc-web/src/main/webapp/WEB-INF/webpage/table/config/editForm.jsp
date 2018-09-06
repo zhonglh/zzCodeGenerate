@@ -172,13 +172,12 @@
 
                     <c:if test="${entity.isTable == '0'}">
                     <div class="form-group">
-                        <label>主要的表(视图中的主表)：</label>
-                        <select id="mainTableId" name="mainTableId"  class="form-control required">
-                            <option value="">--选择视图的主表--</option>
-                            <c:forEach items="${tables}" var="table">
-                                <option value="${table.id}"  <c:if test="${entity.mainTableId ==  table.id }">selected="selected"</c:if> >${table.tableName}</option>
-                            </c:forEach>
-                        </select>
+                        <label>主要表Schema </label> <input id="mainTableSchema" name="mainTableSchema" value="${entity.mainTableSchema }"  type="text" class="form-control">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>主要表名称 </label> <input id="mainTableName" name="mainTableName" value="${entity.mainTableName }"  type="text" class="form-control">
                     </div>
                     </c:if>
 

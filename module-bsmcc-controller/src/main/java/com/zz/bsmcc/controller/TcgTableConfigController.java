@@ -247,6 +247,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                 continue;
             }
             TablesLocalThread.setTables(tablesMap.get(tcgTableConfigBO.getSchemaName()));
+
             TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, sessionUserVO);
             tablePOs.add(tablePO);
             TablesLocalThread.setTables(null);

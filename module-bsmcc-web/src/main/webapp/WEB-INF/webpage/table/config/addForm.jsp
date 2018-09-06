@@ -165,11 +165,10 @@
 			    singleSelect:false,
 			    showHeader:true,
 			    showFooter:false,
-			    height: getHeight()-100
+			    height: getHeight()
 			});
 			
 		}
-
 
 		
 		$(window).resize(function () {

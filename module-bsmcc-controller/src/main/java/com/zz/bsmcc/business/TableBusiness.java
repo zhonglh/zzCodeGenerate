@@ -19,6 +19,7 @@ import com.zz.bsmcc.base.logic.TableLogic;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.TcgJavaDatatypeRealQuery;
 import com.zz.bsmcc.base.query.impl.TcgJavaDatatypeRealQueryImpl;
+import com.zz.bsmcc.core.TablesLocalThread;
 import com.zz.bsmcc.core.enums.EnumDbColumnType;
 import com.zz.bsmcc.core.enums.EnumJavaType;
 import com.zz.bsmcc.core.enums.EnumPageElement;
@@ -151,6 +152,23 @@ public class TableBusiness {
                 TcgIndexConfigBO indexBO = new TcgIndexConfigBO();
                 TableLogic.initIndexConfig(indexBO , tableBO, constraint , sessionUserVO);
                 indexBOs.add(indexBO);
+            }
+
+
+            //处理视图
+            if(EnumYesNo.NO.getCode().equals(tableBO.getIsTable())){
+                //约定， 视图名称是以 ‘v' 开头 , 表是以 't' 开头
+                String tableName = "t"+tableBO.getTableName().substring(1);
+                List<String> tables = TablesLocalThread.getTables();
+                if(tables != null){
+                    for(String tn : tables){
+                        if(tableName.equals(tn)){
+                            tableBO.setMainTableSchema(tableBO.getSchemaName());
+                            tableBO.setMainTableName(tn);
+                            break;
+                        }
+                    }
+                }
             }
 
             tablePO.setTableBO(tableBO);

@@ -19,6 +19,9 @@ import java.io.Serializable;
 public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
 
+    //用来存放本列对应的表
+    @TableField(exist = false)
+    private TcgTableConfigBO tableBO;
 
     @TableField(exist = false)
     private String originalColumnName;
@@ -139,5 +142,13 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
     public void setOriginalColumn(TcgColumnConfigBO originalColumn) {
         this.originalColumn = originalColumn;
+    }
+
+    public TcgTableConfigBO getTableBO() {
+        return tableBO;
+    }
+
+    public void setTableBO(TcgTableConfigBO tableBO) {
+        this.tableBO = tableBO;
     }
 }

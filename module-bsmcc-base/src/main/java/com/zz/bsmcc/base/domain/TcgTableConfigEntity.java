@@ -88,6 +88,8 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	private String mainTableId;
 
 
+	private String mainTableSchema;
+	private String mainTableName;
 
 
 
@@ -420,5 +422,21 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	public void setIsBuildRbac(String isBuildRbac) {
 		this.isBuildRbac = isBuildRbac;
+	}
+
+	public String getMainTableSchema() {
+		return mainTableSchema;
+	}
+
+	public void setMainTableSchema(String mainTableSchema) {
+		this.mainTableSchema = mainTableSchema;
+	}
+
+	public String getMainTableName() {
+		return mainTableName;
+	}
+
+	public void setMainTableName(String mainTableName) {
+		this.mainTableName = mainTableName;
 	}
 }

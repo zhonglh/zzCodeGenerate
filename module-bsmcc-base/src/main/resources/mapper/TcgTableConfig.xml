@@ -15,6 +15,8 @@
          	<result column="is_show_checkbox" property="isShowCheckbox"/>
          	<result column="is_table" property="isTable"/>
          	<result column="main_table_id" property="mainTableId"/>
+			<result column="main_table_name" property="mainTableName"/>
+			<result column="main_table_schema" property="mainTableSchema"/>
          	<result column="resource_name" property="resourceName"/>
          	<result column="is_tree" property="isTree"/>
          	<result column="parent_field_name" property="parentFieldName"/>

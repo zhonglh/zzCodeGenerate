@@ -56,6 +56,7 @@ public class TableLogic {
             tcgTableConfigBO.setIsBuildUi(EnumYesNo.NO.getCode());
         }
         tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildUi());
+        tcgTableConfigBO.setIsBuildRbac(tcgTableConfigBO.getIsBuildUi());
         tcgTableConfigBO.setJavaName(StringUtil.firstUpperCase(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName())));
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
 
@@ -78,6 +79,8 @@ public class TableLogic {
 
     public static void initColumnConfig(TcgColumnConfigBO columnBO, TcgTableConfigBO tableBO , Column column ,
                                     Map<String,String> typeMap , ILoginUserEntity<String> sessionUserVO){
+
+        columnBO.setTableBO(tableBO);
         columnBO.setTableId(tableBO.getId());
         columnBO.setColumnName(column.getColumnName().toLowerCase());
         columnBO.setColumnComment(column.getColumnComment());
@@ -190,6 +193,7 @@ public class TableLogic {
 
 
     public static void initExColumn(TcgExColumnBO exColumnBO, TcgColumnConfigBO columnBO, ILoginUserEntity<String> sessionUserVO) {
+        exColumnBO.setTableBO(columnBO.getTableBO());
         exColumnBO.setTableId(columnBO.getTableId());
         exColumnBO.setOriginalColumnId(columnBO.getId());
         exColumnBO.setOriginalColumnName(columnBO.getColumnName());
@@ -215,6 +219,9 @@ public class TableLogic {
         }else {
             javaName = javaName + "Name";
         }
+        if(javaName.length()==5){
+            javaName = javaName.toLowerCase();
+        }
         exColumnBO.setJavaName(javaName);
         exColumnBO.setJavaFullClass("java.lang.String");
         exColumnBO.setJavaSimpleClass("String");
@@ -223,9 +230,13 @@ public class TableLogic {
         //约定， 名称列就是表名加name
         //比如tb_project , 名称列就是project_name ;
         //比如tb_fund_buyer,名称列就是fund_buyer_name ;
-        String fkColumnName = columnBO.getFkName();
-        fkColumnName = fkColumnName.substring(fkColumnName.indexOf("_")+1)+"_name";
-        exColumnBO.setFkColumnName(fkColumnName);
+        if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())) {
+            String fkColumnName = columnBO.getFkName();
+            if(fkColumnName != null) {
+                fkColumnName = fkColumnName.substring(fkColumnName.indexOf("_") + 1) + "_name";
+                exColumnBO.setFkColumnName(fkColumnName);
+            }
+        }
 
 
         exColumnBO.setColumnSort(columnBO.getColumnSort() + 1);
@@ -364,7 +375,7 @@ public class TableLogic {
                 pageBO.setElement((String) EnumPageElement.timestamp.getTheValue());
             }else if(clz == String.class){
                 pageBO.setElement((String) EnumPageElement.text.getTheValue());
-                if(columnBO.getColumnLength() >= 100){
+                if(columnBO.getColumnLength() >= 300){
                     pageBO.setElement((String) EnumPageElement.textarea.getTheValue());
                     pageBO.setListShowable(EnumYesNo.NO.getCode());
                     //处理文件类型和图片类型
@@ -517,7 +528,8 @@ public class TableLogic {
     private static void processFkTable(TcgColumnConfigBO columnBO) {
         //如果外键对应的是表自己
         if(isTableParent(columnBO.getColumnName())){
-            columnBO.setFkName(columnBO.getFkTableConfig().getTableName());
+            columnBO.setFkName(columnBO.getTableBO().getTableName());
+            columnBO.setFkTableConfig(columnBO.getTableBO());
             return ;
         }
 
@@ -526,11 +538,21 @@ public class TableLogic {
             return ;
         }
         Map<String,List<String>> tablesMap = TablesLocalThread.getTablesMap();
-        String[] columnNames = columnBO.getFkColumnName().split("_");
+        String[] columnNames = columnBO.getColumnName().split("_");
         if(columnNames.length<2){
+            //约定， 外键的列名称必须通过'_'间隔 ， 除非是pid
+            columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
+            columnBO.setFkTableConfig(null);
+            columnBO.setFkSchema(null);
+            columnBO.setFkName(null);
+            columnBO.setFkColumn(null);
+            columnBO.setFkColumnName(null);
             return ;
         }
-        String prefixFkTableNme = columnBO.getFkTableConfig().getTableName().substring(0,columnBO.getFkTableConfig().getTableName().indexOf("_")) ;
+
+
+        String theTableName = columnBO.getTableBO().getTableName();
+        String prefixFkTableNme = theTableName.substring(0,theTableName.indexOf("_")) ;
 
 
         for(int index = 0 ; index < columnNames.length - 1; index ++){
@@ -561,6 +583,16 @@ public class TableLogic {
                 columnBO.setFkName(table);
                 break;
             }
+        }
+
+        if(StringUtils.isEmpty(columnBO.getFkName())) {
+            //约定  如果外键没有找到对应的表信息， 则认为不是外键
+            columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
+            columnBO.setFkTableConfig(null);
+            columnBO.setFkSchema(null);
+            columnBO.setFkName(null);
+            columnBO.setFkColumn(null);
+            columnBO.setFkColumnName(null);
         }
 
     }

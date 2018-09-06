@@ -56,7 +56,7 @@
                                 <label class="col-sm-3 control-label">项目：</label>
                                 <div class="col-sm-8">
 
-                                    <select id="projectId" name="projectId"  class="form-control">
+                                    <select id="projectId" name="projectId"  class="form-control"  onchange="changeProject(this)">
                                         <c:forEach items="${projects}" var="project">
                                         <option value="${project.id}" <c:if test="${entity.projectId ==  project.id }">selected="selected"</c:if> >${project.projectName}</option>
                                         </c:forEach>
@@ -146,6 +146,27 @@
 
 		  }
 	});
+
+
+
+	function changeProject(project){
+
+	    var projectId = $(project).val();
+	    var pmodule = $("#pid");
+        pmodule.empty();
+        pmodule.append("<option value=\"\">--选择上级模块--</option>");
+
+        var url = "${ctx}/module/config/getModules";
+        var requestData = {id:"${entity.id}",projectId:projectId};
+        ajaxASyncData(url, requestData ,function(data){
+            if(data){
+                $.each(data,function(index,value){
+                    pmodule.append("<option value='"+value.id+"'>"+value.moduleName+"</option>");
+                });
+            }
+        });
+    }
+
 	
 	function submitForm(){
 
