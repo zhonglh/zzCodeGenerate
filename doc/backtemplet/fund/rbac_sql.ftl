@@ -76,7 +76,7 @@ SYSDATE() ,
 
 
 <#if tableoperations?exists>
-    <#list tableoperations as operation>
+<#list tableoperations as operation>
 insert into tr_menu_permission(id ,permission_id , menu_id)
 values (REPLACE(uuid() , "-" , ""),'${operation.id}','${table.id}') ;
 
