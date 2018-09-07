@@ -71,7 +71,9 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
         private String isUi;
 
 
+        private String isMenuSql;
 
+        private String isRbacSql;
 
 
         //@EntityAttrAnnotation(attrName="模板内容",sort=8  , attrLength=5000    )
@@ -193,5 +195,19 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
         this.templetContent = templetContent;
         }
 
+    public String getIsMenuSql() {
+        return isMenuSql;
+    }
 
+    public void setIsMenuSql(String isMenuSql) {
+        this.isMenuSql = isMenuSql;
+    }
+
+    public String getIsRbacSql() {
+        return isRbacSql;
+    }
+
+    public void setIsRbacSql(String isRbacSql) {
+        this.isRbacSql = isRbacSql;
+    }
 }

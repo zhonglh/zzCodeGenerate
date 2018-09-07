@@ -17,4 +17,14 @@ import java.io.Serializable;
 @TableName(value="tcg_table_operation" , resultMap = "TcgTableOperationResultMap")
 public class TcgTableOperationBO extends TcgTableOperationEntity implements Serializable {
 
+    private TcgOperationBO operationBO ;
+
+
+    public TcgOperationBO getOperationBO() {
+        return operationBO;
+    }
+
+    public void setOperationBO(TcgOperationBO operationBO) {
+        this.operationBO = operationBO;
+    }
 }

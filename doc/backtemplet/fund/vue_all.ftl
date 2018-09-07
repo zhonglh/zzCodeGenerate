@@ -47,9 +47,10 @@
 <script>
     const _import = require('@/router/_import_production');
     import onfire from 'onfire.js';
+    import propMix from '@/mixins/propMix';
 
     export default {
-
+        mixins:[propMix],
         components:{
 
         },

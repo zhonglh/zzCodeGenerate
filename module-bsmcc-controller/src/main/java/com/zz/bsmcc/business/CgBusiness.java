@@ -11,6 +11,7 @@ import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.files.FreemarkerUtils;
 import com.zz.bsmcc.base.bo.*;
+import com.zz.bsmcc.base.po.MenuPO;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
 import com.zz.bsmcc.base.query.impl.*;
@@ -76,6 +77,35 @@ public class CgBusiness extends CgBaseBusiness{
     private TcgIndexConfigService tcgIndexConfigService ;
 
 
+    private void processMenu(List<MenuPO> menus, TcgModuleConfigBO moduleConfigBO) {
+
+        MenuPO menu = new MenuPO();
+        menu.setId(moduleConfigBO.getId());
+        menu.setPid(moduleConfigBO.getPid());
+        menu.setName(moduleConfigBO.getModuleResource());
+        menu.setTitle(moduleConfigBO.getModuleName());
+        menu.setResource(moduleConfigBO.getModuleResource());
+        menu.setPath(moduleConfigBO.getModuleFullResource());
+
+        menus.add(menu);
+
+    }
+
+
+    private void processMenu(List<MenuPO> menus, TcgTableConfigBO table) {
+
+        MenuPO menu = new MenuPO();
+        menu.setId(table.getId());
+        menu.setPid(table.getModuleId());
+        menu.setName(table.getJavaName());
+        menu.setTitle(table.getTableComment());
+        menu.setResource(table.getFullResourceName());
+        menu.setPath(table.getFullResourceFile());
+        menus.add(menu);
+
+    }
+
+
     /**
      * 生成代码
      * @param projectId
@@ -100,6 +130,8 @@ public class CgBusiness extends CgBaseBusiness{
         //所有的字典类型
         Map<String,String> dictTypeMap = new HashMap<String,String>();
 
+        List<MenuPO> menus = new ArrayList<MenuPO>();
+
         Map<String,TablePO> tablePOMap = new HashMap<String,TablePO>();
 
         Map<String , TcgTempletGroupOperationBO> operationBOMap = getOperations(templets.get(0).getGroupId());
@@ -112,6 +144,9 @@ public class CgBusiness extends CgBaseBusiness{
         if(moduleConfigBOs != null && !moduleConfigBOs.isEmpty()){
             for(TcgModuleConfigBO moduleConfigBO : moduleConfigBOs){
                 moduleConfigMap.put(moduleConfigBO.getId() , moduleConfigBO);
+
+                //处理菜单
+                processMenu(menus,moduleConfigBO);
             }
         }
 
@@ -334,13 +369,16 @@ public class CgBusiness extends CgBaseBusiness{
             processQueryFkDict(tablePO);
             processFkDict(tablePO);
 
+            //处理操作
+
+            TcgTableOperationQuery tableOperationQuery = new TcgTableOperationQueryImpl();
+            tableOperationQuery.tableId(tableConfig.getId());
+            List<TcgTableOperationBO> tableOperations = tcgTableOperationService.selectList(tableOperationQuery.buildWrapper());
+            tablePO.setTableOperations(tableOperations);
 
             if(operationBOMap == null || operationBOMap.isEmpty()){
                 tablePO.setTempletGroupOperations(new ArrayList<>());
             }else {
-                TcgTableOperationQuery tableOperationQuery = new TcgTableOperationQueryImpl();
-                tableOperationQuery.tableId(tableConfig.getId());
-                List<TcgTableOperationBO> tableOperations = tcgTableOperationService.selectList(tableOperationQuery.buildWrapper());
                 if (tableOperations != null && !tableOperations.isEmpty()) {
 
                     Map<String, TcgTempletGroupOperationBO> tableOperationMap = new HashMap<String, TcgTempletGroupOperationBO>();
@@ -363,6 +401,10 @@ public class CgBusiness extends CgBaseBusiness{
                     return o1.getSort() > o2.getSort() ? 1 : (o1.getSort() < o2.getSort()? -1 : 0);
                 }
             });
+
+
+            //处理菜单
+            processMenu(menus,tableConfig);
 
 
         }
@@ -394,11 +436,43 @@ public class CgBusiness extends CgBaseBusiness{
             cgCode(tablePO, projectBO, templets);
         }
 
-        if(!dictTypeMap.isEmpty()){
+        //生成菜单SQL
+        if(!menus.isEmpty()) {
+            String basePath = BusinessUtil.getBasePath();
 
+            for (TcgTempletBO templet : templets) {
+                if (EnumYesNo.NO.getCode().equals(templet.getIsMenuSql())) {
+                    continue;
+                }
+
+                String filePath = basePath + File.separator + templet.getFileOutDir();
+                String fileName = templet.getTempletTitle() +
+                        (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
+                        "." + templet.getFileType();
+
+                Map<String, Object> model = new HashMap<>();
+
+                model.put("templet", templet);
+                model.put("menus", menus);
+
+                String templetContent = templet.getTempletContent();
+
+                String result = FreemarkerUtils.renderString(templetContent, model);
+
+                BusinessUtil.buildFile(filePath, fileName, result);
+
+
+            }
+        }
+
+
+        //生成字典类
+        if(!dictTypeMap.isEmpty()){
             DictTypeBusiness.buildDictType(projectBO, dictTypeMap);
         }
     }
+
+
 
 
     /**
@@ -446,10 +520,17 @@ public class CgBusiness extends CgBaseBusiness{
         StringBuilder projectNoteBuild = BusinessUtil.getProjectNote(projectBO);
 
 
-
-
-
         for(TcgTempletBO templet : templets){
+            //菜单SQL模板 不在这里处理
+            if(EnumYesNo.YES.getCode().equals(templet.getIsMenuSql())){
+                continue;
+            }
+
+
+            //如果表里设置的不生成权限SQL, 而模板是权限SQL的模板， 将不继续
+            if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildRbac()) &&  EnumYesNo.YES.getCode().equals(templet.getIsRbacSql())){
+                continue;
+            }
 
             //如果表里设置的不生成UI, 而模板是UI的模板， 将不继续
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
@@ -553,6 +634,7 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("indexs" , tablePO.getIndexs());
         freemarkerModel.put("querys" , tablePO.getQueryConfigs());
         freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());
+        freemarkerModel.put("tableoperations" , tablePO.getTableOperations());
 
         freemarkerModel.put("queryDicts" , tablePO.getQueryDicts());
         freemarkerModel.put("queryFks" , tablePO.getQueryFks());

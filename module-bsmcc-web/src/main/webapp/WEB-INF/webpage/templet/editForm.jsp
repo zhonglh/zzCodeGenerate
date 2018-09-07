@@ -105,6 +105,32 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否菜单SQL：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="isMenuSql" name="isMenuSql"  class="form-control">
+                                        <option value="1" <c:if test="${entity.isMenuSql ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                        <option value="0" <c:if test="${entity.isMenuSql ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否权限SQL：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="isRbacSql" name="isRbacSql"  class="form-control">
+                                        <option value="1" <c:if test="${entity.isRbacSql ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                        <option value="0" <c:if test="${entity.isRbacSql ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">生成文件的后缀：</label>
                                 <div class="col-sm-8">
@@ -168,11 +194,25 @@
 
 		  }
 	});
+
+	function checkIs(){
+	    var isUi = $("#isUi").val();
+        var isMenuSql = $("#isMenuSql").val();
+        var isRbacSql = $("#isRbacSql").val();
+        int count = parseInt(isUI) + parseInt(isMenuSql) + parseInt(isRbacSql);
+        if(count > 1){
+            topShwoMessage("info","是否UI  是否菜单SQL 和 是否权限SQL 只能选择一个");
+            return false;
+        }
+        return true;
+    }
 	
 	function submitForm(){
 
 		
 		if( !$('form').valid() ) return false;
+
+		if( ! checkIs() ) return false;
 
 		var actionurl= window.location.href;
             //$('form').attr('action');

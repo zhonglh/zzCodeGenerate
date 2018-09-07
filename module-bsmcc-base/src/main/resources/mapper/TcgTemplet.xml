@@ -10,6 +10,10 @@
          	<result column="file_inner_dir" property="fileInnerDir"/>
          	<result column="file_type" property="fileType"/>
          	<result column="file_suffix" property="fileSuffix"/>
+			<result column="is_ui" property="isUi"/>
+			<result column="is_rbac_sql" property="isRbacSql"/>
+			<result column="is_menu_sql" property="isMenuSql"/>
+
          	<result column="templet_title" property="templetTitle"/>
          	<result column="templet_content" property="templetContent"/>
          	<result column="create_time" property="createTime"/>

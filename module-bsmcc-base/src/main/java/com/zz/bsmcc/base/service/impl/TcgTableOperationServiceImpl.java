@@ -4,6 +4,8 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bsmcc.base.bo.TcgTableConfigBO;
+import com.zz.bsmcc.base.dao.TcgOperationDAO;
 import com.zz.bsmcc.base.service.TcgTableOperationService;
 import com.zz.bsmcc.base.dao.TcgTableOperationDAO;
 import com.zz.bsmcc.base.bo.TcgTableOperationBO;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TcgTableOperationServiceImpl extends BaseServiceImpl<TcgTableOperationBO,String> implements TcgTableOperationService {
 
+    @Autowired
+    private TcgOperationDAO tcgOperationDAO;
 
 	@Autowired
 	private TcgTableOperationDAO tcgTableOperationDAO ;
@@ -30,4 +34,13 @@ public class TcgTableOperationServiceImpl extends BaseServiceImpl<TcgTableOperat
 	public BaseDAO getRwDAO() {
 	return tcgTableOperationDAO;
 	}
+
+
+
+
+    @Override
+    public TcgTableOperationBO processResult(TcgTableOperationBO tcgTableOperationBO) {
+        tcgTableOperationBO.setOperationBO(tcgOperationDAO.selectById(tcgTableOperationBO.getOperationId()));
+        return tcgTableOperationBO;
+    }
 }
