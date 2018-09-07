@@ -20,7 +20,7 @@ values (
 '${menu.id}' ,
 '${menu.title}' ,
 null,
-<#if menu.pid?exists>null<#else>'${menu.pid}'</#if>,
+<#if menu.pid?exists>'${menu.pid}'<#else>null</#if>,
 ${menu_index} ,
 '${menu.path}' ,
 null,

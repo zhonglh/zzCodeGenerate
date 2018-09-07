@@ -16,6 +16,7 @@ import com.zz.bsmcc.core.TablesLocalThread;
 import com.zz.bsmcc.core.enums.EnumDbColumnType;
 import com.zz.bsmcc.core.enums.EnumJavaType;
 import com.zz.bsmcc.core.enums.EnumPageElement;
+import com.zz.bsmcc.core.enums.EnumTableType;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import com.zz.bsmcc.core.util.table.pojo.Column;
 import com.zz.bsmcc.core.util.table.pojo.Index;
@@ -57,6 +58,8 @@ public class TableLogic {
         }
         tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildUi());
         tcgTableConfigBO.setIsBuildRbac(tcgTableConfigBO.getIsBuildUi());
+        tcgTableConfigBO.setTableType((String)EnumTableType.singleTable.getTheValue());
+        tcgTableConfigBO.setIsShowCheckbox(EnumYesNo.YES.getCode());
         tcgTableConfigBO.setJavaName(StringUtil.firstUpperCase(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName())));
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
 

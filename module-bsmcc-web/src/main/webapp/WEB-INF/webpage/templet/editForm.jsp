@@ -199,9 +199,9 @@
 	    var isUi = $("#isUi").val();
         var isMenuSql = $("#isMenuSql").val();
         var isRbacSql = $("#isRbacSql").val();
-        int count = parseInt(isUI) + parseInt(isMenuSql) + parseInt(isRbacSql);
+        var count = parseInt(isUi) + parseInt(isMenuSql) + parseInt(isRbacSql);
         if(count > 1){
-            topShwoMessage("info","是否UI  是否菜单SQL 和 是否权限SQL 只能选择一个");
+            topShwoMessage("info","是否UI , 是否菜单SQL 和 是否权限SQL 只能选择一个为是");
             return false;
         }
         return true;

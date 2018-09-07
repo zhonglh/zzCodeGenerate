@@ -94,14 +94,16 @@ public class CgBusiness extends CgBaseBusiness{
 
     private void processMenu(List<MenuPO> menus, TcgTableConfigBO table) {
 
-        MenuPO menu = new MenuPO();
-        menu.setId(table.getId());
-        menu.setPid(table.getModuleId());
-        menu.setName(table.getJavaName());
-        menu.setTitle(table.getTableComment());
-        menu.setResource(table.getFullResourceName());
-        menu.setPath(table.getFullResourceFile());
-        menus.add(menu);
+        if(EnumYesNo.YES.getCode().equals(table.getIsBuildMenu())) {
+            MenuPO menu = new MenuPO();
+            menu.setId(table.getId());
+            menu.setPid(table.getModuleId());
+            menu.setName(table.getJavaName());
+            menu.setTitle(table.getTableComment());
+            menu.setResource(table.getFullResourceName());
+            menu.setPath(table.getFullResourceFile());
+            menus.add(menu);
+        }
 
     }
 
@@ -116,8 +118,9 @@ public class CgBusiness extends CgBaseBusiness{
         TcgTempletQuery templetQuery = new TcgTempletQueryImpl();
         templetQuery.groupId(templetGroupId);
         List<TcgTempletBO> templets = tcgTempletService.selectList(templetQuery.buildWrapper());
-
-        cg(projectBO , templets);
+        if(templets != null && !templets.isEmpty()) {
+            cg(projectBO, templets);
+        }
 
     }
 
@@ -370,7 +373,6 @@ public class CgBusiness extends CgBaseBusiness{
             processFkDict(tablePO);
 
             //处理操作
-
             TcgTableOperationQuery tableOperationQuery = new TcgTableOperationQueryImpl();
             tableOperationQuery.tableId(tableConfig.getId());
             List<TcgTableOperationBO> tableOperations = tcgTableOperationService.selectList(tableOperationQuery.buildWrapper());
@@ -441,7 +443,7 @@ public class CgBusiness extends CgBaseBusiness{
             String basePath = BusinessUtil.getBasePath();
 
             for (TcgTempletBO templet : templets) {
-                if (EnumYesNo.NO.getCode().equals(templet.getIsMenuSql())) {
+                if (StringUtils.isEmpty(templet.getIsMenuSql()) ||EnumYesNo.NO.getCode().equals(templet.getIsMenuSql())) {
                     continue;
                 }
 

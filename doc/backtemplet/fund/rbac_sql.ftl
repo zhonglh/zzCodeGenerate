@@ -16,7 +16,7 @@ update_user_id,
 version_no) values (
 
 '${table.id}',
-'${table.tableName}',
+'${table.tableComment}',
 '${table.javaName}',
 null,
 '2',

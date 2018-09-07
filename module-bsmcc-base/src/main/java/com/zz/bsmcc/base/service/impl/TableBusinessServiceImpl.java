@@ -94,6 +94,13 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     @Override
     public boolean insertTable(List<TablePO> tablePOList) {
         int index = 0;
+
+
+        //增加  默认的操作
+        TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
+        tcgOperationQuery.isDefault(EnumYesNo.YES.getCode());
+        List<TcgOperationBO> operations =  tcgOperationDAO.selectList(tcgOperationQuery.buildWrapper());
+
         for(TablePO tablePO : tablePOList){
             if(tablePO == null){
                 continue;
@@ -114,18 +121,14 @@ public class TableBusinessServiceImpl implements TableBusinessService {
                 tcgIndexConfigDAO.insert(indexConfigBO);
             }
 
-            insertDefaultOperation(tablePO);
+            insertDefaultOperation(tablePO , operations);
 
 
         }
         return true;
     }
 
-    private void insertDefaultOperation(TablePO tablePO) {
-        //增加  默认的操作
-        TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
-        tcgOperationQuery.isDefault(EnumYesNo.YES.getCode());
-        List<TcgOperationBO> operations =  tcgOperationDAO.selectList(tcgOperationQuery.buildWrapper());
+    private void insertDefaultOperation(TablePO tablePO,List<TcgOperationBO> operations) {
         if(operations != null && !operations.isEmpty()){
             ILoginUserEntity session = Applications.getLoginUserEntity();
             for(TcgOperationBO operation : operations){
