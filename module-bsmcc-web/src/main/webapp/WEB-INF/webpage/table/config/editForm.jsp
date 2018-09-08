@@ -560,12 +560,12 @@
                                 <select name="queryConfigs[${status1.index }].queryRelation" >
                                     <option value="eq" <c:if test="${queryConfig.queryRelation ==  'eq' }">selected="selected"</c:if>>等于</option>
                                     <option value="ne" <c:if test="${queryConfig.queryRelation ==  'ne' }">selected="selected"</c:if>>不等于</option>
-                                    <option value="gt" <c:if test="${queryConfig.queryRelation ==  'gt' }">selected="selected"</c:if>>大于</option>
+                                    <option value="gte" <c:if test="${queryConfig.queryRelation ==  'gte' }">selected="selected"</c:if>>大于</option>
                                     <option value="ge" <c:if test="${queryConfig.queryRelation ==  'ge' }">selected="selected"</c:if>>大于等于</option>
-                                    <option value="lt" <c:if test="${queryConfig.queryRelation ==  'lt' }">selected="selected"</c:if>>小于</option>
+                                    <option value="lte" <c:if test="${queryConfig.queryRelation ==  'lte' }">selected="selected"</c:if>>小于</option>
                                     <option value="le" <c:if test="${queryConfig.queryRelation ==  'le' }">selected="selected"</c:if>>小于等于</option>
                                     <option value="like" <c:if test="${queryConfig.queryRelation ==  'like' }">selected="selected"</c:if>>模糊匹配</option>
-                                    <option value="notlike" <c:if test="${queryConfig.queryRelation ==  'notlike' }">selected="selected"</c:if>>模糊不匹配</option>
+                                    <option value="notLike" <c:if test="${queryConfig.queryRelation ==  'notLike' }">selected="selected"</c:if>>模糊不匹配</option>
                                 </select>
                                 </td>
 

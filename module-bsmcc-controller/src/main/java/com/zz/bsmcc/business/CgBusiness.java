@@ -3,8 +3,6 @@ package com.zz.bsmcc.business;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.db.entity.*;
-import com.zz.bms.core.enums.EnumBase;
-import com.zz.bms.core.enums.EnumSearchType;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.util.base.data.StringFormatKit;
@@ -16,18 +14,15 @@ import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
 import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.*;
-import com.zz.bsmcc.core.Applications;
 import com.zz.bsmcc.core.enums.EnumButtonPosition;
 import com.zz.bsmcc.core.enums.EnumPageElement;
-import com.zz.bsmcc.core.enums.EnumTableType;
 import com.zz.bsmcc.core.util.CgBeanUtil;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -600,11 +595,11 @@ public class CgBusiness extends CgBaseBusiness{
         /**
          * 如果项目中设置了界面使用视图， 那么在表格对应的UI就不生成了
          */
-        if(EnumYesNo.YES.getCode().equals(projectBO.getPageUseView())){
+        /*if(EnumYesNo.YES.getCode().equals(projectBO.getPageUseView())){
             if(EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsTable())){
                 tablePO.getTableBO().setIsBuildUi(EnumYesNo.NO.getCode());
             }
-        }
+        }*/
 
 
         Map<String  , Object > freemarkerModel = new HashMap<String  , Object>();

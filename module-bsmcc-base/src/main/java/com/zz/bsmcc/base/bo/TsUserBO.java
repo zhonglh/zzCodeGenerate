@@ -18,4 +18,8 @@ import java.io.Serializable;
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
 public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,Serializable {
 
+    @Override
+    public String getUserStatus() {
+        return "1";
+    }
 }

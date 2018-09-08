@@ -26,7 +26,6 @@
           <element id="library" level="project" name="Maven: net.neoremind:sshxcute:1.0" />
           <element id="library" level="project" name="Maven: com.zz.bms:module-bms-shiro:1.0.1" />
           <element id="library" level="project" name="Maven: com.zz.bms:module-bms-redis:1.0.1" />
-          <element id="library" level="project" name="Maven: com.zz.bms:module-bms-system-base:1.0.1" />
           <element id="library" level="project" name="Maven: com.zz.bms:module-bms-base:1.0.1" />
           <element id="library" level="project" name="Maven: cglib:cglib:3.2.2" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.4" />

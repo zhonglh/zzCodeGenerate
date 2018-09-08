@@ -129,22 +129,10 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 
 
-        //@EntityAttrAnnotation(attrName="删除标志",sort=16  , attrLength=1    )
-        private String deleteFlag;
 
 
 
 
-
-
-
-
-
-
-
-
-        //@EntityAttrAnnotation(attrName="租户ID",sort=24  , attrLength=32    )
-        private String tenantId;
 
 
         /**
@@ -357,33 +345,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
         public void setRemark(String remark) {
         this.remark = remark;
         }
-        /**
-        * 删除标志
-        * @return the deleteFlag
-        */
-        public String getDeleteFlag() {
-        return deleteFlag;
-        }
 
-        /**
-        * 删除标志
-        */
-        public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag;
-        }
-        /**
-        * 租户ID
-        * @return the tenantId
-        */
-        public String getTenantId() {
-        return tenantId;
-        }
-
-        /**
-        * 租户ID
-        */
-        public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-        }
 
 }
