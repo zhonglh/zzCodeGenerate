@@ -34,7 +34,7 @@ SYSDATE() ,
 <#if tableoperations?exists>
 <#list tableoperations as operation>
 
-insert into tr_object_info(
+insert into tr_permission_info(
 id,
 permission_code,
 permission_Name,

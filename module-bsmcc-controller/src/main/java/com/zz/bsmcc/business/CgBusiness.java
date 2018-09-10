@@ -80,7 +80,9 @@ public class CgBusiness extends CgBaseBusiness{
         menu.setName(moduleConfigBO.getModuleResource());
         menu.setTitle(moduleConfigBO.getModuleName());
         menu.setResource(moduleConfigBO.getModuleResource());
-        menu.setPath(moduleConfigBO.getModuleFullResource());
+
+        String path  = moduleConfigBO.getModuleFullResource().replaceAll("/" , "");
+        menu.setPath(path);
 
         menus.add(menu);
 

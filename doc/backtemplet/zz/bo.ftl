@@ -3,6 +3,7 @@ package ${table.fullPackageName}.${templet.fileInnerPackage};
 import ${table.fullPackageName}.domain.${table.javaName}Entity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
@@ -19,6 +20,8 @@ import java.io.Serializable;
 public class ${table.javaName}BO extends ${table.javaName}Entity implements Serializable {
 
 <#list exColumns as being>
+
+    @TableField(exist = false)
     private ${being.javaSimpleClass} ${being.javaName} ;
 
 </#list>
