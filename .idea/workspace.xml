@@ -8,10 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/menu_sql.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/menu_sql.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/rbac_sql.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/rbac_sql.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -729,14 +725,7 @@
       <workItem from="1536372265442" duration="5785000" />
       <workItem from="1536418139520" duration="3246000" />
       <workItem from="1536541455104" duration="9925000" />
-      <workItem from="1536569682189" duration="382000" />
-    </task>
-    <task id="LOCAL-00099" summary="处理表格数据">
-      <created>1535004713607</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1535004713607</updated>
+      <workItem from="1536569682189" duration="519000" />
     </task>
     <task id="LOCAL-00100" summary="处理表格数据">
       <created>1535008293777</created>
@@ -1074,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536402393289</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="增加模板按钮样式的处理">
+      <created>1536570233651</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1536570233653</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1086,7 +1082,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="862980000" />
+    <option name="totallyTimeSpent" value="863117000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
