@@ -26,7 +26,13 @@ ${menu_index} ,
 '${menu.path}',
 null,
 
+<#if menu.level == 1 >
+    <#if menu.leaf == "1" >'${menu.path}/${menu.name?cap_first}List',<#else>'Main',</#if>
+<#elseif menu.level == 2 >
+    <#if menu.leaf == "1" >'${menu.path}/${menu.name?cap_first}List',<#else>'menu-center',</#if>
+<#else>
 '${menu.path}/${menu.name?cap_first}List',
+</#if>
 '2',
 SYSDATE() ,
 '1' ,

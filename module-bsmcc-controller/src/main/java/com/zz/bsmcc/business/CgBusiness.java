@@ -84,12 +84,15 @@ public class CgBusiness extends CgBaseBusiness{
         String path  = moduleConfigBO.getModuleFullResource().replaceAll("/" , "");
         menu.setPath(path);
 
+        menu.setLeaf("0");
+        menu.setLevel((StringUtils.isEmpty(moduleConfigBO.getPid()))? 1 : 2);
+
         menus.add(menu);
 
     }
 
 
-    private void processMenu(List<MenuPO> menus, TcgTableConfigBO table) {
+    private void processMenu(List<MenuPO> menus, TcgTableConfigBO table , List<MenuPO> moduleMenus) {
 
         if(EnumYesNo.YES.getCode().equals(table.getIsBuildMenu())) {
             MenuPO menu = new MenuPO();
@@ -99,6 +102,18 @@ public class CgBusiness extends CgBaseBusiness{
             menu.setTitle(table.getTableComment());
             menu.setResource(table.getFullResourceName());
             menu.setPath(table.getFullResourceFile());
+
+            menu.setLeaf("1");
+            menu.setLevel(1);
+
+            if(StringUtils.isNotEmpty(table.getModuleId())){
+                for(MenuPO moduleMenu : moduleMenus){
+                    if(moduleMenu.getId().equals(table.getModuleId())){
+                        menu.setLevel(moduleMenu.getLevel() + 1);
+                    }
+                }
+            }
+
             menus.add(menu);
         }
 
@@ -403,7 +418,7 @@ public class CgBusiness extends CgBaseBusiness{
 
 
             //处理菜单
-            processMenu(menus,tableConfig);
+            processMenu(menus,tableConfig , menus);
 
 
         }

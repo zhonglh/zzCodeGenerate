@@ -13,6 +13,8 @@ public class MenuPO implements Serializable {
     private String title;
     private String resource;
     private String path;
+    private int level ;
+    private String leaf;
 
     public String getId() {
         return id;
@@ -60,5 +62,21 @@ public class MenuPO implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getLeaf() {
+        return leaf;
+    }
+
+    public void setLeaf(String leaf) {
+        this.leaf = leaf;
     }
 }

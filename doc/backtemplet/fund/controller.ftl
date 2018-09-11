@@ -124,7 +124,7 @@ public class ${table.javaName}Controller extends FundBaseController {
 	* @param response
 	* @return
 	*/
-	@RequestMapping(value = "/detailByFk/{fkColumnName}/fkId" ,method = RequestMethod.GET)
+	@RequestMapping(value = "/detailByFk/{fkColumnName}/{fkId}" ,method = RequestMethod.GET)
 		public Object detailByFk(@PathVariable("fkColumnName") String fkColumnName ,@PathVariable("fkId") String fkId , HttpServletRequest request, HttpServletResponse response){
 		Map map = new HashMap<String,Object>();
 		${table.javaName} ${table.javaName?uncap_first} = new ${table.javaName}();

@@ -69,7 +69,7 @@
                                 </#if>
                             />
                         <#elseif page.element == 'date' >
-                            <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable editable="false"
+                            <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -77,7 +77,7 @@
                                 </#if>
                                              />
                         <#elseif page.element == 'timestamp' >
-                            <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable editable="false"
+                            <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -140,12 +140,12 @@
 
 
                         <#elseif page.element == 'singlefile' >
-                            <${page.columnConfig.javaName}Upload :businessType.sync="${page.columnConfig.javaName}" :action="uploadApi"  :fileSize="1" :format="uploadFormat" :multiple='singleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                            <${page.columnConfig.javaName}Upload :businessType.sync="formValidate.${page.columnConfig.javaName}" :action="uploadApi"  :fileSize="1" :format="uploadFormat" :multiple='singleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
                         <#elseif page.element == 'multifile' >
-                            <${page.columnConfig.javaName}Upload :businessType.sync="${page.columnConfig.javaName}" :action="uploadApi"  :format="uploadFormat" :multiple='multipleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                            <${page.columnConfig.javaName}Upload :businessType.sync="formValidate.${page.columnConfig.javaName}" :action="uploadApi"  :format="uploadFormat" :multiple='multipleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
                         <#elseif page.element == 'singleimage' >
-                        <#elseif page.element == 'multiimage' >
 
+                        <#elseif page.element == 'multiimage' >
 
                         <#else >
                             <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"      
