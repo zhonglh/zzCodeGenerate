@@ -149,11 +149,20 @@
 
 
 
-                    <div class="form-group" style="display: block">
+                    <div id="tableRelationDiv" class="form-group" style="display: block">
                         <label>和主表的关系：</label>
                         <select id="tableRelation" name="tableRelation"  class="form-control">
                             <option value="one-one"  <c:if test="${entity.tableRelation ==  'one-one' }">selected="selected"</c:if> >一对一</option>
                             <option value="one-multi"   <c:if test="${entity.tableRelation ==  'one-multi' }">selected="selected"</c:if>  >一对多</option>
+                        </select>
+                    </div>
+
+
+                    <div id="pageRelationDiv" class="form-group" style="display: block">
+                        <label>和主表的页面关系：</label>
+                        <select id="pageRelation" name="pageRelation"  class="form-control">
+                            <option value="1"  <c:if test="${entity.pageRelation ==  '1' }">selected="selected"</c:if> >嵌入</option>
+                            <option value="2"  <c:if test="${entity.pageRelation ==  '2' }">selected="selected"</c:if> >单独</option>
                         </select>
                     </div>
 
@@ -825,12 +834,9 @@
         }).validate({
         errorPlacement : function errorPlacement(error, element) {
             element.before(error);
-        },
-        rules : {
-            confirm : {
-                equalTo : "#password"
-            }
         }
+
+
     });
 
 
@@ -1066,14 +1072,26 @@
         var $tableType = $(tableType);
         if($tableType.val() == '1' || $tableType.val() == '2'){
             $("#isBuildMenu").val("1");
+            $("#isBuildRbac").val("1");
             $("#tableRelation").val("one-one");
+            $("#pageRelationDiv").hide();
         }else if($tableType.val() == '3'){
             $("#isBuildMenu").val("0");
+            $("#isBuildRbac").val("0");
             $("#tableRelation").val("one-one");
+            $("#pageRelationDiv").show();
         }else if($tableType.val() == '4'){
             $("#isBuildMenu").val("0");
+            $("#isBuildRbac").val("0");
             $("#tableRelation").val("one-multi");
+            $("#pageRelationDiv").show();
         }
+    }
+
+    if($tableType.val() == '1' || $tableType.val() == '2'){
+        $("#pageRelationDiv").hide();
+    }else {
+        $("#pageRelationDiv").show();
     }
 
     function changeIsTree(isTree){

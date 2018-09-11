@@ -66,6 +66,12 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	private String tableRelation;
 
 
+	//页面关系
+	//子表或副表才需要设置，
+	//关系分别是 嵌入 单独
+	private String pageRelation ;
+
+
 
 
 
@@ -438,5 +444,13 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	public void setMainTableName(String mainTableName) {
 		this.mainTableName = mainTableName;
+	}
+
+	public String getPageRelation() {
+		return pageRelation;
+	}
+
+	public void setPageRelation(String pageRelation) {
+		this.pageRelation = pageRelation;
 	}
 }
