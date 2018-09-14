@@ -28,7 +28,7 @@ values (
 '${menu.name}' ,
 <#if menu.pid?exists>'${menu.pid}' ,<#else >null ,</#if>
 ${menu_index} ,
-<#if menu.leaf == '1'>'${menu.resource}' ,<#else >null,</#if>
+<#if menu.leaf == '1'>'${menu.resource}/toList' ,<#else >null,</#if>
 '${menu.title}',
 null,
 null,

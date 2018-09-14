@@ -107,6 +107,25 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 			if(m.getId().equalsIgnoreCase(m.getPid())){
 				throw new BizException("上级模块不能是自己， 请重新选择上级模块！");
 			}
+
+			TcgModuleConfigBO parent = this.baseService.selectById(m.getPid());
+			List<String> pids = new ArrayList<String>();
+			if(parent != null){
+				getParents(pids , parent.getId());
+			}
+
+			if(!pids.isEmpty() && pids.contains(m.getId())){
+				throw new BizException("上级模块不能是自己的下级， 请重新选择上级模块！");
+			}
+		}
+	}
+
+	private void  getParents(List<String> pids,String id){
+
+		pids.add(id);
+		TcgModuleConfigBO bo = this.baseService.selectById(id);
+		if(bo != null && StringUtils.isNotEmpty(bo.getPid())){
+			getParents(pids , bo.getPid());
 		}
 	}
 

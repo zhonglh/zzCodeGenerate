@@ -77,9 +77,9 @@ public class CgBusiness extends CgBaseBusiness{
      * @param menus
      * @param moduleConfigMap
      */
-    private void processMenu(List<MenuPO> menus,  Map<String,TcgModuleConfigBO > moduleConfigMap) {
+    private void processMenu(List<MenuPO> menus,  List<TcgModuleConfigBO> list,Map<String,TcgModuleConfigBO > moduleConfigMap) {
 
-        for(TcgModuleConfigBO moduleConfigBO : moduleConfigMap.values()) {
+        for(TcgModuleConfigBO moduleConfigBO : list) {
 
             MenuPO menu = new MenuPO();
             menu.setId(moduleConfigBO.getId());
@@ -213,7 +213,7 @@ public class CgBusiness extends CgBaseBusiness{
         TcgModuleConfigQuery moduleConfigQuery = new TcgModuleConfigQueryImpl();
         moduleConfigQuery.projectId(projectBO.getId());
         Map<String,TcgModuleConfigBO> moduleConfigMap = new HashMap<String,TcgModuleConfigBO>();
-        List<TcgModuleConfigBO> moduleConfigBOs = tcgModuleConfigService.selectList(moduleConfigQuery.buildWrapper());
+        List<TcgModuleConfigBO> moduleConfigBOs = tcgModuleConfigService.selectList(moduleConfigQuery.buildWrapper().orderBy("create_time"));
         if(moduleConfigBOs != null && !moduleConfigBOs.isEmpty()){
             for(TcgModuleConfigBO moduleConfigBO : moduleConfigBOs){
                 moduleConfigMap.put(moduleConfigBO.getId() , moduleConfigBO);
@@ -221,9 +221,11 @@ public class CgBusiness extends CgBaseBusiness{
 
             setModuleLevel(moduleConfigMap);
 
+            moduleConfigBOs.sort((o1,o2) -> o1.getLevel() * 100000 - o2.getLevel() * 100000  );
+
 
             //处理菜单
-            processMenu(menus,moduleConfigMap);
+            processMenu(menus,moduleConfigBOs ,moduleConfigMap);
         }
 
 
@@ -232,6 +234,7 @@ public class CgBusiness extends CgBaseBusiness{
         tableConfigQuery.projectId(projectBO.getId());
         Wrapper tableWrapper = tableConfigQuery.buildWrapper();
         tableWrapper.orderBy("is_table" , false);
+        tableWrapper.orderBy("create_time" , true);
         List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.selectList(tableWrapper);
 
 
