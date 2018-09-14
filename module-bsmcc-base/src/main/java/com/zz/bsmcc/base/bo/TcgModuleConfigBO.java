@@ -20,6 +20,9 @@ public class TcgModuleConfigBO extends TcgModuleConfigEntity implements Serializ
 
 
     @TableField(exist = false)
+    int level  ;
+
+    @TableField(exist = false)
     private String projectName;
 
 
@@ -29,6 +32,13 @@ public class TcgModuleConfigBO extends TcgModuleConfigEntity implements Serializ
     @TableField(exist = false)
     private String moduleFullResource ;
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public String getProjectName() {
         return projectName;

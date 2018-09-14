@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.files.FreemarkerUtils;
@@ -71,27 +72,84 @@ public class CgBusiness extends CgBaseBusiness{
     @Autowired
     private TcgIndexConfigService tcgIndexConfigService ;
 
+    /**
+     * 通过模块创建菜单
+     * @param menus
+     * @param moduleConfigMap
+     */
+    private void processMenu(List<MenuPO> menus,  Map<String,TcgModuleConfigBO > moduleConfigMap) {
 
-    private void processMenu(List<MenuPO> menus, TcgModuleConfigBO moduleConfigBO) {
+        for(TcgModuleConfigBO moduleConfigBO : moduleConfigMap.values()) {
 
-        MenuPO menu = new MenuPO();
-        menu.setId(moduleConfigBO.getId());
-        menu.setPid(moduleConfigBO.getPid());
-        menu.setName(moduleConfigBO.getModuleResource());
-        menu.setTitle(moduleConfigBO.getModuleName());
-        menu.setResource(moduleConfigBO.getModuleResource());
+            MenuPO menu = new MenuPO();
+            menu.setId(moduleConfigBO.getId());
+            menu.setPid(moduleConfigBO.getPid());
+            menu.setName(moduleConfigBO.getModuleResource());
+            menu.setTitle(moduleConfigBO.getModuleName());
+            menu.setResource(moduleConfigBO.getModuleFullResource());
 
-        String path  = moduleConfigBO.getModuleFullResource().replaceAll("/" , "");
-        menu.setPath(path);
+            String path = moduleConfigBO.getModuleFullResource().replaceAll("/", "");
+            menu.setPath(path);
 
-        menu.setLeaf("0");
-        menu.setLevel((StringUtils.isEmpty(moduleConfigBO.getPid()))? 1 : 2);
+            menu.setLeaf("0");
+            menu.setLevel(moduleConfigBO.getLevel());
 
-        menus.add(menu);
+            menus.add(menu);
+        }
 
     }
 
+    private void setModuleLevel(Map<String,TcgModuleConfigBO > moduleConfigMap){
+        for(String key : moduleConfigMap.keySet()) {
+            TcgModuleConfigBO moduleConfigBO = moduleConfigMap.get(key);
+            if(moduleConfigBO.getLevel() > 0 ){
+                continue;
+            }
+            if(StringUtils.isEmpty(moduleConfigBO.getPid())){
+                moduleConfigBO.setLevel(1);
+                continue;
+            }
+            TcgModuleConfigBO parent = moduleConfigMap.get(moduleConfigBO.getPid());
+            if (parent != null) {
+                if(StringUtils.isEmpty(parent.getPid())){
+                    parent.setLevel(1);
+                    moduleConfigBO.setLevel(parent.getLevel() + 1);
+                }else if (parent.getLevel() > 0){
+                    moduleConfigBO.setLevel(parent.getLevel() + 1);
+                }else {
+                    setParentLevel(parent , moduleConfigMap);
+                    moduleConfigBO.setLevel(parent.getLevel() + 1);
+                }
+            }else {
+                throw new InternalException("数据错误， 上级模块不存在" + moduleConfigBO.getModuleName());
+            }
+        }
+    }
 
+    private void setParentLevel(TcgModuleConfigBO moduleConfigBO , Map<String,TcgModuleConfigBO > moduleConfigMap){
+        TcgModuleConfigBO parent = moduleConfigMap.get(moduleConfigBO.getPid());
+        if (parent != null) {
+            if(StringUtils.isEmpty(parent.getPid())){
+                parent.setLevel(1);
+                moduleConfigBO.setLevel(parent.getLevel() + 1);
+            }else if (parent.getLevel() > 0){
+                moduleConfigBO.setLevel(parent.getLevel() + 1);
+            }else {
+                setParentLevel(parent , moduleConfigMap);
+                moduleConfigBO.setLevel(parent.getLevel() + 1);
+            }
+        }else {
+            throw new InternalException("数据错误， 上级模块不存在" + moduleConfigBO.getModuleName());
+        }
+
+    }
+
+    /**
+     * 通过表创建菜单
+     * @param menus
+     * @param table
+     * @param moduleMenus
+     */
     private void processMenu(List<MenuPO> menus, TcgTableConfigBO table , List<MenuPO> moduleMenus) {
 
         if(EnumYesNo.YES.getCode().equals(table.getIsBuildMenu())) {
@@ -159,10 +217,13 @@ public class CgBusiness extends CgBaseBusiness{
         if(moduleConfigBOs != null && !moduleConfigBOs.isEmpty()){
             for(TcgModuleConfigBO moduleConfigBO : moduleConfigBOs){
                 moduleConfigMap.put(moduleConfigBO.getId() , moduleConfigBO);
-
-                //处理菜单
-                processMenu(menus,moduleConfigBO);
             }
+
+            setModuleLevel(moduleConfigMap);
+
+
+            //处理菜单
+            processMenu(menus,moduleConfigMap);
         }
 
 
