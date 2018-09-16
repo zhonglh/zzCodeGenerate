@@ -366,7 +366,7 @@
             <#if (page_index == 0 )>
 
                 <#list operations as operation>
-                <#if (operation.operationResource == 'update') >
+                <#if (operation.operationResource == 'detail') >
                     ,
                     render: (h, params) => {
                         let that = this;
@@ -398,6 +398,16 @@
 
                 </#list>
 
+            <#elseif page.element == 'date'>
+            ,
+            render: (h, params) => {
+                return timeFormat.formatTime(params.row.${page.columnConfig.javaName},'Y-M-D');
+            }
+            <#elseif page.element == 'timestamp'>
+            ,
+            render: (h, params) => {
+                return timeFormat.formatTime(params.row.${page.columnConfig.javaName},'Y-M-D h:m:s');
+            }
             </#if>
             }<#if page_has_next>,</#if>
         </#list>

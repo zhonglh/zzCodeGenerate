@@ -23,7 +23,13 @@
                 <#if page.hiddenable == '0'>
                 <Col :xs="24" :sm="12" :md="12" :lg="12">
                 <FormItem label="${page.columnComment}" prop="${page.javaName}">
+                <#if page.element == 'date' >
+                    {{ formValidate.${page.javaName} | date('%Y-%m-%d') }}
+                <#elseif  page.element == 'timestamp' >
+                    {{ formValidate.${page.javaName} | date('%Y-%m-%d %H:%M:%S') }}
+                <#else >
                     {{ formValidate.${page.javaName} }}
+                </#if >
                 </FormItem>
                 </Col>
                 </#if>
@@ -69,7 +75,7 @@
                                 </#if>
                             />
                         <#elseif page.element == 'date' >
-                            <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false"
+                            <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName}"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -77,7 +83,7 @@
                                 </#if>
                                              />
                         <#elseif page.element == 'timestamp' >
-                            <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false"
+                            <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName}"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -287,6 +293,8 @@
                                     {  type: 'array',  message: '${validate.msg}', trigger: 'change', pattern: ${validate.rex} },
                                 <#elseif  page.element == 'openwin' >
                                     { type: 'string', message: '${validate.msg}', trigger: 'blur', pattern: ${validate.rex} },
+                                <#elseif  page.element == 'date' || page.element == 'timestamp'>
+                                    { type: 'date', message: '${validate.msg}', trigger: 'blur', pattern: ${validate.rex} },
                                 <#else>
                                     { type: 'string', message: '${validate.msg}', trigger: 'blur', pattern: ${validate.rex} },
                                 </#if>
@@ -302,6 +310,8 @@
                                 { required: true, type: 'array', min: 1, message: '请至少选择一项${page.columnComment}', trigger: 'change' }
                             <#elseif  page.element == 'openwin' >
                                 { required: true,  message: '请选择${page.columnComment}', trigger: 'blur' }
+                            <#elseif  page.element == 'date' || page.element == 'timestamp'>
+                                { required: true,  type: 'date',message: '请选择${page.columnComment}', trigger: 'blur' }
                             <#else>
                                 { required: true, message: '请输入${page.columnComment}', trigger: 'blur' }
                             </#if>
@@ -318,6 +328,43 @@
         };
         },
     methods: {
+
+
+    <#list showColumnPages as page>
+
+        <#if (page.existPage == '1' && page.editable == '1' && page.element == 'date')>
+            onChange${page.columnConfig.javaName}(v){
+                this.formValidate.${page.columnConfig.javaName} = new Date(v);
+            },
+
+        <#elseif (page.existPage == '1' && page.editable == '1' && page.element == 'timestamp')>
+            onChange${page.columnConfig.javaName}(v){
+                this.formValidate.${page.columnConfig.javaName} = new Date(v);
+            },
+        </#if>
+    </#list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <#list columnEvents as event>
     ${event.funcBody},
@@ -352,11 +399,6 @@
         </#if>
     </#list>
 
-    <#if events?exists>
-        <#list events as event>
-        ${event.funcBody} ,
-        </#list>
-    </#if>
 
         save() {
             this.handleSubmit('formValidate');
