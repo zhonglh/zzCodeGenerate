@@ -8,10 +8,10 @@
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" afterPath="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/util/table/engine/impl/MySqlReadDbProcess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/module-bsmcc-web/target/" />
@@ -37,63 +37,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TcgModuleConfigController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java">
+      <file leaf-file-name="TcgTableConfigController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="110" column="79" lean-forward="false" selection-start-line="110" selection-start-column="79" selection-end-line="110" selection-end-column="79" />
+            <state relative-caret-position="6443">
+              <caret line="427" column="79" lean-forward="false" selection-start-line="427" selection-start-column="79" selection-end-line="427" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entity.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl">
+      <file leaf-file-name="TcgTableConfigServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgTableConfigServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
+            <state relative-caret-position="1139">
+              <caret line="88" column="73" lean-forward="false" selection-start-line="88" selection-start-column="73" selection-end-line="88" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vue_edit.ftl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="84" column="59" lean-forward="false" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="59" />
+            <state relative-caret-position="391">
+              <caret line="386" column="67" lean-forward="true" selection-start-line="386" selection-start-column="67" selection-end-line="386" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editForm.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18360">
+              <caret line="1080" column="42" lean-forward="false" selection-start-line="1080" selection-start-column="42" selection-end-line="1080" selection-end-column="42" />
               <folding>
-                <element signature="n#style#0;n#Row#0;n#Form#0;n#Modal#0;n#template#0;n#!!top" expanded="true" />
+                <marker date="1537263383982" expanded="true" signature="46260:46324" ph="..." />
+                <marker date="1537263383982" expanded="true" signature="48732:48796" ph="..." />
+                <marker date="1537263383982" expanded="true" signature="51341:51405" ph="..." />
+                <marker date="1537263383982" expanded="true" signature="54372:54382" ph="..." />
+                <marker date="1537263383982" expanded="true" signature="54668:54732" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue_list.ftl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
+      <file leaf-file-name="editForm.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="393" column="29" lean-forward="false" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
+            <state relative-caret-position="2499">
+              <caret line="147" column="90" lean-forward="false" selection-start-line="147" selection-start-column="90" selection-end-line="147" selection-end-column="90" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CgBusiness.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
+      <file leaf-file-name="EnumPageRelation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="699" column="42" lean-forward="false" selection-start-line="699" selection-start-column="42" selection-end-line="699" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseCURDController.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/zz/bms/module-bms-controller-base/1.0.1/module-bms-controller-base-1.0.1.jar!/com/zz/bms/controller/base/controller/BaseCURDController.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3417">
-              <caret line="234" column="30" lean-forward="false" selection-start-line="234" selection-start-column="21" selection-end-line="234" selection-end-column="30" />
+            <state relative-caret-position="170">
+              <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -111,10 +115,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>module-bms-system</find>
-      <find>status</find>
-      <find>EnumSearchType</find>
-      <find>buildui</find>
       <find>dialog</find>
       <find>fullResourceFile</find>
       <find>moduleConfigMap</find>
@@ -122,9 +122,7 @@
       <find>edita</find>
       <find>editable</find>
       <find>pageRelation</find>
-      <find>changeTableType</find>
       <find>show</find>
-      <find>pageRelationDiv</find>
       <find>menus</find>
       <find>setModuleLevel</find>
       <find>name</find>
@@ -141,6 +139,12 @@
       <find>required</find>
       <find>timestamp</find>
       <find>timeFormat</find>
+      <find>单独</find>
+      <find>EnumPageRelation</find>
+      <find>changeTableType</find>
+      <find>tableRelationDiv</find>
+      <find>pageRelationDiv</find>
+      <find>tableType</find>
     </findStrings>
     <replaceStrings>
       <replace>columns</replace>
@@ -193,7 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/module/config/editForm.jsp" />
         <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/addForm.jsp" />
@@ -234,7 +237,6 @@
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/controller.ftl" />
         <option value="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java" />
-        <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgModuleConfigBO.java" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/rbac_sql.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/menus_sql.ftl" />
@@ -242,8 +244,10 @@
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
         <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl" />
+        <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp" />
+        <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl" />
       </list>
     </option>
   </component>
@@ -312,16 +316,110 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
               <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
+              <item name="fund" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="webpage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="webpage" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="webpage" type="462c0819:PsiDirectoryNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
+              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="webpage" type="462c0819:PsiDirectoryNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
@@ -375,6 +473,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -387,7 +488,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="add_unversioned_files" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="cgbu&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;cur&#9;FILE&#9;jar://F:/maven/repository/.m2/repository/com/zz/bms/module-bms-controller-base/1.0.1/module-bms-controller-base-1.0.1.jar!/com/zz/bms/controller/base/controller/BaseCURDController.class&#10;moducon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java&#10;po&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/MenuPO.java&#10;menup&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/MenuPO.java&#10;enum&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java&#10;editform.jsp&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp&#10;tableconfig&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;curd&#9;FILE&#9;jar://F:/maven/repository/.m2/repository/com/zz/bms/module-bms-controller-base/1.0.1/module-bms-controller-base-1.0.1.jar!/com/zz/bms/controller/base/controller/BaseCURDController.class&#10;menupo&#9;PSI&#9;JAVA://com.zz.bsmcc.base.po.MenuPO&#10;jdbc.pro&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_jdbc.properties&#10;edit&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp&#10;cgbus&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;enumuser&#9;PSI&#9;JAVA://com.zz.bms.enums.EnumUserStatus&#10;editf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp&#10;tableconf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tableconfigcon&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.TcgTableConfigController&#10;tcgtablecon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tableop&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableOperationBO.java&#10;TcgTableOperationserv&#9;PSI&#9;JAVA://com.zz.bsmcc.base.service.TcgTableOperationService&#10;editform&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp&#10;tcgtem.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTemplet.xml&#10;templet&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgTempletBO&#10;tablep&#9;PSI&#9;JAVA://com.zz.bsmcc.base.po.TablePO&#10;tcgmodu&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java&#10;tcgop&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgOperationBO&#10;enumcol&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumDbColumnType.java&#10;enumdb&#9;PSI&#9;JAVA://com.zz.bsmcc.core.enums.EnumDbColumnType&#10;tablecon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tablecon.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;tcgtab&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;TcgTableConfi.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;jdbc&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_jdbc.properties&#10;TcgTableConfig.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;tableconfigent&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;cgb&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tcgmodulecon&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.TcgModuleConfigController&#10;editfor&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp&#10;tcgtable&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tcgta&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;dbc&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_jdbc.properties&#10;tcgproject&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgProjectEntity.java&#10;TcgProject.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgProject.xml&#10;tableconfigcontr&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tcgtablecontro&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tableconfigen&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;tcgtableconfigcontr&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tablepo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java&#10;table&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tcgtableconf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java" />
+    <property name="SearchEverywhereHistoryKey" value="editform&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp&#10;TcgTableConfigser&#9;PSI&#9;JAVA://com.zz.bsmcc.base.service.impl.TcgTableConfigServiceImpl&#10;tableconfigcontroll&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.TcgTableConfigController&#10;cgbu&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;cur&#9;FILE&#9;jar://F:/maven/repository/.m2/repository/com/zz/bms/module-bms-controller-base/1.0.1/module-bms-controller-base-1.0.1.jar!/com/zz/bms/controller/base/controller/BaseCURDController.class&#10;moducon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java&#10;po&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/MenuPO.java&#10;menup&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/MenuPO.java&#10;enum&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java&#10;editform.jsp&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp&#10;tableconfig&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;curd&#9;FILE&#9;jar://F:/maven/repository/.m2/repository/com/zz/bms/module-bms-controller-base/1.0.1/module-bms-controller-base-1.0.1.jar!/com/zz/bms/controller/base/controller/BaseCURDController.class&#10;menupo&#9;PSI&#9;JAVA://com.zz.bsmcc.base.po.MenuPO&#10;jdbc.pro&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_jdbc.properties&#10;edit&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp&#10;cgbus&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;enumuser&#9;PSI&#9;JAVA://com.zz.bms.enums.EnumUserStatus&#10;editf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/templet/editForm.jsp&#10;tableconf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tableconfigcon&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.TcgTableConfigController&#10;tcgtablecon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tableop&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableOperationBO.java&#10;TcgTableOperationserv&#9;PSI&#9;JAVA://com.zz.bsmcc.base.service.TcgTableOperationService&#10;tcgtem.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTemplet.xml&#10;templet&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgTempletBO&#10;tablep&#9;PSI&#9;JAVA://com.zz.bsmcc.base.po.TablePO&#10;tcgmodu&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java&#10;tcgop&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgOperationBO&#10;enumcol&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumDbColumnType.java&#10;enumdb&#9;PSI&#9;JAVA://com.zz.bsmcc.core.enums.EnumDbColumnType&#10;tablecon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tablecon.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;tcgtab&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;TcgTableConfi.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;jdbc&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_jdbc.properties&#10;TcgTableConfig.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;tableconfigent&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;cgb&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tcgmodulecon&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.TcgModuleConfigController&#10;editfor&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp&#10;tcgtable&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tcgta&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;dbc&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_jdbc.properties&#10;tcgproject&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgProjectEntity.java&#10;TcgProject.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgProject.xml&#10;tableconfigcontr&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tcgtablecontro&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tableconfigen&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;tcgtableconfigcontr&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;tablepo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -766,14 +867,14 @@
       <workItem from="1536569682189" duration="7030000" />
       <workItem from="1536669223727" duration="4898000" />
       <workItem from="1536843775562" duration="14848000" />
-      <workItem from="1537058648666" duration="5171000" />
-    </task>
-    <task id="LOCAL-00106" summary="增加模板按钮样式的处理">
-      <created>1535102984892</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1535102984892</updated>
+      <workItem from="1537058648666" duration="5925000" />
+      <workItem from="1537147034578" duration="1505000" />
+      <workItem from="1537186017630" duration="561000" />
+      <workItem from="1537259928454" duration="4547000" />
+      <workItem from="1537322814842" duration="3642000" />
+      <workItem from="1537341266570" duration="110000" />
+      <workItem from="1537408809227" duration="5091000" />
+      <workItem from="1537447489303" duration="132000" />
     </task>
     <task id="LOCAL-00107" summary="增加模板按钮样式的处理">
       <created>1535103705798</created>
@@ -1111,7 +1212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536905227008</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="增加模板按钮样式的处理">
+      <created>1537097532102</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1537097532103</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1123,7 +1231,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="894545000" />
+    <option name="totallyTimeSpent" value="910887000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1147,18 +1255,17 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23895253" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3420622" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21603929" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20949264" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.198036" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33224222" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23328267" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2393617" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18389058" sideWeight="0.5096419" order="3" side_tool="true" content_ui="tabs" />
@@ -1168,6 +1275,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21603929" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24222586" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1187,7 +1295,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23895253" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3420622" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21603929" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1195,12 +1303,12 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20949264" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.198036" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33224222" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23328267" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23556231" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18389058" sideWeight="0.5096419" order="3" side_tool="true" content_ui="tabs" />
@@ -1249,50 +1357,21 @@
           <properties />
           <option name="timeStamp" value="254" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java</url>
+          <line>429</line>
+          <properties />
+          <option name="timeStamp" value="279" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="279" />
+      <option name="time" value="280" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgColumnPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgColumnValidateController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/TcgProjectService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/com/zz/bms/module-bms-controller-base/1.0.1/module-bms-controller-base-1.0.1.pom">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$MAVEN_REPOSITORY$/com/zz/bms/module-bms-shiro/1.0.1/module-bms-shiro-1.0.1.pom">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1396,7 +1475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2686">
           <caret line="203" column="25" lean-forward="false" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1404,7 +1482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="47" column="59" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1412,7 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1434,7 +1510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="9" column="51" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1442,21 +1517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1190">
           <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="31" />
-          <folding>
-            <element signature="e#6731#6732#0" expanded="false" />
-            <element signature="e#6764#6765#0" expanded="false" />
-            <element signature="e#7280#7281#0" expanded="false" />
-            <element signature="e#7306#7307#0" expanded="false" />
-            <element signature="e#7359#7360#0" expanded="false" />
-            <element signature="e#7398#7399#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1464,13 +1524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="9097" column="0" lean-forward="false" selection-start-line="9097" selection-start-column="0" selection-end-line="9097" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="175" column="33" lean-forward="true" selection-start-line="175" selection-start-column="33" selection-end-line="175" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1485,7 +1538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1493,7 +1545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="77">
           <caret line="28" column="11" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="83" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1508,7 +1559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1516,9 +1566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding>
-            <element signature="e#467#484#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1547,7 +1594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="45" column="56" lean-forward="false" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1597,7 +1643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3417">
           <caret line="234" column="30" lean-forward="false" selection-start-line="234" selection-start-column="21" selection-end-line="234" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1605,40 +1650,95 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1326">
           <caret line="110" column="79" lean-forward="false" selection-start-line="110" selection-start-column="79" selection-end-line="110" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/entity.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="442">
           <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="11475">
           <caret line="699" column="42" lean-forward="false" selection-start-line="699" selection-start-column="42" selection-end-line="699" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="84" column="59" lean-forward="false" selection-start-line="84" selection-start-column="50" selection-end-line="84" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#Row#0;n#Form#0;n#Modal#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_list.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="393" column="29" lean-forward="false" selection-start-line="393" selection-start-column="29" selection-end-line="393" selection-end-column="29" />
+        <state relative-caret-position="255">
+          <caret line="411" column="39" lean-forward="true" selection-start-line="411" selection-start-column="39" selection-end-line="411" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TableBusinessServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="116" column="74" lean-forward="false" selection-start-line="116" selection-start-column="74" selection-end-line="116" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-support/2.3/mybatis-plus-support-2.3-sources.jar!/com/baomidou/mybatisplus/service/IService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="283" column="34" lean-forward="true" selection-start-line="283" selection-start-column="34" selection-end-line="283" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgTableConfigServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="88" column="73" lean-forward="false" selection-start-line="88" selection-start-column="73" selection-end-line="88" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6443">
+          <caret line="427" column="79" lean-forward="false" selection-start-line="427" selection-start-column="79" selection-end-line="427" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/project/editForm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2499">
+          <caret line="147" column="90" lean-forward="false" selection-start-line="147" selection-start-column="90" selection-end-line="147" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18360">
+          <caret line="1080" column="42" lean-forward="false" selection-start-line="1080" selection-start-column="42" selection-end-line="1080" selection-end-column="42" />
+          <folding>
+            <marker date="1537263383982" expanded="true" signature="46260:46324" ph="..." />
+            <marker date="1537263383982" expanded="true" signature="48732:48796" ph="..." />
+            <marker date="1537263383982" expanded="true" signature="51341:51405" ph="..." />
+            <marker date="1537263383982" expanded="true" signature="54372:54382" ph="..." />
+            <marker date="1537263383982" expanded="true" signature="54668:54732" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/fund/vue_edit.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="386" column="67" lean-forward="true" selection-start-line="386" selection-start-column="67" selection-end-line="386" selection-end-column="67" />
           <folding />
         </state>
       </provider>

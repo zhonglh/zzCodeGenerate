@@ -75,7 +75,10 @@
                         <select id="moduleId" name="moduleId" class="form-control">
                             <option value="" ></option>
                             <c:forEach var="module"   items="${modules }"   varStatus="status1">
-                                <option value="${module.id }" >${module.moduleName}</option>
+                                <option value="${module.id }" <c:if test="${module.id == entity.moduleId}">selected="selected"</c:if>  >${module.moduleName}</option>
+
+
+
                             </c:forEach>
                         </select>
                     </div>
@@ -1075,24 +1078,24 @@
             $("#isBuildRbac").val("1");
             $("#tableRelation").val("one-one");
             $("#pageRelationDiv").hide();
+            $("#tableRelationDiv").hide();
+
         }else if($tableType.val() == '3'){
             $("#isBuildMenu").val("0");
             $("#isBuildRbac").val("0");
             $("#tableRelation").val("one-one");
             $("#pageRelationDiv").show();
+            $("#tableRelationDiv").show();
         }else if($tableType.val() == '4'){
             $("#isBuildMenu").val("0");
             $("#isBuildRbac").val("0");
             $("#tableRelation").val("one-multi");
             $("#pageRelationDiv").show();
+            $("#tableRelationDiv").show();
         }
     }
 
-    if($tableType.val() == '1' || $tableType.val() == '2'){
-        $("#pageRelationDiv").hide();
-    }else {
-        $("#pageRelationDiv").show();
-    }
+    changeTableType(document.getElementById("tableType"));
 
     function changeIsTree(isTree){
         var $isTree = $(isTree);

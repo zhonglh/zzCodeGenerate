@@ -157,7 +157,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Scheam名称：</label>
                                 <div class="col-sm-8">
-                                    <input id="otherSchema" name="otherSchema" value="${entity.otherSchema }" class="form-control" placeholder="多个Schema用逗号隔开" readonly type="text" aria-required="true" aria-invalid="true"  class="error">
+                                    <input id="otherSchema" name="otherSchema" value="${entity.otherSchema }" class="form-control" placeholder="多个Schema用逗号隔开" <c:if test="${entity.isMultiSchema ==  '0' }">selected="readonly"</c:if> type="text" aria-required="true" aria-invalid="true"  class="error">
                                 </div>
                             </div>
                             

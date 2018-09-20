@@ -75,7 +75,7 @@
                                 </#if>
                             />
                         <#elseif page.element == 'date' >
-                            <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName}"
+                            <DatePicker type="date"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName?cap_first}"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -83,7 +83,7 @@
                                 </#if>
                                              />
                         <#elseif page.element == 'timestamp' >
-                            <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName}"
+                            <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName?cap_first}"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -333,38 +333,16 @@
     <#list showColumnPages as page>
 
         <#if (page.existPage == '1' && page.editable == '1' && page.element == 'date')>
-            onChange${page.columnConfig.javaName}(v){
+            onChange${page.columnConfig.javaName?cap_first}(v){
                 this.formValidate.${page.columnConfig.javaName} = new Date(v);
             },
 
         <#elseif (page.existPage == '1' && page.editable == '1' && page.element == 'timestamp')>
-            onChange${page.columnConfig.javaName}(v){
+            onChange${page.columnConfig.javaName?cap_first}(v){
                 this.formValidate.${page.columnConfig.javaName} = new Date(v);
             },
         </#if>
     </#list>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <#list columnEvents as event>
     ${event.funcBody},
