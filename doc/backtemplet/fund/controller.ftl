@@ -17,6 +17,7 @@ import com.fullbloom.utils.data.DateKit;
 import com.fullbloom.core.vo.Pager;
 import com.fullbloom.core.vo.AjaxJson;
 import com.fullbloom.utils.java.IdUtils;
+import com.fullbloom.utils.data.MyBeanUtils;
 
 import com.fullbloom.core.exceptions.DbException;
 
@@ -119,7 +120,8 @@ public class ${table.javaName}Controller extends FundBaseController {
 
 	/**
 	* 明细信息 , 根据外键获取明细信息
-	* @param id
+	* @param fkColumnName
+	* @param fkId
 	* @param request
 	* @param response
 	* @return
@@ -140,11 +142,38 @@ public class ${table.javaName}Controller extends FundBaseController {
 
 
 
+	/**
+	* 明细信息 , 根据条件获取单个信息
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/detailBy" ,method = RequestMethod.GET)
+	public Object detailBy( , HttpServletRequest request, HttpServletResponse response){
+		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
+
+
+		if(!MyBeanUtils.isAllFieldNull(${table.javaName?uncap_first})){
+			${table.javaName} result= ${table.javaName?uncap_first}Service.findTopOne(${table.javaName?uncap_first} );
+		}else {
+			result = new new ${table.javaName}();
+			//新增数据 ， 可以根据业务定制默认值
+		}
+
+
+		Map map = new HashMap<String,Object>();
+		map.put("${table.javaName?uncap_first}" , (result==null)?new ${table.javaName}() : result);
+		return map;
+	}
 
 
 
 
-/**
+
+
+
+
+	/**
 	* 查询分页数据
 	* @param request
 	* @param response

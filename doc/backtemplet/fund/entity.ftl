@@ -19,6 +19,9 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
     private static final long serialVersionUID = 1L;
 
+
+
+
 <#list columns as being>
 <#if !being.inParentClass>
 
@@ -39,6 +42,7 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
     </#if>
     </#list>
+
 
     <#list columns as being>
     <#if !being.inParentClass>

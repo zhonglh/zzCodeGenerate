@@ -68,7 +68,7 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	//页面关系
 	//子表或副表才需要设置，
-	//关系分别是 嵌入 单独
+	//关系分别是 1:嵌入 2:单独
 	private String pageRelation ;
 
 

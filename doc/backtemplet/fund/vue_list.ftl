@@ -127,27 +127,43 @@
         </Row>
         </table-list>
 
-    <#list operations as operation>
-    <#if operation.operationResource == 'update' && table.tableType =='2'>
+    <#if (table.tableType =='2')>
         <${table.javaName}All :${table.javaName}="${table.javaName}" @closeDialog="closeDialog('all')"  :display="allDisplay"  />
     </#if>
-    </#list>
 
 
     <#list operations as operation>
         <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update' ))>
-            <${table.javaName}Edit @saveSuccess="saveSuccess('edit')"  @closeDialog="closeDialog('edit')" :title="title"  ref="editRef" :display="editDisplay" />
+        <Modal
+        v-model="editDisplay"
+        title="title"
+        :width="1000"
+        loading
+        draggable
+        :footerHide="true"
+        :mask-closable="false"
+        @on-visible-change="onVisibleChange"
+        scrollable>
+            <${table.javaName}Edit @saveSuccess="saveSuccess('edit')" :id="id"  @closeDialog="closeDialog('edit')"   ref="editRef"  />
+        </Modal>
             <#break>
         </#if>
     </#list>
 
-
-    <#list operations as operation>
-        <#if operation.operationResource == 'detail'>
-            <${table.javaName}Detail :title="title"  @closeDialog="closeDialog('detail')" ref="detailRef" :display="detailDisplay" />
-            <#break>
-        </#if>
-    </#list>
+    <#if table.tableType !='2'>
+    <Modal
+            v-model="detailDisplay"
+            title="title"
+            :width="1000"
+            loading
+            draggable
+            :footerHide="true"
+            :mask-closable="false"
+            @on-visible-change="onVisibleChange"
+            scrollable>
+        <${table.javaName}Detail  @closeDialog="closeDialog('detail')" ref="detailRef"  />
+    </Modal>
+    </#if>
 
 
     <#list operations as operation>
@@ -195,12 +211,9 @@
     </#if>
     </#list>
 
-    <#list operations as operation>
-    <#if operation.operationResource == 'detail'>
+    <#if table.tableType !='2'>
     import ${table.javaName}Detail from './${table.javaName}Detail' ;
     </#if>
-    </#list>
-
 
     <#list operations as operation>
     <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
@@ -212,7 +225,6 @@
 
 
 
-    import onfire from 'onfire.js';
     import dialog from '@/utils/dialog'
     import commonApi from '@/api/commonApi';
     import tableList from '@/components/table-list/tableList'
@@ -247,12 +259,9 @@
     </#if>
     </#list>
 
-    <#list operations as operation>
-    <#if operation.operationResource == 'detail'>
+    <#if table.tableType !='2'>
         ${table.javaName}Detail,
-    <#break>
     </#if>
-    </#list>
 
 
 
@@ -278,6 +287,31 @@
 
     },
     mixins:[tableMix],
+
+    props:{
+    <#list columns as column>
+    <#if column.columnIsfk == '1'>
+        ${column.javaName} :{
+            type:String,
+            default:''
+        },
+    </#if>
+    </#list>
+
+
+    },
+
+    watch: {
+
+    <#list columns as column>
+        <#if column.columnIsfk == '1'>
+        ${column.javaName} : function (newVal, oldVal) {
+            this.findList();
+        },
+        </#if>
+    </#list>
+
+    },
     data () {
         return {
             ${table.javaName}: {},
@@ -319,11 +353,7 @@
     </#list>
 
             bsType: '',
-            fks:{
-            <#list table.fkColumns as fkColumn>
-                ${fkColumn.javaName}:'',
-            </#list>
-            },
+
             searchForm:{
         <#list querys as being >
             <#if being.columnPage?exists>
@@ -365,8 +395,7 @@
                 width: 150
             <#if (page_index == 0 )>
 
-                <#list operations as operation>
-                <#if (operation.operationResource == 'detail') >
+                <#if table.pageRelation == '2' >
                     ,
                     render: (h, params) => {
                         let that = this;
@@ -381,22 +410,20 @@
                             on: {
                                 click: () => {
                                     <#if table.tableType =='2'>
-                                    that.showModelDialog(`${table.tableComment}详细`, 'all', true);
-                                    that.${table.javaName} =  that.data[params.index];
-                                    <#else >
-                                        that.showModelDialog(`${table.tableComment}`, 'edit', true);
                                         that.${table.javaName} =  that.data[params.index];
+                                        that.showModelDialog(`${table.tableComment}详细`, 'all', true);
+                                    <#else >
+                                        that.${table.javaName} =  that.data[params.index];
+                                        that.id = that.data[params.index].id;
+                                        that.showModelDialog(`${table.tableComment}`, 'edit', true);
                                     </#if>
                                 }
                             }
                         },`${r'${title}'}`);
                     }
-                    <#break >
                 </#if>
 
 
-
-                </#list>
 
             <#elseif page.element == 'date'>
             ,
@@ -501,20 +528,8 @@
 
         this.$nextTick(function () {
             let that = this;
-            <#list table.fkColumns as fkColumn>
-            onfire.on('${fkColumn.fkTableConfig.javaName}Event',function (id ) {
-                that.fks.${fkColumn.javaName} = id;
-                that.findList();
-            });
-            </#list>
-
-
-
 
             this.findList();
-
-
-
 
         <#if queryDictSet?exists && (queryDictSet?size > 0) >
             commonApi.allDicts('<#list queryDictSet as queryColumn><#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}<#if queryColumn_has_next>,</#if><#else>${queryColumn.columnPage.columnConfig.dictType}<#if queryColumn_has_next>,</#if></#if></#list>', {
@@ -528,8 +543,6 @@
             });
         </#if>
         });
-
-
     }
 
     };

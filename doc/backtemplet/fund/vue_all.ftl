@@ -5,48 +5,83 @@
         margin: 5px;
         border-left: 1px #ccc solid;
 
-        .tabs{
-            width: 100%;
-            border-bottom: 1px #ccc solid;
-            padding: 5px;
-        }
+    .tabs{
+        width: 100%;
+        border-bottom: 1px #ccc solid;
+        padding: 5px;
+    }
+
+    }
+    .title{
+        text-align: left;
+        float: left;
+    }
+
+    .All{
+
+    .header{
+
+
+    .title{
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 5px;
+    }
+    .label{
+        height: 40px;
+        line-height: 40px;
+        margin-left: 10px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .val{
+        height: 40px;
+        line-height: 40px;
+        font-size: 13px;
+        color: #ee9900;
+        font-weight: bold;
+    }
+    }
 
     }
 </style>
 
 <template>
     <Modal
+
             v-model="show"
             :title="title"
+            fullscreen
             @on-visible-change="onVisibleChange"
-            :width="dialogWidth"
+            :footer-hide="true"
             loading
-            draggable
-            :mask-closable="maskClosable"
             scrollable>
 
-    <Row class="m-container">
-        <Col :xs="24" :sm="24" :md="24" :lg="24">
-        <div class="tabs">
-                <span v-for="(item,index) in tabs" :key="index">
-                    <Button :type="btnType" icon="android-add-circle" ghost  v-if="tabIndex != index"  style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
-                    <Button :type="btnType" icon="android-add-circle" v-if="tabIndex == index"   style="margin-left:10px;"  @click="handleTask(index,item)">{{item.title}}</Button>
-                </span>
-        </div>
 
-        </Col>
-        <Col :xs="24" :sm="24" :md="24" :lg="24">
-        <keep-alive>
-            <component v-bind:is="currentComponent"></component>
-        </keep-alive>
-        </Col>
-    </Row>
+
+        <Row :gutter="32" class="fundAll">
+            <Col span="24" class="header">
+            <span class="title"></span>
+            <span class="label"></span><span class="val"></span>
+            </Col>
+            <Col span="24" class="demo-tabs-style2">
+            <Tabs type="card" @on-click="handleTab">
+                <TabPane v-for="(item,index) in tabs" :key="index" :label="item.title" name="item.component" ></TabPane>
+            </Tabs>
+
+            <keep-alive>
+                <component v-bind:is="currentComponent" :${table.simpleName}Id="${table.javaName}.id"></component>
+            </keep-alive>
+            </Col>
+        </Row>
+
     </Modal>
 </template>
 
 <script>
     const _import = require('@/router/_import_production');
-    import onfire from 'onfire.js';
     import propMix from '@/mixins/propMix';
 
     export default {
@@ -63,48 +98,49 @@
                 }
             }
         },
+        watch: {
+            ${table.javaName}: function (newVal, oldVal) {
+                this.handleTab('${table.javaName}Detail');
+            }
+        },
 
         data () {
             return {
                 btnType: 'success',
                 btnGhost: 'ghost',
                 currentComponent: '',
-                tabIndex : 0,
                 tabs: []
             };
         },
-        watch: {
-            ${table.javaName}(val ,oldVal){
-                onfire.fire('${table.javaName}Event',this.${table.javaName}['id']);
-            }
-        },
+
         methods:{
 
-            handleTask(index,item){
-                this.currentComponent = item.component;
-                this.tabIndex = index;
+            handleTab(name){
+                this.currentComponent = name;
             },
 
             assemblingComponent(){
                 this.tabs = [];
 
-                this.tabs.push({title: '基本信息', component: '${table.javaName}Edit'});
-                this.$options.components['${table.javaName}Edit'] = _import('${table.fullResourceName?substring(1)}/${table.javaName}Edit');
+                this.tabs.push({title: '基本信息', component: '${table.javaName}Detail'});
+                this.$options.components['${table.javaName}Detail'] = _import('${table.fullResourceName?substring(1)}/${table.javaName}Detail');
 
 
                 <#if table.childFkTables?exists >
                 <#list table.childFkTables as child>
-                <#if table.tableRelation?exists && table.tableRelation == 'one-multi'>
+                <#if child.pageRelation?exists && child.pageRelation == '2'>
+                <#if child.tableRelation?exists && child.tableRelation == 'one-multi'>
                 this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}List'});
                 this.$options.components['${child.javaName}List'] = _import('${child.fullResourceName?substring(1)}/${child.javaName}List');
                 <#else >
-                    this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}Edit'});
-                    this.$options.components['${child.javaName}Edit'] = _import('${child.fullResourceName?substring(1)}/${child.javaName}Edit');
+                this.tabs.push({title: '${child.tableComment}', component: '${child.javaName}Detail'});
+                this.$options.components['${child.javaName}Detail'] = _import('${child.fullResourceName?substring(1)}/${child.javaName}Detail');
+                </#if>
                 </#if>
                 </#list>
                 </#if>
 
-                this.handleTask(0,this.tabs[0]);
+                this.handleTask('${table.javaName}Detail');
             }
 
         },

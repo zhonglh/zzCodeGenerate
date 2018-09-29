@@ -200,6 +200,7 @@ public class CgBusiness extends CgBaseBusiness{
      * @param templets
      */
     public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets ) {
+
         //所有的字典类型
         Map<String,String> dictTypeMap = new HashMap<String,String>();
 
@@ -258,6 +259,10 @@ public class CgBusiness extends CgBaseBusiness{
         for(TcgTableConfigBO tableConfig : tableConfigs){
             Map<String,Object> searchMap = new HashMap<String,Object>();
             searchMap.put("table_id" , tableConfig.getId());
+
+
+            tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
+            tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
 
 
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
@@ -489,6 +494,18 @@ public class CgBusiness extends CgBaseBusiness{
 
         //处理 tableBO的 childFkTables , 就是拿到表的 子表信息
         for(TcgTableConfigBO tableConfig : tableConfigs){
+            if(tableConfig.getFkTables() != null && !tableConfig.getFkTables().isEmpty()){
+                int index = 0;
+                for(TcgTableConfigBO p : tableConfig.getFkTables()){
+                    p.getChildFkTables().add(tableConfig);
+                    p.getChildFkColumns().add(tableConfig.getFkColumns().get(index));
+                    index ++;
+                }
+            }
+
+        }
+
+        /*for(TcgTableConfigBO tableConfig : tableConfigs){
                 tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
                 tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
                 for(TcgTableConfigBO childTable : tableConfigs){
@@ -507,7 +524,7 @@ public class CgBusiness extends CgBaseBusiness{
                     }
                 }
 
-        }
+        }*/
 
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
@@ -599,6 +616,9 @@ public class CgBusiness extends CgBaseBusiness{
 
 
         for(TcgTempletBO templet : templets){
+
+            System.out.println("table:"+tablePO.getTableBO().getTableName() + " =====  templet :"+ templet.getTempletTitle());
+
             //菜单SQL模板 不在这里处理
             if(EnumYesNo.YES.getCode().equals(templet.getIsMenuSql())){
                 continue;
@@ -955,6 +975,8 @@ public class CgBusiness extends CgBaseBusiness{
                 }else {
                     columnConfigBO.setInParentClass(false);
                 }
+
+
 
 
                 String setMethodName = "";

@@ -2,18 +2,20 @@
 
 </style>
 <template>
-    <Modal
-            v-model="show"
-            :title="title"
-            @on-visible-change="onVisibleChange"
-            :width="dialogWidth"
-            loading
-            draggable
-            :mask-closable="maskClosable"
-            scrollable>
+    <div>
 
+        <div style="height: 400px;overflow: auto">
+            <block-head title="基本信息" v-if="formValidate.id">
+                <div slot="toolbar">
+                    <Button type="info" v-show="!isEdit  @click="toogleEdit" size="small">编辑</Button>
+                    <Button v-show="isEdit" type="primary" @click="save" size="small">保存</Button>
+                    <Button v-show="isEdit" @click="handleReset('formValidate')" size="small">重置</Button>
+                    <Button type="warning" v-show="isEdit" @click="toogleCancel" size="small">取消</Button>
 
-        <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="labelWidth">
+                </div>
+            </block-head>
+
+        <Form v-show="!isEdit"  :label-width="labelWidth">
         <#list showColumnPages as page>
             <#if (page_index==0)>
             <Row style="padding : 10px ">
@@ -21,24 +23,113 @@
 
             <#if (page.existPage == '1' &&  page.editable == '0')>
                 <#if page.hiddenable == '0'>
-                <Col :xs="24" :sm="12" :md="12" :lg="12">
-                <FormItem label="${page.columnComment}" prop="${page.javaName}">
-                <#if page.element == 'date' >
-                    {{ formValidate.${page.javaName} | date('%Y-%m-%d') }}
-                <#elseif  page.element == 'timestamp' >
-                    {{ formValidate.${page.javaName} | date('%Y-%m-%d %H:%M:%S') }}
-                <#else >
-                    {{ formValidate.${page.javaName} }}
-                </#if >
-                </FormItem>
-                </Col>
+                    <Col :xs="24" :sm="12" :md="12" :lg="12">
+                    <FormItem label="${page.columnComment}">
+                        <#if page.element == 'date' >
+                            {{ formValidate.${page.javaName} | date('%Y-%m-%d') }}
+                        <#elseif  page.element == 'timestamp' >
+                            {{ formValidate.${page.javaName} | date('%Y-%m-%d %H:%M:%S') }}
+                        <#else >
+                            {{ formValidate.${page.javaName} }}
+                        </#if >
+                    </FormItem>
+                    </Col>
                 </#if>
             <#elseif (page.existPage == '1' && page.editable == '1')>
 
                 <#if (page.element == 'textarea' || page.element == 'singlefile' || page.element == 'multifile' || page.element == 'singleimage' || page.element == 'multiimage' ) >
-                <Col :xs="24" :sm="24" :md="24" :lg="24">
+                    <Col :xs="24" :sm="24" :md="24" :lg="24">
                 <#else >
-                <Col :xs="24" :sm="12" :md="12" :lg="12">
+                    <Col :xs="24" :sm="12" :md="12" :lg="12">
+                </#if>
+
+
+                <FormItem label="${page.columnComment}" prop="${page.javaName}">
+                    <#if page?exists && page.columnConfig?exists>
+                        <#if page.element == 'input' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'digits' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'number' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'date' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'timestamp' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'email' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'url' >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        <#elseif page.element == 'radio' >
+
+
+                        <#elseif page.element == 'checkbox' >
+
+
+                        <#elseif page.element == 'select' >
+
+
+                        <#elseif page.element == 'openwin' >
+
+
+
+                        <#elseif page.element == 'singlefile' >
+                            <${page.columnConfig.javaName}Upload :businessType.sync="formValidate.${page.columnConfig.javaName}" :action="uploadApi"  :fileSize="1" :format="uploadFormat" :multiple='singleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                        <#elseif page.element == 'multifile' >
+                            <${page.columnConfig.javaName}Upload :businessType.sync="formValidate.${page.columnConfig.javaName}" :action="uploadApi"  :format="uploadFormat" :multiple='multipleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                        <#elseif page.element == 'singleimage' >
+
+                        <#elseif page.element == 'multiimage' >
+
+                        <#else >
+                            {{formValidate.${page.columnConfig.javaName}}}
+                        </#if>
+                    <#elseif page?exists && page.exColumn?exists>
+                        <#if page.element != 'openwin' >
+                            {{formValidate.${page.exColumn.originalColumn.fkTableConfig.javaName}}}
+                        </#if>
+                    <#else>
+                        //todo 生成编辑界面错误， columnPage 应该没有这种情况
+                    ${page.id}
+                    </#if>
+                </FormItem>
+                </Col>
+            </#if>
+
+            <#if (!page_has_next)>
+            </Row>
+            </#if>
+        </#list>
+        </Form>
+
+
+        <Form ref="formValidate" v-show="isEdit" :model="formValidate" :rules="ruleValidate" :label-width="labelWidth">
+
+        <#list showColumnPages as page>
+            <#if (page_index==0)>
+            <Row style="padding : 10px ">
+            </#if>
+
+            <#if (page.existPage == '1' &&  page.editable == '0')>
+                <#if page.hiddenable == '0'>
+                    <Col :xs="24" :sm="12" :md="12" :lg="12">
+                    <FormItem label="${page.columnComment}" prop="${page.javaName}">
+                        <#if page.element == 'date' >
+                            {{ formValidate.${page.javaName} | date('%Y-%m-%d') }}
+                        <#elseif  page.element == 'timestamp' >
+                            {{ formValidate.${page.javaName} | date('%Y-%m-%d %H:%M:%S') }}
+                        <#else >
+                            {{ formValidate.${page.javaName} }}
+                        </#if >
+                    </FormItem>
+                    </Col>
+                </#if>
+            <#elseif (page.existPage == '1' && page.editable == '1')>
+
+                <#if (page.element == 'textarea' || page.element == 'singlefile' || page.element == 'multifile' || page.element == 'singleimage' || page.element == 'multiimage' ) >
+                    <Col :xs="24" :sm="24" :md="24" :lg="24">
+                <#else >
+                    <Col :xs="24" :sm="12" :md="12" :lg="12">
                 </#if>
 
 
@@ -57,7 +148,7 @@
                         <#elseif page.element == 'digits' >
                             <InputNumber  v-model="formValidate.${page.columnConfig.javaName}"
                                           <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
-                                             
+
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                           @${event.eventName}="${event.funcName}"
@@ -67,7 +158,7 @@
                         <#elseif page.element == 'number' >
                             <InputNumber  v-model="formValidate.${page.columnConfig.javaName}"  precision="2"
                                           <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
-                                             
+
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                           @${event.eventName}="${event.funcName}"
@@ -81,7 +172,7 @@
                                         @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                                             />
+                            />
                         <#elseif page.element == 'timestamp' >
                             <DatePicker type="datetime"   v-model="formValidate.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName?cap_first}"
                                 <#if page.events?exists>
@@ -89,7 +180,7 @@
                                         @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                                             />
+                            />
                         <#elseif page.element == 'email' >
                             <Input type="email" v-model="formValidate.${page.columnConfig.javaName}"
                                    <#if page.maxlength ?exists && page.maxlength != 0>maxlength="${page.maxlength}" </#if>
@@ -132,7 +223,7 @@
                                     @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                             >
+                            >
                                 <#if page.required == '0'>
                                     <Option value=""></Option>
                                 </#if>
@@ -154,7 +245,7 @@
                         <#elseif page.element == 'multiimage' >
 
                         <#else >
-                            <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"      
+                            <Input type="text" v-model="formValidate.${page.columnConfig.javaName}"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                    @${event.eventName}="${event.funcName}"
@@ -181,73 +272,120 @@
         </Form>
 
 
-        <div slot="footer">
+        <Row type="flex" justify="center" v-if="!formValidate.id">
+            <Col span="24" style="text-align: right;padding-right: 20px;border-top: solid 1px #dddddd;height: 40px;line-height: 40px;">
+
             <Button type="primary" @click="save">保存</Button>
             <Button @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
-        </div>
+            </Col>
+        </Row>
 
 
     <#list fkTables as fkTable>
 
         <#if fkTable.isBuildUi == '1'>
-        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType" @closeDialog="closeDialog('select${fkTable.javaName}')"
-            <#list fks[fkTable.fullResourceFile] as field >
-                                   @on-selected-${field.javaName}="selected${field.javaName}Callback"
-            </#list>
-        />
+            <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType" @closeDialog="closeDialog('select${fkTable.javaName}')"
+                <#list fks[fkTable.fullResourceFile] as field >
+                                       @on-selected-${field.javaName}="selected${field.javaName}Callback"
+                </#list>
+            />
         </#if>
 
     </#list>
 
-    </Modal>
+    </div>
 
 </template>
 
 
 <script>
 
-    import onfire from 'onfire.js';
     import dialog from '@/utils/dialog'
     import baseForm from '@/mixins/baseForm';
     import commonApi from '@/api/commonApi';
     import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
     import fileUpload from '@/components/file-upload/file-upload';
+    import blockHead from '@/components/block-head/block-head';
 
 
     <#list fkTables as fkTable>
-    <#if fkTable.isBuildUi == '1'>
-    import ${fkTable.javaName}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search'
-    </#if>
+        <#if fkTable.isBuildUi == '1'>
+        import ${fkTable.javaName}Search from '@/views${fkTable.fullResourceName}/${fkTable.javaName}Search';
+        </#if>
     </#list>
 
     export default {
         mixins:[baseForm],
         components: {
-
+        blockHead,
+        fileUpload,
         <#list showColumnPages as page>
-        <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
-            ${page.columnConfig.javaName}Upload :fileUpload,
-        </#if>
+            <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
+                ${page.columnConfig.javaName}Upload :fileUpload,
+            </#if>
         </#list>
 
 
         <#list fkTables as fkTable>
             <#if fkTable.isBuildUi == '1'>
-            ${fkTable.javaName}Search ,
+                ${fkTable.javaName}Search ,
             </#if>
         </#list>
 
 
         },
+
+
+
+    props:{
+
+        <#list columns as column>
+        <#if column.columnIsfk == '1'>
+        ${column.javaName} :{
+            type:String,
+            default:''
+        },
+        </#if>
+        </#list>
+        id :{
+            type:String,
+            default:''
+        }
+
+
+    },
+
+    watch: {
+
+        <#list columns as column>
+        <#if column.columnIsfk == '1'>
+        ${column.javaName} : function (newVal, oldVal) {
+            this.findList();
+        },
+        </#if>
+        </#list>
+
+        id: function (newVal, oldVal) {
+            this.findList();
+        },
+
+        ${table.simpleName}Id: function (newVal, oldVal) {
+            this.findList();
+        }
+
+    },
+
+
         data () {
             return {
+
                 multipleFile:true,
                 singleFile:false,
                 fks:{
-                <#list table.fkColumns as fkColumn>
-                    ${fkColumn.javaName}:'',
-                </#list>
-                },
+        <#list table.fkColumns as fkColumn>
+        ${fkColumn.javaName}:'',
+        </#list>
+        },
 
         <#list showColumnPages as page>
             <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
@@ -256,15 +394,15 @@
         </#list>
 
                 width:500,
-                bsType: '',
-                maskClosable: false,
-                formValidate: {
-        <#list columnPages as page>
-            <#if page.existPage == '1'>
-            ${page.javaName}:'',
-            </#if>
-        </#list>
-        },
+                    bsType: '',
+                    maskClosable: false,
+                    formValidate: {
+            <#list columnPages as page>
+                <#if page.existPage == '1'>
+                ${page.javaName}:'',
+                </#if>
+            </#list>
+            },
 
         <#list fkTables as fkTable>
                 select${fkTable.javaName}Display: false,
@@ -388,7 +526,7 @@
                         onSuccess(body){
                             that.handleReset('formValidate');
                             that.$emit('saveSuccess');
-                            dialog.success(body.msg);
+                            dialog.success(body.msg,that);
                         }
                     });
 
@@ -398,7 +536,7 @@
                         onSuccess(body){
                             that.handleReset('formValidate');
                             that.$emit('saveSuccess');
-                            dialog.success(body.msg);
+                            dialog.success(body.msg,that);
                         }
                     });
 
@@ -415,13 +553,11 @@
 
         },
 
-        findByFkId(fkColumnName, val) {
+        findBy() {
             let that = this;
-            ${table.javaName}Api.detailByFk(fkColumnName,val,{
+            ${table.javaName}Api.detailBy(that.param,{
                 onSuccess(body){
                     that.formValidate = body["${table.javaName?uncap_first}"];
-                    that.formValidate[`${r'${fkColumnName}'}`] = val;
-
                 }
             });
 
@@ -432,13 +568,6 @@
 
         this.$nextTick(function () {
             let that = this;
-
-        <#list table.fkColumns as fkColumn>
-            onfire.on('${fkColumn.fkTableConfig.javaName}Event',function (id ) {
-                that.fks.${fkColumn.javaName} = id;
-                that.findByFkId("${fkColumn.javaName}" , id);
-            });
-        </#list>
 
 
         <#if dictSet?exists && (dictSet?size > 0) >
@@ -453,13 +582,10 @@
             });
         </#if>
 
-            this.$on('findById', function (id) {
-                that.id = id;
-                that.findById();
-            })
+            that.findBy();
         });
     }
 
 
- };
+    };
 </script>

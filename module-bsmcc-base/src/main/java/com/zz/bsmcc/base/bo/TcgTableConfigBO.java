@@ -45,7 +45,19 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
 
+    //简单名称 , 去掉第一个下划线 ， 并且第一个字母为小写
+    //如表名为tb_user 为 user
+    //如表名为ts_menu_role 为 menuRole
+    @TableField(exist = false)
+    private String simpleName ;
+
+
+
+
     //用于模板生成数据
+
+
+
 
     //是否有版本信息
     @TableField(exist = false)
@@ -270,5 +282,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setChildFkColumns(List<TcgColumnConfigBO> childFkColumns) {
         this.childFkColumns = childFkColumns;
+    }
+
+    public String getSimpleName() {
+        return simpleName;
+    }
+
+    public void setSimpleName(String simpleName) {
+        this.simpleName = simpleName;
     }
 }
