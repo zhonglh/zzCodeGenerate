@@ -6,17 +6,17 @@
         <Modal
                 v-model="shows"
                 :title="modalTitle"
-                @on-visible-change="onVisibleChange"
-                @on-ok="okFun"
-                width="1000"
+                @on-visible-change="onVisibleChange_"
+                @on-ok="okFun_"
+                :width="modalWidth_"
                 loading
-                draggable
-                :transfer="transfer"
-                :mask-closable="maskClosable"
+                :mask-closable="false"
                 scrollable>
 
-            <table-list :columns="tableColumns_" :tableData="tableDatas_" :total="total_" :loading="loading_" @selectionChange="selectionChange_" @callback="tablePaddingCallback_">
-            <#if querys?exists >
+
+            <table-list :columns="tableColumns_" :tableData="tableDatas_" :total="total_" :loading="loading_" :dialogInModal="true"
+                        @selectionChange="selectionChange_" @callback="tablePaddingCallback_">
+            <#if (querys?exists && querys?size > 0 )>
             <Row slot="form">
                     <#list querys as being>
                         <#if project.queryMode == 'toolbar' >
@@ -122,7 +122,7 @@
         <#list queryFkTables as fkTable>
 
             <#if fkTable.isBuildUi == '1'>
-            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="selectDisplay" :businessType="bsType"
+            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="detailDisplay_" :businessType="businessType_"
                 <#list queryFks[fkTable.fullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                 </#list>
@@ -139,9 +139,8 @@
     import ${table.javaName}Api from '@/api/${table.fullResourceFile}/${table.javaName}Api' ;
     import dialog from '@/utils/dialog'
     import commonApi from '@/api/commonApi';
+    import searchMix from '@/mixins/searchMix'
 
-    import tableList from '@/components/table-list/tableList'
-    import listMix from '@/mixins/listMix'
     import timeFormat from '@/utils/timeformat';
     <#if project.queryMode == 'ordinary' >
     import selectSpan from '@/components/select-span/select-span';
@@ -155,8 +154,8 @@
 
     export default {
         name: '${table.fullResourceFile}List',
+        mixins: [searchMix],
         components: {
-            tableList,
         <#list queryFkTables as fkTable>
 
             <#if fkTable.isBuildUi == '1'>
@@ -171,28 +170,6 @@
 
         },
         props: {
-            modalTitle: {
-                type: String,
-                default: ''
-            },
-            url: {
-                type: String,
-                default: ''
-            },
-            display: {
-                type: Boolean,
-                default: false
-            },
-            businessType: {
-                type: String,
-                default: ''
-            },
-
-
-            isMutilSelect: {
-                type: Boolean,
-                default: false
-            }
 
             <#list columns as column>
                 <#if column.columnIsfk == '1'>
@@ -205,12 +182,6 @@
 
 
         },
-        computed: {
-            shows () {
-                return this.display;
-            }
-        },
-        mixins:[listMix],
         data () {
             return {
                 ${table.fullResourceFile}: {},
@@ -303,26 +274,6 @@
     </#list>
 
 
-        onVisibleChange(v) {
-            if (!v){
-                this.$emit('closeDialog')
-            }
-        },
-        okFun(){
-
-            let selectedData = this.selectedData;
-
-            if (selectedData.length<1){
-                dialog.warning('请选择要操作的数据!', this);
-            }else {
-                if (this.mutiSelect){
-                    this.$emit('on-selected-'+this.businessType,selectedData);
-                } else {
-                    this.$emit('on-selected-'+this.businessType,selectedData[0]);
-                }
-
-            }
-        },
 
         findList () {
             let that = this;
