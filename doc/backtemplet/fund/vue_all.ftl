@@ -81,7 +81,7 @@
                 </#list>
                 </#if>
 
-                this.handleTask('${table.javaName}Detail');
+                this.handleTab('${table.javaName}Detail');
             }
 
         },

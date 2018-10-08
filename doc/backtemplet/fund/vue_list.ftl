@@ -115,12 +115,11 @@
                         <#if (operation.styles?exists && operation.styles?length > 0)>style="${operation.styles}"</#if>
                         <#if (operation.classs?exists && operation.classs?length > 0)>class="${operation.classs}"</#if>
                     <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
-                        @click="showDialog('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
+                        @click="showDialog_('${operation.operationName}',${operation.operationBO.selectMode},'<#if operation.operationResource == 'add' || operation.operationResource == 'update'>edit<#else >${operation.operationResource}</#if>')"
                     <#else>
-                        @click="${operation.operationResource}"
                         @click="btnExec_('${operation.operationName}', ${operation.operationBO.opMode}, '${operation.operationResource}')"
                     </#if>
-                    <#if table.isBuildRbac == '1'>v-show="permissions.includes('${table.fullResourceFile}:${operation.operationResource}')"</#if>
+                    <#if table.isBuildRbac == '1'>v-show="permissions_.includes('${table.fullResourceFile}:${operation.operationResource}')"</#if>
                     >${operation.operationName}</Button>
             </#if>
 
@@ -143,15 +142,15 @@
     <#else>
         <Modal
                 v-model="detailDisplay_"
-                title="title"
+                :title="title_"
                 :width="1000"
                 loading
                 draggable
                 :footerHide="true"
                 :mask-closable="false"
-                @on-visible-change="onVisibleChange"
+                @on-visible-change="detailDisplay_"
                 scrollable>
-            <${table.javaName}Detail  @closeDialog="closeDialog('detail')" ref="detailRef"  />
+            <${table.javaName}Detail :${table.simpleName}Id="${table.javaName}.id"  @closeDialog="closeDialog('detail')" ref="detailRef"  />
         </Modal>
     </#if>
 
@@ -160,15 +159,15 @@
         <#if (operation.operationResource == 'add' || (table.tableType !='2' && operation.operationResource == 'update' ))>
         <Modal
         v-model="editDisplay_"
-        title="title"
+        :title="title_"
         :width="1000"
         loading
         draggable
         :footerHide="true"
         :mask-closable="false"
-        @on-visible-change="onVisibleChange"
+        @on-visible-change="editDisplay_"
         scrollable>
-            <${table.javaName}Edit @saveSuccess="saveSuccess('edit')" :id="id"  @closeDialog="closeDialog('edit')"   ref="editRef"  />
+            <${table.javaName}Edit @freshTable="freshTable_('edit')" :id="${table.javaName}.id"  @closeDialog="closeDialog('edit')"   ref="editRef"  />
         </Modal>
             <#break>
         </#if>
@@ -189,7 +188,7 @@
     <#list queryFkTables as fkTable>
 
         <#if fkTable.isBuildUi == '1'>
-        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType"
+        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="businessType_"
             <#list queryFks[fkTable.fullResourceFile] as queryField >
                                    @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
             </#list>
@@ -328,7 +327,7 @@
                 </#list>
 
 
-                searchForm__:{
+                searchForm_:{
                 <#list querys as being >
                     <#if being.columnPage?exists>
                         <#if being.columnPage.element == 'openwin'>
@@ -353,7 +352,7 @@
             </#if>
 
         </#list>
-                columns: [
+                tableColumns_: [
                 {
                     title: '序号',
                     type: 'selection',
@@ -375,7 +374,7 @@
                     render: (h, params) => {
                         let that = this;
                         let data = params.row;
-                        let title = data[<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>];
+                        let title = data['<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>'];
                         return h('a',{
                             style: {
                                 height: '30px',
@@ -442,7 +441,7 @@
                 <#elseif  being.columnPage.exColumn?exists>
                 select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
 
-                    this.bsType='${being.columnPage.javaName}';
+                    this.businessType_='${being.columnPage.javaName}';
                     this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
                 }
                 </#if>
@@ -453,7 +452,7 @@
             <#if operation.operationBO?exists && operation.operationBO.opMode != '1' >
             ${operation.operationResource}(){
                 let that = this;
-                ${table.javaName}Api.${operation.operationResource}({ids: this.selectedIds.join(',')}, {
+                ${table.javaName}Api.${operation.operationResource}({ids: this.selectedIds_.join(',')}, {
                     onSuccess(res){
                         dialog.success("${operation.operationName}${table.tableComment}成功",that);
                         that.findList();

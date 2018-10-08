@@ -289,6 +289,7 @@
         </#if>
 
     </#list>
+        </div>
 
     </div>
 
@@ -379,12 +380,12 @@
             return {
 
                 multipleFile:true,
-                singleFile:false
+                singleFile:false,
 
 
         <#list showColumnPages as page>
             <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
-            ${page.columnConfig.javaName}FileList :[],
+                ${page.columnConfig.javaName}FileList :[],
             </#if>
         </#list>
                 formData: {

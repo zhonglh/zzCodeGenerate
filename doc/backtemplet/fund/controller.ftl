@@ -149,14 +149,14 @@ public class ${table.javaName}Controller extends FundBaseController {
 	* @return
 	*/
 	@RequestMapping(value = "/detailBy" ,method = RequestMethod.GET)
-	public Object detailBy( , HttpServletRequest request, HttpServletResponse response){
+	public Object detailBy( HttpServletRequest request, HttpServletResponse response){
 		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
 
-
+		${table.javaName} result = null;
 		if(!MyBeanUtils.isAllFieldNull(${table.javaName?uncap_first})){
-			${table.javaName} result= ${table.javaName?uncap_first}Service.findTopOne(${table.javaName?uncap_first} );
+			result = ${table.javaName?uncap_first}Service.findTopOne(${table.javaName?uncap_first} );
 		}else {
-			result = new new ${table.javaName}();
+			result = new ${table.javaName}();
 			//新增数据 ， 可以根据业务定制默认值
 		}
 

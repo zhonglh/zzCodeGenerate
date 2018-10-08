@@ -42,7 +42,6 @@
 
 
     export default {
-        mixins:[baseForm],
         components: {
             ${table.javaName}Edit,
         <#if table.childFkTables?exists >

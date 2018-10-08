@@ -153,7 +153,7 @@
     </#list>
 
     export default {
-        name: '${table.fullResourceFile}List',
+        name: '${table.fullResourceFile}Search',
         mixins: [searchMix],
         components: {
         <#list queryFkTables as fkTable>
@@ -207,13 +207,13 @@
                 </#if>
             </#list>
 
-            },
+                },
         <#list queryDictSet as queryColumn>
             <#if queryColumn.columnPage.exColumn?exists>${queryColumn.columnPage.exColumn.dictType}Dict : [],
             <#else>${queryColumn.columnPage.columnConfig.dictType}Dict :[],
             </#if>
         </#list>
-                columns: [
+                tableColumns_: [
                 {
                     title: '序号',
                     type: 'selection',
@@ -266,7 +266,7 @@
             <#elseif  being.columnPage.exColumn?exists>
                 select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
 
-                    this.bsType='${being.columnPage.javaName}';
+                    this.businessType_='${being.columnPage.javaName}';
             this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
             }
             </#if>
