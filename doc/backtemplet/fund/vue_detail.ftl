@@ -4,13 +4,13 @@
 
 <template>
     <div>
-        <${table.javaName}Edit :id="${table.simpleName}Id" ></${table.javaName}Edit>
+        <${table.javaName}Edit :id="${table.simpleName}Id" :isInclude="true"></${table.javaName}Edit>
 
     <#if table.childFkTables?exists >
         <#list table.childFkTables as child>
             <#if (child.pageRelation?exists && child.pageRelation == '1')>
                 <#if (child.tableRelation?exists && child.tableRelation == 'one-multi')>
-                    <${child.javaName}List :${table.simpleName}Id=":${table.simpleName}Id" ></${child.javaName}List>
+                    <${child.javaName}List :${table.simpleName}Id=":${table.simpleName}Id" btnSize="small" :isInclude="true" :tableFit="false"></${child.javaName}List>
                 <#else >
                     <${child.javaName}Edit :${table.simpleName}Id=":${table.simpleName}Id" ></${child.javaName}Edit>
                 </#if>
@@ -27,33 +27,31 @@
 <script>
 
 
-        import baseForm from '@/mixins/baseForm';
-        import <${table.javaName}Edit from './${table.javaName}Edit' ;
+    import ${table.javaName}Edit from './${table.javaName}Edit' ;
 <#if table.childFkTables?exists >
 <#list table.childFkTables as child>
     <#if (child.pageRelation?exists && child.pageRelation == '1')>
-        <#if (child.tableRelation?exists && child.tableRelation == 'one-multi')>
-        import ${child.javaName}List from '@/views${child.fullResourceName}/${child.javaName}List';
-        <#else >
-        import ${child.javaName}Edit from '@/views${child.fullResourceName}/${child.javaName}Edit';
-        </#if>
+    <#if (child.tableRelation?exists && child.tableRelation == 'one-multi')>
+    import ${child.javaName}List from '@/views${child.fullResourceName}/${child.javaName}List';
+    <#else >
+    import ${child.javaName}Edit from '@/views${child.fullResourceName}/${child.javaName}Edit';
+    </#if>
     </#if>
 </#list>
 </#if>
 
 
     export default {
-
         mixins:[baseForm],
         components: {
-        <${table.javaName}Edit,
+            ${table.javaName}Edit,
         <#if table.childFkTables?exists >
         <#list table.childFkTables as child>
             <#if (child.pageRelation?exists && child.pageRelation == '1')>
                 <#if (child.tableRelation?exists && child.tableRelation == 'one-multi')>
-                    ${child.javaName}List;
+                    ${child.javaName}List,
                 <#else >
-                    ${child.javaName}Edit;
+                    ${child.javaName}Edit,
                 </#if>
             </#if>
         </#list>
@@ -77,30 +75,12 @@
                 type:String,
                 default: ''
             }
-        },
+        }
 
 
-        watch: {
-            <#list columns as column>
-            <#if column.columnIsfk == '1'>
-            ${column.javaName} : function (newVal, oldVal) {
-                this.findList();
-            },
-            </#if>
-            </#list>
-
-            id: function (newVal, oldVal) {
-                this.findList();
-            },
-
-            ${table.simpleName}Id: function (newVal, oldVal) {
-                this.findList();
-            }
-
-        },
 
 
-    },
+    }
 
 
 

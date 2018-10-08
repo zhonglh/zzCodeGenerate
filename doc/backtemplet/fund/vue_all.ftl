@@ -1,72 +1,16 @@
 <style lang="less">
-    .m-container{
-        width: 100%;
-        height: 100%;
-        margin: 5px;
-        border-left: 1px #ccc solid;
 
-    .tabs{
-        width: 100%;
-        border-bottom: 1px #ccc solid;
-        padding: 5px;
-    }
-
-    }
-    .title{
-        text-align: left;
-        float: left;
-    }
-
-    .All{
-
-    .header{
-
-
-    .title{
-        height: 40px;
-        line-height: 40px;
-        font-size: 18px;
-        font-weight: bold;
-        padding-bottom: 5px;
-    }
-    .label{
-        height: 40px;
-        line-height: 40px;
-        margin-left: 10px;
-        font-size: 13px;
-        font-weight: bold;
-    }
-    .val{
-        height: 40px;
-        line-height: 40px;
-        font-size: 13px;
-        color: #ee9900;
-        font-weight: bold;
-    }
-    }
-
-    }
 </style>
 
 <template>
-    <Modal
-
-            v-model="show"
-            :title="title"
-            fullscreen
-            @on-visible-change="onVisibleChange"
-            :footer-hide="true"
-            loading
-            scrollable>
 
 
-
-        <Row :gutter="32" class="fundAll">
-            <Col span="24" class="header">
+    <Row :gutter="32" class="allcls">
+        <Col span="24" class="header">
             <span class="title"></span>
             <span class="label"></span><span class="val"></span>
-            </Col>
-            <Col span="24" class="demo-tabs-style2">
+        </Col>
+        <Col span="24" class="demo-tabs-style2">
             <Tabs type="card" @on-click="handleTab">
                 <TabPane v-for="(item,index) in tabs" :key="index" :label="item.title" name="item.component" ></TabPane>
             </Tabs>
@@ -81,11 +25,10 @@
 </template>
 
 <script>
+
     const _import = require('@/router/_import_production');
-    import propMix from '@/mixins/propMix';
 
     export default {
-        mixins:[propMix],
         components:{
 
         },
@@ -106,8 +49,6 @@
 
         data () {
             return {
-                btnType: 'success',
-                btnGhost: 'ghost',
                 currentComponent: '',
                 tabs: []
             };
@@ -149,6 +90,6 @@
                 this.assemblingComponent();
             });
         }
-    };
+    }
 </script>
 

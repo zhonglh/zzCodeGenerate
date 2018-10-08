@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 
 /**
@@ -32,20 +32,30 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
    @TableField(exist = false)
     private TcgTableConfigBO fkTableConfig;
 
-
+    //如果是外键， 外键列名
     @TableField(exist = false)
     private String fkColumnName;
+
+    //如果是外键， 外键列名对应的Java属性
     @TableField(exist = false)
     private String fkJavaName;
+
+    //如果是外键， 外键列对应的类名，简写
     @TableField(exist = false)
     private String fkJavaSimpleClass;
+
+    //如果是外键， 外键列对应的类名，全称
     @TableField(exist = false)
     private String fkJavaFullClass;
+
+    // 视图对应的列， 判断是否是主要的表 的列
     @TableField(exist = false)
     private boolean inParentClass;
 
+    //列对应的 set方法名
     @TableField(exist = false)
     private String setMethodName;
+    //列对应的 get方法名
     @TableField(exist = false)
     private String getMethodName;
 
@@ -54,6 +64,10 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     //用于外键 弹框选择
     @TableField(exist = false)
     private TcgColumnConfigBO  originalColumn;
+
+    //衍生列  ， 如果是字典或者外键， 对应的扩展列
+    @TableField(exist = false)
+    private List<TcgExColumnBO> exCloumns;
 
 
     public String getColumnIsnullName() {
@@ -144,5 +158,13 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     public void setTableBO(TcgTableConfigBO tableBO) {
         this.tableBO = tableBO;
+    }
+
+    public List<TcgExColumnBO> getExCloumns() {
+        return exCloumns;
+    }
+
+    public void setExCloumns(List<TcgExColumnBO> exCloumns) {
+        this.exCloumns = exCloumns;
     }
 }

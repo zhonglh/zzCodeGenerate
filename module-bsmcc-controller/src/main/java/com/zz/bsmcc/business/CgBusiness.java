@@ -894,6 +894,10 @@ public class CgBusiness extends CgBaseBusiness{
                 for(TcgColumnConfigBO columnBO : tcgColumnConfigBOs){
                     if(columnBO.getId().equals(exColumn.getOriginalColumnId())){
                         exColumn.setOriginalColumn(columnBO);
+                        if(columnBO.getExCloumns() == null){
+                            columnBO.setExCloumns(new ArrayList<TcgExColumnBO>());
+                        }
+                        columnBO.getExCloumns().add(exColumn);
                     }
                 }
             }
