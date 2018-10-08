@@ -12,7 +12,7 @@
         </Col>
         <Col span="24" class="demo-tabs-style2">
             <Tabs type="card" @on-click="handleTab">
-                <TabPane v-for="(item,index) in tabs" :key="index" :label="item.title" name="item.component" ></TabPane>
+                <TabPane v-for="(item,index) in tabs" :key="index" :label="item.title" :name="item.component" ></TabPane>
             </Tabs>
 
             <keep-alive>

@@ -122,7 +122,7 @@
         <#list queryFkTables as fkTable>
 
             <#if fkTable.isBuildUi == '1'>
-            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="detailDisplay_" :businessType="businessType_"
+            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="detailDisplay__" :businessType="businessType_"
                 <#list queryFks[fkTable.fullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                 </#list>
@@ -187,7 +187,7 @@
                 ${table.fullResourceFile}: {},
 
             <#list queryFkTables as fkTable>
-                select${fkTable.javaName}Display: false,
+                select${fkTable.javaName}Display_: false,
             </#list>
 
 
@@ -250,7 +250,7 @@
                     this.searchForm_.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
                     this.searchForm_.${queryField.queryFieldName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
                 </#if>
-                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = false ;
+                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display_ = false ;
 
             },
         </#list>
@@ -267,7 +267,7 @@
                 select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
 
                     this.businessType_='${being.columnPage.javaName}';
-            this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+            this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display_ = true ;
             }
             </#if>
         </#if>

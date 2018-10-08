@@ -281,7 +281,7 @@
     <#list fkTables as fkTable>
 
         <#if fkTable.isBuildUi == '1'>
-            <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="bsType" @closeDialog="closeDialog('select${fkTable.javaName}')"
+            <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display_" :businessType="bsType" @closeDialog="closeDialog('select${fkTable.javaName}')"
                 <#list fks[fkTable.fullResourceFile] as field >
                                        @on-selected-${field.javaName}="selected${field.javaName}Callback"
                 </#list>
@@ -397,7 +397,7 @@
                 },
 
         <#list fkTables as fkTable>
-                select${fkTable.javaName}Display: false,
+                select${fkTable.javaName}Display_: false,
         </#list>
 
         <#list dictSet as dictPage>
@@ -488,7 +488,7 @@
                 this.formData.${page.columnConfig.originalColumn.javaName} = selection.id;
                 this.formData.${page.javaName} = selection.${page.columnConfig.fkJavaName};
                 </#if>
-                this.select${page.exColumn.originalColumn.fkTableConfig.javaName}Display = false ;
+                this.select${page.exColumn.originalColumn.fkTableConfig.javaName}Display_ = false ;
 
             },
         </#list>
@@ -500,7 +500,7 @@
         <#elseif  columnPage.exColumn?exists>
             select_${columnPage.exColumn.javaName}_${columnPage.exColumn.originalColumn.fkTableConfig.javaName}(){
                 this.businessType_='${columnPage.javaName}';
-                this.select${columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+                this.select${columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display_ = true ;
             },
         </#if>
         </#if>

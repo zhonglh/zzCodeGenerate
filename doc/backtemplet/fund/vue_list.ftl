@@ -133,11 +133,10 @@
                 v-model="allDisplay_"
                 :title="title_"
                 fullscreen
-                @on-visible-change="allDisplay_"
                 :footer-hide="true"
                 loading
                 scrollable>
-            <${table.javaName}All :${table.javaName}="${table.javaName}" @closeDialog="closeDialog('all')"  :display="allDisplay_"  />
+            <${table.javaName}All :${table.javaName}="${table.javaName}" @closeDialog="closeDialog('all')"   />
         </Modal>
     <#else>
         <Modal
@@ -148,9 +147,8 @@
                 draggable
                 :footerHide="true"
                 :mask-closable="false"
-                @on-visible-change="detailDisplay_"
                 scrollable>
-            <${table.javaName}Detail :${table.simpleName}Id="${table.javaName}.id"  @closeDialog="closeDialog('detail')" ref="detailRef"  />
+            <${table.javaName}Detail :${table.simpleName}Id="${table.javaName}.id"  @closeDialog="closeDialog('detail')"  />
         </Modal>
     </#if>
 
@@ -165,9 +163,8 @@
         draggable
         :footerHide="true"
         :mask-closable="false"
-        @on-visible-change="editDisplay_"
         scrollable>
-            <${table.javaName}Edit @freshTable="freshTable_('edit')" :id="${table.javaName}.id"  @closeDialog="closeDialog('edit')"   ref="editRef"  />
+            <${table.javaName}Edit @freshTable="freshTable_('edit')" :id="${table.javaName}.id"  @closeDialog="closeDialog('edit')"  />
         </Modal>
             <#break>
         </#if>
@@ -178,7 +175,17 @@
     <#list operations as operation>
         <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
             <#if operation.operationResource != 'add' && operation.operationResource != 'update'  && operation.operationResource != 'detail'>
-                <${table.javaName}${operation.operationResource?cap_first} @saveSuccess="saveSuccess('${operation.operationResource}')" @closeDialog="closeDialog('${operation.operationResource}')" :title="title"   ref="${operation.operationResource}Ref" :display="${operation.operationResource}Display" />
+            <Modal
+                    v-model="${operation.operationResource}Display_"
+                    :title="title_"
+                    :width="1000"
+                    loading
+                    draggable
+                    :footerHide="true"
+                    :mask-closable="false"
+                    scrollable>
+                <${table.javaName}${operation.operationResource?cap_first} @freshTable="freshTable_('${operation.operationResource}')"  @closeDialog="closeDialog('${operation.operationResource}')"  />
+            </Modal>
             </#if>
         </#if>
     </#list>
@@ -188,7 +195,7 @@
     <#list queryFkTables as fkTable>
 
         <#if fkTable.isBuildUi == '1'>
-        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display" :businessType="businessType_"
+        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display_" :businessType="businessType_"
             <#list queryFks[fkTable.fullResourceFile] as queryField >
                                    @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
             </#list>
@@ -317,13 +324,13 @@
                 <#list operations as operation>
                 <#if operation.operationBO?exists && operation.operationBO.opMode == '1' >
                 <#if operation.operationResource != 'add' && operation.operationResource != 'update' && operation.operationResource != 'detail'>
-                ${operation.operationResource}Display: false,
+                ${operation.operationResource}Display_: false,
                 </#if>
                 </#if>
                 </#list>
 
                 <#list queryFkTables as fkTable>
-                select${fkTable.javaName}Display: false,
+                select${fkTable.javaName}Display_: false,
                 </#list>
 
 
@@ -373,8 +380,8 @@
 
                     render: (h, params) => {
                         let that = this;
-                        let data = params.row;
-                        let title = data['<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>'];
+                        let rowData = params.row;
+                        let title = rowData.<#if page.columnConfig?exists>${page.columnConfig.javaName}<#else >${page.exColumn.javaName}</#if>;
                         return h('a',{
                             style: {
                                 height: '30px',
@@ -384,12 +391,11 @@
                             on: {
                                 click: () => {
                                     <#if table.tableType =='2'>
-                                        that.${table.javaName} =  that.data[params.index];
-                                        that.showModelDialog(`${table.tableComment}详细`, 'all', true);
+                                        that.${table.javaName} =  rowData;
+                                        that.showModalDialog_(`${table.tableComment}详情`, 'all', false);
                                     <#else >
-                                        that.${table.javaName} =  that.data[params.index];
-                                        that.id = that.data[params.index].id;
-                                        that.showModelDialog(`${table.tableComment}`, 'detail', true);
+                                        that.${table.javaName} =  rowData;
+                                        that.showModalDialog_(`${table.tableComment}`, 'detail', false);
                                     </#if>
                                 }
                             }
@@ -429,7 +435,7 @@
                     this.searchForm_.${queryField.columnPage.columnConfig.originalColumn.javaName} = selection.id;
                     this.searchForm_.${queryField.queryFieldName} = selection.${queryField.columnPage.columnConfig.fkJavaName};
                 </#if>
-                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = false ;
+                this.select${queryField.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display_ = false ;
 
             },
             </#list>
@@ -442,7 +448,7 @@
                 select_${being.columnPage.exColumn.javaName}_${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}{
 
                     this.businessType_='${being.columnPage.javaName}';
-                    this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display = true ;
+                    this.select${being.columnPage.exColumn.originalColumn.fkTableConfig.javaName}Display_ = true ;
                 }
                 </#if>
             </#if>
