@@ -26,6 +26,8 @@ import ${project.projectPackage}.baseweb.controller.RestfulBaseController;
 import ${table.fullPackageName}.interfaces.${table.javaName}Service;
 import ${table.fullPackageName}.domain.${table.javaName};
 
+
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,7 @@ public class ${table.javaName}Controller extends FundBaseController {
 
 	@Autowired
 	private ${table.javaName}Service ${table.javaName?uncap_first}Service;
+
 
 	/**
 	* 新增或者修改时，检验数据是否唯一
@@ -153,12 +156,22 @@ public class ${table.javaName}Controller extends FundBaseController {
 		${table.javaName} ${table.javaName?uncap_first} = getObject(request , ${table.javaName}.class);
 
 		${table.javaName} result = null;
+
+		<#if table.tableType == '3'>
 		if(!MyBeanUtils.isAllFieldNull(${table.javaName?uncap_first})){
 			result = ${table.javaName?uncap_first}Service.findTopOne(${table.javaName?uncap_first} );
 		}else {
 			result = new ${table.javaName}();
 			//新增数据 ， 可以根据业务定制默认值
 		}
+		<#else >
+        if(!StringUtils.isEmpty(${table.javaName?uncap_first}.getId())){
+        	result = ${table.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.getId());
+        }else {
+        	${table.javaName?uncap_first}Service.processResult(${table.javaName?uncap_first});
+        	result = ${table.javaName?uncap_first};
+        }
+		</#if>
 
 
 		Map map = new HashMap<String,Object>();

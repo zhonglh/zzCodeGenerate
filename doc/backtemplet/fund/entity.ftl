@@ -3,9 +3,18 @@ package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 import com.fullbloom.db.mybatis.entity.BaseBusinessEntity;
 import com.fullbloom.core.annotations.log.*;
+import com.fullbloom.source.component.files.domain.TsFiles;
 <#list table.importClasss as importClass>
 import ${importClass};
 </#list>
+
+
+<#list fkTables as being>
+import ${being.fullPackageName}.domain.${being.javaName};
+</#list>
+
+
+import java.util.List;
 
 /**
  * ${table.tableComment} 实体类
@@ -34,6 +43,12 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
 
 
+<#list columnPages as being>
+    <#if being.element == 'singlefile' || being.element == 'multifile' >
+    private List<TsFiles>  ${being.javaName}List ;
+    </#if>
+</#list>
+
 
     <#list columnPages as page>
     <#if page.exColumn?exists>
@@ -42,6 +57,18 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
     </#if>
     </#list>
+
+
+<#list fkTables as fkTable>
+    private ${fkTable.javaName}  ${fkTable.javaName?uncap_first} ;
+</#list>
+
+
+
+
+
+
+
 
 
     <#list columns as being>
@@ -61,6 +88,19 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
 
 
 
+    <#list columnPages as being>
+    <#if being.element == 'singlefile' || being.element == 'multifile' >
+    public void set${being.javaName?cap_first}List(List<TsFiles> ${being.javaName}List){
+        this.${being.javaName}List = ${being.javaName}List;
+    }
+
+    public List<TsFiles> get${being.javaName?cap_first}List(){
+        return this.${being.javaName}List;
+    }
+    </#if>
+    </#list>
+
+
 
     <#list columnPages as page>
     <#if page.exColumn?exists>
@@ -74,5 +114,16 @@ public class ${table.javaName} extends ${table.parentClass} implements java.io.S
     }
     </#if>
     </#list>
+
+
+<#list fkTables as fkTable>
+    public void set${fkTable.javaName?cap_first}(${fkTable.javaName?cap_first} ${fkTable.javaName?uncap_first}){
+        this.${fkTable.javaName?uncap_first} = ${fkTable.javaName?uncap_first};
+    }
+
+    public ${fkTable.javaName?cap_first} get${fkTable.javaName?cap_first}(){
+        return this.${fkTable.javaName?uncap_first};
+    }
+</#list>
 	
 }

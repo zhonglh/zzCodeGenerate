@@ -1,6 +1,7 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 
+import com.fullbloom.source.component.files.db.interfaces.TsFilesService;
+import com.fullbloom.source.component.files.domain.TsFiles;
 import com.fullbloom.core.vo.Pager;
 import ${table.fullPackageName}.interfaces.${table.javaName}Service;
 import ${table.fullPackageName}.domain.${table.javaName};
@@ -43,6 +46,10 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 	@Autowired
 	private TsDictService tsDictService;
+
+
+	@Autowired
+	private TsFilesService tsFilesService;
 
 
 
@@ -206,18 +213,18 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	}
 
 
-	private void processResult(${table.javaName} ${table.javaName?uncap_first}){
+    @Override
+	public void processResult(${table.javaName} ${table.javaName?uncap_first}){
 
 
 	<#if project.pageUseView == '0' ||  (project.pageUseView == '1' && table.isTable == '0')>
 
-		if( ${table.javaName?uncap_first} == null ) {
-			return ;
-		}
+			if( ${table.javaName?uncap_first} == null ) {
+				return ;
+			}
 
 		<#if exColumnMap?exists>
 
-			TsDict tempDict = null;
 
 		<#list exColumnMap?keys as key>
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
@@ -228,11 +235,13 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 				<#list exColumnMap[key] as val>
 					${table.javaName?uncap_first}.set${val.javaName?cap_first}(${fkColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
 				</#list>
+					${table.javaName?uncap_first}.${fkColumn.setMethodName}(${fkColumn.javaName}Obj);
 				}
 			}
 
 			<#else>
 
+                TsDict tempDict = null;
 			<#list exColumnMap[key] as val>
 				<#assign fkColumn = exColumnMap[key][0].originalColumn >
 			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
@@ -246,6 +255,19 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 			</#if>
 		</#list>
 		</#if>
+
+
+
+		<#list columnPages as being>
+			<#if being.element == 'singlefile' || being.element == 'multifile' >
+			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.get${being.javaName?cap_first}())){
+				TsFiles tsFiles = new TsFiles();
+				List<String> idList = Arrays.asList(${table.javaName?uncap_first}.get${being.javaName?cap_first}().split(","));
+				tsFiles.setQueryIdList(idList);
+				${table.javaName?uncap_first}.set${being.javaName?cap_first}List(tsFilesService.findList(tsFiles));
+			}
+			</#if>
+		</#list>
 
 	</#if>
 

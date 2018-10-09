@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <${table.javaName}Edit :id="${table.simpleName}Id" :isInclude="true"></${table.javaName}Edit>
+        <${table.javaName}Edit :id="${table.simpleName}Id" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}"</#if> </#list>  :isInclude="true"></${table.javaName}Edit>
 
     <#if table.childFkTables?exists >
         <#list table.childFkTables as child>

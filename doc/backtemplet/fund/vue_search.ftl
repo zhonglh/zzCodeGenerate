@@ -10,6 +10,7 @@
                 @on-ok="okFun_"
                 :width="modalWidth_"
                 loading
+                mask
                 :mask-closable="false"
                 scrollable>
 
@@ -122,7 +123,8 @@
         <#list queryFkTables as fkTable>
 
             <#if fkTable.isBuildUi == '1'>
-            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :display="detailDisplay__" :businessType="businessType_"
+            <${fkTable.fullResourceFile}Search title="选择${fkTable.tableComment}" :modalDisplay="select${fkTable.javaName}Display_"
+                                               :businessType="businessType_"  @closeDialog="closeDialog_('select${fkTable.javaName}')"
                 <#list queryFks[fkTable.fullResourceFile] as queryField >
                                                @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
                 </#list>

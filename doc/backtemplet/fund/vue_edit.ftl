@@ -76,9 +76,9 @@
 
 
                         <#elseif page.element == 'singlefile' >
-                            <${page.columnConfig.javaName}Upload :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi"  :fileSize="1" :format="uploadFormat" :multiple='singleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                            <${page.columnConfig.javaName}Upload :fileDisplay="true" :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi_"  :fileSize="1" :format="uploadFormat_" :multiple='singleFile' :max-size="uploadMaxSize_"  name="file" :data="uploadParams_" :defaultFileList="formData.${page.columnConfig.javaName}List"/>
                         <#elseif page.element == 'multifile' >
-                            <${page.columnConfig.javaName}Upload :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi"  :format="uploadFormat" :multiple='multipleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                            <${page.columnConfig.javaName}Upload :fileDisplay="true" :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi_"  :format="uploadFormat_" :multiple='multipleFile' :max-size="uploadMaxSize_"  name="file" :data="uploadParams_" :defaultFileList="formData.${page.columnConfig.javaName}List"/>
                         <#elseif page.element == 'singleimage' >
 
                         <#elseif page.element == 'multiimage' >
@@ -236,9 +236,9 @@
 
 
                         <#elseif page.element == 'singlefile' >
-                            <${page.columnConfig.javaName}Upload :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi"  :fileSize="1" :format="uploadFormat" :multiple='singleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                            <${page.columnConfig.javaName}Upload :fileDisplay="false" :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi_"  :fileSize="1" :format="uploadFormat_" :multiple='singleFile' :max-size="uploadMaxSize_"  name="file" :data="uploadParams_" :defaultFileList="formData.${page.columnConfig.javaName}List"/>
                         <#elseif page.element == 'multifile' >
-                            <${page.columnConfig.javaName}Upload :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi"  :format="uploadFormat" :multiple='multipleFile' :max-size="uploadMaxSize"  name="file" :data="uploadParams" :defaultFileList="${page.columnConfig.javaName}FileList"/>
+                            <${page.columnConfig.javaName}Upload :fileDisplay="false" :businessType.sync="formData.${page.columnConfig.javaName}" :action="uploadApi_"  :format="uploadFormat_" :multiple='multipleFile' :max-size="uploadMaxSize_"  name="file" :data="uploadParams_" :defaultFileList="formData.${page.columnConfig.javaName}List"/>
                         <#elseif page.element == 'singleimage' >
 
                         <#elseif page.element == 'multiimage' >
@@ -281,7 +281,7 @@
     <#list fkTables as fkTable>
 
         <#if fkTable.isBuildUi == '1'>
-            <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :display="select${fkTable.javaName}Display_" :businessType="bsType" @closeDialog="closeDialog('select${fkTable.javaName}')"
+            <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :modalDisplay="select${fkTable.javaName}Display_" :businessType="businessType_" @closeDialog="closeDialog_('select${fkTable.javaName}')"
                 <#list fks[fkTable.fullResourceFile] as field >
                                        @on-selected-${field.javaName}="selected${field.javaName}Callback"
                 </#list>
@@ -383,17 +383,19 @@
                 singleFile:false,
 
 
-        <#list showColumnPages as page>
-            <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
-                ${page.columnConfig.javaName}FileList :[],
-            </#if>
-        </#list>
                 formData: {
             <#list columnPages as page>
                 <#if page.existPage == '1'>
                     ${page.javaName}:'',
                 </#if>
             </#list>
+
+
+        <#list showColumnPages as page>
+            <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
+                    ${page.columnConfig.javaName}List :[],
+            </#if>
+        </#list>
                 },
 
         <#list fkTables as fkTable>
@@ -507,10 +509,13 @@
     </#list>
 
             save() {
-                if (this.validateForm_('formData')) {
+
+                this.validateForm_('formData');
+                if (this.formValid_) {
                     let that = this;
-                    if (this.formData.id != '') {
-                        ${table.javaName}Api.update(this.formData,{
+                    let allInfo = this.allFormData_;
+                    if (allInfo.id != undefined && allInfo.id != '') {
+                        ${table.javaName}Api.update(allInfo,{
                             onSuccess(body) {
                                 that.saveOk_(body,that,'formData');
                                 that.findBy();
@@ -519,7 +524,7 @@
 
 
                     } else {
-                        ${table.javaName}Api.add(this.formData,{
+                        ${table.javaName}Api.add(allInfo,{
                             onSuccess(body) {
                                 that.saveOk_(body,that,'formData');
                                 that.findBy();
@@ -533,9 +538,15 @@
 
             findBy() {
                 let that = this;
-                ${table.javaName}Api.detailBy(that.param,{
+                ${table.javaName}Api.detailBy(that.searchParams_,{
                     onSuccess(body){
                         that.formData = body["${table.javaName?uncap_first}"];
+
+                        <#list columnPages as being>
+                        <#if being.element == 'singlefile' || being.element == 'multifile' >
+                        if (that.formData.${being.javaName} == undefined) that.formData.${being.javaName} = '';
+                        </#if>
+                        </#list>
                     }
                 });
 

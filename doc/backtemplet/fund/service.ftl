@@ -94,7 +94,11 @@ public interface ${table.javaName}Service {
 	public Pager<${table.javaName}> findPageList(${table.javaName} ${table.javaName?uncap_first},Pager pager);
 
 
-
+	/**
+	 * 处理其它数据
+	 * ${table.javaName?uncap_first}
+    */
+	public void processResult(${table.javaName} ${table.javaName?uncap_first});
 
 
 
