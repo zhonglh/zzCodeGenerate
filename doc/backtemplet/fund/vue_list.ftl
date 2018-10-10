@@ -148,7 +148,7 @@
                 :footerHide="true"
                 :mask-closable="false"
                 scrollable>
-            <${table.javaName}Detail :${table.simpleName}Id="${table.javaName}.id" />
+            <${table.javaName}Detail :${table.simpleName}Id="${table.javaName}.id" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list>/>
         </Modal>
     </#if>
 
@@ -164,7 +164,7 @@
         :footerHide="true"
         :mask-closable="false"
         scrollable>
-            <${table.javaName}Edit @freshTable="freshTable_('edit')" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list>/>
+            <${table.javaName}Edit @freshTable="freshTable_('edit')" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list> />
         </Modal>
             <#break>
         </#if>

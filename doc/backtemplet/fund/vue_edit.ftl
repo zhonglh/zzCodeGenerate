@@ -547,7 +547,7 @@
                         if (that.formData.${being.javaName} == undefined) that.formData.${being.javaName} = '';
                         </#if>
                         </#list>
-                        var dt = Object.assign({}, that.formData);
+                        let dt = Object.assign({}, that.formData);
                         that.initFormData_ = dt;
                     }
                 });
