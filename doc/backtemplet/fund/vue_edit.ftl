@@ -145,7 +145,7 @@
                                 </#if>
                             />
                         <#elseif page.element == 'digits' >
-                            <InputNumber  v-model="formData.${page.columnConfig.javaName}"
+                            <Input  v-model="formData.${page.columnConfig.javaName}"
                                           <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
 
                                 <#if page.events?exists>
@@ -153,9 +153,9 @@
                                           @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                            />
+                            number />
                         <#elseif page.element == 'number' >
-                            <InputNumber  v-model="formData.${page.columnConfig.javaName}"  precision="2"
+                            <Input  v-model="formData.${page.columnConfig.javaName}"  precision="2"
                                           <#if page.min?exists && page.min != 0>min="${page.min}"</#if> <#if page.max?exists && page.max != 0>max="${page.max}"</#if>
 
                                 <#if page.events?exists>
@@ -163,7 +163,7 @@
                                           @${event.eventName}="${event.funcName}"
                                     </#list>
                                 </#if>
-                            />
+                        number />
                         <#elseif page.element == 'date' >
                             <DatePicker type="date"   v-model="formData.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName?cap_first}"
                                 <#if page.events?exists>
@@ -425,11 +425,11 @@
                                 <#elseif  page.element == 'checkbox' >
                                     {  type: 'array',  message: '${validate.msg}', trigger: 'change', pattern: ${validate.rex} },
                                 <#elseif  page.element == 'openwin' >
-                                    { type: 'string', message: '${validate.msg}', trigger: 'blur', pattern: ${validate.rex} },
+                                    { type: 'string', message: '${validate.msg}', trigger: 'change', pattern: ${validate.rex} },
                                 <#elseif  page.element == 'date' || page.element == 'timestamp'>
-                                    { type: 'date', message: '${validate.msg}', trigger: 'blur', pattern: ${validate.rex} },
+                                    { type: 'date', message: '${validate.msg}', trigger: 'change', pattern: ${validate.rex} },
                                 <#else>
-                                    { type: 'string', message: '${validate.msg}', trigger: 'blur', pattern: ${validate.rex} },
+                                    { type: 'string', message: '${validate.msg}', trigger: 'change', pattern: ${validate.rex} },
                                 </#if>
                             </#list>
                         </#if>
@@ -441,11 +441,11 @@
                             <#elseif  page.element == 'checkbox' >
                                 { required: true, type: 'array', min: 1, message: '请至少选择一项${page.columnComment}', trigger: 'change' }
                             <#elseif  page.element == 'openwin' >
-                                { required: true,  message: '请选择${page.columnComment}', trigger: 'blur' }
+                                { required: true,  message: '请选择${page.columnComment}', trigger: 'change' }
                             <#elseif  page.element == 'date' || page.element == 'timestamp'>
-                                { required: true,  type: 'date',message: '请选择${page.columnComment}', trigger: 'blur' }
+                                { required: true,  type: 'date',message: '请选择${page.columnComment}', trigger: 'change' }
                             <#else>
-                                { required: true, message: '请输入${page.columnComment}', trigger: 'blur' }
+                                { required: true, message: '请输入${page.columnComment}', trigger: 'change' }
                             </#if>
                         </#if>
 
@@ -547,6 +547,8 @@
                         if (that.formData.${being.javaName} == undefined) that.formData.${being.javaName} = '';
                         </#if>
                         </#list>
+                        var dt = Object.assign({}, that.formData);
+                        that.initFormData_ = dt;
                     }
                 });
 
