@@ -170,7 +170,7 @@ public class TableLogic {
         }
 
         columnBO.setJavaFullClass(javaType);
-        columnBO.setJavaSimpleClass(javaType.substring(javaType.lastIndexOf("."))+1);
+        columnBO.setJavaSimpleClass(javaType.substring(javaType.lastIndexOf(".")+1));
         columnBO.setJavaName(StringFormatKit.toCamelCase(columnBO.getColumnName()));
     }
 

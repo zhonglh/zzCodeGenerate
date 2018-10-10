@@ -224,7 +224,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 			}
 
 		<#if exColumnMap?exists>
-
+            TsDict tempDict = null;
 
 		<#list exColumnMap?keys as key>
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
@@ -235,13 +235,13 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 				<#list exColumnMap[key] as val>
 					${table.javaName?uncap_first}.set${val.javaName?cap_first}(${fkColumn.javaName}Obj.get${val.fkJavaName?cap_first}());
 				</#list>
-					${table.javaName?uncap_first}.${fkColumn.setMethodName}(${fkColumn.javaName}Obj);
+					${table.javaName?uncap_first}.set${fkColumn.fkTableConfig.javaName}(${fkColumn.javaName}Obj);
 				}
 			}
 
 			<#else>
 
-                TsDict tempDict = null;
+
 			<#list exColumnMap[key] as val>
 				<#assign fkColumn = exColumnMap[key][0].originalColumn >
 			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
