@@ -11,7 +11,7 @@
             <span class="label"></span><span class="val"></span>
         </Col>
         <Col span="24" class="demo-tabs-style2">
-            <Tabs type="card" @on-click="handleTab">
+            <Tabs type="card" @on-click="handleTab" v-model="defaultTab">
                 <TabPane v-for="(item,index) in tabs" :key="index" :label="item.title" :name="item.component" ></TabPane>
             </Tabs>
 
@@ -50,6 +50,7 @@
         data () {
             return {
                 currentComponent: '',
+                defaultTab:'${table.javaName}Detail',
                 tabs: []
             };
         },
@@ -57,6 +58,7 @@
         methods:{
 
             handleTab(name){
+                this.defaultTab=name;
                 this.currentComponent = name;
             },
 
