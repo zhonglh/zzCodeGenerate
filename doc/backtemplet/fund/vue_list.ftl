@@ -366,7 +366,7 @@
                 {
                     title: '序号',
                     type: 'selection',
-                    width: 80,
+                    width: 60,
                     fixed: 'left',
                     align: 'center'
                 },

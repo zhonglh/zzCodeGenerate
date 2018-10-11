@@ -184,6 +184,17 @@
 
 
         },
+        watch: {
+
+        <#list columns as column>
+            <#if column.columnIsfk == '1'>
+            ${column.javaName} : function (newVal, oldVal) {
+                this.findList();
+            },
+            </#if>
+        </#list>
+
+        },
         data () {
             return {
                 ${table.fullResourceFile}: {},
@@ -219,8 +230,7 @@
                 {
                     title: '序号',
                     type: 'selection',
-                    width: 80,
-                    fixed: 'left',
+                    width: 60,
                     align: 'center'
                 },
             <#list listColumnPages as page>

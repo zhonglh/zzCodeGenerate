@@ -21,7 +21,6 @@
             </Col>
         </Row>
 
-    </Modal>
 </template>
 
 <script>
