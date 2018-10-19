@@ -5,7 +5,7 @@
 <template>
 
 
-    <Row :gutter="32" class="allcls">
+    <Row  class="allcls">
         <Col span="24" class="header">
             <span class="title"></span>
             <span class="label"></span><span class="val"></span>
