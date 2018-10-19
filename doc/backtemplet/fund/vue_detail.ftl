@@ -10,9 +10,9 @@
         <#list table.childFkTables as child>
             <#if (child.pageRelation?exists && child.pageRelation == '1')>
                 <#if (child.tableRelation?exists && child.tableRelation == 'one-multi')>
-                    <${child.javaName}List :${table.simpleName}Id=":${table.simpleName}Id" btnSize="small" :isInclude="true" :tableFit="false"></${child.javaName}List>
+                    <${child.javaName}List :${table.simpleName}Id="${table.simpleName}Id" btnSize="small" :isInclude="true" :tableFit="false"></${child.javaName}List>
                 <#else >
-                    <${child.javaName}Edit :${table.simpleName}Id=":${table.simpleName}Id" ></${child.javaName}Edit>
+                    <${child.javaName}Edit :${table.simpleName}Id="${table.simpleName}Id" ></${child.javaName}Edit>
                 </#if>
             </#if>
         </#list>

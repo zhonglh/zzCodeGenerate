@@ -409,13 +409,13 @@
 
 
                 <#elseif page.element == 'date'>
-                render: (h, params) => {
-                    return timeFormat.formatTime(params.row.${page.columnConfig.javaName},'Y-M-D');
-                }
+                    render: (h, params) => {
+                        return timeFormat.formatTime(params.row.${page.columnConfig.javaName},'Y-M-D');
+                    }
                 <#elseif page.element == 'timestamp'>
-                render: (h, params) => {
-                    return timeFormat.formatTime(params.row.${page.columnConfig.javaName},'Y-M-D h:m:s');
-                }
+                    render: (h, params) => {
+                        return timeFormat.formatTime(params.row.${page.columnConfig.javaName},'Y-M-D h:m:s');
+                    }
                 </#if>
                 }<#if page_has_next>,</#if>
             </#list>
