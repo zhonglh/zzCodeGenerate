@@ -528,17 +528,6 @@
             },
 
 
-            processDate(){
-                <#list columnPages as being>
-                <#if being.element == 'date' || being.element == 'datetime' || being.element == 'timestamp' >
-                    if (this.formData.${being.javaName} != undefined && this.formData.${being.javaName} != "") {
-                        this.formData.${being.javaName} = new Date(this.formData.${being.javaName});
-                    }
-                </#if>
-                </#list>
-            },
-
-
             findBy() {
                 let that = this;
                 ${table.javaName}Api.detailBy(that.searchParams_,{
@@ -549,6 +538,12 @@
                         <#if being.element == 'singlefile' || being.element == 'multifile' >
                         if (that.formData.${being.javaName} == undefined) that.formData.${being.javaName} = '';
                         </#if>
+                        <#if being.element == 'date' || being.element == 'datetime' || being.element == 'timestamp' >
+                            if (this.formData.${being.javaName} != undefined && this.formData.${being.javaName} != "") {
+                                this.formData.${being.javaName} = new Date(this.formData.${being.javaName});
+                            }
+                        </#if>
+
                         </#list>
                         let dt = Object.assign({}, that.formData);
                         that.initFormData_ = dt;
