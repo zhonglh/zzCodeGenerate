@@ -113,7 +113,7 @@
 
 
                 <li>
-                    <a class="J_menuItem" href="${ctx}/table/config/toList" data-index="40"><i class="fa fa-edit"></i> <span class="nav-label">表格设置</span></a>
+                    <a class="J_menuItem" href="${ctx}/table/config/toList" data-index="40"><i class="fa fa-edit"></i> <span class="nav-label">业务表设置</span></a>
                 </li>
 
 

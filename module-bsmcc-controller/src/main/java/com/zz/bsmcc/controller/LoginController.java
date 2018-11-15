@@ -119,10 +119,22 @@ public class LoginController extends BaseBussinessController {
     public String login(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         ILoginUserEntity<String> sessionUserVO = getSessionUser(request);
         if (sessionUserVO != null) {
-            request.setAttribute("user", sessionUserVO);
-            return "main/hplus_main";
+            return "redirect:/login/home" ;
         } else {
             return "login/login";
+        }
+
+    }
+
+
+    @RequestMapping(value = "/home")
+    public String home(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+        ILoginUserEntity<String> sessionUserVO = getSessionUser(request);
+        if (sessionUserVO != null) {
+            request.setAttribute("user", sessionUserVO);
+            return "main/hplus_main";
+        }else {
+            return "redirect:/login/login" ;
         }
 
     }
@@ -136,7 +148,7 @@ public class LoginController extends BaseBussinessController {
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute(Constant.SESSION_USER);
-        return "redirect:/login" ;
+        return "redirect:/login/login" ;
     }
 
 }
