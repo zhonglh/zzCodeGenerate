@@ -74,7 +74,38 @@
                 type:String,
                 default: ''
             }
+        },
+        watch: {
+
+        <#list columns as column>
+            <#if column.columnIsfk == '1'>
+            ${column.javaName} :{
+                handler: function (val, oldVal) {
+                    this.${column.javaName} = val;
+                },
+                deep: false,
+                immediate: true
+            },
+            </#if>
+        </#list>
+
+
+            id:{
+                handler: function (val, oldVal) {
+                    this.id = val;
+                },
+                deep: false,
+                immediate: true
+            },
+            ${table.simpleName}Id:{
+                handler: function (val, oldVal) {
+                    this.${table.simpleName}Id = val;
+                },
+                deep: false,
+                immediate: true
+            }
         }
+
 
 
 

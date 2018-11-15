@@ -129,7 +129,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             List<Table> tables = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readAllTable(
                     new DbConfig(dbConfigBO.getDbType() , dbConfigBO.getDbUrl() , dbConfigBO.getDbUsername() , dbConfigBO.getDbPassword())
             );
-            Map<String,Table> tableMap = new HashMap<String ,Table>();
+            Map<String,Table> tableMap = new TreeMap<String ,Table>();
             for(Table table : tables){
                 tableMap.put(table.getTableSchema()+table.getTableName() , table);
             }

@@ -518,6 +518,12 @@
                         ${table.javaName}Api.update(allInfo,{
                             onSuccess(body) {
                                 that.saveOk_(body,that,'formData');
+                                <#list showColumnPages as page>
+                                <#if (page.editable == '1' && page.columnConfig?exists && (page.element == 'singlefile' || page.element == 'multifile') )>
+                                ${page.columnConfig.javaName} = "";
+                                ${page.columnConfig.javaName}List = [];
+                                </#if>
+                                </#list>
                                 that.findBy();
                             }
                         });

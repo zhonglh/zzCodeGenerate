@@ -136,7 +136,7 @@
                 :footer-hide="true"
                 loading
                 scrollable>
-            <${table.javaName}All :${table.javaName}="${table.javaName}" />
+            <${table.javaName}All v-if="componentShow_" :${table.javaName}="${table.javaName}" />
         </Modal>
     <#else>
         <Modal
@@ -148,7 +148,7 @@
                 :footerHide="true"
                 :mask-closable="false"
                 scrollable>
-            <${table.javaName}Detail :${table.simpleName}Id="${table.javaName}.id" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list>/>
+            <${table.javaName}Detail v-if="componentShow_" :${table.simpleName}Id="${table.javaName}.id" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list>/>
         </Modal>
     </#if>
 
@@ -164,7 +164,7 @@
         :footerHide="true"
         :mask-closable="false"
         scrollable>
-            <${table.javaName}Edit @freshTable="freshTable_('edit')" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list> />
+            <${table.javaName}Edit v-if="componentShow_" @freshTable="freshTable_('edit')" <#list columns as column><#if column.columnIsfk == '1'>:${column.javaName}="${column.javaName}" </#if></#list> />
         </Modal>
             <#break>
         </#if>
@@ -186,7 +186,7 @@
                     :footerHide="true"
                     :mask-closable="false"
                     scrollable>
-                <${table.javaName}${operation.operationResource?cap_first} @freshTable="freshTable_('${operation.operationResource}')"  />
+                <${table.javaName}${operation.operationResource?cap_first} v-if="componentShow_" @freshTable="freshTable_('${operation.operationResource}')"  />
             </Modal>
             </#if>
         </#if>
@@ -197,7 +197,7 @@
     <#list queryFkTables as fkTable>
 
         <#if fkTable.isBuildUi == '1'>
-        <${fkTable.javaName}Search modalTitle="选择${fkTable.tableComment}" :modalDisplay="select${fkTable.javaName}Display_"
+        <${fkTable.javaName}Search  v-if="componentShow_" modalTitle="选择${fkTable.tableComment}" :modalDisplay="select${fkTable.javaName}Display_"
                                    :businessType="businessType_"  @closeDialog="closeDialog_('select${fkTable.javaName}')"
             <#list queryFks[fkTable.fullResourceFile] as queryField >
                                    @on-selected-${queryField.columnPage.javaName}="selected${queryField.columnPage.javaName}Callback"
