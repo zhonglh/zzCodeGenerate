@@ -165,7 +165,7 @@
                                 </#if>
                         number />
                         <#elseif page.element == 'date' >
-                            <DatePicker type="date"   v-model="formData.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName?cap_first}"
+                            <DatePicker type="date"   v-model="formData.${page.columnConfig.javaName}"  clearable :editable="false" format="yyyy-MM-dd"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -173,7 +173,7 @@
                                 </#if>
                             />
                         <#elseif page.element == 'timestamp' >
-                            <DatePicker type="datetime"   v-model="formData.${page.columnConfig.javaName}"  clearable :editable="false" @on-change="onChange${page.columnConfig.javaName?cap_first}"
+                            <DatePicker type="datetime"   v-model="formData.${page.columnConfig.javaName}"  clearable :editable="false" format="yyyy-MM-dd HH:mm:ss"
                                 <#if page.events?exists>
                                     <#list page.events as event>
                                         @${event.eventName}="${event.funcName}"
@@ -462,20 +462,6 @@
 
         methods: {
 
-
-    <#list showColumnPages as page>
-        <#if (page.existPage == '1' && page.editable == '1' && page.element == 'date')>
-            onChange${page.columnConfig.javaName?cap_first}(v){
-                this.formData.${page.columnConfig.javaName} = new Date(v);
-            },
-
-        <#elseif (page.existPage == '1' && page.editable == '1' && page.element == 'timestamp')>
-            onChange${page.columnConfig.javaName?cap_first}(v){
-                this.formData.${page.columnConfig.javaName} = new Date(v);
-            },
-        </#if>
-    </#list>
-
     <#list columnEvents as event>
             ${event.funcBody},
     </#list>
@@ -539,6 +525,17 @@
 
                     }
                 }
+            },
+
+
+            processDate(){
+                <#list columnPages as being>
+                <#if being.element == 'date' || being.element == 'datetime' || being.element == 'timestamp' >
+                    if (this.formData.${being.javaName} != undefined && this.formData.${being.javaName} != "") {
+                        this.formData.${being.javaName} = new Date(this.formData.${being.javaName});
+                    }
+                </#if>
+                </#list>
             },
 
 
