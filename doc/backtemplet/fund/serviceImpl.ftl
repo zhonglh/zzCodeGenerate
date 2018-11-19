@@ -219,11 +219,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 
 		PageHelper.startPage(pager.getPageNum(), pager.getPageSize());
 		List<${table.javaName}> list = this.findList(${table.javaName?uncap_first});
-		if(list != null && !list.isEmpty()){
-			for(${table.javaName} temp : list){
-    			processResult(temp);
-			}
-		}
+
 		return new Pager<${table.javaName}>(list);
 	}
 
