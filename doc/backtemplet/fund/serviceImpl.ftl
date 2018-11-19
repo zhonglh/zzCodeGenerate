@@ -125,12 +125,27 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 	* @param id
 	* @return
 	*/
+    @Override
+    public ${table.javaName} findById(String id){
+    	return findById(id,false);
+	}
+
+
+    /**
+    * 根据id查询${table.tableComment}
+    *
+    * @param id
+    * @param lazy
+    * @return
+    */
 	@Override
-	public ${table.javaName} findById(String id){
+	public ${table.javaName} findById(String id , boolean lazy){
 		${table.javaName} ${table.javaName?uncap_first} = new ${table.javaName}();
 		${table.javaName?uncap_first}.setId(id);
 		${table.javaName}  result = ${table.javaName?uncap_first}Dao.findTopOne(${table.javaName?uncap_first});
-		processResult(result);
+		if(!lazy){
+			processResult(result);
+		}
 		return result;
 	}
 
@@ -230,7 +245,7 @@ public class ${table.javaName}ServiceImpl implements  ${table.javaName}Service{
 			<#if exColumnMap[key][0].originalColumnFk == '1'>
 				<#assign fkColumn = exColumnMap[key][0].originalColumn >
 			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}.${fkColumn.getMethodName}())){
-				${fkColumn.fkTableConfig.javaName} ${fkColumn.javaName}Obj = ${fkColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${fkColumn.getMethodName}());
+				${fkColumn.fkTableConfig.javaName} ${fkColumn.javaName}Obj = ${fkColumn.fkTableConfig.javaName?uncap_first}Service.findById(${table.javaName?uncap_first}.${fkColumn.getMethodName}() , true);
 				if(${fkColumn.javaName}Obj != null){
 				<#list exColumnMap[key] as val>
 					${table.javaName?uncap_first}.set${val.javaName?cap_first}(${fkColumn.javaName}Obj.get${val.fkJavaName?cap_first}());

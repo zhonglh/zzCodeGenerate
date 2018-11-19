@@ -60,6 +60,17 @@ public interface ${table.javaName}Service {
 	*/
 	public ${table.javaName} findById(String id);
 
+
+	/**
+	* 根据id查询${table.tableComment}
+	*
+	* @param id
+	* @param lazy
+	* @return
+	*/
+	public ${table.javaName} findById(String id , boolean lazy);
+
+
 	/**
 	* 根据条件查询第一条${table.tableComment}
 	*
