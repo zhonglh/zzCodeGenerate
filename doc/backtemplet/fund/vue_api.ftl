@@ -22,7 +22,7 @@ let serverPath = process.env.SERVER_URL;
     * 新增或者修改时，检验数据是否唯一
     * @param params
     */
-    static checkUnique (params) {
+    static checkUnique (params, callBack) {
         return this.Post(this.restApi().checkUnique, params, callBack);
     }
 
@@ -30,7 +30,7 @@ let serverPath = process.env.SERVER_URL;
     * 新增或者修改时，检验数据是否唯一
     * @param params
     */
-    static checkAllUnique (params) {
+    static checkAllUnique (params, callBack) {
         return this.Post(this.restApi().checkAllUnique, params, callBack);
     }
 
