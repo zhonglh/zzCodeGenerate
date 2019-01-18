@@ -1,9 +1,6 @@
 package com.zz.bsmcc.base.service;
 
 
-
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bsmcc.base.bo.TcgModuleConfigBO;
 

@@ -58,16 +58,23 @@ public enum EnumJavaType implements EnumBase{
 	}
 
 
+
+
+
 	@Override
-	public Serializable getTheValue(){
+	public String getVal(){
 		return this.name().substring(1);
 	}
 
+	@Override
+	public String getLabel(){
+		return fullname;
+	}
 
 
 	@Override
-	public String getTheName(){
-		return this.fullname;
+	public String getValue(){
+		return this.name().substring(1);
 	}
 	
 	

@@ -28,12 +28,19 @@ public enum EnumPageRelation implements EnumBase {
 
 
     @Override
-    public Serializable getTheValue() {
+    public String getVal(){
         return code;
     }
 
     @Override
-    public String getTheName() {
+    public String getLabel(){
         return title;
     }
+
+
+    @Override
+    public String getValue(){
+        return code;
+    }
+
 }

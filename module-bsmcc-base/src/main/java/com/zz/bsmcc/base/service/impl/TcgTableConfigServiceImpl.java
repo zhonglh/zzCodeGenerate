@@ -68,7 +68,7 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 		if(StringUtils.isNotEmpty(tcgTableConfigBO.getTableType())) {
 			EnumTableType type = EnumTableType.getTableTypeByValue(tcgTableConfigBO.getTableType());
 			if(type != null){
-				tcgTableConfigBO.setTableTypeName(type.getTheName());
+				tcgTableConfigBO.setTableTypeName(type.getLabel());
 			}
 
 		}
@@ -76,14 +76,14 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 		if(StringUtils.isNotEmpty(tcgTableConfigBO.getTableRelation())) {
 			EnumTableRelation relation = EnumTableRelation.getTableRelationByValue(tcgTableConfigBO.getTableRelation());
 			if(relation != null) {
-				tcgTableConfigBO.setTableRelationName(relation.getTheName());
+				tcgTableConfigBO.setTableRelationName(relation.getLabel());
 			}
 		}
 
 		if(StringUtils.isNotEmpty(tcgTableConfigBO.getQueryMode())) {
 			EnumQueryMode queryMode = EnumQueryMode.getQueryModeByValue(tcgTableConfigBO.getQueryMode());
 			if(queryMode != null) {
-				tcgTableConfigBO.setQueryModeName(queryMode.getTheName());
+				tcgTableConfigBO.setQueryModeName(queryMode.getLabel());
 			}
 		}
 

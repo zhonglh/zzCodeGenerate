@@ -1,24 +1,12 @@
 package com.zz.bsmcc.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
-
-
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupBO;
-import com.zz.bsmcc.base.domain.TcgTempletGroupEntity;
 import com.zz.bsmcc.base.query.TcgTempletGroupQuery;
-import com.zz.bsmcc.base.query.TcgTempletQuery;
 import com.zz.bsmcc.base.query.impl.TcgTempletGroupQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletQueryWebImpl;
-
-import com.zz.bms.util.base.java.IdUtils;
-
 import com.zz.bsmcc.base.service.TcgTempletGroupService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -44,9 +32,9 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 
 
 	@Override
-	protected Wrapper buildWrapper(TcgTempletQueryWebImpl query, TcgTempletBO m) {
-		Wrapper wrapper =  query.buildWrapper();
-		wrapper.orderBy(" group_id " );
+	protected QueryWrapper buildWrapper(TcgTempletQueryWebImpl query, TcgTempletBO m) {
+		QueryWrapper wrapper =  query.buildWrapper();
+		wrapper.orderByAsc(" group_id " );
 		return wrapper;
 	}
 
@@ -92,7 +80,7 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 		fileTypes.add(map);
 
 		TcgTempletGroupQuery groupQuery = new TcgTempletGroupQueryImpl();
-		List<TcgTempletGroupBO> groups = tcgTempletGroupService.selectList(groupQuery.buildWrapper());
+		List<TcgTempletGroupBO> groups = tcgTempletGroupService.list(groupQuery.buildWrapper());
 
 
 		model.put("fileTypes" , fileTypes);
@@ -101,8 +89,8 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 
 
 	@Override
-	protected boolean isExist(TcgTempletBO tcgTempletBO) {
-		return false;
+	protected void isExist(TcgTempletBO tcgTempletBO) {
+
 	}
 
 

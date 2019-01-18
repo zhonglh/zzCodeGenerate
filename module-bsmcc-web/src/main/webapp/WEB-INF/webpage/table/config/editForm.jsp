@@ -720,7 +720,8 @@
 
                         <th width="80">序号</th>
                         <th width="150">约束名</th>
-                        <th width="150">列名称</th>
+                        <th width="350">列名称</th>
+                        <th width="350">提示信息</th>
 
                         </thead>
 
@@ -730,6 +731,12 @@
                                 <td>${status1.index+1 }</td>
                                 <td>${indexConfig.indexName }</td>
                                 <td>${indexConfig.indexCloumns }</td>
+                                <td>${indexConfig.tipMsg }</td>
+                                <td>
+                                    <input type="hidden"  id="indexConfigs[${status1.index }].id" name="indexConfigs[${status1.index }].id" value="${indexConfig.id}" />
+                                    <input type="text" size="15" class="required  id="indexConfigs[${status1.index }].tipMsg" name="indexConfigs[${status1.index }].tipMsg" value="${indexConfig.tipMsg }" />
+                                </td>
+
                             </tr>
                         </c:forEach>
                         </tbody>

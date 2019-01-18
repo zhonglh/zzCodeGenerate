@@ -43,7 +43,7 @@ public class LoginController extends BaseBussinessController {
         try {
             TsUserQuery userQuery = new TsUserQueryImpl();
             userQuery.loginName(user.getLoginName());
-            TsUserEntity dbUser = tsUserService.selectOne(userQuery.buildWrapper());
+            TsUserEntity dbUser = tsUserService.getOne(userQuery.buildWrapper());
             boolean b = (dbUser != null);
 
             if(b) {

@@ -1,7 +1,7 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 
 /**

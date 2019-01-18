@@ -9,7 +9,7 @@ import com.zz.bms.core.enums.EnumBase;
  * @author Administrator
  */
 
-public enum EnumQueryMode  implements EnumBase{
+public enum EnumQueryMode  implements EnumBase<String>{
 
 
     toolbar("toolbar" , "工具栏样式") ,
@@ -26,27 +26,32 @@ public enum EnumQueryMode  implements EnumBase{
     String name ;
 
 
-    @Override
-    public Serializable getTheValue() {
-        return value;
-    }
-
-    @Override
-    public String getTheName() {
-        return name;
-    }
 
     public static EnumQueryMode getQueryModeByValue(String v){
 
         for(EnumQueryMode qm : EnumQueryMode.values()){
-            if(qm.getTheValue().equals(v)){
+            if(qm.value.equals(v)){
                 return qm;
             }
         }
         return null;
     }
 
+    @Override
+    public String getVal(){
+        return value;
+    }
 
+    @Override
+    public String getLabel(){
+        return name;
+    }
+
+
+    @Override
+    public String getValue(){
+        return value;
+    }
 
 
 }

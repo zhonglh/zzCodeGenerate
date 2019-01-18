@@ -19,8 +19,8 @@ public class TcgColumnConfigController extends ZzccBaseController<TcgColumnConfi
 
 
 	@Override
-	protected boolean isExist(TcgColumnConfigBO tcgColumnConfigBO) {
-		return false;
+	protected void isExist(TcgColumnConfigBO tcgColumnConfigBO) {
+
 	}
 
 

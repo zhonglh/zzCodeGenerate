@@ -1,7 +1,5 @@
 package com.zz.bsmcc.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
@@ -33,8 +31,8 @@ public class TcgColumnEventController extends ZzccBaseController<TcgColumnEventB
 
 
 	@Override
-	protected boolean isExist(TcgColumnEventBO tcgColumnEventBO) {
-		return false;
+	protected void isExist(TcgColumnEventBO tcgColumnEventBO) {
+
 	}
 
 

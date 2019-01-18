@@ -55,8 +55,8 @@ public class TableLogic {
         }
         tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildUi());
         tcgTableConfigBO.setIsBuildRbac(tcgTableConfigBO.getIsBuildUi());
-        tcgTableConfigBO.setTableType((String)EnumTableType.singleTable.getTheValue());
-        tcgTableConfigBO.setPageRelation((String)EnumPageRelation.alone.getTheValue());
+        tcgTableConfigBO.setTableType((String)EnumTableType.singleTable.getVal());
+        tcgTableConfigBO.setPageRelation((String)EnumPageRelation.alone.getVal());
         tcgTableConfigBO.setIsShowCheckbox(EnumYesNo.YES.getCode());
         tcgTableConfigBO.setJavaName(StringUtil.firstUpperCase(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName())));
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
@@ -264,9 +264,9 @@ public class TableLogic {
         pageBO.setHiddenable(EnumYesNo.NO.getCode());
         pageBO.setListShowable(pageBO.getEditable());
 
-        pageBO.setElement((String) EnumPageElement.text.getTheValue());
+        pageBO.setElement((String) EnumPageElement.text.getVal());
         if(exColumnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsfk())){
-            pageBO.setElement((String) EnumPageElement.openwin.getTheValue());
+            pageBO.setElement((String) EnumPageElement.openwin.getVal());
         }
 
         if(EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumnDict())){
@@ -354,9 +354,9 @@ public class TableLogic {
 
 
         if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsfk())){
-            pageBO.setElement((String) EnumPageElement.text.getTheValue());
+            pageBO.setElement((String) EnumPageElement.text.getVal());
         }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsdict())){
-            pageBO.setElement((String)EnumPageElement.select.getTheValue());
+            pageBO.setElement((String)EnumPageElement.select.getVal());
         }else {
             Class clz = null;
             try {
@@ -366,28 +366,28 @@ public class TableLogic {
             }
             if( clz.isAssignableFrom(Number.class)) {
                 if (columnBO.getColumnScale() != null && columnBO.getColumnScale() > 0) {
-                    pageBO.setElement((String) EnumPageElement.number.getTheValue());
+                    pageBO.setElement((String) EnumPageElement.number.getVal());
                 } else {
-                    pageBO.setElement((String) EnumPageElement.digits.getTheValue());
+                    pageBO.setElement((String) EnumPageElement.digits.getVal());
                 }
             }else if(clz == Date.class){
-                pageBO.setElement((String) EnumPageElement.date.getTheValue());
+                pageBO.setElement((String) EnumPageElement.date.getVal());
             }else if(clz == java.sql.Timestamp.class){
-                pageBO.setElement((String) EnumPageElement.timestamp.getTheValue());
+                pageBO.setElement((String) EnumPageElement.timestamp.getVal());
             }else if(clz == String.class){
-                pageBO.setElement((String) EnumPageElement.text.getTheValue());
+                pageBO.setElement((String) EnumPageElement.text.getVal());
                 if(columnBO.getColumnLength() >= 300){
-                    pageBO.setElement((String) EnumPageElement.textarea.getTheValue());
+                    pageBO.setElement((String) EnumPageElement.textarea.getVal());
                     pageBO.setListShowable(EnumYesNo.NO.getCode());
                     //处理文件类型和图片类型
                     setFileImage4Page(pageBO);
                 }else {
-                    pageBO.setElement((String) EnumPageElement.text.getTheValue());
+                    pageBO.setElement((String) EnumPageElement.text.getVal());
                     //处理文件类型和图片类型
                     setFileImage4Page(pageBO);
                 }
             }else {
-                pageBO.setElement((String) EnumPageElement.text.getTheValue());
+                pageBO.setElement((String) EnumPageElement.text.getVal());
                 //处理文件类型和图片类型
                 setFileImage4Page(pageBO);
             }
@@ -444,19 +444,19 @@ public class TableLogic {
         //约定 ， 单文件以file结尾，  多文件以files结尾， 单图片以image结尾， 多图片以images结尾
         if(isFiles(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.multifile.getValue());
-            pageBO.setElementNmae(EnumPageElement.multifile.getName());
+            pageBO.setElementNmae(EnumPageElement.multifile.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
         }else if(isFile(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.singlefile.getValue());
-            pageBO.setElementNmae(EnumPageElement.singlefile.getName());
+            pageBO.setElementNmae(EnumPageElement.singlefile.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
         }else if(isImages(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.multiimage.getValue());
-            pageBO.setElementNmae(EnumPageElement.multiimage.getName());
+            pageBO.setElementNmae(EnumPageElement.multiimage.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
         }else if(isImage(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.singleimage.getValue());
-            pageBO.setElementNmae(EnumPageElement.singleimage.getName());
+            pageBO.setElementNmae(EnumPageElement.singleimage.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
         }
     }

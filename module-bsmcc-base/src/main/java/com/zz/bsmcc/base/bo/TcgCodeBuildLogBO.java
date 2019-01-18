@@ -1,8 +1,8 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bsmcc.base.domain.TcgCodeBuildLogEntity;
 
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;

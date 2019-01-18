@@ -22,12 +22,18 @@ public enum EnumButtonPosition implements EnumBase{
 
 
     @Override
-    public Serializable getTheValue() {
+    public String getVal(){
         return name();
     }
 
     @Override
-    public String getTheName() {
+    public String getLabel(){
         return title;
+    }
+
+
+    @Override
+    public String getValue(){
+        return name();
     }
 }

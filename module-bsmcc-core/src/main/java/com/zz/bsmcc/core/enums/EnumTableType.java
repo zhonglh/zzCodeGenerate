@@ -8,7 +8,7 @@ import com.zz.bms.core.enums.EnumBase;
  * @author Administrator
  */
 
-public enum EnumTableType implements EnumBase {
+public enum EnumTableType implements EnumBase<String> {
 
     singleTable("1" , "单表") ,
     mainTable("2" , "主表") ,
@@ -25,14 +25,23 @@ public enum EnumTableType implements EnumBase {
     String value ;
     String name ;
 
+
+
+
     @Override
-    public Serializable getTheValue() {
+    public String getVal(){
         return value;
     }
 
     @Override
-    public String getTheName() {
+    public String getLabel(){
         return name;
+    }
+
+
+    @Override
+    public String getValue(){
+        return value;
     }
 
 

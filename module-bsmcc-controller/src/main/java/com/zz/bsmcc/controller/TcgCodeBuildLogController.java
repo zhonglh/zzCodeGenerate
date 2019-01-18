@@ -3,9 +3,9 @@ package com.zz.bsmcc.controller;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.util.base.files.FileKit;
-import com.zz.bms.util.base.files.FileUtils;
-import com.zz.bms.util.base.files.ZipKit;
+import com.zz.bms.util.file.FileKit;
+import com.zz.bms.util.file.FileUtils;
+import com.zz.bms.util.file.ZipKit;
 import com.zz.bsmcc.base.bo.TcgCodeBuildLogBO;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
@@ -59,17 +59,17 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 
 
 	@Override
-	protected boolean isExist(TcgCodeBuildLogBO tcgCodeBuildLogBO) {
-		return false;
+	protected void isExist(TcgCodeBuildLogBO tcgCodeBuildLogBO) {
+
 	}
 
 	@Override
 	protected void setCommonData(TcgCodeBuildLogBO tcgCodeBuildLogBO, ModelMap model) {
 		TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
-		List<TcgProjectBO> projects = projectService.selectList(projectQuery.buildWrapper());
+		List<TcgProjectBO> projects = projectService.list(projectQuery.buildWrapper());
 
 		TcgTempletGroupQuery templetGroupQuery = new TcgTempletGroupQueryImpl();
-		List<TcgTempletGroupBO> groups = templetGroupService.selectList(templetGroupQuery.buildWrapper());
+		List<TcgTempletGroupBO> groups = templetGroupService.list(templetGroupQuery.buildWrapper());
 
 		model.put("projects" , projects );
 		model.put("groups" , groups );
@@ -80,11 +80,11 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 	@ResponseBody
 	public Object cg(TcgCodeBuildLogBO m, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
-		TcgProjectBO projectBO = projectService.selectById(m.getProjectId());
+		TcgProjectBO projectBO = projectService.getById(m.getProjectId());
 
 		TcgTempletQuery tcgTempletQuery = new TcgTempletQueryImpl();
 		tcgTempletQuery.groupId(m.getTempletGroupId());
-		List<TcgTempletBO> templets = templetService.selectList(tcgTempletQuery.buildWrapper());
+		List<TcgTempletBO> templets = templetService.list(tcgTempletQuery.buildWrapper());
 
 		if(projectBO == null){
 			throw new BizException("项目信息已经不存在了");
@@ -106,11 +106,11 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
 	public void download(TcgCodeBuildLogBO m, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
-		TcgProjectBO projectBO = projectService.selectById(m.getProjectId());
+		TcgProjectBO projectBO = projectService.getById(m.getProjectId());
 
 		TcgTempletQuery tcgTempletQuery = new TcgTempletQueryImpl();
 		tcgTempletQuery.groupId(m.getTempletGroupId());
-		List<TcgTempletBO> templets = templetService.selectList(tcgTempletQuery.buildWrapper());
+		List<TcgTempletBO> templets = templetService.list(tcgTempletQuery.buildWrapper());
 
 		if(projectBO == null){
 			throw new BizException("项目信息已经不存在了");

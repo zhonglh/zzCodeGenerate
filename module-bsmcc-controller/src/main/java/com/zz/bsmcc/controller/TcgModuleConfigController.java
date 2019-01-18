@@ -1,30 +1,17 @@
 package com.zz.bsmcc.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
-
-
 import com.zz.bsmcc.base.bo.TcgModuleConfigBO;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
 import com.zz.bsmcc.base.query.TcgModuleConfigQuery;
-import com.zz.bsmcc.base.query.TcgQueryConfigQuery;
 import com.zz.bsmcc.base.query.impl.TcgModuleConfigQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgModuleConfigQueryWebImpl;
-
-import com.zz.bms.util.base.java.IdUtils;
-
-import com.zz.bsmcc.base.query.impl.TcgQueryConfigQueryImpl;
 import com.zz.bsmcc.base.service.TcgProjectService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,8 +33,8 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 	private TcgProjectService tcgProjectService;
 
 	@Override
-	protected boolean isExist(TcgModuleConfigBO tcgModuleConfigBO) {
-		return false;
+	protected void isExist(TcgModuleConfigBO tcgModuleConfigBO) {
+
 	}
 
 
@@ -58,7 +45,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 
 		String projectId = tcgModuleConfigBO.getProjectId();
 
-		List<TcgProjectBO> projects = tcgProjectService.selectList(new EntityWrapper<TcgProjectBO>());
+		List<TcgProjectBO> projects = tcgProjectService.list();
 		model.put("projects" , projects);
 
 		TcgModuleConfigQuery query = new TcgModuleConfigQueryImpl();
@@ -71,9 +58,9 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 
 		query.projectId(projectId);
 
-		Wrapper wrapper = query.buildWrapper() ;
-		wrapper.orderBy("create_time" , false);
-		List<TcgModuleConfigBO> modules =  this.baseService.selectList(wrapper);
+		QueryWrapper wrapper = query.buildWrapper() ;
+		wrapper.orderByDesc("create_time" );
+		List<TcgModuleConfigBO> modules =  this.baseService.list(wrapper);
 		model.put("modules" , modules);
 
 	}
@@ -95,9 +82,9 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 			query.idNot(id);
 		}
 
-		Wrapper wrapper = query.buildWrapper() ;
-		wrapper.orderBy("create_time" , false);
-		return  this.baseService.selectList(wrapper);
+		QueryWrapper wrapper = query.buildWrapper() ;
+		wrapper.orderByDesc("create_time" );
+		return  this.baseService.list(wrapper);
 	}
 
 
@@ -108,7 +95,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 				throw new BizException("上级模块不能是自己， 请重新选择上级模块！");
 			}
 
-			TcgModuleConfigBO parent = this.baseService.selectById(m.getPid());
+			TcgModuleConfigBO parent = this.baseService.getById(m.getPid());
 			List<String> pids = new ArrayList<String>();
 			if(parent != null){
 				getParents(pids , parent.getId());
@@ -123,7 +110,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 	private void  getParents(List<String> pids,String id){
 
 		pids.add(id);
-		TcgModuleConfigBO bo = this.baseService.selectById(id);
+		TcgModuleConfigBO bo = this.baseService.getById(id);
 		if(bo != null && StringUtils.isNotEmpty(bo.getPid())){
 			getParents(pids , bo.getPid());
 		}

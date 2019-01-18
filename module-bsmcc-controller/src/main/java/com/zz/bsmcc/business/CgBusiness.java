@@ -1,14 +1,14 @@
 package com.zz.bsmcc.business;
 
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
-import com.zz.bms.util.base.files.FreemarkerUtils;
+import com.zz.bms.util.freemarker.FreemarkerUtil;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.po.MenuPO;
 import com.zz.bsmcc.base.po.TablePO;
@@ -184,10 +184,10 @@ public class CgBusiness extends CgBaseBusiness{
      * @param templetGroupId
      */
     public void cg(String projectId , String templetGroupId) {
-        TcgProjectBO projectBO = tcgProjectService.selectById(projectId);
+        TcgProjectBO projectBO = tcgProjectService.getById(projectId);
         TcgTempletQuery templetQuery = new TcgTempletQueryImpl();
         templetQuery.groupId(templetGroupId);
-        List<TcgTempletBO> templets = tcgTempletService.selectList(templetQuery.buildWrapper());
+        List<TcgTempletBO> templets = tcgTempletService.list(templetQuery.buildWrapper());
         if(templets != null && !templets.isEmpty()) {
             cg(projectBO, templets);
         }
@@ -214,7 +214,9 @@ public class CgBusiness extends CgBaseBusiness{
         TcgModuleConfigQuery moduleConfigQuery = new TcgModuleConfigQueryImpl();
         moduleConfigQuery.projectId(projectBO.getId());
         Map<String,TcgModuleConfigBO> moduleConfigMap = new HashMap<String,TcgModuleConfigBO>();
-        List<TcgModuleConfigBO> moduleConfigBOs = tcgModuleConfigService.selectList(moduleConfigQuery.buildWrapper().orderBy("create_time"));
+        QueryWrapper queryWrapper = moduleConfigQuery.buildWrapper();
+        queryWrapper.orderByAsc("create_time");
+        List<TcgModuleConfigBO> moduleConfigBOs = tcgModuleConfigService.list(queryWrapper);
         if(moduleConfigBOs != null && !moduleConfigBOs.isEmpty()){
             for(TcgModuleConfigBO moduleConfigBO : moduleConfigBOs){
                 moduleConfigMap.put(moduleConfigBO.getId() , moduleConfigBO);
@@ -233,10 +235,10 @@ public class CgBusiness extends CgBaseBusiness{
         Map<String,TcgTableConfigBO> tableConfigMap = new HashMap<String,TcgTableConfigBO>();
         TcgTableConfigQuery tableConfigQuery = new TcgTableConfigQueryImpl();
         tableConfigQuery.projectId(projectBO.getId());
-        Wrapper tableWrapper = tableConfigQuery.buildWrapper();
-        tableWrapper.orderBy("is_table" , false);
-        tableWrapper.orderBy("create_time" , true);
-        List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.selectList(tableWrapper);
+        QueryWrapper tableWrapper = tableConfigQuery.buildWrapper();
+        tableWrapper.orderByDesc("is_table" );
+        tableWrapper.orderByAsc("create_time" );
+        List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.list(tableWrapper);
 
 
 
@@ -266,7 +268,7 @@ public class CgBusiness extends CgBaseBusiness{
 
 
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
-            List<TcgColumnConfigBO> columns = tcgColumnConfigService.selectByMap(searchMap);
+            List<TcgColumnConfigBO> columns = (List<TcgColumnConfigBO>)tcgColumnConfigService.listByMap(searchMap);
 
             //处理列的信息
             if(columns != null && !columns.isEmpty()) {
@@ -289,7 +291,7 @@ public class CgBusiness extends CgBaseBusiness{
             //处理扩展列的信息
             Map<String,List<TcgExColumnBO>> exMap = null;
             Map<String , TcgExColumnBO> exColumnMap = new HashMap<String , TcgExColumnBO>();
-            List<TcgExColumnBO> exColumns = tcgExColumnService.selectByMap(searchMap);
+            List<TcgExColumnBO> exColumns = (List<TcgExColumnBO>)tcgExColumnService.listByMap(searchMap);
             if(exColumns != null && !exColumns.isEmpty()) {
                 exColumns.sort(new Comparator<TcgExColumnBO>() {
                     @Override
@@ -305,7 +307,7 @@ public class CgBusiness extends CgBaseBusiness{
 
             //处理列界面信息
             Map<String ,TcgColumnPageBO> columnPageMap = new HashMap<String ,TcgColumnPageBO>();
-            List<TcgColumnPageBO> columnPages = tcgColumnPageService.selectByMap(searchMap);
+            List<TcgColumnPageBO> columnPages = (List<TcgColumnPageBO>)tcgColumnPageService.listByMap(searchMap);
             if(columnPages != null && !columnPages.isEmpty()) {
                 //处理列界面设置信息
                 processColumnPage(columnMap , exColumnMap , columnPages , columnPageMap);
@@ -323,7 +325,7 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             //处理列校验信息
-            List<TcgColumnValidateBO> validates = tcgColumnValidateService.selectByMap(searchMap);
+            List<TcgColumnValidateBO> validates = (List<TcgColumnValidateBO>)tcgColumnValidateService.listByMap(searchMap);
             if(validates != null && !validates.isEmpty()){
                 for(TcgColumnValidateBO validate : validates){
                     TcgColumnPageBO columnPage = columnPageMap.get(validate.getColumnId());
@@ -344,7 +346,7 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             //处理列事件
-            List<TcgColumnEventBO> events = tcgColumnEventService.selectByMap(searchMap);
+            List<TcgColumnEventBO> events = (List<TcgColumnEventBO>)tcgColumnEventService.listByMap(searchMap);
             if(events != null && !events.isEmpty()){
                 for(TcgColumnEventBO event  : events){
                     TcgColumnPageBO columnPage = columnPageMap.get(event.getColumnId());
@@ -365,7 +367,7 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             //处理查询条件
-            List<TcgQueryConfigBO> queryConfigs = tcgQueryConfigService.selectByMap(searchMap);
+            List<TcgQueryConfigBO> queryConfigs = (List<TcgQueryConfigBO>)tcgQueryConfigService.listByMap(searchMap);
             if(queryConfigs != null && !queryConfigs.isEmpty()){
                 for(TcgQueryConfigBO queryConfig  : queryConfigs){
                     TcgColumnPageBO columnPage = columnPageMap.get(queryConfig.getColumnId());
@@ -384,7 +386,7 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             //处理索引
-            List<TcgIndexConfigBO> indexs = tcgIndexConfigService.selectByMap(searchMap);
+            List<TcgIndexConfigBO> indexs = (List<TcgIndexConfigBO>)tcgIndexConfigService.listByMap(searchMap);
             if(indexs != null && !indexs.isEmpty()){
                 for(TcgIndexConfigBO index : indexs){
                     if(StringUtils.isEmpty(index.getIndexCloumns())){
@@ -456,7 +458,7 @@ public class CgBusiness extends CgBaseBusiness{
             //处理操作
             TcgTableOperationQuery tableOperationQuery = new TcgTableOperationQueryImpl();
             tableOperationQuery.tableId(tableConfig.getId());
-            List<TcgTableOperationBO> tableOperations = tcgTableOperationService.selectList(tableOperationQuery.buildWrapper());
+            List<TcgTableOperationBO> tableOperations = tcgTableOperationService.list(tableOperationQuery.buildWrapper());
             tablePO.setTableOperations(tableOperations);
 
             if(operationBOMap == null || operationBOMap.isEmpty()){
@@ -552,7 +554,7 @@ public class CgBusiness extends CgBaseBusiness{
 
                 String templetContent = templet.getTempletContent();
 
-                String result = FreemarkerUtils.renderString(templetContent, model);
+                String result = FreemarkerUtil.renderString(templetContent, model);
 
                 BusinessUtil.buildFile(filePath, fileName, result);
 
@@ -673,7 +675,7 @@ public class CgBusiness extends CgBaseBusiness{
                 templetContent =  projectNoteBuild.toString() + templetContent;
             }
 
-            String result = FreemarkerUtils.renderString( templetContent , model);
+            String result = FreemarkerUtil.renderString( templetContent , model);
 
             BusinessUtil.buildFile(filePath, fileName, result);
 
@@ -766,7 +768,7 @@ public class CgBusiness extends CgBaseBusiness{
         if(tablePO.getQueryConfigs() != null && !tablePO.getQueryConfigs().isEmpty()){
             for(TcgQueryConfigBO query : tablePO.getQueryConfigs() ){
                 if(query.getColumnPage() != null &&
-                        EnumPageElement.openwin.getTheValue().equals(query.getColumnPage().getElement())){
+                        EnumPageElement.openwin.getVal().equals(query.getColumnPage().getElement())){
                     String key = null;
                     if(query.getColumnPage().getExColumn() != null){
                         key = query.getColumnPage().getExColumn().getOriginalColumn().getFkTableConfig().getFullResourceFile();
@@ -789,9 +791,9 @@ public class CgBusiness extends CgBaseBusiness{
                     list.add(query);
                 }else  if(query.getColumnPage() != null &&
                         (
-                            EnumPageElement.select.getTheValue().equals(query.getColumnPage().getElement()) ||
-                            EnumPageElement.checkbox.getTheValue().equals(query.getColumnPage().getElement()) ||
-                            EnumPageElement.radio.getTheValue().equals(query.getColumnPage().getElement())
+                            EnumPageElement.select.getVal().equals(query.getColumnPage().getElement()) ||
+                            EnumPageElement.checkbox.getVal().equals(query.getColumnPage().getElement()) ||
+                            EnumPageElement.radio.getVal().equals(query.getColumnPage().getElement())
                         )
                 ){
                     queryDicts.add(query);
@@ -827,7 +829,7 @@ public class CgBusiness extends CgBaseBusiness{
         Map<String,List<TcgColumnPageBO>> fkMap = new HashMap<String,List<TcgColumnPageBO>>();
         Map<String,TcgTableConfigBO> fkTableMap = new HashMap<String,TcgTableConfigBO>();
         for(TcgColumnPageBO page : tablePO.getColumnPages()){
-            if(  EnumPageElement.openwin.getTheValue().equals(page.getElement())){
+            if(  EnumPageElement.openwin.getVal().equals(page.getElement())){
                 String key = null;
                 if(page.getExColumn() != null) {
                     key = page.getExColumn().getOriginalColumn().getFkTableConfig().getFullResourceFile();
@@ -850,9 +852,9 @@ public class CgBusiness extends CgBaseBusiness{
                 }
                 list.add(page);
             }else  if(
-                        EnumPageElement.select.getTheValue().equals(page.getElement()) ||
-                        EnumPageElement.checkbox.getTheValue().equals(page.getElement()) ||
-                        EnumPageElement.radio.getTheValue().equals(page.getElement())
+                        EnumPageElement.select.getVal().equals(page.getElement()) ||
+                        EnumPageElement.checkbox.getVal().equals(page.getElement()) ||
+                        EnumPageElement.radio.getVal().equals(page.getElement())
 
                     ){
                 queryDicts.add(page);
@@ -1212,7 +1214,7 @@ public class CgBusiness extends CgBaseBusiness{
         List<TcgTempletGroupOperationBO> operationBOs = null;
         TcgTempletGroupOperationQuery operationQuery = new TcgTempletGroupOperationQueryImpl();
         operationQuery.groupId(templetGroupId);
-        operationBOs = tcgTempletGroupOperationService.selectList(operationQuery.buildWrapper());
+        operationBOs = tcgTempletGroupOperationService.list(operationQuery.buildWrapper());
 
 
         if(operationBOs  != null && !operationBOs.isEmpty()){
@@ -1223,7 +1225,7 @@ public class CgBusiness extends CgBaseBusiness{
 
         if(operationBOMap.isEmpty()) {
             TcgOperationQuery tcgOperationQuery = new TcgOperationQueryImpl();
-            List<TcgOperationBO> ops = tcgOperationService.selectList(tcgOperationQuery.buildWrapper());
+            List<TcgOperationBO> ops = tcgOperationService.list(tcgOperationQuery.buildWrapper());
             if (ops != null && !ops.isEmpty()) {
                 int index = 0;
                 for (TcgOperationBO op : ops) {
@@ -1234,7 +1236,7 @@ public class CgBusiness extends CgBaseBusiness{
                         tgo.setOperationName(op.getOperationName());
                         tgo.setOperationResource(op.getOperationResource());
                         tgo.setOperationId(op.getId());
-                        tgo.setPosition((String) EnumButtonPosition.top.getTheValue());
+                        tgo.setPosition((String) EnumButtonPosition.top.getVal());
                         tgo.setSort(++index);
                         operationBOMap.put(op.getId(), tgo);
                     }

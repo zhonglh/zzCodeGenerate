@@ -1,13 +1,13 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.baomidou.mybatisplus.annotations.TableName;
+
 import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotation.TableField;
 
 /**
  * 索引设置实体类
@@ -38,8 +38,12 @@ public class TcgIndexConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 
     //@EntityAttrAnnotation(attrName="索引字段",sort=3  , attrLength=500    )
-	//多个用 逗号  分割  
+	//多个用 逗号  分割
 	private String indexCloumns;
+
+
+	//@EntityAttrAnnotation(attrName="提示信息",sort=4  , attrLength=100    )
+	private String tipMsg;
 
 
 
@@ -89,5 +93,13 @@ public class TcgIndexConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	public void setIndexCloumns(String indexCloumns) {
 		this.indexCloumns = indexCloumns;
 	}
-	
+
+
+	public String getTipMsg() {
+		return tipMsg;
+	}
+
+	public void setTipMsg(String tipMsg) {
+		this.tipMsg = tipMsg;
+	}
 }

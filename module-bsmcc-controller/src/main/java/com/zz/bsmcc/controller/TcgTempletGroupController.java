@@ -1,14 +1,7 @@
 package com.zz.bsmcc.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
-
-import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
 import com.zz.bsmcc.base.bo.TcgOperationBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupOperationBO;
@@ -18,9 +11,6 @@ import com.zz.bsmcc.base.query.TcgTempletGroupOperationQuery;
 import com.zz.bsmcc.base.query.impl.TcgOperationQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletGroupOperationQueryImpl;
 import com.zz.bsmcc.base.query.impl.TcgTempletGroupQueryWebImpl;
-
-import com.zz.bms.util.base.java.IdUtils;
-
 import com.zz.bsmcc.base.service.TcgOperationService;
 import com.zz.bsmcc.base.service.TcgTempletGroupOperationService;
 import com.zz.bsmcc.core.enums.EnumButtonPosition;
@@ -28,7 +18,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,7 +63,7 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 
 		TcgTempletGroupOperationQuery query = new TcgTempletGroupOperationQueryImpl();
 		query.groupId(id);
-		List<TcgTempletGroupOperationBO> operationBOs = tcgTempletGroupOperationService.selectList(query.buildWrapper());
+		List<TcgTempletGroupOperationBO> operationBOs = tcgTempletGroupOperationService.list(query.buildWrapper());
 		Map<String,TcgTempletGroupOperationBO> operationMap  = new HashMap<String,TcgTempletGroupOperationBO>();
 
 		if(operationBOs != null && !operationBOs.isEmpty() ){
@@ -81,7 +74,7 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 
 
 		TcgOperationQuery operationQuery = new TcgOperationQueryImpl();
-		List<TcgOperationBO> opBOs = tcgOperationService.selectList(operationQuery.buildWrapper());
+		List<TcgOperationBO> opBOs = tcgOperationService.list(operationQuery.buildWrapper());
 
 		if(operationBOs != null && operationBOs.size() == opBOs.size()){
 			list = operationBOs;
@@ -98,7 +91,7 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 					tgo.setOperationName(opBO.getOperationName());
 					tgo.setOperationResource(opBO.getOperationResource());
 					tgo.setOperationId(opBO.getId());
-					tgo.setPosition((String) EnumButtonPosition.top.getTheValue());
+					tgo.setPosition((String) EnumButtonPosition.top.getVal());
 					tgo.setSort(index);
 					list.add(tgo);
 				}
@@ -133,7 +126,7 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 				operation.setGroupId(id);
 				if(StringUtils.isEmpty(operation.getId())){
 					this.setInsertInfo(operation, sessionUserVO);
-					tcgTempletGroupOperationService.insert(operation);
+					tcgTempletGroupOperationService.save(operation);
 				}else {
 					this.setUpdateInfo(operation, sessionUserVO);
 					tcgTempletGroupOperationService.updateById(operation);
@@ -149,8 +142,8 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 
 
 	@Override
-	protected boolean isExist(TcgTempletGroupBO tcgTempletGroupBO) {
-		return false;
+	protected void isExist(TcgTempletGroupBO tcgTempletGroupBO) {
+
 	}
 
 

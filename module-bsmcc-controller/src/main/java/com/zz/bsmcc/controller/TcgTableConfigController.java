@@ -1,52 +1,39 @@
 package com.zz.bsmcc.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
-import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
-
+import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bsmcc.base.bo.*;
-import com.zz.bsmcc.base.dao.*;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
 import com.zz.bsmcc.base.query.impl.*;
-
-import com.zz.bms.util.base.java.IdUtils;
-
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.business.TableBusiness;
 import com.zz.bsmcc.core.TablesLocalThread;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
-import com.zz.bsmcc.core.util.table.pojo.*;
+import com.zz.bsmcc.core.util.table.pojo.DbConfig;
+import com.zz.bsmcc.core.util.table.pojo.Table;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authc.Account;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * 表设置 控制层
@@ -123,7 +110,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             return null;
         }
 
-        TcgDbConfigBO dbConfigBO = tcgDbConfigService.selectById(tcgTableConfigBO.getDbId());
+        TcgDbConfigBO dbConfigBO = tcgDbConfigService.getById(tcgTableConfigBO.getDbId());
 
         try {
             List<Table> tables = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readAllTable(
@@ -138,7 +125,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
             TcgTableConfigQuery existQuery = new TcgTableConfigQueryImpl();
             existQuery.dbId(dbId);
-            List<TcgTableConfigBO> exists = this.baseService.selectList(existQuery.buildWrapper());
+            List<TcgTableConfigBO> exists = this.baseService.list(existQuery.buildWrapper());
             for(TcgTableConfigBO tableBO : exists){
                 tableMap.remove(tableBO.getSchemaName()+tableBO.getTableName());
             }
@@ -184,8 +171,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             return new AjaxJson(false,"请先选择要添加的表");
         }
 
-        TcgDbConfigBO dbConfigBO = tcgDbConfigService.selectById(m.getDbId());
-        TcgProjectBO projectBO = tcgProjectService.selectById(m.getProjectId());
+        TcgDbConfigBO dbConfigBO = tcgDbConfigService.getById(m.getDbId());
+        TcgProjectBO projectBO = tcgProjectService.getById(m.getProjectId());
 
 
 
@@ -245,9 +232,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if (StringUtils.isEmpty(tcgTableConfigBO.getDbId()) || StringUtils.isEmpty(tcgTableConfigBO.getTableName()) || StringUtils.isEmpty(tcgTableConfigBO.getProjectId())) {
                 continue;
             }
-            if (this.isExist(tcgTableConfigBO)) {
-                continue;
-            }
+            this.isExist(tcgTableConfigBO) ;
             TablesLocalThread.setTables(tablesMap.get(tcgTableConfigBO.getSchemaName()));
 
             TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, sessionUserVO);
@@ -343,7 +328,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
                         if(StringUtils.isNotEmpty(item.getColumnId())){
 
-                            TcgColumnPageBO page = tcgColumnPageService.selectById(item.getColumnId());
+                            TcgColumnPageBO page = tcgColumnPageService.getById(item.getColumnId());
                             if(page != null) {
                                 item.setQueryFieldName(page.getJavaName());
                                 item.setQueryTitle(page.getColumnComment());
@@ -405,7 +390,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 	protected void customInfoByCreateForm(TcgTableConfigBO tcgTableConfigBO, ModelMap model) {
 
 		TcgDbConfigQuery dbConfigQuery = new TcgDbConfigQueryImpl();
-        List<TcgDbConfigBO> dbConfigs =tcgDbConfigService.selectList(dbConfigQuery.buildWrapper());
+        List<TcgDbConfigBO> dbConfigs =tcgDbConfigService.list(dbConfigQuery.buildWrapper());
 		model.put("dbConfigs" , dbConfigs);
 
 		if(!dbConfigs.isEmpty()){
@@ -414,7 +399,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
 
-        List<TcgProjectBO> projects = tcgProjectService.selectList(projectQuery.buildWrapper());
+        List<TcgProjectBO> projects = tcgProjectService.list(projectQuery.buildWrapper());
         model.put("projects" , projects);
 
 	}
@@ -428,7 +413,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     protected void customInfoByUpdateForm(TcgTableConfigBO m, ModelMap model) {
 
         TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
-        List<TcgProjectBO> projects =  tcgProjectService.selectList(projectQuery.buildWrapper());
+        List<TcgProjectBO> projects =  tcgProjectService.list(projectQuery.buildWrapper());
         model.put("projects" , projects);
 
 
@@ -436,29 +421,29 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         Map<String , Object> tableMap = new HashMap<String , Object>();
         tableMap.put("project_id" , m.getProjectId());
         tableMap.put("is_table" , EnumYesNo.YES.getCode());
-        List<TcgTableConfigBO> tables = this.baseService.selectByMap(tableMap);
+        List<TcgTableConfigBO> tables = (List<TcgTableConfigBO>)this.baseService.listByMap(tableMap);
         model.put("tables" , tables);
 
         Map<String , Object> moduleMap = new HashMap<String , Object>();
         moduleMap.put("project_id" , m.getProjectId());
-        List<TcgModuleConfigBO> modules = tcgModuleConfigService.selectByMap(moduleMap);
+        List<TcgModuleConfigBO> modules = (List<TcgModuleConfigBO>)tcgModuleConfigService.listByMap(moduleMap);
         model.put("modules" , modules);
 
 
 
         TcgColumnConfigQuery columnQuery = new TcgColumnConfigQueryImpl();
         columnQuery.tableId(m.getId());
-        Wrapper<TcgColumnConfigBO> columnWrapper = columnQuery.buildWrapper();
-        columnWrapper.orderBy(true, "column_sort", true);
-        List<TcgColumnConfigBO> columnConfigBOs = tcgColumnConfigService.selectList(columnWrapper);
+        QueryWrapper<TcgColumnConfigBO> columnWrapper = columnQuery.buildWrapper();
+        columnWrapper.orderByAsc( "column_sort");
+        List<TcgColumnConfigBO> columnConfigBOs = tcgColumnConfigService.list(columnWrapper);
         model.put("columnConfigs" , columnConfigBOs);
 
 
         TcgExColumnQuery exColumnQuery = new TcgExColumnQueryImpl();
         exColumnQuery.tableId(m.getId());
-        Wrapper<TcgExColumnBO> exColumnWrapper = exColumnQuery.buildWrapper();
-        exColumnWrapper.orderBy(true, "column_sort", true);
-        List<TcgExColumnBO> exColumnBOs = tcgExColumnService.selectList(exColumnWrapper);
+        QueryWrapper<TcgExColumnBO> exColumnWrapper = exColumnQuery.buildWrapper();
+        exColumnWrapper.orderByAsc( "column_sort");
+        List<TcgExColumnBO> exColumnBOs = tcgExColumnService.list(exColumnWrapper);
         model.put("exColumns" , exColumnBOs);
 
 
@@ -466,25 +451,25 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         map.put("table_id" , m.getId());
 
 
-        List<TcgColumnPageBO> columnPageBOs = tcgColumnPageService.selectByMap(map) ;
+        List<TcgColumnPageBO> columnPageBOs = (List<TcgColumnPageBO>)tcgColumnPageService.listByMap(map) ;
         model.put("columnPages" , columnPageBOs);
 
-        List<TcgIndexConfigBO> indexConfigBOs = tcgIndexConfigService.selectByMap(map) ;
+        List<TcgIndexConfigBO> indexConfigBOs = (List<TcgIndexConfigBO>)tcgIndexConfigService.listByMap(map) ;
         model.put("indexConfigs" , indexConfigBOs);
 
-        List<TcgColumnEventBO> columnEventBOs = tcgColumnEventService.selectByMap(map) ;
+        List<TcgColumnEventBO> columnEventBOs = (List<TcgColumnEventBO>)tcgColumnEventService.listByMap(map) ;
         model.put("columnEvents" , columnEventBOs);
 
-        List<TcgColumnValidateBO> columnValidateBOs = tcgColumnValidateService.selectByMap(map) ;
+        List<TcgColumnValidateBO> columnValidateBOs = (List<TcgColumnValidateBO>)tcgColumnValidateService.listByMap(map) ;
         model.put("columnValidates" , columnValidateBOs);
 
-        List<TcgColumnExBO> columnExBOs = tcgColumnExService.selectByMap(map) ;
+        List<TcgColumnExBO> columnExBOs = (List<TcgColumnExBO>)tcgColumnExService.listByMap(map) ;
         model.put("columnExs" , columnExBOs);
 
-        List<TcgQueryConfigBO> queryConfigBOs = tcgQueryConfigService.selectByMap(map) ;
+        List<TcgQueryConfigBO> queryConfigBOs = (List<TcgQueryConfigBO>)tcgQueryConfigService.listByMap(map) ;
         model.put("queryConfigs" , queryConfigBOs);
 
-        List<TcgTableOperationBO> tableOperationBOs = tcgTableOperationService.selectByMap(map) ;
+        List<TcgTableOperationBO> tableOperationBOs = (List<TcgTableOperationBO>)tcgTableOperationService.listByMap(map) ;
         Set<String> operationIdSet = new HashSet<String>() ;
         if(tableOperationBOs != null && !tableOperationBOs.isEmpty()) {
             for (TcgTableOperationBO tableOperationBO : tableOperationBOs) {
@@ -493,7 +478,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         }
 
         TcgOperationQuery operationQuery = new TcgOperationQueryImpl();
-        List<TcgOperationBO> operationBOs = tcgOperationService.selectList(operationQuery.buildWrapper());
+        List<TcgOperationBO> operationBOs = tcgOperationService.list(operationQuery.buildWrapper());
         if(operationBOs != null && !operationBOs.isEmpty() && !operationIdSet.isEmpty()) {
             for (TcgOperationBO operationBO : operationBOs) {
                 if (operationIdSet.contains(operationBO.getId())) {
@@ -510,16 +495,16 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
     @Override
-    protected Wrapper buildWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {
-        Wrapper wrapper = query.buildWrapper();
-        wrapper.orderBy("project_id" , true);
-        wrapper.orderBy("is_table" , false);
-        wrapper.orderBy("table_name" , true);
+    protected QueryWrapper buildWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {
+        QueryWrapper wrapper = query.buildWrapper();
+        wrapper.orderByAsc("project_id" );
+        wrapper.orderByAsc("is_table" );
+        wrapper.orderByAsc("table_name" );
         return wrapper;
     }
 
 	@Override
-	protected boolean isExist(TcgTableConfigBO tcgTableConfigBO) {
+	protected void isExist(TcgTableConfigBO tcgTableConfigBO) {
 
         TcgTableConfigBO tmp = new TcgTableConfigBO();
         tmp.setId(tcgTableConfigBO.getId());
@@ -529,9 +514,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         TcgTableConfigBO result =  this.baseService.selectCheck(tmp);
         if(result != null && result.getId() != null){
-            return true;
-        }else {
-            return false;
+            throw new BizException("数据重复");
         }
 
 	}

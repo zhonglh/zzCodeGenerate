@@ -27,9 +27,26 @@ public enum EnumDbType implements EnumBase{
 	private EnumDbType(String driver) {
 		this.driver = driver;
 	}
-	
-	
-	
+
+
+
+	@Override
+	public String getVal(){
+		return name();
+	}
+
+	@Override
+	public String getLabel(){
+		return driver;
+	}
+
+
+	@Override
+	public String getValue(){
+		return name();
+	}
+
+
 	public static String getDriver(String type){
 		String dbtype = type.toLowerCase();
 		for(EnumDbType enumDiver : EnumDbType.values()){
@@ -52,18 +69,6 @@ public enum EnumDbType implements EnumBase{
 		throw new InternalException("数据库类型错误");
 	}
 
-
-	@Override
-	public Serializable getTheValue(){
-		return this.name();
-	}
-
-
-
-	@Override
-	public String getTheName(){
-		return this.driver;
-	}
 	
 
 }

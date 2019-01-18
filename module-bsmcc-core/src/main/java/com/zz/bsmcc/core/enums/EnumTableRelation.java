@@ -8,7 +8,7 @@ import com.zz.bms.core.enums.EnumBase;
  * @author Administrator
  */
 
-public enum EnumTableRelation implements EnumBase {
+public enum EnumTableRelation implements EnumBase<String> {
 
     one2one("一对一") ,
     one2multi("一对多") ,
@@ -21,19 +21,26 @@ public enum EnumTableRelation implements EnumBase {
 
     String name ;
 
+
     @Override
-    public Serializable getTheValue() {
+    public String getVal(){
         return this.name();
     }
 
     @Override
-    public String getTheName() {
-        return this.name;
+    public String getLabel(){
+        return name;
+    }
+
+
+    @Override
+    public String getValue(){
+        return this.name();
     }
 
     public static EnumTableRelation getTableRelationByValue(String v){
         for(EnumTableRelation relation : EnumTableRelation.values()){
-            if(relation.getTheValue().equals(v)){
+            if(relation.getVal().equals(v)){
                 return relation;
             }
         }

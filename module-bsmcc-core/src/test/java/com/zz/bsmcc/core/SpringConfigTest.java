@@ -1,7 +1,7 @@
 package com.zz.bsmcc.core;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.zz.bms.util.base.spring.SpringUtil;
+import com.zz.bms.util.spring.SpringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 

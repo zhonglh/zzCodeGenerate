@@ -8,7 +8,7 @@ import com.zz.bms.core.enums.EnumBase;
  * 界面元素
  * @author Administrator
  */
-public enum EnumPageElement implements EnumBase{
+public enum EnumPageElement implements EnumBase<String>{
 
     text("input","text" , "文本") ,
     digits("input","digits" , "整数") ,
@@ -46,15 +46,23 @@ public enum EnumPageElement implements EnumBase{
     String name ;
 
 
+
     @Override
-    public Serializable getTheValue() {
-        return name();
+    public String getVal(){
+        return this.name();
     }
 
     @Override
-    public String getTheName() {
+    public String getLabel(){
         return name;
     }
+
+
+    @Override
+    public String getValue(){
+        return this.name();
+    }
+
 
 
     public static EnumPageElement getPageElement(String val){
@@ -66,27 +74,4 @@ public enum EnumPageElement implements EnumBase{
     }
 
 
-    public String getElement() {
-        return element;
-    }
-
-    public void setElement(String element) {
-        this.element = element;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

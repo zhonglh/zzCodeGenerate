@@ -113,7 +113,7 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 		if(StringUtils.isNotEmpty(tcgColumnPageBO.getElement())){
 			EnumPageElement pe = EnumPageElement.getPageElement(tcgColumnPageBO.getElement());
 			if(pe != null){
-				tcgColumnPageBO.setElementNmae(pe.getTheName());
+				tcgColumnPageBO.setElementNmae(pe.getLabel());
 			}
 		}
 

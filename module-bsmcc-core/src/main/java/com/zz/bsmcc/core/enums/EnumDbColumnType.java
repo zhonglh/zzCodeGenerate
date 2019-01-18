@@ -64,15 +64,19 @@ public enum EnumDbColumnType implements EnumBase{
 
 
 	@Override
-	public Serializable getTheValue(){
-		return this.name();
+	public String getVal(){
+		return name();
+	}
+
+	@Override
+	public String getLabel(){
+		return name();
 	}
 
 
-
 	@Override
-	public String getTheName(){
-		return this.name();
+	public String getValue(){
+		return name();
 	}
 
 

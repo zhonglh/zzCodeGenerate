@@ -1,9 +1,10 @@
 package com.zz.bsmcc.base.bo;
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bsmcc.base.domain.TsUserEntity;
 
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
@@ -20,6 +21,11 @@ public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,
 
     @Override
     public String getUserStatus() {
-        return "1";
+        return super.getStatus();
+    }
+
+    @Override
+    public boolean isSystemUser() {
+        return super.getSystemAdmin().equals(EnumYesNo.YES.getCode());
     }
 }
