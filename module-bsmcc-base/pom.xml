@@ -30,6 +30,13 @@
         </dependency>
 
 
+
+        <dependency>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-base</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.zz.bsmcc</groupId>
             <artifactId>module-bsmcc-core</artifactId>

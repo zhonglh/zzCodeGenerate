@@ -16,7 +16,7 @@ import com.zz.bsmcc.base.query.*;
 import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.enums.EnumButtonPosition;
-import com.zz.bsmcc.core.enums.EnumPageElement;
+import com.zz.bms.enums.EnumPageElement;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;

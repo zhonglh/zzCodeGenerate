@@ -10,7 +10,7 @@ import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
 import com.zz.bsmcc.base.dao.TcgColumnPageDAO;
 import com.zz.bsmcc.base.dao.TcgExColumnDAO;
 import com.zz.bsmcc.base.service.TcgColumnPageService;
-import com.zz.bsmcc.core.enums.EnumPageElement;
+import com.zz.bms.enums.EnumPageElement;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

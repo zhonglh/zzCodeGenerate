@@ -20,6 +20,16 @@ import java.io.Serializable;
 public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,Serializable {
 
     @Override
+    public String getDepName() {
+        return null;
+    }
+
+    @Override
+    public String getOrganName() {
+        return null;
+    }
+
+    @Override
     public String getUserStatus() {
         return super.getStatus();
     }
@@ -27,5 +37,10 @@ public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,
     @Override
     public boolean isSystemUser() {
         return super.getSystemAdmin().equals(EnumYesNo.YES.getCode());
+    }
+
+    @Override
+    public String getLeadName() {
+        return null;
     }
 }

@@ -22,7 +22,7 @@ import com.zz.bsmcc.base.query.impl.TcgJavaDatatypeRealQueryImpl;
 import com.zz.bsmcc.core.TablesLocalThread;
 import com.zz.bsmcc.core.enums.EnumDbColumnType;
 import com.zz.bsmcc.core.enums.EnumJavaType;
-import com.zz.bsmcc.core.enums.EnumPageElement;
+import com.zz.bms.enums.EnumPageElement;
 import com.zz.bsmcc.core.util.table.engine.ReadDbFactory;
 import com.zz.bsmcc.core.util.table.engine.ReadDbProcess;
 import com.zz.bsmcc.core.util.table.pojo.*;
