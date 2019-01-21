@@ -4,7 +4,7 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bsmcc.base.bo.TcgTableConfigBO;
 import com.zz.bsmcc.base.service.TcgColumnConfigService;

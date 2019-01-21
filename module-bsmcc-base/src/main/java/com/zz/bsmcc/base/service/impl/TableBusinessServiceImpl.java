@@ -3,7 +3,7 @@ package com.zz.bsmcc.base.service.impl;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.exceptions.InternalException;

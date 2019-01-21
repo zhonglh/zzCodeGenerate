@@ -27,6 +27,11 @@ public enum EnumQueryMode  implements EnumBase<String>{
 
 
 
+    @Override
+    public EnumQueryMode getEnum(String v){
+        return EnumQueryMode.getQueryModeByValue(v);
+    }
+
     public static EnumQueryMode getQueryModeByValue(String v){
 
         for(EnumQueryMode qm : EnumQueryMode.values()){

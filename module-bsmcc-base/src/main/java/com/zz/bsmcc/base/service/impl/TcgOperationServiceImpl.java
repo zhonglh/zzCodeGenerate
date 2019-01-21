@@ -4,7 +4,7 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
 import com.zz.bsmcc.base.service.TcgOperationService;
 import com.zz.bsmcc.base.dao.TcgOperationDAO;

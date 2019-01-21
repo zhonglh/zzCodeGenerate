@@ -45,6 +45,14 @@ public enum EnumTableType implements EnumBase<String> {
     }
 
 
+
+
+
+    @Override
+    public EnumTableType getEnum(String v){
+        return EnumTableType.getTableTypeByValue(v);
+    }
+
     public static EnumTableType getTableTypeByValue(String val){
         for(EnumTableType type : EnumTableType.values()){
             if(val.equals(type.value)){

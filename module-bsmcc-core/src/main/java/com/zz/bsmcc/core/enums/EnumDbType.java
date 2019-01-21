@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Administrator
  */
 
-public enum EnumDbType implements EnumBase{
+public enum EnumDbType implements EnumBase<String>{
 	
 	mysql("com.mysql.jdbc.Driver"),
 	oracle("oracle.jdbc.driver.OracleDriver"),
@@ -57,6 +57,12 @@ public enum EnumDbType implements EnumBase{
 		throw new InternalException("数据库类型错误");
 	}
 
+
+
+	@Override
+	public EnumDbType getEnum(String v){
+		return EnumDbType.getEnumDbType(v);
+	}
 
 
 	public static EnumDbType getEnumDbType(String type){

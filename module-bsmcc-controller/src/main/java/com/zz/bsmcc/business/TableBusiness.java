@@ -5,7 +5,7 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;

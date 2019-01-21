@@ -1,6 +1,6 @@
 package com.zz.bsmcc.controller;
 
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 

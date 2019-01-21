@@ -2,7 +2,7 @@ package com.zz.bsmcc.base.service.impl;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
 import com.zz.bsmcc.base.bo.TcgColumnPageBO;
 import com.zz.bsmcc.base.bo.TcgExColumnBO;
@@ -111,7 +111,7 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 		}
 
 		if(StringUtils.isNotEmpty(tcgColumnPageBO.getElement())){
-			EnumPageElement pe = EnumPageElement.getPageElement(tcgColumnPageBO.getElement());
+			EnumPageElement pe = EnumPageElement.getEnumByValue(tcgColumnPageBO.getElement());
 			if(pe != null){
 				tcgColumnPageBO.setElementNmae(pe.getLabel());
 			}

@@ -2,7 +2,7 @@ package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 

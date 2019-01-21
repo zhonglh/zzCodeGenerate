@@ -10,7 +10,7 @@ import java.util.List;
  * 数据库列类型
  * @author Administrator
  */
-public enum EnumDbColumnType implements EnumBase{
+public enum EnumDbColumnType implements EnumBase<String>{
 
 	INT,
 	INTEGER,
@@ -41,25 +41,24 @@ public enum EnumDbColumnType implements EnumBase{
 	BLOB,
 	
 	;
+
+
+
+	@Override
+	public EnumDbColumnType getEnum(String v){
+		return EnumDbColumnType.getEnumByValue(v);
+	}
+
 	
 	
-	public static EnumDbColumnType getDataType(String dataType){
-		
+	public static EnumDbColumnType getEnumByValue(String dataType){
 		dataType = dataType.toUpperCase();
-
-
 		for(EnumDbColumnType enumDbColumnType : EnumDbColumnType.values()){
 			if(dataType.toUpperCase().equals(enumDbColumnType.name())){
 				return enumDbColumnType;
 			}
 		}
-
-
-
 		return null;
-
-		
-		
 	}
 
 
@@ -82,7 +81,7 @@ public enum EnumDbColumnType implements EnumBase{
 
 
 	public static EnumJavaType getJavaType(String dataType, Integer precision, Integer scale ){
-		EnumDbColumnType enumDbColumnType = getDataType(dataType);
+		EnumDbColumnType enumDbColumnType = getEnumByValue(dataType);
 		if(enumDbColumnType == null) {
 			return null;
 		}

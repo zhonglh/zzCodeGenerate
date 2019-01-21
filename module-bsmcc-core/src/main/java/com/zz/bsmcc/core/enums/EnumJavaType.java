@@ -8,7 +8,7 @@ import com.zz.bms.core.enums.EnumBase;
  * @author Administrator
  */
 
-public enum EnumJavaType implements EnumBase{
+public enum EnumJavaType implements EnumBase<String>{
 
 
 
@@ -46,6 +46,13 @@ public enum EnumJavaType implements EnumBase{
 
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+
+
+
+	@Override
+	public EnumJavaType getEnum(String v){
+		return EnumJavaType.getEnumJavaType(v);
 	}
 
 	public static EnumJavaType getEnumJavaType(String javaClass){

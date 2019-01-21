@@ -38,6 +38,14 @@ public enum EnumTableRelation implements EnumBase<String> {
         return this.name();
     }
 
+
+
+
+    @Override
+    public EnumTableRelation getEnum(String v){
+        return EnumTableRelation.getTableRelationByValue(v);
+    }
+
     public static EnumTableRelation getTableRelationByValue(String v){
         for(EnumTableRelation relation : EnumTableRelation.values()){
             if(relation.getVal().equals(v)){

@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 字表或副表界面 和主表 界面的关系
  * @author Administrator
  */
-public enum EnumPageRelation implements EnumBase {
+public enum EnumPageRelation implements EnumBase<String> {
 
 
     embed("1","嵌入") ,
@@ -41,6 +41,22 @@ public enum EnumPageRelation implements EnumBase {
     @Override
     public String getValue(){
         return code;
+    }
+
+
+
+    @Override
+    public EnumPageRelation getEnum(String v){
+        return EnumPageRelation.getEnumByValue(v);
+    }
+
+    public static EnumPageRelation getEnumByValue(String v){
+        for(EnumPageRelation enum1 : EnumPageRelation.values()){
+            if(enum1.getVal().equals(v)){
+                return enum1;
+            }
+        }
+        return  null;
     }
 
 }
