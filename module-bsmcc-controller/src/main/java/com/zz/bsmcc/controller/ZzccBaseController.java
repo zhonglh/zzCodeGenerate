@@ -10,7 +10,16 @@ import java.io.Serializable;
 
 public abstract class ZzccBaseController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseCURDController<M, PK, Q> {
 
+    @Override
+    public void checkInsertInfo(BaseEntity entity){
 
+    }
+
+
+    @Override
+    public void checkEntityLegality(BaseEntity entity , boolean checkRequired , boolean checkLength , boolean checkRule){
+
+    }
 
     @Override
     public void processPages(Pages page, HttpServletRequest request) {

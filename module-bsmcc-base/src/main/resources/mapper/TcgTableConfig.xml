@@ -26,6 +26,8 @@
          	<result column="is_build_ui" property="isBuildUi"/>
          	<result column="is_build_menu" property="isBuildMenu"/>
          	<result column="java_name" property="javaName"/>
+			<result column="business_name" property="businessName"/>
+			<result column="business_key" property="businessKey"/>
          	<result column="create_time" property="createTime"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="update_time" property="updateTime"/>

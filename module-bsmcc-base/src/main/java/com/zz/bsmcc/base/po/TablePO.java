@@ -211,4 +211,9 @@ public class TablePO implements Serializable{
     public void setDictSet(Map<String, TcgColumnPageBO> dictSet) {
         this.dictSet = dictSet;
     }
+
+    @Override
+    public String toString() {
+        return tableBO != null ? tableBO.getTableName() : "";
+    }
 }

@@ -3,7 +3,7 @@ package com.zz.bsmcc.base.bo;
 import com.zz.bsmcc.base.domain.TcgDbConfigEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 

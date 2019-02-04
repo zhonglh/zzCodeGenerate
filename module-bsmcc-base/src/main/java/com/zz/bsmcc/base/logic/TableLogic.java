@@ -11,6 +11,7 @@ import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.base.java.ReflectionSuper;
+import com.zz.bms.util.configs.enums.EnumExcelType;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.domain.TcgProjectEntity;
 import com.zz.bsmcc.core.TablesLocalThread;
@@ -313,17 +314,21 @@ public class TableLogic {
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.YES.getCode());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType(EnumExcelType.NONE.getVal());
         }else if(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsdict())){
             //字典
             pageBO.setExistPage(EnumYesNo.YES.getCode());
             pageBO.setEditable(EnumYesNo.YES.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType(EnumExcelType.NONE.getVal());
         }else {
                 pageBO.setExistPage(EnumYesNo.YES.getCode());
                 pageBO.setEditable(EnumYesNo.YES.getCode());
                 pageBO.setHiddenable(EnumYesNo.NO.getCode());
                 pageBO.setListShowable(pageBO.getEditable());
+                pageBO.setExcelType(EnumExcelType.IMPORT_EXPORT.getVal());
+
         }
 
 
@@ -335,6 +340,7 @@ public class TableLogic {
         }
 
         pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
+
 
 
 

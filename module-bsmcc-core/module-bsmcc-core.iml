@@ -19,7 +19,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: com.zz.bms:module-bms-core:1.0.1" level="project" />
-    <orderEntry type="library" name="Maven: com.zz.bms:module-bms-config:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.zz.bms.util:configs:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.3.0" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.5.3" level="project" />

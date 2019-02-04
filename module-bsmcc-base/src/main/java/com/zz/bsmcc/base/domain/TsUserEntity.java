@@ -2,8 +2,8 @@ package com.zz.bsmcc.base.domain;
 
 
 
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 * @date 2018-7-29 1:16:16
 */
 public class TsUserEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
+
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <%
     session.setAttribute("lang", "zh-cn");
@@ -180,8 +179,6 @@
                     </div>
 
 
-
-
                     <c:if test="${entity.isTable == '0'}">
                     <div class="form-group">
                         <label>主要表Schema </label> <input id="mainTableSchema" name="mainTableSchema" value="${entity.mainTableSchema }"  type="text" class="form-control">
@@ -193,6 +190,14 @@
                     </div>
                     </c:if>
 
+
+                    <div class="form-group">
+                        <label>业务名称列 *</label> <input id="businessName" name="businessName" value="${entity.businessName }"  type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>业务主键列 *</label> <input id="businessKey" name="businessKey" value="${entity.businessKey }"  type="text" class="form-control">
+                    </div>
 
 
                     <div class="form-group">
@@ -423,19 +428,20 @@
                         <thead>
 
                         <th width="80">序号</th>
-                        <th width="250">列名</th>
+                        <th width="200">列名</th>
                         <th width="250">列说明</th>
-                        <th width="150">是否真实列</th>
+                        <th width="140">是否真实列</th>
                         <th width="150">是否在界面里</th>
-                        <th width="150">是否可编辑</th>
-                        <th width="150">是否隐藏</th>
-                        <th width="150">界面元素</th>
-                        <th width="150">是否必填</th>
+                        <th width="140">是否可编辑</th>
+                        <th width="140">是否隐藏</th>
+                        <th width="140">界面元素</th>
+                        <th width="140">是否必填</th>
                         <th width="150">是否在列表中显示</th>
-                        <th width="150">最大长度</th>
-                        <th width="150">最小长度</th>
-                        <th width="150">最大值</th>
-                        <th width="150">最小值</th>
+                        <th width="140">最大长度</th>
+                        <th width="140">最小长度</th>
+                        <th width="110">最大值</th>
+                        <th width="110">最小值</th>
+                        <th width="140">Excel设置</th>
 
                         </thead>
 
@@ -517,6 +523,15 @@
                                 <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
                                 <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
 
+
+                                <td>
+                                    <select name="columnPages[${status1.index }].excelType" >
+                                        <option value="0" <c:if test="${columnPage.excelType ==  '0' }">selected="selected"</c:if>>不导入导出</option>
+                                        <option value="1" <c:if test="${columnPage.excelType ==  '1' }">selected="selected"</c:if>>只导入</option>
+                                        <option value="2" <c:if test="${columnPage.excelType ==  '2' }">selected="selected"</c:if>>只导出</option>
+                                        <option value="3" <c:if test="${columnPage.excelType ==  '3' }">selected="selected"</c:if>>导入导出</option>
+                                    </select>
+                                </td>
 
                             </tr>
                         </c:forEach>

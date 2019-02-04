@@ -1,7 +1,7 @@
 package com.zz.bsmcc.base.domain;
 
 
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;

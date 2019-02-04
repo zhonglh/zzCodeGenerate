@@ -2,8 +2,6 @@ package com.zz.bsmcc.base.domain;
 
 
 
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
@@ -84,14 +82,14 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 
 
     //@EntityAttrAnnotation(attrName="最大值",sort=9  , attrLength=0    )
-	private BigDecimal max;
+	private Integer max;
 
 
 
 
 
     //@EntityAttrAnnotation(attrName="最小值",sort=10  , attrLength=0    )
-	private BigDecimal min;
+	private Integer min;
 
 
 
@@ -108,7 +106,9 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 	private String listShowable;
 
 
-
+	//Excel导入导出类型
+	//参考  com.zz.bms.util.configs.enums.EnumExcelType
+	private String excelType;
 
 
 
@@ -229,28 +229,28 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 	 * 最大值
 	 * @return the max
 	 */
-	public BigDecimal getMax() {
+	public Integer getMax() {
 		return max;
 	}
 	
 	/** 
 	 * 最大值
 	 */
-	public void setMax(BigDecimal max) {
+	public void setMax(Integer max) {
 		this.max = max;
 	}
 	/** 
 	 * 最小值
 	 * @return the min
 	 */
-	public BigDecimal getMin() {
+	public Integer getMin() {
 		return min;
 	}
 	
 	/** 
 	 * 最小值
 	 */
-	public void setMin(BigDecimal min) {
+	public void setMin(Integer min) {
 		this.min = min;
 	}
 	/** 
@@ -281,5 +281,13 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 	public void setListShowable(String listShowable) {
 		this.listShowable = listShowable;
 	}
-	
+
+
+	public String getExcelType() {
+		return excelType;
+	}
+
+	public void setExcelType(String excelType) {
+		this.excelType = excelType;
+	}
 }

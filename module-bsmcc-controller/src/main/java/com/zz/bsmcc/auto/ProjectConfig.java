@@ -1,10 +1,14 @@
 package com.zz.bsmcc.auto;
 
 
-import com.zz.bms.configs.AppConfig;
-import com.zz.bms.configs.BusinessConfig;
+import com.zz.bms.util.configs.AppConfig;
+import com.zz.bms.util.configs.BusinessConfig;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Administrator
+ */
 @Component
 public class ProjectConfig {
 

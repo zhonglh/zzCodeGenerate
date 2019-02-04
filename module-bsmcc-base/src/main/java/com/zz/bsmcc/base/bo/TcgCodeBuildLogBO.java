@@ -1,9 +1,10 @@
 package com.zz.bsmcc.base.bo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bsmcc.base.domain.TcgCodeBuildLogEntity;
 
-import com.zz.bms.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 
@@ -17,7 +18,10 @@ import java.io.Serializable;
 @TableName(value="tcg_code_build_log" , resultMap = "TcgCodeBuildLogResultMap")
 public class TcgCodeBuildLogBO extends TcgCodeBuildLogEntity implements Serializable {
 
+    @TableField(exist = false)
     private String projectName;
+
+    @TableField(exist = false)
     private String templetGroupName;
 
     public String getProjectName() {

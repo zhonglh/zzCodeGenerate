@@ -2,10 +2,10 @@ package com.zz.bsmcc.base.bo;
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bsmcc.base.domain.TsUserEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 
@@ -41,6 +41,13 @@ public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,
 
     @Override
     public String getLeadName() {
+        return null;
+    }
+
+
+
+    @Override
+    public String getTenantName() {
         return null;
     }
 }

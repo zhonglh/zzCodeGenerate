@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.Serializable;
@@ -50,6 +50,23 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     //如表名为ts_menu_role 为 menuRole
     @TableField(exist = false)
     private String simpleName ;
+
+
+    /**
+     * businessKey 对应列的 get方法
+     */
+    private List<String> businessKeyGetMethods;
+
+
+
+    /**
+     * businessName 对应列的 get方法
+     */
+    private List<String> businessNameGetMethods;
+
+
+
+
 
 
 
@@ -290,5 +307,21 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setSimpleName(String simpleName) {
         this.simpleName = simpleName;
+    }
+
+    public List<String> getBusinessKeyGetMethods() {
+        return businessKeyGetMethods;
+    }
+
+    public void setBusinessKeyGetMethods(List<String> businessKeyGetMethods) {
+        this.businessKeyGetMethods = businessKeyGetMethods;
+    }
+
+    public List<String> getBusinessNameGetMethods() {
+        return businessNameGetMethods;
+    }
+
+    public void setBusinessNameGetMethods(List<String> businessNameGetMethods) {
+        this.businessNameGetMethods = businessNameGetMethods;
     }
 }

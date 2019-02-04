@@ -161,9 +161,10 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	private String javaName;
 
 
+	private String businessName;
 
 
-
+	private String businessKey;
 
 
 	/** 
@@ -452,5 +453,21 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	public void setPageRelation(String pageRelation) {
 		this.pageRelation = pageRelation;
+	}
+
+	public String getBusinessName() {
+		return businessName;
+	}
+
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
+	}
+
+	public String getBusinessKey() {
+		return businessKey;
+	}
+
+	public void setBusinessKey(String businessKey) {
+		this.businessKey = businessKey;
 	}
 }

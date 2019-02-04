@@ -1,10 +1,10 @@
 package com.zz.bsmcc.base.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bsmcc.base.domain.TcgExColumnEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 
@@ -23,10 +23,16 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     @TableField(exist = false)
     private TcgTableConfigBO tableBO;
 
+    /**
+     * 原列名称
+     */
     @TableField(exist = false)
     private String originalColumnName;
 
 
+    /**
+     * 原列Java
+     */
     @TableField(exist = false)
     private String originalJavaName;
 

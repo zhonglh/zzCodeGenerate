@@ -3,8 +3,8 @@ package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+
 import com.zz.bms.core.Constant;
 <#list table.importClasss as importClass>
 import ${importClass};
@@ -29,8 +29,13 @@ public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table
 
 <#list columns as being>
 <#if !being.inParentClass>
-	//${being.columnComment}
-	<#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>
+    <#assign columnPage = columnPageMap[being.id] >
+
+    @EntityAttrDBAnnotation(attrName="${being.columnComment}" ,type = "${being.columnType}"      <#if being.columnLength?exists>,  attrLength = ${being.columnLength}</#if> , notNull = <#if being.columnIsnull?exists && being.columnIsnull == '0'>true<#else>false</#if> )
+    @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}  , pageElement = "${columnPage.element}"    <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if> ,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
+	<#if columnPage.excelType?exists && columnPage.excelType!='0'>@EntityAttrExcelAnnotation(excelProcess= "${columnPage.excelType}")</#if>
+    <#if table.isTable=='0'>//todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity </#if>
+    <#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>
 	private ${being.javaSimpleClass}  ${being.javaName} ;
 
 </#if>

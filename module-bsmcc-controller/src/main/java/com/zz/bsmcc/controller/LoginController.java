@@ -1,6 +1,6 @@
 package com.zz.bsmcc.controller;
 
-import com.zz.bms.controller.base.controller.BaseBussinessController;
+import com.zz.bms.controller.base.controller.BaseBusinessController;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.vo.AjaxJson;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/login")
-public class LoginController extends BaseBussinessController {
+public class LoginController extends BaseBusinessController {
 
     @Autowired
     private TsUserService tsUserService;

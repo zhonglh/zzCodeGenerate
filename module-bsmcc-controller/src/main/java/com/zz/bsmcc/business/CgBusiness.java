@@ -236,6 +236,7 @@ public class CgBusiness extends CgBaseBusiness{
         TcgTableConfigQuery tableConfigQuery = new TcgTableConfigQueryImpl();
         tableConfigQuery.projectId(projectBO.getId());
         QueryWrapper tableWrapper = tableConfigQuery.buildWrapper();
+
         tableWrapper.orderByDesc("is_table" );
         tableWrapper.orderByAsc("create_time" );
         List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.list(tableWrapper);
@@ -248,6 +249,8 @@ public class CgBusiness extends CgBaseBusiness{
 
             //处理表的资源和包名
             processTableResource(projectBO, moduleConfigMap, tableConfig);
+
+
 
 
             TablePO tablePO = new TablePO();
@@ -282,6 +285,10 @@ public class CgBusiness extends CgBaseBusiness{
             }else {
                 throw new BizException(" 没有列的信息 :"+tableConfig.getTableComment());
             }
+
+
+            //处理表的 业务名称列和业务主键列
+            processTableBusiness(  tableConfig ,columnMap);
 
 
             //处理表对应实体类的 imports 和 基类
@@ -532,6 +539,7 @@ public class CgBusiness extends CgBaseBusiness{
         for(TablePO tablePO : tablePOMap.values()){
             cgCode(tablePO, projectBO, templets);
         }
+        //cgCode(tablePOMap.get("zzframets_user"), projectBO, templets);
 
         //生成菜单SQL
         if(!menus.isEmpty()) {
@@ -619,7 +627,6 @@ public class CgBusiness extends CgBaseBusiness{
 
         for(TcgTempletBO templet : templets){
 
-            System.out.println("table:"+tablePO.getTableBO().getTableName() + " =====  templet :"+ templet.getTempletTitle());
 
             //菜单SQL模板 不在这里处理
             if(EnumYesNo.YES.getCode().equals(templet.getIsMenuSql())){
@@ -679,6 +686,9 @@ public class CgBusiness extends CgBaseBusiness{
 
             BusinessUtil.buildFile(filePath, fileName, result);
 
+
+            System.out.println("table:"+tablePO.getTableBO().getTableName() + " =====  templet :"+ templet.getTempletTitle() +  " =====  FileName :" +(filePath + fileName));
+
         }
 
 
@@ -705,12 +715,15 @@ public class CgBusiness extends CgBaseBusiness{
         }*/
 
 
+
         Map<String  , Object > freemarkerModel = new HashMap<String  , Object>();
         freemarkerModel.put("table" , tablePO.getTableBO());
         freemarkerModel.put("columns" , tablePO.getColumns());
         freemarkerModel.put("exColumns" , tablePO.getExColumns());
         freemarkerModel.put("exColumnMap" , tablePO.getExColumnMap());
         freemarkerModel.put("columnPages" , tablePO.getColumnPages());
+        freemarkerModel.put("columnPageMap" , processColumnPageBOMap(tablePO.getColumnPages()));
+
 
         List<TcgColumnPageBO> showPages = new ArrayList<TcgColumnPageBO>();
         for(TcgColumnPageBO page : tablePO.getColumnPages()){
@@ -725,10 +738,6 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("listColumnPages",
             tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList())
         );
-
-
-
-
 
 
         freemarkerModel.put("indexs" , tablePO.getIndexs());
@@ -746,8 +755,6 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("fks" , tablePO.getFks());
         freemarkerModel.put("fkTables" , tablePO.getFkTables());
         freemarkerModel.put("dictSet" , tablePO.getDictSet().values());
-
-
 
         freemarkerModel.put("project" , projectBO);
 
@@ -907,6 +914,16 @@ public class CgBusiness extends CgBaseBusiness{
         }
     }
 
+
+
+    private Map<String,TcgColumnPageBO> processColumnPageBOMap(List<TcgColumnPageBO> columnPages) {
+        Map<String,TcgColumnPageBO> map = new HashMap<String,TcgColumnPageBO>();
+        for(TcgColumnPageBO columnPage : columnPages){
+            String key = columnPage.getId();
+            map.put(key , columnPage) ;
+        }
+        return map;
+    }
 
     private Map<String,List<TcgExColumnBO>> processExColumnMap(List<TcgExColumnBO> exColumns) {
         Map<String,List<TcgExColumnBO>> map = new HashMap<String,List<TcgExColumnBO>>();
@@ -1122,6 +1139,56 @@ public class CgBusiness extends CgBaseBusiness{
 
     }
 
+
+
+
+    private void processTableBusiness(TcgTableConfigBO tableConfig,Map<String , TcgColumnConfigBO> columnMap) {
+
+        if(StringUtils.isNotEmpty(tableConfig.getBusinessName())){
+            tableConfig.setBusinessNameGetMethods(new ArrayList<String>());
+            String[] bns = tableConfig.getBusinessName().trim().split(",");
+            for(String bn : bns){
+                if(StringUtils.isEmpty(bn)){
+                    continue;
+                }
+                String bnName = bn.trim().toLowerCase();
+
+                if(StringUtils.isEmpty(bnName)){
+                    continue;
+                }
+                TcgColumnConfigBO columnConfigBO = columnMap.get(bnName);
+                if(columnConfigBO != null){
+                    tableConfig.getBusinessNameGetMethods().add(columnConfigBO.getGetMethodName());
+                }else {
+                    String getMethodName = StringUtil.firstUpperCase(StringFormatKit.toCamelCase(bnName));
+                    tableConfig.getBusinessNameGetMethods().add(getMethodName);
+                }
+            }
+        }
+
+        if(StringUtils.isNotEmpty(tableConfig.getBusinessKey())){
+            tableConfig.setBusinessKeyGetMethods(new ArrayList<String>());
+            String[] bns = tableConfig.getBusinessKey().trim().split(",");
+            for(String bn : bns){
+                if(StringUtils.isEmpty(bn)){
+                    continue;
+                }
+                String bnName = bn.trim().toLowerCase();
+
+                if(StringUtils.isEmpty(bnName)){
+                    continue;
+                }
+                TcgColumnConfigBO columnConfigBO = columnMap.get(bnName);
+                if(columnConfigBO != null){
+                    tableConfig.getBusinessKeyGetMethods().add(columnConfigBO.getGetMethodName());
+                }else {
+                    String getMethodName = StringUtil.firstUpperCase(StringFormatKit.toCamelCase(bnName));
+                    tableConfig.getBusinessKeyGetMethods().add(getMethodName);
+                }
+            }
+        }
+
+    }
 
     /**
      * 处理表的资源和包名
