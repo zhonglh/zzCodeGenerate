@@ -7,378 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18227c8f-8715-46dc-a855-f54b51c13239" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_zz_bms_module_bms_config_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/.babelrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/.eslintignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/.eslintrc.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/.postcssrc.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/README_EN.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/config/dev.env.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/config/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/config/prod.env.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/package-lock.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/app.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/area-linkage/area-linkage.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/area-linkage/area-linkage.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/area-linkage/components/al-cascader.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/area-linkage/components/al-selector.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/area-linkage/util/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/block-head/block-head.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/breadcrumb-nav.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/count-to/CountTo.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/count-to/count-to.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/count-to/count-to.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/dialog/confirm-dialog.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/dialog/form-dialog.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/dialog/select-dialog.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/draggable-list/draggable-list.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/draggable-list/draggable-list.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/file-upload/file-upload-demo.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/file-upload/file-upload.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/file-upload/upload.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/fullscreen.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/image-editor/cropper.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/image-editor/image-editor.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/image-editor/image-editor.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/audio.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/ball-triangle.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/bars.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/circles.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/grid.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/hearts.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/oval.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/puff.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/rings.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/spinning-circles.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/tail-spin.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/img/three-dots.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/loadding/loadding.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/lockscreen/components/locking-page.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/lockscreen/components/unlock.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/lockscreen/lockscreen.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/lockscreen/styles/unlock.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/markdown-editor/markdown-editor.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/markdown-editor/markdown-editor.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/markdown-editor/simplemde.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/message-tip.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/scroll-bar/scroll-bar-page.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/scroll-bar/vue-scroller-bars/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/scroll-bar/vue-scroller-bars/scroll-bar.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/scroll-bar/vue-scroller-bars/scroll-bar.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/select-span/select-span.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/shrinkable-menu/components/sidebarMenu.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/shrinkable-menu/components/sidebarMenuShrink.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/shrinkable-menu/shrinkable-menu.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/shrinkable-menu/styles/menu.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/split-pane/split-pane-page.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/split-pane/split-pane/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/split-pane/split-pane/split-pane.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/split-pane/split-pane/split-pane.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/step/my-step.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/table-list/tableList.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/table-select/table-select.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/table/canEditTable.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/table/editable-table.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/tags-page-opened.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/text-editor.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/langs/en_GB.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/langs/zh_CN.GB2312.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/advlist/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/advlist/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/advlist/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/anchor/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/anchor/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/anchor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autolink/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autolink/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autolink/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autoresize/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autoresize/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autoresize/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autosave/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autosave/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/autosave/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/bbcode/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/bbcode/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/bbcode/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/charmap/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/charmap/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/charmap/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/code/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/code/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/code/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/codesample/css/prism.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/codesample/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/codesample/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/codesample/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/colorpicker/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/colorpicker/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/colorpicker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/contextmenu/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/contextmenu/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/contextmenu/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/directionality/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/directionality/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/directionality/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/emoticons/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/fullpage/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/fullpage/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/fullpage/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/fullscreen/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/fullscreen/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/fullscreen/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/help/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/help/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/help/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/help/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/hr/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/hr/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/hr/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/image/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/image/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/image/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/imagetools/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/imagetools/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/imagetools/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/importcss/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/importcss/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/importcss/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/insertdatetime/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/insertdatetime/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/legacyoutput/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/legacyoutput/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/link/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/link/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/link/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/lists/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/lists/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/lists/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/media/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/media/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/media/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/nonbreaking/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/nonbreaking/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/noneditable/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/noneditable/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/noneditable/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/pagebreak/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/pagebreak/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/pagebreak/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/paste/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/paste/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/paste/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/preview/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/preview/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/preview/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/print/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/print/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/print/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/save/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/save/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/save/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/searchreplace/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/searchreplace/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/searchreplace/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/spellchecker/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/spellchecker/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/spellchecker/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/tabfocus/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/tabfocus/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/tabfocus/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/table/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/table/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/table/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/template/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/template/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/template/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/textcolor/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/textcolor/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/textcolor/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/textpattern/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/textpattern/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/textpattern/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/toc/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/toc/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/toc/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualblocks/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualblocks/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualblocks/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualchars/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualchars/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/visualchars/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/wordcount/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/wordcount/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/plugins/wordcount/plugin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/content.inline.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/content.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/content.mobile.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/img/anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/img/loader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/img/object.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/img/trans.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/skin.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/skins/lightgray/skin.mobile.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/themes/inlite/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/themes/inlite/theme.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/themes/inlite/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/themes/modern/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/themes/modern/theme.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/text-editor/tinymce/themes/modern/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/theme-switch/theme-switch.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/theme-switch/theme/g.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/theme-switch/theme/r.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/components/theme-switch/theme/y.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/images/cropper-test.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/images/logo-min.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/images/logo-min.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/images/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/images/message.mp3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/locale/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/locale/locale.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/baseForm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/formMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/functionMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/listMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/projectMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/propMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/searchMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/tableMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mixins/workflowMix.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mock/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mock/base.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mock/common.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mock/mock.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mock/notice.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/mock/user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/router/_import_production.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/router/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/router/router.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/store/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/store/modules/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/store/modules/user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/common.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/fonts/ionicons.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/fonts/ionicons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/fonts/ionicons.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/fonts/ionicons.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/loading.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/login_bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/main.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/styles/ts.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/template/index.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/EncryptUtil.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/const.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/flavr/flavr.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/flavr/flavr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/flavr/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/identityNoValidate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/js-loader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/numberUtils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/objectUtil.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/request.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/storageUtils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/table2excel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/timeformat.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/src/utils/util.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/scaffold/td_icon.ico" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/module_bsmcc_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/module_bsmcc_web_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/module-bsmcc-base.iml" afterPath="$PROJECT_DIR$/module-bsmcc-base/module-bsmcc-base.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgCodeBuildLogBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgCodeBuildLogBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnEventBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnEventBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnExBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnExBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnValidateBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnValidateBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgDbConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgDbConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgGroupConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgGroupConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgIndexConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgIndexConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgJavaDatatypeRealBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgJavaDatatypeRealBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgModuleConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgModuleConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgOperationBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgOperationBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgProjectBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgProjectBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgQueryConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgQueryConfigBO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/backtemplet/zz/rbac_sql.ftl" afterPath="$PROJECT_DIR$/doc/backtemplet/zz/rbac_sql.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableOperationBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableOperationBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletGroupBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletGroupBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletGroupOperationBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTempletGroupOperationBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TsUserBO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TsUserBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgCodeBuildLogEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgCodeBuildLogEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnEventEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnEventEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnExEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnExEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnPageEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnPageEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnValidateEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnValidateEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgDbConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgDbConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgExColumnEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgExColumnEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgGroupConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgGroupConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgIndexConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgIndexConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgJavaDatatypeRealEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgJavaDatatypeRealEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgModuleConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgModuleConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgOperationEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgOperationEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgProjectEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgProjectEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgQueryConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgQueryConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableOperationEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableOperationEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTempletEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTempletEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTempletGroupEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTempletGroupEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTempletGroupOperationEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTempletGroupOperationEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TsUserEntity.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TsUserEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/logic/TableLogic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml" afterPath="$PROJECT_DIR$/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/module-bsmcc-controller.iml" afterPath="$PROJECT_DIR$/module-bsmcc-controller/module-bsmcc-controller.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/auto/ProjectConfig.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/auto/ProjectConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/LoginController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/MainController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/ZzccBaseController.java" afterPath="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/ZzccBaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-core/module-bsmcc-core.iml" afterPath="$PROJECT_DIR$/module-bsmcc-core/module-bsmcc-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/module-bsmcc-web.iml" afterPath="$PROJECT_DIR$/module-bsmcc-web/module-bsmcc-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" afterPath="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/module-bsmcc-web/target/" />
@@ -407,100 +41,45 @@
       <file leaf-file-name="CgBusiness.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="543" column="17" lean-forward="true" selection-start-line="543" selection-start-column="17" selection-end-line="543" selection-end-column="17" />
+            <state relative-caret-position="100">
+              <caret line="539" column="0" lean-forward="false" selection-start-line="539" selection-start-column="0" selection-end-line="539" selection-end-column="0" />
               <folding>
-                <element signature="e#37622#37646#0" expanded="true" />
+                <element signature="e#39085#39093#0" expanded="true" />
+                <element signature="e#46680#46688#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TcgTableConfig.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml">
+      <file leaf-file-name="controller.ftl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-              <folding>
-                <marker date="1549271669199" expanded="true" signature="5029:5131" ph="SELECT T.* F... tcg_table_config" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityUtil.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/zz/bms/module-bms-core/1.0.1/module-bms-core-1.0.1.jar!/com/zz/bms/core/db/entity/EntityUtil.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="227">
+              <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bo.ftl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl">
+      <file leaf-file-name="TcgTableConfigBO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="75" column="32" lean-forward="false" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editForm.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="190" column="27" lean-forward="true" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
-              <folding>
-                <marker date="1549271116374" expanded="true" signature="48125:48189" ph="..." />
-                <marker date="1549271116374" expanded="true" signature="50597:50661" ph="..." />
-                <marker date="1549271116374" expanded="true" signature="53206:53270" ph="..." />
-                <marker date="1549271116374" expanded="true" signature="56237:56247" ph="..." />
-                <marker date="1549271116374" expanded="true" signature="56533:56597" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TcgExColumnBO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+            <state relative-caret-position="197">
+              <caret line="154" column="36" lean-forward="false" selection-start-line="154" selection-start-column="36" selection-end-line="154" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4926#4927#0" expanded="true" />
+                <element signature="e#4974#4975#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TcgColumnConfigBO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java">
+      <file leaf-file-name="TcgTableConfigEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TcgColumnConfigEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnConfigEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="95" column="31" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TcgExColumnEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgExColumnEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+            <state relative-caret-position="193">
+              <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -518,14 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>processResult(</find>
-      <find>code/build</find>
-      <find>EnumSearchOper</find>
-      <find>EnumPageElment</find>
-      <find>com.zz.bsmcc.core.enums.EnumPageElement</find>
-      <find>EnumPageElement</find>
-      <find>EnumYesNo</find>
-      <find>import com.zz.bms.core.enums.EnumYesNo;</find>
       <find>User</find>
       <find>import com.zz.bms.annotaions.EntityAnnotation;</find>
       <find>import com.zz.bms.annotaions.EntityAttrDBAnnotation;</find>
@@ -548,6 +119,14 @@
       <find>Boolean</find>
       <find>businessKey</find>
       <find>cgcode</find>
+      <find>tipMsg</find>
+      <find>fullResourceName</find>
+      <find>processExColumn</find>
+      <find>fullResource</find>
+      <find>dict</find>
+      <find>tableRelation</find>
+      <find>queryMode</find>
+      <find>dictTypes</find>
     </findStrings>
     <replaceStrings>
       <replace>item.dictVal</replace>
@@ -602,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgGroupConfigController.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgIndexConfigController.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgModuleConfigController.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgOperationController.java" />
@@ -631,7 +209,6 @@
         <option value="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumTableRelation.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumTableType.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgColumnPageServiceImpl.java" />
-        <option value="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TsUserBO.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnValidateEntity.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java" />
@@ -647,12 +224,14 @@
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/po/TablePO.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/entity.ftl" />
-        <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" />
-        <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java" />
         <option value="$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
         <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml" />
         <option value="$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/zz/rbac_sql.ftl" />
+        <option value="$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java" />
+        <option value="$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java" />
+        <option value="$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl" />
       </list>
     </option>
   </component>
@@ -717,6 +296,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -724,115 +306,11 @@
               <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
               <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
-              <item name="fund" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="backtemplet" type="462c0819:PsiDirectoryNode" />
-              <item name="zz" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zzCodeGenerate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zzCodeGenerate" type="462c0819:PsiDirectoryNode" />
-              <item name="module-bsmcc-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="webpage" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -845,7 +323,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="add_unversioned_files" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="table.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;cgbu&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;editf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp&#10;excolumn&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java&#10;tablecon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;table&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;tableentit&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;entity&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/doc/backtemplet/zz/entity.ftl&#10;cgb&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;entity.ftl&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/doc/backtemplet/zz/entity.ftl&#10;tcgcolumnpage&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnPageEntity.java&#10;columnpagebo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java&#10;columncon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnConfigEntity.java&#10;columnpage&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java&#10;busine&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;columnconfig&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java&#10;business&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tsuseren&#9;PSI&#9;JAVA://com.zz.bsmcc.base.domain.TsUserEntity&#10;cgbus&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;controll&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletGroupController.java&#10;page&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgColumnPageBO&#10;enum&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageElement.java&#10;curdcontroll&#9;PSI&#9;JAVA://com.zz.bms.controller.base.controller.BaseCURDController&#10;org.springframework.context.ConfigurableApplicationContext&#9;PSI&#9;JAVA://org.springframework.context.ConfigurableApplicationContext&#10;org.springframework.util.StringUtils&#9;PSI&#9;JAVA://org.springframework.util.StringUtils&#10;web.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/web.xml&#10;tablecontroll&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;cg_spring-mybatis.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_spring-mybatis.xml&#10;login&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.LoginController&#10;mysql&#9;PSI&#9;JAVA://com.zz.bsmcc.core.util.table.engine.impl.MySqlReadDbProcess&#10;busin&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;cgbusin&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;columnconfi&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java&#10;tableconf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;enumele&#9;PSI&#9;JAVA://com.zz.bsmcc.core.enums.EnumPageElement&#10;cgbusiness&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tcgex&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgExColumnBO&#10;TcgColumnConfigB&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java&#10;tableconfigbo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tableconfigser&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgTableConfigServiceImpl.java&#10;bus&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tablecontro&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;pageRelation&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java&#10;tableconfig&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;ajax&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/statics/plug-in/ajax/AjaxUtil.js&#10;enumpage&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java&#10;tcgtablebo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;editform&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp&#10;TcgTableConfigser&#9;PSI&#9;JAVA://com.zz.bsmcc.base.service.impl.TcgTableConfigServiceImpl&#10;tableconfigcontroll&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.TcgTableConfigController" />
+    <property name="SearchEverywhereHistoryKey" value="controller.ftl&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/doc/backtemplet/zz/controller.ftl&#10;index&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgIndexConfigEntity.java&#10;table&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;table.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml&#10;cgbu&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;editf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp&#10;excolumn&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java&#10;tablecon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tableentit&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java&#10;entity&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/doc/backtemplet/zz/entity.ftl&#10;cgb&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;entity.ftl&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/doc/backtemplet/zz/entity.ftl&#10;tcgcolumnpage&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnPageEntity.java&#10;columnpagebo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java&#10;columncon&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnConfigEntity.java&#10;columnpage&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnPageBO.java&#10;busine&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;columnconfig&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java&#10;business&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tsuseren&#9;PSI&#9;JAVA://com.zz.bsmcc.base.domain.TsUserEntity&#10;cgbus&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;controll&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTempletGroupController.java&#10;page&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgColumnPageBO&#10;enum&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageElement.java&#10;curdcontroll&#9;PSI&#9;JAVA://com.zz.bms.controller.base.controller.BaseCURDController&#10;org.springframework.context.ConfigurableApplicationContext&#9;PSI&#9;JAVA://org.springframework.context.ConfigurableApplicationContext&#10;org.springframework.util.StringUtils&#9;PSI&#9;JAVA://org.springframework.util.StringUtils&#10;web.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/web.xml&#10;tablecontroll&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;cg_spring-mybatis.xml&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/resources/cg_spring-mybatis.xml&#10;login&#9;PSI&#9;JAVA://com.zz.bsmcc.controller.LoginController&#10;mysql&#9;PSI&#9;JAVA://com.zz.bsmcc.core.util.table.engine.impl.MySqlReadDbProcess&#10;busin&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;cgbusin&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;columnconfi&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java&#10;tableconf&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;enumele&#9;PSI&#9;JAVA://com.zz.bsmcc.core.enums.EnumPageElement&#10;cgbusiness&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tcgex&#9;PSI&#9;JAVA://com.zz.bsmcc.base.bo.TcgExColumnBO&#10;TcgColumnConfigB&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java&#10;tableconfigbo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;tableconfigser&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgTableConfigServiceImpl.java&#10;bus&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java&#10;tablecontro&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-controller/src/main/java/com/zz/bsmcc/controller/TcgTableConfigController.java&#10;pageRelation&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java&#10;tableconfig&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;ajax&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/statics/plug-in/ajax/AjaxUtil.js&#10;enumpage&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java&#10;tcgtablebo&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java&#10;editform&#9;FILE&#9;file://E:/workspace_scaffolds/zzCodeGenerate/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -1279,7 +757,8 @@
       <workItem from="1548055850231" duration="3347000" />
       <workItem from="1548217288462" duration="2238000" />
       <workItem from="1548657310375" duration="42000" />
-      <workItem from="1549075539745" duration="24330000" />
+      <workItem from="1549075539745" duration="24394000" />
+      <workItem from="1549332354424" duration="9458000" />
     </task>
     <task id="LOCAL-00130" summary="增加模板按钮样式的处理">
       <created>1536037204333</created>
@@ -1636,7 +1115,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1150356000" />
+    <option name="totallyTimeSpent" value="1159878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1660,18 +1139,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3846154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4222586" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2831424" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5008183" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43371522" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5008183" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26928896" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20272315" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18389058" sideWeight="0.5096419" order="3" side_tool="true" content_ui="tabs" />
@@ -1700,7 +1179,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3846154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4222586" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2831424" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1708,12 +1187,12 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5008183" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43371522" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5008183" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26928896" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20272315" sideWeight="0.4903581" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18389058" sideWeight="0.5096419" order="3" side_tool="true" content_ui="tabs" />
@@ -1792,17 +1271,11 @@
           <properties />
           <option name="timeStamp" value="329" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java</url>
-          <line>241</line>
-          <properties />
-          <option name="timeStamp" value="331" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="332" />
+      <option name="time" value="333" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1811,41 +1284,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumJavaType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="55" column="5" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="55" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumButtonPosition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="53" column="5" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="53" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumPageRelation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="50" column="5" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="50" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumQueryMode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="32" column="5" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="32" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumTableRelation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="46" column="5" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="46" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-core/src/main/java/com/zz/bsmcc/core/enums/EnumTableType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -1859,21 +1297,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="55" lean-forward="false" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/service/impl/TcgColumnPageServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1683">
           <caret line="116" column="13" lean-forward="false" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1888,7 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="4" column="59" lean-forward="true" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1896,7 +1322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-187">
           <caret line="4" column="58" lean-forward="true" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1904,9 +1329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1914,7 +1336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="47" lean-forward="false" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1922,9 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1241">
           <caret line="23" column="61" lean-forward="true" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1932,9 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1952,7 +1367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1960,7 +1374,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1968,7 +1381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1976,14 +1388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="18" column="51" lean-forward="false" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgIndexConfigEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="41" column="32" lean-forward="false" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -2000,7 +1404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2008,7 +1411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="66" column="5" lean-forward="false" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2016,7 +1418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2024,7 +1425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2032,7 +1432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="17" column="95" lean-forward="true" selection-start-line="17" selection-start-column="95" selection-end-line="17" selection-end-column="95" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2040,7 +1439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="73" column="86" lean-forward="true" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2048,7 +1446,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="137" column="64" lean-forward="false" selection-start-line="137" selection-start-column="56" selection-end-line="137" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2056,7 +1453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="241" column="72" lean-forward="false" selection-start-line="241" selection-start-column="16" selection-end-line="241" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2088,7 +1484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2096,10 +1491,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="328" column="61" lean-forward="false" selection-start-line="328" selection-start-column="61" selection-end-line="328" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1220#1228#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2107,7 +1499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-53">
           <caret line="55" column="52" lean-forward="true" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2115,15 +1506,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="85" column="26" lean-forward="false" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2142,43 +1524,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
           <caret line="183" column="61" lean-forward="true" selection-start-line="183" selection-start-column="61" selection-end-line="183" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="311" column="52" lean-forward="true" selection-start-line="311" selection-start-column="52" selection-end-line="311" selection-end-column="52" />
-          <folding>
-            <element signature="e#6529#6530#0" expanded="true" />
-            <element signature="e#6730#6731#0" expanded="true" />
-            <element signature="e#6775#6776#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgExColumnEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+          <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgExColumnBO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="69" column="23" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
+        <state relative-caret-position="1071">
+          <caret line="69" column="23" lean-forward="false" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgColumnConfigBO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
+        <state relative-caret-position="187">
           <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
           <folding />
         </state>
@@ -2186,7 +1555,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgColumnConfigEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
+        <state relative-caret-position="1547">
           <caret line="95" column="31" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="31" />
           <folding />
         </state>
@@ -2194,8 +1563,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/table/config/editForm.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="190" column="27" lean-forward="true" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+        <state relative-caret-position="3230">
+          <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
           <folding>
             <marker date="1549271116374" expanded="true" signature="48125:48189" ph="..." />
             <marker date="1549271116374" expanded="true" signature="50597:50661" ph="..." />
@@ -2208,7 +1577,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/zz/bms/module-bms-core/1.0.1/module-bms-core-1.0.1.jar!/com/zz/bms/core/db/entity/EntityUtil.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
+        <state relative-caret-position="255">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
@@ -2224,28 +1593,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/resources/mapper/TcgTableConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+        <state relative-caret-position="2635">
+          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding>
             <marker date="1549271669199" expanded="true" signature="5029:5131" ph="SELECT T.* F... tcg_table_config" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/dao.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="543" column="17" lean-forward="true" selection-start-line="543" selection-start-column="17" selection-end-line="543" selection-end-column="17" />
-          <folding>
-            <element signature="e#37622#37646#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/bo.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="75" column="32" lean-forward="false" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+        <state relative-caret-position="170">
+          <caret line="22" column="82" lean-forward="false" selection-start-line="22" selection-start-column="82" selection-end-line="22" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/rbac_sql.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/menus_sql.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="10" lean-forward="true" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/mapper.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="103" lean-forward="true" selection-start-line="5" selection-start-column="103" selection-end-line="5" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgIndexConfigEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-web/src/main/webapp/WEB-INF/webpage/login/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/domain/TcgTableConfigEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-base/src/main/java/com/zz/bsmcc/base/bo/TcgTableConfigBO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="154" column="36" lean-forward="false" selection-start-line="154" selection-start-column="36" selection-end-line="154" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4926#4927#0" expanded="true" />
+            <element signature="e#4974#4975#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bsmcc-controller/src/main/java/com/zz/bsmcc/business/CgBusiness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="539" column="0" lean-forward="false" selection-start-line="539" selection-start-column="0" selection-end-line="539" selection-end-column="0" />
+          <folding>
+            <element signature="e#39085#39093#0" expanded="true" />
+            <element signature="e#46680#46688#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/backtemplet/zz/controller.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding />
         </state>
       </provider>

@@ -5,6 +5,7 @@ import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
+import com.zz.bms.system.service.TsDictService;
 
 
 import ${table.fullPackageName}.bo.${table.javaName}BO;
@@ -29,10 +30,13 @@ import java.util.List;
 public class ${table.javaName}Controller extends DefaultController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl> {
 
 
+	@Autowired
+	private TsDictService tsDictService;
 
-	<#if (indexs?exists && indexs?size > 0) >
+
 	@Override
-	protected boolean isExist(${table.javaName}BO ${table.javaName?uncap_first}BO) {
+	protected void isExist(${table.javaName}BO ${table.javaName?uncap_first}BO) {
+	<#if (indexs?exists && indexs?size > 0) >
 
 		${table.javaName}BO ckBO ;
 		boolean isExist = false;
@@ -45,23 +49,30 @@ public class ${table.javaName}Controller extends DefaultController<${table.javaN
         ckBO.${col.setMethodName}(${table.javaName?uncap_first}BO.${col.getMethodName}());
 		</#list>
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+        if (isEntityExist(temp)) {
+        	throw new BizException(EnumErrorMsg.business_error.getCode(),"${index.tipMsg}");
+		}
 		</#list>
 
-		return isExist;
-	}
 	</#if>
+	}
+
+
+
+	@Override
+	public void setCustomInfoByInsert(${table.javaName}BO bo){
+
+	}
 
 
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
 	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO bo ,ModelMap model) {
-
-		<#list table.dictTypes as dictType>
-			//todo ，处理字典 ${dictType}
-		</#list>
+    	Map<String , List<${table.javaName}BO>> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>"${dictType}"<#if dictType_has_next>,</#if></#list>);
+        for(Map.Entry<String , List<${table.javaName}BO>> dictObj : dictMap.entrySet()){
+        	model.put(dictObj.getKey(), dictObj.getValue());
+        }
 	}
-
 	</#if>
 
 

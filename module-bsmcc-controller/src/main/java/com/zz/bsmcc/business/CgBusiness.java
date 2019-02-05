@@ -957,7 +957,11 @@ public class CgBusiness extends CgBaseBusiness{
 
 
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
+
+            Set<String> dictTypeSet = new HashSet<String>();
+
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
+
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
 
                 columnConfigBO.setTableBO(tableConfig);
@@ -987,6 +991,8 @@ public class CgBusiness extends CgBaseBusiness{
                     columnConfigBO.setFkTableConfig(fkTableConfig);
                     fkTables.add(fkTableConfig);
                     fkColumns.add(columnConfigBO);
+                }else if(EnumYesNo.YES.getCode().equals(columnConfigBO.getColumnIsdict())) {
+                    dictTypeSet.add(columnConfigBO.getDictType());
                 }
 
 
@@ -1077,6 +1083,14 @@ public class CgBusiness extends CgBaseBusiness{
 
                 columnMap.put(columnConfigBO.getId() , columnConfigBO);
                 columnMap.put(columnConfigBO.getColumnName() , columnConfigBO);
+            }
+
+            if(!dictTypeSet.isEmpty()){
+                List<String> dictTypes = new ArrayList<String>();
+                for(String dictType : dictTypeSet){
+                    dictTypes.add(dictType);
+                }
+                tableConfig.setDictTypes(dictTypes);
             }
         }
 
@@ -1212,6 +1226,9 @@ public class CgBusiness extends CgBaseBusiness{
         String tableSourceName = (tableConfig.getResourceName().startsWith("/")? "" : "/") + tableConfig.getResourceName();
         fullResourceName = fullResourceName +  tableSourceName;
         tableConfig.setFullResourceName(fullResourceName);
+
+        tableConfig.setFullResource(fullResourceName.replaceAll("/", "."));
+
 
         String fullResourceFile = fullResourceName;
         fullResourceFile = fullResourceFile.replaceAll("/", "");

@@ -13,7 +13,7 @@
     ) values (
     '${operation.id}',
     '${operation.operationBO.operationName}${table.tableComment}',
-    '${table.fullResourceFile}:${operation.operationBO.operationResource}',
+    '${table.fullResource}:${operation.operationBO.operationResource}',
     null,
     '0'
     ) ;

@@ -1,14 +1,12 @@
 package com.zz.bsmcc.base.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
-import org.apache.commons.beanutils.BeanUtils;
+import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,29 +18,44 @@ import java.util.List;
 @TableName(value="tcg_table_config" , resultMap = "TcgTableConfigResultMap")
 public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializable {
 
+    /**
+     * 数据库设置标题
+     */
     @TableField(exist = false)
     private String dbConfigTitle;
 
+    /**
+     * 项目名称
+     */
     @TableField(exist = false)
     private String projectName;
 
-
+    /**
+     * 模块名称
+     */
     @TableField(exist = false)
     private String moduleName;
 
-
+    /**
+     * 表类型名称
+     */
     @TableField(exist = false)
     private String tableTypeName;
 
+    /**
+     * 表关系名称
+     * 如 一对多 ， 多对多
+     */
     @TableField(exist = false)
     private String tableRelationName;
 
 
-
+    /**
+     * 查询模式名称
+     * 如 工具栏样式 , 普通模式
+     */
     @TableField(exist = false)
     private String queryModeName;
-
-
 
 
     //简单名称 , 去掉第一个下划线 ， 并且第一个字母为小写
@@ -66,11 +79,6 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
 
-
-
-
-
-
     //用于模板生成数据
 
 
@@ -80,20 +88,30 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     @TableField(exist = false)
     private boolean haveVersion;
 
-
     //用于视图对应的主表信息
     @TableField(exist = false)
     private TcgTableConfigBO mainTableIdConfig;
 
     /**
      * 资源全称 ,  本身的资源
+     * 如 /system/user
      */
     @TableField(exist = false)
     private String fullResourceName;
 
+
+
+    /**
+     * 资源全称 ,  本身的资源
+     * 如 system.user
+     */
+    @TableField(exist = false)
+    private String fullResource;
+
     /**
      * 和 fullResourceName 类似
      * 去除fullResourceName 中的 / \
+     * 如 systemuser
      */
     @TableField(exist = false)
     private String fullResourceFile;
@@ -123,15 +141,18 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgTableConfigBO> fkTables;
+
     /**
      * 所有外键对应的列名称
      */
     @TableField(exist = false)
     private List<TcgColumnConfigBO> fkColumns;
 
-
+    /**
+     *
+     */
     @TableField(exist = false)
-    private List<String> dictTypes;
+    private List<String> dictTypes ;
 
 
 
@@ -141,6 +162,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgTableConfigBO> childFkTables;
+
     /**
      * 本表ID是哪些表的外键 , 外键的列名
      */
@@ -224,6 +246,14 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setFullResourceName(String fullResourceName) {
         this.fullResourceName = fullResourceName;
+    }
+
+    public String getFullResource() {
+        return fullResource;
+    }
+
+    public void setFullResource(String fullResource) {
+        this.fullResource = fullResource;
     }
 
     public String getFullResourceFile() {
@@ -324,4 +354,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     public void setBusinessNameGetMethods(List<String> businessNameGetMethods) {
         this.businessNameGetMethods = businessNameGetMethods;
     }
+
+
+
 }

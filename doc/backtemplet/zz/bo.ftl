@@ -20,7 +20,7 @@ import java.io.Serializable;
 * @author ${project.projectAuthor}
 * @date ${.now}
 */
-@EntityAnnotation(value="${table.tableComment}" , resource = "${table.fullResourceName}" <#if table.businessName?exists> ,businessName = "${table.businessName}"</#if>   <#if table.businessName?exists> ,businessKey = { "${table.businessKey}" }</#if>  )
+@EntityAnnotation(value="${table.tableComment}" , resource = "${table.fullResource}" <#if table.businessName?exists> ,businessName = "${table.businessName}"</#if>   <#if table.businessName?exists> ,businessKey = { "${table.businessKey}" }</#if>  )
 @TableName(value="${table.tableName}" , resultMap = "${table.javaName}ResultMap")
 public class ${table.javaName}BO extends ${table.javaName}Entity implements Serializable , IBoEntity {
 
