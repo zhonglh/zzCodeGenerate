@@ -531,12 +531,13 @@ public class CgBusiness extends CgBaseBusiness{
             String tableColumnKey = exColumnEntry.getKey();
             TcgExColumnBO exColumnBO = exColumnEntry.getValue();
 
-            TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
-            if(columnConfigBO == null){
-                throw new RuntimeException(exColumnBO.getTableBO().getTableName()+"表 "+exColumnBO.getColumnTitle()+"列  设置错误");
+            if(exColumnBO.getOriginalColumnFk().equals(EnumYesNo.YES.getCode())) {
+                TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
+                if (columnConfigBO == null) {
+                    throw new RuntimeException(exColumnBO.getTableBO().getTableName() + "表 " + exColumnBO.getColumnTitle() + "列  设置错误");
+                }
+                exColumnBO.setFkColumn(columnConfigBO);
             }
-            exColumnBO.setFkColumn(columnConfigBO);
-
 
         }
 
