@@ -66,8 +66,15 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     private String fkJavaName;
 
     //对应的原始列
+    //如userBO里的depName , 对应的原始列为depId
     @TableField(exist = false)
     private TcgColumnConfigBO  originalColumn;
+
+
+    //对应的原始列
+    //如userBO里的depName , 对应是 ts_dep表的dep_name列
+    @TableField(exist = false)
+    private TcgColumnConfigBO  fkColumn;
 
 
     public String getOriginalColumnName() {
@@ -156,5 +163,13 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
     public void setTableBO(TcgTableConfigBO tableBO) {
         this.tableBO = tableBO;
+    }
+
+    public TcgColumnConfigBO getFkColumn() {
+        return fkColumn;
+    }
+
+    public void setFkColumn(TcgColumnConfigBO fkColumn) {
+        this.fkColumn = fkColumn;
     }
 }

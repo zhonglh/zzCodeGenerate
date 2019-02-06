@@ -26,16 +26,16 @@ public class ${table.javaName}BO extends ${table.javaName}Entity implements Seri
 
 <#list exColumns as being>
 
-
     <#assign columnPage = columnPageMap[being.id] >
 
     @TableField(exist = false)
     <#if being.originalColumn.columnIsdict == '1'>
-    @EntityAttrDictAnnotation(group = "userStatus", groupName = "用户状态" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = DictTypeConstant.USER_STATUS)
+    @EntityAttrDictAnnotation(group = "${being.originalColumn.javaName?cap_first}", groupName = "${being.originalColumn.columnComment}" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "${being.originalColumn.dictType}")
+    <#else >
+    @EntityAttrFkAnnotation(group = "${being.originalColumn.javaName?cap_first}",  groupName = "${being.originalColumn.columnComment}" ,   dbColumnName = "${being.fkColumnName}" , dbColumnType = "${being.fkColumn.columnType}" , dbColumnLength = ${being.fkColumn.columnLength}   <#if being.fkColumn.columnIsnull?exists && being.fkColumn.columnIsnull == '0'>, dbColumnNotNull = true</#if> , fkClass=${being.originalColumn.fkJavaFullClass}.class)
     </#if>
-    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-    @EntityAttrPageAnnotation(title = "用户状态" , sort = 501 , required = true, defaultType = DefaultTypeConstant.CUSTOM , defaultValue = "EnumUserStatus.normal.getLabel()")
-
+    <#if columnPage.excelType?exists && columnPage.excelType!='0'>@EntityAttrExcelAnnotation(excelProcess= "${columnPage.excelType}")</#if>
+    @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}     <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if> ,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
     private ${being.javaSimpleClass} ${being.javaName} ;
 
 </#list>

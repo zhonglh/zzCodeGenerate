@@ -261,6 +261,10 @@ public class CgBusiness extends CgBaseBusiness{
 
 
 
+        Map<String , TcgColumnConfigBO> allColumnMap = new HashMap<String , TcgColumnConfigBO>();
+        Map<String , TcgExColumnBO> allExColumnMap = new HashMap<String , TcgExColumnBO>();
+
+
         for(TcgTableConfigBO tableConfig : tableConfigs){
             Map<String,Object> searchMap = new HashMap<String,Object>();
             searchMap.put("table_id" , tableConfig.getId());
@@ -275,7 +279,7 @@ public class CgBusiness extends CgBaseBusiness{
 
             //处理列的信息
             if(columns != null && !columns.isEmpty()) {
-                processColumnConfig(tableConfig , columns , tableConfigMap , columnMap);
+                processColumnConfig(tableConfig , columns , tableConfigMap , columnMap , allColumnMap);
                 columns.sort(new Comparator<TcgColumnConfigBO>(){
                     @Override
                     public int compare(TcgColumnConfigBO o1, TcgColumnConfigBO o2) {
@@ -298,6 +302,7 @@ public class CgBusiness extends CgBaseBusiness{
             //处理扩展列的信息
             Map<String,List<TcgExColumnBO>> exMap = null;
             Map<String , TcgExColumnBO> exColumnMap = new HashMap<String , TcgExColumnBO>();
+
             List<TcgExColumnBO> exColumns = (List<TcgExColumnBO>)tcgExColumnService.listByMap(searchMap);
             if(exColumns != null && !exColumns.isEmpty()) {
                 exColumns.sort(new Comparator<TcgExColumnBO>() {
@@ -306,9 +311,16 @@ public class CgBusiness extends CgBaseBusiness{
                         return o1.getColumnSort().compareTo(o2.getColumnSort());
                     }
                 });
+
                 //处理扩展列的信息
                 processExColumn(tableConfig ,exColumns , columns , exColumnMap);
                 exMap = processExColumnMap(exColumns);
+
+                exColumns.forEach(item -> {
+                    String key = item.getOriginalColumn().getFkSchema().trim().toLowerCase() + item.getOriginalColumn().getFkName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase() ;
+                    allExColumnMap.put(key,item);
+                });
+
 
             }
 
@@ -419,7 +431,7 @@ public class CgBusiness extends CgBaseBusiness{
                 if(StringUtils.isNotEmpty(tableConfig.getMainTableName())){
                     TablePO po = tablePOMap.get(tableConfig.getMainTableSchema()+tableConfig.getMainTableName());
                     if(po != null){
-                        tableConfig.setMainTableIdConfig(po.getTableBO());
+                        tableConfig.setMainTableConfig(po.getTableBO());
                         tableConfig.setTableOtherComment(po.getTableBO().getTableOtherComment());
                         tableConfig.setTableComment(po.getTableBO().getTableComment());
                         //视图的实体类是继承表的实体类， 需要重新设置列是否要在类中
@@ -511,6 +523,20 @@ public class CgBusiness extends CgBaseBusiness{
                     index ++;
                 }
             }
+
+        }
+
+        for(Map.Entry<String , TcgExColumnBO> exColumnEntry : allExColumnMap.entrySet()){
+
+            String tableColumnKey = exColumnEntry.getKey();
+            TcgExColumnBO exColumnBO = exColumnEntry.getValue();
+
+            TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
+            if(columnConfigBO == null){
+                throw new RuntimeException(exColumnBO.getTableBO().getTableName()+"表 "+exColumnBO.getColumnTitle()+"列  设置错误");
+            }
+            exColumnBO.setFkColumn(columnConfigBO);
+
 
         }
 
@@ -949,8 +975,11 @@ public class CgBusiness extends CgBaseBusiness{
      * @param tcgColumnConfigBOs
      * @param tableConfigMap
      */
-    private void processColumnConfig(TcgTableConfigBO tableConfig, List<TcgColumnConfigBO> tcgColumnConfigBOs,
-                                     Map<String, TcgTableConfigBO> tableConfigMap , Map<String , TcgColumnConfigBO> columnMap) {
+    private void processColumnConfig(TcgTableConfigBO tableConfig,
+                                     List<TcgColumnConfigBO> tcgColumnConfigBOs,
+                                     Map<String, TcgTableConfigBO> tableConfigMap ,
+                                     Map<String , TcgColumnConfigBO> columnMap,
+                                     Map<String , TcgColumnConfigBO> allColumnMap ) {
 
         List fkTables = new ArrayList<TcgTableConfigBO>();
         List<TcgColumnConfigBO> fkColumns = new ArrayList<TcgColumnConfigBO>();
@@ -1083,6 +1112,9 @@ public class CgBusiness extends CgBaseBusiness{
 
                 columnMap.put(columnConfigBO.getId() , columnConfigBO);
                 columnMap.put(columnConfigBO.getColumnName() , columnConfigBO);
+
+                String tableColumnKey = tableConfig.getSchemaName().trim().toLowerCase() + tableConfig.getTableName().trim().toLowerCase() + columnConfigBO.getColumnName().trim().toLowerCase();
+                allColumnMap.put(tableColumnKey , columnConfigBO);
             }
 
             if(!dictTypeSet.isEmpty()){

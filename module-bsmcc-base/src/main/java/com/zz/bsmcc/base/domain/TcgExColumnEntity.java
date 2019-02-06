@@ -16,27 +16,17 @@ import com.baomidou.mybatisplus.annotation.TableField;
  * @date 2018-8-1 17:35:08
  */
 public class TcgExColumnEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
+
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
-
-
-
 
 
     //@EntityAttrAnnotation(attrName="",sort=1  , attrLength=32    )
 	private String tableId;
 
 
-
-
-
     //@EntityAttrAnnotation(attrName="原始列的ID",sort=2  , attrLength=32    )
 	private String originalColumnId;
-
-
-
-
-
 
 
     //@EntityAttrAnnotation(attrName="Java类名",sort=6  , attrLength=100    )

@@ -6,7 +6,6 @@ import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -90,7 +89,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     //用于视图对应的主表信息
     @TableField(exist = false)
-    private TcgTableConfigBO mainTableIdConfig;
+    private TcgTableConfigBO mainTableConfig;
 
     /**
      * 资源全称 ,  本身的资源
@@ -149,7 +148,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private List<TcgColumnConfigBO> fkColumns;
 
     /**
-     *
+     * 用到的字典类型集合
      */
     @TableField(exist = false)
     private List<String> dictTypes ;
@@ -272,12 +271,12 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.fullPackageName = fullPackageName;
     }
 
-    public TcgTableConfigBO getMainTableIdConfig() {
-        return mainTableIdConfig;
+    public TcgTableConfigBO getMainTableConfig() {
+        return mainTableConfig;
     }
 
-    public void setMainTableIdConfig(TcgTableConfigBO mainTableIdConfig) {
-        this.mainTableIdConfig = mainTableIdConfig;
+    public void setMainTableConfig(TcgTableConfigBO mainTableConfig) {
+        this.mainTableConfig = mainTableConfig;
     }
 
     public List<TcgTableConfigBO> getFkTables() {

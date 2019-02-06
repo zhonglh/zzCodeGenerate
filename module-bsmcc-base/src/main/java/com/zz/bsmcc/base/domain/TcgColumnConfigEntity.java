@@ -14,6 +14,7 @@ import com.zz.bsmcc.core.util.CgBeanUtil;
  * @date 2018-8-1 16:18:00
  */
 public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> implements java.io.Serializable{
+
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 

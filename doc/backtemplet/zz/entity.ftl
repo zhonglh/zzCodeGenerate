@@ -1,6 +1,5 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
@@ -9,8 +8,8 @@ import com.zz.bms.core.Constant;
 <#list table.importClasss as importClass>
 import ${importClass};
 </#list>
-<#if (table.isTable == '0' && table.mainTableIdConfig?exists)>
-import ${table.fullPackageName}.domain.${table.mainTableIdConfig.javaName}Entity;
+<#if (table.isTable == '0' && table.mainTableConfig?exists)>
+import ${table.fullPackageName}.domain.${table.mainTableConfig.javaName}Entity;
 <#else >
 import ${table.parentClass};
 </#if>
@@ -22,7 +21,7 @@ import ${table.parentClass};
  * @author ${project.projectAuthor}
  * @date ${.now}
  */
-public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table.mainTableIdConfig?exists)>${table.mainTableIdConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable{
+public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
