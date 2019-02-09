@@ -441,7 +441,9 @@
                         <th width="140">最小长度</th>
                         <th width="110">最大值</th>
                         <th width="110">最小值</th>
-                        <th width="140">Excel设置</th>
+                        <th width="110">默认值类型</th>
+                        <th width="220">默认值</th>
+                        <th width="120">Excel设置</th>
 
                         </thead>
 
@@ -497,7 +499,9 @@
                                         <option value="checkbox" <c:if test="${columnPage.element ==  'checkbox' }">selected="selected"</c:if>>多选</option>
                                         <option value="textarea" <c:if test="${columnPage.element ==  'textarea' }">selected="selected"</c:if>>文本域</option>
                                         <option value="select" <c:if test="${columnPage.element ==  'select' }">selected="selected"</c:if>>下拉选择</option>
+                                        <c:if test="${columnPage.exColumn != null && columnPage.exColumn.originalColumnFk == '1'}">
                                         <option value="openwin" <c:if test="${columnPage.element ==  'openwin' }">selected="selected"</c:if>>弹框选择</option>
+                                        </c:if>
                                         <option value="singlefile" <c:if test="${columnPage.element ==  'singlefile' }">selected="selected"</c:if>>单文件</option>
                                         <option value="multifile" <c:if test="${columnPage.element ==  'multifile' }">selected="selected"</c:if>>多文件</option>
                                         <option value="singleimage" <c:if test="${columnPage.element ==  'singleimage' }">selected="selected"</c:if>>单图片</option>
@@ -522,6 +526,38 @@
                                 <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].minlength" name="columnPages[${status1.index }].minlength" value="${columnPage.minlength }" /></td>
                                 <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].max" name="columnPages[${status1.index }].max" value="${columnPage.max }" /></td>
                                 <td><input type="number" style="width: 60px"  id="columnPages[${status1.index }].min" name="columnPages[${status1.index }].min" value="${columnPage.min }" /></td>
+
+
+                                <td>
+                                    <select name="columnPages[${status1.index }].defaultType" onChange="selectDefaultType(this)">
+
+                                        <option value="" <c:if test="${columnPage.defaultType ==  '' }">selected="selected"</c:if>></option>
+
+                                        <option value="CURRENT_YEAR" <c:if test="${columnPage.defaultType ==  'CURRENT_YEAR' }">selected="selected"</c:if>>当前年</option>
+                                        <option value="CURRENT_MONTH" <c:if test="${columnPage.defaultType ==  'CURRENT_MONTH' }">selected="selected"</c:if>>当前月</option>
+                                        <option value="CURRENT_DATE" <c:if test="${columnPage.defaultType ==  'CURRENT_DATE' }">selected="selected"</c:if>>当前日期</option>
+                                        <option value="CURRENT_TIME" <c:if test="${columnPage.defaultType ==  'CURRENT_TIME' }">selected="selected"</c:if>>当前时间</option>
+
+                                        <option value="CURRENT_USERID" <c:if test="${columnPage.defaultType ==  'CURRENT_USERID' }">selected="selected"</c:if>>当前用户ID</option>
+                                        <option value="CURRENT_USERNAME" <c:if test="${columnPage.defaultType ==  'CURRENT_USERNAME' }">selected="selected"</c:if>>当前用户姓名</option>
+                                        <option value="CURRENT_USER_LEADID" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_LEADID' }">selected="selected"</c:if>>当前用户领导ID</option>
+                                        <option value="CURRENT_USER_LEADNAME" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_LEADNAME' }">selected="selected"</c:if>>当前用户领导姓名</option>
+
+                                        <option value="CURRENT_USER_DEPTID" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_DEPTID' }">selected="selected"</c:if>>当前用户部门ID</option>
+                                        <option value="CURRENT_USER_DEPTNAME" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_DEPTNAME' }">selected="selected"</c:if>>当前用户部门名称</option>
+                                        <option value="CURRENT_USER_ORGANID" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_ORGANID' }">selected="selected"</c:if>>当前用户机构ID</option>
+                                        <option value="CURRENT_USER_ORGANNAME" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_ORGANNAME' }">selected="selected"</c:if>>当前用户机构名称</option>
+                                        <option value="CURRENT_USER_TENANTID" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_TENANTID' }">selected="selected"</c:if>>当前用户企业ID</option>
+                                        <option value="CURRENT_USER_TENANTNAME" <c:if test="${columnPage.defaultType ==  'CURRENT_USER_TENANTNAME' }">selected="selected"</c:if>>当前用户企业名称</option>
+
+                                        <option value="CUSTOM" <c:if test="${columnPage.defaultType ==  'CUSTOM' }">selected="selected"</c:if>>自定义默认值</option>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <input type="text" size="20" id="columnPages[${status1.index }].defaultValue" name="columnPages[${status1.index }].defaultValue" value="${columnPage.defaultValue }"
+                                    <c:if test="${columnPage.defaultType==null || columnPage.defaultType!='CUSTOM' }" >readonly</c:if> <c:if test="${columnPage.defaultType!=null && columnPage.defaultType=='CUSTOM' }" >class="required"</c:if>  />
+                                </td>
 
 
                                 <td>
@@ -585,14 +621,14 @@
 
                                 <td>
                                 <select name="queryConfigs[${status1.index }].queryRelation" >
-                                    <option value="eq" <c:if test="${queryConfig.queryRelation ==  'eq' }">selected="selected"</c:if>>等于</option>
-                                    <option value="ne" <c:if test="${queryConfig.queryRelation ==  'ne' }">selected="selected"</c:if>>不等于</option>
-                                    <option value="gte" <c:if test="${queryConfig.queryRelation ==  'gte' }">selected="selected"</c:if>>大于</option>
-                                    <option value="ge" <c:if test="${queryConfig.queryRelation ==  'ge' }">selected="selected"</c:if>>大于等于</option>
-                                    <option value="lte" <c:if test="${queryConfig.queryRelation ==  'lte' }">selected="selected"</c:if>>小于</option>
-                                    <option value="le" <c:if test="${queryConfig.queryRelation ==  'le' }">selected="selected"</c:if>>小于等于</option>
-                                    <option value="like" <c:if test="${queryConfig.queryRelation ==  'like' }">selected="selected"</c:if>>模糊匹配</option>
-                                    <option value="notLike" <c:if test="${queryConfig.queryRelation ==  'notLike' }">selected="selected"</c:if>>模糊不匹配</option>
+                                    <option value="" <c:if test="${queryConfig.queryRelation ==  '' }">selected="selected"</c:if>>等于</option>
+                                    <option value="NE" <c:if test="${queryConfig.queryRelation ==  'NE' }">selected="selected"</c:if>>不等于</option>
+                                    <option value="GTE" <c:if test="${queryConfig.queryRelation ==  'GTE' }">selected="selected"</c:if>>大于</option>
+                                    <option value="GE" <c:if test="${queryConfig.queryRelation ==  'GE' }">selected="selected"</c:if>>大于等于</option>
+                                    <option value="LTE" <c:if test="${queryConfig.queryRelation ==  'LTE' }">selected="selected"</c:if>>小于</option>
+                                    <option value="LE" <c:if test="${queryConfig.queryRelation ==  'LE' }">selected="selected"</c:if>>小于等于</option>
+                                    <option value="LIKE" <c:if test="${queryConfig.queryRelation ==  'LIKE' }">selected="selected"</c:if>>模糊匹配</option>
+                                    <option value="NOTLIKE" <c:if test="${queryConfig.queryRelation ==  'NOTLIKE' }">selected="selected"</c:if>>模糊不匹配</option>
                                 </select>
                                 </td>
 
@@ -1126,6 +1162,22 @@
         }else {
             $("#parentFieldName").attr("readonly" , "readonly");
             $("#parentFieldName").val("");
+        }
+    }
+
+
+
+    function selectDefaultType(defaultTypeElement) {
+        var $defaultTypeElement = $(defaultTypeElement);
+        var $defaultValueElement = $defaultTypeElement.parent().next().find("input");
+        if($defaultTypeElement.val() == "CUSTOM"){
+            $defaultValueElement.removeAttr("readonly");
+            $defaultValueElement.addClass("required");
+
+        }else {
+            $defaultValueElement.val("");
+            $defaultValueElement.attr("readonly" , "readonly");
+            $defaultValueElement.removeClass("required");
         }
     }
 

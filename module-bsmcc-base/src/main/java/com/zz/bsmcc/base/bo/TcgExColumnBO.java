@@ -7,7 +7,8 @@ import com.zz.bsmcc.base.domain.TcgExColumnEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-
+import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -22,6 +23,13 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     //用来存放本列对应的表
     @TableField(exist = false)
     private TcgTableConfigBO tableBO;
+
+    /**
+     * 列对应的Java 类型
+     */
+    private Class javaClass;
+
+
 
     /**
      * 原列名称
@@ -171,5 +179,21 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
 
     public void setFkColumn(TcgColumnConfigBO fkColumn) {
         this.fkColumn = fkColumn;
+    }
+
+    public Class getJavaClass() {
+        return javaClass;
+    }
+
+    public void setJavaClass(Class javaClass) {
+        this.javaClass = javaClass;
+    }
+
+    public boolean isNumber() {
+        return javaClass.isAssignableFrom(Number.class);
+    }
+
+    public boolean isDate() {
+        return javaClass.isAssignableFrom(Date.class);
     }
 }

@@ -6,7 +6,7 @@ import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 import com.zz.bms.system.service.TsDictService;
-
+import com.zz.bms.system.bo.TsDictBO;
 
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import  ${table.fullPackageName}.query.impl.${table.javaName}QueryWebImpl;
@@ -61,16 +61,22 @@ public class ${table.javaName}Controller extends DefaultController<${table.javaN
 
 	@Override
 	public void setCustomInfoByInsert(${table.javaName}BO bo){
-
+		<#list columnPages as page>
+		    <#if page.defaultType?exists && page.defaultType == 'CUSTOM'>
+				<#if page.columnConfig?exists>
+					bo.${page.columnConfig.setMethodName}(<#if page.defaultValue?exists>${page.theDefaultValue}</#if>);
+				</#if>
+		    </#if>
+		</#list>
 	}
 
 
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
 	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO bo ,ModelMap model) {
-    	Map<String , List<${table.javaName}BO>> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>"${dictType}"<#if dictType_has_next>,</#if></#list>);
-        for(Map.Entry<String , List<${table.javaName}BO>> dictObj : dictMap.entrySet()){
-        	model.put(dictObj.getKey(), dictObj.getValue());
+    	Map<String , List<TsDictBO> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>"${dictType}"<#if dictType_has_next>,</#if></#list>);
+        for(Map.Entry<String , List<TsDictBO> dictObj : dictMap.entrySet()){
+        	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }
 	}
 	</#if>

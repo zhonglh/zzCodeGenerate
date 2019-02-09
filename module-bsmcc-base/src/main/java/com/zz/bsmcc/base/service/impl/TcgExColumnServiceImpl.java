@@ -75,6 +75,15 @@ public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String
 				tcgExColumnBO.setOriginalColumnFkName(EnumYesNo.NO.getName());
 			}
 		}
+
+
+		if(StringUtils.isNotEmpty(tcgExColumnBO.getJavaFullClass())){
+			try {
+				tcgExColumnBO.setJavaClass(Class.forName(tcgExColumnBO.getJavaFullClass()));
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 		return tcgExColumnBO;
 	}
 }

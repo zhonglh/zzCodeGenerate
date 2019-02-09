@@ -52,12 +52,28 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 			tcgColumnPageBO.setColumnComment(tcgColumnConfigBO.getColumnComment());
 			tcgColumnPageBO.setJavaName(tcgColumnConfigBO.getJavaName());
 			tcgColumnPageBO.setColumnConfig(tcgColumnConfigBO);
+			try {
+				tcgColumnConfigBO.setJavaClass(Class.forName(tcgColumnConfigBO.getJavaFullClass()));
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			tcgColumnPageBO.setNumber(tcgColumnConfigBO.isNumber());
+			tcgColumnPageBO.setDate(tcgColumnConfigBO.isDate());
 		}else {
 			TcgExColumnBO tcgExColumnBO = tcgExColumnDAO.selectById(tcgColumnPageBO.getId());
 			if(tcgExColumnBO != null){
 				tcgColumnPageBO.setColumnComment(tcgExColumnBO.getColumnTitle());
 				tcgColumnPageBO.setJavaName(tcgExColumnBO.getJavaName());
 				tcgColumnPageBO.setExColumn(tcgExColumnBO);
+				try {
+					tcgExColumnBO.setJavaClass(Class.forName(tcgExColumnBO.getJavaFullClass()));
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				tcgColumnPageBO.setNumber(tcgExColumnBO.isNumber());
+				tcgColumnPageBO.setDate(tcgExColumnBO.isDate());
+
+
 			}
 		}
 

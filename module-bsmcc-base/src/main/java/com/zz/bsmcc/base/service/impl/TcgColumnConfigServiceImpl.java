@@ -49,6 +49,16 @@ public class TcgColumnConfigServiceImpl extends BaseServiceImpl<TcgColumnConfigB
 		if(StringUtils.isNotEmpty(tcgColumnConfigBO.getFkColumnName())){
 			tcgColumnConfigBO.setFkJavaName(StringFormatKit.toCamelCase(tcgColumnConfigBO.getFkColumnName()));
 		}
+
+
+		if(StringUtils.isNotEmpty(tcgColumnConfigBO.getJavaFullClass())){
+			try {
+				tcgColumnConfigBO.setJavaClass(Class.forName(tcgColumnConfigBO.getJavaFullClass()));
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return tcgColumnConfigBO;
 	}
 }

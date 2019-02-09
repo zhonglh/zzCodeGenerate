@@ -27,4 +27,6 @@ public class TcgTableOperationBO extends TcgTableOperationEntity implements Seri
     public void setOperationBO(TcgOperationBO operationBO) {
         this.operationBO = operationBO;
     }
+
+
 }

@@ -30,13 +30,18 @@ public class ${table.javaName}BO extends ${table.javaName}Entity implements Seri
 
     @TableField(exist = false)
     <#if being.originalColumn.columnIsdict == '1'>
-    @EntityAttrDictAnnotation(group = "${being.originalColumn.javaName?cap_first}", groupName = "${being.originalColumn.columnComment}" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "${being.originalColumn.dictType}")
-    <#else >
-    @EntityAttrFkAnnotation(group = "${being.originalColumn.javaName?cap_first}",  groupName = "${being.originalColumn.columnComment}" ,   dbColumnName = "${being.fkColumnName}" , dbColumnType = "${being.fkColumn.columnType}" , dbColumnLength = ${being.fkColumn.columnLength}   <#if being.fkColumn.columnIsnull?exists && being.fkColumn.columnIsnull == '0'>, dbColumnNotNull = true</#if> , fkClass=${being.originalColumn.fkJavaFullClass}.class)
+    @EntityAttrDictAnnotation(group = "${being.originalColumn.javaName}", groupName = "${being.originalColumn.columnComment}" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "${being.originalColumn.dictType}")
+    <#elseif being.fkColumn?exists>
+    @EntityAttrFkAnnotation(group = "${being.originalColumn.javaName}",  groupName = "${being.originalColumn.columnComment}" ,   dbColumnName = "${being.fkColumnName!}" , dbColumnType = "${being.fkColumn.columnType!}" , dbColumnLength = ${being.fkColumn.columnLength!}   <#if being.fkColumn.columnIsnull?exists && being.fkColumn.columnIsnull == '0'>, dbColumnNotNull = true</#if> , fkClass=${being.originalColumn.fkTableConfig.fullBoClassName!}.class)
     </#if>
     <#if columnPage.excelType?exists && columnPage.excelType!='0'>@EntityAttrExcelAnnotation(excelProcess= "${columnPage.excelType}")</#if>
-    @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}     <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if> ,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
+    @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}     <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if>   <#if columnPage.defaultType?exists && columnPage.defaultType != 'CUSTOM' && columnPage.defaultType != ''>, defaultType = DefaultTypeConstant.${columnPage.defaultType}</#if>  ,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
     private ${being.javaSimpleClass} ${being.javaName} ;
+
+
+
+
+
 
 </#list>
 

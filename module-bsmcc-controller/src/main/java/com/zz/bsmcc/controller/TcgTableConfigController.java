@@ -453,6 +453,44 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         List<TcgColumnPageBO> columnPageBOs = (List<TcgColumnPageBO>)tcgColumnPageService.listByMap(map) ;
         model.put("columnPages" , columnPageBOs);
+        if(columnPageBOs != null && !columnPageBOs.isEmpty()) {
+            for (TcgColumnPageBO columnPageBO : columnPageBOs) {
+
+                for (TcgColumnConfigBO columnConfigBO : columnConfigBOs) {
+                    if (columnPageBO.getId().equals(columnConfigBO.getId())) {
+                        columnPageBO.setColumnConfig(columnConfigBO);
+                        try {
+                            columnConfigBO.setJavaClass(Class.forName(columnConfigBO.getJavaFullClass()));
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        columnPageBO.setNumber(columnConfigBO.isNumber());
+                        columnPageBO.setDate(columnConfigBO.isDate());
+                        break;
+                    }
+                }
+
+
+                if (columnPageBO.getColumnConfig() == null) {
+                    for (TcgExColumnBO exColumnBO : exColumnBOs) {
+                        if (columnPageBO.getId().equals(exColumnBO.getId())) {
+                            columnPageBO.setExColumn(exColumnBO);
+                            try {
+                                exColumnBO.setJavaClass(Class.forName(exColumnBO.getJavaFullClass()));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            columnPageBO.setNumber(exColumnBO.isNumber());
+                            columnPageBO.setDate(exColumnBO.isDate());
+                            break;
+                        }
+                    }
+                }
+
+
+
+            }
+        }
 
         List<TcgIndexConfigBO> indexConfigBOs = (List<TcgIndexConfigBO>)tcgIndexConfigService.listByMap(map) ;
         model.put("indexConfigs" , indexConfigBOs);

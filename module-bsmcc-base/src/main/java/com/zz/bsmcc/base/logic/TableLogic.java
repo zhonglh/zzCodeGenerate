@@ -258,6 +258,13 @@ public class TableLogic {
     public static void initColumnPage(TcgColumnPageBO pageBO, TcgExColumnBO exColumnBO, ILoginUserEntity<String> sessionUserVO) {
 
         pageBO.setExColumn(exColumnBO);
+        try {
+            exColumnBO.setJavaClass(Class.forName(exColumnBO.getJavaFullClass()));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        pageBO.setNumber(exColumnBO.isNumber());
+        pageBO.setDate(exColumnBO.isDate());
 
         pageBO.setRealColumn(EnumYesNo.NO.getCode());
 
@@ -293,6 +300,13 @@ public class TableLogic {
     public static void initColumnPage(TcgColumnPageBO pageBO, TcgColumnConfigBO columnBO, ILoginUserEntity<String> sessionUserVO) {
 
         pageBO.setColumnConfig(columnBO);
+        try {
+            columnBO.setJavaClass(Class.forName(columnBO.getJavaFullClass()));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        pageBO.setNumber(columnBO.isNumber());
+        pageBO.setDate(columnBO.isDate());
 
         pageBO.setRealColumn(EnumYesNo.YES.getCode());
 

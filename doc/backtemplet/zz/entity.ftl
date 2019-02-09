@@ -30,8 +30,14 @@ public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table
 <#if !being.inParentClass>
     <#assign columnPage = columnPageMap[being.id] >
 
+
+    <#if being.columnIsdict == '1'>
+    @EntityAttrDictAnnotation(group = "${being.javaName}", groupName = "${being.columnComment}" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "${being.dictType}")
+    <#elseif being.columnIsfk == '1' >
+    @EntityAttrFkAnnotation(group = "${being.javaName}",  groupName = "${being.columnComment}" ,   dbColumnName = "id" , dbColumnType = CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=${being.fkTableConfig.fullBoClassName!}.class)
+    </#if>
     @EntityAttrDBAnnotation(attrName="${being.columnComment}" ,type = "${being.columnType}"      <#if being.columnLength?exists>,  attrLength = ${being.columnLength}</#if> , notNull = <#if being.columnIsnull?exists && being.columnIsnull == '0'>true<#else>false</#if> )
-    @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}  , pageElement = "${columnPage.element}"    <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if> ,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
+    @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}  , pageElement = "${columnPage.element}"    <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if>  <#if columnPage.defaultType?exists && columnPage.defaultType != 'CUSTOM' && columnPage.defaultType != ''>, defaultType = DefaultTypeConstant.${columnPage.defaultType}</#if>,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
 	<#if columnPage.excelType?exists && columnPage.excelType!='0'>@EntityAttrExcelAnnotation(excelProcess= "${columnPage.excelType}")</#if>
     <#if table.isTable=='0'>//todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity </#if>
     <#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>

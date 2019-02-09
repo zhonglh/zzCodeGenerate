@@ -106,6 +106,10 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 	private String listShowable;
 
 
+	private String defaultType;
+	private String defaultValue;
+
+
 	//Excel导入导出类型
 	//参考  com.zz.bms.util.configs.enums.EnumExcelType
 	private String excelType;
@@ -289,5 +293,21 @@ public class TcgColumnPageEntity extends BaseBusinessSimpleEntity<String> implem
 
 	public void setExcelType(String excelType) {
 		this.excelType = excelType;
+	}
+
+	public String getDefaultType() {
+		return defaultType;
+	}
+
+	public void setDefaultType(String defaultType) {
+		this.defaultType = defaultType;
+	}
+
+	public String getDefaultValue() {
+		return defaultValue;
+	}
+
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
 	}
 }

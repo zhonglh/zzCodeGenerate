@@ -101,7 +101,15 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
     /**
-     * 资源全称 ,  本身的资源
+     * 和 fullResourceName 类似 , 首字母大写
+     * 去除fullResourceName 中的 /
+     * 如 SystemUser
+     */
+    @TableField(exist = false)
+    private String fullUpperResourceName;
+
+    /**
+     * 资源全称 ,  本身的资源 , 用 . 分割
      * 如 system.user
      */
     @TableField(exist = false)
@@ -114,6 +122,8 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private String fullResourceFile;
+
+
 
     /**
      * 包全称 ， 项目的包名 + 模块的包名 , 使用的时候还要在加上模板对应的包名
@@ -167,6 +177,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgColumnConfigBO> childFkColumns;
+
+
+    /**
+     * 表或者视图  对应的BO对象 类全名
+     */
+    @TableField(exist = false)
+    private String fullBoClassName;
 
 
 
@@ -354,6 +371,19 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.businessNameGetMethods = businessNameGetMethods;
     }
 
+    public String getFullBoClassName() {
+        return fullBoClassName;
+    }
 
+    public void setFullBoClassName(String fullBoClassName) {
+        this.fullBoClassName = fullBoClassName;
+    }
 
+    public String getFullUpperResourceName() {
+        return fullUpperResourceName;
+    }
+
+    public void setFullUpperResourceName(String fullUpperResourceName) {
+        this.fullUpperResourceName = fullUpperResourceName;
+    }
 }

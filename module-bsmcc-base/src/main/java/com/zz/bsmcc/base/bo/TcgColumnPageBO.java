@@ -7,6 +7,7 @@ import com.zz.bsmcc.base.domain.TcgColumnPageEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,6 +24,18 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     @TableField(exist = false)
     private String javaName ;
+
+    /**
+     * 该列是否为数字
+     */
+    private boolean isNumber;
+
+    /**
+     * 改列是否为日期
+     */
+    private boolean isDate;
+
+
 
 
 
@@ -173,5 +186,25 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
 
     public void setValidates(List<TcgColumnValidateBO> validates) {
         this.validates = validates;
+    }
+
+    public String getTheDefaultValue() {
+        return super.getDefaultValue();
+    }
+
+    public boolean isNumber() {
+        return isNumber;
+    }
+
+    public void setNumber(boolean number) {
+        isNumber = number;
+    }
+
+    public boolean isDate() {
+        return isDate;
+    }
+
+    public void setDate(boolean date) {
+        isDate = date;
     }
 }

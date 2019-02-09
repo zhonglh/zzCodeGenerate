@@ -260,9 +260,10 @@ public class CgBusiness extends CgBaseBusiness{
         }
 
 
-
+        //所有列
         Map<String , TcgColumnConfigBO> allColumnMap = new HashMap<String , TcgColumnConfigBO>();
-        Map<String , TcgExColumnBO> allExColumnMap = new HashMap<String , TcgExColumnBO>();
+        //所有外键类型扩展列
+        Map<String , TcgExColumnBO> allExFkColumnMap = new HashMap<String , TcgExColumnBO>();
 
 
         for(TcgTableConfigBO tableConfig : tableConfigs){
@@ -317,8 +318,9 @@ public class CgBusiness extends CgBaseBusiness{
                 exMap = processExColumnMap(exColumns);
 
                 exColumns.forEach(item -> {
-                    String key = item.getOriginalColumn().getFkSchema().trim().toLowerCase() + item.getOriginalColumn().getFkName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase() ;
-                    allExColumnMap.put(key,item);
+                    if(EnumYesNo.YES.getCode().equals(item.getOriginalColumnFk())) {
+                        allExFkColumnMap.put(item.getId(), item);
+                    }
                 });
 
 
@@ -526,18 +528,17 @@ public class CgBusiness extends CgBaseBusiness{
 
         }
 
-        for(Map.Entry<String , TcgExColumnBO> exColumnEntry : allExColumnMap.entrySet()){
+        for(Map.Entry<String , TcgExColumnBO> exColumnEntry : allExFkColumnMap.entrySet()){
 
-            String tableColumnKey = exColumnEntry.getKey();
             TcgExColumnBO exColumnBO = exColumnEntry.getValue();
+            String tableColumnKey = exColumnBO.getOriginalColumn().getFkSchema().trim().toLowerCase() + exColumnBO.getOriginalColumn().getFkName().trim().toLowerCase() + exColumnBO.getFkColumnName().trim().toLowerCase();
 
-            if(exColumnBO.getOriginalColumnFk().equals(EnumYesNo.YES.getCode())) {
-                TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
-                if (columnConfigBO == null) {
-                    throw new RuntimeException(exColumnBO.getTableBO().getTableName() + "表 " + exColumnBO.getColumnTitle() + "列  设置错误");
-                }
-                exColumnBO.setFkColumn(columnConfigBO);
+            TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
+            if (columnConfigBO == null) {
+                throw new RuntimeException(exColumnBO.getTableBO().getTableName() + "表 " + exColumnBO.getColumnTitle() + "列  设置错误");
             }
+            exColumnBO.setFkColumn(columnConfigBO);
+
 
         }
 
@@ -770,6 +771,27 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("indexs" , tablePO.getIndexs());
         freemarkerModel.put("querys" , tablePO.getQueryConfigs());
         freemarkerModel.put("operations" , tablePO.getTempletGroupOperations());
+
+        List<TcgTempletGroupOperationBO> topOperations = new ArrayList<TcgTempletGroupOperationBO>();
+        List<TcgTempletGroupOperationBO> rightOperations = new ArrayList<TcgTempletGroupOperationBO>();
+        for(TcgTempletGroupOperationBO operationBO : tablePO.getTempletGroupOperations()){
+
+            if(operationBO.getPosition().equals(EnumButtonPosition.all.getVal()) ){
+                topOperations.add(operationBO);
+                rightOperations.add(operationBO);
+            }else {
+
+                if (operationBO.getPosition().equals(EnumButtonPosition.top.getVal())) {
+                    topOperations.add(operationBO);
+                } else {
+                    rightOperations.add(operationBO);
+                }
+            }
+        }
+        freemarkerModel.put("topOperations" , topOperations);
+        freemarkerModel.put("rightOperations" , rightOperations);
+
+
         freemarkerModel.put("tableoperations" , tablePO.getTableOperations());
 
         freemarkerModel.put("queryDicts" , tablePO.getQueryDicts());
@@ -1167,12 +1189,26 @@ public class CgBusiness extends CgBaseBusiness{
             TcgColumnConfigBO column = columnMap.get(columnPage.getId());
             if(column != null){
                 columnPage.setColumnConfig(column);
+                try {
+                    column.setJavaClass(Class.forName(column.getJavaFullClass()));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                columnPage.setNumber(column.isNumber());
+                columnPage.setDate(column.isDate());
             }
 
             if(columnPage.getColumnConfig() == null){
                 TcgExColumnBO exColumn = exColumnMap.get(columnPage.getId());
                 if(exColumn != null){
                     columnPage.setExColumn(exColumn);
+                    try {
+                        exColumn.setJavaClass(Class.forName(exColumn.getJavaFullClass()));
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    columnPage.setNumber(exColumn.isNumber());
+                    columnPage.setDate(exColumn.isDate());
                 }
             }
 
@@ -1181,6 +1217,11 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             columnPageMap.put(columnPage.getId() , columnPage);
+
+            if(columnPage.getDefaultType() == null || columnPage.getDefaultType().trim().isEmpty()){
+                columnPage.setDefaultType(null);
+                columnPage.setDefaultValue(null);
+            }
 
         }
 
@@ -1260,12 +1301,27 @@ public class CgBusiness extends CgBaseBusiness{
         fullResourceName = fullResourceName +  tableSourceName;
         tableConfig.setFullResourceName(fullResourceName);
 
-        tableConfig.setFullResource(fullResourceName.replaceAll("/", "."));
+        String fullResource = fullResourceName.replaceAll("/", ".");
+        if(fullResource.startsWith(".")){
+            fullResource = fullResource.substring(1);
+        }
+        tableConfig.setFullResource(fullResource);
+
+        String fullUpperResourceName = fullResourceName;
+        fullUpperResourceName = fullUpperResourceName.replaceAll("/", "_");
+        fullUpperResourceName = StringFormatKit.toCamelCase(fullUpperResourceName);
+        fullUpperResourceName = StringUtil.firstUpperCase(fullUpperResourceName);
+        tableConfig.setFullUpperResourceName(fullUpperResourceName);
 
 
         String fullResourceFile = fullResourceName;
         fullResourceFile = fullResourceFile.replaceAll("/", "");
         tableConfig.setFullResourceFile(fullResourceFile);
+
+
+
+
+
 
         if(StringUtils.isNotEmpty(fullPackageName)) {
             fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".") ? "" : ".") + fullPackageName;
@@ -1273,6 +1329,7 @@ public class CgBusiness extends CgBaseBusiness{
             fullPackageName = projectBO.getProjectPackage();
         }
         tableConfig.setFullPackageName(fullPackageName);
+        tableConfig.setFullBoClassName(fullPackageName+"bo."+tableConfig.getJavaName()+"BO");
     }
 
     /**

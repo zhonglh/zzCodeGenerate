@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,6 +25,11 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     @TableField(exist = false)
     //用来存放本列对应的表
     private TcgTableConfigBO tableBO;
+
+    /**
+     * 列对应的Java 类型
+     */
+    private Class javaClass;
 
     //用于生成代码
 
@@ -67,6 +73,19 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     //衍生列  ， 如果是字典或者外键， 对应的扩展列
     @TableField(exist = false)
     private List<TcgExColumnBO> exCloumns;
+
+    /**
+     * 本列是否为表的业务名称
+     */
+    private boolean isTableBusinessName;
+
+
+    /**
+     * 本列是否为表的业务主键
+     */
+    private boolean isTableBusinessKey;
+
+
 
 
     public String getColumnIsnullName() {
@@ -165,5 +184,38 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     public void setExCloumns(List<TcgExColumnBO> exCloumns) {
         this.exCloumns = exCloumns;
+    }
+
+    public boolean isTableBusinessName() {
+        return isTableBusinessName;
+    }
+
+    public void setTableBusinessName(boolean tableBusinessName) {
+        isTableBusinessName = tableBusinessName;
+    }
+
+    public boolean isTableBusinessKey() {
+        return isTableBusinessKey;
+    }
+
+    public void setTableBusinessKey(boolean tableBusinessKey) {
+        isTableBusinessKey = tableBusinessKey;
+    }
+
+
+    public Class getJavaClass() {
+        return javaClass;
+    }
+
+    public void setJavaClass(Class javaClass) {
+        this.javaClass = javaClass;
+    }
+
+    public boolean isNumber() {
+        return javaClass.isAssignableFrom(Number.class);
+    }
+
+    public boolean isDate() {
+        return javaClass.isAssignableFrom(Date.class);
     }
 }
