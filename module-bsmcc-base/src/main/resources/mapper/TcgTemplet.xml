@@ -13,6 +13,9 @@
 			<result column="is_ui" property="isUi"/>
 			<result column="is_rbac_sql" property="isRbacSql"/>
 			<result column="is_menu_sql" property="isMenuSql"/>
+			<result column="have_object_name" property="haveObjectName"/>
+
+
 
          	<result column="templet_title" property="templetTitle"/>
          	<result column="templet_content" property="templetContent"/>

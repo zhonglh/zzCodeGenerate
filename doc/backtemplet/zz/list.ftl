@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz后台管理系统" />
+<bms:contentHeader title="${project.projectName!}" />
 
 
 
@@ -87,17 +87,30 @@
         <div class="btn-bar" style="margin-left: -10px;">
 
         <#list topOperations as operation>
-        <#if operation.position?exists && (operation.position == 'top' || operation.position == 'all') && (operation.operationResource!='update')>
+        <#if (operation.operationResource!='update')>
 
-            <#if operation.operationResource != 'importExcel' && operation.operationResource != 'exportExcel'>
-            <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
-                <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?uncap_first}()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="${operation.icons!}"></use>
-                    </svg>
-                    <span>${operation.operationName!} </span>
-                </button>
-            </shiro:hasPermission>
+            <#if operation.operationResource == 'add'>
+
+                <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                        </svg>
+                        <span>${operation.operationName!} </span>
+                    </button>
+                </shiro:hasPermission>
+
+            <#elseif operation.operationResource == 'delete'>
+
+                <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
+                        </svg>
+                        <span>${operation.operationName!} </span>
+                    </button>
+                </shiro:hasPermission>
+
             <#elseif operation.operationResource == 'importExcel'>
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
@@ -108,6 +121,7 @@
                         <span>${operation.operationName!'Excel导入'}</span>
                     </div>
                 </shiro:hasPermission>
+
             <#elseif operation.operationResource == 'exportExcel'>
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
@@ -163,6 +177,18 @@
                     </ul>
                 </div>
                 </shiro:hasPermission>
+
+            <#else>
+
+                <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="${operation.icons!}"></use>
+                        </svg>
+                        <span>${operation.operationName!} </span>
+                    </button>
+                </shiro:hasPermission>
+
             </#if>
 
         </#if>
@@ -184,12 +210,14 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
+            <#if listColumnPages?exists>
             <#list listColumnPages as listPage>
-            <th field='${listPage.javaName}' <#if listPage.isNumber >align="right"<#elseif listPage.isDate >align="center"<#else >align="left"</#if> width="1" <#if listPage.isNumber >sortable='true'<#elseif listPage.isDate >sortable='true'<#else >sortable='false'</#if> <#if listPage.columnConfig?exists && listPage.columnConfig.isTableBusinessName>formatter='titleFmt'<#elseif listPage.isDate>formatter='dateFmt'</#if> >${listPage.columnComment}</th>
+            <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='true'<#elseif listPage.dateColumn=='1'  >sortable='true'<#else >sortable='false'</#if> <#if listPage.columnConfig?exists && listPage.columnConfig.tableBusinessName?exists && listPage.columnConfig.tableBusinessName == '1'>formatter='titleFmt'<#elseif listPage.dateColumn=='1' >formatter='dateFmt'</#if> >${listPage.columnComment}</th>
             </#list>
+            </#if>
 
-            <#if rightOperations?exists>
-            <th field='makes' align="center" formatter='makesFmt'>操作</th>
+            <#if rightOperations?exists && rightOperations?size != 0 >
+            <th field='makes' align="center" formatter='operationsFmt'>操作</th>
             </#if>
 
 
@@ -240,6 +268,51 @@
 
 
 
+    <#if rightOperations?exists && rightOperations?size != 0 >
+    /**
+     * 操作
+     * @param val
+     * @param r
+     * @param index
+     * @returns {string}
+     */
+    function operationsFmt (val, r, index)
+    {
+        // 操作栏为图标
+        var html = '';
+        html += '<div class="grid-column-option">';
+
+
+
+        <#list rightOperations as opertaion>
+        <#if opertaion.operationResource == 'delete'>
+        //删除按钮
+        html += '<a href="javascript:;"'
+                + '" name="'
+                + r.${table.businessName}
+                + '" id="'
+                + r.id
+                + '" onclick="deleteOne(this);" title="${opertaion.operationName}">' +
+                '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+
+        <#elseif opertaion.operationResource == 'add' || opertaion.operationResource == 'exportExcel' || opertaion.operationResource == 'importExcel'>
+        <#else>
+
+            html += '<a href="javascript:;"'
+                    + '" name="'
+                    + r.${table.businessName}
+                    + '" id="'
+                    + r.id
+                    + '" onclick="${opertaion.operationResource}One(this);" title="${opertaion.operationName}">' +
+                    '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="${opertaion.icons}"></use></svg></a>';
+
+        </#if>
+        </#list>
+
+        html += '</div>';
+        return html;
+    }
+    </#if>
 
 
 </script>

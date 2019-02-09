@@ -28,12 +28,12 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
     /**
      * 该列是否为数字
      */
-    private boolean isNumber;
+    private boolean isNumber = false;
 
     /**
      * 改列是否为日期
      */
-    private boolean isDate;
+    private boolean isDate = false;
 
 
 
@@ -195,16 +195,26 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
     public boolean isNumber() {
         return isNumber;
     }
+    public String getNumberColumn() {
+        return isNumber?"1":"0";
+    }
+
 
     public void setNumber(boolean number) {
-        isNumber = number;
+        this.isNumber = number;
     }
 
     public boolean isDate() {
         return isDate;
     }
+    public String getDateColumn() {
+        return isDate?"1":"0";
+    }
 
     public void setDate(boolean date) {
-        isDate = date;
+        this.isDate = date;
     }
+
+
+
 }

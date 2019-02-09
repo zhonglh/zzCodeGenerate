@@ -693,7 +693,7 @@ public class CgBusiness extends CgBaseBusiness{
                 filePath = basePath + File.separator + templet.getFileOutDir() + File.separator + templet.getFileInnerDir();
             }
 
-            String fileName = tablePO.getTableBO().getJavaName() +
+            String fileName = ( EnumYesNo.YES.getCode().equals(templet.getHaveObjectName()) ? tablePO.getTableBO().getJavaName(): "" ) +
                     (templet.getFileSuffix().isEmpty()?"":templet.getFileSuffix()) +
                     "."+templet.getFileType();
 
@@ -763,9 +763,11 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 
-        freemarkerModel.put("listColumnPages",
-            tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList())
-        );
+
+        List listColumnPages = tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList());
+        if(listColumnPages != null && !listColumnPages.isEmpty()) {
+            freemarkerModel.put("listColumnPages", listColumnPages);
+        }
 
 
         freemarkerModel.put("indexs" , tablePO.getIndexs());
@@ -1014,9 +1016,19 @@ public class CgBusiness extends CgBaseBusiness{
 
             Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
 
+            String businessName = tableConfig.getBusinessName();
+            String businessKey = tableConfig.getBusinessKey();
+
             for(TcgColumnConfigBO columnConfigBO : tcgColumnConfigBOs){
 
                 columnConfigBO.setTableBO(tableConfig);
+
+                if(businessName != null && businessName.trim().toLowerCase().equals(columnConfigBO.getColumnName().trim().toLowerCase()) ){
+                    columnConfigBO.setTableBusinessName(EnumYesNo.YES.getCode());
+                }
+                if(businessKey != null && businessKey.toLowerCase().indexOf(columnConfigBO.getColumnName().toLowerCase()) != -1){
+                    columnConfigBO.setTableBusinessKey(EnumYesNo.YES.getCode());
+                }
 
                 //替换掉空格 , Tab 键
                 if(StringUtils.isNotEmpty(columnConfigBO.getDictType())){

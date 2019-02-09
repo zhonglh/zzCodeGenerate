@@ -77,13 +77,13 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     /**
      * 本列是否为表的业务名称
      */
-    private boolean isTableBusinessName;
+    private String tableBusinessName ;
 
 
     /**
      * 本列是否为表的业务主键
      */
-    private boolean isTableBusinessKey;
+    private String tableBusinessKey ;
 
 
 
@@ -186,22 +186,22 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
         this.exCloumns = exCloumns;
     }
 
-    public boolean isTableBusinessName() {
-        return isTableBusinessName;
+
+    public String getTableBusinessName() {
+        return tableBusinessName;
     }
 
-    public void setTableBusinessName(boolean tableBusinessName) {
-        isTableBusinessName = tableBusinessName;
+    public void setTableBusinessName(String tableBusinessName) {
+        this.tableBusinessName = tableBusinessName;
     }
 
-    public boolean isTableBusinessKey() {
-        return isTableBusinessKey;
+    public String getTableBusinessKey() {
+        return tableBusinessKey;
     }
 
-    public void setTableBusinessKey(boolean tableBusinessKey) {
-        isTableBusinessKey = tableBusinessKey;
+    public void setTableBusinessKey(String tableBusinessKey) {
+        this.tableBusinessKey = tableBusinessKey;
     }
-
 
     public Class getJavaClass() {
         return javaClass;
@@ -212,10 +212,16 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     }
 
     public boolean isNumber() {
-        return javaClass.isAssignableFrom(Number.class);
+        return Number.class.isAssignableFrom(javaClass);
     }
 
     public boolean isDate() {
-        return javaClass.isAssignableFrom(Date.class);
+        return Date.class.isAssignableFrom(javaClass);
+    }
+
+
+
+    public static void main(String[] args) {
+        System.out.println(Date.class.isAssignableFrom(String.class));
     }
 }

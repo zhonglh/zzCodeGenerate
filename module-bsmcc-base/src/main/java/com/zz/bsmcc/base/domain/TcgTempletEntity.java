@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 * @date 2018-8-5 9:44:37
 */
 public class TcgTempletEntity extends BaseBusinessEntity<String> implements java.io.Serializable{
+
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
@@ -74,6 +75,9 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
         private String isMenuSql;
 
         private String isRbacSql;
+
+        //文件名是否要包含对象名
+        private String haveObjectName;
 
 
         //@EntityAttrAnnotation(attrName="模板内容",sort=8  , attrLength=5000    )
@@ -209,5 +213,13 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
     public void setIsRbacSql(String isRbacSql) {
         this.isRbacSql = isRbacSql;
+    }
+
+    public String getHaveObjectName() {
+        return haveObjectName;
+    }
+
+    public void setHaveObjectName(String haveObjectName) {
+        this.haveObjectName = haveObjectName;
     }
 }

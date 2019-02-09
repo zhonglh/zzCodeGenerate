@@ -140,6 +140,18 @@
 
 
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">文件名是否要包含对象名：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="haveObjectName" name="haveObjectName"  class="form-control">
+                                        <option value="1" <c:if test="${entity.haveObjectName ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                        <option value="0" <c:if test="${entity.haveObjectName ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">模板标题：</label>
                                 <div class="col-sm-8">
                                     <input id="templetTitle" name="templetTitle" value="${entity.templetTitle }" class="form-control" type="text" aria-required="true" aria-invalid="true" required="true" class="error">
