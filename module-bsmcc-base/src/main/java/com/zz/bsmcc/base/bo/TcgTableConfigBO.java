@@ -2,11 +2,13 @@ package com.zz.bsmcc.base.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -75,6 +77,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      * businessName 对应列的 get方法
      */
     private List<String> businessNameGetMethods;
+
 
 
 
@@ -150,6 +153,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgTableConfigBO> fkTables;
+
 
     /**
      * 所有外键对应的列名称
@@ -386,4 +390,14 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     public void setFullUpperResourceName(String fullUpperResourceName) {
         this.fullUpperResourceName = fullUpperResourceName;
     }
+
+    public String getBusinessNameCamelCase() {
+        return StringFormatKit.toCamelCase( super.getBusinessName() );
+    }
+
+
+    public String getBusinessKeyCamelCase() {
+        return StringFormatKit.toCamelCase( super.getBusinessKey() );
+    }
+
 }

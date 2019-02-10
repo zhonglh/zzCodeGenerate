@@ -27,21 +27,21 @@
                 <div class="form-group" >
                     <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
                         <#if being.columnPage.element == 'text' || being.columnPage.element == 'textarea' >
-                            <input type="text"  class="form-control input-sm" style='width: 200px;' id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onkeydown='enterKeySearch(event, search);'>
+                            <input type="text"  class="form-control input-sm" style='width: 200px;' id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onkeydown='enterKeySearch(event, search);'>
                         <#elseif being.columnPage.element == 'digits' >
-                            <input type="text" style='width: 200px;' <#if being.columnPage.max?exists>max="${being.columnPage.max}"</#if> step="1" class="form-control input-sm number  " id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>"  placeholder="${being.queryPlaceholder}">
+                            <input type="text" style='width: 200px;' <#if being.columnPage.max?exists>max="${being.columnPage.max}"</#if> step="1" class="form-control input-sm number  " id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"  placeholder="${being.queryPlaceholder}" onkeydown='enterKeySearch(event, search);'>
                         <#elseif being.columnPage.element == 'number' >
-                            <input type="text" style='width: 200px;' <#if being.columnPage.max?exists>max="${being.columnPage.max}"</#if> step="1" class="form-control input-sm number  " id="${being.queryFieldName}" name="${being.queryFieldName}"  placeholder="${being.queryPlaceholder}">
+                            <input type="text" style='width: 200px;' <#if being.columnPage.max?exists>max="${being.columnPage.max}"</#if> step="1" class="form-control input-sm number  " id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"  placeholder="${being.queryPlaceholder}" onkeydown='enterKeySearch(event, search);'>
                         <#elseif being.columnPage.element == 'date' >
-                            <input  type="text" class="form-control input-sm" style='width: 100px;' onclick="WdatePicker()" readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onchange="search();">
+                            <input  type="text" class="form-control input-sm" style='width: 100px;' onclick="WdatePicker()" readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onchange="search();">
                         <#elseif being.columnPage.element == 'timestamp' >
-                            <input type="text" class="form-control input-sm" style='width: 100px;' onclick="WdatePicker()" readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onchange="search();">
+                            <input type="text" class="form-control input-sm" style='width: 100px;' onclick="WdatePicker()" readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onchange="search();">
                         <#elseif being.columnPage.element == 'email' >
-                            <input type="text" class="form-control input-sm" style='width: 100px;' readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onchange="search();">
+                            <input type="text" class="form-control input-sm" style='width: 100px;' readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onkeydown='enterKeySearch(event, search);'>
                         <#elseif being.columnPage.element == 'url' >
-                            <input type="text" class="form-control input-sm" style='width: 100px;' readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onchange="search();">
+                            <input type="text" class="form-control input-sm" style='width: 100px;' readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onkeydown='enterKeySearch(event, search);'>
                         <#elseif being.columnPage.element == 'radio' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'select' >
-                            <select id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0>_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
+                            <select id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
                                 <option value="" >'${being.queryPlaceholder}'</option>
                                 <c:forEach items=${r"${"} yes_no_dicts ${r"}"} var="dict">
                                     <option value="${r"${"} dict.value ${r"}"}">${dict.name}</option>
@@ -238,9 +238,14 @@
 <bms:contentJS />
 
 <script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/list.js"></script>
+
+<shiro:hasPermission name="${table.fullResource}:importExcel">
 <script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/common-import-excel.js"></script>
-<script src="${r"${"} staticUrl ${r"}"}/statics2/business-js/system/user.js"></script>
-<script src="${r"${"} staticUrl ${r"}"}/statics2/business-js/system/dep.js"></script>
+</shiro:hasPermission>
+
+<#list fkTables as fkTable>
+<script src="${r"${"} staticUrl ${r"}"}/statics2/business-js${fkTable.fullResourceName}.js"></script>
+</#list>
 
 <script language="JavaScript">
 
@@ -252,7 +257,7 @@
         <#if being.columnPage.element == 'openwin' >
 
             //${being.queryTitle}
-            $("#${being.queryFieldName}").Ope${being.columnPage.exColumn.fkColumn.tableBO.fullUpperResourceName}SelectWin({
+            $("#${being.queryFieldName}").Open${being.columnPage.exColumn.fkColumn.tableBO.fullUpperResourceName}SelectWin({
                 title: "${being.queryTitle}",
                 selectType: "<#if being.columnPage.exColumn.fkColumn.tableBO.isTree == '1'>t<#else >d</#if>1",
                 callId: "${being.columnPage.exColumn.originalJavaName}",
