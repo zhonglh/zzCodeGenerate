@@ -160,6 +160,7 @@ public class CgBusiness extends CgBaseBusiness{
             menu.setTitle(table.getTableComment());
             menu.setResource(table.getFullResourceName());
             menu.setPath(table.getFullResourceFile());
+            menu.setTable(table);
 
             menu.setLeaf("1");
             menu.setLevel(1);

@@ -28,11 +28,13 @@ public class TcgColumnPageBO extends TcgColumnPageEntity implements Serializable
     /**
      * 该列是否为数字
      */
+    @TableField(exist = false)
     private boolean isNumber = false;
 
     /**
-     * 改列是否为日期
+     * 该列是否为日期
      */
+    @TableField(exist = false)
     private boolean isDate = false;
 
 

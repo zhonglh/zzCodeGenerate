@@ -1,5 +1,7 @@
 package com.zz.bsmcc.base.po;
 
+import com.zz.bsmcc.base.bo.TcgTableConfigBO;
+
 import java.io.Serializable;
 
 /**
@@ -15,6 +17,8 @@ public class MenuPO implements Serializable {
     private String path;
     private int level ;
     private String leaf;
+
+    private TcgTableConfigBO table;
 
     public String getId() {
         return id;
@@ -78,5 +82,13 @@ public class MenuPO implements Serializable {
 
     public void setLeaf(String leaf) {
         this.leaf = leaf;
+    }
+
+    public TcgTableConfigBO getTable() {
+        return table;
+    }
+
+    public void setTable(TcgTableConfigBO table) {
+        this.table = table;
     }
 }

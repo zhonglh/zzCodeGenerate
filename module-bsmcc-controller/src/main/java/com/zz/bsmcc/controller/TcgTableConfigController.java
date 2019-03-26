@@ -126,8 +126,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             TcgTableConfigQuery existQuery = new TcgTableConfigQueryImpl();
             existQuery.dbId(dbId);
             List<TcgTableConfigBO> exists = this.baseService.list(existQuery.buildWrapper());
-            for(TcgTableConfigBO tableBO : exists){
-                tableMap.remove(tableBO.getSchemaName()+tableBO.getTableName());
+            for(TcgTableConfigBO tableBO : exists) {
+                tableMap.remove(tableBO.getSchemaName() + tableBO.getTableName());
             }
 
 
