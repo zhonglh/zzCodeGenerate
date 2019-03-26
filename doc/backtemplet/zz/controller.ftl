@@ -82,4 +82,12 @@ public class ${table.javaName}Controller extends DefaultController<${table.javaN
 	</#if>
 
 
+	<#if table.isTree == '1'></#if>
+	@Override
+	protected TreeModel buildTreeModel(){
+		return new TreeModel().toTreeModel("${table.parentFieldName}" , "${table.businessName}");
+	}
+
+
+
 }

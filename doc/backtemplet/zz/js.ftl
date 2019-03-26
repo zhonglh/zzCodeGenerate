@@ -124,7 +124,7 @@ return dialog;
 
 
 <#if table.isTree?exists && table.isTree == '1'>
-var url = config.url || $AppContext + '${table.fullResourceName}/treelist';
+var url = config.url || $AppContext + '${table.fullResourceName}/tree';
 var tableTemple = '<div style="height: 350px; overflow-y:auto; overflow-x:hidden;" class="_w_height">' +
     '<table idField="id" treeField="${table.businessNameCamelCase!}" class="_dataContorl">'  +
         '	<thead>'  +
