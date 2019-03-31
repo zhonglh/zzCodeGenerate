@@ -143,7 +143,7 @@
 </div>
 
 <div region='center' style="padding: 0px 10px 0 10px;">
-    <table id='tableData-${r"${"} tableId ${r"}"}' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="true"
+    <table id='tableData-${r"${"} tableId ${r"}"}' class='easyui-treegrid' method='post' fit='true' pagination='true' fitColumns="true"
            border='true' sortName="id" sortOrder="desc" style="width: 100%;">
         <thead>
         <tr>
