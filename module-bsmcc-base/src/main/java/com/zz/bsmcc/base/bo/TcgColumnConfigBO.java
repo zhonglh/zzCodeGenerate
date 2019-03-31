@@ -29,6 +29,7 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     /**
      * 列对应的Java 类型
      */
+    @TableField(exist = false)
     private Class javaClass;
 
     //用于生成代码
@@ -77,12 +78,14 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     /**
      * 本列是否为表的业务名称
      */
+    @TableField(exist = false)
     private String tableBusinessName ;
 
 
     /**
      * 本列是否为表的业务主键
      */
+    @TableField(exist = false)
     private String tableBusinessKey ;
 
 

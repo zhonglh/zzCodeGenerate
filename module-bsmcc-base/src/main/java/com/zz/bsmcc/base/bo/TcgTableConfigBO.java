@@ -142,6 +142,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private String parentClass;
 
 
+
     /**
      * 在实体类中汇总要import的类
      */
@@ -395,9 +396,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         return StringFormatKit.toCamelCase( super.getBusinessName() );
     }
 
+    public String getParentFieldNameCamelCase() {
+        return StringFormatKit.toCamelCase( super.getParentFieldName() );
+    }
 
     public String getBusinessKeyCamelCase() {
         return StringFormatKit.toCamelCase( super.getBusinessKey() );
     }
+
 
 }

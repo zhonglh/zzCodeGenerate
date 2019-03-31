@@ -1,6 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="war" name="module-bsmcc-web:war">
     <output-path>$PROJECT_DIR$/module-bsmcc-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>module-bsmcc-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="archive" name="module-bsmcc-web-1.1.10.war">
       <element id="artifact" artifact-name="module-bsmcc-web:war exploded" />
     </root>

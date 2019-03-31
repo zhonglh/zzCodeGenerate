@@ -27,6 +27,7 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     /**
      * 列对应的Java 类型
      */
+    @TableField(exist = false)
     private Class javaClass;
 
 

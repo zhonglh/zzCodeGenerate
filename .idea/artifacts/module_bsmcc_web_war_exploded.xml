@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="module-bsmcc-web:war exploded">
     <output-path>$PROJECT_DIR$/module-bsmcc-web/target/module-bsmcc-web-1.1.10</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>module-bsmcc-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -123,7 +130,7 @@
           <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.9.6" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.2" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
-          <element id="file-copy" path="$MAVEN_REPOSITORY$/com/zz/bms/util/freemarkerUtil/1.0.1/freemarkerUtil-1.0.1.jar" output-file-name="FreemarkerUtil-1.0.1.jar" />
+          <element id="file-copy" path="F:/maven/repository/.m2/repository/com/zz/bms/util/freemarkerUtil/1.0.1/freemarkerUtil-1.0.1.jar" output-file-name="FreemarkerUtil-1.0.1.jar" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.20" />
           <element id="archive" name="module-bsmcc-base-1.1.10.jar">
             <element id="module-output" name="module-bsmcc-base" />

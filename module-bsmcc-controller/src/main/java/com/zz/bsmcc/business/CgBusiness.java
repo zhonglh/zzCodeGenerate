@@ -760,7 +760,7 @@ public class CgBusiness extends CgBaseBusiness{
                 showPages.add(page);
             }
         }
-        freemarkerModel.put("showColumnPages" , tablePO.getColumnPages());
+        freemarkerModel.put("showColumnPages" , showPages);
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 
@@ -780,12 +780,12 @@ public class CgBusiness extends CgBaseBusiness{
         for(TcgTempletGroupOperationBO operationBO : tablePO.getTempletGroupOperations()){
 
             if(operationBO.getPosition().equals(EnumButtonPosition.all.getVal()) ){
-                topOperations.add(operationBO);
+                topOperations.add(0,operationBO);
                 rightOperations.add(operationBO);
             }else {
 
                 if (operationBO.getPosition().equals(EnumButtonPosition.top.getVal())) {
-                    topOperations.add(operationBO);
+                    topOperations.add(0,operationBO);
                 } else {
                     rightOperations.add(operationBO);
                 }
@@ -1342,7 +1342,7 @@ public class CgBusiness extends CgBaseBusiness{
             fullPackageName = projectBO.getProjectPackage();
         }
         tableConfig.setFullPackageName(fullPackageName);
-        tableConfig.setFullBoClassName(fullPackageName+"bo."+tableConfig.getJavaName()+"BO");
+        tableConfig.setFullBoClassName(fullPackageName+".bo."+tableConfig.getJavaName()+"BO");
     }
 
     /**

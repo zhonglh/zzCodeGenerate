@@ -163,7 +163,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">模板内容：</label>
                                 <div class="col-sm-8">
-                                    <textarea rows="30" style="width:100%;" id="templetContent" name="templetContent">${entity.templetContent }</textarea></div>
+                                    <textarea rows="30" style="width:100%;" id="templetContent" name="templetContent">
+                                        <c:out value="${entity.templetContent}" escapeXml="true"/>
+                                    </textarea></div>
                             </div>
 
 

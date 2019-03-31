@@ -118,8 +118,8 @@
 
                                         <#elseif being?exists && being.exColumn?exists>
                                             <#if being.element == 'openwin' >
-                                                <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}">
-                                                <input type="text" name="${being.javaName}" id="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                                <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
+                                                <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
 
                                                 <div class="input-group-btn">
                                                     <button type="button"
@@ -245,20 +245,18 @@
                                         <#if nextPage.element == 'openwin' >
 
                                         <div class="input-group">
-                                            <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}">
-                                            <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                            <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
+                                            <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
 
                                             <div class="input-group-btn">
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm ${nextPage.javaName}">
+                                                <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
                                                     <svg class="icon" aria-hidden="true">
                                                         <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                              xlink:href="#icon-sousuo">
                                                         </use>
                                                     </svg>
                                                 </button>
-                                                <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"
-                                                        class="btn btn-primary btn-sm">
+                                                <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
                                                     <svg class="icon" aria-hidden="true">
                                                         <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                              xlink:href="#icon-close">
@@ -269,7 +267,8 @@
                                         </div>
 
                                         </#if>
-
+                                    <#else >
+                                        出现错误
                                     </#if>
 
 
@@ -293,25 +292,8 @@
 
 
 
-                <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
-                        </svg>
-                        <span>编 辑</span>
-                    </button>
-                </shiro:hasPermission>
-
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
-                    </svg>
-                    <span>返 回</span>
-                </button>
-
-
-                <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                <shiro:hasPermission name="system.user:add">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -319,7 +301,8 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+
+                <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -364,18 +347,20 @@
 
     $(function() {
 
-
-        <#list table.fkColumns as fkColumn>
-        //部门选择
-        ${r"$"}(".${fkColumn.javaName}").Open${table.fullUpperResourceName}SelectWin({
-            title: "${fkColumn.columnComment}",
-            selectType: "<#if fkColumn.tableBO.isTree == '1'>t<#else >d</#if>1",
-            callId: "${fkColumn.javaName}",
-            callName: "depName",
-            clearId: "clear${fkColumn.javaName?cap_first}"
+        <#list showColumnPages as being>
+        <#if being?exists && being.exColumn?exists>
+        <#if being.element == 'openwin' >
+        //选择${being.columnComment}
+        ${r"$"}(".${being.javaName}").Open${being.exColumn.originalColumn.fkTableConfig.fullUpperResourceName}SelectWin({
+            title: "${being.columnComment}",
+            selectType: "<#if being.exColumn.originalColumn.fkTableConfig.isTree == '1'>t<#else >d</#if>1",
+            callId: "${being.exColumn.originalJavaName}",
+            callName: "${being.javaName}",
+            clearId: "clear${being.exColumn.originalJavaName?cap_first}"
         });
-
-        </#list >
+        </#if>
+        </#if>
+        </#list>
 
     });
 

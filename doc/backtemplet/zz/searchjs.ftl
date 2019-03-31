@@ -10,9 +10,9 @@
 function open${table.fullUpperResourceName}Win(config, callBack)
 {
 
-<#if table.isTree?exists && table.isTree == '0'>
-var url = config.url || $AppContext + '${table.fullResourceName}/list';
-var tableTemple = '<div class="easyui-panel" style="padding:5px; border: 0; width: 605px;height:450px;">'
+    <#if table.isTree?exists && table.isTree == '0'>
+    var url = config.url || $AppContext + '${table.fullResourceName}/list';
+    var tableTemple = '<div class="easyui-panel" style="padding:5px; border: 0; width: 605px;height:450px;">'
     + '<table align="center" class="_searchTools" width="100%" border="0" style="background-color: #ffffff;">'
         + '<tr style="height: 40px;">'
             + '<td>'
@@ -51,91 +51,86 @@ var tableTemple = '<div class="easyui-panel" style="padding:5px; border: 0; widt
 </#if>
 
 
-                    tableTemple += '<button type="submit" class="btn btn-success btn-sm" ><i class="fa fa-search"></i>&nbsp;查询</button>'
-                    + '</div>'
-                + '</td>'
-            + '</tr>'
-        + '</table>'
+            tableTemple += '<button type="submit" class="btn btn-success btn-sm" ><i class="fa fa-search"></i>&nbsp;查询</button>'
+            + '</div>'
+        + '</td>'
+    + '</tr>'
+    + '</table>'
     + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="${table.businessNameCamelCase!}" sortOrder="asc"></table>'
     + '</div>';
 
-var options = config || {};
-options.id = "_${table.fullUpperResourceName}ListPanel" + config.callId;
-options.width = 616;
-options.height = 550;
-options.callBack = callBack;
-options.url = url;
-options.columns = [[
-{field:"id", checkbox: true, width: 40},
-<#if listColumnPages?exists>
-    <#list listColumnPages as listPage>
-    {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150, <#if listPage.numberColumn=='1' >align:"right"<#elseif listPage.dateColumn=='1' >align:"center"<#else >align:"left"</#if> ,<#if listPage.dateColumn=='1' >formatter='dateFmt'</#if>}<#if listPage_has_next>,</#if>
-    </#list>
-</#if>
-]];
-options.sampleData = {id: "id", name: "${table.businessNameCamelCase!}"};
-options.htmlTemple = tableTemple;
-options.compiledSuccess = function(){
-// 查询按钮事件
-dialog.tableTemple.find("button").bind("click", function(){
-search();
-});
+    var options = config || {};
+    options.id = "_${table.fullUpperResourceName}ListPanel" + config.callId;
+    options.width = 616;
+    options.height = 550;
+    options.callBack = callBack;
+    options.url = url;
+    options.columns = [[
+    {field:"id", checkbox: true, width: 40},
+    <#if listColumnPages?exists>
+        <#list listColumnPages as listPage>
+        {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150, <#if listPage.numberColumn=='1' >align:"right"<#elseif listPage.dateColumn=='1' >align:"center"<#else >align:"left"</#if> ,<#if listPage.dateColumn=='1' >formatter='dateFmt'</#if>}<#if listPage_has_next>,</#if>
+        </#list>
+    </#if>
+    ]];
+    options.sampleData = {id: "id", name: "${table.businessNameCamelCase!}"};
+    options.htmlTemple = tableTemple;
+    options.compiledSuccess = function(){
+        // 查询按钮事件
+        dialog.tableTemple.find("button").bind("click", function(){
+            search();
+        });
 
-dialog.tableTemple.find('input').keydown(function(e){
-if(e.keyCode==13){
-search();
-}
-});
+        dialog.tableTemple.find('input').keydown(function(e){
+            if(e.keyCode==13){
+                search();
+            }
+        });
 
-// 状态发生改变查询
-dialog.tableTemple.find("select").bind("change", function(){
-search();
-});
+        // 状态发生改变查询
+        dialog.tableTemple.find("select").bind("change", function(){
+            search();
+        });
 
-function search(){
-// 获取查询参数
-var params = options.params || {};
+        function search(){
+            // 获取查询参数
+            var params = options.params || {};
 
 
 
-<#if querys?exists >
-    <#list querys as being>
-        <#if (being_index) >=3 >
-            <#break>
+        <#if querys?exists >
+        <#list querys as being>
+            <#if (being_index >=3) >
+                <#break>
+            </#if>
+            <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
+            params["${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"] = dialog.tableTemple.find('select[name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"]').val();
+            </#if>
+        </#list>
         </#if>
-        <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
-        params["${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"] = dialog.tableTemple.find('select[name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"]').val();
-        </#if>
-    </#list>
+
+
+        // 调用查询方法
+        dialog.tableTemple.search(params);
+        }
+    };
+
+    var dialog = DialogTools.getDialog(options);
+
+    return dialog;
 </#if>
-
-
-// 调用查询方法
-dialog.tableTemple.search(params);
-}
-};
-
-var dialog = DialogTools.getDialog(options);
-
-return dialog;
-</#if>
-
-
-
-
-
 
 
 <#if table.isTree?exists && table.isTree == '1'>
-var url = config.url || $AppContext + '${table.fullResourceName}/tree';
-var tableTemple = '<div style="height: 350px; overflow-y:auto; overflow-x:hidden;" class="_w_height">' +
+    var url = config.url || $AppContext + '${table.fullResourceName}/tree';
+    var tableTemple = '<div style="height: 350px; overflow-y:auto; overflow-x:hidden;" class="_w_height">' +
     '<table idField="id" treeField="${table.businessNameCamelCase!}" class="_dataContorl">'  +
         '	<thead>'  +
         '		<tr>' ;
 
         <#if listColumnPages?exists>
             <#list listColumnPages as listPage>
-                <#if (listPage_index) >=3 >
+                <#if (listPage_index >=3) >
                     <#break>
                 </#if>
                 tableTemple += '			<th field="${listPage.javaName}" <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if>  <#if listPage.dateColumn=='1' >formatter='dateFmt'</#if>>${listPage.columnComment}</th>' ;
@@ -143,34 +138,34 @@ var tableTemple = '<div style="height: 350px; overflow-y:auto; overflow-x:hidden
         </#if>
 
 
-tableTemple +='		</tr>'+
+    tableTemple +='		</tr>'+
         '	</thead>' +
         '</table>' +
     '</div>';
 
-var options = config || {};
-options.width = 430;
-options.height = 450;
-options.id = "_${table.fullUpperResourceName}List" + config.callId;
-options.url = url;
-options.callBack = callBack;
-options.sampleData = {id: "id", name: "${table.businessNameCamelCase!}"};
-options.htmlTemple = tableTemple;
-var dialog = DialogTools.getDialog(options);
+    var options = config || {};
+    options.width = 430;
+    options.height = 450;
+    options.id = "_${table.fullUpperResourceName}List" + config.callId;
+    options.url = url;
+    options.callBack = callBack;
+    options.sampleData = {id: "id", name: "${table.businessNameCamelCase!}"};
+    options.htmlTemple = tableTemple;
+    var dialog = DialogTools.getDialog(options);
 
-return dialog;
+    return dialog;
 
-</#if>
+    </#if>
 };
 
 
 
 //${table.tableComment}选择控件
 $.fn.Open${table.fullUpperResourceName}SelectWin = function(config, callBack){
-var win = open${table.fullUpperResourceName}Win(config, callBack);
-$(this).unbind("click");
-$(this).bind("click", function(){
-win.show();
-});
-return win;
+    var win = open${table.fullUpperResourceName}Win(config, callBack);
+    $(this).unbind("click");
+    $(this).bind("click", function(){
+        win.show();
+    });
+    return win;
 };
