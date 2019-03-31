@@ -8,7 +8,7 @@
     <div class="navigation">
 
 
-        <span class="words"><a>${r"${"} breadcrumb ${r"}"}</a></span>
+        <span class="words"><a>${r"${"} breadcrumb ${r"$}"}</a></span>
 
 
     </div>
@@ -42,7 +42,7 @@
                             <input type="text" class="form-control input-sm" style='width: 100px;' readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' onkeydown='enterKeySearch(event, search);'>
                         <#elseif being.columnPage.element == 'radio' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'select' >
                             <select id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?size >0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
-                                <option value="" >'${being.queryPlaceholder}'</option>
+                                <option value="" >${being.queryPlaceholder}</option>
                                 <c:forEach items=${r"${"} yes_no_dicts ${r"}"} var="dict">
                                     <option value="${r"${"} dict.value ${r"}"}">${dict.name}</option>
                                 </c:forEach>
@@ -243,8 +243,8 @@
 <script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
-<#list fkTables as fkTable>
-<script src="${r"${"} staticUrl ${r"}"}/statics2/business-js${fkTable.fullResourceName}.js"></script>
+<#list table.fkTables as fkTable>
+<script src="${r"${"} staticUrl ${r"}"}/statics2/business-js${fkTable.fullResourceName}/search.js"></script>
 </#list>
 
 <script language="JavaScript">
@@ -294,7 +294,7 @@
         //删除按钮
         html += '<a href="javascript:;"'
                 + '" name="'
-                + r.${table.businessName}
+                + r.${table.businessNameCamelCase!}
                 + '" id="'
                 + r.id
                 + '" onclick="deleteOne(this);" title="${opertaion.operationName}">' +
@@ -305,7 +305,7 @@
 
             html += '<a href="javascript:;"'
                     + '" name="'
-                    + r.${table.businessName}
+                    + r.${table.businessNameCamelCase!}
                     + '" id="'
                     + r.id
                     + '" onclick="${opertaion.operationResource}One(this);" title="${opertaion.operationName}">' +

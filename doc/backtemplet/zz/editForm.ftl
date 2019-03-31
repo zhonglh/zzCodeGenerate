@@ -42,7 +42,7 @@
                                        value="${m.userName}" id="userName" name="userName" minlength="2" maxlength='50'/></td>
 
                             <th width="15%">用户登录名<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocorrect="off" autocapitalize="off"
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocomplete="off"
                                        value="${m.loginName}" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
                         </tr>
 

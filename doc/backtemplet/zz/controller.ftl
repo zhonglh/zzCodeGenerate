@@ -82,12 +82,12 @@ public class ${table.javaName}Controller extends DefaultController<${table.javaN
 	</#if>
 
 
-	<#if table.isTree == '1'></#if>
+	<#if table.isTree?exists && table.isTree == '1'>
 	@Override
 	protected TreeModel buildTreeModel(){
-		return new TreeModel().toTreeModel("${table.parentFieldName}" , "${table.businessName}");
+		return new TreeModel().toTreeModel("${table.parentFieldNameCamelCase!}" , "${table.businessNameCamelCase!}");
 	}
-
+	</#if>
 
 
 }

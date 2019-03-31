@@ -100,6 +100,9 @@ var params = options.params || {};
 
 <#if querys?exists >
     <#list querys as being>
+        <#if (being_index) >=3 >
+            <#break>
+        </#if>
         <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
         params["${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"] = dialog.tableTemple.find('select[name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"]').val();
         </#if>
@@ -132,6 +135,9 @@ var tableTemple = '<div style="height: 350px; overflow-y:auto; overflow-x:hidden
 
         <#if listColumnPages?exists>
             <#list listColumnPages as listPage>
+                <#if (listPage_index) >=3 >
+                    <#break>
+                </#if>
                 tableTemple += '			<th field="${listPage.javaName}" <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if>  <#if listPage.dateColumn=='1' >formatter='dateFmt'</#if>>${listPage.columnComment}</th>' ;
             </#list>
         </#if>
