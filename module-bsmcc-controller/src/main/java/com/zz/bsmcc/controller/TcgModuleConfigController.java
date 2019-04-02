@@ -32,10 +32,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 	@Autowired
 	private TcgProjectService tcgProjectService;
 
-	@Override
-	protected void isExist(TcgModuleConfigBO tcgModuleConfigBO) {
 
-	}
 
 
 

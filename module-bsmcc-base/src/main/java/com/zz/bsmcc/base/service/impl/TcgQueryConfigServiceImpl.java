@@ -46,6 +46,10 @@ public class TcgQueryConfigServiceImpl extends BaseServiceImpl<TcgQueryConfigBO,
 	}
 
 
+	@Override
+	public void isExist(TcgQueryConfigBO tcgQueryConfigBO) {
+
+	}
 
 	@Override
 	public TcgQueryConfigBO processResult(TcgQueryConfigBO tcgQueryConfigBO) {

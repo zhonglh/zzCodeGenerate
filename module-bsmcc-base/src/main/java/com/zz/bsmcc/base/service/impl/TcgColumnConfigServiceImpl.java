@@ -37,6 +37,11 @@ public class TcgColumnConfigServiceImpl extends BaseServiceImpl<TcgColumnConfigB
 
 
 	@Override
+	public void isExist(TcgColumnConfigBO tcgColumnConfigBO) {
+
+	}
+
+	@Override
 	public TcgColumnConfigBO processResult(TcgColumnConfigBO tcgColumnConfigBO) {
 		if(StringUtils.isNotEmpty(tcgColumnConfigBO.getColumnIsnull())){
 			if(EnumYesNo.YES.getCode().equals(tcgColumnConfigBO.getColumnIsnull())){

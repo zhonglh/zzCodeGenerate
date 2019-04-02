@@ -78,6 +78,11 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
         private String projectTenant;
 
 
+
+        //@EntityAttrAnnotation(attrName="是否有机构",sort=8  , attrLength=1    )
+        private String projectOrgan;
+
+
         //@EntityAttrAnnotation(attrName="查询条件模式",sort=9  , attrLength=20    )
             //toolbar      工具栏样式，尽量在一行  ordinary    普通模式， 一个条件一行 ， 最后是关键字查询  
         private String queryMode;
@@ -216,7 +221,20 @@ public class TcgProjectEntity extends BaseBusinessEntity<String> implements java
         public void setProjectTenant(String projectTenant) {
         this.projectTenant = projectTenant;
         }
+
         /**
+         * 是否有机构
+         * @return
+         */
+        public String getProjectOrgan() {
+                return projectOrgan;
+            }
+
+            public void setProjectOrgan(String projectOrgan) {
+                this.projectOrgan = projectOrgan;
+            }
+
+    /**
         * 查询条件模式
         * @return the queryMode
         */

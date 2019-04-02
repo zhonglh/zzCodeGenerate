@@ -30,4 +30,9 @@ public class TcgJavaDatatypeRealServiceImpl extends BaseServiceImpl<TcgJavaDatat
 	public BaseDAO getRwDAO() {
 	return tcgJavaDatatypeRealDAO;
 	}
+
+	@Override
+	public void isExist(TcgJavaDatatypeRealBO tcgJavaDatatypeRealBO) {
+
+	}
 }

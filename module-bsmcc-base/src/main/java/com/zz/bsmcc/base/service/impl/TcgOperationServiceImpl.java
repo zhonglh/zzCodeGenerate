@@ -35,6 +35,11 @@ public class TcgOperationServiceImpl extends BaseServiceImpl<TcgOperationBO,Stri
 
 
 	@Override
+	public void isExist(TcgOperationBO tcgOperationBO) {
+
+	}
+
+	@Override
 	public TcgOperationBO processResult(TcgOperationBO tcgOperationBO) {
 		if (tcgOperationBO == null) {
 			return null;

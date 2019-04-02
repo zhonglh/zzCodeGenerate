@@ -46,6 +46,11 @@ public class TcgCodeBuildLogServiceImpl extends BaseServiceImpl<TcgCodeBuildLogB
 
 
 	@Override
+	public void isExist(TcgCodeBuildLogBO tcgCodeBuildLogBO) {
+
+	}
+
+	@Override
 	public TcgCodeBuildLogBO processResult(TcgCodeBuildLogBO tcgCodeBuildLogBO) {
 
 		if(tcgCodeBuildLogBO == null){

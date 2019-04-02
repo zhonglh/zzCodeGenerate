@@ -18,11 +18,5 @@ public class TcgColumnValidateController extends ZzccBaseController<TcgColumnVal
 
 
 
-	@Override
-	protected void isExist(TcgColumnValidateBO tcgColumnValidateBO) {
-
-	}
-
-
 
 }

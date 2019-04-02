@@ -2,6 +2,7 @@ package com.zz.bsmcc.base.service.impl;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bsmcc.base.bo.TcgModuleConfigBO;
@@ -51,6 +52,19 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 	}
 
 
+	@Override
+	public void isExist(TcgTableConfigBO tcgTableConfigBO) {
+		TcgTableConfigBO tmp = new TcgTableConfigBO();
+		tmp.setId(tcgTableConfigBO.getId());
+		tmp.setProjectId(tcgTableConfigBO.getProjectId());
+		tmp.setDbId(tcgTableConfigBO.getDbId());
+		tmp.setTableName(tcgTableConfigBO.getTableName());
+
+		TcgTableConfigBO result =  this.selectCheck(tmp);
+		if(result != null && result.getId() != null){
+			throw new BizException("数据重复");
+		}
+	}
 
 	@Override
 	public TcgTableConfigBO processResult(TcgTableConfigBO tcgTableConfigBO) {

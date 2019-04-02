@@ -232,10 +232,10 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if (StringUtils.isEmpty(tcgTableConfigBO.getDbId()) || StringUtils.isEmpty(tcgTableConfigBO.getTableName()) || StringUtils.isEmpty(tcgTableConfigBO.getProjectId())) {
                 continue;
             }
-            this.isExist(tcgTableConfigBO) ;
+            this.baseService.isExist(tcgTableConfigBO) ;
             TablesLocalThread.setTables(tablesMap.get(tcgTableConfigBO.getSchemaName()));
 
-            TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, sessionUserVO);
+            TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, projectBO,sessionUserVO);
             tablePOs.add(tablePO);
             TablesLocalThread.setTables(null);
         }
@@ -541,21 +541,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         return wrapper;
     }
 
-	@Override
-	protected void isExist(TcgTableConfigBO tcgTableConfigBO) {
 
-        TcgTableConfigBO tmp = new TcgTableConfigBO();
-        tmp.setId(tcgTableConfigBO.getId());
-        tmp.setProjectId(tcgTableConfigBO.getProjectId());
-        tmp.setDbId(tcgTableConfigBO.getDbId());
-        tmp.setTableName(tcgTableConfigBO.getTableName());
-
-        TcgTableConfigBO result =  this.baseService.selectCheck(tmp);
-        if(result != null && result.getId() != null){
-            throw new BizException("数据重复");
-        }
-
-	}
 
 
 

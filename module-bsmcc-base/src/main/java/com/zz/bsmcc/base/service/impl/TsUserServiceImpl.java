@@ -30,4 +30,9 @@ public class TsUserServiceImpl extends BaseServiceImpl<TsUserBO,String> implemen
 	public BaseDAO getRwDAO() {
 	return tsUserDAO;
 	}
+
+	@Override
+	public void isExist(TsUserBO tsUserBO) {
+
+	}
 }

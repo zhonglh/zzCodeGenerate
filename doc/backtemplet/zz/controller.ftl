@@ -34,29 +34,6 @@ public class ${table.javaName}Controller extends DefaultController<${table.javaN
 	private TsDictService tsDictService;
 
 
-	@Override
-	protected void isExist(${table.javaName}BO ${table.javaName?uncap_first}BO) {
-	<#if (indexs?exists && indexs?size > 0) >
-
-		${table.javaName}BO ckBO ;
-		boolean isExist = false;
-		${table.javaName}BO temp = null ;
-
-		<#list indexs as index>
-		ckBO = new ${table.javaName}BO();
-		ckBO.setId( ${table.javaName?uncap_first}BO.getId() );
-		<#list index.columns as col>
-        ckBO.${col.setMethodName}(${table.javaName?uncap_first}BO.${col.getMethodName}());
-		</#list>
-        temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {
-        	throw new BizException(EnumErrorMsg.business_error.getCode(),"${index.tipMsg}");
-		}
-		</#list>
-
-	</#if>
-	}
-
 
 
 	@Override

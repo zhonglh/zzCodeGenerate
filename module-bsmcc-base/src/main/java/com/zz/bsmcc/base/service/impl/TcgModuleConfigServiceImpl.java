@@ -28,6 +28,10 @@ public class TcgModuleConfigServiceImpl extends BaseServiceImpl<TcgModuleConfigB
 	private TcgProjectDAO tcgProjectDAO ;
 
 
+	@Override
+	public void isExist(TcgModuleConfigBO tcgModuleConfigBO) {
+
+	}
 
 	@Override
 	public TcgModuleConfigBO processResult(TcgModuleConfigBO tcgModuleConfigBO){

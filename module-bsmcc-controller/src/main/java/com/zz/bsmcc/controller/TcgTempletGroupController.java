@@ -141,12 +141,6 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 
 
 
-	@Override
-	protected void isExist(TcgTempletGroupBO tcgTempletGroupBO) {
-
-	}
-
-
 
 
 

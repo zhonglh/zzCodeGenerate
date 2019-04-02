@@ -39,6 +39,11 @@ public class TcgTempletGroupOperationServiceImpl extends BaseServiceImpl<TcgTemp
 
 
 	@Override
+	public void isExist(TcgTempletGroupOperationBO tcgTempletGroupOperationBO) {
+
+	}
+
+	@Override
 	public TcgTempletGroupOperationBO processResult(TcgTempletGroupOperationBO t) {
 		if(t == null){
 			return null;

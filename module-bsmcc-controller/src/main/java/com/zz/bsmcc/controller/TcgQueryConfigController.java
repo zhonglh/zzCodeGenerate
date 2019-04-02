@@ -21,11 +21,5 @@ public class TcgQueryConfigController extends ZzccBaseController<TcgQueryConfigB
 
 
 
-	@Override
-	protected void isExist(TcgQueryConfigBO tcgQueryConfigBO) {
-
-	}
-
-
 
 }

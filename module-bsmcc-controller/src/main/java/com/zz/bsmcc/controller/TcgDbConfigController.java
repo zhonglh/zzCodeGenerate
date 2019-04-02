@@ -18,11 +18,5 @@ public class TcgDbConfigController extends ZzccBaseController<TcgDbConfigBO, Str
 
 
 
-	@Override
-	protected void isExist(TcgDbConfigBO tcgDbConfigBO) {
-
-	}
-
-
 
 }

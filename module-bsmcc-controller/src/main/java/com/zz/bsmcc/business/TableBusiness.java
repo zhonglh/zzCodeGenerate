@@ -51,7 +51,7 @@ public class TableBusiness {
 
 
 
-    public TablePO tableBusiness(TcgDbConfigBO dbConfigBO, TcgTableConfigBO tableBO, ILoginUserEntity<String> sessionUserVO){
+    public TablePO tableBusiness(TcgDbConfigBO dbConfigBO, TcgTableConfigBO tableBO,TcgProjectBO projectBO, ILoginUserEntity<String> sessionUserVO){
 
 
         TablePO tablePO = new TablePO();
@@ -93,7 +93,7 @@ public class TableBusiness {
             for(Column column : columns){
                 column.setDataType(column.getDataType().toUpperCase());
                 TcgColumnConfigBO tcgColumnConfigBO = new TcgColumnConfigBO();
-                TableLogic.initColumnConfig(tcgColumnConfigBO , tableBO, column ,typeMap , sessionUserVO);
+                TableLogic.initColumnConfig(tcgColumnConfigBO , tableBO, column ,typeMap , projectBO ,sessionUserVO);
                 index ++ ;
                 tcgColumnConfigBO.setColumnSort(index * 100);
                 columnBOs.add(tcgColumnConfigBO);

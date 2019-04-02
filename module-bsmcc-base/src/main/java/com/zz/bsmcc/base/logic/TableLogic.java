@@ -81,7 +81,7 @@ public class TableLogic {
 
 
     public static void initColumnConfig(TcgColumnConfigBO columnBO, TcgTableConfigBO tableBO , Column column ,
-                                    Map<String,String> typeMap , ILoginUserEntity<String> sessionUserVO){
+                                    Map<String,String> typeMap ,TcgProjectBO projectBO, ILoginUserEntity<String> sessionUserVO){
 
         columnBO.setTableBO(tableBO);
         columnBO.setTableId(tableBO.getId());
@@ -109,7 +109,8 @@ public class TableLogic {
         columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
         if(!fieldNames.contains(columnBO.getJavaName())) {
             if (columnBO.getColumnIskey().equals(EnumYesNo.NO.getCode())) {
-                boolean isFk = isFk(columnBO);
+
+                boolean isFk = isFk(projectBO,columnBO);
                 if(isFk) {
                     columnBO.setColumnIsfk(EnumYesNo.YES.getCode());
                     columnBO.setFkColumn("id");
@@ -440,7 +441,21 @@ public class TableLogic {
 
 
 
-    private static boolean isFk(TcgColumnConfigBO columnBO) {
+    private static boolean isFk(TcgProjectBO projectBO,TcgColumnConfigBO columnBO) {
+
+        if(EnumYesNo.NO.getCode().equals(projectBO.getProjectTenant())){
+            if(columnBO.getColumnName().toLowerCase().endsWith("tenant_id")){
+                return false;
+            }
+        }
+
+
+        if(EnumYesNo.NO.getCode().equals(projectBO.getProjectOrgan())){
+            if(columnBO.getColumnName().toLowerCase().endsWith("organ_id")){
+                return false;
+            }
+        }
+
         //约定  外键列的长度为 32 , 36 , 64 , 并且不是file , files , image , images 结尾的
         if (columnBO.getColumnLength() != null &&
                 (columnBO.getColumnLength() == 32 || columnBO.getColumnLength() == 36 || columnBO.getColumnLength() == 64)

@@ -30,4 +30,9 @@ public class TcgGroupConfigServiceImpl extends BaseServiceImpl<TcgGroupConfigBO,
 	public BaseDAO getRwDAO() {
 	return tcgGroupConfigDAO;
 	}
+
+	@Override
+	public void isExist(TcgGroupConfigBO tcgGroupConfigBO) {
+
+	}
 }

@@ -76,6 +76,17 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
         private String isRbacSql;
 
+
+
+        //是否只对树状 有效
+        private String effectiveTree ;
+
+        //是否只对单表有效
+        private String effectiveSingle ;
+
+
+
+
         //文件名是否要包含对象名
         private String haveObjectName;
 

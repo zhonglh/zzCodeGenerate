@@ -18,11 +18,6 @@ public class TcgColumnExController extends ZzccBaseController<TcgColumnExBO, Str
 
 
 
-	@Override
-	protected void isExist(TcgColumnExBO tcgColumnExBO) {
-
-	}
-
 
 
 }

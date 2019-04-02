@@ -21,11 +21,5 @@ public class TcgGroupConfigController extends ZzccBaseController<TcgGroupConfigB
 
 
 
-	@Override
-	protected void isExist(TcgGroupConfigBO tcgGroupConfigBO) {
-
-	}
-
-
 
 }

@@ -122,6 +122,17 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">多机构：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="projectOrgan" name="projectOrgan"  class="form-control">
+                                        <option value="0" <c:if test="${entity.projectOrgan ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                        <option value="1" <c:if test="${entity.projectOrgan ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">页面使用视图：</label>
                                 <div class="col-sm-8">
 

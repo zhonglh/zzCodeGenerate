@@ -44,6 +44,11 @@ public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String
 
 
 	@Override
+	public void isExist(TcgExColumnBO tcgExColumnBO) {
+
+	}
+
+	@Override
 	public TcgExColumnBO processResult(TcgExColumnBO tcgExColumnBO) {
 
 

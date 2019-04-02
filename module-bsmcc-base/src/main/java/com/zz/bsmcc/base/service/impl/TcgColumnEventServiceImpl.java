@@ -44,6 +44,11 @@ public class TcgColumnEventServiceImpl extends BaseServiceImpl<TcgColumnEventBO,
 
 
 	@Override
+	public void isExist(TcgColumnEventBO tcgColumnEventBO) {
+
+	}
+
+	@Override
 	public TcgColumnEventBO processResult(TcgColumnEventBO tcgColumnEventBO) {
 		if(StringUtils.isNotEmpty(tcgColumnEventBO.getColumnId())){
 			TcgColumnConfigBO TcgColumnConfigBO = tcgColumnConfigDAO.selectById(tcgColumnEventBO.getColumnId());

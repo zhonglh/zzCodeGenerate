@@ -1,5 +1,7 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
@@ -34,6 +36,32 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 	@Autowired
 	private TsDictService tsDictService;
+
+
+
+
+	@Override
+	public void isExist(${table.javaName}BO ${table.javaName?uncap_first}BO) {
+	<#if (indexs?exists && indexs?size > 0) >
+
+		${table.javaName}BO ckBO ;
+		boolean isExist = false;
+		${table.javaName}BO temp = null ;
+
+		<#list indexs as index>
+			ckBO = new ${table.javaName}BO();
+			ckBO.setId( ${table.javaName?uncap_first}BO.getId() );
+			<#list index.columns as col>
+				ckBO.${col.setMethodName}(${table.javaName?uncap_first}BO.${col.getMethodName}());
+			</#list>
+			temp = this.selectCheck(ckBO);
+			if (EntityUtil.isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"${index.tipMsg}");
+			}
+		</#list>
+
+	</#if>
+	}
 
 	<#list table.fkTables as being>
 	<#if ((table.mainTableConfig?exists && table.mainTableConfig.id!=being.id && table.id!=being.id) || (!table.mainTableConfig?exists && table.id!=being.id))>

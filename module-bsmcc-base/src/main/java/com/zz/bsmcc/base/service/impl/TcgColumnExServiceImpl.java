@@ -30,4 +30,9 @@ public class TcgColumnExServiceImpl extends BaseServiceImpl<TcgColumnExBO,String
 	public BaseDAO getRwDAO() {
 	return tcgColumnExDAO;
 	}
+
+	@Override
+	public void isExist(TcgColumnExBO tcgColumnExBO) {
+
+	}
 }

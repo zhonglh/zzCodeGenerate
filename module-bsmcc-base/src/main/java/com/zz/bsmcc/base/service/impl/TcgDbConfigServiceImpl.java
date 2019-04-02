@@ -32,6 +32,8 @@ public class TcgDbConfigServiceImpl extends BaseServiceImpl<TcgDbConfigBO,String
 	}
 
 
+	@Override
+	public void isExist(TcgDbConfigBO tcgDbConfigBO) {
 
-
+	}
 }

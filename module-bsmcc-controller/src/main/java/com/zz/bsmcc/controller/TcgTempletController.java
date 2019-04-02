@@ -88,11 +88,6 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 	}
 
 
-	@Override
-	protected void isExist(TcgTempletBO tcgTempletBO) {
-
-	}
-
 
 
 }

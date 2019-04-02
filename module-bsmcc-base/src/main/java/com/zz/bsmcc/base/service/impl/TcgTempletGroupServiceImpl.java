@@ -30,4 +30,9 @@ public class TcgTempletGroupServiceImpl extends BaseServiceImpl<TcgTempletGroupB
 	public BaseDAO getRwDAO() {
 	return tcgTempletGroupDAO;
 	}
+
+	@Override
+	public void isExist(TcgTempletGroupBO tcgTempletGroupBO) {
+
+	}
 }

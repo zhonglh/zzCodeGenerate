@@ -30,4 +30,9 @@ public class TcgProjectServiceImpl extends BaseServiceImpl<TcgProjectBO,String> 
 	public BaseDAO getRwDAO() {
 	return tcgProjectDAO;
 	}
+
+	@Override
+	public void isExist(TcgProjectBO tcgProjectBO) {
+
+	}
 }

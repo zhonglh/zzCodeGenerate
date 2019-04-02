@@ -44,6 +44,10 @@ public class TcgColumnValidateServiceImpl extends BaseServiceImpl<TcgColumnValid
 	}
 
 
+	@Override
+	public void isExist(TcgColumnValidateBO tcgColumnValidateBO) {
+
+	}
 
 	@Override
 	public TcgColumnValidateBO processResult(TcgColumnValidateBO tcgColumnValidateBO) {

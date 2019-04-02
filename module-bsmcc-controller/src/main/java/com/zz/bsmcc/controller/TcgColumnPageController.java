@@ -18,11 +18,5 @@ public class TcgColumnPageController extends ZzccBaseController<TcgColumnPageBO,
 
 
 
-	@Override
-	protected void isExist(TcgColumnPageBO tcgColumnPageBO) {
-
-	}
-
-
 
 }

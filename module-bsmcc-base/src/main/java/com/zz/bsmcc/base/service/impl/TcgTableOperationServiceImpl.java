@@ -36,9 +36,12 @@ public class TcgTableOperationServiceImpl extends BaseServiceImpl<TcgTableOperat
 	}
 
 
+	@Override
+	public void isExist(TcgTableOperationBO tcgTableOperationBO) {
 
+	}
 
-    @Override
+	@Override
     public TcgTableOperationBO processResult(TcgTableOperationBO tcgTableOperationBO) {
         tcgTableOperationBO.setOperationBO(tcgOperationDAO.selectById(tcgTableOperationBO.getOperationId()));
         return tcgTableOperationBO;

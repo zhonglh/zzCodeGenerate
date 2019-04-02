@@ -18,11 +18,6 @@ public class TcgIndexConfigController extends ZzccBaseController<TcgIndexConfigB
 
 
 
-	@Override
-	protected void isExist(TcgIndexConfigBO tcgIndexConfigBO) {
-
-	}
-
 
 
 }

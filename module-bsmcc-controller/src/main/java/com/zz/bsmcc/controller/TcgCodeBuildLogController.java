@@ -58,10 +58,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 	private CgBusiness cgBusiness;
 
 
-	@Override
-	protected void isExist(TcgCodeBuildLogBO tcgCodeBuildLogBO) {
 
-	}
 
 	@Override
 	protected void setCommonData(TcgCodeBuildLogBO tcgCodeBuildLogBO, ModelMap model) {

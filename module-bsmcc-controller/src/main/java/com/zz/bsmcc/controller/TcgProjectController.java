@@ -18,11 +18,6 @@ public class TcgProjectController extends ZzccBaseController<TcgProjectBO, Strin
 
 
 
-	@Override
-	protected void isExist(TcgProjectBO tcgProjectBO) {
-
-	}
-
 
 
 }

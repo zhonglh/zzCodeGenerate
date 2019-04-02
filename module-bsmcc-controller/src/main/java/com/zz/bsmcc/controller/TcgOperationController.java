@@ -21,12 +21,6 @@ public class TcgOperationController extends ZzccBaseController<TcgOperationBO, S
 
 
 
-	@Override
-	protected void isExist(TcgOperationBO tcgOperationBO) {
-
-	}
-
-
 
 
 

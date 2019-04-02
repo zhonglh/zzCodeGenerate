@@ -39,6 +39,11 @@ public class TcgTempletServiceImpl extends BaseServiceImpl<TcgTempletBO,String> 
 
 
 	@Override
+	public void isExist(TcgTempletBO tcgTempletBO) {
+
+	}
+
+	@Override
 	public TcgTempletBO processResult(TcgTempletBO tcgTempletBO) {
 		if (tcgTempletBO == null) {
 			return null;

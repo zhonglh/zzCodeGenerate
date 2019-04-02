@@ -30,11 +30,5 @@ public class TcgTableOperationController extends ZzccBaseController<TcgTableOper
 
 
 
-	@Override
-	protected void isExist(TcgTableOperationBO tcgTableOperationBO) {
-
-	}
-
-
 
 }

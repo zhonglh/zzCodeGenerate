@@ -30,11 +30,6 @@ public class TcgColumnEventController extends ZzccBaseController<TcgColumnEventB
 
 
 
-	@Override
-	protected void isExist(TcgColumnEventBO tcgColumnEventBO) {
-
-	}
-
 
 
 }

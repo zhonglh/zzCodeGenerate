@@ -44,6 +44,10 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 	}
 
 
+	@Override
+	public void isExist(TcgColumnPageBO tcgColumnPageBO) {
+
+	}
 
 	@Override
 	public TcgColumnPageBO processResult(TcgColumnPageBO tcgColumnPageBO) {
