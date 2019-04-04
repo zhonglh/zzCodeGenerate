@@ -21,13 +21,9 @@ public class TcgTempletGroupServiceImpl extends BaseServiceImpl<TcgTempletGroupB
 	private TcgTempletGroupDAO tcgTempletGroupDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgTempletGroupDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgTempletGroupDAO;
 	}
 

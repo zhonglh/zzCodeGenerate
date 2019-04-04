@@ -17,6 +17,7 @@ import com.zz.bsmcc.base.query.impl.*;
 import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.enums.EnumButtonPosition;
 import com.zz.bms.enums.EnumPageElement;
+import com.zz.bsmcc.core.enums.EnumPageRelation;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -274,6 +275,7 @@ public class CgBusiness extends CgBaseBusiness{
 
             tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
             tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
+            tableConfig.setPageChildTables(new ArrayList<TcgTableConfigBO>());
 
 
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
@@ -523,6 +525,9 @@ public class CgBusiness extends CgBaseBusiness{
                 for(TcgTableConfigBO p : tableConfig.getFkTables()){
                     p.getChildFkTables().add(tableConfig);
                     p.getChildFkColumns().add(tableConfig.getFkColumns().get(index));
+                    if(EnumPageRelation.embed.getVal().equals(tableConfig.getPageRelation())){
+                        p.getPageChildTables().add(tableConfig);
+                    }
                     index ++;
                 }
             }
@@ -543,26 +548,6 @@ public class CgBusiness extends CgBaseBusiness{
 
         }
 
-        /*for(TcgTableConfigBO tableConfig : tableConfigs){
-                tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
-                tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
-                for(TcgTableConfigBO childTable : tableConfigs){
-                    if(tableConfig != childTable){
-                        if(childTable.getFkTables() != null && !childTable.getFkTables().isEmpty()){
-                            int index = 0;
-                            for(TcgTableConfigBO table : childTable.getFkTables()){
-                                if(table.getId().equals(tableConfig.getId()) ){
-                                    tableConfig.getChildFkTables().add(childTable);
-                                    tableConfig.getChildFkColumns().add(childTable.getFkColumns().get(index));
-                                    break;
-                                }
-                                index ++;
-                            }
-                        }
-                    }
-                }
-
-        }*/
 
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
@@ -671,6 +656,25 @@ public class CgBusiness extends CgBaseBusiness{
             //如果表里设置的不生成UI, 而模板是UI的模板， 将不继续
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
                 continue;
+            }
+
+            if(StringUtils.isNotEmpty(templet.getEffectiveTree())){
+                if(EnumYesNo.YES.getCode().equals(templet.getEffectiveTree()) && EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTree())){
+                    continue;
+                }
+                if(EnumYesNo.NO.getCode().equals(templet.getEffectiveTree()) && EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsTree())){
+                    continue;
+                }
+            }
+
+
+            if(StringUtils.isNotEmpty(templet.getEffectiveSingle())){
+                if(EnumYesNo.YES.getCode().equals(templet.getEffectiveSingle()) && !tablePO.getTableBO().getPageChildTables().isEmpty()){
+                    continue;
+                }
+                if(EnumYesNo.NO.getCode().equals(templet.getEffectiveSingle()) && tablePO.getTableBO().getPageChildTables().isEmpty()){
+                    continue;
+                }
             }
 
             if( this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName())  ){

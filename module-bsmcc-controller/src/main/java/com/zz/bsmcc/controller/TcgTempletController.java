@@ -32,7 +32,7 @@ public class TcgTempletController extends ZzccBaseController<TcgTempletBO, Strin
 
 
 	@Override
-	protected QueryWrapper buildWrapper(TcgTempletQueryWebImpl query, TcgTempletBO m) {
+	protected QueryWrapper buildQueryWrapper(TcgTempletQueryWebImpl query, TcgTempletBO m) {
 		QueryWrapper wrapper =  query.buildWrapper();
 		wrapper.orderByAsc(" group_id " );
 		return wrapper;

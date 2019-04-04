@@ -33,13 +33,9 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 	private TcgColumnPageDAO tcgColumnPageDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgColumnPageDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgColumnPageDAO;
 	}
 

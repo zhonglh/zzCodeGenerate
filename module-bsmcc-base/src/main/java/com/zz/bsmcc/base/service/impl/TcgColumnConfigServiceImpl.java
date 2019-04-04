@@ -25,13 +25,9 @@ public class TcgColumnConfigServiceImpl extends BaseServiceImpl<TcgColumnConfigB
 	private TcgColumnConfigDAO tcgColumnConfigDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgColumnConfigDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgColumnConfigDAO;
 	}
 

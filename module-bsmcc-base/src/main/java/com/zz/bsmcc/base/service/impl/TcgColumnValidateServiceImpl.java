@@ -33,13 +33,9 @@ public class TcgColumnValidateServiceImpl extends BaseServiceImpl<TcgColumnValid
 	private TcgColumnValidateDAO tcgColumnValidateDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgColumnValidateDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgColumnValidateDAO;
 	}
 

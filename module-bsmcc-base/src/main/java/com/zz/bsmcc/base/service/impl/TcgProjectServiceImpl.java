@@ -21,13 +21,9 @@ public class TcgProjectServiceImpl extends BaseServiceImpl<TcgProjectBO,String> 
 	private TcgProjectDAO tcgProjectDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgProjectDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgProjectDAO;
 	}
 

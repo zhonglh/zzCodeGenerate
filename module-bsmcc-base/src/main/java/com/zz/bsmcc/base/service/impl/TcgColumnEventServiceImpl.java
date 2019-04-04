@@ -32,13 +32,9 @@ public class TcgColumnEventServiceImpl extends BaseServiceImpl<TcgColumnEventBO,
 	private TcgColumnEventDAO tcgColumnEventDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgColumnEventDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgColumnEventDAO;
 	}
 

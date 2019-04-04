@@ -32,13 +32,9 @@ public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String
 	private TcgExColumnDAO tcgExColumnDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgExColumnDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgExColumnDAO;
 	}
 

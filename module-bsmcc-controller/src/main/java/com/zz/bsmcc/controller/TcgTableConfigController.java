@@ -533,7 +533,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
     @Override
-    protected QueryWrapper buildWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {
+    protected QueryWrapper buildQueryWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {
         QueryWrapper wrapper = query.buildWrapper();
         wrapper.orderByAsc("project_id" );
         wrapper.orderByAsc("is_table" );

@@ -233,4 +233,20 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
     public void setHaveObjectName(String haveObjectName) {
         this.haveObjectName = haveObjectName;
     }
+
+    public String getEffectiveTree() {
+        return effectiveTree;
+    }
+
+    public void setEffectiveTree(String effectiveTree) {
+        this.effectiveTree = effectiveTree;
+    }
+
+    public String getEffectiveSingle() {
+        return effectiveSingle;
+    }
+
+    public void setEffectiveSingle(String effectiveSingle) {
+        this.effectiveSingle = effectiveSingle;
+    }
 }

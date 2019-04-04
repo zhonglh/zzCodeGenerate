@@ -21,13 +21,9 @@ public class TcgDbConfigServiceImpl extends BaseServiceImpl<TcgDbConfigBO,String
 	private TcgDbConfigDAO tcgDbConfigDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgDbConfigDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgDbConfigDAO;
 	}
 

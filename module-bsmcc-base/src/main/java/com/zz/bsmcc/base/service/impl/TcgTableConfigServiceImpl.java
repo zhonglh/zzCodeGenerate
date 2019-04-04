@@ -41,13 +41,9 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgTableConfigDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgTableConfigDAO;
 	}
 

@@ -21,13 +21,9 @@ public class TcgJavaDatatypeRealServiceImpl extends BaseServiceImpl<TcgJavaDatat
 	private TcgJavaDatatypeRealDAO tcgJavaDatatypeRealDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgJavaDatatypeRealDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgJavaDatatypeRealDAO;
 	}
 

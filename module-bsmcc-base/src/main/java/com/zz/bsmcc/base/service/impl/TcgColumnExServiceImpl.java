@@ -21,13 +21,9 @@ public class TcgColumnExServiceImpl extends BaseServiceImpl<TcgColumnExBO,String
 	private TcgColumnExDAO tcgColumnExDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgColumnExDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgColumnExDAO;
 	}
 

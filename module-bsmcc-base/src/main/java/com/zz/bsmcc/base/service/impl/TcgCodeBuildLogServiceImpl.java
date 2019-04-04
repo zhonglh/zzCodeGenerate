@@ -34,13 +34,9 @@ public class TcgCodeBuildLogServiceImpl extends BaseServiceImpl<TcgCodeBuildLogB
 	private TcgCodeBuildLogDAO tcgCodeBuildLogDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgCodeBuildLogDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgCodeBuildLogDAO;
 	}
 

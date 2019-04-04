@@ -185,6 +185,14 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
     /**
+     * 和本表同一界面用到的子表 附表
+     */
+    @TableField(exist = false)
+    private List<TcgTableConfigBO> pageChildTables;
+
+
+
+    /**
      * 表或者视图  对应的BO对象 类全名
      */
     @TableField(exist = false)
@@ -404,5 +412,11 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         return StringFormatKit.toCamelCase( super.getBusinessKey() );
     }
 
+    public List<TcgTableConfigBO> getPageChildTables() {
+        return pageChildTables;
+    }
 
+    public void setPageChildTables(List<TcgTableConfigBO> pageChildTables) {
+        this.pageChildTables = pageChildTables;
+    }
 }

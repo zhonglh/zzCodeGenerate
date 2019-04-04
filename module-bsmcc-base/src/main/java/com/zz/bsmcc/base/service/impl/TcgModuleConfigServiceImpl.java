@@ -65,14 +65,8 @@ public class TcgModuleConfigServiceImpl extends BaseServiceImpl<TcgModuleConfigB
 	}
 
 
-
 	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgModuleConfigDAO;
-	}
-
-	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgModuleConfigDAO;
 	}
 

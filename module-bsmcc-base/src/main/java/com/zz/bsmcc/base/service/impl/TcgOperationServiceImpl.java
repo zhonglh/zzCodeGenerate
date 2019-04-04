@@ -23,13 +23,9 @@ public class TcgOperationServiceImpl extends BaseServiceImpl<TcgOperationBO,Stri
 	private TcgOperationDAO tcgOperationDAO ;
 
 
-	@Override
-	public BaseDAO getQueryDAO() {
-	return tcgOperationDAO;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 	return tcgOperationDAO;
 	}
 
