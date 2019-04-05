@@ -39,8 +39,8 @@ function open${table.fullUpperResourceName}Win(config, callBack)
             <#elseif being.columnPage.element == 'radio' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'select' >
                 <select id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
                     <option value="" >'${being.queryPlaceholder}'</option>
-                    <c:forEach items=${r"${"} yes_no_dicts ${r"}"} var="dict">
-                        <option value="${r"${"} dict.value ${r"}"}">${dict.name}</option>
+                    <c:forEach items="${r"${"} yes_no_dicts ${r"}"}" var="dict">
+                        <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name ${r"}"}</option>
                     </c:forEach>
                 </select>
             <#elseif being.columnPage.element == 'openwin' >

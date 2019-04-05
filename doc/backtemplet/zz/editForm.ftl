@@ -159,7 +159,7 @@
                                             <#elseif being.element == 'radio' || being.element == 'checkbox' || being.element == 'select' >
                                                 <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> >
                                                     <option value="" ></option>
-                                                    <c:forEach items=${r"${"} ${being.columnConfig.dictType} ${r"}"} var="dict">
+                                                    <c:forEach items="${r"${"} ${being.columnConfig.dictType} ${r"}"}" var="dict">
                                                         <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name}  ${r"}"}</option>
                                                     </c:forEach>
                                                 </select>
@@ -284,8 +284,8 @@
                                                 <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
                                                     <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> >
                                                         <option value="" ></option>
-                                                        <c:forEach items=${r"${"} ${nextPage.columnConfig.dictType} ${r"}"} var="dict">
-                                                            <option value="${r"${"} dict.value ${r"}"}">${dict.name}</option>
+                                                        <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType} ${r"}"}" var="dict">
+                                                            <option value="${r"${"} dict.value ${r"}"}">${r"${"}  dict.name ${r"}"}</option>
                                                         </c:forEach>
                                                     </select>
                                                 <#elseif nextPage.element == 'openwin' >
@@ -332,7 +332,7 @@
 
                         </#list>
 
-
+                        </tbody>
 
 
                     </table>
@@ -388,7 +388,7 @@
 <script>
 
 
-    var tableid = "tableData-${r"${"} tableId ${r"$}"}";
+    var tableid = "tableData-${r"${"} tableId ${r"}"}";
 
     //显示模式   明细/编辑
     var showMode = "detail";

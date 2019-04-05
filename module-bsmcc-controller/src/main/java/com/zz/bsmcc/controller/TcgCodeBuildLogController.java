@@ -3,6 +3,7 @@ package com.zz.bsmcc.controller;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.file.FileKit;
 import com.zz.bms.util.file.FileUtils;
 import com.zz.bms.util.file.ZipKit;
@@ -91,7 +92,12 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 			throw new BizException("请先在该模板组添加模板");
 		}
 
-		cgBusiness.cg(projectBO , templets);
+		boolean autoBuildView = false;
+		if(EnumYesNo.YES.getCode().equals(model.get("autoBuildView"))){
+			autoBuildView = true;
+		}
+
+		cgBusiness.cg(projectBO , templets , autoBuildView);
 		String basePath = Applications.getUsrDir() + File.separator + "cg";
 		logger.debug("代码已经生成， 请到该目录查看 : "+basePath);
 		return this.create(m,model, request,  response);
@@ -117,7 +123,13 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 			throw new BizException("请先在该模板组添加模板");
 		}
 
-		cgBusiness.cg(projectBO , templets);
+
+		boolean autoBuildView = false;
+		if(EnumYesNo.YES.getCode().equals(model.get("autoBuildView"))){
+			autoBuildView = true;
+		}
+
+		cgBusiness.cg(projectBO , templets , autoBuildView);
 
 		String basePath = Applications.getUsrDir() + File.separator + "cg";
 		ILoginUserEntity session = Applications.getLoginUserEntity();

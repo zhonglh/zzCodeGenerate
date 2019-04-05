@@ -185,13 +185,13 @@ public class CgBusiness extends CgBaseBusiness{
      * @param projectId
      * @param templetGroupId
      */
-    public void cg(String projectId , String templetGroupId) {
+    public void cg(String projectId , String templetGroupId , boolean autoBuildView) {
         TcgProjectBO projectBO = tcgProjectService.getById(projectId);
         TcgTempletQuery templetQuery = new TcgTempletQueryImpl();
         templetQuery.groupId(templetGroupId);
         List<TcgTempletBO> templets = tcgTempletService.list(templetQuery.buildWrapper());
         if(templets != null && !templets.isEmpty()) {
-            cg(projectBO, templets);
+            cg(projectBO, templets , autoBuildView);
         }
 
     }
@@ -201,7 +201,7 @@ public class CgBusiness extends CgBaseBusiness{
      * @param projectBO
      * @param templets
      */
-    public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets ) {
+    public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets , boolean autoBuildView ) {
 
         //所有的字典类型
         Map<String,String> dictTypeMap = new HashMap<String,String>();
@@ -657,6 +657,12 @@ public class CgBusiness extends CgBaseBusiness{
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
                 continue;
             }
+
+            //视图不生成UI
+            if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTable()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
+                continue;
+            }
+
 
             if(StringUtils.isNotEmpty(templet.getEffectiveTree())){
                 if(EnumYesNo.YES.getCode().equals(templet.getEffectiveTree()) && EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTree())){

@@ -31,7 +31,7 @@
                             <#if being_index%2 ==0>
                                 <tr>
 
-                                    <th width="15%">${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
+                                    <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
 
                                     <td>
 
@@ -47,7 +47,7 @@
 
                                                 <div class="info-detail">
                                                     <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
-                                                              name="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="4">${r"${"} m.${being.javaName} ${r"$}"}</textarea>
+                                                              name="${being.javaName}" id="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="4">${r"${"} m.${being.javaName} ${r"$}"}</textarea>
                                                 </div>
 
 
@@ -108,7 +108,7 @@
                                             <#elseif being.element == 'radio' || being.element == 'checkbox' || being.element == 'select' >
                                                 <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> >
                                                 <option value="" ></option>
-                                                <c:forEach items=${r"${"} ${being.columnConfig.dictType} ${r"}"} var="dict">
+                                                <c:forEach items="${r"${"} ${being.columnConfig.dictType} ${r"}"}" var="dict">
                                                     <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name}  ${r"}"}</option>
                                                 </c:forEach>
                                                 </select>
@@ -234,7 +234,7 @@
                                             <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> >
                                                 <option value="" ></option>
                                                 <c:forEach items=${r"${"} ${nextPage.columnConfig.dictType} ${r"}"} var="dict">
-                                                    <option value="${r"${"} dict.value ${r"}"}">${dict.name}</option>
+                                                    <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name ${r"}"}</option>
                                                 </c:forEach>
                                             </select>
                                         <#elseif nextPage.element == 'openwin' >
@@ -282,7 +282,7 @@
                         </#list>
 
 
-
+                        </tbody>
 
                     </table>
                 </form>
@@ -321,7 +321,7 @@
 <script>
 
 
-    var tableid = "tableData-${r"${"} tableId ${r"$}"}";
+    var tableid = "tableData-${r"${"} tableId ${r"}"}";
 
 
 </script>
