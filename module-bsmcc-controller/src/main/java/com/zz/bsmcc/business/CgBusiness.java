@@ -276,6 +276,7 @@ public class CgBusiness extends CgBaseBusiness{
             tableConfig.setChildFkTables(new ArrayList<TcgTableConfigBO>());
             tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
             tableConfig.setPageChildTables(new ArrayList<TcgTableConfigBO>());
+            tableConfig.setPageChildColumns(new ArrayList<TcgColumnConfigBO>());
 
 
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
@@ -527,6 +528,7 @@ public class CgBusiness extends CgBaseBusiness{
                     p.getChildFkColumns().add(tableConfig.getFkColumns().get(index));
                     if(EnumPageRelation.embed.getVal().equals(tableConfig.getPageRelation())){
                         p.getPageChildTables().add(tableConfig);
+                        p.getPageChildColumns().add(tableConfig.getFkColumns().get(index));
                     }
                     index ++;
                 }
@@ -721,12 +723,14 @@ public class CgBusiness extends CgBaseBusiness{
                 templetContent =  projectNoteBuild.toString() + templetContent;
             }
 
+            System.out.println("table:"+tablePO.getTableBO().getTableName() + " =====  templet :"+ templet.getTempletTitle() +  " =====  FileName :" +(filePath + fileName));
+
+
             String result = FreemarkerUtil.renderString( templetContent , model);
 
             BusinessUtil.buildFile(filePath, fileName, result);
 
 
-            System.out.println("table:"+tablePO.getTableBO().getTableName() + " =====  templet :"+ templet.getTempletTitle() +  " =====  FileName :" +(filePath + fileName));
 
         }
 
@@ -1343,13 +1347,16 @@ public class CgBusiness extends CgBaseBusiness{
 
 
 
-
+        String basePackageName = projectBO.getProjectPackage();
+        if("zzframe".equals(tableConfig.getSchemaName())){
+            basePackageName = "com.zz.bms";
+        }
 
 
         if(StringUtils.isNotEmpty(fullPackageName)) {
-            fullPackageName = projectBO.getProjectPackage() + (fullPackageName.startsWith(".") ? "" : ".") + fullPackageName;
+            fullPackageName =  basePackageName + (fullPackageName.startsWith(".") ? "" : ".") + fullPackageName;
         }else {
-            fullPackageName = projectBO.getProjectPackage();
+            fullPackageName = basePackageName;
         }
         tableConfig.setFullPackageName(fullPackageName);
         tableConfig.setFullBoClassName(fullPackageName+".bo."+tableConfig.getJavaName()+"BO");

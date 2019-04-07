@@ -39,6 +39,7 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     /**
      * 表类型名称
+     * 如主表， 子表等
      */
     @TableField(exist = false)
     private String tableTypeName;
@@ -189,6 +190,12 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgTableConfigBO> pageChildTables;
+
+    /**
+     * 和本表同一界面用到的子表 附表 , 对应的外键列名
+     */
+    @TableField(exist = false)
+    private List<TcgColumnConfigBO> pageChildColumns;
 
 
 
@@ -418,5 +425,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setPageChildTables(List<TcgTableConfigBO> pageChildTables) {
         this.pageChildTables = pageChildTables;
+    }
+
+    public List<TcgColumnConfigBO> getPageChildColumns() {
+        return pageChildColumns;
+    }
+
+    public void setPageChildColumns(List<TcgColumnConfigBO> pageChildColumns) {
+        this.pageChildColumns = pageChildColumns;
     }
 }

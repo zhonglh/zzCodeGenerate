@@ -318,14 +318,6 @@
 
 
 
-<script>
-
-
-    var tableid = "tableData-${r"${"} tableId ${r"}"}";
-
-
-</script>
-
 
 
 

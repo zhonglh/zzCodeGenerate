@@ -11,19 +11,25 @@ import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+<#if (table.isTable == '0' && table.mainTableConfig?exists)>
+import ${table.mainTableConfig.fullPackageName}.bo.${table.mainTableConfig.javaName}BO;
+</#if>
+
 import java.io.Serializable;
 
 
 
 /**
-* ${table.tableComment} BO , 扩展 ${table.javaName}Entity 对象
+* ${table.tableComment} BO , 扩展 <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}BO<#else>${table.javaName}Entity</#if> 对象
 * @author ${project.projectAuthor}
 * @date ${.now}
 */
-@EntityAnnotation(value="${table.tableComment}" , resource = "${table.fullResource}" <#if table.businessName?exists> ,businessName = "${table.businessName}"</#if>   <#if table.businessName?exists> ,businessKey = { "${table.businessKey}" }</#if>  )
+@EntityAnnotation(value="${table.tableComment}" , resource = "${table.fullResource}" <#if table.businessName?exists> ,businessName = "${table.businessName}"</#if>   <#if table.businessName?exists> ,businessKey = { "${table.businessKey}" }</#if>   <#if table.isTree?exists && table.isTree == '1'>,parentColumnName="${table.parentFieldName!}" ,textColumnName="${table.businessName!}" ,</#if> )
 @TableName(value="${table.tableName}" , resultMap = "${table.javaName}ResultMap")
-public class ${table.javaName}BO extends ${table.javaName}Entity implements Serializable , IBoEntity {
+public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}BO<#else>${table.javaName}Entity</#if> implements Serializable , IBoEntity {
 
+
+<#if table.isTable == '1'>
 <#list exColumns as being>
 
     <#assign columnPage = columnPageMap[being.id] >
@@ -56,7 +62,7 @@ public class ${table.javaName}BO extends ${table.javaName}Entity implements Seri
     }
 
 </#list>
-
+</#if>
 
     @Override
     public boolean isTable() {

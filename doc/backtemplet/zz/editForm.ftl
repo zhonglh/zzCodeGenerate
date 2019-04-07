@@ -388,8 +388,6 @@
 <script>
 
 
-    var tableid = "tableData-${r"${"} tableId ${r"}"}";
-
     //显示模式   明细/编辑
     var showMode = "detail";
 

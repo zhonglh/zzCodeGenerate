@@ -75,13 +75,10 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 	@Autowired
 	private ${table.javaName}DAO ${table.javaName?uncap_first}DAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return ${table.javaName?uncap_first}DAO ;
-	}
+
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return ${table.javaName?uncap_first}DAO ;
 	}
 	<#else>
@@ -94,14 +91,10 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 
     @Override
-    public BaseDAO getQueryDAO() {
+    public BaseDAO getDAO() {
     	return ${table.javaName?uncap_first}DAO ;
     }
 
-    @Override
-    public BaseDAO getRwDAO() {
-		return ${table.mainTableConfig.javaName?uncap_first}DAO ;
-    }
 
 	</#if>
 
