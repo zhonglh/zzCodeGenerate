@@ -43,12 +43,12 @@
         <#if table.notPageChildColumns?exists>
         <#list table.notPageChildColumns as notPageChildColumn>
         <#if notPageChildColumn.tableBO.tableRelation?exists && 'one-one' == notPageChildColumn.tableBO.tableRelation>
-            ctx+'${notPageChildTable.fullResourceName}/toAddorUpdate?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}<#if notPageChildColumn_has_next>,</#if>
+            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toAddorUpdate?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}<#if notPageChildColumn_has_next>,</#if>
         <#else >
             <#if notPageChildColumn.tableBO.isTree?exists && notPageChildColumn.tableBO.isTree == '0'>
-            ctx+'${notPageChildTable.fullResourceName}/toList?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}<#if notPageChildColumn_has_next>,</#if>
+            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toList?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}<#if notPageChildColumn_has_next>,</#if>
             <#else >
-            ctx+'${notPageChildTable.fullResourceName}/toTree?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}<#if notPageChildColumn_has_next>,</#if>
+            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toTree?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}<#if notPageChildColumn_has_next>,</#if>
             </#if>
         </#if>
         </#list>

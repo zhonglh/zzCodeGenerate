@@ -79,6 +79,9 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
 
 </#if>
 
+
+</#if>
+
     @Override
     public boolean isTable() {
         return <#if table.isTable?exists && table.isTable == '1'>true<#else >false</#if>;
@@ -88,7 +91,9 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
     @Override
     public String toString() {
 
-        <#if table.businessNameGetMethods?exists && table.businessNameGetMethods?size  == 1>
+    <#if table.isTable?exists && table.isTable == '1'>
+
+        <#if  (table.businessNameGetMethods?exists && table.businessNameGetMethods?size  == 1)>
         <#list table.businessNameGetMethods as businessNameGetMethod>
             return this.${businessNameGetMethod}();
         </#list>
@@ -101,6 +106,9 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
         <#else >
         return super.toString();
         </#if>
+    <#else >
+        return super.toString();
+    </#if>
 
     }
 }
