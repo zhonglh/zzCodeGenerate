@@ -4,6 +4,12 @@ import ${table.fullPackageName}.domain.${table.javaName}Entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 
+
+<#if table.isTree == '1'>
+
+import com.zz.bms.core.ui.easyui.EasyUiTree;
+</#if>
+
 import com.zz.bms.core.db.entity.IBoEntity;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
@@ -44,11 +50,6 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
     @EntityAttrPageAnnotation(title = "${columnPage.columnComment}",sort = ${being.columnSort}     <#if columnPage.max?exists && columnPage.max != 0> , maxLength = ${columnPage.max} </#if>     <#if columnPage.min?exists>, minLength = ${columnPage.min} </#if>  <#if columnPage.maxlength?exists && columnPage.maxlength != 0> , maxLength = ${columnPage.maxlength} </#if>     <#if columnPage.minlength?exists>, minLength = ${columnPage.minlength} </#if>   <#if columnPage.defaultType?exists && columnPage.defaultType != 'CUSTOM' && columnPage.defaultType != ''>, defaultType = DefaultTypeConstant.${columnPage.defaultType}</#if>  ,required=<#if columnPage.required?exists && columnPage.required == '1'>true<#else>false</#if> )
     private ${being.javaSimpleClass} ${being.javaName} ;
 
-
-
-
-
-
 </#list>
 
 
@@ -62,6 +63,20 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
     }
 
 </#list>
+
+
+<#if table.isTree == '1'>
+
+    public EasyUiTree toEasyUiTree(){
+        EasyUiTree tree = new EasyUiTree();
+        tree.setId(this.getId());
+        tree.setPid(StringUtils.isEmpty(this.get${table.parentFieldNameCamelCase?cap_first}())? null : this.get${table.parentFieldNameCamelCase?cap_first}());
+        tree.setText(this.get${table.businessNameCamelCase?cap_first}());
+        Map<String,String> attributes = new HashMap<String,String>();
+        tree.setAttributes(attributes);
+        return tree;
+    }
+
 </#if>
 
     @Override

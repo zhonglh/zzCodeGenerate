@@ -6,7 +6,7 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseGroupServiceImpl;
 
 <#list table.pageChildTables as childTable>
-	import ${childTable.fullPackageName}.service.${childTable.javaName}Service;
+import ${childTable.fullPackageName}.service.${childTable.javaName}Service;
 </#list>
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ${table.javaName}ServiceImpl extends BaseGroupServiceImpl<${table.j
 
 <#list table.pageChildTables as childTable>
 	@Autowired
-	private ${childTable.fullPackageName}.service.${childTable.javaName}Service ${childTable.simpleName}Service;
+	private ${childTable.javaName}Service ${childTable.simpleName}Service;
 
 </#list>
 

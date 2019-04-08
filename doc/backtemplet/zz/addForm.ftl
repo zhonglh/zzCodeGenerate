@@ -245,6 +245,11 @@
                                         <#if nextPage.element == 'openwin' >
 
                                         <div class="input-group">
+                                            <c:if test="${r"${"} fn.indexOf(queryString,'${nextPage.exColumn.originalJavaName}') ${r"}"}">
+                                                <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
+                                            </c:if>
+
+                                            <c:if test="!${r"${"} fn.indexOf(queryString,'${nextPage.exColumn.originalJavaName}') ${r"}"}">
                                             <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
                                             <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
 
@@ -264,6 +269,7 @@
                                                     </svg>
                                                 </button>
                                             </div>
+                                            </c:if>
                                         </div>
 
                                         </#if>

@@ -11,6 +11,27 @@ import com.zz.bms.system.bo.TsDictBO;
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import  ${table.fullPackageName}.query.impl.${table.javaName}QueryWebImpl;
 
+<#if (table.reciprocalView?exists && table.reciprocalView?length > 0 )>
+import  ${table.reciprocalView.fullPackageName}.query.impl.${table.reciprocalView.javaName}QueryWebImpl;
+import ${table.reciprocalView.fullPackageName}.bo.${table.reciprocalView.javaName}BO;
+</#if>
+
+
+<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+import ${table.fullPackageName}.bo.${table.javaName}GroupBO;
+</#if>
+
+
+<#if (table.reciprocalView?exists && table.reciprocalView?length > 0 ) && (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+import com.zz.bms.system.controller.ZzGroupDefaultController;
+<#elseif (table.reciprocalView?exists && table.reciprocalView?length > 0 )>
+import com.zz.bms.system.controller.ZzDefaultController;
+<#elseif (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+import com.zz.bms.system.controller.ZzGroupDefaultSimpleController;
+<#else >
+import com.zz.bms.system.controller.ZzDefaultSimpleController;
+</#if>
+
 import com.zz.bms.util.base.java.IdUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,13 +48,15 @@ import java.util.List;
  */
 @RequestMapping("${table.fullResourceName}")
 @Controller
-public class ${table.javaName}Controller extends DefaultController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl> {
-
-
-	@Autowired
-	private TsDictService tsDictService;
-
-
+<#if (table.reciprocalView?exists && table.reciprocalView?length > 0 ) && (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+public class ${table.javaName}Controller extends ZzGroupDefaultController<${table.javaName}GroupBO,${table.reciprocalView.javaName}GroupBO, String , ${table.javaName}QueryWebImpl , ${table.reciprocalView.javaName}QueryWebImpl> {
+<#elseif (table.reciprocalView?exists && table.reciprocalView?length > 0 )>
+public class ${table.javaName}Controller extends ZzDefaultController<${table.javaName}BO,${table.reciprocalView.javaName}BO, String , ${table.javaName}QueryWebImpl , ${table.reciprocalView.javaName}QueryWebImpl> {
+<#elseif (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+public class ${table.javaName}Controller extends ZzGroupDefaultSimpleController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl > {
+<#else >
+public class ${table.javaName}Controller extends ZzDefaultSimpleController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl > {
+</#if>
 
 
 	@Override
