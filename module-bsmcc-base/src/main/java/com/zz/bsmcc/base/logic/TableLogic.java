@@ -1,12 +1,11 @@
 package com.zz.bsmcc.base.logic;
 
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
-import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.enums.EnumPageElement;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.java.IdUtils;
@@ -15,7 +14,10 @@ import com.zz.bms.util.configs.enums.EnumExcelType;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.domain.TcgProjectEntity;
 import com.zz.bsmcc.core.TablesLocalThread;
-import com.zz.bsmcc.core.enums.*;
+import com.zz.bsmcc.core.enums.EnumDbColumnType;
+import com.zz.bsmcc.core.enums.EnumJavaType;
+import com.zz.bsmcc.core.enums.EnumPageRelation;
+import com.zz.bsmcc.core.enums.EnumTableType;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import com.zz.bsmcc.core.util.table.pojo.Column;
 import com.zz.bsmcc.core.util.table.pojo.Index;
@@ -34,7 +36,7 @@ public class TableLogic {
 
     public static List<String> insideFieldNames = new ArrayList<String>();
     static{
-        Field[] allField = ReflectionSuper.getAllField(BaseBusinessExEntity.class , BaseEntity.class);
+        Field[] allField = ReflectionSuper.getAllField(BaseBusinessExEntity.class , Object.class);
         for(Field field : allField){
             insideFieldNames.add(field.getName());
         }
@@ -275,6 +277,8 @@ public class TableLogic {
         pageBO.setListShowable(pageBO.getEditable());
 
         pageBO.setElement((String) EnumPageElement.text.getVal());
+
+        pageBO.setExcelType(EnumExcelType.IMPORT_EXPORT.getVal());
         if(exColumnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsfk())){
             pageBO.setElement((String) EnumPageElement.openwin.getVal());
         }
@@ -284,6 +288,16 @@ public class TableLogic {
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
             pageBO.setListShowable(EnumYesNo.YES.getCode());
+
+
+            if(StringUtils.isNotEmpty(exColumnBO.getOriginalColumn().getColumnDefault())){
+                pageBO.setExistPage(EnumYesNo.NO.getCode());
+                pageBO.setEditable(EnumYesNo.NO.getCode());
+                pageBO.setHiddenable(EnumYesNo.NO.getCode());
+                pageBO.setListShowable(EnumYesNo.NO.getCode());
+                pageBO.setExcelType(EnumExcelType.NONE.getVal());
+            }
+
         }
 
         pageBO.setRequired(EnumYesNo.YES.getCode());
@@ -337,6 +351,16 @@ public class TableLogic {
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
             pageBO.setExcelType(EnumExcelType.NONE.getVal());
+
+            if(StringUtils.isNotEmpty(columnBO.getColumnDefault())){
+
+                pageBO.setExistPage(EnumYesNo.NO.getCode());
+                pageBO.setEditable(EnumYesNo.NO.getCode());
+                pageBO.setHiddenable(EnumYesNo.NO.getCode());
+                pageBO.setListShowable(EnumYesNo.NO.getCode());
+                pageBO.setExcelType(EnumExcelType.NONE.getVal());
+            }
+
         }else {
                 pageBO.setExistPage(EnumYesNo.YES.getCode());
                 pageBO.setEditable(EnumYesNo.YES.getCode());

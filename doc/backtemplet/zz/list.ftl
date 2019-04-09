@@ -53,9 +53,17 @@
 
                     <#elseif being.columnPage?exists && being.columnPage.exColumn?exists>
                         <#if being.columnPage.element == 'openwin' >
-                        <input name="${being.columnPage.exColumn.originalJavaName}" id="${being.columnPage.exColumn.originalJavaName}">
-                        <input name="${being.queryFieldName}" id="${being.queryFieldName}" class="form-control input-sm" placeholder="${being.queryPlaceholder}" style="width: 150px; cursor: pointer;" readonly="readonly">
-                        <div class="input-group-addon" title="清除" id="clear${being.queryFieldName}" ><i class="fa fa-remove"></i></div>
+
+                            <c:if test="${r"${"} fn.indexOf(queryString,'${being.columnPage.exColumn.originalJavaName}') ${r"}"}">
+                                <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
+                            </c:if>
+
+
+                            <c:if test="${r"${"} !fn.indexOf(queryString,'${being.columnPage.exColumn.originalJavaName}') ${r"}"}">
+                                <input type="hidden" name="${being.columnPage.exColumn.originalJavaName}" id="${being.columnPage.exColumn.originalJavaName}">
+                                <input type="text" name="${being.queryFieldName}" id="${being.queryFieldName}" class="form-control input-sm" placeholder="${being.queryPlaceholder}" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                <div class="input-group-addon" title="清除" id="clear${being.queryFieldName}" ><i class="fa fa-remove"></i></div>
+                            </c:if>
                         </#if>
 
                     </#if>
@@ -231,6 +239,10 @@
 
 <script>
     var tableid = "tableData-${r"${"} tableId ${r"}"}";
+
+
+    var queryString = "${r"${"} queryString ${r"}"}";
+
 </script>
 
 

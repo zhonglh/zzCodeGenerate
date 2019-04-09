@@ -200,6 +200,28 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
 
     /**
+     * 和本表不在同一界面用到的子表 附表
+     */
+    @TableField(exist = false)
+    private List<TcgTableConfigBO> notPageChildTables;
+
+    /**
+     * 和本表不在同一界面用到的子表 附表 , 对应的外键列名
+     */
+    @TableField(exist = false)
+    private List<TcgColumnConfigBO> notPageChildColumns;
+
+
+    /**
+     * 和本表对应的视图， 如果本身是视图， 为空
+     * 如ts_user , 对应 vs_user 的BO对象
+     */
+    @TableField(exist = false)
+    private TcgTableConfigBO reciprocalView;
+
+
+
+    /**
      * 表或者视图  对应的BO对象 类全名
      */
     @TableField(exist = false)
@@ -433,5 +455,29 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setPageChildColumns(List<TcgColumnConfigBO> pageChildColumns) {
         this.pageChildColumns = pageChildColumns;
+    }
+
+    public TcgTableConfigBO getReciprocalView() {
+        return reciprocalView;
+    }
+
+    public void setReciprocalView(TcgTableConfigBO reciprocalView) {
+        this.reciprocalView = reciprocalView;
+    }
+
+    public List<TcgTableConfigBO> getNotPageChildTables() {
+        return notPageChildTables;
+    }
+
+    public void setNotPageChildTables(List<TcgTableConfigBO> notPageChildTables) {
+        this.notPageChildTables = notPageChildTables;
+    }
+
+    public List<TcgColumnConfigBO> getNotPageChildColumns() {
+        return notPageChildColumns;
+    }
+
+    public void setNotPageChildColumns(List<TcgColumnConfigBO> notPageChildColumns) {
+        this.notPageChildColumns = notPageChildColumns;
     }
 }

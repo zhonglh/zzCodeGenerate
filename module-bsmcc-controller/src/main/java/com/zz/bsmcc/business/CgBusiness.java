@@ -244,7 +244,8 @@ public class CgBusiness extends CgBaseBusiness{
         List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.list(tableWrapper);
 
 
-
+        boolean isNotSetBusinessName = false;
+        StringBuilder errorSb = new StringBuilder(" 没有设置业务名称列 : \r\n");
         for(TcgTableConfigBO tableConfig : tableConfigs){
             tableConfigMap.put(tableConfig.getSchemaName()+"."+tableConfig.getTableName(), tableConfig);
             tableConfigMap.put(tableConfig.getId(), tableConfig);
@@ -252,14 +253,23 @@ public class CgBusiness extends CgBaseBusiness{
             //处理表的资源和包名
             processTableResource(projectBO, moduleConfigMap, tableConfig);
 
-
-
+            if(EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())) {
+                if (EnumYesNo.YES.getCode().equals(tableConfig.getIsTree()) && StringUtils.isEmpty(tableConfig.getBusinessName())) {
+                    errorSb.append(tableConfig.getTableComment() + "(" + tableConfig.getTableName() + ") \r\n ");
+                    isNotSetBusinessName = true;
+                }
+            }
 
             TablePO tablePO = new TablePO();
             tablePO.setTableBO(tableConfig);
             tablePOMap.put(tableConfig.getId(),tablePO);
             tablePOMap.put(tableConfig.getSchemaName()+tableConfig.getTableName(),tablePO);
         }
+
+        if(isNotSetBusinessName){
+            throw new BizException(errorSb.toString());
+        }
+
 
 
         //所有列
@@ -277,6 +287,8 @@ public class CgBusiness extends CgBaseBusiness{
             tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
             tableConfig.setPageChildTables(new ArrayList<TcgTableConfigBO>());
             tableConfig.setPageChildColumns(new ArrayList<TcgColumnConfigBO>());
+            tableConfig.setNotPageChildTables(new ArrayList<TcgTableConfigBO>());
+            tableConfig.setNotPageChildColumns(new ArrayList<TcgColumnConfigBO>());
 
 
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
@@ -432,7 +444,7 @@ public class CgBusiness extends CgBaseBusiness{
 
 
             //处理视图的主表
-            if(!EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())){
+            if(EnumYesNo.NO.getCode().equals(tableConfig.getIsTable())){
 
                 if(StringUtils.isNotEmpty(tableConfig.getMainTableName())){
                     TablePO po = tablePOMap.get(tableConfig.getMainTableSchema()+tableConfig.getMainTableName());
@@ -447,11 +459,12 @@ public class CgBusiness extends CgBaseBusiness{
                         if(indexs == null || indexs.isEmpty()){
                             indexs = po.getIndexs();
                         }
+
+                        if(po.getTableBO().getReciprocalView() == null){
+                            po.getTableBO().setReciprocalView(tableConfig);
+                        }
                     }
                 }
-
-
-
             }
 
             for(TcgColumnConfigBO column : columns){
@@ -529,6 +542,9 @@ public class CgBusiness extends CgBaseBusiness{
                     if(EnumPageRelation.embed.getVal().equals(tableConfig.getPageRelation())){
                         p.getPageChildTables().add(tableConfig);
                         p.getPageChildColumns().add(tableConfig.getFkColumns().get(index));
+                    }else {
+                        p.getNotPageChildTables().add(tableConfig);
+                        p.getNotPageChildColumns().add(tableConfig.getFkColumns().get(index));
                     }
                     index ++;
                 }
@@ -548,6 +564,17 @@ public class CgBusiness extends CgBaseBusiness{
             exColumnBO.setFkColumn(columnConfigBO);
 
 
+        }
+
+        //设置表对应的视图
+        for(TcgTableConfigBO tableConfig : tableConfigs){
+            if(EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())){
+                String viewName = "V"+tableConfig.getTableName().substring(1);
+                TablePO po = tablePOMap.get(tableConfig.getSchemaName()+viewName );
+                if(po != null && po.getTableBO() != null){
+                    tableConfig.setReciprocalView(po.getTableBO());
+                }
+            }
         }
 
 
@@ -1275,7 +1302,7 @@ public class CgBusiness extends CgBaseBusiness{
                 if(columnConfigBO != null){
                     tableConfig.getBusinessNameGetMethods().add(columnConfigBO.getGetMethodName());
                 }else {
-                    String getMethodName = StringUtil.firstUpperCase(StringFormatKit.toCamelCase(bnName));
+                    String getMethodName = "get"+StringUtil.firstUpperCase(StringFormatKit.toCamelCase(bnName));
                     tableConfig.getBusinessNameGetMethods().add(getMethodName);
                 }
             }

@@ -11,7 +11,7 @@ import com.zz.bms.system.bo.TsDictBO;
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import  ${table.fullPackageName}.query.impl.${table.javaName}QueryWebImpl;
 
-<#if (table.reciprocalView?exists && table.reciprocalView?length > 0 )>
+<#if (table.reciprocalView?exists  )>
 import  ${table.reciprocalView.fullPackageName}.query.impl.${table.reciprocalView.javaName}QueryWebImpl;
 import ${table.reciprocalView.fullPackageName}.bo.${table.reciprocalView.javaName}BO;
 </#if>
@@ -22,9 +22,9 @@ import ${table.fullPackageName}.bo.${table.javaName}GroupBO;
 </#if>
 
 
-<#if (table.reciprocalView?exists && table.reciprocalView?length > 0 ) && (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+<#if (table.reciprocalView?exists  ) && (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
 import com.zz.bms.system.controller.ZzGroupDefaultController;
-<#elseif (table.reciprocalView?exists && table.reciprocalView?length > 0 )>
+<#elseif (table.reciprocalView?exists  )>
 import com.zz.bms.system.controller.ZzDefaultController;
 <#elseif (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
 import com.zz.bms.system.controller.ZzGroupDefaultSimpleController;
@@ -48,9 +48,9 @@ import java.util.List;
  */
 @RequestMapping("${table.fullResourceName}")
 @Controller
-<#if (table.reciprocalView?exists && table.reciprocalView?length > 0 ) && (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
+<#if (table.reciprocalView?exists  ) && (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
 public class ${table.javaName}Controller extends ZzGroupDefaultController<${table.javaName}GroupBO,${table.reciprocalView.javaName}GroupBO, String , ${table.javaName}QueryWebImpl , ${table.reciprocalView.javaName}QueryWebImpl> {
-<#elseif (table.reciprocalView?exists && table.reciprocalView?length > 0 )>
+<#elseif (table.reciprocalView?exists  )>
 public class ${table.javaName}Controller extends ZzDefaultController<${table.javaName}BO,${table.reciprocalView.javaName}BO, String , ${table.javaName}QueryWebImpl , ${table.reciprocalView.javaName}QueryWebImpl> {
 <#elseif (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
 public class ${table.javaName}Controller extends ZzGroupDefaultSimpleController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl > {

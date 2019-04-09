@@ -176,7 +176,7 @@
                                                     <input type="text" class="form-control input-sm" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
                                                 </c:if>
 
-                                                <c:if test="!${r"${"} fn.indexOf(queryString,'${being.exColumn.originalJavaName}') ${r"}"}">
+                                                <c:if test="${r"${"} !fn.indexOf(queryString,'${being.exColumn.originalJavaName}') ${r"}"}">
                                                 <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
                                                 <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
 
@@ -310,7 +310,7 @@
                                                             <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
                                                         </c:if>
 
-                                                        <c:if test="!${r"${"} fn.indexOf(queryString,'${nextPage.exColumn.originalJavaName}') ${r"}"}">
+                                                        <c:if test="${r"${"} !fn.indexOf(queryString,'${nextPage.exColumn.originalJavaName}') ${r"}"}">
                                                         <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
                                                         <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="width: 150px; cursor: pointer;" readonly="readonly">
 
@@ -407,6 +407,7 @@
     //显示模式   明细/编辑
     var showMode = "detail";
 
+    var queryString = "${r"${"} queryString ${r"}"}";
 </script>
 
 
