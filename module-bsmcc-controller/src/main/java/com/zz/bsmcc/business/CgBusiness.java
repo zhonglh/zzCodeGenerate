@@ -10,6 +10,7 @@ import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.freemarker.FreemarkerUtil;
 import com.zz.bsmcc.base.bo.*;
+import com.zz.bsmcc.base.logic.TableLogic;
 import com.zz.bsmcc.base.po.MenuPO;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
@@ -298,6 +299,8 @@ public class CgBusiness extends CgBaseBusiness{
 
             //处理列的信息
             if(columns != null && !columns.isEmpty()) {
+
+
                 processColumnConfig(tableConfig , columns , tableConfigMap , columnMap , allColumnMap);
                 columns.sort(new Comparator<TcgColumnConfigBO>(){
                     @Override
@@ -1076,7 +1079,7 @@ public class CgBusiness extends CgBaseBusiness{
 
             Set<String> dictTypeSet = new HashSet<String>();
 
-            Set<String> parentFieldNames = CgBeanUtil.getClassFieldName(BaseBusinessExEntity.class);
+            Set<String> parentFieldNames = CgBeanUtil.getAllClassFieldName(BaseBusinessExEntity.class);
 
             String businessName = tableConfig.getBusinessName();
             String businessKey = tableConfig.getBusinessKey();

@@ -14,6 +14,19 @@ import java.util.Set;
  */
 public class CgBeanUtil {
 
+
+    public static Set<String> getAllClassFieldName(Class clz){
+        /*if(!clz.isAssignableFrom(BaseEntity.class)){
+            throw new InternalException("类型必须是 BaseEntity 的子类");
+        }*/
+        Set<String> nameSet = new HashSet<String>();
+        Field[] fs = ReflectionSuper.getAllField( clz , Object.class);
+        for(Field f : fs){
+            nameSet.add(f.getName());
+        }
+        return nameSet;
+    }
+
     /**
      * 获取类的字段名称
      * @param clz

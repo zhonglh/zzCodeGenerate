@@ -222,7 +222,10 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
         return Date.class.isAssignableFrom(javaClass);
     }
 
-
+    @Override
+    public String toString() {
+        return super.getColumnName();
+    }
 
     public static void main(String[] args) {
         System.out.println(Date.class.isAssignableFrom(String.class));
