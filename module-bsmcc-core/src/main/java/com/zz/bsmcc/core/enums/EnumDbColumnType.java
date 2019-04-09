@@ -39,6 +39,8 @@ public enum EnumDbColumnType implements EnumBase<String>{
 	SHORT,
 	CLOB,
 	BLOB,
+
+	TEXT,
 	
 	;
 
@@ -110,7 +112,7 @@ public enum EnumDbColumnType implements EnumBase<String>{
 		}
 		
 		
-		if(enumDbColumnType == CHAR || enumDbColumnType == VARCHAR  || enumDbColumnType == VARCHAR2  || enumDbColumnType == LONGTEXT) {
+		if(enumDbColumnType == CHAR || enumDbColumnType == VARCHAR  || enumDbColumnType == VARCHAR2  || enumDbColumnType == LONGTEXT || enumDbColumnType == TEXT) {
 			return EnumJavaType._String;
 		}
 

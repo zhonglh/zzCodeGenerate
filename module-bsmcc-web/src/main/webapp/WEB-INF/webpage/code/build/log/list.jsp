@@ -116,7 +116,10 @@
             width:80
         }, {
             field: 'createTime',
-            title: '创建时间'
+            title: '创建时间',
+			formatter: function (value, row, index) {
+				return changeDateFormat(value)
+			}
         } ];
 		
 		init('codeBuildLogForm','${ctx}/code/build/log/list');

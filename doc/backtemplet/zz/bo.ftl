@@ -35,7 +35,7 @@ import java.io.Serializable;
 public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}BO<#else>${table.javaName}Entity</#if> implements Serializable , IBoEntity {
 
 
-<#if table.isTable == '1'>
+<#if (table.isTable == '1' || !table.mainTableConfig?exists)>
 <#list exColumns as being>
 
     <#assign columnPage = columnPageMap[being.id] >
@@ -84,14 +84,22 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
 
     @Override
     public boolean isTable() {
-        return <#if table.isTable?exists && table.isTable == '1'>true<#else >false</#if>;
+
+    <#if table.isTable == '1' >
+        return <#if (table.isTable?exists && table.isTable == '1')>true<#else >false</#if>;
+    </#if>
+
+    <#if table.isTable == '0' >
+        return super.isTable();
+    </#if>
+
     }
 
 
     @Override
     public String toString() {
 
-    <#if table.isTable?exists && table.isTable == '1'>
+    <#if (table.isTable == '1' || !table.mainTableConfig?exists)>
 
         <#if  (table.businessNameGetMethods?exists && table.businessNameGetMethods?size  == 1)>
         <#list table.businessNameGetMethods as businessNameGetMethod>

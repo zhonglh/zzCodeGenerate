@@ -1062,10 +1062,10 @@
 
 
 
-
     //处理查询条件
-    var queryConfigTableSize = $('#queryConfigTable tr').size()-1;
     function insertQueryConfigTables() {
+        debugger
+        var queryConfigTableSize = $('#queryConfigTable tr').size()-1;
         var trObjs = $('#queryConfigTable tr');
         if(trObjs.size() == 2 ){
             var $tr = $(trObjs[1]);

@@ -259,6 +259,86 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
 
+
+    @RequestMapping(
+            value = {"/{id}/tableOrViewUpdate"},
+            method = {RequestMethod.GET}
+    )
+    public String tableOrViewUpdate(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
+        this.permissionList.assertHasUpdatePermission();
+        TcgTableConfigBO tcBO = this.baseService.getById(id , true);
+        if(EnumYesNo.YES.getCode().equals(tcBO.getIsTable())){
+            return "redirect:/table/config/"+id+"/update" ;
+        }else {
+            return "redirect:/table/config/"+id+"/updateView" ;
+        }
+    }
+
+
+
+    @RequestMapping(
+            value = {"/{id}/updateView"},
+            method = {RequestMethod.GET}
+    )
+    public String updateViewForm(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
+        this.permissionList.assertHasUpdatePermission();
+        TcgTableConfigBO m = this.baseService.getById(id , true);
+        model.put("entity" , m);
+        model.put("m" , m);
+
+
+        TcgProjectQuery projectQuery = new TcgProjectQueryImpl();
+        List<TcgProjectBO> projects =  tcgProjectService.list(projectQuery.buildWrapper());
+        model.put("projects" , projects);
+
+
+
+        Map<String , Object> tableMap = new HashMap<String , Object>();
+        tableMap.put("project_id" , m.getProjectId());
+        tableMap.put("is_table" , EnumYesNo.YES.getCode());
+        List<TcgTableConfigBO> tables = (List<TcgTableConfigBO>)this.baseService.listByMap(tableMap);
+        model.put("tables" , tables);
+
+        Map<String , Object> moduleMap = new HashMap<String , Object>();
+        moduleMap.put("project_id" , m.getProjectId());
+        List<TcgModuleConfigBO> modules = (List<TcgModuleConfigBO>)tcgModuleConfigService.listByMap(moduleMap);
+        model.put("modules" , modules);
+
+        String pageName = "editViewForm";
+        return this.viewName(pageName);
+    }
+
+
+    @RequestMapping(
+            value = {"/{id}/updateView"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public Object updateView(ModelMap model, @PathVariable("id") String id, TcgTableConfigBO tcgTableConfigBO,HttpServletRequest request, HttpServletResponse response) {
+        this.permissionList.assertHasUpdatePermission();
+        tcgTableConfigBO.setIsTable(EnumYesNo.NO.getCode());
+        TablePO tablePO = new TablePO();
+        tablePO.setTableBO(tcgTableConfigBO);
+        boolean success = tableBusinessService.updateTable(tablePO);
+
+        if (!success) {
+            throw DbException.DB_UPDATE_RESULT_0;
+        } else {
+            return AjaxJson.successAjax;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     @RequestMapping(
             value = {"/{id}/updateAll"},
             method = {RequestMethod.POST}

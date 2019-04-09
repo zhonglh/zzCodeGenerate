@@ -193,6 +193,8 @@ public class TableLogic {
 
         EntityUtil.autoSetInsertEntity(indexBO , sessionUserVO);
 
+        indexBO.setTipMsg("    ");
+
         indexBO.setId(IdUtils.getId());
 
     }

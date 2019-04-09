@@ -244,8 +244,10 @@ public class CgBusiness extends CgBaseBusiness{
         List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.list(tableWrapper);
 
 
-        boolean isNotSetBusinessName = false;
-        StringBuilder errorSb = new StringBuilder(" 没有设置业务名称列 : \r\n");
+        boolean isColumnError = false;
+        boolean isViewError = false;
+        StringBuilder columnErrorSb = new StringBuilder(" 下列表没有设置业务名称列 : \r\n");
+        //StringBuilder mainTableErrorSb = new StringBuilder(" \r\n 下列视图没有设置对应的主表信息 : \n");
         for(TcgTableConfigBO tableConfig : tableConfigs){
             tableConfigMap.put(tableConfig.getSchemaName()+"."+tableConfig.getTableName(), tableConfig);
             tableConfigMap.put(tableConfig.getId(), tableConfig);
@@ -255,8 +257,8 @@ public class CgBusiness extends CgBaseBusiness{
 
             if(EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())) {
                 if (EnumYesNo.YES.getCode().equals(tableConfig.getIsTree()) && StringUtils.isEmpty(tableConfig.getBusinessName())) {
-                    errorSb.append(tableConfig.getTableComment() + "(" + tableConfig.getTableName() + ") \r\n ");
-                    isNotSetBusinessName = true;
+                    columnErrorSb.append(tableConfig.getTableComment() + "(" + tableConfig.getTableName() + ") \r\n ");
+                    isColumnError = true;
                 }
             }
 
@@ -266,8 +268,8 @@ public class CgBusiness extends CgBaseBusiness{
             tablePOMap.put(tableConfig.getSchemaName()+tableConfig.getTableName(),tablePO);
         }
 
-        if(isNotSetBusinessName){
-            throw new BizException(errorSb.toString());
+        if(isColumnError){
+            throw new BizException(columnErrorSb.toString());
         }
 
 
@@ -452,6 +454,24 @@ public class CgBusiness extends CgBaseBusiness{
                         tableConfig.setMainTableConfig(po.getTableBO());
                         tableConfig.setTableOtherComment(po.getTableBO().getTableOtherComment());
                         tableConfig.setTableComment(po.getTableBO().getTableComment());
+
+                        if(StringUtils.isEmpty(tableConfig.getIsTree())){
+                            tableConfig.setIsTree(po.getTableBO().getIsTree());
+                        }
+                        if(StringUtils.isEmpty(tableConfig.getParentFieldName())){
+                            tableConfig.setParentFieldName(po.getTableBO().getParentFieldName());
+                        }
+
+                        if(StringUtils.isEmpty(tableConfig.getBusinessKey())){
+                            tableConfig.setBusinessKey(po.getTableBO().getBusinessKey());
+                        }
+
+                        if(StringUtils.isEmpty(tableConfig.getBusinessName())){
+                            tableConfig.setBusinessName(po.getTableBO().getBusinessName());
+                        }
+
+
+
                         //视图的实体类是继承表的实体类， 需要重新设置列是否要在类中
                         processColumnConfig(tableConfig , columns , po.getColumns());
 

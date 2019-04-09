@@ -142,11 +142,18 @@ public class TableBusinessServiceImpl implements TableBusinessService {
     }
 
 
+
+
     @Override
     public boolean updateTable(TablePO tablePO) {
         Integer result = tcgTableConfigDAO.updateById(tablePO.getTableBO());
         if(result != 1){
             throw DbException.DB_UPDATE_RESULT_0;
+        }
+
+        //视图只需要改表设置信息
+        if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTable())){
+            return true;
         }
 
 
