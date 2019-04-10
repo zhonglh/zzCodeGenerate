@@ -164,10 +164,14 @@
 
 
 <script>
-    var queryString = "${r"${"} queryString ${r"}"}";
     var tableid = "tableData-${r"${"} tableId ${r"}"}";
     var tree_field = "${table.businessNameCamelCase!}";
     var id_field = "id";
+
+
+    var queryString = "${r"${"} queryString ${r"}"}";
+    var listUrl = "";
+
 </script>
 
 

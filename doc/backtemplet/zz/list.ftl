@@ -243,6 +243,8 @@
 
     var queryString = "${r"${"} queryString ${r"}"}";
 
+    var listUrl = "";
+
 </script>
 
 

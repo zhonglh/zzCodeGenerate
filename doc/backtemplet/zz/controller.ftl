@@ -76,7 +76,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
 	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO bo ,ModelMap model) {
-    	Map<String , List<TsDictBO> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>"${dictType}"<#if dictType_has_next>,</#if></#list>);
+    	Map<String , List<TsDictBO> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
         for(Map.Entry<String , List<TsDictBO> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }

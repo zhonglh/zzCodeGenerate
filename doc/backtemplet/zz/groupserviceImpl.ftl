@@ -1,9 +1,12 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
-import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.core.exceptions.DbException;
-import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseGroupServiceImpl;
+import com.zz.bms.core.db.base.service.BaseService;
+
+
+import ${table.fullPackageName}.bo.${table.javaName}GroupBO;
+import ${table.fullPackageName}.service.${table.javaName}GroupService;
+import ${table.fullPackageName}.service.${table.javaName}Service;
 
 <#list table.pageChildTables as childTable>
 import ${childTable.fullPackageName}.service.${childTable.javaName}Service;
@@ -18,7 +21,11 @@ import org.springframework.stereotype.Service;
 * @date ${.now}
 */
 @Service
-public class ${table.javaName}ServiceImpl extends BaseGroupServiceImpl<${table.javaName}GroupBO,String> implements ${table.javaName}GroupService {
+public class ${table.javaName}GroupServiceImpl extends BaseGroupServiceImpl<${table.javaName}GroupBO,String> implements ${table.javaName}GroupService {
+
+
+	@Autowired
+	${table.javaName}Service ${table.simpleName}Service;
 
 <#list table.pageChildTables as childTable>
 	@Autowired
@@ -35,7 +42,7 @@ public class ${table.javaName}ServiceImpl extends BaseGroupServiceImpl<${table.j
 	public BaseService[] getServices() {
 		BaseService[] bss = null;
 		if(bss == null) {
-			bss = new BaseService[]{<#list table.pageChildTables as childTable>${childTable.simpleName}Service<#if childTable_has_next>,</#if></#list>};
+			bss = new BaseService[]{${table.simpleName}Service<#list table.pageChildTables as childTable>,${childTable.simpleName}Service</#list>};
 		}
 		return bss;
 	}

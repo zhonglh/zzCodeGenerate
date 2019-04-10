@@ -20,7 +20,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import ${table.mainTableConfig.fullPackageName}.bo.${table.mainTableConfig.javaName}BO;
 </#if>
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -89,7 +93,7 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
     </#if>
 
     <#if table.isTable == '0' >
-        return super.isTable();
+        return false;
     </#if>
 
     }
