@@ -55,8 +55,6 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
     @Autowired
     private ${table.javaName}DAO ${table.javaName?uncap_first}DAO ;
 
-    @Autowired
-    private ${table.mainTableConfig.javaName}DAO ${table.mainTableConfig.javaName?uncap_first}DAO ;
 
 
     @Override
@@ -120,15 +118,17 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 		</#list>
 
 		<#if exFkColumnMap?exists>
-		for(${table.javaName}BO bo : ${table.javaName?uncap_first}BOs)		{
+			for(${table.javaName}BO bo : ${table.javaName?uncap_first}BOs)		{
 
 		<#list exFkColumnMap?keys as key>
 		<#if exFkColumnMap[key][0].originalColumnFk == '1'>
 		<#assign fkTable = exFkColumnMap[key][0].originalColumn.fkTableConfig >
-			${exFkColumnMap[key][0].originalColumn.javaName}List.add(bo.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}());
+			if(   StringUtils.isNotEmpty( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}() ) ){
+				${exFkColumnMap[key][0].originalColumn.javaName}List.add(bo.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}());
+			}
 		</#if>
 		</#list>
-		}
+			}
 		</#if>
 
 		<#list exFkColumnMap?keys as key>
@@ -141,7 +141,7 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 					${table.javaName?uncap_first}BOs.forEach(${table.javaName?uncap_first}BO -> {
 						if(   StringUtils.isNotEmpty( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}() ) ){
-							${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = map.get( ${exFkColumnMap[key][0].originalColumn.javaName?cap_first}() );
+							${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = map.get( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}() );
 							if(${fkTable.javaName?uncap_first}BO != null){
 								<#list exFkColumnMap[key] as val>
 									${table.javaName?uncap_first}BO.set${val.javaName?cap_first}(${fkTable.javaName?uncap_first}BO.get${val.fkJavaName?cap_first}());
