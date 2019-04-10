@@ -29,9 +29,9 @@ public class DictTypeBusiness {
             sb.append("\n").append("import com.zz.bms.core.enums.EnumBase;");
 
             sb.append("\n\n/**");
-            sb.append("\n * 字典 ").append(entry.getValue());
-            sb.append("\n * @author ").append(projectBO.getProjectAuthor());
-            sb.append("\n */");
+            sb.append("\n   * 字典 ").append(entry.getValue());
+            sb.append("\n   * @author ").append(projectBO.getProjectAuthor());
+            sb.append("\n   */");
             sb.append("\n").append("public enum Enum").append(StringFormatKit.toCapitalizeCamelCase(entry.getKey())).append(" implements EnumBase<String> {");
 
             sb.append("\n\n").append("  ;");
@@ -44,38 +44,38 @@ public class DictTypeBusiness {
             sb.append("\n").append("  String theName ;");
             sb.append("\n\n");
 
-            sb.append("\n   @Override");
-            sb.append("\n   public String getVal() {");
-            sb.append("\n       return theValue;");
-            sb.append("\n   }");
+            sb.append("\n     @Override");
+            sb.append("\n     public String getVal() {");
+            sb.append("\n         return theValue;");
+            sb.append("\n     }");
 
             sb.append("\n\n");
 
-            sb.append("\n   @Override");
-            sb.append("\n   public String getLabel() {");
-            sb.append("\n       return theName;");
-            sb.append("\n   }");
+            sb.append("\n     @Override");
+            sb.append("\n     public String getLabel() {");
+            sb.append("\n         return theName;");
+            sb.append("\n     }");
 
             sb.append("\n\n");
 
-            sb.append("\n   @Override");
-            sb.append("\n   public String getValue() {");
-            sb.append("\n       return theValue;");
-            sb.append("\n   }");
+            sb.append("\n     @Override");
+            sb.append("\n     public String getValue() {");
+            sb.append("\n         return theValue;");
+            sb.append("\n     }");
 
             sb.append("\n\n");
 
 
 
-            sb.append("\n   public static Enum").append(StringFormatKit.toCapitalizeCamelCase(entry.getKey())).append(" getEnumByValue(String v){");
-            sb.append("\n       for(Enum").append(StringFormatKit.toCapitalizeCamelCase(entry.getKey()));
+            sb.append("\n     public static Enum").append(StringFormatKit.toCapitalizeCamelCase(entry.getKey())).append(" getEnumByValue(String v){");
+            sb.append("\n         for(Enum").append(StringFormatKit.toCapitalizeCamelCase(entry.getKey()));
             sb.append(" enum1 : Enum").append(StringFormatKit.toCapitalizeCamelCase(entry.getKey())).append(".values()){");
-            sb.append("\n           if(enum1.getVal().equals(v)){");
-            sb.append("\n               return enum1;");
-            sb.append("\n           }");
-            sb.append("\n       }");
-            sb.append("\n       return  null;");
-            sb.append("\n   }");
+            sb.append("\n             if(enum1.getVal().equals(v)){");
+            sb.append("\n                 return enum1;");
+            sb.append("\n             }");
+            sb.append("\n         }");
+            sb.append("\n         return  null;");
+            sb.append("\n     }");
 
 
 
@@ -95,55 +95,55 @@ public class DictTypeBusiness {
         sb.append("\n").append("import com.zz.bms.core.enums.EnumBase;");
 
         sb.append("\n\n/**");
-        sb.append("\n * 字典类型 ");
-        sb.append("\n * @author ").append(projectBO.getProjectAuthor());
-        sb.append("\n */");
+        sb.append("\n   * 字典类型 ");
+        sb.append("\n   * @author ").append(projectBO.getProjectAuthor());
+        sb.append("\n   */");
         sb.append("\n").append("public enum EnumDictType implements EnumBase<String> {");
 
 
         for(Map.Entry<String,String> entry : dictTypeMap.entrySet()) {
-            sb.append("\n "+entry.getKey().toLowerCase()+"(\""+entry.getKey().toLowerCase()+"\"),");
+            sb.append("\n   "+entry.getKey().toUpperCase()+"(\""+entry.getKey().toLowerCase()+"\"),");
         }
-        sb.append("\n ;");
+        sb.append("\n   ;");
 
-        sb.append("\n private String code;");
-        sb.append("\n EnumDictType(String code) {");
-        sb.append("\n     this.code = code;");
-        sb.append("\n }");
-
-        sb.append("\n @Override");
-        sb.append("\n public String getVal() {");
-        sb.append("\n   return code;");
-        sb.append("\n }");
-
-
-        sb.append("\n ");
-        sb.append("\n @Override");
-        sb.append("\n public String getLabel() {");
-        sb.append("\n   return code;");
-        sb.append("\n }");
-        sb.append("\n ");
-        sb.append("\n @Override");
-        sb.append("\n public String getValue() {");
-        sb.append("\n   return code;");
-        sb.append("\n }");
-        sb.append("\n ");
-        sb.append("\n ");
-        sb.append("\n @Override");
-        sb.append("\n public EnumDictType getEnum(String v){");
-        sb.append("\n   return EnumDictType.getEnumByValue(v);");
-        sb.append("\n }");
-        sb.append("\n ");
-        sb.append("\n ");
-        sb.append("\n public static EnumDictType getEnumByValue(String v){");
-        sb.append("\n   for(EnumDictType enum1 : EnumDictType.values()){");
-        sb.append("\n       if(enum1.code.equals(v)){");
-        sb.append("\n           return enum1;");
-        sb.append("\n       }");
+        sb.append("\n   private String code;");
+        sb.append("\n   EnumDictType(String code) {");
+        sb.append("\n       this.code = code;");
         sb.append("\n   }");
-        sb.append("\n   return  null;");
-        sb.append("\n  }");
-        sb.append("\n  ");
+
+        sb.append("\n   @Override");
+        sb.append("\n   public String getVal() {");
+        sb.append("\n     return code;");
+        sb.append("\n   }");
+
+
+        sb.append("\n     ");
+        sb.append("\n   @Override");
+        sb.append("\n   public String getLabel() {");
+        sb.append("\n     return code;");
+        sb.append("\n   }");
+        sb.append("\n\n   ");
+        sb.append("\n   @Override");
+        sb.append("\n   public String getValue() {");
+        sb.append("\n     return code;");
+        sb.append("\n   }");
+        sb.append("\n   ");
+        sb.append("\n\n   ");
+        sb.append("\n   @Override");
+        sb.append("\n   public EnumDictType getEnum(String v){");
+        sb.append("\n     return EnumDictType.getEnumByValue(v);");
+        sb.append("\n   }");
+        sb.append("\n   ");
+        sb.append("\n\n   ");
+        sb.append("\n   public static EnumDictType getEnumByValue(String v){");
+        sb.append("\n     for(EnumDictType enum1 : EnumDictType.values()){");
+        sb.append("\n         if(enum1.code.equals(v)){");
+        sb.append("\n             return enum1;");
+        sb.append("\n         }");
+        sb.append("\n     }");
+        sb.append("\n     return  null;");
+        sb.append("\n    }");
+        sb.append("\n    ");
 
 
         sb.append("\n\n").append("}");

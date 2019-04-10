@@ -1,5 +1,7 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
+import ${project.projectPackage}.enums.*;
+
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
@@ -100,80 +102,81 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 
 
-		@Override
-		public List<${table.javaName}BO> processResult(List<${table.javaName}BO> ${table.javaName?uncap_first}BOs) {
-			if(${table.javaName?uncap_first}BOs == null || ${table.javaName?uncap_first}BOs.isEmpty()){
-				return ${table.javaName?uncap_first}BOs;
-			}
+	@Override
+	public List<${table.javaName}BO> processResult(List<${table.javaName}BO> ${table.javaName?uncap_first}BOs) {
+		if(${table.javaName?uncap_first}BOs == null || ${table.javaName?uncap_first}BOs.isEmpty()){
+			return ${table.javaName?uncap_first}BOs;
+		}
 
-		<#if (exFkColumnMap?exists && exFkColumnMap?size > 0 )>
-		<#list exFkColumnMap?keys as key>
+	<#if (exFkColumnMap?exists && exFkColumnMap?size > 0 )>
+	<#list exFkColumnMap?keys as key>
+	<#if exFkColumnMap[key][0].originalColumnFk == '1'>
+	<#assign fkTable = exFkColumnMap[key][0].originalColumn.fkTableConfig >
+		List<PK> ${exFkColumnMap[key][0].originalColumn.javaName}List = new ArrayList<PK>();
+	</#if>
+	</#list>
+
+	<#if exFkColumnMap?exists>
+		for(${table.javaName}BO bo : ${table.javaName?uncap_first}BOs)		{
+
+	<#list exFkColumnMap?keys as key>
+	<#if exFkColumnMap[key][0].originalColumnFk == '1'>
+	<#assign fkTable = exFkColumnMap[key][0].originalColumn.fkTableConfig >
+			if(StringUtils.isNotEmpty( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}())){
+				${exFkColumnMap[key][0].originalColumn.javaName}List.add(bo.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}());
+			}
+	</#if>
+	</#list>
+		}
+	</#if>
+
+	<#list exFkColumnMap?keys as key>
 		<#if exFkColumnMap[key][0].originalColumnFk == '1'>
 		<#assign fkTable = exFkColumnMap[key][0].originalColumn.fkTableConfig >
-			List<PK> ${exFkColumnMap[key][0].originalColumn.javaName}List = new ArrayList<PK>();
-		</#if>
-		</#list>
 
-		<#if exFkColumnMap?exists>
-			for(${table.javaName}BO bo : ${table.javaName?uncap_first}BOs)		{
-
-		<#list exFkColumnMap?keys as key>
-		<#if exFkColumnMap[key][0].originalColumnFk == '1'>
-		<#assign fkTable = exFkColumnMap[key][0].originalColumn.fkTableConfig >
-				if(StringUtils.isNotEmpty( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}())){
-					${exFkColumnMap[key][0].originalColumn.javaName}List.add(bo.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}());
-				}
-		</#if>
-		</#list>
-			}
-		</#if>
-
-		<#list exFkColumnMap?keys as key>
-			<#if exFkColumnMap[key][0].originalColumnFk == '1'>
-			<#assign fkTable = exFkColumnMap[key][0].originalColumn.fkTableConfig >
-
-			if(!${exFkColumnMap[key][0].originalColumn.javaName}List.isEmpty()){
-				List<${fkTable.javaName}BO> list =  ${exFkColumnMap[key][0].originalColumn.fkTableConfig.javaName?uncap_first}DAO.selectBatchIds(${exFkColumnMap[key][0].originalColumn.javaName}List);
-				Map<String,${fkTable.javaName}BO> map = EntityUtil.list2Map(list);
-
-				${table.javaName?uncap_first}BOs.forEach(${table.javaName?uncap_first}BO -> {
-					if(StringUtils.isNotEmpty( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}())){
-						${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = map.get( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}() );
-						if(${fkTable.javaName?uncap_first}BO != null){
-							<#list exFkColumnMap[key] as val>
-								${table.javaName?uncap_first}BO.set${val.javaName?cap_first}(${fkTable.javaName?uncap_first}BO.get${val.fkJavaName?cap_first}());
-							</#list>
-						}
-					}
-				});
-			}
-			</#if>
-		</#list>
-		</#if>
-
-
-
-
-
-		<#if (exDictColumnMap?exists && exDictColumnMap?size > 0 )>
-			String[] dictTypes = new String[]{<#list exDictColumnMap?keys as key><#if exDictColumnMap[key][0].originalColumnDict == '1'>EnumDictType.${exDictColumnMap[key][0].originalColumn.dictType?upper_case}.getCode()<#if key_has_next>,</#if></#if></#list>};
-			Map<String , TsDictBO> dictMap = tsDictService.allDict(dictTypes);
+		if(!${exFkColumnMap[key][0].originalColumn.javaName}List.isEmpty()){
+			List<${fkTable.javaName}BO> list =  ${exFkColumnMap[key][0].originalColumn.fkTableConfig.javaName?uncap_first}DAO.selectBatchIds(${exFkColumnMap[key][0].originalColumn.javaName}List);
+			Map<String,${fkTable.javaName}BO> map = EntityUtil.list2Map(list);
 
 			${table.javaName?uncap_first}BOs.forEach(${table.javaName?uncap_first}BO -> {
-			<#list exDictColumnMap?keys as key>
-			<#if exDictColumnMap[key][0].originalColumnDict == '1'>
-				if(StringUtils.isEmpty(${table.javaName?uncap_first}BO.get${exDictColumnMap[key][0].javaName?cap_first}()) && StringUtils.isNotEmpty(${table.javaName?uncap_first}BO.get${exDictColumnMap[key][0].originalColumn.javaName?cap_first}()) ) {
-					TsDictBO dict = dictMap.get(EnumDictType.${exDictColumnMap[key][0].originalColumn.dictType?upper_case}.getCode() + ${table.javaName?uncap_first}BO.get${exDictColumnMap[key][0].originalColumn.javaName?cap_first}());
-					if(dict != null) {
-						${table.javaName?uncap_first}BO.set${exDictColumnMap[key][0].javaName?cap_first}(dict.getDictName());
+				if(StringUtils.isNotEmpty( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}())){
+					${fkTable.javaName}BO ${fkTable.javaName?uncap_first}BO = map.get( ${table.javaName?uncap_first}BO.get${exFkColumnMap[key][0].originalColumn.javaName?cap_first}() );
+					if(${fkTable.javaName?uncap_first}BO != null){
+						<#list exFkColumnMap[key] as val>
+							${table.javaName?uncap_first}BO.set${val.javaName?cap_first}(${fkTable.javaName?uncap_first}BO.get${val.fkJavaName?cap_first}());
+						</#list>
 					}
 				}
-			</#if>
-			</#list>
 			});
+		}
+		</#if>
+	</#list>
+	</#if>
+
+
+
+
+
+	<#if (exDictColumnMap?exists && exDictColumnMap?size > 0 )>
+		String[] dictTypes = new String[]{<#list exDictColumnMap?keys as key><#if exDictColumnMap[key][0].originalColumnDict == '1'>EnumDictType.${exDictColumnMap[key][0].originalColumn.dictType?upper_case}.getCode()<#if key_has_next>,</#if></#if></#list>};
+		Map<String , TsDictBO> dictMap = tsDictService.allDict(dictTypes);
+
+		${table.javaName?uncap_first}BOs.forEach(${table.javaName?uncap_first}BO -> {
+		<#list exDictColumnMap?keys as key>
+		<#if exDictColumnMap[key][0].originalColumnDict == '1'>
+			if(StringUtils.isEmpty(${table.javaName?uncap_first}BO.get${exDictColumnMap[key][0].javaName?cap_first}()) && StringUtils.isNotEmpty(${table.javaName?uncap_first}BO.get${exDictColumnMap[key][0].originalColumn.javaName?cap_first}()) ) {
+				TsDictBO dict = dictMap.get(EnumDictType.${exDictColumnMap[key][0].originalColumn.dictType?upper_case}.getCode() + ${table.javaName?uncap_first}BO.get${exDictColumnMap[key][0].originalColumn.javaName?cap_first}());
+				if(dict != null) {
+					${table.javaName?uncap_first}BO.set${exDictColumnMap[key][0].javaName?cap_first}(dict.getDictName());
+				}
+			}
+		</#if>
+		</#list>
+		});
 	</#if>
 
 	</#if>
+	}
 
 
 
