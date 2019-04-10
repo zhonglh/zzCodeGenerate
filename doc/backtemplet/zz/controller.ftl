@@ -55,7 +55,7 @@ public class ${table.javaName}Controller extends ZzGroupDefaultController<${tabl
 <#elseif (table.reciprocalView?exists  )>
 public class ${table.javaName}Controller extends ZzDefaultController<${table.javaName}BO,${table.reciprocalView.javaName}BO, String , ${table.javaName}QueryWebImpl , ${table.reciprocalView.javaName}QueryWebImpl> {
 <#elseif (table.pageChildTables?exists && table.pageChildTables?size > 0 )>
-public class ${table.javaName}Controller extends ZzGroupDefaultSimpleController<${table.javaName}GroupBOBO, String , ${table.javaName}QueryWebImpl > {
+public class ${table.javaName}Controller extends ZzGroupDefaultSimpleController<${table.javaName}GroupBO, String , ${table.javaName}QueryWebImpl > {
 <#else >
 public class ${table.javaName}Controller extends ZzDefaultSimpleController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl > {
 </#if>
