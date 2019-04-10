@@ -25,6 +25,11 @@ public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
+
+
+
+<#if (table.isTable == '1' || !table.mainTableConfig?exists)>
+
 <#list columns as being>
 <#if !being.inParentClass>
     <#assign columnPage = columnPageMap[being.id] >
@@ -61,5 +66,6 @@ public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table
 
  </#if>
 </#list>
-	
+
+</#if>
 }

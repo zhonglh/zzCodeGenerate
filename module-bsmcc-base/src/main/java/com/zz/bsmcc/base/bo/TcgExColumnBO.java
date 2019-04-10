@@ -46,9 +46,16 @@ public class TcgExColumnBO extends TcgExColumnEntity implements Serializable {
     private String originalJavaName;
 
 
+    /**
+     * 源列是否为外键
+     */
     @TableField(exist = false)
     private String originalColumnFk;
 
+
+    /**
+     * 源列是否为字典
+     */
     @TableField(exist = false)
     private String originalColumnDict;
 

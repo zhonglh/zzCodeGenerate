@@ -32,6 +32,10 @@ public class TablePO implements Serializable{
 
     //扩展列
     private Map<String,List<TcgExColumnBO>> exColumnMap;
+    //扩展列  外键
+    private Map<String,List<TcgExColumnBO>> exFkColumnMap;
+    //扩展列  字典
+    private Map<String,List<TcgExColumnBO>> exDictColumnMap;
 
 
     //用于列表界面上查询的弹框选择 ， 需要是外键列或者同组有外键列的
@@ -146,6 +150,22 @@ public class TablePO implements Serializable{
 
     public void setExColumnMap(Map<String, List<TcgExColumnBO>> exColumnMap) {
         this.exColumnMap = exColumnMap;
+    }
+
+    public Map<String, List<TcgExColumnBO>> getExFkColumnMap() {
+        return exFkColumnMap;
+    }
+
+    public void setExFkColumnMap(Map<String, List<TcgExColumnBO>> exFkColumnMap) {
+        this.exFkColumnMap = exFkColumnMap;
+    }
+
+    public Map<String, List<TcgExColumnBO>> getExDictColumnMap() {
+        return exDictColumnMap;
+    }
+
+    public void setExDictColumnMap(Map<String, List<TcgExColumnBO>> exDictColumnMap) {
+        this.exDictColumnMap = exDictColumnMap;
     }
 
     public Map<String,List<TcgQueryConfigBO>> getQueryFks() {

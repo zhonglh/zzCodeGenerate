@@ -323,6 +323,8 @@ public class CgBusiness extends CgBaseBusiness{
 
             //处理扩展列的信息
             Map<String,List<TcgExColumnBO>> exMap = null;
+            Map<String,List<TcgExColumnBO>> exFkMap = null;
+            Map<String,List<TcgExColumnBO>> exDictMap = null;
             Map<String , TcgExColumnBO> exColumnMap = new HashMap<String , TcgExColumnBO>();
 
             List<TcgExColumnBO> exColumns = (List<TcgExColumnBO>)tcgExColumnService.listByMap(searchMap);
@@ -336,7 +338,10 @@ public class CgBusiness extends CgBaseBusiness{
 
                 //处理扩展列的信息
                 processExColumn(tableConfig ,exColumns , columns , exColumnMap);
-                exMap = processExColumnMap(exColumns);
+                Map<String,List<TcgExColumnBO>>[] mapArray = processExColumnMap(exColumns);
+                exMap = mapArray[0];
+                exFkMap = mapArray[1];
+                exDictMap = mapArray[2];
 
                 exColumns.forEach(item -> {
                     if(EnumYesNo.YES.getCode().equals(item.getOriginalColumnFk())) {
@@ -503,6 +508,8 @@ public class CgBusiness extends CgBaseBusiness{
             tablePO.setColumns(columns);
             tablePO.setExColumns(exColumns);
             tablePO.setExColumnMap(exMap);
+            tablePO.setExFkColumnMap(exFkMap);
+            tablePO.setExDictColumnMap(exDictMap);
 
             tablePO.setColumnPages(columnPages);
             tablePO.setColumnValidates(validates);
@@ -814,6 +821,10 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("columns" , tablePO.getColumns());
         freemarkerModel.put("exColumns" , tablePO.getExColumns());
         freemarkerModel.put("exColumnMap" , tablePO.getExColumnMap());
+        freemarkerModel.put("exFkColumnMap" , tablePO.getExFkColumnMap());
+        freemarkerModel.put("exDictColumnMap" , tablePO.getExDictColumnMap());
+
+
         freemarkerModel.put("columnPages" , tablePO.getColumnPages());
         freemarkerModel.put("columnPageMap" , processColumnPageBOMap(tablePO.getColumnPages()));
 
@@ -1041,22 +1052,31 @@ public class CgBusiness extends CgBaseBusiness{
         return map;
     }
 
-    private Map<String,List<TcgExColumnBO>> processExColumnMap(List<TcgExColumnBO> exColumns) {
+    private Map<String,List<TcgExColumnBO>>[] processExColumnMap(List<TcgExColumnBO> exColumns) {
         Map<String,List<TcgExColumnBO>> map = new HashMap<String,List<TcgExColumnBO>>();
+        Map<String,List<TcgExColumnBO>> fkmap = new HashMap<String,List<TcgExColumnBO>>();
+        Map<String,List<TcgExColumnBO>> dickmap = new HashMap<String,List<TcgExColumnBO>>();
+
         for(TcgExColumnBO exColumn : exColumns){
             String key = exColumn.getOriginalColumnId();
             if(key == null || key.isEmpty()){
                 continue;
             }
 
+
             List<TcgExColumnBO> list = map.get(key);
             if(list == null){
                 list = new ArrayList<TcgExColumnBO>();
                 map.put(key , list);
+                if(EnumYesNo.YES.getCode().equals( exColumn.getOriginalColumnFk())){
+                    fkmap.put(key , list);
+                }else {
+                    dickmap.put(key , list);
+                }
             }
             list.add(exColumn);
         }
-        return map;
+        return new Map[]{map , fkmap , dickmap};
     }
 
     /**
