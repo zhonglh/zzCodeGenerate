@@ -242,7 +242,7 @@
                                         <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
                                             <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> >
                                                 <option value="" ></option>
-                                                <c:forEach items=${r"${"} ${nextPage.columnConfig.dictType} ${r"}"} var="dict">
+                                                <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType} ${r"}"}" var="dict">
                                                     <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name ${r"}"}</option>
                                                 </c:forEach>
                                             </select>

@@ -28,7 +28,7 @@ values (
 '${menu.name}' ,
 <#if menu.pid?exists>'${menu.pid}' ,<#else >null ,</#if>
 ${menu_index} ,
-<#if menu.leaf == '1'>'${menu.resource}/<#if menu.table?exists && menu.table.isTree?exists && menu.table.isTree == '1'>tree<#else>list</#if>' ,<#else >null,</#if>
+<#if menu.leaf == '1'>'${menu.resource}/<#if menu.table?exists && menu.table.isTree?exists && menu.table.isTree == '1'>toTree<#else>toList</#if>' ,<#else >null,</#if>
 '${menu.title}',
 null,
 null,

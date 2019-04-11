@@ -83,6 +83,7 @@ public class CgBusiness extends CgBaseBusiness{
 
         for(TcgModuleConfigBO moduleConfigBO : list) {
 
+
             MenuPO menu = new MenuPO();
             menu.setId(moduleConfigBO.getId());
             menu.setPid(moduleConfigBO.getPid());
@@ -294,8 +295,15 @@ public class CgBusiness extends CgBaseBusiness{
             tableConfig.setNotPageChildColumns(new ArrayList<TcgColumnConfigBO>());
 
 
+
+
+
             Map<String , TcgColumnConfigBO> columnMap = new HashMap<String , TcgColumnConfigBO>();
             List<TcgColumnConfigBO> columns = (List<TcgColumnConfigBO>)tcgColumnConfigService.listByMap(searchMap);
+
+
+            //处理表对应实体类的 imports 和 基类
+            processTableImprotAndParent(tableConfig, columns );
 
             //处理列的信息
             if(columns != null && !columns.isEmpty()) {
@@ -317,8 +325,6 @@ public class CgBusiness extends CgBaseBusiness{
             processTableBusiness(  tableConfig ,columnMap);
 
 
-            //处理表对应实体类的 imports 和 基类
-            processTableImprotAndParent(tableConfig, columns );
 
 
             //处理扩展列的信息
@@ -556,8 +562,10 @@ public class CgBusiness extends CgBaseBusiness{
             });
 
 
-            //处理菜单
-            processMenu(menus,tableConfig , menus);
+            if(EnumYesNo.YES.getCode().equals(tableConfig.getIsBuildMenu())) {
+                //处理菜单
+                processMenu(menus, tableConfig, menus);
+            }
 
 
         }
@@ -718,7 +726,10 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             //视图不生成UI
-            if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTable()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){
+            if(
+                    EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTable()) &&
+                    (EnumYesNo.YES.getCode().equals(templet.getIsUi()) || EnumYesNo.YES.getCode().equals(templet.getIsRbacSql()) )
+            ){
                 continue;
             }
 
@@ -1094,12 +1105,21 @@ public class CgBusiness extends CgBaseBusiness{
         List fkTables = new ArrayList<TcgTableConfigBO>();
         List<TcgColumnConfigBO> fkColumns = new ArrayList<TcgColumnConfigBO>();
 
+        Class parentClass = null;
+        try {
+            if(StringUtils.isNotEmpty(tableConfig.getParentClass())) {
+                parentClass = Class.forName(tableConfig.getParentClass());
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         if(tcgColumnConfigBOs != null && !tcgColumnConfigBOs.isEmpty()){
 
             Set<String> dictTypeSet = new HashSet<String>();
 
-            Set<String> parentFieldNames = CgBeanUtil.getAllClassFieldName(BaseBusinessExEntity.class);
+            Set<String> parentFieldNames = CgBeanUtil.getAllClassFieldName((parentClass == null ? BaseBusinessExEntity.class : parentClass));
 
             String businessName = tableConfig.getBusinessName();
             String businessKey = tableConfig.getBusinessKey();
@@ -1466,6 +1486,8 @@ public class CgBusiness extends CgBaseBusiness{
         }
         tableConfig.setImportClasss(new ArrayList<String>(imports));
     }
+
+
 
 
     /**

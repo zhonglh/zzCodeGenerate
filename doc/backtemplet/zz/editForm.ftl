@@ -16,15 +16,24 @@
                 </div>
 
 
-                <div id="detailForm">
+                <div id="detailForm" class="detailForm">
                     <table class="info-table">
+
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
+
+
                         <#list showColumnPages as being>
                             <#if being_index%2 ==0>
                                 <tr>
 
-                                    <th width="15%">${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
+                                    <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
 
-                                    <td>
+                                    <td class="fd_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
                                         <#if being.element == 'date' >
                                             <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
                                         <#elseif being.element == 'timestamp' >
@@ -40,7 +49,7 @@
 
                                     <#if being_has_next>
                                     <#assign nextPage=showColumnPages[being_index+1]>
-                                    <th width="15%">${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                    <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
 
                                     <td>
                                         <#if nextPage.element == 'date' >
@@ -82,7 +91,7 @@
                             <#if being_index%2 ==0>
                                 <tr>
 
-                                    <th width="15%">${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
+                                    <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
 
                                     <td>
 
@@ -211,7 +220,7 @@
 
                                         <#assign nextPage=showColumnPages[being_index+1]>
 
-                                        <th width="15%">${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                        <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
 
                                         <td>
 
