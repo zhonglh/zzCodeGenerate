@@ -106,7 +106,7 @@
 
 
                                             <#elseif being.element == 'radio' || being.element == 'checkbox' || being.element == 'select' >
-                                                <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> >
+                                                <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> style="width:98%">
                                                 <option value="" ></option>
                                                 <c:forEach items="${r"${"} ${being.columnConfig.dictType}_dicts ${r"}"}" var="dict">
                                                     <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${being.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName}  ${r"}"}</option>
@@ -160,7 +160,7 @@
 
                                     <#assign nextPage=showColumnPages[being_index+1]>
 
-                                    <th width="15%">${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                    <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
 
                                     <td>
 
@@ -240,7 +240,7 @@
 
 
                                         <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
-                                            <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> >
+                                            <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> style="width:98%">
                                                 <option value="" ></option>
                                                 <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
                                                     <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${nextPage.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName ${r"}"}</option>
