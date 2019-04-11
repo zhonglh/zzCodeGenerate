@@ -1,12 +1,10 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.enums.EnumYesNo;
-import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.enums.*;
 
 import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;
+import com.zz.bms.core.db.entity.*;
 
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import  ${table.fullPackageName}.query.impl.${table.javaName}QueryWebImpl;
@@ -33,6 +31,7 @@ import com.zz.bms.system.controller.ZzDefaultSimpleController;
 </#if>
 
 import com.zz.bms.util.base.java.IdUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -40,6 +39,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * ${table.tableComment} 控制层
@@ -60,9 +60,11 @@ public class ${table.javaName}Controller extends ZzGroupDefaultSimpleController<
 public class ${table.javaName}Controller extends ZzDefaultSimpleController<${table.javaName}BO, String , ${table.javaName}QueryWebImpl > {
 </#if>
 
+	@Autowired
+	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(${table.javaName}BO bo){
+	public void setCustomInfoByInsert(${table.javaName}BO bo , ILoginUserEntity sessionUser){
 		<#list columnPages as page>
 		    <#if page.defaultType?exists && page.defaultType == 'CUSTOM'>
 				<#if page.columnConfig?exists>
@@ -75,9 +77,9 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
-	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO bo ,ModelMap model) {
-    	Map<String , List<TsDictBO> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
-        for(Map.Entry<String , List<TsDictBO> dictObj : dictMap.entrySet()){
+	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO ,ModelMap model) {
+    	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
+        for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }
 	}

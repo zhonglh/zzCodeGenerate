@@ -39,6 +39,8 @@
                     </button>
                 </shiro:hasPermission>
 
+            <#elseif operation.operationResource == 'detail'>
+
             <#elseif operation.operationResource == 'delete'>
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
