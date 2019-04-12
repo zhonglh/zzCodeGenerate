@@ -633,8 +633,7 @@ public class CgBusiness extends CgBaseBusiness{
                 }
 
                 String filePath = basePath + File.separator + templet.getFileOutDir();
-                String fileName = templet.getTempletTitle() +
-                        (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
+                String fileName =  (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
                         "." + templet.getFileType();
 
                 Map<String, Object> model = new HashMap<>();
@@ -676,8 +675,7 @@ public class CgBusiness extends CgBaseBusiness{
                 }
 
                 String filePath = basePath + File.separator + templet.getFileOutDir();
-                String fileName = templet.getTempletTitle() +
-                        (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
+                String fileName =   (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
                         "." + templet.getFileType();
 
                 Map<String, Object> model = new HashMap<>();
