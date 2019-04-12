@@ -11,6 +11,9 @@
          	<result column="file_type" property="fileType"/>
          	<result column="file_suffix" property="fileSuffix"/>
 			<result column="is_ui" property="isUi"/>
+
+
+			<result column="is_dict_Sql" property="isDictSql"/>
 			<result column="is_rbac_sql" property="isRbacSql"/>
 			<result column="is_menu_sql" property="isMenuSql"/>
 			<result column="have_object_name" property="haveObjectName"/>

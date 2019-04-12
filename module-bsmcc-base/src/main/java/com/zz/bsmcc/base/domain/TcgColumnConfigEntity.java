@@ -329,7 +329,11 @@ public class TcgColumnConfigEntity extends BaseBusinessSimpleEntity<String> impl
 	 * @return the dictType
 	 */
 	public String getDictType() {
-		return dictType;
+		if(dictType != null){
+			return dictType.trim().toLowerCase();
+		}else {
+			return dictType;
+		}
 	}
 	
 	/** 

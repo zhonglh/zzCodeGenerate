@@ -131,6 +131,19 @@
                                 </div>
                             </div>
 
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否字典SQL：</label>
+                                <div class="col-sm-8">
+                                    <select id="isDictSql" name="isDictSql"  class="form-control">
+                                        <option value="1" <c:if test="${entity.isDictSql ==  '1' }">selected="selected"</c:if> hassubinfo="true">是</option>
+                                        <option value="0" <c:if test="${entity.isDictSql ==  '0' }">selected="selected"</c:if> hassubinfo="true">否</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">生成文件的后缀：</label>
                                 <div class="col-sm-8">

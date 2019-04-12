@@ -76,6 +76,8 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
         private String isRbacSql;
 
+        private String isDictSql;
+
 
 
         //是否只对树状 有效
@@ -248,5 +250,14 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
 
     public void setEffectiveSingle(String effectiveSingle) {
         this.effectiveSingle = effectiveSingle;
+    }
+
+
+    public String getIsDictSql() {
+        return isDictSql;
+    }
+
+    public void setIsDictSql(String isDictSql) {
+        this.isDictSql = isDictSql;
     }
 }

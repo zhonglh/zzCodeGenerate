@@ -8,9 +8,10 @@ import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.data.StringUtil;
+import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.freemarker.FreemarkerUtil;
 import com.zz.bsmcc.base.bo.*;
-import com.zz.bsmcc.base.logic.TableLogic;
+import com.zz.bsmcc.base.po.DictTypePO;
 import com.zz.bsmcc.base.po.MenuPO;
 import com.zz.bsmcc.base.po.TablePO;
 import com.zz.bsmcc.base.query.*;
@@ -503,7 +504,7 @@ public class CgBusiness extends CgBaseBusiness{
 
             for(TcgColumnConfigBO column : columns){
                 if(EnumYesNo.YES.getCode().equals(column.getColumnIsdict()) && StringUtils.isNotEmpty(column.getDictType())){
-                    dictTypeMap.put(column.getDictType() , column.getColumnComment());
+                    dictTypeMap.put(column.getDictType().trim().toLowerCase() , column.getColumnComment());
                 }
             }
 
@@ -652,10 +653,48 @@ public class CgBusiness extends CgBaseBusiness{
         }
 
 
-        //生成字典类
+        //处理字典信息
         if(!dictTypeMap.isEmpty()){
+
+            //生成字典枚举类
             DictTypeBusiness.buildDictType(projectBO, dictTypeMap);
+
+
+            List<DictTypePO> dictTypes = new ArrayList<DictTypePO>();
+
+            for(Map.Entry<String,String> entry : dictTypeMap.entrySet()){
+                DictTypePO dictTypePO = new DictTypePO(IdUtils.getId() , entry.getKey() , entry.getValue());
+                dictTypes.add(dictTypePO);
+            }
+
+
+            //生成字典SQL
+            String basePath = BusinessUtil.getBasePath();
+            for (TcgTempletBO templet : templets) {
+                if (StringUtils.isEmpty(templet.getIsDictSql()) ||EnumYesNo.NO.getCode().equals(templet.getIsDictSql())) {
+                    continue;
+                }
+
+                String filePath = basePath + File.separator + templet.getFileOutDir();
+                String fileName = templet.getTempletTitle() +
+                        (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
+                        "." + templet.getFileType();
+
+                Map<String, Object> model = new HashMap<>();
+
+                model.put("templet", templet);
+                model.put("dictTypes", dictTypes);
+
+                String templetContent = templet.getTempletContent();
+
+                String result = FreemarkerUtil.renderString(templetContent, model);
+
+                BusinessUtil.buildFile(filePath, fileName, result);
+
+
+            }
         }
+
     }
 
 
@@ -713,6 +752,13 @@ public class CgBusiness extends CgBaseBusiness{
             if(EnumYesNo.YES.getCode().equals(templet.getIsMenuSql())){
                 continue;
             }
+
+
+            //字典SQL模板 不在这里处理
+            if(EnumYesNo.YES.getCode().equals(templet.getIsDictSql())){
+                continue;
+            }
+
 
 
             //如果表里设置的不生成权限SQL, 而模板是权限SQL的模板， 将不继续
