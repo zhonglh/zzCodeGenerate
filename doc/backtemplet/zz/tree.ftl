@@ -6,12 +6,9 @@
 
 <div region='north'>
     <div class="navigation">
-
-
         <span class="words"><a>${r"${"} breadcrumb ${r"}"}</a></span>
-
-
     </div>
+
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
@@ -20,11 +17,8 @@
         </form>
 
 
-
         <#if topOperations?exists>
-
         <div class="btn-bar" style="margin-left: -10px;">
-
         <#list topOperations as operation>
         <#if (operation.operationResource!='update')>
 
@@ -120,7 +114,6 @@
                 </shiro:hasPermission>
 
             <#else>
-
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
                         <svg class="icon" aria-hidden="true">
@@ -131,15 +124,10 @@
                 </shiro:hasPermission>
 
             </#if>
-
         </#if>
         </#list>
-
         </div>
-
         </#if>
-
-
     </div>
 
 </div>
@@ -154,15 +142,10 @@
             <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='true'<#elseif listPage.dateColumn=='1'  >sortable='true'<#else >sortable='false'</#if> <#if (listPage.columnConfig?exists && listPage.columnConfig.tableBusinessName?exists && listPage.columnConfig.tableBusinessName == '1' ) || (listPage_index == 0)>formatter='<#if (table.notPageChildTables?exists && table.notPageChildTables?size >0 )>titleAllFmt<#else >titleFmt</#if>'<#elseif listPage.dateColumn=='1' >formatter='dateFmt'</#if> >${listPage.columnComment}</th>
             </#list>
             </#if>
-
-
-
         </tr>
         </thead>
     </table>
 </div>
-
-
 
 
 <script>
@@ -170,13 +153,9 @@
     var tree_field = "${table.businessNameCamelCase!}";
     var id_field = "id";
 
-
     var queryString = "${r"${"} queryString ${r"}"}";
     var treeUrl = "";
-
 </script>
-
-
 
 <bms:contentJS />
 
@@ -187,14 +166,8 @@
 <script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
-
-
 <script language="JavaScript">
-
-
-
 
 </script>
 
 <bms:contentFooter />
-

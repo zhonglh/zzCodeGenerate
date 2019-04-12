@@ -2,23 +2,16 @@
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
 <bms:contentHeader title="${project.projectName!}" />
 
-
-
 <div region='north'>
     <div class="navigation">
-
-
         <span class="words"><a>${r"${"} breadcrumb ${r"}"}</a></span>
-
-
     </div>
+
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
         <#if querys?exists >
-
-
             <#if project.queryMode == 'toolbar' >
             <div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
                 <div class="form-inline" role="form">
@@ -53,11 +46,9 @@
 
                     <#elseif being.columnPage?exists && being.columnPage.exColumn?exists>
                         <#if being.columnPage.element == 'openwin' >
-
                             <c:if test="${r"${"} fn.indexOf(queryString,'${being.columnPage.exColumn.originalJavaName}') ${r"}"}">
                                 <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
                             </c:if>
-
 
                             <c:if test="${r"${"} !fn.indexOf(queryString,'${being.columnPage.exColumn.originalJavaName}') ${r"}"}">
                                 <input type="hidden" name="${being.columnPage.exColumn.originalJavaName}" id="${being.columnPage.exColumn.originalJavaName}">
@@ -70,35 +61,20 @@
 
                 </div>
                 </#list>
-
-
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-sm" onclick='search();'><i class="fa fa-search"></i>&nbsp;查询</button>
                     </div>
-
                 </div>
             </div>
             </#if>
-
-
         </#if>
-
-
-
-
         </form>
 
-
-
         <#if topOperations?exists>
-
         <div class="btn-bar" style="margin-left: -10px;">
-
         <#list topOperations as operation>
         <#if (operation.operationResource!='update')>
-
             <#if operation.operationResource == 'add'>
-
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
                         <svg class="icon" aria-hidden="true">
@@ -107,11 +83,8 @@
                         <span>${operation.operationName!} </span>
                     </button>
                 </shiro:hasPermission>
-
             <#elseif operation.operationResource == 'detail'>
-
             <#elseif operation.operationResource == 'delete'>
-
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
                         <svg class="icon" aria-hidden="true">
@@ -187,9 +160,7 @@
                     </ul>
                 </div>
                 </shiro:hasPermission>
-
             <#else>
-
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
                         <svg class="icon" aria-hidden="true">
@@ -198,19 +169,12 @@
                         <span>${operation.operationName!} </span>
                     </button>
                 </shiro:hasPermission>
-
             </#if>
-
         </#if>
         </#list>
-
         </div>
-
         </#if>
-
-
     </div>
-
 </div>
 
 <div region='center' style="padding: 0px 10px 0 10px;">
@@ -219,37 +183,24 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-
             <#if listColumnPages?exists>
             <#list listColumnPages as listPage>
             <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='true'<#elseif listPage.dateColumn=='1'  >sortable='true'<#else >sortable='false'</#if> <#if (listPage.columnConfig?exists && listPage.columnConfig.tableBusinessName?exists && listPage.columnConfig.tableBusinessName == '1') || (listPage_index == 0)>formatter='<#if (table.notPageChildTables?exists && table.notPageChildTables?size >0 )>titleAllFmt<#else >titleFmt</#if>'<#elseif listPage.dateColumn=='1' >formatter='dateFmt'</#if> >${listPage.columnComment}</th>
             </#list>
             </#if>
-
             <#if rightOperations?exists && rightOperations?size != 0 >
             <th field='makes' align="center" formatter='operationsFmt'>操作</th>
             </#if>
-
-
         </tr>
         </thead>
     </table>
 </div>
 
-
-
-
 <script>
     var tableid = "tableData-${r"${"} tableId ${r"}"}";
-
-
     var queryString = "${r"${"} queryString ${r"}"}";
-
     var listUrl = "";
-
 </script>
-
-
 
 <bms:contentJS />
 
