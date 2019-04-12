@@ -39,16 +39,16 @@
     });
 
     var urls = [
-            ctx+'${table.fullResourceName}/${r"${"} m.id ${r"}"}/update'<#if table.notPageChildTables?exists>,</#if>
+            ctx+'${table.fullResourceName}/${r"${"} m.id ${r"}"}/update?inAllPage=1'<#if table.notPageChildTables?exists>,</#if>
         <#if table.notPageChildColumns?exists>
         <#list table.notPageChildColumns as notPageChildColumn>
         <#if notPageChildColumn.tableBO.tableRelation?exists && 'one-one' == notPageChildColumn.tableBO.tableRelation>
-            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toAddorUpdate?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}'<#if notPageChildColumn_has_next>,</#if>
+            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toAddorUpdate?inAllPage=1&${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}'<#if notPageChildColumn_has_next>,</#if>
         <#else >
             <#if notPageChildColumn.tableBO.isTree?exists && notPageChildColumn.tableBO.isTree == '0'>
-            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toList?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}'<#if notPageChildColumn_has_next>,</#if>
+            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toList?inAllPage=1&${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}'<#if notPageChildColumn_has_next>,</#if>
             <#else >
-            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toTree?${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}'<#if notPageChildColumn_has_next>,</#if>
+            ctx+'${notPageChildColumn.tableBO.fullResourceName}/toTree?inAllPage=1&${notPageChildColumn.javaName}=${r"${"} m.id ${r"}"}'<#if notPageChildColumn_has_next>,</#if>
             </#if>
         </#if>
         </#list>

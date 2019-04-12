@@ -912,8 +912,8 @@
 
 
     //处理扩展列
-    var exColTableSize = $('#exColumnTable tr').size()-1;
     function insertExColumn() {
+        var exColTableSize = $('#exColumnTable tr').size()-1;
         var trObjs = $('#exColumnTable tr');
         var mySize = exColTableSize ;
         var selectExColumn = '';
@@ -961,9 +961,8 @@
 
 
     //处理列验证信息
-
-    var columnValidateTableSize = $('#columnValidateTable tr').size()-1;
     function insertColumnValidates() {
+        var columnValidateTableSize = $('#columnValidateTable tr').size()-1;
         var trObjs = $('#columnValidateTable tr');
 
         if(trObjs.size() == 2 ){
@@ -1014,8 +1013,8 @@
 
 
     //处理列事件信息
-    var columnEventTableSize = $('#columnEventTable tr').size()-1;
     function insertColumnEvents() {
+        var columnEventTableSize = $('#columnEventTable tr').size()-1;
         var trObjs = $('#columnEventTable tr');
         if(trObjs.size() == 2 ){
             var $tr = $(trObjs[1]);

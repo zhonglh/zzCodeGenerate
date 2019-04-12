@@ -177,9 +177,6 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 		</#list>
 		});
 	</#if>
-
-
-
 		return ${table.javaName?uncap_first}BOs;
 	}
 	</#if>

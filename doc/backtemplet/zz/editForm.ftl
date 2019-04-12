@@ -45,7 +45,7 @@
                                     <#if being_has_next>
                                     <#assign nextPage=showColumnPages[being_index+1]>
                                     <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
-                                    <td class="fd_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
+                                    <td class="fd_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
                                     <#if nextPage.element == 'date' >
                                         <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
                                     <#elseif nextPage.element == 'timestamp' >
@@ -137,7 +137,7 @@
                                             <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> style="width:98%">
                                                 <option value="" ></option>
                                                 <c:forEach items="${r"${"} ${being.columnConfig.dictType}_dicts ${r"}"}" var="dict">
-                                                    <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${being.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName}  ${r"}"}</option>
+                                                    <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${being.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName  ${r"}"}</option>
                                                 </c:forEach>
                                             </select>
                                         <#elseif being.element == 'openwin' >
@@ -324,7 +324,7 @@
 <script>
     //显示模式   明细/编辑
     var showMode = "detail";
-    var queryString = "${r"${"} queryString ${r"}"}";
+    var inAllPage = "${r"${"} inAllPage ${r\"}\"}";
 </script>
 
 <bms:contentJS />

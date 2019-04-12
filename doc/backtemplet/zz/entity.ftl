@@ -26,15 +26,10 @@ public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table
     private static final long serialVersionUID = 1L;
 
 
-
-
 <#if (table.isTable == '1' || !table.mainTableConfig?exists)>
-
 <#list columns as being>
 <#if !being.inParentClass>
     <#assign columnPage = columnPageMap[being.id] >
-
-
     <#if being.columnIsdict == '1'>
     @EntityAttrDictAnnotation(group = "${being.javaName}", groupName = "${being.columnComment}" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "${being.dictType}")
     <#elseif being.columnIsfk == '1' >
@@ -46,6 +41,10 @@ public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table
     <#if table.isTable=='0'>//todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity </#if>
     <#if being.columnOtherComment?exists>//${being.columnOtherComment}</#if>
 	private ${being.javaSimpleClass}  ${being.javaName} ;
+
+
+
+
 
 </#if>
 </#list>
