@@ -25,6 +25,7 @@ import com.zz.bsmcc.core.util.table.pojo.Table;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -412,12 +413,16 @@ public class TableLogic {
             } catch (ClassNotFoundException e) {
                 throw new InternalException("Java 类型错误 : " + columnBO.getJavaFullClass());
             }
-            if( clz.isAssignableFrom(Number.class)) {
+            if( clz.isAssignableFrom(Number.class) || Number.class.isAssignableFrom(clz)) {
                 if (columnBO.getColumnScale() != null && columnBO.getColumnScale() > 0) {
                     pageBO.setElement((String) EnumPageElement.number.getVal());
                 } else {
                     pageBO.setElement((String) EnumPageElement.digits.getVal());
                 }
+            }else if(clz == int.class || clz == long.class){
+                pageBO.setElement((String) EnumPageElement.digits.getVal());
+            }else if(clz == double.class || clz == float.class){
+                pageBO.setElement((String) EnumPageElement.number.getVal());
             }else if(clz == Date.class){
                 pageBO.setElement((String) EnumPageElement.date.getVal());
             }else if(clz == java.sql.Timestamp.class){
