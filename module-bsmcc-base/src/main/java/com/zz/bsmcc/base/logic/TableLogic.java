@@ -14,10 +14,7 @@ import com.zz.bms.util.configs.enums.EnumExcelType;
 import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.domain.TcgProjectEntity;
 import com.zz.bsmcc.core.TablesLocalThread;
-import com.zz.bsmcc.core.enums.EnumDbColumnType;
-import com.zz.bsmcc.core.enums.EnumJavaType;
-import com.zz.bsmcc.core.enums.EnumPageRelation;
-import com.zz.bsmcc.core.enums.EnumTableType;
+import com.zz.bsmcc.core.enums.*;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import com.zz.bsmcc.core.util.table.pojo.Column;
 import com.zz.bsmcc.core.util.table.pojo.Index;
@@ -479,6 +476,14 @@ public class TableLogic {
                 }
             }
             tableBO.setIsReal(EnumYesNo.YES.getCode());
+
+            tableBO.setIsBuildMenu(EnumYesNo.NO.getCode());
+            tableBO.setIsBuildRbac(EnumYesNo.NO.getCode());
+            tableBO.setIsBuildUi(EnumYesNo.NO.getCode());
+
+            tableBO.setTableType(EnumTableType.childTable.getVal());
+            tableBO.setTableRelation(EnumTableRelation.one2multi.getVal());
+            tableBO.setPageRelation(EnumPageRelation.embed.getVal());
         }else {
             return ;
         }
