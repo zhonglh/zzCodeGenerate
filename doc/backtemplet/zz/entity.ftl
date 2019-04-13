@@ -12,6 +12,16 @@ import ${table.fullPackageName}.domain.${table.mainTableConfig.javaName}Entity;
 <#else >
 import ${table.parentClass};
 </#if>
+
+
+
+<#if (table.isReal == '1' )>
+import com.zz.bms.core.db.entity.IRelevanceEntity;
+</#if>
+
+
+
+
 /**
  * ${table.tableComment} 实体类
 <#if table.tableOtherComment ? exists>
@@ -20,7 +30,7 @@ import ${table.parentClass};
  * @author ${project.projectAuthor}
  * @date ${.now}
  */
-public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable{
+public class ${table.javaName}Entity extends <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}Entity<#else>${table.parentClass}<String></#if> implements java.io.Serializable  <#if (table.isReal == '1' )> , IRelevanceEntity </#if>{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;

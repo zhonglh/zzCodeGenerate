@@ -65,6 +65,7 @@ public class TableLogic {
         tcgTableConfigBO.setIsShowCheckbox(EnumYesNo.YES.getCode());
         tcgTableConfigBO.setJavaName(StringUtil.firstUpperCase(StringFormatKit.toCamelCase(tcgTableConfigBO.getTableName())));
         tcgTableConfigBO.setIsTree(EnumYesNo.NO.getCode());
+        tcgTableConfigBO.setIsReal(EnumYesNo.NO.getCode());
 
 
         String resourceName = table.getTableName();
@@ -466,6 +467,20 @@ public class TableLogic {
             return true;
         }else  {
             return false;
+        }
+    }
+
+
+    public static void setTableReal(TcgTableConfigBO tableBO  , List<TcgColumnConfigBO> columnConfigBOS){
+        if(tableBO != null && EnumYesNo.YES.getCode().equals(tableBO.getIsTable()) && columnConfigBOS != null && columnConfigBOS.size() == 3){
+            for(TcgColumnConfigBO columnConfigBO : columnConfigBOS){
+                if(EnumYesNo.NO.getCode().equals(columnConfigBO.getColumnIskey()) && EnumYesNo.NO.getCode().equals(columnConfigBO.getColumnIsfk())){
+                    return ;
+                }
+            }
+            tableBO.setIsReal(EnumYesNo.YES.getCode());
+        }else {
+            return ;
         }
     }
 

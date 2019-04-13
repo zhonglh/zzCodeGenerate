@@ -103,8 +103,8 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 	//用于路径和权限  
 	private String resourceName;
 
-
-
+	//是否关联表
+	private String isReal;
 
 
     //@EntityAttrAnnotation(attrName="是否树状数据",sort=12  , attrLength=1    )
@@ -469,5 +469,13 @@ public class TcgTableConfigEntity extends BaseBusinessSimpleEntity<String> imple
 
 	public void setBusinessKey(String businessKey) {
 		this.businessKey = businessKey;
+	}
+
+	public String getIsReal() {
+		return isReal;
+	}
+
+	public void setIsReal(String isReal) {
+		this.isReal = isReal;
 	}
 }

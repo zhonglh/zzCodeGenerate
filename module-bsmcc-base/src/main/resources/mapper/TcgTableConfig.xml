@@ -18,6 +18,7 @@
 			<result column="main_table_name" property="mainTableName"/>
 			<result column="main_table_schema" property="mainTableSchema"/>
          	<result column="resource_name" property="resourceName"/>
+			<result column="is_real" property="isReal"/>
          	<result column="is_tree" property="isTree"/>
          	<result column="parent_field_name" property="parentFieldName"/>
          	<result column="table_comment" property="tableComment"/>

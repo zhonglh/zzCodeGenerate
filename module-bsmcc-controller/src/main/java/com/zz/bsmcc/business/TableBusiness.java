@@ -99,6 +99,10 @@ public class TableBusiness {
                 columnBOs.add(tcgColumnConfigBO);
             }
 
+
+
+
+
             //初始化列的扩展信息，  也就是BO里的属性
             List<TcgExColumnBO> exColumnBOs = new ArrayList<TcgExColumnBO>();
             if(EnumYesNo.YES.getCode().equals(project.getAutoExColumn())) {
@@ -171,13 +175,16 @@ public class TableBusiness {
                         }
                     }
                 }
-
-
                 tableBO.setIsBuildRbac(EnumYesNo.NO.getCode());
                 tableBO.setIsBuildUi(EnumYesNo.NO.getCode());
                 tableBO.setIsBuildMenu(EnumYesNo.NO.getCode());
 
             }
+
+
+
+            //设置表是否为关联表
+            TableLogic.setTableReal(tableBO , columnBOs);
 
             tablePO.setTableBO(tableBO);
             tablePO.setColumns(columnBOs);

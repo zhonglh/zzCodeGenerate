@@ -123,6 +123,15 @@
 
 
 
+                    <div class="form-group">
+                        <label>是否关联表：</label>
+                        <select id="isReal" name="isReal"  class="form-control required">
+                            <option value="0"  <c:if test="${entity.isReal ==  '0' }">selected="selected"</c:if>  > 否 </option>
+                            <option value="1"  <c:if test="${entity.isReal ==  '1' }">selected="selected"</c:if> > 是 </option>
+                        </select>
+                    </div>
+
+
                 </div>
 
 
