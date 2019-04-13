@@ -3,9 +3,13 @@
 <bms:contentHeader title="${project.projectName!}" />
 
 <div region='north'>
+
+
+    <c:if test="${r"${"} {inAllPage == null || inAllPage != '1' ${r"}"}">
     <div class="navigation">
         <span class="words"><a>${r"${"} breadcrumb ${r"}"}</a></span>
     </div>
+    </c:if>
 
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
@@ -183,11 +187,13 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
+
             <#if listColumnPages?exists>
             <#list listColumnPages as listPage>
             <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='true'<#elseif listPage.dateColumn=='1'  >sortable='true'<#else >sortable='false'</#if> <#if (listPage.columnConfig?exists && listPage.columnConfig.tableBusinessName?exists && listPage.columnConfig.tableBusinessName == '1') || (listPage_index == 0)>formatter='<#if (table.notPageChildTables?exists && table.notPageChildTables?size >0 )>titleAllFmt<#else >titleFmt</#if>'<#elseif listPage.dateColumn=='1' >formatter='dateFmt'</#if> >${listPage.columnComment}</th>
             </#list>
             </#if>
+
             <#if rightOperations?exists && rightOperations?size != 0 >
             <th field='makes' align="center" formatter='operationsFmt'>操作</th>
             </#if>

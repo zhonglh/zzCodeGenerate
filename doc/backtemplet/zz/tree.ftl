@@ -5,9 +5,12 @@
 
 
 <div region='north'>
-    <div class="navigation">
-        <span class="words"><a>${r"${"} breadcrumb ${r"}"}</a></span>
-    </div>
+
+    <c:if test="${r"${"} {inAllPage == null || inAllPage != '1' ${r"}"}">
+        <div class="navigation">
+            <span class="words"><a>${r"${"} breadcrumb ${r"}"}</a></span>
+        </div>
+    </c:if>
 
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->

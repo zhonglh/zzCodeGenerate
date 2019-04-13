@@ -33,14 +33,15 @@ public class ${table.javaName}GroupServiceImpl extends BaseGroupServiceImpl<${ta
 
 </#list>
 
+	private BaseService[] bss = null;
 
-/**
-* 此数组需要和 ${table.javaName}GroupBO 对象对应
-* @return
-*/
+
+	/**
+	* 此数组需要和 ${table.javaName}GroupBO 对象对应
+	* @return
+	*/
 	@Override
 	public BaseService[] getServices() {
-		BaseService[] bss = null;
 		if(bss == null) {
 			bss = new BaseService[]{${table.simpleName}Service<#list table.pageChildTables as childTable>,${childTable.simpleName}Service</#list>};
 		}

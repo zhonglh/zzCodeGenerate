@@ -108,7 +108,7 @@
                                             <div class="input-group">
                                                 <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
                                                        placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})
+                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})"
                                                                value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" readonly   />
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('${being.javaName}').click()">
@@ -145,33 +145,33 @@
                                         </#if>
                                     <#elseif being?exists && being.exColumn?exists>
                                         <#if being.element == 'openwin' >
-                                        <div class="input-group">
-                                            <c:if test="${r"${"} fn.indexOf(queryString,'${being.exColumn.originalJavaName}') ${r"}"}">
-                                                <input type="text" class="form-control input-sm" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
+                                            <c:if test="${r"${"} fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') >= 0 ${r"}"}">
+                                                <input type="text" class="form-control input-sm" name="${being.javaName}"  id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
                                             </c:if>
-                                            <c:if test="${r"${"} !fn.indexOf(queryString,'${being.exColumn.originalJavaName}') ${r"}"}">
-                                            <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
-                                            <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm ${being.javaName}">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-sousuo">
-                                                        </use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
-                                                        class="btn btn-primary btn-sm">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-close">
-                                                        </use>
-                                                    </svg>
-                                                </button>
+                                            <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') <0  ${r"}"}">
+                                            <div class="input-group">
+                                                <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
+                                                <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                <div class="input-group-btn">
+                                                    <button type="button"
+                                                            class="btn btn-primary btn-sm ${being.javaName}">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-sousuo">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
+                                                            class="btn btn-primary btn-sm">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-close">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
                                             </div>
                                             </c:if>
-                                        </div>
                                         </#if>
                                     </#if>
                                     </td>
@@ -204,7 +204,7 @@
                                             <div class="input-group">
                                                 <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
                                                        placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})
+                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})"
                                                                value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('${nextPage.javaName}').click()">
@@ -241,31 +241,31 @@
                                         </#if>
                                     <#elseif nextPage?exists && nextPage.exColumn?exists>
                                         <#if nextPage.element == 'openwin' >
-                                            <div class="input-group">
-                                                <c:if test="${r"${"} fn.indexOf(queryString,'${nextPage.exColumn.originalJavaName}') ${r"}"}">
+                                                <c:if test="${r"${"} fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
                                                     <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
                                                 </c:if>
-                                                <c:if test="${r"${"} !fn.indexOf(queryString,'${nextPage.exColumn.originalJavaName}') ${r"}"}">
-                                                <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
-                                                <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
-                                                    <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
+                                                <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
+                                                <div class="input-group">
+                                                    <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
+                                                    <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                    <div class="input-group-btn">
+                                                        <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
+                                                            <svg class="icon" aria-hidden="true">
+                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     xlink:href="#icon-sousuo">
+                                                                </use>
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
+                                                            <svg class="icon" aria-hidden="true">
+                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     xlink:href="#icon-close">
+                                                                </use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 </c:if>
-                                            </div>
                                         </#if>
                                     <#else >
                                         出现错误
