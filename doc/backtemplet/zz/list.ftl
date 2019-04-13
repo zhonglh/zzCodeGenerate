@@ -199,7 +199,7 @@
 <script>
     var tableid = "tableData-${r"${"} tableId ${r"}"}";
 
-    var inAllPage = "${r"${"} inAllPage ${r\"}\"}";
+    var inAllPage = "${r"${"} inAllPage ${r"}"}";
     var queryString = "${r"${"} queryString ${r"}"}";
     var listUrl = "";
 </script>

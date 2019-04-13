@@ -324,7 +324,7 @@
 <script>
     //显示模式   明细/编辑
     var showMode = "detail";
-    var inAllPage = "${r"${"} inAllPage ${r\"}\"}";
+    var inAllPage = "${r"${"} inAllPage ${r"}"}";
 </script>
 
 <bms:contentJS />

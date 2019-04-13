@@ -153,7 +153,7 @@
     var tree_field = "${table.businessNameCamelCase!}";
     var id_field = "id";
 
-    var inAllPage = "${r"${"} inAllPage ${r\"}\"}";
+    var inAllPage = "${r"${"} inAllPage ${r"}"}";
     var queryString = "${r"${"} queryString ${r"}"}";
     var treeUrl = "";
 </script>

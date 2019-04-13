@@ -182,11 +182,9 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 	</#if>
 
 
-
-
 	@Override
 	public void isExist(${table.javaName}BO ${table.javaName?uncap_first}BO) {
-	<#if (table.isTable == "1" &&  indexs?exists && indexs?size > 0) >
+	<#if (table.isTable == "1" && table.isReal == '0'  && indexs?exists && indexs?size > 0) >
 
 		${table.javaName}BO ckBO ;
 		${table.javaName}BO temp = null ;

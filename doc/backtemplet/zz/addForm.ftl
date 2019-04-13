@@ -251,7 +251,7 @@
 
 
 <script>
-    var inAllPage = "${r"${"} inAllPage ${r\"}\"}";
+    var inAllPage = "${r"${"} inAllPage ${r"}"}";
 </script>
 
 <bms:contentJS />
