@@ -159,13 +159,17 @@ function open${table.fullUpperResourceName}Win(config, callBack)
 };
 
 
-
+var ${table.fullUpperResourceName?uncap_first}Win = null;
 //${table.tableComment}选择控件
 $.fn.Open${table.fullUpperResourceName}SelectWin = function(config, callBack){
-    var win = open${table.fullUpperResourceName}Win(config, callBack);
+    if(${table.fullUpperResourceName?uncap_first}Win != null){
+        ${table.fullUpperResourceName?uncap_first}Win.remove();
+    }
+
+    ${table.fullUpperResourceName?uncap_first}Win = open${table.fullUpperResourceName}Win(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        win.show();
+        ${table.fullUpperResourceName?uncap_first}Win.show();
     });
-    return win;
+    return ${table.fullUpperResourceName?uncap_first}Win;
 };

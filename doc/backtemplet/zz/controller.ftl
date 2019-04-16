@@ -30,6 +30,17 @@ import com.zz.bms.system.controller.ZzGroupDefaultSimpleController;
 import com.zz.bms.system.controller.ZzDefaultSimpleController;
 </#if>
 
+
+
+<#if table.isReal == '1'>
+import ${columns[1].fkTableConfig.fullPackageName}.service.${columns[1].fkTableConfig.javaName}Service;
+import ${columns[2].fkTableConfig.fullPackageName}.service.${columns[2].fkTableConfig.javaName}Service;
+
+
+import ${columns[1].fkTableConfig.fullPackageName}.bo.${columns[1].fkTableConfig.javaName}BO;
+import ${columns[2].fkTableConfig.fullPackageName}.bo.${columns[2].fkTableConfig.javaName}BO;
+</#if>
+
 import com.zz.bms.util.base.java.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -63,6 +74,50 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	@Autowired
 	private TsDictService tsDictService;
 
+
+	<#if table.isReal == '1'>
+		${columns[1].fkTableConfig.javaName}Service ${columns[1].fkTableConfig.javaName?uncap_first}Service;
+		${columns[2].fkTableConfig.javaName}Service ${columns[2].fkTableConfig.javaName?uncap_first}Service;
+	</#if>
+
+
+	<#if (table.isReal == '1' && operations?exists && operations?size > 0 )>
+	public ${table.javaName}Controller(){
+		super();
+		this.setResourceIdentity("${columns[1].fkTableConfig.fullResource}");
+		this.setResourceIdentity("${columns[2].fkTableConfig.fullResource}");
+	}
+	</#if>
+
+	<#if (table.isReal == '1' && operations?exists && operations?size > 0 )>
+	@Override
+	public void assertHasCreatePermission() {
+		permissionList.assertHasAnyPermission(new String[]{
+			"${columns[1].fkTableConfig.fullResource}:"+ PermissionList.UPDATE_PERMISSION,
+			"${columns[2].fkTableConfig.fullResource}:"+ PermissionList.UPDATE_PERMISSION
+		});
+	}
+
+	@Override
+	public void assertHasUpdatePermission() {
+		permissionList.assertHasAnyPermission(new String[]{
+		"${columns[1].fkTableConfig.fullResource}:"+ PermissionList.UPDATE_PERMISSION,
+		"${columns[2].fkTableConfig.fullResource}:"+ PermissionList.UPDATE_PERMISSION
+		});
+	}
+
+	@Override
+	public void assertHasDeletePermission() {
+		permissionList.assertHasAnyPermission(new String[]{
+		"${columns[1].fkTableConfig.fullResource}:"+ PermissionList.UPDATE_PERMISSION,
+		"${columns[2].fkTableConfig.fullResource}:"+ PermissionList.UPDATE_PERMISSION
+		});
+
+	}
+	</#if>
+
+
+
 	@Override
 	public void setCustomInfoByInsert(${table.javaName}BO bo , ILoginUserEntity sessionUser){
 		<#list columnPages as page>
@@ -85,6 +140,92 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	}
 	</#if>
 
+
+
+
+
+
+	<#if table.isReal == '1'>
+
+	<#assign fkColumn1 = columns[1]>
+	<#assign fkColumn2 = columns[2]>
+
+
+	/**
+	* 到关联表类型的列表界面
+	* @param m
+	* @param modelMap
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/toRelevanceList" , method = RequestMethod.GET )
+	public String toRelevanceList(${table.javaName}BO m, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
+
+		this.assertHasViewPermission();
+
+		this.baseRwService.processResult(m);
+		modelMap.put("entity" ,m);
+		modelMap.put("m" ,m);
+
+		if (listAlsoSetCommonData) {
+			setCommonData(m,modelMap);
+		}
+
+		processQueryString(modelMap,request);
+
+		processPath(modelMap);
+
+		String pageName = this.getRelevanceListPageName();
+		if(StringUtils.isEmpty(pageName)){
+			pageName = defaultRelevanceListPageName;
+		}
+		return viewName(pageName);
+	}
+
+
+	/**
+	* 新增操作
+	* @param ms
+	* @param m
+	* @param modelMap
+	* @param request
+	* @param response
+	* @return
+	*/
+	@RequestMapping(value = "/saveRelevanceList", method = RequestMethod.POST , consumes = "application/json")
+	@ResponseBody
+	public Object saveRelevanceList(@RequestBody List<${table.javaName}BO> ms, ${table.javaName}BO m, ${table.javaName}WebImpl Q, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
+
+
+		this.assertHasCreatePermission();
+
+		ILoginUserEntity<String> sessionUserVO = getSessionUser();
+
+		if(!EntityUtil.isEmpty(m.get${fkColumn1.javaName?cap_first}())){
+			${fkColumn1.fkJavaName}BO bo = ${fkColumn1.fkJavaName?uncap_first}Service.getById(m.get${fkColumn1.javaName?cap_first}());
+			if(bo == null){
+				throw EnumErrorMsg.no_auth.toException();
+			}
+
+
+		}else if(!EntityUtil.isEmpty(m.get${fkColumn2.javaName?cap_first}())){
+			${fkColumn2.fkJavaName}BO bo = ${fkColumn2.fkJavaName?uncap_first}Service.getById(m.get${fkColumn2.javaName?cap_first}());
+			if(bO == null){
+				throw EnumErrorMsg.no_auth.toException();
+			}
+
+		}else {
+			throw EnumErrorMsg.param_format_error.toException();
+		}
+
+		this.baseRwService.saveBatchRelevance(ms , m );
+
+		AjaxJson result =  AjaxJson.ok();
+		return result;
+	}
+
+	</#if>
 
 
 }

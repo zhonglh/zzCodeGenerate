@@ -206,4 +206,47 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 	}
 
 
+
+	<#if table.isReal == '1'>
+
+	<#assign fkColumn1 = columns[1]>
+	<#assign fkColumn2 = columns[2]>
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void saveBatchRelevance(List<${table.javaName}BO> list, ${table.javaName}BO t) {
+		if(t == null || (EntityUtil.isEmpty(t.get${fkColumn1.javaName?cap_first}()) && EntityUtil.isEmpty(t.get${fkColumn2.javaName?cap_first}()) )){
+			throw EnumErrorMsg.param_format_error.toException();
+		}
+
+		if(!EntityUtil.isEmpty(t.get${fkColumn1.javaName?cap_first}())){
+			QueryWrapper<${table.javaName}BO> qw = new QueryWrapper<${table.javaName}BO>();
+			qw.eq("${fkColumn1.columnName}", t.get${fkColumn1.javaName?cap_first}());
+			this.getDAO().delete(qw);
+			if(list != null && !list.isEmpty()){
+				for(${table.javaName}BO bo : list){
+					bo.set${fkColumn1.javaName?cap_first}(t.get${fkColumn1.javaName?cap_first}());
+					if(EntityUtil.isEmpty(bo.getId())){
+						bo.setId(IdUtils.getId());
+					}
+				}
+				this.saveBatch(list);
+			}
+		}else if(!EntityUtil.isEmpty(t.get${fkColumn2.javaName?cap_first}())){
+			QueryWrapper<${table.javaName}BO> qw = new QueryWrapper<${table.javaName}BO>();
+			qw.eq("${fkColumn2.columnName}", t.get${fkColumn2.javaName?cap_first}());
+			this.getDAO().delete(qw);
+			if(list != null && !list.isEmpty()){
+				for(${table.javaName}BO bo : list){
+					bo.set${fkColumn2.javaName?cap_first}(t.get${fkColumn2.javaName?cap_first}());
+				}
+				this.saveBatch(list);
+			}
+		}else {
+			throw EnumErrorMsg.param_format_error.toException();
+		}
+	}
+	</#if>
+
+
 }
