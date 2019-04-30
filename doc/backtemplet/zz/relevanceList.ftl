@@ -88,14 +88,14 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                     </svg>
                     <span>编 辑</span>
                 </button>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -103,14 +103,14 @@
                 </button>
 
 
-                <button type="button" class="btn btn-primary btn-sm hide" onclick="saveRelevanceList()">
+                <button type="button" class="btn btn-primary btn-sm show-area" onclick="saveRelevanceList()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                     </svg>
                     <span>保 存</span>
                     </button>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -133,9 +133,6 @@
     var inAllPage = "${r"${"} inAllPage ${r"}"}";
     var queryString = "${r"${"} queryString ${r"}"}";
     var listUrl = "";
-
-
-    var showMode = "detail";
 
 
 </script>
@@ -206,7 +203,7 @@
 
 
     function clk${fkColumn2.fkTableConfig.fullUpperResourceName}(){
-        openclk${fkColumn2.fkTableConfig.fullUpperResourceName}();
+        open${fkColumn2.fkTableConfig.fullUpperResourceName}();
         $(".${fkColumn2.fkTableConfig.businessNameCamelCase!}s").click();
     }
 
@@ -248,11 +245,10 @@
                         </#if>
                         </#list>
 
-
                         ${fkColumn2.javaName}:sub.id,
                         <#list exColumns as exColumn>
                         <#if exColumn.originalJavaName == fkColumn2.javaName>
-                            ${exColumn.javaName}:sub.${exColumn.javaName},
+                        ${exColumn.javaName}:sub.${exColumn.javaName},
                         </#if>
                         </#list>
 
@@ -269,7 +265,7 @@
 
 
     function clk${fkColumn1.fkTableConfig.fullUpperResourceName}(){
-        openclk${fkColumn1.fkTableConfig.fullUpperResourceName}();
+        open${fkColumn1.fkTableConfig.fullUpperResourceName}();
         $(".${fkColumn1.fkTableConfig.businessNameCamelCase!}s").click();
     }
 

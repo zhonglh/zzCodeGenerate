@@ -9,15 +9,17 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
+
+                <form action="" method="post" id="editForm" viewId="editForm" >
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                    <table class="info-table hide-area">
 
                         <colgroup>
                             <col style="width: 15%" />
@@ -28,47 +30,45 @@
 
                         <tbody>
                         <#list showColumnPages as being>
-                            <#if being_index%2 ==0>
-                                <tr>
-                                    <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
-                                    <td class="fd_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
-                                    <#if being.element == 'date' >
-                                        <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
-                                    <#elseif being.element == 'timestamp' >
-                                        <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
-                                    <#elseif being.element == 'select' || being.element == 'checkbox' || being.element == 'radio' >
-                                        ${r"${"} m.${being.javaName}Name ${r"}"}
-                                    <#else >
-                                        <c:out value="${r"${"} m.${being.javaName} ${r"}"}" escapeXml="true"/>
-                                    </#if>
-                                    </td>
-                                    <#if being_has_next>
-                                    <#assign nextPage=showColumnPages[being_index+1]>
-                                    <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
-                                    <td class="fd_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
-                                    <#if nextPage.element == 'date' >
-                                        <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
-                                    <#elseif nextPage.element == 'timestamp' >
-                                        <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
-                                    <#elseif nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio' >
-                                        ${r"${"} m.${nextPage.javaName}Name ${r"}"}
-                                    <#else >
-                                        <c:out value="${r"${"} m.${nextPage.javaName} ${r"}"}" escapeXml="true"/>
-                                    </#if>
-                                    </td>
-                                    </#if>
-                                </tr>
+                        <#if being_index%2 ==0>
+                            <tr>
+                                <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
+                                <td class="fd_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
+                                <#if being.element == 'date' >
+                                    <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
+                                <#elseif being.element == 'timestamp' >
+                                    <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
+                                <#elseif being.element == 'select' || being.element == 'checkbox' || being.element == 'radio' >
+                                    ${r"${"} m.${being.javaName}Name ${r"}"}
+                                <#else >
+                                    <c:out value="${r"${"} m.${being.javaName} ${r"}"}" escapeXml="true"/>
+                                </#if>
+                                </td>
+                                <#if being_has_next>
+                                <#assign nextPage=showColumnPages[being_index+1]>
+                                <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                <td class="fd_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
+                                <#if nextPage.element == 'date' >
+                                    <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
+                                <#elseif nextPage.element == 'timestamp' >
+                                    <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
+                                <#elseif nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio' >
+                                    ${r"${"} m.${nextPage.javaName}Name ${r"}"}
+                                <#else >
+                                    <c:out value="${r"${"} m.${nextPage.javaName} ${r"}"}" escapeXml="true"/>
+                                </#if>
+                                </td>
+                                </#if>
+                            </tr>
 
-                            </#if>
+                        </#if>
                         </#list>
                         </tbody>
                     </table>
-                </div>
 
-
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${r"${"} m.id ${r"}"}">
-                    <table class="info-table">
+
+                    <table class="info-table show-area">
                         <colgroup>
                             <col style="width: 15%" />
                             <col style="width: 35%" />
@@ -79,90 +79,184 @@
                         <tbody>
 
                         <#list showColumnPages as being>
-                            <#if being_index%2 ==0>
-                                <tr>
-                                    <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
-                                    <td>
-                                    <#if being?exists && being.columnConfig?exists>
-                                        <#if being.element == 'text'  >
+                        <#if being_index%2 ==0>
+                            <tr>
+                                <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
+                                <td>
+                                <#if being?exists && being.columnConfig?exists>
+                                    <#if being.element == 'text'  >
+                                        <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
+                                               placeholder="请输入${being.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}"
+                                                <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
+                                    <#elseif being.element == 'textarea' >
+                                        <div class="info-detail">
+                                            <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
+                                                      name="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="6"><c:out value="${r"${"} m.${being.javaName} ${r"$}"}" escapeXml="true"/></textarea>
+                                        </div>
+                                    <#elseif being.element == 'digits' >
+                                        <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number  <#if being.required?exists && being.required == '1'>required</#if>"
+                                               placeholder="请输入${being.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" step="1"
+                                                <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
+                                    <#elseif being.element == 'number' >
+                                        <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if being.required?exists && being.required == '1'>required</#if>"
+                                               placeholder="请输入${being.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" step="0.01"
+                                                <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
+                                    <#elseif being.element == 'date' ||  being.element == 'timestamp' >
+                                        <div class="input-group">
                                             <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
                                                    placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}"
-                                                    <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
-                                        <#elseif being.element == 'textarea' >
-                                            <div class="info-detail">
-                                                <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
-                                                          name="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="6"><c:out value="${r"${"} m.${being.javaName} ${r"$}"}" escapeXml="true"/></textarea>
+                                                   onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})"
+                                                           value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" readonly   />
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('${being.javaName}').click()">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(${being.javaName?cap_first});">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                                                    </svg>
+                                                </button>
                                             </div>
-                                        <#elseif being.element == 'digits' >
-                                            <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number  <#if being.required?exists && being.required == '1'>required</#if>"
-                                                   placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" step="1"
-                                                    <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
-                                        <#elseif being.element == 'number' >
-                                            <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if being.required?exists && being.required == '1'>required</#if>"
-                                                   placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" step="0.01"
-                                                    <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
-                                        <#elseif being.element == 'date' ||  being.element == 'timestamp' >
-                                            <div class="input-group">
-                                                <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
-                                                       placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})"
-                                                               value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" readonly   />
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('${being.javaName}').click()">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(${being.javaName?cap_first});">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
+                                        </div>
+                                    <#elseif being.element == 'email' >
+                                        <input type="email" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
+                                               placeholder="请输入${being.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}"
+                                                <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
+                                    <#elseif being.element == 'url' >
+                                        <input type="url" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
+                                               placeholder="请输入${being.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}"
+                                                <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
+                                    <#elseif being.element == 'radio' || being.element == 'checkbox' || being.element == 'select' >
+                                        <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> style="width:98%">
+                                            <option value="" ></option>
+                                            <c:forEach items="${r"${"} ${being.columnConfig.dictType}_dicts ${r"}"}" var="dict">
+                                                <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${being.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName  ${r"}"}</option>
+                                            </c:forEach>
+                                        </select>
+                                    <#elseif being.element == 'openwin' >
+                                    <#else >
+                                    </#if>
+                                <#elseif being?exists && being.exColumn?exists>
+                                    <#if being.element == 'openwin' >
+                                        <c:if test="${r"${"} fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') >= 0 ${r"}"}">
+                                            <input type="text" class="form-control input-sm" name="${being.javaName}"  id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
+                                        </c:if>
+                                        <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') <0  ${r"}"}">
+                                        <div class="input-group">
+                                            <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
+                                            <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                            <div class="input-group-btn">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-sm ${being.javaName}">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-sousuo">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
+                                                        class="btn btn-primary btn-sm">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-close">
+                                                        </use>
+                                                    </svg>
+                                                </button>
                                             </div>
-                                        <#elseif being.element == 'email' >
-                                            <input type="email" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
-                                                   placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}"
-                                                    <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
-                                        <#elseif being.element == 'url' >
-                                            <input type="url" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
-                                                   placeholder="请输入${being.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}"
-                                                    <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
-                                        <#elseif being.element == 'radio' || being.element == 'checkbox' || being.element == 'select' >
-                                            <select id="${being.javaName}"  name="${being.javaName}" <#if being.required?exists && being.required == '1'>required="required"</#if> style="width:98%">
-                                                <option value="" ></option>
-                                                <c:forEach items="${r"${"} ${being.columnConfig.dictType}_dicts ${r"}"}" var="dict">
-                                                    <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${being.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName  ${r"}"}</option>
-                                                </c:forEach>
-                                            </select>
-                                        <#elseif being.element == 'openwin' >
-                                        <#else >
-                                        </#if>
-                                    <#elseif being?exists && being.exColumn?exists>
-                                        <#if being.element == 'openwin' >
-                                            <c:if test="${r"${"} fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') >= 0 ${r"}"}">
-                                                <input type="text" class="form-control input-sm" name="${being.javaName}"  id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
+                                        </div>
+                                        </c:if>
+                                    </#if>
+                                </#if>
+                                </td>
+                                <#if being_has_next>
+                                <#assign nextPage=showColumnPages[being_index+1]>
+                                <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                <td>
+                                <#if nextPage?exists && nextPage.columnConfig?exists>
+                                    <#if nextPage.element == 'text'  >
+                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}"
+                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                    <#elseif nextPage.element == 'textarea' >
+                                        <div class="info-detail">
+                                            <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
+                                              name="${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
+                                        </div>
+                                    <#elseif nextPage.element == 'digits' >
+                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" step="1"
+                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                    <#elseif nextPage.element == 'number' >
+                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" step="0.01"
+                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                    <#elseif nextPage.element == 'date' ||  nextPage.element == 'timestamp' >
+                                        <div class="input-group">
+                                            <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                   placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                   onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})"
+                                                           value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('${nextPage.javaName}').click()">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(${nextPage.javaName?cap_first});">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    <#elseif nextPage.element == 'email' >
+                                        <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}"
+                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                    <#elseif nextPage.element == 'url' >
+                                        <input type="url" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}"
+                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                    <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
+                                        <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> style="width:98%">
+                                            <option value="" ></option>
+                                            <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
+                                                <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${nextPage.javaName} ${r"}"}">selected</c:if>>${r"${"}  dict.dictName ${r"}"}</option>
+                                            </c:forEach>
+                                        </select>
+                                    <#elseif nextPage.element == 'openwin' >
+                                    <#else >
+                                    </#if>
+                                <#elseif nextPage?exists && nextPage.exColumn?exists>
+                                    <#if nextPage.element == 'openwin' >
+                                            <c:if test="${r"${"} fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
+                                                <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
                                             </c:if>
-                                            <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') <0  ${r"}"}">
+                                            <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
                                             <div class="input-group">
-                                                <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
-                                                <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
+                                                <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
                                                 <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm ${being.javaName}">
+                                                    <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
                                                         <svg class="icon" aria-hidden="true">
                                                             <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                  xlink:href="#icon-sousuo">
                                                             </use>
                                                         </svg>
                                                     </button>
-                                                    <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
-                                                            class="btn btn-primary btn-sm">
+                                                    <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
                                                         <svg class="icon" aria-hidden="true">
                                                             <use xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                  xlink:href="#icon-close">
@@ -172,109 +266,15 @@
                                                 </div>
                                             </div>
                                             </c:if>
-                                        </#if>
                                     </#if>
-                                    </td>
-                                    <#if being_has_next>
-                                    <#assign nextPage=showColumnPages[being_index+1]>
-                                    <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
-                                    <td>
-                                    <#if nextPage?exists && nextPage.columnConfig?exists>
-                                        <#if nextPage.element == 'text'  >
-                                            <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                   placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}"
-                                                    <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                        <#elseif nextPage.element == 'textarea' >
-                                            <div class="info-detail">
-                                                <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
-                                                  name="${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
-                                            </div>
-                                        <#elseif nextPage.element == 'digits' >
-                                            <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                   placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" step="1"
-                                                    <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                        <#elseif nextPage.element == 'number' >
-                                            <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                   placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" step="0.01"
-                                                    <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                        <#elseif nextPage.element == 'date' ||  nextPage.element == 'timestamp' >
-                                            <div class="input-group">
-                                                <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                       placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})"
-                                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('${nextPage.javaName}').click()">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(${nextPage.javaName?cap_first});">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        <#elseif nextPage.element == 'email' >
-                                            <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                   placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}"
-                                                    <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                        <#elseif nextPage.element == 'url' >
-                                            <input type="url" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                   placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                   value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}"
-                                                    <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                        <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
-                                            <select id="${nextPage.javaName}"  name="${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> style="width:98%">
-                                                <option value="" ></option>
-                                                <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
-                                                    <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${nextPage.javaName} ${r"}"}">selected</c:if>>${r"${"}  dict.dictName ${r"}"}</option>
-                                                </c:forEach>
-                                            </select>
-                                        <#elseif nextPage.element == 'openwin' >
-                                        <#else >
-                                        </#if>
-                                    <#elseif nextPage?exists && nextPage.exColumn?exists>
-                                        <#if nextPage.element == 'openwin' >
-                                                <c:if test="${r"${"} fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
-                                                    <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
-                                                </c:if>
-                                                <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
-                                                <div class="input-group">
-                                                    <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
-                                                    <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                    <div class="input-group-btn">
-                                                        <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
-                                                            <svg class="icon" aria-hidden="true">
-                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                     xlink:href="#icon-sousuo">
-                                                                </use>
-                                                            </svg>
-                                                        </button>
-                                                        <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                            <svg class="icon" aria-hidden="true">
-                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                     xlink:href="#icon-close">
-                                                                </use>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                </c:if>
-                                        </#if>
-                                    <#else >
-                                        出现错误
-                                    </#if>
-                                    </td>
-                                    </#if>
-                                </tr>
+                                <#else >
+                                    出现错误
+                                </#if>
+                                </td>
+                                </#if>
+                            </tr>
 
-                            </#if>
+                        </#if>
                         </#list>
                         </tbody>
                     </table>
@@ -283,8 +283,8 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                <shiro:hasPermission name="${table.fullResource}:update">
+                    <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                         </svg>
@@ -292,7 +292,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -300,8 +300,8 @@
                 </button>
 
 
-                <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                <shiro:hasPermission name="${table.fullResource}:update">
+                    <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -309,7 +309,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -322,8 +322,6 @@
 </div>
 
 <script>
-    //显示模式   明细/编辑
-    var showMode = "detail";
     var inAllPage = "${r"${"} inAllPage ${r"}"}";
 </script>
 
@@ -340,6 +338,7 @@
 
     $(function() {
         <#list showColumnPages as being>
+
         <#if being?exists && being.exColumn?exists>
         <#if being.element == 'openwin' >
         //选择${being.columnComment}
