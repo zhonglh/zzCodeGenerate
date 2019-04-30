@@ -239,6 +239,9 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 			if(list != null && !list.isEmpty()){
 				for(${table.javaName}BO bo : list){
 					bo.set${fkColumn2.javaName?cap_first}(t.get${fkColumn2.javaName?cap_first}());
+					if(EntityUtil.isEmpty(bo.getId())){
+						bo.setId(IdUtils.getId());
+					}
 				}
 				this.saveBatch(list);
 			}

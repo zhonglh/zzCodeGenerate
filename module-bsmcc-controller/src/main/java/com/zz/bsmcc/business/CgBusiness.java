@@ -778,6 +778,19 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
 
+
+
+
+            if(StringUtils.isNotEmpty(templet.getEffectiveReal())){
+                if(EnumYesNo.YES.getCode().equals(templet.getEffectiveReal()) && EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsReal())){
+                    continue;
+                }
+                if(EnumYesNo.NO.getCode().equals(templet.getEffectiveReal()) && EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsReal())){
+                    continue;
+                }
+            }
+
+
             if(StringUtils.isNotEmpty(templet.getEffectiveTree())){
                 if(EnumYesNo.YES.getCode().equals(templet.getEffectiveTree()) && EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTree())){
                     continue;

@@ -33,6 +33,8 @@ import com.zz.bms.system.controller.ZzDefaultSimpleController;
 
 
 <#if table.isReal == '1'>
+	<#assign fkColumn1 = columns[1]>
+	<#assign fkColumn2 = columns[2]>
 import ${columns[1].fkTableConfig.fullPackageName}.service.${columns[1].fkTableConfig.javaName}Service;
 import ${columns[2].fkTableConfig.fullPackageName}.service.${columns[2].fkTableConfig.javaName}Service;
 
@@ -147,8 +149,6 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 	<#if table.isReal == '1'>
 
-	<#assign fkColumn1 = columns[1]>
-	<#assign fkColumn2 = columns[2]>
 
 
 	/**
@@ -185,7 +185,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 
 	/**
-	* 新增操作
+	* 保存操作
 	* @param ms
 	* @param m
 	* @param modelMap
@@ -203,14 +203,14 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 		ILoginUserEntity<String> sessionUserVO = getSessionUser();
 
 		if(!EntityUtil.isEmpty(m.get${fkColumn1.javaName?cap_first}())){
-			${fkColumn1.fkJavaName}BO bo = ${fkColumn1.fkJavaName?uncap_first}Service.getById(m.get${fkColumn1.javaName?cap_first}());
+			${fkColumn1.fkTableConfig.javaName}BO bo = ${fkColumn1.fkTableConfig.javaName?uncap_first}Service.getById(m.get${fkColumn1.javaName?cap_first}());
 			if(bo == null){
 				throw EnumErrorMsg.no_auth.toException();
 			}
 
 
 		}else if(!EntityUtil.isEmpty(m.get${fkColumn2.javaName?cap_first}())){
-			${fkColumn2.fkJavaName}BO bo = ${fkColumn2.fkJavaName?uncap_first}Service.getById(m.get${fkColumn2.javaName?cap_first}());
+			${fkColumn2.fkTableConfig.javaName}BO bo = ${fkColumn2.fkTableConfig.javaName?uncap_first}Service.getById(m.get${fkColumn2.javaName?cap_first}());
 			if(bO == null){
 				throw EnumErrorMsg.no_auth.toException();
 			}

@@ -41,4 +41,9 @@ public class TcgTempletBO extends TcgTempletEntity implements Serializable {
     public void setFileInnerPackage(String fileInnerPackage) {
         this.fileInnerPackage = fileInnerPackage;
     }
+
+    @Override
+    public String toString() {
+        return this.getTempletTitle();
+    }
 }

@@ -3,8 +3,6 @@
 <bms:contentHeader title="${project.projectName!}" />
 
 
-
-
 <div style="padding:0 10px">
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
@@ -229,7 +227,7 @@
                 </form>
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+            <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
                 <shiro:hasPermission name="system.user:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                         <svg class="icon" aria-hidden="true">

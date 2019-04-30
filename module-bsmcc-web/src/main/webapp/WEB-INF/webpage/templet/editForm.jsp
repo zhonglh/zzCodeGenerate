@@ -175,6 +175,20 @@
 
 
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">是否仅限于关联表：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="effectiveReal" name="effectiveReal"  class="form-control">
+                                        <option value="" >全部</option>
+                                        <option value="1" <c:if test="${entity.effectiveReal ==  '1' }">selected="selected"</c:if> hassubinfo="true">关联表</option>
+                                        <option value="0" <c:if test="${entity.effectiveReal ==  '0' }">selected="selected"</c:if> hassubinfo="true">非关联表</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">是否仅限于树状：</label>
                                 <div class="col-sm-8">
 
