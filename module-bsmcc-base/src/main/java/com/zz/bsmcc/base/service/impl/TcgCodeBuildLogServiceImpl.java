@@ -16,6 +16,8 @@ import com.zz.bsmcc.base.service.TcgTempletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author Administrator
 */
@@ -44,6 +46,15 @@ public class TcgCodeBuildLogServiceImpl extends BaseServiceImpl<TcgCodeBuildLogB
 	@Override
 	public void isExist(TcgCodeBuildLogBO tcgCodeBuildLogBO) {
 
+	}
+
+
+	@Override
+	public List<TcgCodeBuildLogBO> processResult(List<TcgCodeBuildLogBO> tcgCodeBuildLogBOs){
+		for(TcgCodeBuildLogBO bo : tcgCodeBuildLogBOs){
+			processResult(bo);
+		}
+		return tcgCodeBuildLogBOs;
 	}
 
 	@Override

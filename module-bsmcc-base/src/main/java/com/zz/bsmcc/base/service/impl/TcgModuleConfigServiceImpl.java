@@ -14,6 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author Administrator
 */
@@ -33,14 +35,25 @@ public class TcgModuleConfigServiceImpl extends BaseServiceImpl<TcgModuleConfigB
 
 	}
 
+
+	@Override
+	public List<TcgModuleConfigBO> processResult(List<TcgModuleConfigBO> tcgModuleConfigBOs){
+		for(TcgModuleConfigBO bo : tcgModuleConfigBOs){
+			processResult(bo);
+		}
+		return tcgModuleConfigBOs;
+	}
+
 	@Override
 	public TcgModuleConfigBO processResult(TcgModuleConfigBO tcgModuleConfigBO){
 		if(tcgModuleConfigBO == null){
 			return null;
 		}
 
-		TcgProjectEntity project = tcgProjectDAO.selectById(tcgModuleConfigBO.getProjectId());
-		tcgModuleConfigBO.setProjectName(project.getProjectName());
+		if(StringUtils.isNotEmpty(tcgModuleConfigBO.getProjectId())) {
+			TcgProjectEntity project = tcgProjectDAO.selectById(tcgModuleConfigBO.getProjectId());
+			tcgModuleConfigBO.setProjectName(project.getProjectName());
+		}
 
 		StringBuilder sb = new StringBuilder("");
 		if(StringUtils.isNotEmpty( tcgModuleConfigBO.getPid() )){

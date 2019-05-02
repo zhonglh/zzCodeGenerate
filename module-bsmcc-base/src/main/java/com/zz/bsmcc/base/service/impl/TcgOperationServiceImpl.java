@@ -5,12 +5,15 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
 import com.zz.bms.enums.EnumYesNo;
+import com.zz.bsmcc.base.bo.TcgExColumnBO;
 import com.zz.bsmcc.base.bo.TcgTempletBO;
 import com.zz.bsmcc.base.service.TcgOperationService;
 import com.zz.bsmcc.base.dao.TcgOperationDAO;
 import com.zz.bsmcc.base.bo.TcgOperationBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -33,6 +36,16 @@ public class TcgOperationServiceImpl extends BaseServiceImpl<TcgOperationBO,Stri
 	@Override
 	public void isExist(TcgOperationBO tcgOperationBO) {
 
+	}
+
+
+
+	@Override
+	public List<TcgOperationBO> processResult(List<TcgOperationBO> tcgOperationBOs){
+		for(TcgOperationBO bo : tcgOperationBOs){
+			processResult(bo);
+		}
+		return tcgOperationBOs;
 	}
 
 	@Override

@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author Administrator
 */
@@ -42,6 +44,15 @@ public class TcgColumnEventServiceImpl extends BaseServiceImpl<TcgColumnEventBO,
 	@Override
 	public void isExist(TcgColumnEventBO tcgColumnEventBO) {
 
+	}
+
+
+	@Override
+	public List<TcgColumnEventBO> processResult(List<TcgColumnEventBO> tcgColumnEventBOs){
+		for(TcgColumnEventBO bo : tcgColumnEventBOs){
+			processResult(bo);
+		}
+		return tcgColumnEventBOs;
 	}
 
 	@Override

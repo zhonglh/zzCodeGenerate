@@ -6,6 +6,7 @@ import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bsmcc.base.bo.TcgModuleConfigBO;
+import com.zz.bsmcc.base.bo.TcgQueryConfigBO;
 import com.zz.bsmcc.base.bo.TcgTableConfigBO;
 import com.zz.bsmcc.base.dao.TcgDbConfigDAO;
 import com.zz.bsmcc.base.dao.TcgModuleConfigDAO;
@@ -20,6 +21,8 @@ import com.zz.bsmcc.core.enums.EnumTableType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -62,13 +65,29 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 		}
 	}
 
+
+	@Override
+	public List<TcgTableConfigBO> processResult(List<TcgTableConfigBO> bos){
+		for(TcgTableConfigBO bo : bos){
+			processResult(bo);
+		}
+		return bos;
+	}
+
 	@Override
 	public TcgTableConfigBO processResult(TcgTableConfigBO tcgTableConfigBO) {
-		TcgDbConfigEntity tcgDbConfigEntity = tcgDbConfigDAO.selectById(tcgTableConfigBO.getDbId());
-		tcgTableConfigBO.setDbConfigTitle(tcgDbConfigEntity.getTitle());
 
-		TcgProjectEntity tcgProjectEntity = tcgProjectDAO.selectById(tcgTableConfigBO.getProjectId());
-		tcgTableConfigBO.setProjectName(tcgProjectEntity.getProjectName());
+
+		if(StringUtils.isNotEmpty(tcgTableConfigBO.getDbId())) {
+			TcgDbConfigEntity tcgDbConfigEntity = tcgDbConfigDAO.selectById(tcgTableConfigBO.getDbId());
+			tcgTableConfigBO.setDbConfigTitle(tcgDbConfigEntity.getTitle());
+		}
+
+
+		if(StringUtils.isNotEmpty(tcgTableConfigBO.getProjectId())) {
+			TcgProjectEntity tcgProjectEntity = tcgProjectDAO.selectById(tcgTableConfigBO.getProjectId());
+			tcgTableConfigBO.setProjectName(tcgProjectEntity.getProjectName());
+		}
 
 		if(StringUtils.isNotEmpty(tcgTableConfigBO.getModuleId())) {
 			TcgModuleConfigBO tcgModuleConfigBO = tcgModuleConfigDAO.selectById(tcgTableConfigBO.getModuleId());
@@ -108,9 +127,10 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 
 		}
 
-
-		String simpleTableName = tcgTableConfigBO.getTableName().substring(tcgTableConfigBO.getTableName().indexOf("_")+1);
-		tcgTableConfigBO.setSimpleName(StringFormatKit.toCamelCase(simpleTableName));
+		if(StringUtils.isNotEmpty(tcgTableConfigBO.getTableName())) {
+			String simpleTableName = tcgTableConfigBO.getTableName().substring(tcgTableConfigBO.getTableName().indexOf("_") + 1);
+			tcgTableConfigBO.setSimpleName(StringFormatKit.toCamelCase(simpleTableName));
+		}
 
 
 

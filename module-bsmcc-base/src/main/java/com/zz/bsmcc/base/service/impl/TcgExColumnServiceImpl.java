@@ -8,6 +8,7 @@ import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
 import com.zz.bsmcc.base.bo.TcgColumnEventBO;
+import com.zz.bsmcc.base.bo.TcgColumnValidateBO;
 import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
 import com.zz.bsmcc.base.service.TcgExColumnService;
 import com.zz.bsmcc.base.dao.TcgExColumnDAO;
@@ -15,6 +16,8 @@ import com.zz.bsmcc.base.bo.TcgExColumnBO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -42,6 +45,16 @@ public class TcgExColumnServiceImpl extends BaseServiceImpl<TcgExColumnBO,String
 	@Override
 	public void isExist(TcgExColumnBO tcgExColumnBO) {
 
+	}
+
+
+
+	@Override
+	public List<TcgExColumnBO> processResult(List<TcgExColumnBO> tcgExColumnBOs){
+		for(TcgExColumnBO bo : tcgExColumnBOs){
+			processResult(bo);
+		}
+		return tcgExColumnBOs;
 	}
 
 	@Override

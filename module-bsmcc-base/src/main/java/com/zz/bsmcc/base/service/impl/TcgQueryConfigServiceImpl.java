@@ -4,17 +4,16 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
-import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
-import com.zz.bsmcc.base.bo.TcgColumnPageBO;
-import com.zz.bsmcc.base.bo.TcgExColumnBO;
+import com.zz.bsmcc.base.bo.*;
 import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
 import com.zz.bsmcc.base.dao.TcgExColumnDAO;
 import com.zz.bsmcc.base.service.TcgQueryConfigService;
 import com.zz.bsmcc.base.dao.TcgQueryConfigDAO;
-import com.zz.bsmcc.base.bo.TcgQueryConfigBO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -45,6 +44,15 @@ public class TcgQueryConfigServiceImpl extends BaseServiceImpl<TcgQueryConfigBO,
 	@Override
 	public void isExist(TcgQueryConfigBO tcgQueryConfigBO) {
 
+	}
+
+
+	@Override
+	public List<TcgQueryConfigBO> processResult(List<TcgQueryConfigBO> bos){
+		for(TcgQueryConfigBO bo : bos){
+			processResult(bo);
+		}
+		return bos;
 	}
 
 	@Override

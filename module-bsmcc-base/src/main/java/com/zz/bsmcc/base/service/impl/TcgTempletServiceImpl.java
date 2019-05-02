@@ -6,6 +6,7 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 import com.zz.bsmcc.base.bo.TcgModuleConfigBO;
 import com.zz.bsmcc.base.bo.TcgTempletGroupBO;
+import com.zz.bsmcc.base.bo.TcgTempletGroupOperationBO;
 import com.zz.bsmcc.base.dao.TcgTempletGroupDAO;
 import com.zz.bsmcc.base.service.TcgTempletService;
 import com.zz.bsmcc.base.dao.TcgTempletDAO;
@@ -13,6 +14,8 @@ import com.zz.bsmcc.base.bo.TcgTempletBO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -36,6 +39,16 @@ public class TcgTempletServiceImpl extends BaseServiceImpl<TcgTempletBO,String> 
 	@Override
 	public void isExist(TcgTempletBO tcgTempletBO) {
 
+	}
+
+
+
+	@Override
+	public List<TcgTempletBO> processResult(List<TcgTempletBO> bos){
+		for(TcgTempletBO bo : bos){
+			processResult(bo);
+		}
+		return bos;
 	}
 
 	@Override

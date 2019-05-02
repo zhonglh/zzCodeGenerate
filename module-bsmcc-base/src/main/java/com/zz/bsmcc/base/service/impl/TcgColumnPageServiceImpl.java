@@ -4,6 +4,7 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bsmcc.base.bo.TcgColumnConfigBO;
+import com.zz.bsmcc.base.bo.TcgColumnEventBO;
 import com.zz.bsmcc.base.bo.TcgColumnPageBO;
 import com.zz.bsmcc.base.bo.TcgExColumnBO;
 import com.zz.bsmcc.base.dao.TcgColumnConfigDAO;
@@ -14,6 +15,8 @@ import com.zz.bms.enums.EnumPageElement;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -43,6 +46,16 @@ public class TcgColumnPageServiceImpl extends BaseServiceImpl<TcgColumnPageBO,St
 	@Override
 	public void isExist(TcgColumnPageBO tcgColumnPageBO) {
 
+	}
+
+
+
+	@Override
+	public List<TcgColumnPageBO> processResult(List<TcgColumnPageBO> tcgColumnPageBOs){
+		for(TcgColumnPageBO bo : tcgColumnPageBOs){
+			processResult(bo);
+		}
+		return tcgColumnPageBOs;
 	}
 
 	@Override

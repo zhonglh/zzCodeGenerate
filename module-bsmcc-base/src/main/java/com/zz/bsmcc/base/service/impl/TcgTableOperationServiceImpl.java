@@ -12,6 +12,8 @@ import com.zz.bsmcc.base.bo.TcgTableOperationBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author Administrator
 */
@@ -35,6 +37,15 @@ public class TcgTableOperationServiceImpl extends BaseServiceImpl<TcgTableOperat
 	@Override
 	public void isExist(TcgTableOperationBO tcgTableOperationBO) {
 
+	}
+
+
+	@Override
+	public List<TcgTableOperationBO> processResult(List<TcgTableOperationBO> bos){
+		for(TcgTableOperationBO bo : bos){
+			processResult(bo);
+		}
+		return bos;
 	}
 
 	@Override
