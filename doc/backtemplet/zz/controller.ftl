@@ -83,7 +83,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	</#if>
 
 
-	<#if (table.isReal == '1' && operations?exists && operations?size > 0 )>
+	<#if (table.isReal == '1' && operations?exists && operations?size <= 0 )>
 	public ${table.javaName}Controller(){
 		super();
 		this.setResourceIdentity("${columns[1].fkTableConfig.fullResource}");
@@ -91,7 +91,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	}
 	</#if>
 
-	<#if (table.isReal == '1' && operations?exists && operations?size > 0 )>
+	<#if (table.isReal == '1' && operations?exists && operations?size <= 0 )>
 	@Override
 	public void assertHasCreatePermission() {
 		permissionList.assertHasAnyPermission(new String[]{

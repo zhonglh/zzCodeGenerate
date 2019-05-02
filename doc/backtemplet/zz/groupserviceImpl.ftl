@@ -43,7 +43,7 @@ public class ${table.javaName}GroupServiceImpl extends BaseGroupServiceImpl<${ta
 	@Override
 	public BaseService[] getServices() {
 		if(bss == null) {
-			bss = new BaseService[]{${table.simpleName}Service<#list table.pageChildTables as childTable>,${childTable.simpleName}Service</#list>};
+			bss = new BaseService[]{${table.simpleName}Service<#list table.pageChildColumns as childColumn>,${childColumn.tableBO.simpleName}Service</#list>};
 		}
 		return bss;
 	}

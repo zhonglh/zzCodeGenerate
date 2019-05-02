@@ -16,7 +16,6 @@ import java.util.List;
 * ${table.tableComment} 数据传输对象，对应界面中的所有元素
 * 注意： 对象属性需要和 ${table.javaName}GroupServiceImpl.getServices 对应
 * @author ${project.projectAuthor}
-* @author ${project.projectAuthor}
 * @date ${.now}
 */
 public class ${table.javaName}GroupBO extends ${table.javaName}BO implements Serializable {
