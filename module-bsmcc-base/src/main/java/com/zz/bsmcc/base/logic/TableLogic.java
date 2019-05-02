@@ -55,8 +55,13 @@ public class TableLogic {
         if(table.isTable() && project.getPageUseView().equals(EnumYesNo.YES.getCode())){
             tcgTableConfigBO.setIsBuildUi(EnumYesNo.NO.getCode());
         }
-        tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildUi());
-        tcgTableConfigBO.setIsBuildRbac(tcgTableConfigBO.getIsBuildUi());
+        if(StringUtils.isEmpty(tcgTableConfigBO.getIsBuildMenu())) {
+            tcgTableConfigBO.setIsBuildMenu(tcgTableConfigBO.getIsBuildUi());
+        }
+
+        if(StringUtils.isEmpty(tcgTableConfigBO.getIsBuildRbac())) {
+            tcgTableConfigBO.setIsBuildRbac(tcgTableConfigBO.getIsBuildUi());
+        }
         tcgTableConfigBO.setTableType((String)EnumTableType.singleTable.getVal());
         tcgTableConfigBO.setPageRelation((String)EnumPageRelation.alone.getVal());
         tcgTableConfigBO.setIsShowCheckbox(EnumYesNo.YES.getCode());
@@ -643,9 +648,35 @@ public class TableLogic {
         String prefixFkTableNme = theTableName.substring(0,theTableName.indexOf("_")) ;
 
 
+        processColumnFk(columnBO, tables, tablesMap, columnNames, prefixFkTableNme);
+
+        if(StringUtils.isEmpty(columnBO.getFkName())) {
+            processColumnFk(columnBO, tables, tablesMap, columnNames, null);
+        }
+
+        if(StringUtils.isEmpty(columnBO.getFkName())) {
+            //约定  如果外键没有找到对应的表信息， 则认为不是外键
+            columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
+            columnBO.setFkTableConfig(null);
+            columnBO.setFkSchema(null);
+            columnBO.setFkName(null);
+            columnBO.setFkColumn(null);
+            columnBO.setFkColumnName(null);
+        }
+
+    }
+
+    private static void processColumnFk(TcgColumnConfigBO columnBO,
+                               List<Table> tables,
+                               Map<String, List<Table>> tablesMap,
+                               String[] columnNames,
+                               String prefixFkTableNme) {
         for(int index = 0 ; index < columnNames.length - 1; index ++){
             String suffixFkTableNme = getSuffixTableName(columnNames , index);
-            String tableName = prefixFkTableNme + "_" + suffixFkTableNme;
+            String tableName =  suffixFkTableNme;
+            if(StringUtils.isNotEmpty(prefixFkTableNme)){
+                tableName = prefixFkTableNme + "_" + suffixFkTableNme;
+            }
             //先在本schema 下精确查找
             String table = findTableName(tableName , tables , true);
             if(table == null){
@@ -672,17 +703,6 @@ public class TableLogic {
                 break;
             }
         }
-
-        if(StringUtils.isEmpty(columnBO.getFkName())) {
-            //约定  如果外键没有找到对应的表信息， 则认为不是外键
-            columnBO.setColumnIsfk(EnumYesNo.NO.getCode());
-            columnBO.setFkTableConfig(null);
-            columnBO.setFkSchema(null);
-            columnBO.setFkName(null);
-            columnBO.setFkColumn(null);
-            columnBO.setFkColumnName(null);
-        }
-
     }
 
 

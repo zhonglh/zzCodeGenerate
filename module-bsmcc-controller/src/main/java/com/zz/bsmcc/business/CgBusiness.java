@@ -1192,6 +1192,14 @@ public class CgBusiness extends CgBaseBusiness{
                     columnConfigBO.setTableBusinessKey(EnumYesNo.YES.getCode());
                 }
 
+                if(columnConfigBO.getColumnName().equalsIgnoreCase("tenant_id")){
+                    tableConfig.setHaveTenant(true);
+                }
+
+                if(columnConfigBO.getColumnName().equalsIgnoreCase("organ_id")){
+                    tableConfig.setHaveOrgan(true);
+                }
+
                 //替换掉空格 , Tab 键
                 if(StringUtils.isNotEmpty(columnConfigBO.getDictType())){
                     columnConfigBO.setDictType(columnConfigBO.getDictType().trim().replaceAll("\t",""));

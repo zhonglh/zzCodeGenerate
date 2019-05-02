@@ -33,7 +33,7 @@ import java.util.Map;
 * @author ${project.projectAuthor}
 * @date ${.now}
 */
-@EntityAnnotation(value="${table.tableComment}" , resource = "${table.fullResource}" <#if table.businessName?exists> ,businessName = "${table.businessName}"</#if>   <#if table.businessName?exists> ,businessKey = { "${table.businessKey}" }</#if>   <#if table.isTree?exists && table.isTree == '1'>,parentColumnName="${table.parentFieldName!}" ,textColumnName="${table.businessName!}" </#if> )
+@EntityAnnotation(value="${table.tableComment}" , resource = "${table.fullResource}" <#if table.haveTenant> ,haveTenant = true</#if> <#if table.haveOrgan> ,haveOrgan = true</#if> <#if table.businessName?exists> ,businessName = "${table.businessName}"</#if>   <#if table.businessName?exists> ,businessKey = { "${table.businessKey}" }</#if>   <#if table.isTree?exists && table.isTree == '1'>,parentColumnName="${table.parentFieldName!}" ,textColumnName="${table.businessName!}" </#if> )
 @TableName(value="${table.tableName}" , resultMap = "${table.javaName}ResultMap")
 public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}BO<#else>${table.javaName}Entity</#if> implements Serializable , IBoEntity {
 

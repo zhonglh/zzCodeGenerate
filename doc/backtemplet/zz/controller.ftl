@@ -121,7 +121,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 
 	@Override
-	public void setCustomInfoByInsert(${table.javaName}BO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO bo , ILoginUserEntity sessionUser){
 		<#list columnPages as page>
 		    <#if page.defaultType?exists && page.defaultType == 'CUSTOM'>
 				<#if page.columnConfig?exists>
@@ -134,7 +134,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
-	protected void setCommonData(${table.javaName}BO ${table.javaName?uncap_first}BO ,ModelMap model) {
+	protected void setCommonData(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO ${table.javaName?uncap_first}BO ,ModelMap model) {
     	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());

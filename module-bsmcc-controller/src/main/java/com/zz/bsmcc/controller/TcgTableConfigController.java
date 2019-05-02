@@ -235,6 +235,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             this.baseService.isExist(tcgTableConfigBO) ;
             TablesLocalThread.setTables(tablesMap.get(tcgTableConfigBO.getSchemaName()));
 
+            //收集表（视图）的所有信息
             TablePO tablePO = tableBusiness.tableBusiness( dbConfigBO,  tcgTableConfigBO, projectBO,sessionUserVO);
             tablePOs.add(tablePO);
             TablesLocalThread.setTables(null);

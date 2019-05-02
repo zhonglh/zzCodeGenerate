@@ -228,6 +228,21 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private String fullBoClassName;
 
 
+    /**
+     * 表里是否有 tenant_id 字段
+     */
+    @TableField(exist = false)
+    private boolean haveTenant;
+
+
+
+    /**
+     * 表里是否有 organ_id 字段
+     */
+    @TableField(exist = false)
+    private boolean haveOrgan;
+
+
 
 
 
@@ -479,5 +494,21 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
 
     public void setNotPageChildColumns(List<TcgColumnConfigBO> notPageChildColumns) {
         this.notPageChildColumns = notPageChildColumns;
+    }
+
+    public boolean isHaveTenant() {
+        return haveTenant;
+    }
+
+    public void setHaveTenant(boolean haveTenant) {
+        this.haveTenant = haveTenant;
+    }
+
+    public boolean isHaveOrgan() {
+        return haveOrgan;
+    }
+
+    public void setHaveOrgan(boolean haveOrgan) {
+        this.haveOrgan = haveOrgan;
     }
 }

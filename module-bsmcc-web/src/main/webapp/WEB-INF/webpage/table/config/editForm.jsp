@@ -1161,7 +1161,7 @@
         }
     }
 
-    changeTableType(document.getElementById("tableType"));
+    //changeTableType(document.getElementById("tableType"));
 
     function changeIsTree(isTree){
         var $isTree = $(isTree);
