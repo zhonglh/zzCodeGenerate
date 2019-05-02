@@ -241,10 +241,10 @@
                                     </#if>
                                 <#elseif nextPage?exists && nextPage.exColumn?exists>
                                     <#if nextPage.element == 'openwin' >
-                                            <c:if test="${r"${"} fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
+                                            <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
                                                 <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
                                             </c:if>
-                                            <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
+                                            <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
                                             <div class="input-group">
                                                 <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
                                                 <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
