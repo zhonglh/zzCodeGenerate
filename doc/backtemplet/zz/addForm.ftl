@@ -7,14 +7,15 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
-
 
                 <form id="editForm" action="" method="post">
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
+
                     <table class="info-table">
                         <colgroup>
                             <col style="width: 15%" />
@@ -39,7 +40,7 @@
                                         <#elseif being.element == 'textarea' >
                                             <div class="info-detail">
                                                 <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
-                                                          name="${being.javaName}" id="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="4">${r"${"} m.${being.javaName} ${r"$}"}</textarea>
+                                                          name="${being.javaName}" id="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="4">${r"${"} m.${being.javaName} ${r"}"}</textarea>
                                             </div>
                                         <#elseif being.element == 'digits' >
                                             <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number  <#if being.required?exists && being.required == '1'>required</#if>"
@@ -95,7 +96,7 @@
                                             <c:if test="${r"${"} fn:indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') >=0 ${r"}"}">
                                                 <input type="text" class="form-control input-sm" name="${being.javaName}" id="${being.javaName}"  value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
                                             </c:if>
-                                            <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') < 0 ${r"}"}">
+                                            <c:if test="${r"${"} fn:indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') < 0 ${r"}"}">
                                             <div class="input-group">
                                                 <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
                                                 <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
@@ -224,6 +225,35 @@
                         </#list>
                         </tbody>
                     </table>
+
+
+
+                    <#list table.pageChildColumns as childColumn>
+
+
+                    <div class="block-each block-each-another">
+                        <div class="block-tit">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                            </svg>${childColumn.tableBO.tableComment}
+                        </div>
+
+
+                        @GroupFieldAnnotation(childTableColumnName = "${childColumn.columnName}" , filedName = "${childColumn.tableBO.tableComment}")
+                    <#if childColumn.tableBO.tableRelation?exists && 'one-one' == childColumn.tableBO.tableRelation>
+                    ${childColumn.tableBO.javaName}BO ${childColumn.tableBO.simpleName?uncap_first}BO ;
+                    <#else >
+                    List<${childColumn.tableBO.javaName}BO> ${childColumn.tableBO.simpleName?uncap_first}BOList ;
+                    </#if>
+                    </#list>
+
+
+
+
+
+
+
+
                 </form>
             </div>
 

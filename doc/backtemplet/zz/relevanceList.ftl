@@ -248,7 +248,7 @@
                         ${fkColumn2.javaName}:sub.id,
                         <#list exColumns as exColumn>
                         <#if exColumn.originalJavaName == fkColumn2.javaName>
-                        ${exColumn.javaName}:sub.${exColumn.javaName},
+                        ${exColumn.javaName}:sub.${exColumn.fkJavaName},
                         </#if>
                         </#list>
 
@@ -310,7 +310,7 @@
                     ${fkColumn1.javaName}:sub.id,
                     <#list exColumns as exColumn>
                     <#if exColumn.originalJavaName == fkColumn1.javaName>
-                    ${exColumn.javaName}:sub.${exColumn.javaName},
+                    ${exColumn.javaName}:sub.${exColumn.fkJavaName},
                     </#if>
                     </#list>
 

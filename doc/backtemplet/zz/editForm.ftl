@@ -92,7 +92,7 @@
                                     <#elseif being.element == 'textarea' >
                                         <div class="info-detail">
                                             <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
-                                                      name="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="6"><c:out value="${r"${"} m.${being.javaName} ${r"$}"}" escapeXml="true"/></textarea>
+                                                      name="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="6"><c:out value="${r"${"} m.${being.javaName} ${r"}"}" escapeXml="true"/></textarea>
                                         </div>
                                     <#elseif being.element == 'digits' >
                                         <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number  <#if being.required?exists && being.required == '1'>required</#if>"
@@ -145,10 +145,10 @@
                                     </#if>
                                 <#elseif being?exists && being.exColumn?exists>
                                     <#if being.element == 'openwin' >
-                                        <c:if test="${r"${"} fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') >= 0 ${r"}"}">
+                                        <c:if test="${r"${"} fn:indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') >= 0 ${r"}"}">
                                             <input type="text" class="form-control input-sm" name="${being.javaName}"  id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
                                         </c:if>
-                                        <c:if test="${r"${"} !fn.indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') <0  ${r"}"}">
+                                        <c:if test="${r"${"} fn:indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') <0  ${r"}"}">
                                         <div class="input-group">
                                             <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
                                             <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
