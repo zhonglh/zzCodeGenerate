@@ -57,7 +57,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 
 		QueryWrapper wrapper = query.buildWrapper() ;
 		wrapper.orderByDesc("create_time" );
-		List<TcgModuleConfigBO> modules =  this.baseService.list(wrapper);
+		List<TcgModuleConfigBO> modules =  this.baseRwService.list(wrapper);
 		model.put("modules" , modules);
 
 	}
@@ -81,7 +81,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 
 		QueryWrapper wrapper = query.buildWrapper() ;
 		wrapper.orderByDesc("create_time" );
-		return  this.baseService.list(wrapper);
+		return  this.baseRwService.list(wrapper);
 	}
 
 
@@ -92,7 +92,7 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 				throw new BizException("上级模块不能是自己， 请重新选择上级模块！");
 			}
 
-			TcgModuleConfigBO parent = this.baseService.getById(m.getPid());
+			TcgModuleConfigBO parent = this.baseRwService.getById(m.getPid());
 			List<String> pids = new ArrayList<String>();
 			if(parent != null){
 				getParents(pids , parent.getId());
@@ -107,19 +107,13 @@ public class TcgModuleConfigController extends ZzccBaseController<TcgModuleConfi
 	private void  getParents(List<String> pids,String id){
 
 		pids.add(id);
-		TcgModuleConfigBO bo = this.baseService.getById(id);
+		TcgModuleConfigBO bo = this.baseRwService.getById(id);
 		if(bo != null && StringUtils.isNotEmpty(bo.getPid())){
 			getParents(pids , bo.getPid());
 		}
 	}
 
 
-	@Override
-	protected void processResult(List<TcgModuleConfigBO> records) {
-
-
-
-	}
 
 
 

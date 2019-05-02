@@ -125,7 +125,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
             TcgTableConfigQuery existQuery = new TcgTableConfigQueryImpl();
             existQuery.dbId(dbId);
-            List<TcgTableConfigBO> exists = this.baseService.list(existQuery.buildWrapper());
+            List<TcgTableConfigBO> exists = this.baseRwService.list(existQuery.buildWrapper());
             for(TcgTableConfigBO tableBO : exists) {
                 tableMap.remove(tableBO.getSchemaName() + tableBO.getTableName());
             }
@@ -232,7 +232,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if (StringUtils.isEmpty(tcgTableConfigBO.getDbId()) || StringUtils.isEmpty(tcgTableConfigBO.getTableName()) || StringUtils.isEmpty(tcgTableConfigBO.getProjectId())) {
                 continue;
             }
-            this.baseService.isExist(tcgTableConfigBO) ;
+            this.baseRwService.isExist(tcgTableConfigBO) ;
             TablesLocalThread.setTables(tablesMap.get(tcgTableConfigBO.getSchemaName()));
 
             //收集表（视图）的所有信息
@@ -267,7 +267,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     )
     public String tableOrViewUpdate(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
         this.permissionList.assertHasUpdatePermission();
-        TcgTableConfigBO tcBO = this.baseService.getById(id , true);
+        TcgTableConfigBO tcBO = this.baseRwService.getById(id , true);
         if(EnumYesNo.YES.getCode().equals(tcBO.getIsTable())){
             return "redirect:/table/config/"+id+"/update" ;
         }else {
@@ -283,7 +283,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     )
     public String updateViewForm(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
         this.permissionList.assertHasUpdatePermission();
-        TcgTableConfigBO m = this.baseService.getById(id , true);
+        TcgTableConfigBO m = this.baseRwService.getById(id , true);
         model.put("entity" , m);
         model.put("m" , m);
 
@@ -297,7 +297,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         Map<String , Object> tableMap = new HashMap<String , Object>();
         tableMap.put("project_id" , m.getProjectId());
         tableMap.put("is_table" , EnumYesNo.YES.getCode());
-        List<TcgTableConfigBO> tables = (List<TcgTableConfigBO>)this.baseService.listByMap(tableMap);
+        List<TcgTableConfigBO> tables = (List<TcgTableConfigBO>)this.baseRwService.listByMap(tableMap);
         model.put("tables" , tables);
 
         Map<String , Object> moduleMap = new HashMap<String , Object>();
@@ -502,7 +502,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
         Map<String , Object> tableMap = new HashMap<String , Object>();
         tableMap.put("project_id" , m.getProjectId());
         tableMap.put("is_table" , EnumYesNo.YES.getCode());
-        List<TcgTableConfigBO> tables = (List<TcgTableConfigBO>)this.baseService.listByMap(tableMap);
+        List<TcgTableConfigBO> tables = (List<TcgTableConfigBO>)this.baseRwService.listByMap(tableMap);
         model.put("tables" , tables);
 
         Map<String , Object> moduleMap = new HashMap<String , Object>();

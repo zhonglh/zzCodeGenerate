@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 /**
 * ${table.tableComment} BO , 扩展 <#if (table.isTable == '0' && table.mainTableConfig?exists)>${table.mainTableConfig.javaName}BO<#else>${table.javaName}Entity</#if> 对象
 * @author ${project.projectAuthor}

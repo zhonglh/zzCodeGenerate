@@ -131,7 +131,6 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 		</#list>
 	}
 
-
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
 	protected void setCommonData(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO ${table.javaName?uncap_first}BO ,ModelMap model) {

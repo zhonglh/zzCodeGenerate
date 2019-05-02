@@ -1,6 +1,7 @@
 package com.zz.bsmcc.controller;
 
 import com.zz.bms.controller.base.controller.BaseBusinessController;
+import com.zz.bms.controller.base.controller.BaseCommonController;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/main")
-public class MainController extends BaseBusinessController {
+public class MainController extends BaseCommonController<String> {
 
 
 

@@ -8,7 +8,7 @@ import com.zz.bms.core.ui.Pages;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
-public abstract class ZzccBaseController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseCURDController<M, PK, Q> {
+public abstract class ZzccBaseController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseCURDController<M,M, PK, Q,Q> {
 
     @Override
     public void checkInsertInfo(BaseEntity entity){
@@ -26,6 +26,45 @@ public abstract class ZzccBaseController<M extends BaseEntity<PK>, PK extends Se
         page.setPageSize(Integer.parseInt(request.getParameter("limit")));
         page.setPageNum((Integer.parseInt(request.getParameter("offset"))/page.getPageSize())+1);
     }
+
+
+
+    @Override
+    public void assertHasCreatePermission() {
+    }
+
+    @Override
+    public void assertHasUpdatePermission() {
+    }
+
+    @Override
+    public void assertHasDeletePermission() {
+    }
+
+    @Override
+    public void assertHasViewPermission() {
+    }
+
+    @Override
+    public void assertHasImportPermission() {
+    }
+
+    @Override
+    public void assertHasExportPermission() {
+    }
+
+    @Override
+    public void assertHasEditPermission() {
+    }
+
+    @Override
+    public void assertHasPermission(String permission) {
+    }
+
+    @Override
+    public void assertHasPermission(String permission, String errorCode) {
+    }
+
 
 
 }
