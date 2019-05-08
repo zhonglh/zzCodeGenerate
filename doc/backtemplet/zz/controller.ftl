@@ -6,6 +6,8 @@ import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.core.db.entity.*;
 
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import  ${table.fullPackageName}.query.impl.${table.javaName}QueryWebImpl;
 
@@ -29,6 +31,14 @@ import com.zz.bms.system.controller.ZzGroupDefaultSimpleController;
 <#else >
 import com.zz.bms.system.controller.ZzDefaultSimpleController;
 </#if>
+
+
+<#list table.pageChildColumns as childColumn>
+<#if childColumn.tableBO.tableRelation?exists && 'one-multi' == childColumn.tableBO.tableRelation>
+import	${childColumn.tableBO.fullPackageName}.bo.${childColumn.tableBO.javaName}BO;
+import	${childColumn.tableBO.fullPackageName}.query.impl.${childColumn.tableBO.javaName}QueryWebImpl;
+</#if>
+</#list>
 
 
 
@@ -57,6 +67,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
