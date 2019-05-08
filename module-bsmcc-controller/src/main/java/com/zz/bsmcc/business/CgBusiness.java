@@ -667,6 +667,10 @@ public class CgBusiness extends CgBaseBusiness{
                     tableConfig.setChildListDicts(Arrays.asList(set1.toArray(new String[tableConfig.getChildListDicts().size()])));
                 }
 
+            }else {
+                if(tableConfig.getDictTypes() != null && !tableConfig.getDictTypes().isEmpty()){
+                    tableConfig.setDictAllTypes(tableConfig.getDictTypes());
+                }
             }
 
 
