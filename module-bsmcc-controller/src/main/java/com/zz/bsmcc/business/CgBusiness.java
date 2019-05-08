@@ -682,7 +682,7 @@ public class CgBusiness extends CgBaseBusiness{
             }
         }
 
-        cgCode(tablePOMap.get("zzframe1tb_fund"), projectBO, templets);
+        cgCode(tablePOMap.get("zzframe1tb_bank"), projectBO, templets);
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
             cgCode(tablePO, projectBO, templets);
