@@ -164,6 +164,15 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     @TableField(exist = false)
     private List<TcgColumnConfigBO> fkColumns;
 
+
+    /**
+     * 所有外键对应的表信息
+     */
+    @TableField(exist = false)
+    private Set<TcgTableConfigBO> fkTableSet;
+
+
+
     /**
      * 用到的字典类型集合
      */
@@ -386,7 +395,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.fkTables = fkTables;
     }
 
+    public Set<TcgTableConfigBO> getFkTableSet() {
+        return fkTableSet;
+    }
 
+    public void setFkTableSet(Set<TcgTableConfigBO> fkTableSet) {
+        this.fkTableSet = fkTableSet;
+    }
 
     public List<String> getDictTypes() {
         return dictTypes;

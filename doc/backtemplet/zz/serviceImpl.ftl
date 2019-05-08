@@ -49,7 +49,7 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 
 
 
-	<#list table.fkTables as being>
+	<#list table.fkTableSet as being>
 	<#if ((table.mainTableConfig?exists && table.mainTableConfig.id!=being.id && table.id!=being.id) || (!table.mainTableConfig?exists && table.id!=being.id))>
     @Autowired
     private ${being.javaName}DAO ${being.javaName?uncap_first}DAO;

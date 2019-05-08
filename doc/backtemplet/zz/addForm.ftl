@@ -224,10 +224,12 @@
 
                                 <#if childColumn.tableBO.tableRelation?exists && 'one-one' == childColumn.tableBO.tableRelation>
                                     <table class="info-table">
-                                        <col style="width: 15%" />
-                                        <col style="width: 35%" />
-                                        <col style="width: 15%" />
-                                        <col style="width: 35%" />
+                                        <colgroup>
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                        </colgroup>
 
                                         <tbody>
 

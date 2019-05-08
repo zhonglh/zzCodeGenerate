@@ -595,6 +595,7 @@ public class CgBusiness extends CgBaseBusiness{
                 int index = 0;
                 for(TcgTableConfigBO p : tableConfig.getFkTables()){
                     if(EnumTableType.singleTable.getVal().equalsIgnoreCase(p.getTableType()) ){
+                        index ++;
                         continue;
                     }
                     p.getChildFkTables().add(tableConfig);
@@ -682,7 +683,7 @@ public class CgBusiness extends CgBaseBusiness{
             }
         }
 
-        cgCode(tablePOMap.get("zzframe1tb_bank"), projectBO, templets);
+        cgCode(tablePOMap.get("zzframe1tb_fund"), projectBO, templets);
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
             cgCode(tablePO, projectBO, templets);
@@ -1221,6 +1222,7 @@ public class CgBusiness extends CgBaseBusiness{
 
         List fkTables = new ArrayList<TcgTableConfigBO>();
         List<TcgColumnConfigBO> fkColumns = new ArrayList<TcgColumnConfigBO>();
+        Set<TcgTableConfigBO> fkTableSet = new HashSet<TcgTableConfigBO>();
 
         Class parentClass = null;
         try {
@@ -1285,6 +1287,7 @@ public class CgBusiness extends CgBaseBusiness{
                     columnConfigBO.setFkTableConfig(fkTableConfig);
                     fkTables.add(fkTableConfig);
                     fkColumns.add(columnConfigBO);
+                    fkTableSet.add(fkTableConfig);
                 }else if(EnumYesNo.YES.getCode().equals(columnConfigBO.getColumnIsdict())) {
                     dictTypeSet.add(columnConfigBO.getDictType());
                 }
@@ -1393,6 +1396,8 @@ public class CgBusiness extends CgBaseBusiness{
 
         tableConfig.setFkTables(fkTables);
         tableConfig.setFkColumns(fkColumns);
+        tableConfig.setFkTableSet(fkTableSet);
+
 
     }
 

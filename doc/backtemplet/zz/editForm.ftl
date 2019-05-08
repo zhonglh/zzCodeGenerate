@@ -274,11 +274,71 @@
                                 </div>
 
                                 <#if childColumn.tableBO.tableRelation?exists && 'one-one' == childColumn.tableBO.tableRelation>
+
+
+                                    <input type="hidden" name="${childColumn.tableBO.simpleName}BO.id" id="${childColumn.tableBO.simpleName}BO_id" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.id ${r"}"}">
+                                    <table class="info-table hide-area">
+                                        <colgroup>
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                        </colgroup>
+
+                                        <tbody>
+
+                                        <#list childColumn.tableBO.tablePO.showPages as being>
+                                            <#if being_index%2 ==0>
+                                                <tr>
+                                                    <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
+                                                    <td class="fd_${childColumn.tableBO.simpleName}BO_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
+                                                        <#if being.element == 'date' >
+                                                            <fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
+                                                        <#elseif being.element == 'timestamp' >
+                                                            <fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
+                                                        <#elseif being.element == 'select' || being.element == 'checkbox' || being.element == 'radio' >
+                                                            ${r"${"} m.${childColumn.tableBO.simpleName}BO.${being.javaName}Name ${r"}"}
+                                                        <#else >
+                                                            <c:out value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${being.javaName} ${r"}"}" escapeXml="true"/>
+                                                        </#if>
+                                                    </td>
+                                                    <#if being_has_next>
+                                                        <#assign nextPage=showColumnPages[being_index+1]>
+                                                        <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                                        <td class="fd_${childColumn.tableBO.simpleName}BO_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
+                                                            <#if nextPage.element == 'date' >
+                                                                <fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
+                                                            <#elseif nextPage.element == 'timestamp' >
+                                                                <fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
+                                                            <#elseif nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio' >
+                                                                ${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName}Name ${r"}"}
+                                                            <#else >
+                                                                <c:out value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" escapeXml="true"/>
+                                                            </#if>
+                                                        </td>
+                                                    </#if>
+                                                </tr>
+
+                                            </#if>
+                                        </#list>
+
+                                        </tbody>
+
+
+                                    </table>
+
+
+
+
+
+
                                     <table class="info-table">
-                                        <col style="width: 15%" />
-                                        <col style="width: 35%" />
-                                        <col style="width: 15%" />
-                                        <col style="width: 35%" />
+                                        <colgroup>
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                        </colgroup>
 
                                         <tbody>
 
@@ -641,7 +701,7 @@
             url : $AppContext+dataUrl+"/${childColumn.tableBO.simpleName}/list?${childColumn.javaName}=${r"${"} m.id ${r"}"}",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 42});
+                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 30});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
