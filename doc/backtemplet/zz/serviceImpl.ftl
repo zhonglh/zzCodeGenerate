@@ -19,7 +19,7 @@ import ${table.fullPackageName}.dao.${table.mainTableConfig.javaName}DAO;
 </#if>
 import ${table.fullPackageName}.service.${table.javaName}Service;
 
-<#list table.fkTables as being>
+<#list table.fkTableSet as being>
 import ${being.fullPackageName}.bo.${being.javaName}BO;
 import ${being.fullPackageName}.dao.${being.javaName}DAO;
 </#list>
