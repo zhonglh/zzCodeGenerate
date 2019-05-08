@@ -10,21 +10,23 @@ import com.zz.bms.core.enums.EnumBase;
 
 public enum EnumTableRelation implements EnumBase<String> {
 
-    one2one("一对一") ,
-    one2multi("一对多") ,
+    one2one("one-one","一对一") ,
+    one2multi("one-multi","一对多") ,
 
     ;
 
-    EnumTableRelation( String name) {
+    EnumTableRelation(String code, String name) {
+        this.code = code;
         this.name = name;
     }
 
+    String code ;
     String name ;
 
 
     @Override
     public String getVal(){
-        return this.name();
+        return this.code;
     }
 
     @Override
@@ -35,7 +37,7 @@ public enum EnumTableRelation implements EnumBase<String> {
 
     @Override
     public String getValue(){
-        return this.name();
+        return this.code;
     }
 
 

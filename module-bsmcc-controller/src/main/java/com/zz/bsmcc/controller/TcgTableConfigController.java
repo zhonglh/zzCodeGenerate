@@ -161,7 +161,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     @RequestMapping( value = "/createAll",  method = {RequestMethod.POST} )
     @ResponseBody
     public Object createAll(TcgTableConfigBO m, ModelMap model, HttpServletRequest request , HttpServletResponse response) {
-        this.permissionList.assertHasCreatePermission();
+        this.assertHasCreatePermission();
 
         ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
         boolean success = false;
@@ -266,7 +266,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             method = {RequestMethod.GET}
     )
     public String tableOrViewUpdate(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
-        this.permissionList.assertHasUpdatePermission();
+
+        this.assertHasUpdatePermission();
         TcgTableConfigBO tcBO = this.baseRwService.getById(id , true);
         if(EnumYesNo.YES.getCode().equals(tcBO.getIsTable())){
             return "redirect:/table/config/"+id+"/update" ;
@@ -282,7 +283,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             method = {RequestMethod.GET}
     )
     public String updateViewForm(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
-        this.permissionList.assertHasUpdatePermission();
+
+        this.assertHasUpdatePermission();
         TcgTableConfigBO m = this.baseRwService.getById(id , true);
         model.put("entity" , m);
         model.put("m" , m);
@@ -316,7 +318,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     )
     @ResponseBody
     public Object updateView(ModelMap model, @PathVariable("id") String id, TcgTableConfigBO tcgTableConfigBO,HttpServletRequest request, HttpServletResponse response) {
-        this.permissionList.assertHasUpdatePermission();
+
+        this.assertHasUpdatePermission();
         tcgTableConfigBO.setIsTable(EnumYesNo.NO.getCode());
         TablePO tablePO = new TablePO();
         tablePO.setTableBO(tcgTableConfigBO);
@@ -347,7 +350,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     @ResponseBody
     public Object updateAll(@PathVariable("id") String id, ModelMap model, TablePO tablePO, TcgTableConfigBO tcgTableConfigBO,
                             HttpServletRequest request, HttpServletResponse response) {
-        this.permissionList.assertHasUpdatePermission();
+
+        this.assertHasUpdatePermission();
 
         ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
         boolean success = false;

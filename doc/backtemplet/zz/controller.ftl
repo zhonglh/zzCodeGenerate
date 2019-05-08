@@ -43,6 +43,13 @@ import ${columns[1].fkTableConfig.fullPackageName}.bo.${columns[1].fkTableConfig
 import ${columns[2].fkTableConfig.fullPackageName}.bo.${columns[2].fkTableConfig.javaName}BO;
 </#if>
 
+<#list table.pageChildColumns as childColumn>
+<#if childColumn.tableBO.tableRelation?exists && 'one-multi' == childColumn.tableBO.tableRelation>
+import ${childColumn.tableBO.fullPackageName}.service.${childColumn.tableBO.javaName?cap_first}Service;
+
+</#if>
+</#list>
+
 import com.zz.bms.util.base.java.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -75,6 +82,16 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 	@Autowired
 	private TsDictService tsDictService;
+
+
+<#list table.pageChildColumns as childColumn>
+<#if childColumn.tableBO.tableRelation?exists && 'one-multi' == childColumn.tableBO.tableRelation>
+	@Autowired
+	private ${childColumn.tableBO.javaName}Service ${childColumn.tableBO.javaName?uncap_first}Service;
+</#if>
+</#list>
+
+
 
 
 	<#if table.isReal == '1'>
@@ -119,6 +136,16 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	</#if>
 
 
+	<#list table.pageChildColumns as childColumn>
+	<#if childColumn.tableBO.tableRelation?exists && 'one-multi' == childColumn.tableBO.tableRelation>
+	@RequestMapping(value = "/${childColumn.tableBO.simpleName?uncap_first}/list" , method={ RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public List<${childColumn.tableBO.javaName}BO> ${childColumn.tableBO.simpleName?uncap_first}List(${childColumn.tableBO.javaName}BO m , ${childColumn.tableBO.javaName}QueryWebImpl query,ModelMap modelMap){
+		QueryWrapper wrapper =   query.buildWrapper();
+		return ${childColumn.tableBO.javaName?uncap_first}Service.list(wrapper);
+	}
+	</#if>
+	</#list>
 
 	@Override
 	public void setCustomInfoByInsert(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO bo , ILoginUserEntity sessionUser){
@@ -134,7 +161,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	<#if (table.dictTypes?exists && table.dictTypes?size > 0) >
 	@Override
 	protected void setCommonData(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO ${table.javaName?uncap_first}BO ,ModelMap model) {
-    	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(<#list table.dictTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
+    	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(<#list table.dictAllTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }

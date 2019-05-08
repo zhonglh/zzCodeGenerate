@@ -56,7 +56,7 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 	public String operationsEdit(@PathVariable String id, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 
-		this.permissionList.assertHasPermission("operationsEdit");
+		this.assertHasEditPermission();
 
 
 		List<TcgTempletGroupOperationBO> list = null;
@@ -117,7 +117,8 @@ public class TcgTempletGroupController extends ZzccBaseController<TcgTempletGrou
 	public Object operationsEdit(@PathVariable("id") String id, TablePO tablePO, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 
-		this.permissionList.assertHasPermission("operationsEdit");
+		this.assertHasEditPermission();
+
 		ILoginUserEntity<String> sessionUserVO = this.getSessionUser();
 
 		List<TcgTempletGroupOperationBO> operations = tablePO.getTempletGroupOperations();

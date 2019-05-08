@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bsmcc.base.domain.TcgTableConfigEntity;
+import com.zz.bsmcc.base.po.TablePO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -170,6 +171,15 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private List<String> dictTypes ;
 
 
+    /**
+     * 用到的字典类型集合 , 包括组内的子表， 附表
+     */
+    @TableField(exist = false)
+    private List<String> dictAllTypes ;
+
+
+    @TableField(exist = false)
+    private List<String> childListDicts ;
 
 
     /**
@@ -196,6 +206,13 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
      */
     @TableField(exist = false)
     private List<TcgColumnConfigBO> pageChildColumns;
+
+
+    /**
+     * 和本表同一界面用到的子表 , 仅包含一对多的 ， 去重
+     */
+    @TableField(exist = false)
+    private Set<TcgTableConfigBO> pageChildTableSet;
 
 
 
@@ -243,8 +260,16 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     private boolean haveOrgan;
 
 
+    @TableField(exist = false)
+    private TablePO tablePO;
 
+    public TablePO getTablePO() {
+        return tablePO;
+    }
 
+    public void setTablePO(TablePO tablePO) {
+        this.tablePO = tablePO;
+    }
 
     public String getDbConfigTitle() {
         return dbConfigTitle;
@@ -472,6 +497,14 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.pageChildColumns = pageChildColumns;
     }
 
+    public Set<TcgTableConfigBO> getPageChildTableSet() {
+        return pageChildTableSet;
+    }
+
+    public void setPageChildTableSet(Set<TcgTableConfigBO> pageChildTableSet) {
+        this.pageChildTableSet = pageChildTableSet;
+    }
+
     public TcgTableConfigBO getReciprocalView() {
         return reciprocalView;
     }
@@ -496,6 +529,22 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.notPageChildColumns = notPageChildColumns;
     }
 
+    public List<String> getDictAllTypes() {
+        return dictAllTypes;
+    }
+
+    public void setDictAllTypes(List<String> dictAllTypes) {
+        this.dictAllTypes = dictAllTypes;
+    }
+
+    public List<String> getChildListDicts() {
+        return childListDicts;
+    }
+
+    public void setChildListDicts(List<String> childListDicts) {
+        this.childListDicts = childListDicts;
+    }
+
     public boolean isHaveTenant() {
         return haveTenant;
     }
@@ -511,4 +560,5 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     public void setHaveOrgan(boolean haveOrgan) {
         this.haveOrgan = haveOrgan;
     }
+
 }

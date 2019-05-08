@@ -20,9 +20,14 @@ public class TablePO implements Serializable{
     private List<TcgIndexConfigBO> indexs;
     private List<TcgColumnPageBO> columnPages;
 
+
+    private List<TcgColumnPageBO> showPages;
+
     private List<TcgColumnValidateBO> columnValidates;
     private List<TcgColumnEventBO> columnEvents;
     private List<TcgQueryConfigBO> queryConfigs;
+
+    private List<TcgColumnPageBO> listColumnPages;
 
     //用于界面选择
     private List<TcgTableOperationBO> tableOperations;
@@ -62,7 +67,6 @@ public class TablePO implements Serializable{
     Map<String,TcgColumnPageBO> dictSet;
 
 
-
     public TcgTableConfigBO getTableBO() {
         return tableBO;
     }
@@ -94,6 +98,14 @@ public class TablePO implements Serializable{
 
     public void setColumnPages(List<TcgColumnPageBO> columnPages) {
         this.columnPages = columnPages;
+    }
+
+    public List<TcgColumnPageBO> getShowPages() {
+        return showPages;
+    }
+
+    public void setShowPages(List<TcgColumnPageBO> showPages) {
+        this.showPages = showPages;
     }
 
     public List<TcgIndexConfigBO> getIndexs() {
@@ -231,6 +243,15 @@ public class TablePO implements Serializable{
     public void setDictSet(Map<String, TcgColumnPageBO> dictSet) {
         this.dictSet = dictSet;
     }
+
+    public List<TcgColumnPageBO> getListColumnPages() {
+        return listColumnPages;
+    }
+
+    public void setListColumnPages(List<TcgColumnPageBO> listColumnPages) {
+        this.listColumnPages = listColumnPages;
+    }
+
 
     @Override
     public String toString() {

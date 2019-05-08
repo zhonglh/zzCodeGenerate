@@ -37,12 +37,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
             <#elseif being.columnPage.element == 'url' >
                 <input type="text" class="form-control input-sm" style='width: 100px;' readonly  id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'  placeholder='${being.queryPlaceholder}' >
             <#elseif being.columnPage.element == 'radio' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'select' >
-                <select id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
-                    <option value="" >'${being.queryPlaceholder}'</option>
-                    <c:forEach items="${r"${"} yes_no_dicts ${r"}"}" var="dict">
-                        <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name ${r"}"}</option>
-                    </c:forEach>
-                </select>
+
             <#elseif being.columnPage.element == 'openwin' >
             <#else >
             </#if>
@@ -69,7 +64,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
     {field:"id", checkbox: true, width: 40},
     <#if listColumnPages?exists>
         <#list listColumnPages as listPage>
-        {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150, <#if listPage.numberColumn=='1' >align:"right"<#elseif listPage.dateColumn=='1' >align:"center"<#else >align:"left"</#if> ,<#if listPage.dateColumn=='1' >formatter='dateFmt'</#if>}<#if listPage_has_next>,</#if>
+        {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150, <#if listPage.numberColumn=='1' >align:"right"<#elseif listPage.dateColumn=='1' >align:"center"<#else >align:"left"</#if> ,<#if listPage.dateColumn=='1' >formatter:dateFmt</#if>}<#if listPage_has_next>,</#if>
         </#list>
     </#if>
     ]];

@@ -13,7 +13,7 @@ public enum EnumTableType implements EnumBase<String> {
     singleTable("1" , "单表") ,
     mainTable("2" , "主表") ,
     attachTable("3" , "副表") ,
-    childTable("4" , "字表") ,
+    childTable("4" , "子表") ,
 
     ;
 

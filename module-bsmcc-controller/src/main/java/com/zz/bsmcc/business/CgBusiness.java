@@ -20,6 +20,8 @@ import com.zz.bsmcc.base.service.*;
 import com.zz.bsmcc.core.enums.EnumButtonPosition;
 import com.zz.bms.enums.EnumPageElement;
 import com.zz.bsmcc.core.enums.EnumPageRelation;
+import com.zz.bsmcc.core.enums.EnumTableRelation;
+import com.zz.bsmcc.core.enums.EnumTableType;
 import com.zz.bsmcc.core.util.CgBeanUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -292,6 +294,7 @@ public class CgBusiness extends CgBaseBusiness{
             tableConfig.setChildFkColumns(new ArrayList<TcgColumnConfigBO>());
             tableConfig.setPageChildTables(new ArrayList<TcgTableConfigBO>());
             tableConfig.setPageChildColumns(new ArrayList<TcgColumnConfigBO>());
+            tableConfig.setPageChildTableSet(new HashSet<TcgTableConfigBO>());
             tableConfig.setNotPageChildTables(new ArrayList<TcgTableConfigBO>());
             tableConfig.setNotPageChildColumns(new ArrayList<TcgColumnConfigBO>());
 
@@ -521,7 +524,22 @@ public class CgBusiness extends CgBaseBusiness{
             tablePO.setColumnPages(columnPages);
             tablePO.setColumnValidates(validates);
             tablePO.setColumnEvents(events);
+
+
+            List<TcgColumnPageBO> showPages = new ArrayList<TcgColumnPageBO>();
+            for(TcgColumnPageBO page : columnPages){
+                if(EnumYesNo.YES.getCode().equals(page.getExistPage()) && EnumYesNo.NO.getCode().equals(page.getHiddenable())){
+                    showPages.add(page);
+                }
+            }
+            tablePO.setShowPages(showPages);
+
+
+            List listColumnPages = tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList());
+            tablePO.setListColumnPages(listColumnPages);
+
             processPageOther(tablePO);
+            tableConfig.setTablePO(tablePO);
 
             tablePO.setIndexs(indexs);
             tablePO.setQueryConfigs(queryConfigs);
@@ -576,11 +594,21 @@ public class CgBusiness extends CgBaseBusiness{
             if(tableConfig.getFkTables() != null && !tableConfig.getFkTables().isEmpty()){
                 int index = 0;
                 for(TcgTableConfigBO p : tableConfig.getFkTables()){
+                    if(EnumTableType.singleTable.getVal().equalsIgnoreCase(p.getTableType()) ){
+                        continue;
+                    }
                     p.getChildFkTables().add(tableConfig);
                     p.getChildFkColumns().add(tableConfig.getFkColumns().get(index));
                     if(EnumPageRelation.embed.getVal().equals(tableConfig.getPageRelation())){
                         p.getPageChildTables().add(tableConfig);
                         p.getPageChildColumns().add(tableConfig.getFkColumns().get(index));
+                        if(EnumTableRelation.one2multi.getVal().equalsIgnoreCase(tableConfig.getTableRelation())){
+                            if(tableConfig.getFkTables() != null && !tableConfig.getFkTables().isEmpty()) {
+                                for (TcgTableConfigBO fkTable : tableConfig.getFkTables()) {
+                                    p.getPageChildTableSet().add(fkTable);
+                                }
+                            }
+                        }
                     }else {
                         p.getNotPageChildTables().add(tableConfig);
                         p.getNotPageChildColumns().add(tableConfig.getFkColumns().get(index));
@@ -605,6 +633,44 @@ public class CgBusiness extends CgBaseBusiness{
 
         }
 
+
+
+
+        for(TcgTableConfigBO tableConfig : tableConfigs){
+            if(tableConfig.getPageChildTables() != null && !tableConfig.getPageChildTables().isEmpty()){
+                tableConfig.setChildListDicts(new ArrayList<String>());
+                tableConfig.setDictAllTypes(new ArrayList<String>());
+                if(tableConfig.getDictTypes() != null && !tableConfig.getDictTypes().isEmpty()){
+                    tableConfig.getDictAllTypes().addAll(tableConfig.getDictTypes());
+                }
+                for(TcgTableConfigBO child : tableConfig.getPageChildTables()){
+                    if(EnumTableRelation.one2multi.getVal().equalsIgnoreCase(child.getTableRelation())){
+                        if(child.getDictTypes() != null && !child.getDictTypes().isEmpty()) {
+                            tableConfig.getChildListDicts().addAll(child.getDictTypes());
+                        }
+                    }
+                    if(child.getDictTypes() != null && !child.getDictTypes().isEmpty()) {
+                        tableConfig.getDictAllTypes().addAll(child.getDictTypes());
+                    }
+
+                }
+
+                if(!tableConfig.getDictAllTypes().isEmpty()) {
+                    Set<String> set = new HashSet<String>(tableConfig.getDictAllTypes());
+                    tableConfig.setDictAllTypes(Arrays.asList(set.toArray(new String[tableConfig.getDictAllTypes().size()])));
+                }
+
+
+                if(!tableConfig.getChildListDicts().isEmpty()) {
+                    Set<String> set1 = new HashSet<String>(tableConfig.getChildListDicts());
+                    tableConfig.setChildListDicts(Arrays.asList(set1.toArray(new String[tableConfig.getChildListDicts().size()])));
+                }
+
+            }
+
+
+        }
+
         //设置表对应的视图
         for(TcgTableConfigBO tableConfig : tableConfigs){
             if(EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())){
@@ -616,12 +682,11 @@ public class CgBusiness extends CgBaseBusiness{
             }
         }
 
-
+        cgCode(tablePOMap.get("zzframe1tb_fund"), projectBO, templets);
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
             cgCode(tablePO, projectBO, templets);
         }
-        //cgCode(tablePOMap.get("zzframets_user"), projectBO, templets);
 
         //生成菜单SQL
         if(!menus.isEmpty()) {
@@ -897,20 +962,13 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("columnPageMap" , processColumnPageBOMap(tablePO.getColumnPages()));
 
 
-        List<TcgColumnPageBO> showPages = new ArrayList<TcgColumnPageBO>();
-        for(TcgColumnPageBO page : tablePO.getColumnPages()){
-            if(EnumYesNo.YES.getCode().equals(page.getExistPage()) && EnumYesNo.NO.getCode().equals(page.getHiddenable())){
-                showPages.add(page);
-            }
-        }
-        freemarkerModel.put("showColumnPages" , showPages);
+        freemarkerModel.put("showColumnPages" , tablePO.getShowPages());
         freemarkerModel.put("columnEvents" , tablePO.getColumnEvents());
         freemarkerModel.put("columnValidates" , tablePO.getColumnValidates());
 
 
-        List listColumnPages = tablePO.getColumnPages().stream().filter(item -> EnumYesNo.YES.getCode().equals(item.getListShowable())).collect(Collectors.toList());
-        if(listColumnPages != null && !listColumnPages.isEmpty()) {
-            freemarkerModel.put("listColumnPages", listColumnPages);
+        if(tablePO.getListColumnPages() != null && !tablePO.getListColumnPages().isEmpty()) {
+            freemarkerModel.put("listColumnPages", tablePO.getListColumnPages());
         }
 
 
@@ -950,6 +1008,8 @@ public class CgBusiness extends CgBaseBusiness{
         freemarkerModel.put("fks" , tablePO.getFks());
         freemarkerModel.put("fkTables" , tablePO.getFkTables());
         freemarkerModel.put("dictSet" , tablePO.getDictSet().values());
+
+
 
         freemarkerModel.put("project" , projectBO);
 
