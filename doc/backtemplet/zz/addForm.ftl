@@ -649,7 +649,7 @@
 
     function ${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt(val, row,index){
         <#if listPage.exColumn?exists && listPage.exColumn.originalColumn.columnIsdict== '1'>
-        var html = "<select name='${childColumn.tableBO.simpleName}BOList["+index+"].${listPage.exColumn.originalColumn.javaName}' id='${childColumn.tableBO.simpleName}BOList_"+index+"_${listPage.exColumn.originalColumn.javaName}' onblur='costTableRows(\"tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\" , \"${childColumn.tableBO.simpleName}BOList \" , "+index+")' class=’form-control input-sm <#if listPage.exColumn.originalColumn.columnIsnull=='0'>required</#if>‘>" ;
+        var html = "<select name='${childColumn.tableBO.simpleName}BOList["+index+"].${listPage.exColumn.originalColumn.javaName}' id='${childColumn.tableBO.simpleName}BOList_"+index+"_${listPage.exColumn.originalColumn.javaName}' onblur='costTableRows(\"tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\" , \"${childColumn.tableBO.simpleName}BOList \" , "+index+")' class='form-control input-sm <#if listPage.exColumn.originalColumn.columnIsnull=='0'>required</#if>'>" ;
         html += checkedOption(${listPage.exColumn.originalColumn.dictType}_dicts() , row.${listPage.exColumn.originalColumn.javaName});
         html += "</select>";
         return html;
@@ -699,7 +699,7 @@
         <#elseif listPage.element == 'email' >
         var html = '<input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"'+
         'placeholder="请输入${listPage.columnComment}" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\' , \'${childColumn.tableBO.simpleName}BOList\' , '+index+')"'+
-        'value="‘+val+’" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}"'+
+        'value="'+val+'" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}"'+
         '<#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />';
         <#elseif listPage.element == 'url' >
         var html = '<input type="url" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"'+

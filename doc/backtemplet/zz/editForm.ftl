@@ -109,7 +109,7 @@
                                             <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if being.required?exists && being.required == '1'>required</#if>"
                                                    placeholder="请输入${being.columnComment}" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})"
-                                                           value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" readonly   />
+                                                   value='<fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${being.javaName}" name="${being.javaName}" readonly   />
 
                                     <#elseif being.element == 'email' >
                                         <input type="email" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
@@ -192,7 +192,7 @@
                                             <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
                                                    placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})"
-                                                           value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
+                                                           value='<fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
 
                                     <#elseif nextPage.element == 'email' >
                                         <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
@@ -274,8 +274,6 @@
                                 </div>
 
                                 <#if childColumn.tableBO.tableRelation?exists && 'one-one' == childColumn.tableBO.tableRelation>
-
-
                                     <input type="hidden" name="${childColumn.tableBO.simpleName}BO.id" id="${childColumn.tableBO.simpleName}BO_id" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.id ${r"}"}">
                                     <table class="info-table hide-area">
                                         <colgroup>
@@ -290,6 +288,7 @@
                                         <#list childColumn.tableBO.tablePO.showPages as being>
                                             <#if being_index%2 ==0>
                                                 <tr>
+                                                    <#if being?exists && ( (being.columnConfig?exists && being.columnConfig.javaName != childColumn.javaName)  || (being.exColumn?exists && being.exColumn.originalColumn.javaName != childColumn.javaName))>
                                                     <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
                                                     <td class="fd_${childColumn.tableBO.simpleName}BO_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
                                                         <#if being.element == 'date' >
@@ -302,8 +301,11 @@
                                                             <c:out value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${being.javaName} ${r"}"}" escapeXml="true"/>
                                                         </#if>
                                                     </td>
+                                                    </#if>
                                                     <#if being_has_next>
-                                                        <#assign nextPage=showColumnPages[being_index+1]>
+                                                        <#assign nextPage=childColumn.tableBO.tablePO.showPages[being_index+1]>
+                                                        <#if nextPage?exists && ( (nextPage.columnConfig?exists && nextPage.columnConfig.javaName != childColumn.javaName)  || (nextPage.exColumn?exists && nextPage.exColumn.originalColumn.javaName != childColumn.javaName))>
+
                                                         <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
                                                         <td class="fd_${childColumn.tableBO.simpleName}BO_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
                                                             <#if nextPage.element == 'date' >
@@ -316,6 +318,7 @@
                                                                 <c:out value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" escapeXml="true"/>
                                                             </#if>
                                                         </td>
+                                                        </#if>
                                                     </#if>
                                                 </tr>
 
@@ -332,7 +335,7 @@
 
 
 
-                                    <table class="info-table">
+                                    <table class="info-table show-area">
                                         <colgroup>
                                             <col style="width: 15%" />
                                             <col style="width: 35%" />
@@ -375,7 +378,7 @@
                                                                     <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if listPage.required?exists && listPage.required == '1'>required</#if>"
                                                                            placeholder="请输入${listPage.columnComment}" autocomplete="off"
                                                                            onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${listPage.javaName}'})"
-                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" readonly   />
+                                                                           value='<fmt:formatDate value=“${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}” pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" readonly   />
 
                                                                 <#elseif listPage.element == 'email' >
                                                                     <input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
@@ -462,7 +465,7 @@
                                                                         <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
                                                                                placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                                                onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${nextPage.javaName}'})"
-                                                                               value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" readonly   />
+                                                                               value='<fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" readonly   />
 
                                                                     <#elseif nextPage.element == 'email' >
                                                                         <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
@@ -786,7 +789,7 @@
 
     function ${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt(val, row,index){
         <#if listPage.exColumn?exists && listPage.exColumn.originalColumn.columnIsdict== '1'>
-        var html = "<select name='${childColumn.tableBO.simpleName}BOList["+index+"].${listPage.exColumn.originalColumn.javaName}' id='${childColumn.tableBO.simpleName}BOList_"+index+"_${listPage.exColumn.originalColumn.javaName}' onblur='costTableRows(\"tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\" , \"${childColumn.tableBO.simpleName}BOList \" , "+index+")' class=’form-control input-sm show-area <#if listPage.exColumn.originalColumn.columnIsnull=='0'>required</#if>‘>" ;
+        var html = "<select name='${childColumn.tableBO.simpleName}BOList["+index+"].${listPage.exColumn.originalColumn.javaName}' id='${childColumn.tableBO.simpleName}BOList_"+index+"_${listPage.exColumn.originalColumn.javaName}' onblur='costTableRows(\"tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\" , \"${childColumn.tableBO.simpleName}BOList \" , "+index+")' class='form-control input-sm show-area <#if listPage.exColumn.originalColumn.columnIsnull=='0'>required</#if>'>" ;
         html += checkedOption(${listPage.exColumn.originalColumn.dictType}_dicts() , row.${listPage.exColumn.originalColumn.javaName});
         html += "</select>";
         html += "<div class='hide-area'>"+row.${listPage.javaName}+"</div>";
@@ -840,7 +843,7 @@
         <#elseif listPage.element == 'email' >
         var html = '<input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm show-area <#if listPage.required?exists && listPage.required == '1'>required</#if>"'+
             'placeholder="请输入${listPage.columnComment}" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\' , \'${childColumn.tableBO.simpleName}BOList\' , '+index+')"'+
-            'value="‘+val+’" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}"'+
+            'value="'+val+'" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}"'+
             '<#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />';
         <#elseif listPage.element == 'url' >
         var html = '<input type="url" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm show-area <#if listPage.required?exists && listPage.required == '1'>required</#if>"'+
