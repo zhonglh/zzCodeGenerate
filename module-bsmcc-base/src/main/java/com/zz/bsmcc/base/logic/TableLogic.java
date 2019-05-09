@@ -301,7 +301,7 @@ public class TableLogic {
                 pageBO.setEditable(EnumYesNo.NO.getCode());
                 pageBO.setHiddenable(EnumYesNo.NO.getCode());
                 pageBO.setListShowable(EnumYesNo.NO.getCode());
-                pageBO.setExcelType(EnumExcelType.NONE.getVal());
+                pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
             }
 
         }
