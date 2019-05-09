@@ -704,7 +704,7 @@
             url : $AppContext+dataUrl+"/${childColumn.tableBO.simpleName}/list?${childColumn.javaName}=${r"${"} m.id ${r"}"}",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}').datagrid("resize", {height: (data.rows.length + 1) * 30});
+                    $('#tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}').datagrid("resize", {height: (data.rows.length + 1) * tableHeight});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
@@ -836,10 +836,18 @@
             'value="'+val+'" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}" step="0.01"'+
             '<#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />';
         <#elseif listPage.element == 'date' ||  listPage.element == 'timestamp' >
+        var dd = "";
+        if(val != undefined && val != null && val != 0){
+            <#if listPage.element == 'date'>
+            dd = changeDateFormat(val);
+            <#else >
+            dd = changeDatetimeFormat(val);
+            </#if>
+        }
         var html = '<input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm show-area Wdate  <#if listPage.required?exists && listPage.required == '1'>required</#if>"'+
             'placeholder="请输入${listPage.columnComment}" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\' , \'${childColumn.tableBO.simpleName}BOList\' , '+index+')"'+
             'onclick="WdatePicker({dateFmt: \'yyyy-MM-dd\', el: \'${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}\'})"'+
-            'value="'+val+'" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}" readonly   />';
+            'value="'+dd+'" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.javaName}" readonly   />';
         <#elseif listPage.element == 'email' >
         var html = '<input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm show-area <#if listPage.required?exists && listPage.required == '1'>required</#if>"'+
             'placeholder="请输入${listPage.columnComment}" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\' , \'${childColumn.tableBO.simpleName}BOList\' , '+index+')"'+
@@ -853,7 +861,7 @@
 
         <#else >
         </#if>
-        html += "<div class='hide-area' >"+val+"</div>" ;
+        html += "<div class='hide-area' >"+<#if listPage.element == 'date' ||  listPage.element == 'timestamp' >dd<#else >val</#if>+"</div>" ;
         return html;
 
         </#if>
