@@ -704,7 +704,7 @@
             url : $AppContext+dataUrl+"/${childColumn.tableBO.simpleName}/list?${childColumn.javaName}=${r"${"} m.id ${r"}"}",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 30});
+                    $('#tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}').datagrid("resize", {height: (data.rows.length + 1) * 30});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
