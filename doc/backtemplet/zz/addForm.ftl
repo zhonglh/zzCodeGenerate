@@ -125,7 +125,7 @@
                                                 <#elseif nextPage.element == 'textarea' >
                                                     <div class="info-detail">
                                             <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
-                                                      name="${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
+                                                      id="${nextPage.javaName}"  name="${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
                                                     </div>
                                                 <#elseif nextPage.element == 'digits' >
                                                     <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"

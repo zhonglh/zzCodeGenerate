@@ -290,7 +290,7 @@
                                                 <tr>
                                                     <#if being?exists && ( (being.columnConfig?exists && being.columnConfig.javaName != childColumn.javaName)  || (being.exColumn?exists && being.exColumn.originalColumn.javaName != childColumn.javaName))>
                                                     <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
-                                                    <td class="fd_${childColumn.tableBO.simpleName}BO_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
+                                                    <td class="fd_${childColumn.tableBO.simpleName}BO${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
                                                         <#if being.element == 'date' >
                                                             <fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
                                                         <#elseif being.element == 'timestamp' >
@@ -448,7 +448,7 @@
                                                                     <#elseif nextPage.element == 'textarea' >
                                                                         <div class="info-detail">
                                                                         <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
-                                                                                  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
+                                                                                  id=name="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
                                                                         </div>
                                                                     <#elseif nextPage.element == 'digits' >
                                                                         <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
