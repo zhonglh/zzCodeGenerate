@@ -297,16 +297,15 @@ public class TableLogic {
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
             pageBO.setListShowable(EnumYesNo.YES.getCode());
+        }
 
 
-            if(StringUtils.isNotEmpty(exColumnBO.getOriginalColumn().getColumnDefault())){
-                pageBO.setExistPage(EnumYesNo.NO.getCode());
-                pageBO.setEditable(EnumYesNo.NO.getCode());
-                pageBO.setHiddenable(EnumYesNo.NO.getCode());
-                pageBO.setListShowable(EnumYesNo.NO.getCode());
-                pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
-            }
-
+        if(StringUtils.isNotEmpty(exColumnBO.getOriginalColumn().getColumnDefault())){
+            pageBO.setExistPage(EnumYesNo.NO.getCode());
+            pageBO.setEditable(EnumYesNo.NO.getCode());
+            pageBO.setHiddenable(EnumYesNo.NO.getCode());
+            pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
         }
 
         pageBO.setRequired(EnumYesNo.YES.getCode());
@@ -375,7 +374,13 @@ public class TableLogic {
                 pageBO.setEditable(EnumYesNo.YES.getCode());
                 pageBO.setHiddenable(EnumYesNo.NO.getCode());
                 pageBO.setListShowable(pageBO.getEditable());
+
+            if(StringUtils.isNotEmpty(columnBO.getColumnDefault())) {
+                pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
+            }else {
+
                 pageBO.setExcelType(EnumExcelType.IMPORT_EXPORT.getVal());
+            }
 
         }
 
@@ -400,9 +405,10 @@ public class TableLogic {
 
         if(StringUtils.isNotEmpty(columnBO.getColumnDefault())){
             if("CURRENT_TIMESTAMP".equalsIgnoreCase(columnBO.getColumnDefault()) || "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP".equalsIgnoreCase(columnBO.getColumnDefault())){
-                pageBO.setDefaultType(EnumDefaultType.CUSTOM.getValue());
-            }else {
                 pageBO.setDefaultType(EnumDefaultType.CURRENT_TIME.getValue());
+            }else {
+                pageBO.setDefaultType(EnumDefaultType.CUSTOM.getValue());
+                pageBO.setDefaultValue(pageBO.getColumnConfig().getColumnDefault());
             }
         }
 
