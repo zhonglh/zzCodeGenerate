@@ -793,8 +793,8 @@
                                 <td>${indexConfig.indexCloumns }</td>
                                 <td>${indexConfig.tipMsg }</td>
                                 <td>
-                                    <input type="hidden"  id="indexConfigs[${status1.index }].id" name="indexConfigs[${status1.index }].id" value="${indexConfig.id}" />
-                                    <input type="text" size="15" class="required  id="indexConfigs[${status1.index }].tipMsg" name="indexConfigs[${status1.index }].tipMsg" value="${indexConfig.tipMsg }" />
+                                    <input type="hidden"  id="indexs[${status1.index }].id" name="indexs[${status1.index }].id" value="${indexConfig.id}" />
+                                    <input type="text" size="15" class="required  id="indexs[${status1.index }].tipMsg" name="indexs[${status1.index }].tipMsg" value="${indexConfig.tipMsg }" />
                                 </td>
 
                             </tr>

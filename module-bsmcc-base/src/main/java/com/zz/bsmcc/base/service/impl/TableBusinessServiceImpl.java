@@ -179,6 +179,9 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         this.updateExColumn(tablePO);
 
 
+        //处理索引配置信息
+        this.updateIndexs(tablePO);
+
         return true;
     }
 
@@ -308,6 +311,19 @@ public class TableBusinessServiceImpl implements TableBusinessService {
         if(tablePO.getColumnPages() != null && !tablePO.getColumnPages().isEmpty()) {
             for (TcgColumnPageBO item : tablePO.getColumnPages()) {
                 tcgColumnPageDAO.updateById(item);
+            }
+        }
+    }
+
+
+    /**
+     * 处理约束配置信息
+     * @param tablePO
+     */
+    private void updateIndexs(TablePO tablePO) {
+        if(tablePO.getIndexs() != null && !tablePO.getIndexs().isEmpty()) {
+            for (TcgIndexConfigBO item : tablePO.getIndexs()) {
+                tcgIndexConfigDAO.updateById(item);
             }
         }
     }
