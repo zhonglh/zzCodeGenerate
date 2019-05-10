@@ -3,6 +3,7 @@ package com.zz.bsmcc.business;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.entity.*;
+import com.zz.bms.enums.EnumDefaultType;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.InternalException;
@@ -1468,6 +1469,8 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             columnPageMap.put(columnPage.getId() , columnPage);
+
+
 
             if(columnPage.getDefaultType() == null || columnPage.getDefaultType().trim().isEmpty()){
                 columnPage.setDefaultType(null);

@@ -193,6 +193,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				Integer precision = rs.getInt(5);
 				Integer scale = rs.getInt(6);
 				String nullable = rs.getString(7);
+				String defaultVal = rs.getString(8);
 
 				column.setColumnName(filedName);
 				if(StringUtils.isEmpty(filedComment)){
@@ -206,6 +207,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 				column.setScale(scale);
 				column.setNullable("YES".equals(nullable)?true : false);
 				column.setFixedChar(this.isFixedChar(column));
+				column.setColumnDefault(defaultVal);
 				list.add(column);
 			}
 			stmt.close(); stmt = null;

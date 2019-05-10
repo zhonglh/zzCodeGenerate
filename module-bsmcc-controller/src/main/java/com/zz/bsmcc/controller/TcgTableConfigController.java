@@ -256,6 +256,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             return AjaxJson.successAjax;
         }
 
+
     }
 
 

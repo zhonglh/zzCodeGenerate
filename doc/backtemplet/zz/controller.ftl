@@ -162,9 +162,13 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	@Override
 	public void setCustomInfoByInsert(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO bo , ILoginUserEntity sessionUser){
 		<#list columnPages as page>
-		    <#if page.defaultType?exists && page.defaultType == 'CUSTOM'>
-				<#if page.columnConfig?exists>
-					bo.${page.columnConfig.setMethodName}(<#if page.defaultValue?exists>${page.theDefaultValue}</#if>);
+		    <#if page.defaultType?exists && page.defaultType == 'CUSTOM' && page.defaultValue?exists >
+				<#if page.columnConfig?exists && page.columnConfig.javaSimpleClass != "Date" && page.columnConfig.javaSimpleClass != "Timestamp">
+					<#if page.columnConfig.javaSimpleClass == "String">
+					bo.${page.columnConfig.setMethodName}("${page.theDefaultValue}");
+					<#else >
+					bo.${page.columnConfig.setMethodName}(${page.theDefaultValue});
+					</#if>
 				</#if>
 		    </#if>
 		</#list>

@@ -34,8 +34,8 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
 
     @Override
     protected String getReadColumnsByTable(String tableSchema, String tableName) {
-        String sql =  "SELECT column_name , column_comment , data_type , character_maximum_length , " +
-                "numeric_precision , numeric_scale , is_nullable " +
+        String sql =  "SELECT column_name , column_comment  , data_type , character_maximum_length , " +
+                "numeric_precision , numeric_scale , is_nullable ,column_default " +
                 "from information_schema.COLUMNS T where T.TABLE_NAME  = '"+tableName+"' and T.TABLE_SCHEMA='"+tableSchema+"' ";
         logger.debug("getReadColumnsByTable : "+sql);
         return sql;

@@ -4,6 +4,7 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.exceptions.InternalException;
+import com.zz.bms.enums.EnumDefaultType;
 import com.zz.bms.enums.EnumPageElement;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.util.base.data.StringFormatKit;
@@ -94,6 +95,7 @@ public class TableLogic {
         columnBO.setColumnName(column.getColumnName().toLowerCase());
         columnBO.setColumnComment(column.getColumnComment());
         columnBO.setColumnOtherComment(column.getColumnOtherComments());
+        columnBO.setColumnDefault(column.getColumnDefault());
         columnBO.setColumnType(column.getDataType());
         if(column.getCharmaxLength() != null && column.getCharmaxLength() != 0) {
             columnBO.setColumnLength(column.getCharmaxLength());
@@ -154,6 +156,7 @@ public class TableLogic {
 
 
 
+        setTableBusiness(tableBO , column);
 
 
         setTableParent(tableBO , column);
@@ -394,6 +397,16 @@ public class TableLogic {
         pageBO.setId(columnBO.getId());
         pageBO.setTableId(columnBO.getTableId());
 
+
+        if(StringUtils.isNotEmpty(columnBO.getColumnDefault())){
+            if("CURRENT_TIMESTAMP".equalsIgnoreCase(columnBO.getColumnDefault()) || "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP".equalsIgnoreCase(columnBO.getColumnDefault())){
+                pageBO.setDefaultType(EnumDefaultType.CUSTOM.getValue());
+            }else {
+                pageBO.setDefaultType(EnumDefaultType.CURRENT_TIME.getValue());
+            }
+        }
+
+
     }
 
 
@@ -447,6 +460,18 @@ public class TableLogic {
                 //处理文件类型和图片类型
                 setFileImage4Page(pageBO);
             }
+        }
+    }
+
+
+
+    private static void setTableBusiness(TcgTableConfigBO tableBO, Column column) {
+
+        String simpleTableName = tableBO.getTableName().substring(tableBO.getTableName().indexOf("_") + 1);
+        if(column.getColumnName().equalsIgnoreCase(simpleTableName+"_name")){
+            tableBO.setBusinessName(column.getColumnName());
+        }else if(column.getColumnName().equalsIgnoreCase(simpleTableName+"_code")){
+            tableBO.setBusinessKey(column.getColumnName());
         }
     }
 

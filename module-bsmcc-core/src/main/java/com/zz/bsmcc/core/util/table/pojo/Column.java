@@ -25,6 +25,12 @@ public class Column implements Serializable{
     private String columnComment ;
 
     /**
+     *
+     * 默认值
+     */
+    private String columnDefault;
+
+    /**
      * 列说明补充
      */
     private String columnOtherComments;
@@ -77,6 +83,14 @@ public class Column implements Serializable{
 
     public void setColumnComment(String columnComment) {
         this.columnComment = columnComment;
+    }
+
+    public String getColumnDefault() {
+        return columnDefault;
+    }
+
+    public void setColumnDefault(String columnDefault) {
+        this.columnDefault = columnDefault;
     }
 
     public String getColumnOtherComments() {
