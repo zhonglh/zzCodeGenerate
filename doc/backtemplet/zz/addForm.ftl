@@ -41,7 +41,7 @@
                                             <#elseif being.element == 'textarea' >
                                                 <div class="info-detail">
                                                 <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
-                                                          name="${being.javaName}" id="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="4">${r"${"} m.${being.javaName} ${r"}"}</textarea>
+                                                          name="${being.javaName}" id="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="5">${r"${"} m.${being.javaName} ${r"}"}</textarea>
                                                 </div>
                                             <#elseif being.element == 'digits' >
                                                 <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number  <#if being.required?exists && being.required == '1'>required</#if>"
@@ -124,7 +124,7 @@
                                                             <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
                                                 <#elseif nextPage.element == 'textarea' >
                                                     <div class="info-detail">
-                                            <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
+                                            <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> " rows="5"
                                                       id="${nextPage.javaName}"  name="${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
                                                     </div>
                                                 <#elseif nextPage.element == 'digits' >
@@ -249,7 +249,7 @@
                                                             <#elseif listPage.element == 'textarea' >
                                                                 <div class="info-detail">
                                                                     <textarea <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if> "
-                                                                              name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${listPage.javaName} " placeholder="请输入${listPage.columnComment}，${listPage.maxlength}字以内" maxlength="${listPage.maxlength}" rows="4">${r"${"} m.${listPage.javaName} ${r"}"}</textarea>
+                                                                              name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${listPage.javaName} " placeholder="请输入${listPage.columnComment}，${listPage.maxlength}字以内" maxlength="${listPage.maxlength}" rows="5">${r"${"} m.${listPage.javaName} ${r"}"}</textarea>
                                                                 </div>
                                                             <#elseif listPage.element == 'digits' >
                                                                 <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if listPage.required?exists && listPage.required == '1'>required</#if>"
@@ -336,7 +336,7 @@
                                                                     <#elseif nextPage.element == 'textarea' >
                                                                         <div class="info-detail">
                                                                         <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
-                                                                                  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="4">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
+                                                                                  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="5">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
                                                                         </div>
                                                                     <#elseif nextPage.element == 'digits' >
                                                                         <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
