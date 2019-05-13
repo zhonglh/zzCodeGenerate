@@ -207,9 +207,9 @@
         var ajax =  ajaxSyncData(actionurl,formData);
 
         if(ajax.success){
-            topShwoMessage("info",ajax.msg);
+            alert(ajax.msg);
+            top.layer.closeAll();
 
-            window.setTimeout(function(){top.layer.closeAll();},2000);
             top.iframe40.window.refreshTable();
 
         }else {
