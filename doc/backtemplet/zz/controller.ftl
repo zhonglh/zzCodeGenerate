@@ -103,9 +103,6 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 </#if>
 </#list>
 
-
-
-
 	<#if table.isReal == '1'>
 		${columns[1].fkTableConfig.javaName}Service ${columns[1].fkTableConfig.javaName?uncap_first}Service;
 		${columns[2].fkTableConfig.javaName}Service ${columns[2].fkTableConfig.javaName?uncap_first}Service;
@@ -181,6 +178,12 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }
+	}
+
+	@Override
+	public void setDictNames() {
+		Map<String , List<String>> dictMap = tsDictService.allDictNames(<#list table.dictAllTypes as dictType>EnumDictType.${dictType?upper_case}.getVal()<#if dictType_has_next>,</#if></#list>);
+		ExcelDictHolder.setDictMap(dictMap);
 	}
 	</#if>
 

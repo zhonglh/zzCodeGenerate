@@ -13,9 +13,7 @@
                 <form action="" method="post" id="editForm" viewId="editForm" >
 
                     <div class="block-tit">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                        </svg>基本信息
+                        &nbsp;<i class="fa fa-th-list"></i>&nbsp;基本信息
                     </div>
 
 
@@ -143,19 +141,11 @@
                                             <div class="input-group-btn">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm ${being.javaName}">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-sousuo">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                 </button>
                                                 <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
                                                         class="btn btn-primary btn-sm">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-close">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                 </button>
                                             </div>
                                         </div>
@@ -225,18 +215,10 @@
                                                 <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
                                                 <div class="input-group-btn">
                                                     <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
+                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
                                                     <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
+                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                     </button>
                                                 </div>
                                             </div>
@@ -268,9 +250,7 @@
                             <#list table.pageChildColumns as childColumn>
 
                                 <div class="block-tit">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                                    </svg>${childColumn.tableBO.tableComment}
+                                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;${childColumn.tableBO.tableComment}
                                 </div>
 
                                 <#if childColumn.tableBO.tableRelation?exists && 'one-one' == childColumn.tableBO.tableRelation>
@@ -412,19 +392,11 @@
                                                                             <div class="input-group-btn">
                                                                                 <button type="button"
                                                                                         class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName}">
-                                                                                    <svg class="icon" aria-hidden="true">
-                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                             xlink:href="#icon-sousuo">
-                                                                                        </use>
-                                                                                    </svg>
+                                                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                                                 </button>
                                                                                 <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName?cap_first}"
                                                                                         class="btn btn-primary btn-sm">
-                                                                                    <svg class="icon" aria-hidden="true">
-                                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                             xlink:href="#icon-close">
-                                                                                        </use>
-                                                                                    </svg>
+                                                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -498,18 +470,10 @@
                                                                                 <input type="text" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
                                                                                 <div class="input-group-btn">
                                                                                     <button type="button"  class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName}">
-                                                                                        <svg class="icon" aria-hidden="true">
-                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                 xlink:href="#icon-sousuo">
-                                                                                            </use>
-                                                                                        </svg>
+                                                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                                                     </button>
                                                                                     <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                                                        <svg class="icon" aria-hidden="true">
-                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                 xlink:href="#icon-close">
-                                                                                            </use>
-                                                                                        </svg>
+                                                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -552,9 +516,7 @@
                                         </table>
                                         <div class="show-area" style="text-align: center;margin: 5px">
                                             <button type="button" class="btn btn-primary btn-sm" onclick="doAdd${childColumn.tableBO.simpleName?cap_first}()">
-                                                <svg class="icon" aria-hidden="true">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                                </svg>
+                                               <i class="fa fa-plus"></i>
                                                 <span>添 加</span>
                                             </button>
                                         </div>
@@ -580,34 +542,26 @@
 
                 <shiro:hasPermission name="${table.fullResource}:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
-                        </svg>
+                        <i class="fa fa-edit"></i>
                         <span>编 辑</span>
                     </button>
                 </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
-                    </svg>
+                    <i class="fa fa-mail-reply"></i>
                     <span>返 回</span>
                 </button>
 
 
                 <shiro:hasPermission name="${table.fullResource}:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
+                        <i class="fa fa-save"></i>
                         <span>保 存</span>
                     </button>
                 </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
 
@@ -801,14 +755,10 @@
         html += '<input type="text"  class="form-control input-sm openwindow ${listPage.exColumn.javaName}" onclick="open${listPage.exColumn.originalColumn.fkTableConfig.fullUpperResourceName}(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\',\'${childColumn.tableBO.simpleName}BOList\',this,'+index+')" required="required" value="'+row.${listPage.exColumn.javaName}+'" id="${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.exColumn.javaName}"  name="${childColumn.tableBO.simpleName}BOList['+index+'].${listPage.exColumn.javaName}"  onblur="costTableRows(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\' , \'${childColumn.tableBO.simpleName}BOList\' , '+index+')" placeholder="请选择${listPage.columnComment}" readonly >';
         html += '<div class="input-group-btn">';
         html += '<div class="btn btn-primary btn-sm" onclick="open${listPage.exColumn.originalColumn.fkTableConfig.fullUpperResourceName}(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\', \'${childColumn.tableBO.simpleName}BOList\',document.getElementById(\'${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.exColumn.javaName}\'),'+index+')">';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
         html += '<div class="btn btn-primary btn-sm" onclick="clear${listPage.exColumn.originalColumn.fkTableConfig.fullUpperResourceName}(\'tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\', \'${childColumn.tableBO.simpleName}BOList\',document.getElementById(\'${childColumn.tableBO.simpleName}BOList_'+index+'_${listPage.exColumn.javaName}\'),'+index+')"  >';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
         html += '</div>';
@@ -871,7 +821,7 @@
     </#if>
     function markFmt${childColumn.tableBO.simpleName?cap_first}(val, r,index){
         var html =	'<div class="grid-column-option">';
-        html+=	'<a href="javascript: doDel${childColumn.tableBO.simpleName?cap_first}('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+        html+=	'<a href="javascript: doDel${childColumn.tableBO.simpleName?cap_first}('+ index + ');" title="删除"><i class="fa fa-trash"></i></a>';
         html+=	'</div>';
         return html;
     }

@@ -1,7 +1,7 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
 
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import ${table.fullPackageName}.domain.${table.javaName}Entity;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import ${importClass};
  * @author ${project.projectAuthor}
  * @date ${.now}
  */
-public abstract class ${table.javaName}AbstractQueryImpl<PK extends Serializable> extends QueryImpl<${table.javaName}Entity,PK> {
+public abstract class ${table.javaName}AbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<${table.javaName}Entity,PK> {
 
 <#list columns as being>
 	<#if being.columnType=="CHAR" || being.columnType=="VARCHAR2" || being.columnType=="VARCHAR" || being.columnType=="LONGTEXT">

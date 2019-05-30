@@ -29,9 +29,7 @@
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                        </svg>
+                       <i class="fa fa-plus"></i>
                         <span>${operation.operationName!} </span>
                     </button>
                 </shiro:hasPermission>
@@ -42,9 +40,7 @@
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
-                        </svg>
+                        <i class="fa fa-trash"></i>
                         <span>${operation.operationName!} </span>
                     </button>
                 </shiro:hasPermission>
@@ -53,9 +49,7 @@
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
-                        </svg>
+                        <i class="fa fa-upload"></i>
                         <span>${operation.operationName!'Excel导入'}</span>
                     </div>
                 </shiro:hasPermission>
@@ -65,26 +59,20 @@
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                        </svg>
+                        <i class="fa fa-download"></i>
                     ${operation.operationName!'Excel导出'} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
 
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/download" class="export">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
-                                </svg>下载模板(Excel2003)
+                                <i class="fa fa-download"></i>下载模板(Excel2003)
                             </a>
                         </li>
 
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/download" class="export">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
-                                </svg>下载模板(Excel2007)
+                                <i class="fa fa-download"></i>下载模板(Excel2007)
                             </a>
                         </li>
 
@@ -92,24 +80,18 @@
 
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/cvs/export" class="export" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出CVS
+                                <i class="fa fa-download"></i>导出CVS
                             </a>
                         </li>
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/export" class="export" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出Excel2003
+                                <i class="fa fa-download"></i>导出Excel2003
                             </a>
                         </li>
 
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/export" class="export" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出Excel2007
+                                <i class="fa fa-download"></i>导出Excel2007
                             </a>
                         </li>
                     </ul>
@@ -119,10 +101,7 @@
             <#else>
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                     <button type="button" class="btn btn-primary btn-sm" onclick="<#if operation.operationBO.opMode=='1'>to<#else >do</#if>${operation.operationResource?cap_first}()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="${operation.icons!}"></use>
-                        </svg>
-                        <span>${operation.operationName!} </span>
+                        <i class="${operation.icons!}"></i><span>${operation.operationName!} </span>
                     </button>
                 </shiro:hasPermission>
 

@@ -12,9 +12,7 @@
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
                 <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>${table.tableComment}
+                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;${table.tableComment}
                 </div>
 
 
@@ -56,17 +54,13 @@
                         <c:if test="${r"${"} fn:indexOf(allQueryString,'&${fkColumn1.javaName}=')>=0 || fn:indexOf(allQueryString,'&${fkColumn2.javaName}=')>=0 ${r"}"}">
                             <c:if test="${r"${"} fn:indexOf(allQueryString,'&${fkColumn1.javaName}=')>=0 ${r"}"}">
                                 <button type="button" id="addBtn" class="btn btn-primary btn-sm hide" onclick="clk${fkColumn2.fkTableConfig.fullUpperResourceName}()" >
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                    </svg>
+                                   <i class="fa fa-plus"></i>
                                     <span>添 加</span>
                                 </button>
                             </c:if>
                             <c:if test="${r"${"} fn:indexOf(allQueryString,'&${fkColumn2.javaName}=')>=0 ${r"}"}">
                                 <button type="button" id="addBtn" class="btn btn-primary btn-sm hide" onclick="clk${fkColumn1.fkTableConfig.fullUpperResourceName}()" >
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                    </svg>
+                                   <i class="fa fa-plus"></i>
                                     <span>添 加</span>
                                 </button>
                             </c:if>
@@ -89,31 +83,23 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
                 <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
-                    </svg>
+                    <i class="fa fa-edit"></i>
                     <span>编 辑</span>
                 </button>
 
                 <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
-                    </svg>
+                    <i class="fa fa-mail-reply"></i>
                     <span>返 回</span>
                 </button>
 
 
                 <button type="button" class="btn btn-primary btn-sm show-area" onclick="saveRelevanceList()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                    </svg>
+                    <i class="fa fa-save"></i>
                     <span>保 存</span>
                     </button>
 
                 <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
 
@@ -187,7 +173,7 @@
 
     function markFmt(val, r,index){
         var html =	'<div class="grid-column-option">';
-        html+=	'<a href="javascript: doDel('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+        html+=	'<a href="javascript: doDel('+ index + ');" title="删除"><i class="fa fa-trash"></i></a>';
         html+=	'</div>';
         return html;
     }
