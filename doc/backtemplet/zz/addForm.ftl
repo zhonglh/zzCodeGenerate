@@ -76,6 +76,22 @@
                                                     </c:forEach>
                                                 </select>
                                             <#elseif being.element == 'openwin' >
+
+                                            <#elseif being.element == 'singlefile' || being.element == 'multifile' || being.element == 'singleimage' || being.element == 'multiimage'  >
+                                                <div class="" style="margin-bottom: 0px">
+                                                    <div class="info-detail">
+                                                        <input type="hidden" id="${being.javaName}" name="${being.javaName}" value="${r"${"}  m.${being.javaName} }">
+                                                        <div class="uploader-list">
+                                                            <ul id="thelist-${being.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                        </div>
+                                                        <div class="btns">
+                                                            <div id="uploadFile-${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-${being.javaName}', businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"}  m.${being.javaName} }' ">
+                                                                <i class="fa fa-upload"></i>
+                                                                <span>上传附件</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <#else >
                                             </#if>
                                         <#elseif being?exists && being.exColumn?exists>
@@ -152,6 +168,22 @@
                                                         </c:forEach>
                                                     </select>
                                                 <#elseif nextPage.element == 'openwin' >
+
+                                                <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile' || nextPage.element == 'singleimage' || nextPage.element == 'multiimage'>
+                                                    <div class="" style="margin-bottom: 0px">
+                                                        <div class="info-detail">
+                                                            <input type="hidden" id="${nextPage.javaName}" name="${nextPage.javaName}" value="${r"${"}  m.${nextPage.javaName} }">
+                                                            <div class="uploader-list">
+                                                                <ul id="thelist-${nextPage.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                            </div>
+                                                            <div class="btns">
+                                                                <div id="uploadFile-${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-${nextPage.javaName}', businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"}  m.${nextPage.javaName} }' ">
+                                                                    <i class="fa fa-upload"></i>
+                                                                    <span>上传附件</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 <#else >
                                                 </#if>
                                             <#elseif nextPage?exists && nextPage.exColumn?exists>
@@ -446,7 +478,9 @@
 <bms:contentJS />
 
 <script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/form.js"></script>
-
+<#if table.fileColumns?exists>
+<script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/common-upload.js"></script>
+</#if>
 
 <#list table.pageChildTableSet as fkTable>
 <#if fkTable.tableName != table.tableName>
@@ -533,7 +567,7 @@
     });
 
 
-    <#if table.pageChildColumns?exists >
+    <#if (table.pageChildColumns?exists && table.pageChildColumns?size > 0 )>
     var tableId , tableJavaName;
 
     <#list table.pageChildTableSet as fkTable>

@@ -15,7 +15,10 @@ import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+<#if table.fileColumns?exists>
+import com.zz.bms.util.configs.annotaions.FilesAnnotation;
+import com.zz.bms.system.bo.VsFileUseBO;
+</#if>
 <#if (table.isTable == '0' && table.mainTableConfig?exists)>
 import ${table.mainTableConfig.fullPackageName}.bo.${table.mainTableConfig.javaName}BO;
 </#if>
@@ -55,6 +58,22 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
 </#list>
 
 
+<#if table.fileColumns?exists>
+<#list table.fileColumns as fileColumn>
+    /**
+    * ${fileColumn.columnComment} 列表
+    */
+    @TableField(exist = false)
+    @FilesAnnotation
+    private List<VsFileUseBO> ${fileColumn.javaName}List ;
+
+
+</#list>
+</#if>
+
+
+
+
 <#list exColumns as being>
     public void set${being.javaName?cap_first}(${being.javaSimpleClass} ${being.javaName}){
         this.${being.javaName} = ${being.javaName};
@@ -65,6 +84,24 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
     }
 
 </#list>
+
+
+<#if table.fileColumns?exists>
+<#list table.fileColumns as fileColumn>
+    public void set${fileColumn.javaName?cap_first}List(List<VsFileUseBO> ${fileColumn.javaName}List ){
+        this.${fileColumn.javaName?cap_first}List = ${fileColumn.javaName?cap_first}List;
+    }
+
+
+    public void get${fileColumn.javaName?cap_first}List(){
+        return ${fileColumn.javaName?cap_first}List;
+    }
+
+
+</#list>
+</#if>
+
+
 
 
 <#if table.isTree == '1'>
@@ -84,7 +121,7 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
 
 </#if>
 
-    @Override
+    <#if (table.isTable?exists && table.isTable == '0')>@Override</#if>
     public boolean isTable() {
 
     <#if table.isTable == '1' >
@@ -95,6 +132,16 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
         return false;
     </#if>
 
+    }
+
+
+    @Override
+    public boolean haveFile() {
+    <#if table.fileColumns?exists >
+        return true;
+    <#else >
+        return false;
+    </#if>
     }
 
 

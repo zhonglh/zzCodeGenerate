@@ -7,7 +7,7 @@ import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
+import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
 
 import com.zz.bms.system.service.TsDictService;
 
@@ -40,7 +40,7 @@ import java.util.Map;
 * @date ${.now}
 */
 @Service
-public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaName}BO,String> implements ${table.javaName}Service {
+public class ${table.javaName}ServiceImpl extends SystemBaseServiceImpl<${table.javaName}BO,String> implements ${table.javaName}Service {
 
 
 
@@ -96,6 +96,23 @@ public class ${table.javaName}ServiceImpl extends BaseServiceImpl<${table.javaNa
 		}
 		</#if>
 		</#list>
+
+
+		<#if table.fileColumns?exists>
+		<#list table.fileColumns as fileColumn>
+		try{
+			if(StringUtils.isNotEmpty(${table.javaName?uncap_first}BO.get${fileColumn.javaName?cap_first}()) && ${table.javaName?uncap_first}BO.get${fileColumn.javaName?cap_first}List() == null){
+			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+			qw.lambda().eq(VsFileUseBO::getBusinessId , ${table.javaName?uncap_first}BO.getId());
+			qw.lambda().eq(VsFileUseBO::getBusinessTempId , ${table.javaName?uncap_first}BO.get${fileColumn.javaName?cap_first}());
+			List<VsFileUseBO> list = vsFileUseService.list(qw);
+				${table.javaName?uncap_first}BO.set${fileColumn.javaName?cap_first}List(list);
+			}
+		}catch(Exception e){}
+
+		</#list>
+		</#if>
+
 
 		return ${table.javaName?uncap_first}BO;
 

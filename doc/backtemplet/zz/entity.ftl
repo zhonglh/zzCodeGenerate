@@ -7,7 +7,7 @@ import com.zz.bms.core.Constant;
 <#list table.importClasss as importClass>
 import ${importClass};
 </#list>
-<#if (table.isTable == '0' && table.mainTableConfig?exists)>
+<#if ( table.isTable == '0' && table.mainTableConfig?exists ) >
 import ${table.fullPackageName}.domain.${table.mainTableConfig.javaName}Entity;
 <#else >
 import ${table.parentClass};

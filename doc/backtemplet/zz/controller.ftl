@@ -156,6 +156,16 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 	</#if>
 	</#list>
 
+
+	<#if table.fileColumns?exists>
+	@Override
+	protected void customInfoByCreateForm(TbInvestorBO m, ModelMap model) {
+		<#list table.fileColumns as fileColumn>
+		m.set${fileColumn.javaName?cap_first}(IdUtils.getId());
+		</#list>
+	}
+	</#if>
+
 	@Override
 	public void setCustomInfoByInsert(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO bo , ILoginUserEntity sessionUser){
 		<#list columnPages as page>
