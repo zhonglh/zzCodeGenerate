@@ -311,7 +311,9 @@ public class TableLogic {
             pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
         }
 
-        pageBO.setRequired(EnumYesNo.YES.getCode());
+        TcgColumnConfigBO columnBO = exColumnBO.getOriginalColumn();
+        pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
+
 
 
 
