@@ -61,6 +61,7 @@ import ${childColumn.tableBO.fullPackageName}.service.${childColumn.tableBO.java
 </#list>
 
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
@@ -159,7 +160,7 @@ public class ${table.javaName}Controller extends ZzDefaultSimpleController<${tab
 
 	<#if table.fileColumns?exists>
 	@Override
-	protected void customInfoByCreateForm(TbInvestorBO m, ModelMap model) {
+	protected void customInfoByCreateForm(${table.javaName}<#if (table.pageChildTables?exists && table.pageChildTables?size > 0 )>Group</#if>BO m, ModelMap model) {
 		<#list table.fileColumns as fileColumn>
 		m.set${fileColumn.javaName?cap_first}(IdUtils.getId());
 		</#list>

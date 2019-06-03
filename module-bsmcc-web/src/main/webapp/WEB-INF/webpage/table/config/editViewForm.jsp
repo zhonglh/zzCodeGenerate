@@ -207,7 +207,6 @@
         var ajax =  ajaxSyncData(actionurl,formData);
 
         if(ajax.success){
-            alert(ajax.msg);
             top.layer.closeAll();
 
             top.iframe40.window.refreshTable();

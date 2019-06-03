@@ -25,6 +25,8 @@ import ${table.mainTableConfig.fullPackageName}.bo.${table.mainTableConfig.javaN
 
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -89,12 +91,12 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
 <#if table.fileColumns?exists>
 <#list table.fileColumns as fileColumn>
     public void set${fileColumn.javaName?cap_first}List(List<VsFileUseBO> ${fileColumn.javaName}List ){
-        this.${fileColumn.javaName?cap_first}List = ${fileColumn.javaName?cap_first}List;
+        this.${fileColumn.javaName}List = ${fileColumn.javaName}List;
     }
 
 
-    public void get${fileColumn.javaName?cap_first}List(){
-        return ${fileColumn.javaName?cap_first}List;
+    public List<VsFileUseBO> get${fileColumn.javaName?cap_first}List(){
+        return this.${fileColumn.javaName}List;
     }
 
 

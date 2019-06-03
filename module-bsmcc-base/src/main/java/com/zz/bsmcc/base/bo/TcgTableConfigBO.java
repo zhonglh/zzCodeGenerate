@@ -272,6 +272,14 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     @TableField(exist = false)
     private TablePO tablePO;
 
+
+    /**
+     * 文件列集合 , 如果没有为空
+     */
+    @TableField(exist = false)
+    private List<TcgColumnConfigBO> fileColumns ;
+
+
     public TablePO getTablePO() {
         return tablePO;
     }
@@ -576,4 +584,12 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
         this.haveOrgan = haveOrgan;
     }
 
+
+    public List<TcgColumnConfigBO> getFileColumns() {
+        return fileColumns;
+    }
+
+    public void setFileColumns(List<TcgColumnConfigBO> fileColumns) {
+        this.fileColumns = fileColumns;
+    }
 }

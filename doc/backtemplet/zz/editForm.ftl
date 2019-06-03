@@ -31,13 +31,30 @@
                         <#if being_index%2 ==0>
                             <tr>
                                 <th>${being.columnComment}<#if being.required?exists && being.required == '1'><font color="red">*</font></#if></th>
-                                <td class="fd_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
+                                <td class="fd<#if being.element == 'singlefile' || being.element == 'multifile' || being.element == 'singleimage' || being.element == 'multiimage'>_uploadFile</#if>_${being.javaName}<#if  being.element == 'select' || being.element == 'checkbox' || being.element == 'radio'>Name</#if>">
                                 <#if being.element == 'date' >
                                     <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
                                 <#elseif being.element == 'timestamp' >
                                     <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
                                 <#elseif being.element == 'select' || being.element == 'checkbox' || being.element == 'radio' >
                                     ${r"${"} m.${being.javaName}Name ${r"}"}
+                                <#elseif being.element == 'singlefile' || being.element == 'multifile' || being.element == 'singleimage' || being.element == 'multiimage'  >
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${r"${"}m.${being.javaName}List}">
+                                            <li>
+                                                <a href="<c:if test="${r"${"}item.fileEngine == '1'}">javascript:viewFile('${r"${"}item.id}');</c:if><c:if test="${r"${"}item.fileEngine != '1'}">${r"${"}item.accessUrl}</c:if>" class="file-text" title="${r"${"}item.showName}" style="float:left;">
+                                                <span style="float:left;">${r"${"}item.showName}</span>
+                                                <span style="float:right;" class="fileSize" fileSize="${r"${"}item.fileSize}">(${r"${"}item.fileSize})</span>
+                                                </a>
+
+                                                <a href="javascript:downloadFile('${r"${"}item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
+
+                                                <div style="clear: both;"></div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+
                                 <#else >
                                     <c:out value="${r"${"} m.${being.javaName} ${r"}"}" escapeXml="true"/>
                                 </#if>
@@ -45,13 +62,29 @@
                                 <#if being_has_next>
                                 <#assign nextPage=showColumnPages[being_index+1]>
                                 <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
-                                <td class="fd_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
+                                <td class="fd<#if nextPage.element == 'singlefile' || nextPage.element == 'multifile' || nextPage.element == 'singleimage' || nextPage.element == 'multiimage'>_uploadFile</#if>_${nextPage.javaName}<#if  nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio'>Name</#if>">
                                 <#if nextPage.element == 'date' >
                                     <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />
                                 <#elseif nextPage.element == 'timestamp' >
                                     <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
                                 <#elseif nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio' >
                                     ${r"${"} m.${nextPage.javaName}Name ${r"}"}
+                                <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile' || nextPage.element == 'singleimage' || nextPage.element == 'multiimage'  >
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${r"${"}m.${nextPage.javaName}List}">
+                                            <li>
+                                                <a href="<c:if test="${r"${"}item.fileEngine == '1'}">javascript:viewFile('${r"${"}item.id}');</c:if><c:if test="${r"${"}item.fileEngine != '1'}">${r"${"}item.accessUrl}</c:if>" class="file-text" title="${r"${"}item.showName}" style="float:left;">
+                                                <span style="float:left;">${r"${"}item.showName}</span>
+                                                <span style="float:right;" class="fileSize" fileSize="${r"${"}item.fileSize}">(${r"${"}item.fileSize})</span>
+                                                </a>
+
+                                                <a href="javascript:downloadFile('${r"${"}item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
+
+                                                <div style="clear: both;"></div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 <#else >
                                     <c:out value="${r"${"} m.${nextPage.javaName} ${r"}"}" escapeXml="true"/>
                                 </#if>
@@ -127,6 +160,27 @@
                                             </c:forEach>
                                         </select>
                                     <#elseif being.element == 'openwin' >
+                                    <#elseif being.element == 'singlefile' || being.element == 'multifile' || being.element == 'singleimage' || being.element == 'multiimage'  >
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="${being.javaName}" name="${being.javaName}" value="${r"${"} m.${being.javaName}}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_${being.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_${being.javaName}_items" style="display: none;">
+                                                    <c:forEach var="item" items="${r"${"} m.${being.javaName}List}">
+                                                        <span id="${r"${"} item.id}" fileUseId="${r"${"} item.id}" accessUrl="${r"${"} item.accessUrl}" fileEngine="${r"${"} item.fileEngine}" fileSize="${r"${"} item.fileSize}" showName="${r"${"} item.showName}" businessId="${r"${"} item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
+
+                                                <div class="btns">
+                                                    <div id="uploadFile_${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${being.javaName}', businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"} m.${being.javaName}}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传附件</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <#else >
                                     </#if>
                                 <#elseif being?exists && being.exColumn?exists>
@@ -202,6 +256,27 @@
                                             </c:forEach>
                                         </select>
                                     <#elseif nextPage.element == 'openwin' >
+                                    <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile' || nextPage.element == 'singleimage' || nextPage.element == 'multiimage'  >
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="${nextPage.javaName}" name="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName}}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_${nextPage.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_${nextPage.javaName}_items" style="display: none;">
+                                                    <c:forEach var="item" items="${r"${"} m.${nextPage.javaName}List}">
+                                                        <span id="${r"${"} item.id}" fileUseId="${r"${"} item.id}" accessUrl="${r"${"} item.accessUrl}" fileEngine="${r"${"} item.fileEngine}" fileSize="${r"${"} item.fileSize}" showName="${r"${"} item.showName}" businessId="${r"${"} item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
+
+                                                <div class="btns">
+                                                    <div id="uploadFile_${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${nextPage.javaName}', businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"} m.${nextPage.javaName}}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传附件</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <#else >
                                     </#if>
                                 <#elseif nextPage?exists && nextPage.exColumn?exists>
@@ -578,11 +653,14 @@
 
 
 <script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/form.js"></script>
+<#if table.fileColumns?exists>
+<script src="${r"${"} staticUrl ${r"}"}/statics2/js/project/common-upload.js"></script>
+</#if>
 
 <#list table.pageChildTableSet as fkTable>
-    <#if fkTable.tableName != table.tableName>
-        <script src="${r"${"} staticUrl ${r"}"}/statics2/business-js${fkTable.fullResourceName}/search.js"></script>
-    </#if>
+<#if fkTable.tableName != table.tableName>
+<script src="${r"${"} staticUrl ${r"}"}/statics2/business-js${fkTable.fullResourceName}/search.js"></script>
+</#if>
 </#list>
 
 <#list table.fkTables as fkTable>

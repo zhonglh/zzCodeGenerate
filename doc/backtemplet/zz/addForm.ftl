@@ -82,10 +82,10 @@
                                                     <div class="info-detail">
                                                         <input type="hidden" id="${being.javaName}" name="${being.javaName}" value="${r"${"}  m.${being.javaName} }">
                                                         <div class="uploader-list">
-                                                            <ul id="thelist-${being.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                            <ul id="thelist_${being.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
                                                         </div>
                                                         <div class="btns">
-                                                            <div id="uploadFile-${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-${being.javaName}', businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"}  m.${being.javaName} }' ">
+                                                            <div id="uploadFile_${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${being.javaName}', businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"}  m.${being.javaName} }' ">
                                                                 <i class="fa fa-upload"></i>
                                                                 <span>上传附件</span>
                                                             </div>
@@ -174,10 +174,10 @@
                                                         <div class="info-detail">
                                                             <input type="hidden" id="${nextPage.javaName}" name="${nextPage.javaName}" value="${r"${"}  m.${nextPage.javaName} }">
                                                             <div class="uploader-list">
-                                                                <ul id="thelist-${nextPage.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                                <ul id="thelist_${nextPage.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
                                                             </div>
                                                             <div class="btns">
-                                                                <div id="uploadFile-${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-${nextPage.javaName}', businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"}  m.${nextPage.javaName} }' ">
+                                                                <div id="uploadFile_${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${nextPage.javaName}', businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"}  m.${nextPage.javaName} }' ">
                                                                     <i class="fa fa-upload"></i>
                                                                     <span>上传附件</span>
                                                                 </div>

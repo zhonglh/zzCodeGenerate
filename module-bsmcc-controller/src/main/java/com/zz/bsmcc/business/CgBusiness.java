@@ -12,6 +12,7 @@ import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.freemarker.FreemarkerUtil;
 import com.zz.bsmcc.base.bo.*;
+import com.zz.bsmcc.base.logic.TableLogic;
 import com.zz.bsmcc.base.po.DictTypePO;
 import com.zz.bsmcc.base.po.MenuPO;
 import com.zz.bsmcc.base.po.TablePO;
@@ -1309,6 +1310,23 @@ public class CgBusiness extends CgBaseBusiness{
 
 
 
+                //处理文件
+                if(TableLogic.isFiles(columnConfigBO)){
+                    columnConfigBO.setFileType(EnumPageElement.multifile.getValue());
+                    processTableFile(tableConfig , columnConfigBO);
+                }else if(TableLogic.isFile(columnConfigBO)){
+                    columnConfigBO.setFileType(EnumPageElement.singlefile.getValue());
+                    processTableFile(tableConfig , columnConfigBO);
+                }else if(TableLogic.isImages(columnConfigBO)){
+                    columnConfigBO.setFileType(EnumPageElement.multiimage.getValue());
+                    processTableFile(tableConfig , columnConfigBO);
+                }else if(TableLogic.isImage(columnConfigBO)){
+                    columnConfigBO.setFileType(EnumPageElement.singleimage.getValue());
+                    processTableFile(tableConfig , columnConfigBO);
+                }
+
+
+
 
                 String setMethodName = "";
                 String getMethodName = "";
@@ -1404,6 +1422,18 @@ public class CgBusiness extends CgBaseBusiness{
         tableConfig.setFkTableSet(fkTableSet);
 
 
+    }
+
+    /**
+     * 处理文件类型的列
+     * @param tableConfig
+     * @param columnConfigBO
+     */
+    private void processTableFile(TcgTableConfigBO tableConfig, TcgColumnConfigBO columnConfigBO){
+        if(tableConfig.getFileColumns() == null){
+            tableConfig.setFileColumns(new ArrayList<TcgColumnConfigBO>());
+        }
+        tableConfig.getFileColumns().add(columnConfigBO);
     }
 
     /**
@@ -1546,7 +1576,12 @@ public class CgBusiness extends CgBaseBusiness{
             if (StringUtils.isNotEmpty(tableConfig.getModuleId())) {
                 if (moduleConfigMap.containsKey(tableConfig.getModuleId())) {
                     fullResourceName = moduleConfigMap.get(tableConfig.getModuleId()).getModuleFullResource();
+                    //只取最上层模块的资源
+                    if(fullResourceName != null && fullResourceName.substring(2).indexOf("/")>0     ){
+                        fullResourceName = fullResourceName.substring(0, fullResourceName.substring(2).indexOf("/")+2) ;
+                    }
                     fullPackageName = fullResourceName.replaceAll("/", ".");
+
                 }
             }
         }

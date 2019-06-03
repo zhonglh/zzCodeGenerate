@@ -287,7 +287,10 @@ public class TableLogic {
 
         pageBO.setElement((String) EnumPageElement.text.getVal());
 
-        pageBO.setExcelType(EnumExcelType.IMPORT_EXPORT.getVal());
+        if(pageBO.getExcelType() == null) {
+            pageBO.setExcelType(EnumExcelType.IMPORT_EXPORT.getVal());
+        }
+
         if(exColumnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsfk())){
             pageBO.setElement((String) EnumPageElement.openwin.getVal());
         }
@@ -569,18 +572,22 @@ public class TableLogic {
             pageBO.setElement(EnumPageElement.multifile.getValue());
             pageBO.setElementNmae(EnumPageElement.multifile.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType("0");
         }else if(isFile(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.singlefile.getValue());
             pageBO.setElementNmae(EnumPageElement.singlefile.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType("0");
         }else if(isImages(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.multiimage.getValue());
             pageBO.setElementNmae(EnumPageElement.multiimage.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType("0");
         }else if(isImage(pageBO.getColumnConfig())){
             pageBO.setElement(EnumPageElement.singleimage.getValue());
             pageBO.setElementNmae(EnumPageElement.singleimage.getLabel());
             pageBO.setListShowable(EnumYesNo.NO.getCode());
+            pageBO.setExcelType("0");
         }
     }
     public static boolean isFiles(TcgColumnConfigBO columnBO) {

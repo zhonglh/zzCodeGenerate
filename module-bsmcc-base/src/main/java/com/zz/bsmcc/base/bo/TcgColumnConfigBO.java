@@ -88,8 +88,12 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
     @TableField(exist = false)
     private String tableBusinessKey ;
 
-
-
+    /**
+     * 文件类型 ，参考 EnumPageElement 最后四种
+     * 如果不是文件类型， 为 null
+     */
+    @TableField(exist = false)
+    private String fileType;
 
     public String getColumnIsnullName() {
         return columnIsnullName;
@@ -220,6 +224,14 @@ public class TcgColumnConfigBO extends TcgColumnConfigEntity implements Serializ
 
     public boolean isDate() {
         return Date.class.isAssignableFrom(javaClass);
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 
     @Override

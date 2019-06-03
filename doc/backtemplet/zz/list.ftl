@@ -106,7 +106,7 @@
                 <div class="btn-group">
                     <button type="button" id="exportTemplet" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-download"></i>
-                        ${operation.operationName!'Excel导出'} <span class="caret"></span>
+                        模板 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
 

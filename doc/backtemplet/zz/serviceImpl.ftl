@@ -1,5 +1,7 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import ${project.projectPackage}.enums.*;
 
@@ -10,8 +12,14 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
 
 import com.zz.bms.system.service.TsDictService;
+<#if table.fileColumns?exists>
+import com.zz.bms.system.service.VsFileUseService;
 
+import com.zz.bms.system.bo.VsFileUseBO;
+</#if>
 import com.zz.bms.system.bo.TsDictBO;
+
+
 import ${table.fullPackageName}.bo.${table.javaName}BO;
 import ${table.fullPackageName}.dao.${table.javaName}DAO;
 <#if (table.isTable == '0' && table.mainTableConfig?exists)>
@@ -23,6 +31,8 @@ import ${table.fullPackageName}.service.${table.javaName}Service;
 import ${being.fullPackageName}.bo.${being.javaName}BO;
 import ${being.fullPackageName}.dao.${being.javaName}DAO;
 </#list>
+
+
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -47,6 +57,11 @@ public class ${table.javaName}ServiceImpl extends SystemBaseServiceImpl<${table.
 	@Autowired
 	private TsDictService tsDictService;
 
+
+	<#if table.fileColumns?exists>
+	@Autowired
+	private VsFileUseService vsFileUseService;
+	</#if>
 
 
 	<#list table.fkTableSet as being>
