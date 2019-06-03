@@ -41,6 +41,8 @@ public enum EnumDbColumnType implements EnumBase<String>{
 	BLOB,
 
 	TEXT,
+
+	BIT,
 	
 	;
 
@@ -118,7 +120,7 @@ public enum EnumDbColumnType implements EnumBase<String>{
 
 
 
-		if(enumDbColumnType == BOOL) {
+		if(enumDbColumnType == BOOL || enumDbColumnType == BIT) {
 			return EnumJavaType._Boolean;
 		}
 
