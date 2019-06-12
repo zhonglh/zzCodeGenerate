@@ -108,7 +108,7 @@
 
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">业务名称列 *</label>
+            <label class="col-sm-3 control-label">业务名称列 </label>
             <div class="col-sm-8">
                 <input id="businessName" name="businessName" value="${entity.businessName }"  type="text" class="form-control">
             </div>
@@ -116,7 +116,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">业务主键列 *</label>
+            <label class="col-sm-3 control-label">业务主键列 </label>
             <div class="col-sm-8">
                 <input id="businessKey" name="businessKey" value="${entity.businessKey }"  type="text" class="form-control">
             </div>

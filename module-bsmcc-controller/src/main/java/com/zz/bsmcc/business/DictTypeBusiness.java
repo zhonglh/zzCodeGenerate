@@ -1,5 +1,6 @@
 package com.zz.bsmcc.business;
 
+import com.zz.bms.core.enums.EnumBase;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.freemarker.FreemarkerUtil;
 import com.zz.bsmcc.base.bo.TcgProjectBO;
@@ -61,6 +62,15 @@ public class DictTypeBusiness {
             sb.append("\n     @Override");
             sb.append("\n     public String getValue() {");
             sb.append("\n         return theValue;");
+            sb.append("\n     }");
+
+            sb.append("\n\n");
+
+
+
+            sb.append("\n     @Override");
+            sb.append("\n     public EnumBase<String> getEnum(String s) {");
+            sb.append("\n         return getEnumByValue(s);");
             sb.append("\n     }");
 
             sb.append("\n\n");

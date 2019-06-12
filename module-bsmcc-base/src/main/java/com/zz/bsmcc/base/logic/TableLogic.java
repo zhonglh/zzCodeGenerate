@@ -481,7 +481,7 @@ public class TableLogic {
         String simpleTableName = tableBO.getTableName().substring(tableBO.getTableName().indexOf("_") + 1);
         if(column.getColumnName().equalsIgnoreCase(simpleTableName+"_name")){
             tableBO.setBusinessName(column.getColumnName());
-        }else if(column.getColumnName().equalsIgnoreCase(simpleTableName+"_code")){
+        }else if(column.getColumnName().equalsIgnoreCase(simpleTableName+"_code") || column.getColumnName().equalsIgnoreCase(simpleTableName+"_no")){
             tableBO.setBusinessKey(column.getColumnName());
         }
     }
