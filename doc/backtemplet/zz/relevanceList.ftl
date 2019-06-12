@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="${project.projectName!}" />
+<bms:contentHeader  />
 
 
 <#assign fkColumn1 = columns[1]>

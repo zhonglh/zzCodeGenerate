@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="${project.projectName!}" />
+<bms:contentHeader  />
 
 
 
@@ -192,7 +192,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
                                             <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm ${being.javaName}">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
@@ -288,7 +288,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
                                                 <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>

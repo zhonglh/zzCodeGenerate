@@ -123,7 +123,7 @@ public class ${table.javaName}BO extends <#if (table.isTable == '0' && table.mai
 
 </#if>
 
-    <#if (table.isTable?exists && table.isTable == '0')>@Override</#if>
+    <#if (table.isTable?exists && table.isTable == '0' && table.mainTableConfig?exists)>@Override</#if>
     public boolean isTable() {
 
     <#if table.isTable == '1' >
