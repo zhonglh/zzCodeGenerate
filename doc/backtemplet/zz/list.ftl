@@ -136,8 +136,8 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/cvs/export" class="export" >
-                                <i class="fa fa-download"></i>导出CVS
+                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/csv/export" class="export" >
+                                <i class="fa fa-download"></i>导出CSV
                             </a>
                         </li>
                         <li>
