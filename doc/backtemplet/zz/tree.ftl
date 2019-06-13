@@ -52,31 +52,34 @@
                         <i class="fa fa-upload"></i>
                         <span>${operation.operationName!'Excel导入'}</span>
                     </div>
+
+                    <div class="btn-group">
+                        <button type="button" id="exportTemplet" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-download"></i>
+                            模板 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/download" class="export">
+                                    <i class="fa fa-download"></i>下载模板(Excel2003)
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/download" class="export">
+                                    <i class="fa fa-download"></i>下载模板(Excel2007)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </shiro:hasPermission>
 
             <#elseif operation.operationResource == 'exportExcel'>
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
                 <div class="btn-group">
-                    <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-download"></i>
-                    ${operation.operationName!'Excel导出'} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/download" class="export">
-                                <i class="fa fa-download"></i>下载模板(Excel2003)
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/download" class="export">
-                                <i class="fa fa-download"></i>下载模板(Excel2007)
-                            </a>
-                        </li>
-
-                        <li role="separator" class="divider"></li>
 
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/cvs/export" class="export" >

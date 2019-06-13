@@ -44,6 +44,10 @@ public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,
         return null;
     }
 
+    @Override
+    public String getAvatarImage() {
+        return null;
+    }
 
 
     @Override

@@ -101,7 +101,6 @@
                         <i class="fa fa-upload"></i>
                         <span>${operation.operationName!'Excel导入'}</span>
                     </div>
-                </shiro:hasPermission>
 
                 <div class="btn-group">
                     <button type="button" id="exportTemplet" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,6 +122,8 @@
                         </li>
                     </ul>
                 </div>
+
+                </shiro:hasPermission>
 
             <#elseif operation.operationResource == 'exportExcel'>
 
