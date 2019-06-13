@@ -709,42 +709,63 @@ public class CgBusiness extends CgBaseBusiness{
 
 
         //生成菜单SQL
-        if(!menus.isEmpty()) {
+        List<MenuPO> topMenus = new ArrayList<MenuPO>();
+        Map<MenuPO,List<MenuPO>> menusMap = new HashMap<MenuPO,List<MenuPO>>();
+        for(MenuPO menuPO : menus){
+            if(menuPO.getId().equals(menuPO.getTopId())){
+                topMenus.add(menuPO);
+            }
+        }
+        for(MenuPO top : topMenus){
+            List<MenuPO> subMenus = new ArrayList<MenuPO>() ;
 
-
-            List<MenuPO> topMenus = new ArrayList<MenuPO>();
-            Map<MenuPO,List<MenuPO>> menusMap = new HashMap<MenuPO,List<MenuPO>>();
-            Map<MenuPO,List<TablePO>> tableMap = new HashMap<MenuPO,List<TablePO>>();
             for(MenuPO menuPO : menus){
-                if(menuPO.getId().equals(menuPO.getTopId())){
-                    topMenus.add(menuPO);
+                if(menuPO.getTopId().equals(top.getTopId())){
+                    subMenus.add(menuPO);
+
                 }
             }
+            menusMap.put(top , subMenus);
+        }
+        //生成菜单
+        cgMenuSql(templets, menusMap);
 
-            for(MenuPO top : topMenus){
-                List<MenuPO> subMenus = new ArrayList<MenuPO>() ;
-                List<TablePO> subTables = new ArrayList<TablePO>();
-                for(MenuPO menuPO : menus){
-                    if(menuPO.getTopId().equals(top.getTopId())){
-                        subMenus.add(menuPO);
 
-                        TablePO tp = tablePOMap.get(menuPO.getId());
-                        if(tp != null){
+
+
+
+        Map<MenuPO,List<TablePO>> tableMap = new HashMap<MenuPO,List<TablePO>>();
+        for(MenuPO top : topMenus){
+            List<TablePO> subTables = new ArrayList<TablePO>();
+
+            for(MenuPO menuPO : menus) {
+                if (menuPO.getTopId().equals(top.getTopId())) {
+
+                    for(TablePO tp : tablePOMap.values()){
+                        if(menuPO.getId().equals(tp.getTableBO().getModuleId())){
                             subTables.add(tp);
                         }
                     }
                 }
-                menusMap.put(top , subMenus);
-                tableMap.put(top , subTables);
             }
-
-            //生成菜单
-            cgMenuSql(templets, menusMap);
-
-
-            //生成权限SQL
-            cgRbacCode(tableMap ,projectBO, templets);
+            HashSet<TablePO> set = new HashSet(subTables);
+            tableMap.put(top , new ArrayList(set));
         }
+
+        List<TablePO> topTables = new ArrayList<TablePO>();
+        for(TablePO tp : tablePOMap.values()){
+            if(StringUtils.isEmpty(tp.getTableBO().getModuleId())){
+                topTables.add(tp);
+            }
+        }
+        if(!topTables.isEmpty()){
+            MenuPO top = new MenuPO();
+            top.setId(IdUtils.getId());
+            top.setResource("/null");
+            tableMap.put(top , topTables);
+        }
+        //生成权限SQL
+        cgRbacCode(tableMap ,projectBO, templets);
 
 
         //处理字典信息

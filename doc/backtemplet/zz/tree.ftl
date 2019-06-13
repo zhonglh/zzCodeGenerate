@@ -79,7 +79,12 @@
             <#elseif operation.operationResource == 'exportExcel'>
 
                 <shiro:hasPermission name="${table.fullResource}:${operation.operationResource}">
-                <div class="btn-group">
+                    <div class="btn-group">
+                        <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-download"></i>
+                            ${operation.operationName!'Excel导出'} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
 
                         <li>
                             <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/csv/export" class="export" >
