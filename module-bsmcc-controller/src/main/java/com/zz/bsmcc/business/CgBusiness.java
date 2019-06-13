@@ -98,8 +98,24 @@ public class CgBusiness extends CgBaseBusiness{
             String path = moduleConfigBO.getModuleFullResource().replaceAll("/", "");
             menu.setPath(path);
 
-            menu.setLeaf("0");
+            menu.setLeaf(EnumYesNo.NO.getCode());
             menu.setLevel(moduleConfigBO.getLevel());
+
+            if(StringUtils.isEmpty(moduleConfigBO.getPid())){
+                menu.setTopId(menu.getId());
+            }else {
+                String topId = moduleConfigBO.getId();
+                TcgModuleConfigBO parent = moduleConfigMap.get(moduleConfigBO.getPid());
+                while(parent != null){
+                    topId = parent.getId();
+                    if(StringUtils.isNotEmpty(parent.getPid())){
+                        parent = moduleConfigMap.get(parent.getPid());
+                    }else {
+                        break;
+                    }
+                }
+                menu.setTopId(topId);
+            }
 
             menus.add(menu);
         }
@@ -176,8 +192,11 @@ public class CgBusiness extends CgBaseBusiness{
                 for(MenuPO moduleMenu : moduleMenus){
                     if(moduleMenu.getId().equals(table.getModuleId())){
                         menu.setLevel(moduleMenu.getLevel() + 1);
+                        menu.setTopId(moduleMenu.getTopId());
                     }
                 }
+            }else {
+                menu.setTopId(menu.getId());
             }
 
             menus.add(menu);
@@ -688,38 +707,43 @@ public class CgBusiness extends CgBaseBusiness{
             }
         }
 
-        cgCode(tablePOMap.get("zzframe1tb_fund"), projectBO, templets);
-        //生成代码
-        for(TablePO tablePO : tablePOMap.values()){
-            cgCode(tablePO, projectBO, templets);
-        }
 
         //生成菜单SQL
         if(!menus.isEmpty()) {
-            String basePath = BusinessUtil.getBasePath();
 
-            for (TcgTempletBO templet : templets) {
-                if (StringUtils.isEmpty(templet.getIsMenuSql()) ||EnumYesNo.NO.getCode().equals(templet.getIsMenuSql())) {
-                    continue;
+
+            List<MenuPO> topMenus = new ArrayList<MenuPO>();
+            Map<MenuPO,List<MenuPO>> menusMap = new HashMap<MenuPO,List<MenuPO>>();
+            Map<MenuPO,List<TablePO>> tableMap = new HashMap<MenuPO,List<TablePO>>();
+            for(MenuPO menuPO : menus){
+                if(menuPO.getId().equals(menuPO.getTopId())){
+                    topMenus.add(menuPO);
                 }
-
-                String filePath = basePath + File.separator + templet.getFileOutDir();
-                String fileName =  (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
-                        "." + templet.getFileType();
-
-                Map<String, Object> model = new HashMap<>();
-
-                model.put("templet", templet);
-                model.put("menus", menus);
-
-                String templetContent = templet.getTempletContent();
-
-                String result = FreemarkerUtil.renderString(templetContent, model);
-
-                BusinessUtil.buildFile(filePath, fileName, result);
-
-
             }
+
+            for(MenuPO top : topMenus){
+                List<MenuPO> subMenus = new ArrayList<MenuPO>() ;
+                List<TablePO> subTables = new ArrayList<TablePO>();
+                for(MenuPO menuPO : menus){
+                    if(menuPO.getTopId().equals(top.getTopId())){
+                        subMenus.add(menuPO);
+
+                        TablePO tp = tablePOMap.get(menuPO.getId());
+                        if(tp != null){
+                            subTables.add(tp);
+                        }
+                    }
+                }
+                menusMap.put(top , subMenus);
+                tableMap.put(top , subTables);
+            }
+
+            //生成菜单
+            cgMenuSql(templets, menusMap);
+
+
+            //生成权限SQL
+            cgRbacCode(tableMap ,projectBO, templets);
         }
 
 
@@ -737,7 +761,6 @@ public class CgBusiness extends CgBaseBusiness{
                 dictTypes.add(dictTypePO);
             }
 
-
             //生成字典SQL
             String basePath = BusinessUtil.getBasePath();
             for (TcgTempletBO templet : templets) {
@@ -748,11 +771,46 @@ public class CgBusiness extends CgBaseBusiness{
                 String filePath = basePath + File.separator + templet.getFileOutDir();
                 String fileName =   (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
                         "." + templet.getFileType();
+                Map<String, Object> model = new HashMap<>();
+                model.put("templet", templet);
+                model.put("dictTypes", dictTypes);
+                String templetContent = templet.getTempletContent();
+                String result = FreemarkerUtil.renderString(templetContent, model);
+                BusinessUtil.buildFile(filePath, fileName, result);
+
+            }
+
+        }
+
+        //生成代码
+        for(TablePO tablePO : tablePOMap.values()){
+            cgCode(tablePO, projectBO, templets);
+        }
+
+    }
+
+    private void cgMenuSql(List<TcgTempletBO> templets, Map<MenuPO, List<MenuPO>> menusMap) {
+        String basePath = BusinessUtil.getBasePath();
+
+        for(Map.Entry<MenuPO , List<MenuPO>> entry : menusMap.entrySet()) {
+
+            MenuPO top = entry.getKey();
+            List<MenuPO> subList = entry.getValue();
+
+            for (TcgTempletBO templet : templets) {
+                if (StringUtils.isEmpty(templet.getIsMenuSql()) || EnumYesNo.NO.getCode().equals(templet.getIsMenuSql())) {
+                    continue;
+                }
+
+                String filePath = basePath + File.separator + templet.getFileOutDir();
+                String fileName = (templet.getFileSuffix().isEmpty() ? "" : templet.getFileSuffix()) +
+                        "." + templet.getFileType();
+                fileName = top.getResource()+"_"+fileName;
 
                 Map<String, Object> model = new HashMap<>();
 
                 model.put("templet", templet);
-                model.put("dictTypes", dictTypes);
+                model.put("menus", subList);
 
                 String templetContent = templet.getTempletContent();
 
@@ -763,10 +821,63 @@ public class CgBusiness extends CgBaseBusiness{
 
             }
         }
-
     }
 
+    private void cgRbacCode(Map<MenuPO,List<TablePO>> tableMap, TcgProjectBO projectBO, List<TcgTempletBO> templets) {
 
+        StringBuilder projectNoteBuild = BusinessUtil.getProjectNote(projectBO);
+
+        for(Map.Entry<MenuPO , List<TablePO>> entry : tableMap.entrySet()) {
+
+            String basePath = BusinessUtil.getBasePath();
+            StringBuilder sb = new StringBuilder("");
+            String filePath = null;
+
+
+            String fileName = entry.getKey().getResource().substring(1)+".sql";
+
+
+            for (TablePO tablePO : entry.getValue()) {
+
+
+
+                for (TcgTempletBO templet : templets) {
+
+                    //如果表里设置的不生成权限SQL, 而模板是权限SQL的模板， 将不继续
+                    if(EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsBuildRbac()) &&
+                            EnumYesNo.YES.getCode().equals(templet.getIsRbacSql())){
+                        ;
+                    }else {
+                        continue;
+                    }
+
+
+                    filePath = basePath + File.separator + templet.getFileOutDir() + File.separator + templet.getFileInnerDir();
+
+
+
+
+                    Map<String, Object> model = buildModel(tablePO, projectBO);
+
+                    model.put("templet", templet);
+
+
+                    String templetContent = templet.getTempletContent();
+
+
+                    String result = FreemarkerUtil.renderString(templetContent, model);
+
+                    sb.append("\r\n");
+                    sb.append("\r\n");
+                    sb.append(result) ;
+
+                }
+            }
+
+
+            BusinessUtil.buildFile(filePath, fileName, sb.toString());
+        }
+    }
 
 
     /**
@@ -828,12 +939,12 @@ public class CgBusiness extends CgBaseBusiness{
                 continue;
             }
 
-
-
-            //如果表里设置的不生成权限SQL, 而模板是权限SQL的模板， 将不继续
-            if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildRbac()) &&  EnumYesNo.YES.getCode().equals(templet.getIsRbacSql())){
+            //字典SQL模板 不在这里处理
+            if(EnumYesNo.YES.getCode().equals(templet.getIsRbacSql())){
                 continue;
             }
+
+
 
             //如果表里设置的不生成UI, 而模板是UI的模板， 将不继续
             if(EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsBuildUi()) &&  EnumYesNo.YES.getCode().equals(templet.getIsUi())){

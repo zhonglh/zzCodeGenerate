@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 public class MenuPO implements Serializable {
     private String id  ;
+    private String topId;
     private String pid ;
     private String name;
     private String title;
@@ -26,6 +27,14 @@ public class MenuPO implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTopId() {
+        return topId;
+    }
+
+    public void setTopId(String topId) {
+        this.topId = topId;
     }
 
     public String getPid() {
