@@ -49,6 +49,11 @@ public class TsUserBO extends TsUserEntity implements ILoginUserEntity<String> ,
         return null;
     }
 
+    @Override
+    public Integer getPageLimit() {
+        return 50;
+    }
+
 
     @Override
     public String getTenantName() {

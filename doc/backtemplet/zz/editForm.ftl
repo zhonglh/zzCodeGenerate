@@ -647,6 +647,7 @@
 
 <script>
     var inAllPage = "${r"${"} inAllPage ${r"}"}";
+    var queryString = "${r"${"} queryString }";
 </script>
 
 <bms:contentJS />
