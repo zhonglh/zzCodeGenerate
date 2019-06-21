@@ -64,7 +64,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
     {field:"id", checkbox: true, width: 40},
     <#if listColumnPages?exists>
         <#list listColumnPages as listPage>
-        {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150, <#if listPage.numberColumn=='1' >align:"right"<#elseif listPage.dateColumn=='1' >align:"center"<#else >align:"left"</#if> ,<#if listPage.dateColumn=='1' >formatter:dateFmt</#if>}<#if listPage_has_next>,</#if>
+        {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150 <#if listPage.numberColumn=='1' >,align:"right"<#elseif listPage.dateColumn=='1' >,align:"center"<#else >,align:"left"</#if> <#if listPage.dateColumn=='1' >,formatter:dateFmt</#if>}<#if listPage_has_next>,</#if>
         </#list>
     </#if>
     ]];
