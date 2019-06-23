@@ -61,13 +61,13 @@
                         <ul class="dropdown-menu">
 
                             <li>
-                                <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/download" class="export">
+                                <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/download?${r"${"} queryString }" class="export">
                                     <i class="fa fa-download"></i>下载模板(Excel2003)
                                 </a>
                             </li>
 
                             <li>
-                                <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/download" class="export">
+                                <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/download?${r"${"} queryString }" class="export">
                                     <i class="fa fa-download"></i>下载模板(Excel2007)
                                 </a>
                             </li>
@@ -87,18 +87,18 @@
                         <ul class="dropdown-menu">
 
                         <li>
-                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/csv/export" class="export" >
+                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/csv/export?${r"${"} queryString }" class="export" >
                                 <i class="fa fa-download"></i>导出CSV
                             </a>
                         </li>
                         <li>
-                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/export" class="export" >
+                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/hssf/export?${r"${"} queryString }" class="export" >
                                 <i class="fa fa-download"></i>导出Excel2003
                             </a>
                         </li>
 
                         <li>
-                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/export" class="export" >
+                            <a href="${r"${"} ctx ${r"}"}/${r"${"} currParentUrl ${r"}"}/sxssf/export?${r"${"} queryString }" class="export" >
                                 <i class="fa fa-download"></i>导出Excel2007
                             </a>
                         </li>
