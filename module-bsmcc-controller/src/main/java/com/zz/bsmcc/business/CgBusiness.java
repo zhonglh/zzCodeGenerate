@@ -376,6 +376,14 @@ public class CgBusiness extends CgBaseBusiness{
                 exColumns.forEach(item -> {
                     if(EnumYesNo.YES.getCode().equals(item.getOriginalColumnFk())) {
                         allExFkColumnMap.put(item.getId(), item);
+
+
+
+                        String tableColumnKey = tableConfig.getSchemaName().trim().toLowerCase() +
+                                tableConfig.getTableName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase();
+
+
+                        allExFkColumnMap.put(tableColumnKey , item);
                     }
                 });
 
