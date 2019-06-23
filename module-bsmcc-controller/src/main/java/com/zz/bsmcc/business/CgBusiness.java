@@ -647,7 +647,10 @@ public class CgBusiness extends CgBaseBusiness{
 
             TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
             if (columnConfigBO == null) {
-                throw new RuntimeException(exColumnBO.getTableBO().getTableName() + "表 " + exColumnBO.getColumnTitle() + "列  设置错误");
+                TcgExColumnBO tcgExColumnBO = allExFkColumnMap.get(tableColumnKey);
+                if(tcgExColumnBO == null) {
+                    throw new RuntimeException(exColumnBO.getTableBO().getTableName() + "表 " + exColumnBO.getColumnTitle() + "列  设置错误");
+                }
             }
             exColumnBO.setFkColumn(columnConfigBO);
 
