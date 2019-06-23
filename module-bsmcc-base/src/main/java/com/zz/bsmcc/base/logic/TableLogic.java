@@ -291,30 +291,42 @@ public class TableLogic {
             pageBO.setExcelType(EnumExcelType.IMPORT_EXPORT.getVal());
         }
 
-        if(exColumnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsfk())){
-            pageBO.setElement((String) EnumPageElement.openwin.getVal());
-        }
 
-        if(EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumnDict())){
+        if(exColumnBO.getOriginalColumn() != null) {
+
+            if (exColumnBO.getOriginalColumn() != null && EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsfk())) {
+                pageBO.setElement((String) EnumPageElement.openwin.getVal());
+            }
+
+            if (EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumnDict())) {
+                pageBO.setExistPage(EnumYesNo.NO.getCode());
+                pageBO.setEditable(EnumYesNo.NO.getCode());
+                pageBO.setHiddenable(EnumYesNo.NO.getCode());
+                pageBO.setListShowable(EnumYesNo.YES.getCode());
+            }
+
+
+            if (StringUtils.isNotEmpty(exColumnBO.getOriginalColumn().getColumnDefault())) {
+                pageBO.setExistPage(EnumYesNo.NO.getCode());
+                pageBO.setEditable(EnumYesNo.NO.getCode());
+                pageBO.setHiddenable(EnumYesNo.NO.getCode());
+                pageBO.setListShowable(EnumYesNo.NO.getCode());
+                pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
+            }
+
+            TcgColumnConfigBO columnBO = exColumnBO.getOriginalColumn();
+            pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull()) ? EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
+
+        }else {
+            pageBO.setElement((String) EnumPageElement.text.getVal());
             pageBO.setExistPage(EnumYesNo.NO.getCode());
             pageBO.setEditable(EnumYesNo.NO.getCode());
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
             pageBO.setListShowable(EnumYesNo.YES.getCode());
-        }
-
-
-        if(StringUtils.isNotEmpty(exColumnBO.getOriginalColumn().getColumnDefault())){
-            pageBO.setExistPage(EnumYesNo.NO.getCode());
-            pageBO.setEditable(EnumYesNo.NO.getCode());
-            pageBO.setHiddenable(EnumYesNo.NO.getCode());
-            pageBO.setListShowable(EnumYesNo.NO.getCode());
             pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
+            pageBO.setRequired(EnumYesNo.NO.getCode());
+
         }
-
-        TcgColumnConfigBO columnBO = exColumnBO.getOriginalColumn();
-        pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
-
-
 
 
         EntityUtil.autoSetInsertEntity(pageBO , sessionUserVO);

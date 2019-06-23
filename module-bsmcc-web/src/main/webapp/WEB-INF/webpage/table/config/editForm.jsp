@@ -927,9 +927,10 @@
         var mySize = exColTableSize ;
         var selectExColumn = '';
         selectExColumn = '<select name="exColumns['+mySize+'].originalColumnId">' ;
+        selectExColumn += '<option value="" ></option>' ;
             <c:forEach items="${columnConfigs}" var="column" >
                 <c:if test="${column.columnIsfk == '1'}">
-        selectExColumn += '<option value="${column.id}" >${column.columnComment}</option>' ;
+                    selectExColumn += '<option value="${column.id}" >${column.columnComment}</option>' ;
                 </c:if>
             </c:forEach>
         selectExColumn +='</select>';

@@ -303,6 +303,7 @@ public class CgBusiness extends CgBaseBusiness{
         Map<String , TcgColumnConfigBO> allColumnMap = new HashMap<String , TcgColumnConfigBO>();
         //所有外键类型扩展列
         Map<String , TcgExColumnBO> allExFkColumnMap = new HashMap<String , TcgExColumnBO>();
+        Map<String , TcgExColumnBO> allExColumnMap = new HashMap<String , TcgExColumnBO>();
 
 
         for(TcgTableConfigBO tableConfig : tableConfigs){
@@ -376,15 +377,11 @@ public class CgBusiness extends CgBaseBusiness{
                 exColumns.forEach(item -> {
                     if(EnumYesNo.YES.getCode().equals(item.getOriginalColumnFk())) {
                         allExFkColumnMap.put(item.getId(), item);
-
-
-
-                        String tableColumnKey = tableConfig.getSchemaName().trim().toLowerCase() +
-                                tableConfig.getTableName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase();
-
-
-                        allExFkColumnMap.put(tableColumnKey , item);
                     }
+
+                    String tableColumnKey = tableConfig.getSchemaName().trim().toLowerCase() +
+                            tableConfig.getTableName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase();
+                    allExColumnMap.put(tableColumnKey , item);
                 });
 
 
@@ -651,11 +648,14 @@ public class CgBusiness extends CgBaseBusiness{
         for(Map.Entry<String , TcgExColumnBO> exColumnEntry : allExFkColumnMap.entrySet()){
 
             TcgExColumnBO exColumnBO = exColumnEntry.getValue();
+            if(exColumnBO.getOriginalColumn() == null){
+                continue;
+            }
             String tableColumnKey = exColumnBO.getOriginalColumn().getFkSchema().trim().toLowerCase() + exColumnBO.getOriginalColumn().getFkName().trim().toLowerCase() + exColumnBO.getFkColumnName().trim().toLowerCase();
 
             TcgColumnConfigBO columnConfigBO = allColumnMap.get(tableColumnKey);
             if (columnConfigBO == null) {
-                TcgExColumnBO tcgExColumnBO = allExFkColumnMap.get(tableColumnKey);
+                TcgExColumnBO tcgExColumnBO = allExColumnMap.get(tableColumnKey);
                 if(tcgExColumnBO == null) {
                     throw new RuntimeException(exColumnBO.getTableBO().getTableName() + "表 " + exColumnBO.getColumnTitle() + "列  设置错误");
                 }

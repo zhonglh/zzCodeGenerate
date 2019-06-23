@@ -382,6 +382,10 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                     if(item != null && StringUtils.isEmpty(item.getId())){
                         EntityUtil.autoSetInsertEntity(item , sessionUserVO,false);
                         item.setTableId(tcgTableConfigBO.getId());
+                        if(StringUtils.isEmpty(item.getOriginalColumnId())){
+                            item.setOriginalColumnDict(EnumYesNo.NO.getCode());
+                            item.setOriginalColumnFk(EnumYesNo.NO.getCode());
+                        }
                     }
                 }
             }
