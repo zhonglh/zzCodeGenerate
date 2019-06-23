@@ -379,9 +379,15 @@ public class CgBusiness extends CgBaseBusiness{
                         allExFkColumnMap.put(item.getId(), item);
                     }
 
-                    String tableColumnKey = tableConfig.getSchemaName().trim().toLowerCase() +
-                            tableConfig.getTableName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase();
-                    allExColumnMap.put(tableColumnKey , item);
+                    try {
+                        if(StringUtils.isNotEmpty(item.getFkColumnName())) {
+                            String tableColumnKey = tableConfig.getSchemaName().trim().toLowerCase() +
+                                    tableConfig.getTableName().trim().toLowerCase() + item.getFkColumnName().trim().toLowerCase();
+                            allExColumnMap.put(tableColumnKey, item);
+                        }
+                    }catch (Exception e){
+                        logger.error(e.getMessage() , e);
+                    }
                 });
 
 
