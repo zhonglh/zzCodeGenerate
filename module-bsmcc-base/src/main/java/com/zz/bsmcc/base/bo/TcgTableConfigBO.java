@@ -592,4 +592,9 @@ public class TcgTableConfigBO extends TcgTableConfigEntity implements Serializab
     public void setFileColumns(List<TcgColumnConfigBO> fileColumns) {
         this.fileColumns = fileColumns;
     }
+
+    @Override
+    public String toString() {
+        return super.getTableName() ;
+    }
 }

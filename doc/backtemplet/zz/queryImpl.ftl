@@ -14,8 +14,8 @@ import ${importClass};
 </#list>
 
 /**
-* ${table.tableComment} 查询实现类
-* 用于链式查询
+* <h1>${table.tableComment} 查询实现类</h1>
+* 可用于链式查询
 * @author ${project.projectAuthor}
 * @date ${.now}
 */

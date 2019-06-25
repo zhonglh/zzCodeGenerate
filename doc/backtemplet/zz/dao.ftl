@@ -5,7 +5,7 @@ import ${table.fullPackageName}.bo.${table.javaName}BO;
 import org.springframework.stereotype.Repository;
 
 /**
-* ${table.tableComment} 操作DAO
+* <h1>${table.tableComment} 操作DAO<h1>
 * @author ${project.projectAuthor}
 * @date ${.now}
 */

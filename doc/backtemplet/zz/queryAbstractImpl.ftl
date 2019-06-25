@@ -10,7 +10,7 @@ import ${importClass};
 </#list>
 
 /**
- * ${table.tableComment} 查询抽象类
+ * <h1>${table.tableComment} 查询抽象类</h1>
  * 用于链式查询
  * @author ${project.projectAuthor}
  * @date ${.now}

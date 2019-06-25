@@ -21,7 +21,7 @@ import com.zz.bms.core.db.entity.IRelevanceEntity;
 
 
 /**
- * ${table.tableComment} 实体类
+ * <h1>${table.tableComment} 实体类</h1>
 <#if table.tableOtherComment ? exists>
  * ${table.tableOtherComment}
 </#if>

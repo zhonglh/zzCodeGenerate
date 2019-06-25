@@ -8,7 +8,7 @@ import ${importClass};
 </#list>
 
 /**
-* ${table.tableComment} 用于装载用户在查询时提交的数据
+* <h1>${table.tableComment} 用于装载用户在查询时提交的数据</h1>
 * 用于链式查询
 * @author ${project.projectAuthor}
 * @date ${.now}

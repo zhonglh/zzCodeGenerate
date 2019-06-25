@@ -5,7 +5,7 @@ import ${table.fullPackageName}.bo.${table.javaName}BO;
 
 
 /**
-* ${table.tableComment} Service
+* <h1>${table.tableComment} Service</h1>
 * @author ${project.projectAuthor}
 * @date ${.now}
 */

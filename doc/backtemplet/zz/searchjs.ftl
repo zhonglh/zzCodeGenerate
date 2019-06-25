@@ -89,7 +89,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
 
         function search(){
             // 获取查询参数
-            var params = options.params || {};
+            var params = dialog.params || {};
 
 
 
