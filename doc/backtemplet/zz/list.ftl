@@ -23,9 +23,9 @@
                 <#list querys as being>
 
                 <#if being.columnPage?exists && being.columnPage.exColumn?exists && being.columnPage.element == 'openwin'>
-                    <div class="input-group"  <c:if being_index == 0>style='margin-left: -15px;'</c:if>  >
+                    <div class="input-group"  <#if being_index == 0> style='margin-left: -15px;'</#if>  >
                 <#else >
-                    <div class="form-group"  <c:if being_index == 0>style='margin-left: -15px;'</c:if>   >
+                    <div class="form-group"   <#if being_index == 0> style='margin-left: -15px;'</#if>  >
                 </#if>
 
 
@@ -48,7 +48,7 @@
                         <#elseif being.columnPage.element == 'radio' || being.columnPage.element == 'checkbox' || being.columnPage.element == 'select' >
                             <select id="${being.queryFieldName}<#if (being.queryRelation?exists && being.queryRelation?length gt 0 && being.queryRelation != 'eq') >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length gt 0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
                                 <option value="" >${being.queryPlaceholder}</option>
-                                <c:forEach items="${r"${"} yes_no_dicts ${r"}"}" var="dict">
+                                <c:forEach items="${r"${"} ${being.columnPage.columnConfig.columnName}_dicts ${r"}"}" var="dict">
                                     <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name ${r"}"}</option>
                                 </c:forEach>
                             </select>
@@ -64,7 +64,7 @@
 
                             <c:if test="${r"${"} !fn.indexOf(queryString,'${being.columnPage.exColumn.originalJavaName}') ${r"}"}">
                                 <input type="hidden" name="${being.columnPage.exColumn.originalJavaName}" id="${being.columnPage.exColumn.originalJavaName}">
-                                <input type="text" name="${being.queryFieldName}" id="${being.queryFieldName}" class="form-control input-sm" placeholder="${being.queryPlaceholder}" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                <input type="text" name="${being.queryFieldName}" id="${being.queryFieldName}" class="form-control input-sm ${being.queryFieldName}" placeholder="${being.queryPlaceholder}" style="width: 150px; cursor: pointer;" readonly="readonly">
 
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-primary btn-sm ${being.queryFieldName}">
@@ -239,7 +239,7 @@
         <#if being.columnPage.element == 'openwin' >
 
             //${being.queryTitle}
-            $("#${being.queryFieldName}").Open${being.columnPage.exColumn.originalColumn.fkTableConfig.fullUpperResourceName}SelectWin({
+            $(".${being.queryFieldName}").Open${being.columnPage.exColumn.originalColumn.fkTableConfig.fullUpperResourceName}SelectWin({
                 title: "${being.queryTitle}",
                 selectType: "<#if being.columnPage.exColumn.originalColumn.fkTableConfig.isTree == '1'>t<#else >d</#if>1",
                 callId: "${being.columnPage.exColumn.originalJavaName}",
