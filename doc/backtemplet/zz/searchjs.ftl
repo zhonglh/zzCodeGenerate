@@ -12,8 +12,11 @@ function open${table.fullUpperResourceName}Win(config, callBack)
 
     <#if table.isTree?exists && table.isTree == '0'>
     var url = config.url || $AppContext + '${table.fullResourceName}/list';
-    var tableTemple = '<div class="easyui-panel" style="padding:5px; border: 0; width: 605px;height:450px;">'
-    + '<table align="center" class="_searchTools" width="100%" border="0" style="background-color: #ffffff;">'
+
+    var tableTemple =  '<div class="easyui-panel" style="padding:5px; border: 0; width: 605px;height:450px;">';
+
+    <#if querys?exists>
+    tableTemple += '<table align="center" class="_searchTools" width="100%" border="0" style="background-color: #ffffff;">'
         + '<tr style="height: 40px;">'
             + '<td>'
                 + '<div class="form-inline" role="form" >';
@@ -50,8 +53,11 @@ function open${table.fullUpperResourceName}Win(config, callBack)
             + '</div>'
         + '</td>'
     + '</tr>'
-    + '</table>'
-    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="${table.businessNameCamelCase!}" sortOrder="asc"></table>'
+    + '</table>';
+    </#if>
+
+
+    tableTemple += '<table class="_dataContorl _w_height" style="height: <#if querys?exists>300px;<#else >400px;</#if>" pagination="true" border="true" ></table>'
     + '</div>';
 
     var options = config || {};
@@ -64,7 +70,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
     {field:"id", checkbox: true, width: 40},
     <#if listColumnPages?exists>
         <#list listColumnPages as listPage>
-        {field:"${listPage.javaName}", title:"${listPage.columnComment}", width: 150 <#if listPage.numberColumn=='1' >,align:"right"<#elseif listPage.dateColumn=='1' >,align:"center"<#else >,align:"left"</#if> <#if listPage.dateColumn=='1' >,formatter:dateFmt</#if>}<#if listPage_has_next>,</#if>
+        {field:"${listPage.javaName}", title:"${listPage.columnComment}", sortable:"false" , width: 150 <#if listPage.numberColumn=='1' >,align:"right"<#elseif listPage.dateColumn=='1' >,align:"center"<#else >,align:"left"</#if> <#if listPage.dateColumn=='1' >,formatter:dateFmt</#if>}<#if listPage_has_next>,</#if>
         </#list>
     </#if>
     ]];

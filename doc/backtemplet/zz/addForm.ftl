@@ -39,7 +39,7 @@
                                             <#elseif being.element == 'textarea' >
                                                 <div class="info-detail">
                                                 <textarea <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if> "
-                                                          name="${being.javaName}" id="${being.javaName} " placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="5">${r"${"} m.${being.javaName} ${r"}"}</textarea>
+                                                          name="${being.javaName}" id="${being.javaName}" placeholder="请输入${being.columnComment}，${being.maxlength}字以内" maxlength="${being.maxlength}" rows="5">${r"${"} m.${being.javaName} ${r"}"}</textarea>
                                                 </div>
                                             <#elseif being.element == 'digits' >
                                                 <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm number  <#if being.required?exists && being.required == '1'>required</#if>"
@@ -56,7 +56,7 @@
                                                     <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if being.required?exists && being.required == '1'>required</#if>"
                                                            placeholder="请输入${being.columnComment}" autocomplete="off"
                                                            onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})"
-                                                           value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" readonly   />
+                                                           value="<fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />" id="${being.javaName}" name="${being.javaName}" readonly   />
 
                                             <#elseif being.element == 'email' >
                                                 <input type="email" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
@@ -148,7 +148,7 @@
                                                         <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
                                                                placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                                onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})"
-                                                               value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
+                                                               value="<fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />" id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
 
                                                 <#elseif nextPage.element == 'email' >
                                                     <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
@@ -261,7 +261,7 @@
                                                             <#elseif listPage.element == 'textarea' >
                                                                 <div class="info-detail">
                                                                     <textarea <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if> "
-                                                                              name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${listPage.javaName} " placeholder="请输入${listPage.columnComment}，${listPage.maxlength}字以内" maxlength="${listPage.maxlength}" rows="5">${r"${"} m.${listPage.javaName} ${r"}"}</textarea>
+                                                                              name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${listPage.javaName}" placeholder="请输入${listPage.columnComment}，${listPage.maxlength}字以内" maxlength="${listPage.maxlength}" rows="5">${r"${"} m.${listPage.javaName} ${r"}"}</textarea>
                                                                 </div>
                                                             <#elseif listPage.element == 'digits' >
                                                                 <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if listPage.required?exists && listPage.required == '1'>required</#if>"
@@ -340,7 +340,7 @@
                                                                     <#elseif nextPage.element == 'textarea' >
                                                                         <div class="info-detail">
                                                                         <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
-                                                                                  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="5">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
+                                                                                  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="5">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
                                                                         </div>
                                                                     <#elseif nextPage.element == 'digits' >
                                                                         <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
@@ -426,7 +426,7 @@
                                                 <#if childColumn.tableBO.tablePO.listColumnPages?exists>
                                                     <#list childColumn.tableBO.tablePO.listColumnPages as listPage>
                                                         <#if listPage?exists && ( (listPage.columnConfig?exists && listPage.columnConfig.javaName != childColumn.javaName)  || (listPage.exColumn?exists && listPage.exColumn.originalColumn.javaName != childColumn.javaName))>
-                                                        <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='true'<#elseif listPage.dateColumn=='1'  >sortable='true'<#else >sortable='false'</#if> formatter="${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt"  >${listPage.columnComment}</th>
+                                                        <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='false'<#elseif listPage.dateColumn=='1'  >sortable='false'<#else >sortable='false'</#if> formatter="${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt"  >${listPage.columnComment}</th>
                                                         </#if>
                                                     </#list>
                                                 </#if>

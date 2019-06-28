@@ -581,11 +581,11 @@
                                                 <#if childColumn.tableBO.tablePO.listColumnPages?exists>
                                                     <#list childColumn.tableBO.tablePO.listColumnPages as listPage>
                                                         <#if listPage?exists && ( (listPage.columnConfig?exists && listPage.columnConfig.javaName != childColumn.javaName)  || (listPage.exColumn?exists && listPage.exColumn.originalColumn.javaName != childColumn.javaName))>
-                                                            <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='true'<#elseif listPage.dateColumn=='1'  >sortable='true'<#else >sortable='false'</#if> formatter="${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt"  >${listPage.columnComment}</th>
+                                                            <th field='${listPage.javaName}' <#if listPage.numberColumn=='1' >align="right"<#elseif listPage.dateColumn=='1' >align="center"<#else >align="left"</#if> width="1" <#if listPage.numberColumn=='1' >sortable='false'<#elseif listPage.dateColumn=='1'  >sortable='false'<#else >sortable='false'</#if> formatter="${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt"  >${listPage.columnComment}</th>
                                                         </#if>
                                                     </#list>
                                                 </#if>
-                                                <th field="option" align="left" formatter="markFmt${childColumn.tableBO.simpleName?cap_first}">操作</th>
+                                                <th field="option" align="left" hidden="true" formatter="markFmt${childColumn.tableBO.simpleName?cap_first}">操作</th>
                                             </tr>
                                             </thead>
                                         </table>
