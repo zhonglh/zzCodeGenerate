@@ -23,9 +23,9 @@
                 <#list querys as being>
 
                 <#if being.columnPage?exists && being.columnPage.exColumn?exists && being.columnPage.element == 'openwin'>
-                    <div class="input-group" >
+                    <div class="input-group"  <c:if being_index == 0>style='margin-left: -15px;'</c:if>  >
                 <#else >
-                    <div class="form-group" >
+                    <div class="form-group"  <c:if being_index == 0>style='margin-left: -15px;'</c:if>   >
                 </#if>
 
 
