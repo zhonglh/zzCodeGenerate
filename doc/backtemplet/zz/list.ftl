@@ -49,7 +49,7 @@
                             <select id="${being.queryFieldName}<#if (being.queryRelation?exists && being.queryRelation?length gt 0 && being.queryRelation != 'eq') >_${being.queryRelation}</#if>" name='${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length gt 0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>'   class="form-control input-sm" onChange='search();'  >
                                 <option value="" >${being.queryPlaceholder}</option>
                                 <c:forEach items="${r"${"} ${being.columnPage.columnConfig.columnName}_dicts ${r"}"}" var="dict">
-                                    <option value="${r"${"} dict.value ${r"}"}">${r"${"} dict.name ${r"}"}</option>
+                                    <option value="${r"${"} dict.dictVal ${r"}"}">${r"${"} dict.dictName ${r"}"}</option>
                                 </c:forEach>
                             </select>
                         <#elseif being.columnPage.element == 'openwin' >
