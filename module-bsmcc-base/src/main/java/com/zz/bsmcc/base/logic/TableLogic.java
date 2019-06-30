@@ -213,8 +213,11 @@ public class TableLogic {
         exColumnBO.setOriginalColumnId(columnBO.getId());
         exColumnBO.setOriginalColumnName(columnBO.getColumnName());
         exColumnBO.setOriginalColumnDict(EnumYesNo.NO.getCode());
-        exColumnBO.setOriginalColumnFk(EnumYesNo.NO.getCode());
-
+        if(columnBO != null) {
+            exColumnBO.setOriginalColumnFk(EnumYesNo.YES.getCode());
+        }else {
+            exColumnBO.setOriginalColumnFk(EnumYesNo.NO.getCode());
+        }
         exColumnBO.setOriginalColumn(columnBO);
 
         String title = columnBO.getColumnComment();
@@ -315,7 +318,9 @@ public class TableLogic {
             }
 
             TcgColumnConfigBO columnBO = exColumnBO.getOriginalColumn();
-            pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull()) ? EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
+
+
+            pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumn().getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
 
         }else {
             pageBO.setElement((String) EnumPageElement.text.getVal());
@@ -324,7 +329,22 @@ public class TableLogic {
             pageBO.setHiddenable(EnumYesNo.NO.getCode());
             pageBO.setListShowable(EnumYesNo.YES.getCode());
             pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
-            pageBO.setRequired(EnumYesNo.NO.getCode());
+
+
+
+            TcgColumnConfigBO columnBO = exColumnBO.getFkColumn();
+
+            String originalRequired = EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode();
+            String fkColumnRequired = EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode();
+
+            if(EnumYesNo.YES.getCode().equals(originalRequired) && EnumYesNo.YES.getCode().equals(fkColumnRequired)){
+
+                pageBO.setRequired(EnumYesNo.YES.getCode());
+            }else {
+                pageBO.setRequired(EnumYesNo.NO.getCode());
+            }
+
+            pageBO.setRequired(EnumYesNo.YES.getCode());
 
         }
 

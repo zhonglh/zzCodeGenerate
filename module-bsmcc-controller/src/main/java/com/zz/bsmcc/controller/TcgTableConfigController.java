@@ -269,7 +269,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     public String tableOrViewUpdate(ModelMap model, @PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
 
         this.assertHasUpdatePermission();
-        TcgTableConfigBO tcBO = this.baseRwService.getById(id , true);
+            TcgTableConfigBO tcBO = this.baseRwService.getById(id , true);
         if(EnumYesNo.YES.getCode().equals(tcBO.getIsTable())){
             return "redirect:/table/config/"+id+"/update" ;
         }else {
@@ -385,6 +385,14 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                         if(StringUtils.isEmpty(item.getOriginalColumnId())){
                             item.setOriginalColumnDict(EnumYesNo.NO.getCode());
                             item.setOriginalColumnFk(EnumYesNo.NO.getCode());
+                        }else {
+                            TcgColumnConfigBO columnBO = tcgColumnConfigService.getById(item.getOriginalColumnId());
+
+                            item.setOriginalColumnName(columnBO.getColumnName());
+                            item.setOriginalColumn(columnBO);
+
+                            item.setOriginalColumnDict(EnumYesNo.NO.getCode());
+                            item.setOriginalColumnFk(EnumYesNo.YES.getCode());
                         }
                     }
                 }
