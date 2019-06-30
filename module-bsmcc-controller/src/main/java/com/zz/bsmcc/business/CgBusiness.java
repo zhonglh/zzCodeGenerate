@@ -1037,6 +1037,8 @@ public class CgBusiness extends CgBaseBusiness{
                     if (EnumYesNo.NO.getCode().equals(templet.getEffectiveSingle()) && tablePO.getTableBO().getMainTableConfig().getPageChildTables().isEmpty()) {
                         continue;
                     }
+                }else {
+                    continue;
                 }
             }
 

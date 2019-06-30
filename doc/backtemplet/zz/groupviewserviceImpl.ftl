@@ -27,7 +27,7 @@ public class ${table.javaName}GroupServiceImpl extends BaseGroupServiceImpl<${ta
 	@Autowired
 	${table.javaName}Service ${table.simpleName}Service;
 
-<#list table.pageChildTables as childTable>
+<#list table.mainTableConfig.pageChildTables as childTable>
 	@Autowired
 	private ${childTable.javaName}Service ${childTable.simpleName}Service;
 

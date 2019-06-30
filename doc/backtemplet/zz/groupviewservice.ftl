@@ -8,5 +8,5 @@ import ${table.fullPackageName}.bo.${table.javaName}GroupBO;
 * @author ${project.projectAuthor}
 * @date ${.now}
 */
-public interface ${table.javaName}GroupBOGroupService extends BaseService<${table.javaName}GroupBO, String> {
+public interface ${table.javaName}GroupService extends BaseService<${table.javaName}GroupBO, String> {
 }
