@@ -1022,11 +1022,21 @@ public class CgBusiness extends CgBaseBusiness{
 
 
             if(StringUtils.isNotEmpty(templet.getEffectiveSingle())){
-                if(EnumYesNo.YES.getCode().equals(templet.getEffectiveSingle()) && !tablePO.getTableBO().getPageChildTables().isEmpty()){
-                    continue;
-                }
-                if(EnumYesNo.NO.getCode().equals(templet.getEffectiveSingle()) && tablePO.getTableBO().getPageChildTables().isEmpty()){
-                    continue;
+
+                if(EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsTable())) {
+                    if (EnumYesNo.YES.getCode().equals(templet.getEffectiveSingle()) && !tablePO.getTableBO().getPageChildTables().isEmpty()) {
+                        continue;
+                    }
+                    if (EnumYesNo.NO.getCode().equals(templet.getEffectiveSingle()) && tablePO.getTableBO().getPageChildTables().isEmpty()) {
+                        continue;
+                    }
+                }else if(tablePO.getTableBO().getMainTableConfig() != null) {
+                    if (EnumYesNo.YES.getCode().equals(templet.getEffectiveSingle()) && !tablePO.getTableBO().getMainTableConfig().getPageChildTables().isEmpty()) {
+                        continue;
+                    }
+                    if (EnumYesNo.NO.getCode().equals(templet.getEffectiveSingle()) && tablePO.getTableBO().getMainTableConfig().getPageChildTables().isEmpty()) {
+                        continue;
+                    }
                 }
             }
 
