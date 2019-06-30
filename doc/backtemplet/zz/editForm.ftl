@@ -401,170 +401,170 @@
                                         <tbody>
 
 
-                                        <#list childColumn.tableBO.tablePO.showPages as listPage>
-                                            <#if listPage_index%2 ==0>
-                                                <tr>
-                                                    <#if listPage?exists && ( (listPage.columnConfig?exists && listPage.columnConfig.javaName != childColumn.javaName)  || (listPage.exColumn?exists && listPage.exColumn.originalColumn.javaName != childColumn.javaName))>
-                                                        <th>${listPage.columnComment}<#if listPage.required?exists && listPage.required == '1'><font color="red">*</font></#if></th>
-                                                        <td>
-                                                            <#if listPage?exists && listPage.columnConfig?exists>
-                                                                <#if listPage.element == 'text'  >
-                                                                    <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
-                                                                           placeholder="请输入${listPage.columnComment}" autocomplete="off"
-                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}"
-                                                                            <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
-                                                                <#elseif listPage.element == 'textarea' >
-                                                                    <div class="info-detail">
-                                                                    <textarea <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if> "
-                                                                              name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" placeholder="请输入${listPage.columnComment}，${listPage.maxlength}字以内" maxlength="${listPage.maxlength}" rows="5">${r"${"} m.${listPage.javaName} ${r"}"}</textarea>
+                                    <#list childColumn.tableBO.tablePO.showPages as listPage>
+                                        <#if listPage_index%2 ==0>
+                                            <tr>
+                                                <#if listPage?exists && ( (listPage.columnConfig?exists && listPage.columnConfig.javaName != childColumn.javaName)  || (listPage.exColumn?exists && listPage.exColumn.originalColumn.javaName != childColumn.javaName))>
+                                                    <th>${listPage.columnComment}<#if listPage.required?exists && listPage.required == '1'><font color="red">*</font></#if></th>
+                                                    <td>
+                                                        <#if listPage?exists && listPage.columnConfig?exists>
+                                                            <#if listPage.element == 'text'  >
+                                                                <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}"
+                                                                        <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
+                                                            <#elseif listPage.element == 'textarea' >
+                                                                <div class="info-detail">
+                                                                <textarea <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if> "
+                                                                          name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" placeholder="请输入${listPage.columnComment}，${listPage.maxlength}字以内" maxlength="${listPage.maxlength}" rows="5">${r"${"} m.${listPage.javaName} ${r"}"}</textarea>
+                                                                </div>
+                                                            <#elseif listPage.element == 'digits' >
+                                                                <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm digits  <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" step="1"
+                                                                        <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
+                                                            <#elseif listPage.element == 'number' >
+                                                                <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" step="0.01"
+                                                                        <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
+                                                            <#elseif listPage.element == 'date' ||  listPage.element == 'timestamp' >
+
+                                                                <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${listPage.javaName}'})"
+                                                                       value='<fmt:formatDate value=“${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}” pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" readonly   />
+
+                                                            <#elseif listPage.element == 'email' >
+                                                                <input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}"
+                                                                        <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
+                                                            <#elseif listPage.element == 'url' >
+                                                                <input type="url" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}"
+                                                                        <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
+                                                            <#elseif listPage.element == 'radio' || listPage.element == 'checkbox' || listPage.element == 'select' >
+                                                                <select id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}"  name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> style="width:98%">
+                                                                    <option value="" ></option>
+                                                                    <c:forEach items="${r"${"} ${listPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
+                                                                        <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName  ${r"}"}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            <#elseif listPage.element == 'openwin' >
+                                                            <#else >
+                                                            </#if>
+                                                        <#elseif listPage?exists && listPage.exColumn?exists>
+                                                            <#if listPage.element == 'openwin' && listPage.exColumn.originalColumn.tableBO.tableName!=table.tableName>
+                                                                <c:if test="${r"${"} fn:indexOf(allQueryString,'&${listPage.exColumn.originalJavaName}=') >=0 ${r"}"}">
+                                                                    <input type="text" class="form-control input-sm" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}"  value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" readonly>
+                                                                </c:if>
+                                                                <c:if test="${r"${"} fn:indexOf(allQueryString,'&${listPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
+                                                                    <div class="input-group">
+                                                                        <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName} ${r"}"}">
+                                                                        <input type="text" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName} " placeholder="请选择${listPage.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                                        <div class="input-group-btn">
+                                                                            <button type="button"
+                                                                                    class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName}">
+                                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                                            </button>
+                                                                            <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName?cap_first}"
+                                                                                    class="btn btn-primary btn-sm">
+                                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
-                                                                <#elseif listPage.element == 'digits' >
-                                                                    <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm digits  <#if listPage.required?exists && listPage.required == '1'>required</#if>"
-                                                                           placeholder="请输入${listPage.columnComment}" autocomplete="off"
-                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" step="1"
-                                                                            <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
-                                                                <#elseif listPage.element == 'number' >
-                                                                    <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if listPage.required?exists && listPage.required == '1'>required</#if>"
-                                                                           placeholder="请输入${listPage.columnComment}" autocomplete="off"
-                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" step="0.01"
-                                                                            <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
-                                                                <#elseif listPage.element == 'date' ||  listPage.element == 'timestamp' >
+                                                                </c:if>
+                                                            </#if>
+                                                        </#if>
+                                                    </td>
+                                                </#if>
 
-                                                                    <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if listPage.required?exists && listPage.required == '1'>required</#if>"
-                                                                           placeholder="请输入${listPage.columnComment}" autocomplete="off"
-                                                                           onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${listPage.javaName}'})"
-                                                                           value='<fmt:formatDate value=“${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}” pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" readonly   />
+                                                <#if listPage_has_next>
+                                                    <#assign nextPage=childColumn.tableBO.tablePO.showPages[listPage_index+1]>
+                                                    <#if nextPage?exists && ( (nextPage.columnConfig?exists && nextPage.columnConfig.javaName != childColumn.javaName)  || (nextPage.exColumn?exists && nextPage.exColumn.originalColumn.javaName != childColumn.javaName))>
+                                                        <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
+                                                        <td>
+                                                            <#if nextPage?exists && nextPage.columnConfig?exists>
+                                                                <#if nextPage.element == 'text'  >
+                                                                    <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}"
+                                                                            <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                                                <#elseif nextPage.element == 'textarea' >
+                                                                    <div class="info-detail">
+                                                                    <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
+                                                                              id=name="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="5">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
+                                                                    </div>
+                                                                <#elseif nextPage.element == 'digits' >
+                                                                    <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm digits  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" step="1"
+                                                                            <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                                                <#elseif nextPage.element == 'number' >
+                                                                    <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" step="0.01"
+                                                                            <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                                                <#elseif nextPage.element == 'date' ||  nextPage.element == 'timestamp' >
 
-                                                                <#elseif listPage.element == 'email' >
-                                                                    <input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
-                                                                           placeholder="请输入${listPage.columnComment}" autocomplete="off"
-                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}"
-                                                                            <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
-                                                                <#elseif listPage.element == 'url' >
-                                                                    <input type="url" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
-                                                                           placeholder="请输入${listPage.columnComment}" autocomplete="off"
-                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}"
-                                                                            <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
-                                                                <#elseif listPage.element == 'radio' || listPage.element == 'checkbox' || listPage.element == 'select' >
-                                                                    <select id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}"  name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> style="width:98%">
+                                                                    <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${nextPage.javaName}'})"
+                                                                           value='<fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" readonly   />
+
+                                                                <#elseif nextPage.element == 'email' >
+                                                                    <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}"
+                                                                            <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                                                <#elseif nextPage.element == 'url' >
+                                                                    <input type="url" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}"
+                                                                            <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
+                                                                <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
+                                                                    <select id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}"  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> style="width:98%">
                                                                         <option value="" ></option>
-                                                                        <c:forEach items="${r"${"} ${listPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
-                                                                            <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName  ${r"}"}</option>
+                                                                        <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
+                                                                            <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName ${r"}"}</option>
                                                                         </c:forEach>
                                                                     </select>
-                                                                <#elseif listPage.element == 'openwin' >
+                                                                <#elseif nextPage.element == 'openwin' >
                                                                 <#else >
                                                                 </#if>
-                                                            <#elseif listPage?exists && listPage.exColumn?exists>
-                                                                <#if listPage.element == 'openwin' && listPage.exColumn.originalColumn.tableBO.tableName!=table.tableName>
-                                                                    <c:if test="${r"${"} fn:indexOf(allQueryString,'&${listPage.exColumn.originalJavaName}=') >=0 ${r"}"}">
-                                                                        <input type="text" class="form-control input-sm" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}"  value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" readonly>
+                                                            <#elseif nextPage?exists && nextPage.exColumn?exists>
+                                                                <#if nextPage.element == 'openwin' && nextPage.exColumn.originalColumn.tableBO.tableName!=table.tableName>
+                                                                    <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
+                                                                        <input type="text" class="form-control input-sm" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}"  value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" readonly>
                                                                     </c:if>
-                                                                    <c:if test="${r"${"} fn:indexOf(allQueryString,'&${listPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
+                                                                    <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
                                                                         <div class="input-group">
-                                                                            <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName} ${r"}"}">
-                                                                            <input type="text" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName} " placeholder="请选择${listPage.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                                            <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} ${r"}"}" >
+                                                                            <input type="text" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
                                                                             <div class="input-group-btn">
-                                                                                <button type="button"
-                                                                                        class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName}">
+                                                                                <button type="button"  class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName}">
                                                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                                                 </button>
-                                                                                <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName?cap_first}"
-                                                                                        class="btn btn-primary btn-sm">
+                                                                                <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
                                                                                     &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                                                 </button>
                                                                             </div>
                                                                         </div>
                                                                     </c:if>
                                                                 </#if>
+                                                            <#else >
+                                                                出现错误
                                                             </#if>
                                                         </td>
                                                     </#if>
-
-                                                    <#if listPage_has_next>
-                                                        <#assign nextPage=childColumn.tableBO.tablePO.showPages[listPage_index+1]>
-                                                        <#if nextPage?exists && ( (nextPage.columnConfig?exists && nextPage.columnConfig.javaName != childColumn.javaName)  || (nextPage.exColumn?exists && nextPage.exColumn.originalColumn.javaName != childColumn.javaName))>
-                                                            <th>${nextPage.columnComment}<#if nextPage.required?exists && nextPage.required == '1'><font color="red">*</font></#if></th>
-                                                            <td>
-                                                                <#if nextPage?exists && nextPage.columnConfig?exists>
-                                                                    <#if nextPage.element == 'text'  >
-                                                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                                               value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}"
-                                                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                                                    <#elseif nextPage.element == 'textarea' >
-                                                                        <div class="info-detail">
-                                                                        <textarea <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if> "
-                                                                                  id=name="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" placeholder="请输入${nextPage.columnComment}，${nextPage.maxlength}字以内" maxlength="${nextPage.maxlength}" rows="5">${r"${"} m.${nextPage.javaName} ${r"}"}</textarea>
-                                                                        </div>
-                                                                    <#elseif nextPage.element == 'digits' >
-                                                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm digits  <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                                               value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" step="1"
-                                                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                                                    <#elseif nextPage.element == 'number' >
-                                                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm number fd-decimal2 <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                                               value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" step="0.01"
-                                                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                                                    <#elseif nextPage.element == 'date' ||  nextPage.element == 'timestamp' >
-
-                                                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                                               onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${nextPage.javaName}'})"
-                                                                               value='<fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" readonly   />
-
-                                                                    <#elseif nextPage.element == 'email' >
-                                                                        <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                                               value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}"
-                                                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                                                    <#elseif nextPage.element == 'url' >
-                                                                        <input type="url" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
-                                                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
-                                                                               value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}"
-                                                                                <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                                                    <#elseif nextPage.element == 'radio' || nextPage.element == 'checkbox' || nextPage.element == 'select' >
-                                                                        <select id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}"  name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> style="width:98%">
-                                                                            <option value="" ></option>
-                                                                            <c:forEach items="${r"${"} ${nextPage.columnConfig.dictType}_dicts ${r"}"}" var="dict">
-                                                                                <option value="${r"${"} dict.dictVal ${r"}"}" <c:if test="${r"${"} dict.dictVal == m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}">selected</c:if>>${r"${"} dict.dictName ${r"}"}</option>
-                                                                            </c:forEach>
-                                                                        </select>
-                                                                    <#elseif nextPage.element == 'openwin' >
-                                                                    <#else >
-                                                                    </#if>
-                                                                <#elseif nextPage?exists && nextPage.exColumn?exists>
-                                                                    <#if nextPage.element == 'openwin' && nextPage.exColumn.originalColumn.tableBO.tableName!=table.tableName>
-                                                                        <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') >= 0 ${r"}"}">
-                                                                            <input type="text" class="form-control input-sm" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}"  value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" readonly>
-                                                                        </c:if>
-                                                                        <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
-                                                                            <div class="input-group">
-                                                                                <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} ${r"}"}" >
-                                                                                <input type="text" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                                                <div class="input-group-btn">
-                                                                                    <button type="button"  class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName}">
-                                                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                                                    </button>
-                                                                                    <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </c:if>
-                                                                    </#if>
-                                                                <#else >
-                                                                    出现错误
-                                                                </#if>
-                                                            </td>
-                                                        </#if>
-                                                    </#if>
+                                                </#if>
 
 
-                                                </tr>
-                                            </#if>
-                                        </#list>
+                                            </tr>
+                                        </#if>
+                                    </#list>
                                         </tbody>
 
                                     </table>
