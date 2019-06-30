@@ -1030,6 +1030,16 @@ public class CgBusiness extends CgBaseBusiness{
                 }
             }
 
+
+            if(StringUtils.isNotEmpty(templet.getEffectiveView())){
+                if(EnumYesNo.YES.getCode().equals(templet.getEffectiveView()) && EnumYesNo.YES.getCode().equals(tablePO.getTableBO().getIsTable())){
+                    continue;
+                }
+                if(EnumYesNo.NO.getCode().equals(templet.getEffectiveView()) && EnumYesNo.NO.getCode().equals(tablePO.getTableBO().getIsTable())){
+                    continue;
+                }
+            }
+
             if( this.isComponent(tablePO.getTableBO().getSchemaName() , tablePO.getTableBO().getTableName())  ){
                 if("java".equalsIgnoreCase(templet.getFileType()) || "xml".equalsIgnoreCase(templet.getFileType())){
                     //第三方（或者组件）用到的表， Java和XML文件将不再生成
