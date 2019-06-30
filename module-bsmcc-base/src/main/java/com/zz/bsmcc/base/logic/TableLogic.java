@@ -317,10 +317,20 @@ public class TableLogic {
                 pageBO.setExcelType(EnumExcelType.ONLY_EXPORT.getVal());
             }
 
-            TcgColumnConfigBO columnBO = exColumnBO.getOriginalColumn();
 
+            String originalRequired = EnumYesNo.YES.getCode().equals(exColumnBO.getOriginalColumn().getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode();
+            String fkColumnRequired = EnumYesNo.YES.getCode();
 
-            pageBO.setRequired(EnumYesNo.YES.getCode().equals(columnBO.getOriginalColumn().getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode());
+            if(exColumnBO.getFkColumn() != null){
+                fkColumnRequired = EnumYesNo.YES.getCode().equals(exColumnBO.getFkColumn().getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode();
+            }
+
+            if(EnumYesNo.YES.getCode().equals(originalRequired) && EnumYesNo.YES.getCode().equals(fkColumnRequired)){
+                pageBO.setRequired(EnumYesNo.YES.getCode());
+            }else {
+                pageBO.setRequired(EnumYesNo.NO.getCode());
+            }
+
 
         }else {
             pageBO.setElement((String) EnumPageElement.text.getVal());
@@ -332,17 +342,6 @@ public class TableLogic {
 
 
 
-            TcgColumnConfigBO columnBO = exColumnBO.getFkColumn();
-
-            String originalRequired = EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode();
-            String fkColumnRequired = EnumYesNo.YES.getCode().equals(columnBO.getColumnIsnull())?EnumYesNo.NO.getCode() : EnumYesNo.YES.getCode();
-
-            if(EnumYesNo.YES.getCode().equals(originalRequired) && EnumYesNo.YES.getCode().equals(fkColumnRequired)){
-
-                pageBO.setRequired(EnumYesNo.YES.getCode());
-            }else {
-                pageBO.setRequired(EnumYesNo.NO.getCode());
-            }
 
             pageBO.setRequired(EnumYesNo.YES.getCode());
 

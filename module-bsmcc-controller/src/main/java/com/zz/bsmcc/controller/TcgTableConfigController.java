@@ -387,12 +387,29 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                             item.setOriginalColumnFk(EnumYesNo.NO.getCode());
                         }else {
                             TcgColumnConfigBO columnBO = tcgColumnConfigService.getById(item.getOriginalColumnId());
+                            if(columnBO == null){
+                                item.setOriginalColumnDict(EnumYesNo.NO.getCode());
+                                item.setOriginalColumnFk(EnumYesNo.NO.getCode());
+                            }else {
 
-                            item.setOriginalColumnName(columnBO.getColumnName());
-                            item.setOriginalColumn(columnBO);
+                                item.setOriginalColumnName(columnBO.getColumnName());
+                                item.setOriginalColumn(columnBO);
+                                item.setOriginalColumnDict(EnumYesNo.NO.getCode());
+                                item.setOriginalColumnFk(EnumYesNo.YES.getCode());
 
-                            item.setOriginalColumnDict(EnumYesNo.NO.getCode());
-                            item.setOriginalColumnFk(EnumYesNo.YES.getCode());
+
+                                QueryWrapper<TcgTableConfigBO> tableConfigBOQueryWrapper = new QueryWrapper<TcgTableConfigBO>();
+                                tableConfigBOQueryWrapper.lambda().eq(TcgTableConfigBO::getSchemaName , columnBO.getFkSchema());
+                                tableConfigBOQueryWrapper.lambda().eq(TcgTableConfigBO::getTableName , columnBO.getFkName());
+                                TcgTableConfigBO fkTable = this.getBaseRwService().getOne(tableConfigBOQueryWrapper , false);
+                                if(fkTable != null) {
+                                    QueryWrapper<TcgColumnConfigBO> columnConfigBOQueryWrapper = new QueryWrapper<TcgColumnConfigBO>();
+                                    columnConfigBOQueryWrapper.lambda().eq(TcgColumnConfigBO::getTableId , fkTable.getId());
+                                    columnConfigBOQueryWrapper.lambda().eq(TcgColumnConfigBO::getColumnName , columnBO.getColumnName());
+                                    TcgColumnConfigBO one = tcgColumnConfigService.getOne(columnConfigBOQueryWrapper, false);
+                                    item.setFkColumn(one);
+                                }
+                            }
                         }
                     }
                 }
