@@ -88,8 +88,12 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
     //是否只对树状 有效
     private String effectiveTree ;
 
-    //是否只对单表有效
+    //是否只对单表有效 , 界面只有一个表的信息
     private String effectiveSingle ;
+
+
+    //是否只对视图有效
+    private String effectiveView;
 
 
 
@@ -266,6 +270,13 @@ public class TcgTempletEntity extends BaseBusinessEntity<String> implements java
         this.effectiveSingle = effectiveSingle;
     }
 
+    public String getEffectiveView() {
+        return effectiveView;
+    }
+
+    public void setEffectiveView(String effectiveView) {
+        this.effectiveView = effectiveView;
+    }
 
     public String getIsDictSql() {
         return isDictSql;

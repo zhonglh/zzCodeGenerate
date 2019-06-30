@@ -214,6 +214,18 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否仅限于视图：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="effectiveView" name="effectiveSingle"  class="form-control">
+                                        <option value="" >全部</option>
+                                        <option value="1" <c:if test="${entity.effectiveView ==  '1' }">selected="selected"</c:if> hassubinfo="true">视图(view)</option>
+                                        <option value="0" <c:if test="${entity.effectiveView ==  '0' }">selected="selected"</c:if> hassubinfo="true">表(table)</option>
+                                    </select>
+                                </div>
+                            </div>
+
 
 
                             <div class="form-group">
