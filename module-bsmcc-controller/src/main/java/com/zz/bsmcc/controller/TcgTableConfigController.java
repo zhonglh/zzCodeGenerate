@@ -365,13 +365,13 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
                 for (TcgColumnConfigBO item : tablePO.getColumns()) {
                     //替换掉空格 , Tab 键
                     if(StringUtils.isNotEmpty(item.getDictType())){
-                        item.setDictType(item.getDictType().trim().replaceAll("\t",""));
+                        item.setDictType(item.getDictType().toLowerCase().trim().replaceAll("\t",""));
                     }
                     if(StringUtils.isNotEmpty(item.getFkSchema())){
-                        item.setFkSchema(item.getFkSchema().trim().replaceAll("\t",""));
+                        item.setFkSchema(item.getFkSchema().toLowerCase().trim().replaceAll("\t",""));
                     }
                     if(StringUtils.isNotEmpty(item.getFkName())){
-                        item.setFkName(item.getFkName().trim().replaceAll("\t",""));
+                        item.setFkName(item.getFkName().toLowerCase().trim().replaceAll("\t",""));
                     }
                 }
             }
@@ -380,6 +380,11 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             if(tablePO.getExColumns() != null && !tablePO.getExColumns().isEmpty()) {
                 for (TcgExColumnBO item : tablePO.getExColumns()){
                     if(item != null && StringUtils.isEmpty(item.getId())){
+
+                        if(StringUtils.isNotEmpty(item.getFkColumnName())){
+                            item.setFkColumnName(item.getFkColumnName().toLowerCase().trim().replaceAll("\t",""));
+                        }
+
                         EntityUtil.autoSetInsertEntity(item , sessionUserVO,false);
                         item.setTableId(tcgTableConfigBO.getId());
                         if(StringUtils.isEmpty(item.getOriginalColumnId())){
