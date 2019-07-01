@@ -189,20 +189,26 @@
                                             <input type="text" class="form-control input-sm" name="${being.javaName}"  id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" readonly>
                                         </c:if>
                                         <c:if test="${r"${"} fn:indexOf(allQueryString,'&${being.exColumn.originalJavaName}=') <0  ${r"}"}">
-                                        <div class="input-group">
-                                            <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
-                                            <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn" >
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm ${being.javaName}">
-                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                </button>
-                                                <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
-                                                        class="btn btn-primary btn-sm">
-                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                </button>
-                                            </div>
-                                        </div>
+                                            <c:if test="${r"${"} m.${being.exColumn.originalJavaName} != null}">
+                                                <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} }">
+                                                <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} }" required="required" class="form-control input-sm " readonly="readonly">
+                                            </c:if>
+                                            <c:if test="${r"${"} m.${being.exColumn.originalJavaName} == null}">
+                                                <div class="input-group">
+                                                    <input type="hidden" name="${being.exColumn.originalJavaName}" id="${being.exColumn.originalJavaName}" value="${r"${"} m.${being.exColumn.originalJavaName} ${r"}"}">
+                                                    <input type="text" name="${being.javaName}" id="${being.javaName}" value="${r"${"} m.${being.javaName} ${r"}"}" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm ${being.javaName} " placeholder="请选择${being.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                    <div class="input-group-btn" >
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm ${being.javaName}">
+                                                            &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                        </button>
+                                                        <button type="button" id="clear${being.exColumn.originalJavaName?cap_first}"
+                                                                class="btn btn-primary btn-sm">
+                                                            &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </c:if>
                                         </c:if>
                                     </#if>
                                 </#if>
@@ -285,18 +291,25 @@
                                                 <input type="text" class="form-control input-sm" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" readonly>
                                             </c:if>
                                             <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
-                                            <div class="input-group">
-                                                <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
-                                                <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn" >
-                                                    <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
-                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                    </button>
-                                                    <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                    </button>
-                                                </div>
-                                            </div>
+
+                                                <c:if test="${r"${"} m.${nextPage.exColumn.originalJavaName} != null}">
+                                                    <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} }">
+                                                    <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} }" required="required" class="form-control input-sm " readonly="readonly">
+                                                </c:if>
+                                                <c:if test="${r"${"} m.${nextPage.exColumn.originalJavaName} == null}">
+                                                    <div class="input-group">
+                                                        <input type="hidden" name="${nextPage.exColumn.originalJavaName}" id="${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${nextPage.exColumn.originalJavaName} ${r"}"}" >
+                                                        <input type="text" name="${nextPage.javaName}" id="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                        <div class="input-group-btn" >
+                                                            <button type="button"  class="btn btn-primary btn-sm ${nextPage.javaName}">
+                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                            </button>
+                                                            <button type="button" id="clear${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
+                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
                                             </c:if>
                                     </#if>
                                 <#else >
@@ -461,20 +474,26 @@
                                                                     <input type="text" class="form-control input-sm" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}"  value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" readonly>
                                                                 </c:if>
                                                                 <c:if test="${r"${"} fn:indexOf(allQueryString,'&${listPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
-                                                                    <div class="input-group">
+                                                                    <c:if test="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName} != null}">
                                                                         <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName} ${r"}"}">
-                                                                        <input type="text" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName} " placeholder="请选择${listPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                                        <div class="input-group-btn">
-                                                                            <button type="button"
-                                                                                    class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName}">
-                                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                                            </button>
-                                                                            <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName?cap_first}"
-                                                                                    class="btn btn-primary btn-sm">
-                                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                                            </button>
+                                                                        <input type="text" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName} "  readonly="readonly">
+                                                                    </c:if>
+                                                                    <c:if test="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName} == null}">
+                                                                        <div class="input-group">
+                                                                            <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.exColumn.originalJavaName} ${r"}"}">
+                                                                            <input type="text" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName} " placeholder="请选择${listPage.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                                            <div class="input-group-btn">
+                                                                                <button type="button"
+                                                                                        class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${listPage.javaName}">
+                                                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                                                </button>
+                                                                                <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${listPage.exColumn.originalJavaName?cap_first}"
+                                                                                        class="btn btn-primary btn-sm">
+                                                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </c:if>
                                                                 </c:if>
                                                             </#if>
                                                         </#if>
@@ -540,18 +559,24 @@
                                                                         <input type="text" class="form-control input-sm" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}"  value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" readonly>
                                                                     </c:if>
                                                                     <c:if test="${r"${"} fn:indexOf(allQueryString,'&${nextPage.exColumn.originalJavaName}=') < 0 ${r"}"}">
-                                                                        <div class="input-group">
-                                                                            <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} ${r"}"}" >
-                                                                            <input type="text" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
-                                                                            <div class="input-group-btn">
-                                                                                <button type="button"  class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName}">
-                                                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                                                </button>
-                                                                                <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
-                                                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                                                </button>
+                                                                        <c:if test="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} != null}">
+                                                                            <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} ${r"}"}">
+                                                                            <input type="text" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName} "  readonly="readonly">
+                                                                        </c:if>
+                                                                        <c:if test="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} == null}">
+                                                                            <div class="input-group">
+                                                                                <input type="hidden" name="${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.exColumn.originalJavaName} ${r"}"}" >
+                                                                                <input type="text" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName} " placeholder="请选择${nextPage.columnComment}" style="cursor: pointer;" readonly="readonly">
+                                                                                <div class="input-group-btn">
+                                                                                    <button type="button"  class="btn btn-primary btn-sm ${childColumn.tableBO.simpleName}BO_${nextPage.javaName}">
+                                                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                                                    </button>
+                                                                                    <button type="button" id="clear${childColumn.tableBO.simpleName}BO_${nextPage.exColumn.originalJavaName?cap_first}"   class="btn btn-primary btn-sm">
+                                                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                                                    </button>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </c:if>
                                                                     </c:if>
                                                                 </#if>
                                                             <#else >
