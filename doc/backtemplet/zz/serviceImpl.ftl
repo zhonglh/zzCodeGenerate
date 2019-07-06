@@ -103,6 +103,7 @@ public class ${table.javaName}ServiceImpl extends SystemBaseServiceImpl<${table.
 			}
 		}
 		<#else>
+
 		try {
 			if(StringUtils.isEmpty(${table.javaName?uncap_first}BO.get${exColumnMap[key][0].javaName?cap_first}()) && StringUtils.isNotEmpty(${table.javaName?uncap_first}BO.get${exColumnMap[key][0].originalColumn.javaName?cap_first}()) ) {
 				String dictName = tsDictService.getDictName(${table.javaName?uncap_first}BO.get${exColumnMap[key][0].originalColumn.javaName?cap_first}(),EnumDictType.${exDictColumnMap[key][0].originalColumn.dictType?upper_case}.getVal());
@@ -113,7 +114,6 @@ public class ${table.javaName}ServiceImpl extends SystemBaseServiceImpl<${table.
 		}
 		</#if>
 		</#list>
-
 
 		<#if table.fileColumns?exists>
 		<#list table.fileColumns as fileColumn>
@@ -224,15 +224,15 @@ public class ${table.javaName}ServiceImpl extends SystemBaseServiceImpl<${table.
 		${table.javaName}BO temp = null ;
 
 		<#list indexs as index>
-			ckBO = new ${table.javaName}BO();
-			ckBO.setId( ${table.javaName?uncap_first}BO.getId() );
-			<#list index.columns as col>
-				ckBO.${col.setMethodName}(${table.javaName?uncap_first}BO.${col.getMethodName}());
-			</#list>
-			temp = this.selectCheck(ckBO);
-			if (EntityUtil.isEntityExist(temp)) {
+		ckBO = new ${table.javaName}BO();
+		ckBO.setId( ${table.javaName?uncap_first}BO.getId() );
+		<#list index.columns as col>
+		ckBO.${col.setMethodName}(${table.javaName?uncap_first}BO.${col.getMethodName}());
+		</#list>
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
 			throw new BizException(EnumErrorMsg.business_error.getCode(),"${index.tipMsg}");
-			}
+		}
 
 		</#list>
 
