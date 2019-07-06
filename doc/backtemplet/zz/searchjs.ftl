@@ -77,6 +77,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
     options.sampleData = {id: "id", name: "${table.businessNameCamelCase!}"};
     options.htmlTemple = tableTemple;
     options.compiledSuccess = function(){
+
         // 查询按钮事件
         dialog.tableTemple.find("button").bind("click", function(){
             search();
@@ -105,7 +106,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
                 <#break>
             </#if>
             <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
-            params["${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"] = dialog.tableTemple.find('select[name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"]').val();
+            params["${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"] = dialog.tableTemple.find('input[name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"]').val();
             </#if>
         </#list>
         </#if>
