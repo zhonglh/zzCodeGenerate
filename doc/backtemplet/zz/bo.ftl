@@ -26,7 +26,7 @@ import ${table.mainTableConfig.fullPackageName}.bo.${table.mainTableConfig.javaN
 import org.apache.commons.lang3.StringUtils;
 
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;

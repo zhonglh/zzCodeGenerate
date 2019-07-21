@@ -1,6 +1,6 @@
 package ${table.fullPackageName}.${templet.fileInnerPackage};
 
-import com.zz.bms.enums.*;
+import ${project.projectPackage}.enums.*;
 
 import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;

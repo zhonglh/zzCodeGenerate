@@ -4,7 +4,7 @@
 
     insert into ts_dict_type(id,pid,dict_type_code,dict_type_name,dict_type_showable,dict_addable,dict_update,dict_delete,orderby)
     values(
-        '${dictType.id}' , null , '${dictType.code}' , '${dictType.name}' , '0' , '0' , '0' , '0' , ${dictType_index}
+        '${dictType.id}' , null , '${dictType.code}' , '${dictType.name}' , '1' , '0' , '0' , '0' , ${dictType_index}
     );
 
     -- setting ${dictType.code} dicts
