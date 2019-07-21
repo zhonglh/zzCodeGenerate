@@ -25,6 +25,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
 <#if querys?exists >
     <#list querys as being>
         <#if being.columnPage?exists && being.columnPage.columnConfig?exists>
+            <#if (being_index < 5)>
             <#if being.columnPage.element == 'text' || being.columnPage.element == 'textarea' >
                 tableTemple += '<input type="text"  class="form-control input-sm" style="width: 200px;" id="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>" name="${being.queryFieldName}<#if being.queryRelation?exists && being.queryRelation?length !=0 && being.queryRelation != 'eq' >_${being.queryRelation}</#if>"  placeholder="${being.queryPlaceholder}" >';
             <#elseif being.columnPage.element == 'digits' >
@@ -43,6 +44,7 @@ function open${table.fullUpperResourceName}Win(config, callBack)
 
             <#elseif being.columnPage.element == 'openwin' >
             <#else >
+            </#if>
             </#if>
         </#if>
     </#list>

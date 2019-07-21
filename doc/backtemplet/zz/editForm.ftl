@@ -135,12 +135,20 @@
                                                placeholder="请输入${being.columnComment}" autocomplete="off"
                                                value="${r"${"} m.${being.javaName} ${r"}"}" id="${being.javaName}" name="${being.javaName}" step="0.01"
                                                 <#if being.max?exists>max="${being.max}" </#if> <#if being.min?exists>min="${being.min}" </#if> <#if being.minlength?exists>minlength="${being.minlength}" </#if> <#if being.maxlength?exists>maxlength="${being.maxlength}" </#if> />
-                                    <#elseif being.element == 'date' ||  being.element == 'timestamp' >
+                                    <#elseif being.element == 'date'  >
 
                                             <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if being.required?exists && being.required == '1'>required</#if>"
                                                    placeholder="请输入${being.columnComment}" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${being.javaName}'})"
                                                    value='<fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${being.javaName}" name="${being.javaName}" readonly   />
+
+                                    <#elseif  being.element == 'timestamp' >
+
+                                        <input type="text" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if being.required?exists && being.required == '1'>required</#if>"
+                                               placeholder="请输入${being.columnComment}" autocomplete="off"
+                                               onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', el: '${being.javaName}'})"
+                                               value='<fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd HH:mm:ss" />' id="${being.javaName}" name="${being.javaName}" readonly   />
+
 
                                     <#elseif being.element == 'email' >
                                         <input type="email" <#if being.required?exists && being.required == '1'>required="required"</#if> class="form-control input-sm <#if being.required?exists && being.required == '1'>required</#if>"
@@ -238,11 +246,16 @@
                                                placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                value="${r"${"} m.${nextPage.javaName} ${r"}"}" id="${nextPage.javaName}" name="${nextPage.javaName}" step="0.01"
                                                 <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                    <#elseif nextPage.element == 'date' ||  nextPage.element == 'timestamp' >
+                                    <#elseif nextPage.element == 'date'  >
                                             <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
                                                    placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${nextPage.javaName}'})"
                                                            value='<fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
+                                    <#elseif   nextPage.element == 'timestamp' >
+                                        <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                               placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                               onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', el: '${nextPage.javaName}'})"
+                                               value='<fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd HH:mm:ss" />' id="${nextPage.javaName}" name="${nextPage.javaName}" readonly   />
 
                                     <#elseif nextPage.element == 'email' >
                                         <input type="email" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
@@ -441,12 +454,20 @@
                                                                        placeholder="请输入${listPage.columnComment}" autocomplete="off"
                                                                        value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" step="0.01"
                                                                         <#if listPage.max?exists>max="${listPage.max}" </#if> <#if listPage.min?exists>min="${listPage.min}" </#if> <#if listPage.minlength?exists>minlength="${listPage.minlength}" </#if> <#if listPage.maxlength?exists>maxlength="${listPage.maxlength}" </#if> />
-                                                            <#elseif listPage.element == 'date' ||  listPage.element == 'timestamp' >
+                                                            <#elseif listPage.element == 'date'  >
 
                                                                 <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if listPage.required?exists && listPage.required == '1'>required</#if>"
                                                                        placeholder="请输入${listPage.columnComment}" autocomplete="off"
                                                                        onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${listPage.javaName}'})"
                                                                        value='<fmt:formatDate value=“${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}” pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" readonly   />
+
+                                                            <#elseif  listPage.element == 'timestamp' >
+
+                                                                <input type="text" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if listPage.required?exists && listPage.required == '1'>required</#if>"
+                                                                       placeholder="请输入${listPage.columnComment}" autocomplete="off"
+                                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', el: '${childColumn.tableBO.simpleName}BO_${listPage.javaName}'})"
+                                                                       value='<fmt:formatDate value=“${r"${"} m.${childColumn.tableBO.simpleName}BO.${listPage.javaName} ${r"}"}” pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${listPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${listPage.javaName}" readonly   />
+
 
                                                             <#elseif listPage.element == 'email' >
                                                                 <input type="email" <#if listPage.required?exists && listPage.required == '1'>required="required"</#if> class="form-control input-sm <#if listPage.required?exists && listPage.required == '1'>required</#if>"
@@ -526,11 +547,17 @@
                                                                            placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                                            value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" step="0.01"
                                                                             <#if nextPage.max?exists>max="${nextPage.max}" </#if> <#if nextPage.min?exists>min="${nextPage.min}" </#if> <#if nextPage.minlength?exists>minlength="${nextPage.minlength}" </#if> <#if nextPage.maxlength?exists>maxlength="${nextPage.maxlength}" </#if> />
-                                                                <#elseif nextPage.element == 'date' ||  nextPage.element == 'timestamp' >
+                                                                <#elseif nextPage.element == 'date'  >
 
                                                                     <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
                                                                            placeholder="请输入${nextPage.columnComment}" autocomplete="off"
                                                                            onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: '${childColumn.tableBO.simpleName}BO_${nextPage.javaName}'})"
+                                                                           value='<fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" readonly   />
+                                                                <#elseif   nextPage.element == 'timestamp' >
+
+                                                                    <input type="text" <#if nextPage.required?exists && nextPage.required == '1'>required="required"</#if> class="form-control input-sm Wdate <#if nextPage.required?exists && nextPage.required == '1'>required</#if>"
+                                                                           placeholder="请输入${nextPage.columnComment}" autocomplete="off"
+                                                                           onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss', el: '${childColumn.tableBO.simpleName}BO_${nextPage.javaName}'})"
                                                                            value='<fmt:formatDate value="${r"${"} m.${childColumn.tableBO.simpleName}BO.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd" />' id="${childColumn.tableBO.simpleName}BO_${nextPage.javaName}" name="${childColumn.tableBO.simpleName}BO.${nextPage.javaName}" readonly   />
 
                                                                 <#elseif nextPage.element == 'email' >
