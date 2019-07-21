@@ -24,7 +24,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 
 
 	@Override
-	public List<Table> readAllTable(DbConfig dbContig) throws SQLException {
+	public List<Table> readAllTable(DbConfig dbContig,String tableSchema) throws SQLException {
 
 		Connection conn = null;
 		Statement stmt = null;
@@ -37,12 +37,12 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
 
-			rs = stmt.executeQuery(getReadAllTableSQL());
+			rs = stmt.executeQuery(getReadAllTableSQL(tableSchema));
 
 			while (rs.next()) {
 				Table table = new Table();
 				String tableName = rs.getString(1);
-				String tableSchema = rs.getString(2);
+				tableSchema = rs.getString(2);
 				String tableType = rs.getString(3);
 				String tableComment = rs.getString(4);
 				tableName = tableName.toLowerCase();
@@ -378,7 +378,7 @@ public abstract class AbstractReadDbProcess implements ReadDbProcess {
 	 * 获取所有表(视图)的SQL
 	 * @return
 	 */
-	protected abstract String getReadAllTableSQL() ;
+	protected abstract String getReadAllTableSQL(String tableSchema) ;
 
 
 	/**

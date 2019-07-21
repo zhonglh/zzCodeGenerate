@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>福布罗代码生成平台</title>
+<title>ZZ代码生成平台</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link href="${ctx}/statics/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -51,6 +51,36 @@
 						
 						
 						    <table id="tableForm">
+
+
+								<div id="content-sec" style="padding: 10px 10px 0 10px;">
+									<!-- 筛选条件表单开始 -->
+									<form id="searchForm" onsubmit="return false" >
+
+										<div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
+											<div class="form-inline" role="form">
+
+												<div class="form-group"   >
+													<select id="projectId" name="projectId"
+															class="form-control input-sm" style="margin-bottom: 3px">
+														<option value="">请选择项目</option>
+														<c:forEach items="${projects}" var="project">
+															<option value="${project.id}">${project.projectName}</option>
+														</c:forEach>
+													</select>
+												</div>
+
+
+												<div class="form-group"   >
+													<button type="button"  class="btn btn-primary" onclick="search()">
+														<i class="fa fa-search"></i>查询
+													</button>
+												</div>
+											</div>
+
+										</div>
+									</form>
+								</div>
 						    
 					    	</table>
 
@@ -154,6 +184,17 @@
 
 		function refreshTable() {
 			$('#tableForm').bootstrapTable('refresh');
+		}
+
+
+		function search() {
+			var url = '${ctx}/table/config/list';
+			var projectId = $('#projectId option:selected').val();
+			if(projectId != undefined && projectId != null && projectId != ""){
+				url = url + "?projectId="+ projectId ;
+			}
+			debugger ;
+			$bt.bootstrapTable('refresh', {url: url});
 		}
 
 	</script>

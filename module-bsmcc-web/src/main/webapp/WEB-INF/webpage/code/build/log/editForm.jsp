@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>福布罗代码生成平台</title>
+<title>ZZ代码生成平台</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link href="${ctx}/statics/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -76,6 +76,24 @@
                                             <option value="${group.id}" <c:if test="${entity.templetGroupId ==  group.id }">selected="selected"</c:if> >${group.groupName}</option>
                                         </c:forEach>
                                     </select>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">依赖项目：</label>
+                                <div class="col-sm-8">
+
+                                    <select id="dependentProjectId" name="dependentProjectId"  class="form-control">
+                                        <c:forEach items="${projects}" var="project">
+                                            <option value="${project.id}" <c:if test="${entity.projectId ==  project.id }">selected="selected"</c:if> >${project.projectName}</option>
+                                        </c:forEach>
+                                    </select>
+
+
+
                                 </div>
                             </div>
                         

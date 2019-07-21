@@ -91,6 +91,38 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
 
 
+    @RequestMapping(
+            value = {"/toNext"},
+            method = {RequestMethod.POST ,RequestMethod.GET }
+    )
+    public String toNext(TcgTableConfigBO m, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            this.assertHasCreatePermission();
+            this.processQueryString(modelMap, request);
+            this.setCommonData(m, modelMap);
+            this.customInit(m, modelMap);
+            this.setInit(m);
+            this.baseRwService.processResult(m);
+            this.customInfoByCreateForm(m, modelMap);
+            modelMap.addAttribute("m", m);
+            modelMap.addAttribute("entity", m);
+            this.processPath(modelMap);
+            String pageName = "addNextForm";
+            return this.viewName(pageName);
+        } catch (BizException var6) {
+            this.logger.error(var6.getMessage(), var6);
+            throw var6;
+        } catch (RuntimeException var7) {
+            this.logger.error(var7.getMessage(), var7);
+            throw var7;
+        } catch (Exception var8) {
+            this.logger.error(var8.getMessage(), var8);
+            throw new RuntimeException(var8);
+        }
+    }
+
+
+
 
     /**
      * 根据数据库设置 返回该库 所有的表和视图
@@ -102,7 +134,8 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
      */
     @RequestMapping(value = "/tableListByDbConfig/{dbId}" , method = RequestMethod.GET)
     @ResponseBody
-    public Object tableListByDbConfig(@PathVariable("dbId") String dbId, TcgTableConfigBO tcgTableConfigBO , Model model , TcgTableConfigQueryWebImpl query ,HttpServletRequest request, HttpServletResponse response) {
+    public Object tableListByDbConfig(@PathVariable("dbId") String dbId, TcgTableConfigBO tcgTableConfigBO , Model model ,
+                                      TcgTableConfigQueryWebImpl query ,HttpServletRequest request, HttpServletResponse response) {
 
 
         tcgTableConfigBO.setDbId(dbId);
@@ -114,7 +147,9 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         try {
             List<Table> tables = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readAllTable(
-                    new DbConfig(dbConfigBO.getDbType() , dbConfigBO.getDbUrl() , dbConfigBO.getDbUsername() , dbConfigBO.getDbPassword())
+                    new DbConfig(dbConfigBO.getDbType() , dbConfigBO.getDbUrl() ,
+                            dbConfigBO.getDbUsername() , dbConfigBO.getDbPassword() ) ,
+                    tcgTableConfigBO.getSchemaName()
             );
             Map<String,Table> tableMap = new TreeMap<String ,Table>();
             for(Table table : tables){
@@ -125,6 +160,7 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
             TcgTableConfigQuery existQuery = new TcgTableConfigQueryImpl();
             existQuery.dbId(dbId);
+            existQuery.projectId(tcgTableConfigBO.getProjectId());
             List<TcgTableConfigBO> exists = this.baseRwService.list(existQuery.buildWrapper());
             for(TcgTableConfigBO tableBO : exists) {
                 tableMap.remove(tableBO.getSchemaName() + tableBO.getTableName());
@@ -178,9 +214,12 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
 
         Map<String,List<Table>> tablesMap = new HashMap<String,List<Table>>();
         try {
-            List<String> schemaList = null;
+            List<String> schemaList = new ArrayList<String>();
+
+            if(StringUtils.isNotEmpty(m.getSchemaName())){
+                schemaList.add(m.getSchemaName());
+            }
             if(EnumYesNo.YES.getCode().equals(projectBO.getIsMultiSchema())) {
-                schemaList = new ArrayList<String>();
                 if(StringUtils.isNotEmpty(projectBO.getOtherSchema())){
                     String[] schemas = projectBO.getOtherSchema().split(",");
                     for(String schema : schemas) {
@@ -194,20 +233,40 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
             }
 
             List<Table> dbTables = ReadDbFactory.buildReadDbProcess(dbConfigBO.getDbType()).readAllTable(
-                    new DbConfig(dbConfigBO.getDbType(), dbConfigBO.getDbUrl(), dbConfigBO.getDbUsername(), dbConfigBO.getDbPassword())
+                    new DbConfig(dbConfigBO.getDbType(), dbConfigBO.getDbUrl(),
+                            dbConfigBO.getDbUsername(), dbConfigBO.getDbPassword()) ,
+                    null
             );
-            for(Table table : dbTables){
-                String tableSchema = table.getTableSchema();
-                String tableName = table.getTableName();
-                if(schemaList != null && !schemaList.contains(tableSchema)){
-                    continue;
+
+            if(schemaList == null || schemaList.isEmpty()) {
+                for (Table table : dbTables) {
+                    String tableSchema = table.getTableSchema();
+                    String tableName = table.getTableName();
+                    List<Table> list = tablesMap.get(tableSchema);
+                    if (list == null) {
+                        list = new ArrayList<Table>();
+                        tablesMap.put(tableSchema, list);
+                    }
+                    list.add(table);
                 }
-                List<Table> list = tablesMap.get(tableSchema);
-                if(list == null){
-                    list = new ArrayList<Table>();
-                    tablesMap.put(tableSchema,list);
+            }else {
+
+                for (Table table : dbTables) {
+                    String tableSchema = table.getTableSchema();
+                    String tableName = table.getTableName();
+                    List<Table> list = tablesMap.get(tableSchema);
+                    if (!schemaList.contains(tableSchema)) {
+                        continue;
+                    }
+                    if (list == null) {
+                        list = new ArrayList<Table>();
+                        tablesMap.put(tableSchema, list);
+                    }
+                    list.add(table);
                 }
-                list.add(table);
+
+
+
             }
         }catch(Exception e){
             throw new BizException(e);
@@ -655,6 +714,13 @@ public class TcgTableConfigController extends ZzccBaseController<TcgTableConfigB
     }
 
 
+    @Override
+    protected void setCommonData(TcgTableConfigBO m, ModelMap model) {
+        List<TcgProjectBO> projectBOS = tcgProjectService.list();
+        if(projectBOS != null && !projectBOS.isEmpty()){
+            model.put("projects" , projectBOS);
+        }
+    }
 
     @Override
     protected QueryWrapper buildQueryWrapper(TcgTableConfigQueryWebImpl query, TcgTableConfigBO m) {

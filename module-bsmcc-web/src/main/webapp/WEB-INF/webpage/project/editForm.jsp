@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>福布罗代码生成平台</title>
+<title>ZZ代码生成平台</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link href="${ctx}/statics/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -166,7 +166,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Scheam名称：</label>
+                                <label class="col-sm-3 control-label">Scheam名称(包括本项目)：</label>
                                 <div class="col-sm-8">
                                     <input id="otherSchema" name="otherSchema" value="${entity.otherSchema }" class="form-control" placeholder="多个Schema用逗号隔开" <c:if test="${entity.isMultiSchema ==  '0' }">selected="readonly"</c:if> type="text" aria-required="true" aria-invalid="true"  class="error">
                                 </div>

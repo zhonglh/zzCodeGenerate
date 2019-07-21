@@ -76,7 +76,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 
 	@RequestMapping(value = "/cg", method = RequestMethod.POST)
 	@ResponseBody
-	public Object cg(TcgCodeBuildLogBO m, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+	public Object cg(TcgCodeBuildLogBO m, String dependentProjectId, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 		TcgProjectBO projectBO = projectService.getById(m.getProjectId());
 
@@ -97,7 +97,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 			autoBuildView = true;
 		}
 
-		cgBusiness.cg(projectBO , templets , autoBuildView);
+		cgBusiness.cg(projectBO , templets , dependentProjectId , autoBuildView);
 		String basePath = Applications.getUsrDir() + File.separator + "cg";
 		logger.debug("代码已经生成， 请到该目录查看 : "+basePath);
 		return this.create(m,model, request,  response);
@@ -107,7 +107,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 
 
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
-	public void download(TcgCodeBuildLogBO m, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+	public void download(TcgCodeBuildLogBO m,String dependentProjectId, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 		TcgProjectBO projectBO = projectService.getById(m.getProjectId());
 
@@ -129,7 +129,7 @@ public class TcgCodeBuildLogController extends ZzccBaseController<TcgCodeBuildLo
 			autoBuildView = true;
 		}
 
-		cgBusiness.cg(projectBO , templets , autoBuildView);
+		cgBusiness.cg(projectBO , templets , dependentProjectId ,autoBuildView);
 
 		String basePath = Applications.getUsrDir() + File.separator + "cg";
 		ILoginUserEntity session = Applications.getLoginUserEntity();

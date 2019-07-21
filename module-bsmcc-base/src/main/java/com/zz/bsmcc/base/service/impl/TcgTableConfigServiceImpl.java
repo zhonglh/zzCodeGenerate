@@ -91,7 +91,9 @@ public class TcgTableConfigServiceImpl extends BaseServiceImpl<TcgTableConfigBO,
 
 		if(StringUtils.isNotEmpty(tcgTableConfigBO.getModuleId())) {
 			TcgModuleConfigBO tcgModuleConfigBO = tcgModuleConfigDAO.selectById(tcgTableConfigBO.getModuleId());
-			tcgTableConfigBO.setModuleName(tcgModuleConfigBO.getModuleName());
+			if(tcgModuleConfigBO != null) {
+				tcgTableConfigBO.setModuleName(tcgModuleConfigBO.getModuleName());
+			}
 		}
 
 		if(StringUtils.isNotEmpty(tcgTableConfigBO.getTableType())) {

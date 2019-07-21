@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>福布罗代码生成平台</title>
+<title>ZZ代码生成平台</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link href="${ctx}/statics/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -48,11 +48,41 @@
 
 					<div class="col-sm-12">
 						<!-- Example Events -->
-						
-						
-						    <table id="moduleForm">
-						    
-					    	</table>
+
+
+						<table id="moduleForm">
+
+
+							<div id="content-sec" style="padding: 10px 10px 0 10px;">
+								<!-- 筛选条件表单开始 -->
+								<form id="" onsubmit="return false" >
+
+									<div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
+										<div class="form-inline" role="form">
+
+											<div class="form-group"   >
+												<select id="projectId" name="projectId"
+														class="form-control input-sm" style="margin-bottom: 3px">
+													<option value="">请选择项目</option>
+													<c:forEach items="${projects}" var="project">
+														<option value="${project.id}">${project.projectName}</option>
+													</c:forEach>
+												</select>
+											</div>
+
+
+											<div class="form-group"   >
+												<button type="button"  class="btn btn-primary" onclick="search()">
+													<i class="fa fa-search"></i>查询
+												</button>
+											</div>
+										</div>
+
+									</div>
+								</form>
+							</div>
+
+						</table>
 
 
 
@@ -111,19 +141,19 @@
         },{
             field: 'id',
             visible:false
-        }, {
+        },{
+			field: 'moduleName',
+			title: '模块名称',
+			width:200
+		}, {
             field: 'projectName',
             title: '项目名称',
-            width:120
-        },{
-            field: 'moduleName',
-            title: '模块名称',
-            width:120
+            width:250
         }, {
             field: 'moduleFullResource',
             title: '资源名称'
         }];
-		
+		debugger
 		init('moduleForm','${ctx}/module/config/list');
 		
 		
@@ -142,6 +172,18 @@
 
 		function refreshTable() {
 			$('#moduleForm').bootstrapTable('refresh');
+		}
+
+
+
+		function search() {
+			var url = '${ctx}/module/config/list';
+			var projectId = $('#projectId option:selected').val();
+			if(projectId != undefined && projectId != null && projectId != ""){
+				url = url + "?projectId="+ projectId ;
+			}
+			debugger ;
+			$bt.bootstrapTable('refresh', {url: url});
 		}
 
 	</script>

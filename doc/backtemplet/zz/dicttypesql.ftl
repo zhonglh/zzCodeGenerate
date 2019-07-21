@@ -8,20 +8,14 @@
     );
 
     -- setting ${dictType.code} dicts
-    insert into ts_dict(id,dict_type_id,dict_val,dict_name,orderby,create_user_id,create_user_name,create_time,version_no,delete_flag, tenant_id)
-    values(
-        REPLACE(uuid() , "-" , "") , '${dictType.id}' , '' , ''  , 1 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
-    );
-
-    insert into ts_dict(id,dict_type_id,dict_val,dict_name,orderby,create_user_id,create_user_name,create_time,version_no,delete_flag, tenant_id)
-    values(
-        REPLACE(uuid() , "-" , "") , '${dictType.id}' , '' , ''  , 2 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
-    );
-
-    insert into ts_dict(id,dict_type_id,dict_val,dict_name,orderby,create_user_id,create_user_name,create_time,version_no,delete_flag, tenant_id)
-    values(
-        REPLACE(uuid() , "-" , "") , '${dictType.id}' , '' , ''  , 3 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
-    );
+    -- insert into ts_dict(id,dict_type_id,dict_val,dict_name,orderby,create_user_id,create_user_name,create_time,version_no,delete_flag, tenant_id)
+    -- values(
+    --     REPLACE(uuid() , "-" , "") , '${dictType.id}' , '' , ''  , 1 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
+    -- );
+    -- insert into ts_dict(id,dict_type_id,dict_val,dict_name,orderby,create_user_id,create_user_name,create_time,version_no,delete_flag, tenant_id)
+    -- values(
+    --     REPLACE(uuid() , "-" , "") , '${dictType.id}' , '' , ''  , 2 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
+    -- );
 
 
 

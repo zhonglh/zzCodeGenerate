@@ -210,13 +210,13 @@ public class CgBusiness extends CgBaseBusiness{
      * @param projectId
      * @param templetGroupId
      */
-    public void cg(String projectId , String templetGroupId , boolean autoBuildView) {
+    public void cg(String projectId , String templetGroupId , String dependentProjectId , boolean autoBuildView) {
         TcgProjectBO projectBO = tcgProjectService.getById(projectId);
         TcgTempletQuery templetQuery = new TcgTempletQueryImpl();
         templetQuery.groupId(templetGroupId);
         List<TcgTempletBO> templets = tcgTempletService.list(templetQuery.buildWrapper());
         if(templets != null && !templets.isEmpty()) {
-            cg(projectBO, templets , autoBuildView);
+            cg(projectBO, templets ,dependentProjectId , autoBuildView);
         }
 
     }
@@ -226,7 +226,11 @@ public class CgBusiness extends CgBaseBusiness{
      * @param projectBO
      * @param templets
      */
-    public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets , boolean autoBuildView ) {
+    public void cg(TcgProjectBO projectBO, List<TcgTempletBO> templets , String dependentProjectId, boolean autoBuildView ) {
+
+
+        //所有的Project
+        Map<String , TcgProjectBO> projectBOMap = new HashMap<String , TcgProjectBO>();
 
         //所有的字典类型
         Map<String,String> dictTypeMap = new HashMap<String,String>();
@@ -238,35 +242,90 @@ public class CgBusiness extends CgBaseBusiness{
         Map<String , TcgTempletGroupOperationBO> operationBOMap = getOperations(templets.get(0).getGroupId());
 
 
+        if(StringUtils.isNotEmpty(dependentProjectId)){
+            projectBOMap.put(projectBO.getId() , projectBO ) ;
+            String[] projectIds = dependentProjectId.split(",");
+            Collection<TcgProjectBO> list = tcgProjectService.listByIds(Arrays.asList(projectIds));
+            for(TcgProjectBO project : list){
+                projectBOMap.put(project.getId() , project ) ;
+            }
+        }else {
+            projectBOMap.put(projectBO.getId() , projectBO ) ;
+        }
+
+
+        QueryWrapper<TcgModuleConfigBO> queryWrapper = null;
         TcgModuleConfigQuery moduleConfigQuery = new TcgModuleConfigQueryImpl();
         moduleConfigQuery.projectId(projectBO.getId());
+        queryWrapper = moduleConfigQuery.buildWrapper();
         Map<String,TcgModuleConfigBO> moduleConfigMap = new HashMap<String,TcgModuleConfigBO>();
-        QueryWrapper queryWrapper = moduleConfigQuery.buildWrapper();
         queryWrapper.orderByAsc("create_time");
         List<TcgModuleConfigBO> moduleConfigBOs = tcgModuleConfigService.list(queryWrapper);
         if(moduleConfigBOs != null && !moduleConfigBOs.isEmpty()){
             for(TcgModuleConfigBO moduleConfigBO : moduleConfigBOs){
                 moduleConfigMap.put(moduleConfigBO.getId() , moduleConfigBO);
             }
-
             setModuleLevel(moduleConfigMap);
-
             moduleConfigBOs.sort((o1,o2) -> o1.getLevel() * 100000 - o2.getLevel() * 100000  );
-
-
             //处理菜单
             processMenu(menus,moduleConfigBOs ,moduleConfigMap);
         }
+        if(StringUtils.isNotEmpty(dependentProjectId)){
+            String project[] = dependentProjectId.split(",");
+            queryWrapper = new QueryWrapper<TcgModuleConfigBO>();
+            queryWrapper.in("project_id" , project) ;
+            moduleConfigBOs = tcgModuleConfigService.list(queryWrapper);
+            if(moduleConfigBOs != null && !moduleConfigBOs.isEmpty()) {
+                for (TcgModuleConfigBO moduleConfigBO : moduleConfigBOs) {
+                    moduleConfigMap.put(moduleConfigBO.getId(), moduleConfigBO);
+                }
+            }
+            //setModuleLevel(moduleConfigMap);
+        }
+
+
+
+
+
 
 
         Map<String,TcgTableConfigBO> tableConfigMap = new HashMap<String,TcgTableConfigBO>();
+
         TcgTableConfigQuery tableConfigQuery = new TcgTableConfigQueryImpl();
         tableConfigQuery.projectId(projectBO.getId());
         QueryWrapper tableWrapper = tableConfigQuery.buildWrapper();
-
         tableWrapper.orderByDesc("is_table" );
         tableWrapper.orderByAsc("create_time" );
         List<TcgTableConfigBO> tableConfigs = tcgTableConfigService.list(tableWrapper);
+
+        List<TcgTableConfigBO> dependentTabletableConfigs = null;
+
+        if(StringUtils.isNotEmpty(dependentProjectId)) {
+            String[] projectIds = dependentProjectId.split(",");
+            QueryWrapper<TcgTableConfigBO> dependentTableTableWrapper = new QueryWrapper<TcgTableConfigBO>();
+            dependentTableTableWrapper.in("project_id" , projectIds) ;
+            dependentTableTableWrapper.orderByDesc("is_table");
+            dependentTableTableWrapper.orderByAsc("create_time");
+            dependentTabletableConfigs = tcgTableConfigService.list(dependentTableTableWrapper);
+            if(dependentTabletableConfigs != null && !dependentTabletableConfigs.isEmpty()){
+                tableConfigs.addAll(dependentTabletableConfigs);
+            }
+        }
+
+
+        for(TcgTableConfigBO tableConfig : tableConfigs) {
+            tableConfigMap.put(tableConfig.getSchemaName() + "." + tableConfig.getTableName(), tableConfig);
+            tableConfigMap.put(tableConfig.getId(), tableConfig);
+        }
+
+        /*if(dependentTabletableConfigs != null && !dependentTabletableConfigs.isEmpty()){
+            for(TcgTableConfigBO tableConfig : dependentTabletableConfigs) {
+                tableConfigMap.put(tableConfig.getSchemaName() + "." + tableConfig.getTableName(), tableConfig);
+                tableConfigMap.put(tableConfig.getId(), tableConfig);
+            }
+        }*/
+
+
 
 
         boolean isColumnError = false;
@@ -274,11 +333,14 @@ public class CgBusiness extends CgBaseBusiness{
         StringBuilder columnErrorSb = new StringBuilder(" 下列表没有设置业务名称列 : \r\n");
         //StringBuilder mainTableErrorSb = new StringBuilder(" \r\n 下列视图没有设置对应的主表信息 : \n");
         for(TcgTableConfigBO tableConfig : tableConfigs){
-            tableConfigMap.put(tableConfig.getSchemaName()+"."+tableConfig.getTableName(), tableConfig);
-            tableConfigMap.put(tableConfig.getId(), tableConfig);
+
+            TcgProjectBO project = projectBOMap.get(tableConfig.getProjectId());
+            if(project == null){
+                project = projectBO;
+            }
 
             //处理表的资源和包名
-            processTableResource(projectBO, moduleConfigMap, tableConfig);
+            processTableResource(project, moduleConfigMap, tableConfig);
 
             if(EnumYesNo.YES.getCode().equals(tableConfig.getIsTable())) {
                 if (EnumYesNo.YES.getCode().equals(tableConfig.getIsTree()) && StringUtils.isEmpty(tableConfig.getBusinessName())) {
@@ -537,7 +599,10 @@ public class CgBusiness extends CgBaseBusiness{
             }
 
             for(TcgColumnConfigBO column : columns){
-                if(EnumYesNo.YES.getCode().equals(column.getColumnIsdict()) && StringUtils.isNotEmpty(column.getDictType())){
+                if(EnumYesNo.YES.getCode().equals(column.getColumnIsdict()) &&
+                        StringUtils.isNotEmpty(column.getDictType()) &&
+                        projectBO.getId().equals(column.getTableBO().getProjectId())
+                ){
                     dictTypeMap.put(column.getDictType().trim().toLowerCase() , column.getColumnComment());
                 }
             }
@@ -626,6 +691,10 @@ public class CgBusiness extends CgBaseBusiness{
                 int index = 0;
                 for(TcgTableConfigBO p : tableConfig.getFkTables()){
                     if(EnumTableType.singleTable.getVal().equalsIgnoreCase(p.getTableType()) ){
+                        index ++;
+                        continue;
+                    }
+                    if(p.getChildFkTables() == null || p.getChildFkColumns() == null ){
                         index ++;
                         continue;
                     }
@@ -737,7 +806,7 @@ public class CgBusiness extends CgBaseBusiness{
             List<MenuPO> subMenus = new ArrayList<MenuPO>() ;
 
             for(MenuPO menuPO : menus){
-                if(menuPO.getTopId().equals(top.getTopId())){
+                if(menuPO.getTopId() != null && top != null && menuPO.getTopId().equals(top.getTopId())){
                     subMenus.add(menuPO);
 
                 }
@@ -756,7 +825,7 @@ public class CgBusiness extends CgBaseBusiness{
             List<TablePO> subTables = new ArrayList<TablePO>();
 
             for(MenuPO menuPO : menus) {
-                if (menuPO.getTopId().equals(top.getTopId())) {
+                if (menuPO.getTopId() != null && top != null && menuPO.getTopId().equals(top.getTopId())) {
 
                     for(TablePO tp : tablePOMap.values()){
                         if(menuPO.getId().equals(tp.getTableBO().getModuleId())){
@@ -822,7 +891,9 @@ public class CgBusiness extends CgBaseBusiness{
 
         //生成代码
         for(TablePO tablePO : tablePOMap.values()){
-            cgCode(tablePO, projectBO, templets);
+            if(tablePO.getTableBO().getProjectId().equals(projectBO.getId())) {
+                cgCode(tablePO, projectBO, templets);
+            }
         }
 
     }

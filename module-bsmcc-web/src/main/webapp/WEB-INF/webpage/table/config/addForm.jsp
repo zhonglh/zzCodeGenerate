@@ -37,63 +37,68 @@
 
 </head>
 
+
 <body class="gray-bg">
-	<div class="wrapper wrapper-content animated fadeInRight">
+<div class="animated">
 
-		<div class="ibox float-e-margins">
-
-				<div class="ibox-content">
-					<div class="row row-lg">
-
-						<table id="tables">
-
-						</table>
+	<div class="ibox-content">
+		<form class="form-horizontal m-t" action="${ctx}/table/config/toNext" id="signupForm" >
 
 
-							<div class="col-md-12 " style="position:absolute;left:0;top:0;">
 
 
-								<div class="btn-group hidden-xs" id="exampleTableEventsToolbar"	role="group">
 
-									<form id="addForm" >
-									<div class="row ">
-										<div class="col-sm-4" >
-											<button type="button" id="docg" class="btn btn-outline btn-default" title='你确定要从这个表中读取吗?'  url='${ctx}/table/config/createAll' onClick="ajaxConfirm4Page('tables',this ,'40', 'addForm');">
-												<i class="glyphicon glyphicon-wrench	" aria-hidden="true"></i>确认添加
-											</button>
-										</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">项目：</label>
+				<div class="col-sm-8">
 
-										<div class="col-sm-4" >
-											<select id="projectId" name="projectId" class="form-control">
-												<c:forEach var="project"   items="${projects }"   varStatus="status1">
-												<option value="${project.id }" >${project.projectName}</option>
-												</c:forEach>
-											</select>
-										</div>
-
-										<div class="col-sm-4">
-											<select id="dbId" name="dbId" class="form-control">
-												<c:forEach var="dbConfig"   items="${dbConfigs }"   varStatus="status1">
-													<option value="${dbConfig.id }" >${dbConfig.title}</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-
-									</form>
-
-
-								</div>
-
-
-							</div>
-					</div>
+					<select id="projectId" name="projectId"  class="form-control"  onchange="changeProject(this)">
+						<c:forEach items="${projects}" var="project">
+							<option value="${project.id}" <c:if test="${entity.projectId ==  project.id }">selected="selected"</c:if> >${project.projectName}</option>
+						</c:forEach>
+					</select>
 				</div>
+			</div>
 
 
 
-		</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">数据库：</label>
+				<div class="col-sm-8">
+
+					<select id="dbId" name="dbId" class="form-control">
+						<c:forEach var="dbConfig"   items="${dbConfigs }"   varStatus="status1">
+							<option value="${dbConfig.id }" >${dbConfig.title}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Schema：</label>
+				<div class="col-sm-8">
+					<input id="schemaName" name="schemaName"  class="form-control" type="text"   aria-invalid="true"  class="error">
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-3">
+					<button class="btn btn-primary" onclick="submitForm(this.form)">下一步</button>
+				</div>
+			</div>
+		</form>
 	</div>
+
+</div>
 
 
 	<script src="${ctx}/statics/js/jquery.min.js?v=2.1.4"></script>
@@ -110,87 +115,11 @@
 	<script src="${ctx}/statics/plug-in/toastr/toastr.min.js"></script>
 	<script src="${ctx}/statics/plug-in/toastr/toastr.js"></script>
 	<script type="text/javascript">
-	
-	
-		
-		var columns1 = [{
-	        field: 'aa',
-	        title: '选择',
-	        checkbox:true,
-	        width:40
-	    },{
-	        field: 'id',
-	        visible:false
-	    },{
-	        field: 'tableName',
-	        title: '表名称',
-	        width:200
-	    } ,{
-            field: 'tableSchema',
-            title: 'Schema',
-            width:200
-        } ,{
-            field: 'tableType',
-            title: '表类型',
-            width:200
-        },{
-            field: 'tableComment',
-            title: '表说明',
-            width:200
-        }  ];
-		
-		var $bt ;
-		var $url ;
-		
-		function init(tablename,url){
-			$url = url;
-			$bt = $('#'+tablename).bootstrapTable({
-			    url: url,
-			    toolbar:'#exampleTableEventsToolbar',
-			    dataType:'json',
-			    pagination: false,
-			    selectItemName:"id",
-			    sidePagination:'server',
-			    columns: columns1,
-			    idField:'id',
-			    showPaginationSwitch:true,
-			    pageNumber:1,
-			    pageSize:20000,
-			    pageList:[10, 25, 50, 100],
-			    searchOnEnterKey:true,
-			    showRefresh:true,
-			    showToggle:true,
-			    striped:true,
-			    clickToSelect:true,
-			    singleSelect:false,
-			    showHeader:true,
-			    showFooter:false,
-			    height: getHeight()
-			});
-			
+
+		function submitForm(f) {
+			f.submit();
 		}
 
-		
-		$(window).resize(function () {
-			$bt.bootstrapTable('resetView');
-	    });
-
-		$(parent).resize(function () {
-			$bt.bootstrapTable('resetView');
-	    });
-		
-		$("#dbId").change(function(){
-			clkDb(this);
-		});
-		
-		function clkDb(dbConfig){			
-			var dbId = $(dbConfig).val();
-			$bt.bootstrapTable('refresh', {url: '${ctx}/table/config/tableListByDbConfig/'+dbId});
-			
-		}
-
-
-        init('tables','${ctx}/table/config/tableListByDbConfig/${dbId}');
 
 	
 	</script>

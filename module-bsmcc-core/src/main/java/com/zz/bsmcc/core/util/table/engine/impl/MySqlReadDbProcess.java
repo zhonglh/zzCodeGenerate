@@ -3,6 +3,7 @@ package com.zz.bsmcc.core.util.table.engine.impl;
 import com.zz.bsmcc.core.util.table.engine.ReadDbProcess;
 import com.zz.bsmcc.core.util.table.pojo.Column;
 import com.zz.bsmcc.core.util.table.pojo.Table;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -14,11 +15,18 @@ public class MySqlReadDbProcess extends AbstractReadDbProcess implements ReadDbP
     public Logger logger = Logger.getLogger(this.getClass());
 
     @Override
-    protected String getReadAllTableSQL() {
+    protected String getReadAllTableSQL(String tableSchema) {
         String sql =  "select table_name , table_schema , table_type , table_comment " +
                 "from information_schema.tables " +
                 "where table_schema not in ('information_schema','test' ) " +
                 "order by table_schema , table_name";
+
+        if(StringUtils.isNotEmpty(tableSchema)){
+            sql =  "select table_name , table_schema , table_type , table_comment " +
+                    "from information_schema.tables " +
+                    "where table_schema = '"+tableSchema+"'" +
+                    "order by table_name";
+        }
         logger.debug("getReadAllTableSQL : "+sql);
         return sql;
     }

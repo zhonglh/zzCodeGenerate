@@ -17,7 +17,7 @@ public interface ReadDbProcess {
      * @return
      * @throws SQLException
      */
-    public List<Table> readAllTable(DbConfig dbContig) throws SQLException ;
+    public List<Table> readAllTable(DbConfig dbContig,String tableSchema) throws SQLException ;
 
 
     /**
