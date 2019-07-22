@@ -874,7 +874,7 @@
 
     function ${childColumn.tableBO.fullUpperResourceName?uncap_first}_${listPage.javaName}Fmt(val, row,index){
         <#if listPage.exColumn?exists && listPage.exColumn.originalColumn.columnIsdict== '1'>
-        var html = "<select name='${childColumn.tableBO.simpleName}BOList["+index+"].${listPage.exColumn.originalColumn.javaName}' id='${childColumn.tableBO.simpleName}BOList_"+index+"_${listPage.exColumn.originalColumn.javaName}' onblur='costTableRows(\"tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\" , \"${childColumn.tableBO.simpleName}BOList \" , "+index+")' class='form-control input-sm show-area <#if listPage.exColumn.originalColumn.columnIsnull=='0'>required</#if>'>" ;
+        var html = "<select name='${childColumn.tableBO.simpleName}BOList["+index+"].${listPage.exColumn.originalColumn.javaName}' id='${childColumn.tableBO.simpleName}BOList_"+index+"_${listPage.exColumn.originalColumn.javaName}' onblur='costTableRows(\"tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}\" , \"${childColumn.tableBO.simpleName}BOList\" , "+index+")' class='form-control input-sm show-area <#if listPage.exColumn.originalColumn.columnIsnull=='0'>required</#if>'>" ;
         html += checkedOption(${listPage.exColumn.originalColumn.dictType}_dicts() , row.${listPage.exColumn.originalColumn.javaName});
         html += "</select>";
         html += "<div class='hide-area'>"+row.${listPage.javaName}+"</div>";
@@ -967,7 +967,7 @@
 
     function doAdd${childColumn.tableBO.simpleName?cap_first}() {
         var rows = $('#tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}').datagrid("getRows");
-        rows.push({ <#if (childColumn.tableBO.tablePO.showPages?exists && childColumn.tableBO.tablePO.showPages?size >0)><#list childColumn.tableBO.tablePO.showPages as listPage>${listPage.javaName} : "" <#if listPage_has_next>,</#if></#list></#if> });
+        rows.push({ <#if (childColumn.tableBO.tablePO.columnPages?exists && childColumn.tableBO.tablePO.columnPages?size >0)><#list childColumn.tableBO.tablePO.columnPages as listPage>${listPage.javaName} : "" <#if listPage_has_next>,</#if></#list></#if> });
         $('#tableData-${childColumn.tableBO.fullUpperResourceName?uncap_first}').datagrid("loadData",rows);
         openEdit();
     }
