@@ -87,6 +87,7 @@
                                 <div class="col-sm-8">
 
                                     <select id="dependentProjectId" name="dependentProjectId"  class="form-control">
+                                        <option value=""></option>
                                         <c:forEach items="${projects}" var="project">
                                             <option value="${project.id}" <c:if test="${entity.projectId ==  project.id }">selected="selected"</c:if> >${project.projectName}</option>
                                         </c:forEach>
