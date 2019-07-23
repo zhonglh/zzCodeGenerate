@@ -38,7 +38,7 @@
                                     <fmt:formatDate value="${r"${"} m.${being.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
                                 <#elseif being.element == 'select' || being.element == 'checkbox' || being.element == 'radio' >
                                     ${r"${"} m.${being.javaName}Name ${r"}"}
-                                <#elseif being.element == 'singlefile' || being.element == 'multifile' || being.element == 'singleimage' || being.element == 'multiimage'  >
+                                <#elseif being.element == 'singlefile' || being.element == 'multifile'   >
 
                                     <ul style="margin: 0 0 10px 0">
                                         <c:forEach var="item" items="${r"${"}m.${being.javaName}List}">
@@ -50,6 +50,24 @@
 
                                                 <a href="javascript:downloadFile('${r"${"}item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
 
+                                                <div style="clear: both;"></div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+
+                                <#elseif  being.element == 'singleimage' || being.element == 'multiimage'  >
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${r"${"}m.${being.javaName}List}">
+
+                                            <li  style="float: left;margin-left: 10px;margin-top: 5px; margin-bottom: 5px" >
+                                                <div style="width: 80px;height: 80px"  class="image-text">
+
+                                                    <a href="<c:if test="${r"${"}item.fileEngine == '1'}">javascript:downloadFile('${r"${"}item.id}');</c:if><c:if test="${r"${"}item.fileEngine != '1'}">${r"${"}item.accessUrl}</c:if>"   class="file-operate" >
+                                                        <img style="float:left;height: 80px;width: 80px" src="${r"${"}ctx}/oss/file/view/${r"${"} item.id }">
+                                                    </a>
+
+                                                </div>
                                                 <div style="clear: both;"></div>
                                             </li>
                                         </c:forEach>
@@ -69,18 +87,34 @@
                                     <fmt:formatDate value="${r"${"} m.${nextPage.javaName} ${r"}"}" pattern="yyyy-MM-dd  HH:mm:ss" />
                                 <#elseif nextPage.element == 'select' || nextPage.element == 'checkbox' || nextPage.element == 'radio' >
                                     ${r"${"} m.${nextPage.javaName}Name ${r"}"}
-                                <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile' || nextPage.element == 'singleimage' || nextPage.element == 'multiimage'  >
+                                <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile'  >
 
                                     <ul style="margin: 0 0 10px 0">
                                         <c:forEach var="item" items="${r"${"}m.${nextPage.javaName}List}">
                                             <li>
                                                 <a href="<c:if test="${r"${"}item.fileEngine == '1'}">javascript:viewFile('${r"${"}item.id}');</c:if><c:if test="${r"${"}item.fileEngine != '1'}">${r"${"}item.accessUrl}</c:if>" class="file-text" title="${r"${"}item.showName}" style="float:left;">
-                                                <span style="float:left;">${r"${"}item.showName}</span>
+                                                <span style="float:left;">${r"${"} item.showName }</span>
                                                 <span style="float:right;" class="fileSize" fileSize="${r"${"}item.fileSize}">(${r"${"}item.fileSize})</span>
                                                 </a>
 
                                                 <a href="javascript:downloadFile('${r"${"}item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
 
+                                                <div style="clear: both;"></div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                <#elseif  nextPage.element == 'singleimage' || nextPage.element == 'multiimage'  >
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${r"${"}m.${nextPage.javaName}List}">
+                                            <li  style="float: left;margin-left: 10px;margin-top: 5px; margin-bottom: 5px" >
+                                                <div style="width: 80px;height: 80px"  class="image-text">
+
+                                                    <a href="<c:if test="${r"${"} item.fileEngine == '1' }">javascript:downloadFile('${r"${"}item.id}');</c:if><c:if test="${r"${"}item.fileEngine != '1'}">${r"${"}item.accessUrl}</c:if>"   class="file-operate" >
+                                                    <img style="float:left;height: 80px;width: 80px" src="${r"${"}ctx}/oss/file/view/${r"${"} item.id }">
+                                                    </a>
+
+                                                </div>
                                                 <div style="clear: both;"></div>
                                             </li>
                                         </c:forEach>
@@ -168,7 +202,7 @@
                                             </c:forEach>
                                         </select>
                                     <#elseif being.element == 'openwin' >
-                                    <#elseif being.element == 'singlefile' || being.element == 'multifile' || being.element == 'singleimage' || being.element == 'multiimage'  >
+                                    <#elseif being.element == 'singlefile' || being.element == 'multifile'  >
                                         <div class="" style="margin-bottom: 0px">
                                             <div class="info-detail">
                                                 <input type="hidden" id="${being.javaName}" name="${being.javaName}" value="${r"${"} m.${being.javaName}}">
@@ -182,9 +216,32 @@
                                                 </div>
 
                                                 <div class="btns">
-                                                    <div id="uploadFile_${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${being.javaName}', businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"} m.${being.javaName}}' ">
+                                                    <div id="uploadFile_${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${being.javaName}', <#if being.element == 'singlefile'>maxCount:1,</#if> businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"} m.${being.javaName}}' ">
                                                         <i class="fa fa-upload"></i>
                                                         <span>上传附件</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    <#elseif being.element == 'singleimage' || being.element == 'multiimage'  >
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="${being.javaName}" name="${being.javaName}" value="${r"${"} m.${being.javaName}}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_${being.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_${being.javaName}_items" style="display: none;">
+                                                    <c:forEach var="item" items="${r"${"} m.${being.javaName}List}">
+                                                        <span id="${r"${"} item.id}" fileUseId="${r"${"} item.id}" accessUrl="${r"${"} item.accessUrl}" fileEngine="${r"${"} item.fileEngine}" fileSize="${r"${"} item.fileSize}" showName="${r"${"} item.showName}" businessId="${r"${"} item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
+
+                                                <div class="btns">
+                                                    <div id="uploadFile_${being.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${being.javaName}', isImage:'true' , <#if being.element == 'singleimage'>maxCount:1,</#if> businessFileType:'${being.javaName}'  ,businessTempId: '${r"${"} m.${being.javaName}}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传图片</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -275,7 +332,7 @@
                                             </c:forEach>
                                         </select>
                                     <#elseif nextPage.element == 'openwin' >
-                                    <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile' || nextPage.element == 'singleimage' || nextPage.element == 'multiimage'  >
+                                    <#elseif nextPage.element == 'singlefile' || nextPage.element == 'multifile'  >
                                         <div class="" style="margin-bottom: 0px">
                                             <div class="info-detail">
                                                 <input type="hidden" id="${nextPage.javaName}" name="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName}}">
@@ -289,13 +346,37 @@
                                                 </div>
 
                                                 <div class="btns">
-                                                    <div id="uploadFile_${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${nextPage.javaName}', businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"} m.${nextPage.javaName}}' ">
+                                                    <div id="uploadFile_${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${nextPage.javaName}',<#if nextPage.element == 'singlefile'>maxCount:1,</#if>  businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"} m.${nextPage.javaName}}' ">
                                                         <i class="fa fa-upload"></i>
                                                         <span>上传附件</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                    <#elseif  nextPage.element == 'singleimage' || nextPage.element == 'multiimage'  >
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="${nextPage.javaName}" name="${nextPage.javaName}" value="${r"${"} m.${nextPage.javaName}}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_${nextPage.javaName}" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_${nextPage.javaName}_items" style="display: none;">
+                                                    <c:forEach var="item" items="${r"${"} m.${nextPage.javaName}List}">
+                                                        <span id="${r"${"} item.id}" fileUseId="${r"${"} item.id}" accessUrl="${r"${"} item.accessUrl}" fileEngine="${r"${"} item.fileEngine}" fileSize="${r"${"} item.fileSize}" showName="${r"${"} item.showName}" businessId="${r"${"} item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
+
+                                                <div class="btns">
+                                                    <div id="uploadFile_${nextPage.javaName}" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_${nextPage.javaName}', isImage:'true' , <#if nextPage.element == 'singleimage'>maxCount:1,</#if> businessFileType:'${nextPage.javaName}'  ,businessTempId: '${r"${"} m.${nextPage.javaName}}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传图片</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     <#else >
                                     </#if>
                                 <#elseif nextPage?exists && nextPage.exColumn?exists>
